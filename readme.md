@@ -55,7 +55,7 @@ To use the viewer in a JavaScript page, you have to do the following steps:
 Alternative call could be:
 
     <script>
-    pgnData = "1. e4 e5 2. Nf3 Nc6 3. Bb5";
+    var pgnData = "1. e4 e5 2. Nf3 Nc6 3. Bb5";
     new PgnViewer(
       { boardName: "demo",
         pgnString: pgnData
@@ -63,3 +63,30 @@ Alternative call could be:
     );
     </script>
 
+### HTML frame
+
+When you use PgnViewerJS, you have to provide a frame for that. The following example is the minimal frame to use.
+
+    <!DOCTYPE html>
+    <html>
+        <head lang="en">
+            <meta charset="UTF-8">
+            <title>Simple Example</title>
+            <!-- Libraries used: chessboardjs and chess.js from GitHub -->
+            <script src="chessboardjs/js/chessboard.js" type="text/javascript"></script>
+            <script src="chessboardjs/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+            <script src="chessboardjs/js/json3.min.js" type="text/javascript"></script>
+            <script src="chess.js/chess.js" type="text/javascript"></script>
+
+            <!-- CSS used: chessboardjs from GitHub -->
+            <link href="chessboardjs/css/chessboard.css" type="text/css" rel="stylesheet"/>
+
+        </head>
+        <body>
+        <div id="whole">
+            <div id="board" style="width: 400px"></div>
+        </div>
+        <script>Insert here the script</script>
+
+        </body>
+    </html>
