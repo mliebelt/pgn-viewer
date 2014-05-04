@@ -18,24 +18,47 @@
 </head>
 <body>
 
-<div id="board" style="width: 200px; float: left; margin-right: 10px"></div>
-<div id="board1" style="width: 200px; float: left; margin-right: 10px"></div>
-<div id="board2" style="width: 200px; float: left; margin-right: 10px"></div>
-<div id="board3" style="width: 200px; float: left"></div>
+<div id="board" style="width: 400px; float: left; margin-right: 10px"></div>
+<div id="board1" style="width: 400px; float: left; margin-right: 10px"></div>
+<div id="board2" style="width: 400px; float: left; margin-right: 10px"></div>
+<div id="board3" style="width: 400px; float: left; margin-right: 10px"></div>
+<div id="board4" style="width: 400px; float: left; margin-right: 10px"></div>
+<div id="board5" style="width: 400px; float: left; margin-right: 10px"></div>
+<div id="board6" style="width: 400px; float: left; margin-right: 10px"></div>
+<div id="board7" style="width: 400px; float: left; margin-right: 10px"></div>
+<div id="board8" style="width: 400px; float: left; margin-right: 10px"></div>
+<div id="board9" style="width: 400px; float: left; margin-right: 10px"></div>
 <div style="clear:both"></div>
-<script>var cfg = {
-    showNotation: false,
-    position: 'start'
-};
+<script>
+var cfg = { showNotation: false, position: 'start' };
 var board = new PgnViewer('board', cfg);
 
-cfg = { position: 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R',
-    pieceStyle: 'alpha'};
+cfg = { position: 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R', pieceStyle: 'alpha'};
 var board1 = new PgnViewer("board1", cfg);
+
 cfg = { pieceStyle: 'uscf', orientation: 'black', position: 'start'};
 var board2 = new PgnViewer("board2", cfg);
+
 cfg = { showNotation: false, orientation: 'black', position: 'start'};
 var board3 = new PgnViewer("board3", cfg);
+
+cfg = { showNotation: false, pieceStyle: 'chesscom', position: 'start'};
+var board4 = new PgnViewer("board4", cfg);
+
+cfg = { showNotation: false, pieceStyle: 'merida', position: 'start'};
+var board5 = new PgnViewer("board5", cfg);
+
+cfg = { showNotation: false, pieceStyle: 'condal', position: 'start'};
+var board6 = new PgnViewer("board6", cfg);
+
+cfg = { showNotation: false, pieceStyle: 'leipzig', position: 'start'};
+var board7 = new PgnViewer("board7", cfg);
+
+cfg = { showNotation: false, pieceStyle: 'case', position: 'start'};
+var board8 = new PgnViewer("board8", cfg);
+
+cfg = { showNotation: false, pieceStyle: 'maya', position: 'start'};
+var board9 = new PgnViewer("board9", cfg);
 </script>
 
 </body>
