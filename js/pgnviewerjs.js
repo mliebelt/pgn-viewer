@@ -17,9 +17,9 @@ function PgnViewer (boardId, configuration) {
     }
     var myPieceStyles = ['case', 'chesscom', 'condal', 'leipzig', 'maya', 'merida'];
     if (myPieceStyles.indexOf(pieceStyle) >= 0) {
-        configuration.pieceTheme = 'img/chesspieces/' + pieceStyle + '/{piece}.png';
+        configuration.pieceTheme = '../img/chesspieces/' + pieceStyle + '/{piece}.png';
     } else {
-        configuration.pieceTheme = 'chessboardjs/img/chesspieces/' + pieceStyle + '/{piece}.png';
+        configuration.pieceTheme = '../chessboardjs/img/chesspieces/' + pieceStyle + '/{piece}.png';
     }
 
     var innerBoardId = boardId + 'Inner';
@@ -50,7 +50,7 @@ function PgnViewer (boardId, configuration) {
             var span = document.createElement("span");
             span.setAttribute('class', "move");
             if (pgn_move.color == 'w') {
-                num = document.createElement('span');
+                var num = document.createElement('span');
                 num.setAttribute('class', "moveNumber");
                 num.appendChild(document.createTextNode("1. "));
                 span.appendChild(num);
@@ -67,14 +67,15 @@ function PgnViewer (boardId, configuration) {
             return [span, func];
         };
 
-        // Start working with PGN
+        // Start working with PGN, if available
+        if (! configuration.pgn) { return; }
         game.load_pgn(configuration.pgn);
         var myMoves = game.history();
         game.reset();
         var movesDiv = document.getElementById(movesId);
         for (var i = 0; i < myMoves.length; i++) {
             var move = myMoves[i];
-            ret = generateMove(i, game, move);
+            var ret = generateMove(i, game, move);
             var html = ret[0];
             var func = ret[1];
             movesDiv.appendChild(html);
