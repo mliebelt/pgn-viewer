@@ -1,3 +1,97 @@
 .moves a {
     text-decoration: underline;
 }
+
+/* board */
+.green .board-b72b1 {
+    /*    border: 2px solid #404040; */
+    border-color: green;
+    border-width: 20px;
+}
+
+/* white square */
+.green .white-1e1d7 {
+    background-color: lightgreen;
+    color: rgba(0, 100, 0, 0.75);
+}
+
+/* black square */
+.green .black-3c85d {
+    color: lightgreen;
+    background-color: rgba(0, 100, 0, 0.75);
+}
+
+/* highlighted square */
+.green .highlight1-32417, .highlight2-9c5d2 {
+    -webkit-box-shadow: inset 0 0 3px 3px yellow;
+    -moz-box-shadow: inset 0 0 3px 3px yellow;
+    box-shadow: inset 0 0 3px 3px yellow;
+}
+
+/* notation */
+.green .notation-322f9 {
+    /* cursor: default;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+    font-size: 14px;
+
+}
+
+.green .alpha-d2270 {
+    bottom: -16px;
+    right: 21px;
+    color: #ffffff;
+}
+
+.green .numeric-fc462 {
+    top: 19px;
+    left: -12px;
+    color: #ffffff;
+}
+
+
+/* Theme: BLUE */
+
+/* board */
+.blue .board-b72b1 {
+    /*    border: 2px solid #404040; */
+    border-color: blue;
+}
+
+/* white square */
+.blue .white-1e1d7 {
+    background-color: rgba(187, 234, 249, 0.38);
+    color: rgba(0, 0, 139, 0.73);
+}
+
+/* black square */
+.blue .black-3c85d {
+    color: rgba(187, 234, 249, 0.38);
+    background-color: rgba(0, 0, 139, 0.73);
+}
+
+/* highlighted square */
+.blue .highlight1-32417, .highlight2-9c5d2 {
+    -webkit-box-shadow: inset 0 0 3px 3px yellow;
+    -moz-box-shadow: inset 0 0 3px 3px yellow;
+    box-shadow: inset 0 0 3px 3px yellow;
+}
+
+/* notation */
+.blue .notation-322f9 {
+    /* cursor: default;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+    font-size: 40px;
+
+}
+
+.blue .alpha-d2270 {
+    bottom: 1px;
+    right: 3px;
+
+}
+
+.blue .numeric-fc462 {
+    top: 0px;
+    left: 0px;
+
+}

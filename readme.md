@@ -28,10 +28,15 @@ There are 2 parts to the interface:
 
 ## Examples
 
-The included example `sample.html` is my first try how to show the board. It will be expanded later by others
+The included example `examples/sample.html` is my first try how to show the board. It will be expanded later by others
 (complete) examples that may be used to study the usage.
 
 To use the examples, you have to first download this repository, and open the example files in the browser.
+See the different parameters used in this example, to customize the drawing of the board.
+
+The second example `examples/pgn.html` shows the first few moves of a game together with
+the (clickable) notation. This shows (at the moment) the deficits I have in using
+`chess.js` as a library.
 
 ## Using the viewer
 
@@ -45,22 +50,16 @@ To use the viewer in a JavaScript page, you have to do the following steps:
 ### JavaScript call inside page
 
     <script>
-    new PgnViewer(
-      { boardName: "demo",
-        pgnFile: '/kasparov.pgn'
-      }
-    );
+    cfg = { pieceStyle: 'merida' };
+    new PgnViewer("demo",cfg);
     </script>
 
 Alternative call could be:
 
     <script>
     var pgnData = "1. e4 e5 2. Nf3 Nc6 3. Bb5";
-    new PgnViewer(
-      { boardName: "demo",
-        pgnString: pgnData
-      }
-    );
+    cfg = { pgn: pgnData };
+    new PgnViewer("demo", cfg};
     </script>
 
 ### HTML frame
@@ -83,9 +82,7 @@ When you use PgnViewerJS, you have to provide a frame for that. The following ex
 
         </head>
         <body>
-        <div id="whole">
-            <div id="board" style="width: 400px"></div>
-        </div>
+        <div id="board" style="width: 400px"></div>
         <script>Insert here the script</script>
 
         </body>

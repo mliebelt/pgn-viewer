@@ -10,11 +10,9 @@
  */
 
 function PgnViewer (boardId, configuration) {
-    var pieceStyle = configuration.pieceStyle;
+    var pieceStyle = configuration.pieceStyle || 'wikipedia';
+    var theme = configuration.theme || 'default';
     var game = new Chess();
-    if (pieceStyle == null) {
-        pieceStyle = "wikipedia";
-    }
     var myPieceStyles = ['case', 'chesscom', 'condal', 'leipzig', 'maya', 'merida'];
     if (myPieceStyles.indexOf(pieceStyle) >= 0) {
         configuration.pieceTheme = '../img/chesspieces/' + pieceStyle + '/{piece}.png';
@@ -29,6 +27,7 @@ function PgnViewer (boardId, configuration) {
         var divBoard = document.getElementById(boardId);
         var innerBoardDiv = document.createElement("div");
         innerBoardDiv.setAttribute('id', innerBoardId);
+        innerBoardDiv.setAttribute('class', theme);
         var movesDiv = document.createElement("div");
         movesDiv.setAttribute('id', movesId);
         movesDiv.setAttribute('class', "moves");
@@ -44,7 +43,7 @@ function PgnViewer (boardId, configuration) {
      */
     var generateMoves = function() {
         // Generates one move from the current position
-        var generateMove = function(i, game, move) {
+        var generateMove = function(i, game, move, movesDiv) {
             var pgn_move = game.move(move);
             var fen = game.fen();
             var span = document.createElement("span");
@@ -61,10 +60,11 @@ function PgnViewer (boardId, configuration) {
             link.appendChild(text);
             span.appendChild(link);
             span.appendChild(document.createTextNode(" "));
-            var func = function() {
+            movesDiv.appendChild(span);
+            $('#move' + i).on('click', function() {
                 board.position(fen);
-            };
-            return [span, func];
+            });
+            return this;
         };
 
         // Start working with PGN, if available
@@ -75,13 +75,8 @@ function PgnViewer (boardId, configuration) {
         var movesDiv = document.getElementById(movesId);
         for (var i = 0; i < myMoves.length; i++) {
             var move = myMoves[i];
-            var ret = generateMove(i, game, move);
-            var html = ret[0];
-            var func = ret[1];
-            movesDiv.appendChild(html);
-            $('#move' + i).on('click', func);
+            generateMove(i, game, move, movesDiv);
         }
-
     }();
 
 }
