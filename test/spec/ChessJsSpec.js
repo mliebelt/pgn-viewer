@@ -5,13 +5,14 @@ describe("Chess Game", function() {
     chess = new Chess();
   });
 
-  xit("should be able to play a Song", function() {
-    player.play(song);
-    expect(player.currentlyPlayingSong).toEqual(song);
-
-    //demonstrates use of custom matcher
-    expect(player).toBePlaying(song);
+  it("should be able instantiate a chess game", function() {
+    expect(chess.fen()).toEqual("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+    expect(chess.turn()).toEqual("w");
   });
+
+    xit ("should know the castling rules", function() {
+       expect(chess.castling()).toEqual("Whatever");
+    });
 
   describe("when reads a plain pgn", function() {
     beforeEach(function() {
@@ -22,31 +23,10 @@ describe("Chess Game", function() {
       expect(chess.history().length).toEqual(4);
     });
 
-    xit("should be possible to resume", function() {
-      player.resume();
-      expect(player.isPlaying).toBeTruthy();
-      expect(player.currentlyPlayingSong).toEqual(song);
+    it("should allow next moves", function() {
+      var moves = chess.moves();
+      expect(moves.length).toBeGreaterThan(0);
     });
   });
 
-  // demonstrates use of spies to intercept and test method calls
-  xit("tells the current song if the user has made it a favorite", function() {
-    spyOn(song, 'persistFavoriteStatus');
-
-    player.play(song);
-    player.makeFavorite();
-
-    expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
-  });
-
-  //demonstrates use of expected exceptions
-  xdescribe("#resume", function() {
-    it("should throw an exception if song is already playing", function() {
-      player.play(song);
-
-      expect(function() {
-        player.resume();
-      }).toThrowError("song is already playing");
-    });
-  });
 });

@@ -25,6 +25,9 @@ function PgnViewer (boardId, configuration) {
 
     var generateHTML = function() {
         var divBoard = document.getElementById(boardId);
+        if (divBoard == null) {
+            return;
+        }
         var innerBoardDiv = document.createElement("div");
         innerBoardDiv.setAttribute('id', innerBoardId);
         innerBoardDiv.setAttribute('class', theme);
@@ -33,7 +36,6 @@ function PgnViewer (boardId, configuration) {
         movesDiv.setAttribute('class', "moves");
         divBoard.appendChild(innerBoardDiv);
         divBoard.appendChild(movesDiv);
-
     }();
     var board = new ChessBoard(innerBoardId, configuration);
 
@@ -78,5 +80,138 @@ function PgnViewer (boardId, configuration) {
             generateMove(i, game, move, movesDiv);
         }
     }();
+
+    // Copy of the orignal version, try to improve by the following aspects:
+    // * Allow comments
+    // * Allow variations
+    var loadPgn = function(pgn_string) {
+        function mask(str) {
+            return str.replace(/\\/g, '\\');
+        }
+
+        /* convert a move from Standard Algebraic Notation (SAN) to 0x88
+         * coordinates
+         */
+        function move_from_san(move) {
+            var moves = generate_moves();
+            for (var i = 0, len = moves.length; i < len; i++) {
+                /* strip off any trailing move decorations: e.g Nf3+?! */
+                if (move.replace(/[+#?!=]+$/,'') ==
+                    move_to_san(moves[i]).replace(/[+#?!=]+$/,'')) {
+                    return moves[i];
+                }
+            }
+            return null;
+        }
+
+        function get_move_obj(move) {
+            return move_from_san(trim(move));
+        }
+
+        function has_keys(object) {
+            var has_keys = false;
+            for (var key in object) {
+                has_keys = true;
+            }
+            return has_keys;
+        }
+
+        function parse_pgn_header(header, options) {
+            var newline_char = (typeof options === 'object' &&
+                typeof options.newline_char === 'string') ?
+                options.newline_char : '\r?\n';
+            var header_obj = {};
+            var headers = header.split(new RegExp(mask(newline_char)));
+            var key = '';
+            var value = '';
+
+            for (var i = 0; i < headers.length; i++) {
+                key = headers[i].replace(/^\[([A-Z][A-Za-z]*)\s.*\]$/, '$1');
+                value = headers[i].replace(/^\[[A-Za-z]+\s"(.*)"\]$/, '$1');
+                if (trim(key).length > 0) {
+                    header_obj[key] = value;
+                }
+            }
+
+            return header_obj;
+        }
+
+        var newline_char = (typeof options === 'object' &&
+            typeof options.newline_char === 'string') ?
+            options.newline_char : '\r?\n';
+        var regex = new RegExp('^(\\[(.|' + mask(newline_char) + ')*\\])' +
+            '(' + mask(newline_char) + ')*' +
+            '1.(' + mask(newline_char) + '|.)*$', 'g');
+
+        /* get header part of the PGN file */
+        var header_string = pgn.replace(regex, '$1');
+
+        /* no info part given, begins with moves */
+        if (header_string[0] !== '[') {
+            header_string = '';
+        }
+
+        reset();
+
+        /* parse PGN header */
+        var headers = parse_pgn_header(header_string, options);
+        for (var key in headers) {
+            set_header([key, headers[key]]);
+        }
+
+        /* delete header to get the moves */
+        var ms = pgn.replace(header_string, '').replace(new RegExp(mask(newline_char), 'g'), ' ');
+
+        /* delete comments */
+        ms = ms.replace(/(\{[^}]+\})+?/g, '');
+
+        /* delete move numbers */
+        ms = ms.replace(/\d+\./g, '');
+
+
+        /* trim and get array of moves */
+        var moves = trim(ms).split(new RegExp(/\s+/));
+
+        /* delete empty entries */
+        moves = moves.join(',').replace(/,,+/g, ',').split(',');
+        var move = '';
+
+        for (var half_move = 0; half_move < moves.length - 1; half_move++) {
+            move = get_move_obj(moves[half_move]);
+
+            /* move not possible! (don't clear the board to examine to show the
+             * latest valid position)
+             */
+            if (move == null) {
+                return false;
+            } else {
+                make_move(move);
+            }
+        }
+
+        /* examine last move */
+        move = moves[moves.length - 1];
+        if (POSSIBLE_RESULTS.indexOf(move) > -1) {
+            if (has_keys(header) && typeof header.Result === 'undefined') {
+                set_header(['Result', move]);
+            }
+        }
+        else {
+            move = get_move_obj(move);
+            if (move == null) {
+                return false;
+            } else {
+                make_move(move);
+            }
+        }
+        return true;
+    };
+
+    return {
+        // PUBLIC API
+        chess: function () {
+            return game;
+        }
+    }
 
 }

@@ -6,7 +6,7 @@
 .green .board-b72b1 {
     /*    border: 2px solid #404040; */
     border-color: green;
-    border-width: 20px;
+    /*border-width: 20px;*/
 }
 
 /* white square */
@@ -37,15 +37,15 @@
 }
 
 .green .alpha-d2270 {
-    bottom: -16px;
-    right: 21px;
-    color: #ffffff;
+    /*bottom: -16px;*/
+    /*right: 21px;*/
 }
 
 .green .numeric-fc462 {
+/*
     top: 19px;
     left: -12px;
-    color: #ffffff;
+*/
 }
 
 
