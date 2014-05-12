@@ -32,7 +32,7 @@ describe("PGN Viewer", function() {
             pgnv.chess().load_pgn(pgn.join("/n"));
         });
 
-        it("should have these headers read", function() {
+        xit("should have these headers read", function() {
             expect(pgnv.chess().header).toBeGreaterThan(1);
         })
     })
