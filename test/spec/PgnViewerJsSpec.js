@@ -35,5 +35,6 @@ describe("PGN Viewer", function() {
         xit("should have these headers read", function() {
             expect(pgnv.chess().header).toBeGreaterThan(1);
         })
+
     })
 })
