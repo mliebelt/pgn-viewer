@@ -41,22 +41,32 @@ var pgn = function (spec) {
     /**
      * Reads the headers from the pgn string given, returns what is not consumed
      * by the headers.
-     * @returns {string}
+     * @returns {string} the remainding moves
      */
     function readHeaders() {
-        var h = {};
+        var h = splitHeaders(spec.pgn);
         // return at the end what is not consumed by the headers.
         that.headers = h;
-        return "";
+        var index = spec.pgn.lastIndexOf("]");
+        return spec.pgn.substring(index + 1);
     }
 
+    /**
+     * Split the headers (marked by []), and collect them in the return value.
+     * @param string the pgn string that contains (at the beginning) the headers of the game
+     * @returns the headers read
+     */
     function splitHeaders(string) {
         var h = {};
         var list = string.match(/\[([^\]]+)]/g);
+        if (list === null) { return h; };
         for (var i=0; i < list.length; i++) {
             var ret = list[i].match(/\[(\w+)\s+\"([^\"]+)\"/);
             if (ret) {
-                h[ret[1]] = ret[2];
+                var key = ret[1];
+                if (that.PGN_KEYS[key]) {
+                    h[key] = ret[2];
+                }
             }
         }
         return h;
@@ -66,8 +76,9 @@ var pgn = function (spec) {
      * Read moves read the moves that are not part of the headers.
      */
     function readMoves(movesString) {
-
+        that.moves_string = movesString.trim();
     }
+
     // This defines the public API of the pgn function.
     that.inputPgn = function () { return spec.pgn; };
     that.readHeaders = readHeaders;
