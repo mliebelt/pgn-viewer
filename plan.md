@@ -89,6 +89,12 @@ is taken by `chess.js`:
 But not all of this information is available from the outside. So it is difficult to get
 the current move number, ...
 
+#### PGN Annotations
+
+* See http://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs (NAGs) for the meaning
+* how to represent them as symbols?
+* Is there a font for the special symbols, or are these available everywhere?
+
 ### Provide a FEN API that can be used from the outside.
 
 At least move number, turn, en-passent, rochade, ... should be possible.
