@@ -25,8 +25,36 @@
 /* board */
 .chesscom .board-b72b1 {
     /*    border: 2px solid #404040; */
-    border-color: green;
-    /*border-width: 20px;*/
+    border-color: white;
+    border-width: 0px;
+}
+
+.chesscom .header {
+    font-family: "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif;
+    font-size: 16px;
+    padding: 15px;
+    background-color: #f3f3f3;
+}
+
+.chesscom .players {
+    font-weight: 900;
+}
+
+.chesscom .moves {
+    padding: 3px 3px;
+    font-size: 18px;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    position: relative;
+    float: right;
+    width: 388px;
+    border-right: 2px solid #f3f3f3;
+    background: #ffffff;
+    vertical-align: baseline;
+    text-align: left;
+}
+
+.chesscom .moves a {
+    text-decoration: none;
 }
 
 /* white square */
@@ -38,7 +66,7 @@
 /* black square */
 .chesscom .black-3c85d {
     color: #ededd9;
-    background-color: #6494b1;
+    background-color: #4c6D92;
 }
 
 .chesscom .alpha-d2270 {
@@ -58,7 +86,97 @@
     font-size: 10px;
 
 }
+
 /*************** End chesscom pattern *****************************/
+
+/* Pattern for something greenish. */
+/* board */
+.informator .board-b72b1 {
+    /*    border: 2px solid #404040; */
+    border-color: black;
+    border-width: 4px;
+}
+
+/* white square */
+.informator .white-1e1d7 {
+    background-color: #eeeeee;
+    color: rgba(100, 100, 100, 0.05);
+}
+
+/* black square */
+.informator .black-3c85d {
+    color: #aaaaaa;
+    background-color: rgba(100, 100, 100, 0.75);
+}
+
+/*************** End informator pattern *****************************/
+
+/* Pattern for something greenish. */
+/* board */
+.sportverlag .board-b72b1 {
+    /*    border: 2px solid #404040; */
+    border-color: black;
+    border-width: 4px;
+}
+
+/* white square */
+.sportverlag .white-1e1d7 {
+    background-color: #f4f4f4;
+    color: rgba(2, 2, 2, 0.75);
+}
+
+/* black square */
+.sportverlag .black-3c85d {
+    color: #eee;
+    background-image: -webkit-repeating-linear-gradient(top left, #333 1%, #eee 8%);
+}
+
+
+/*************** End sportverlag pattern *****************************/
+/* board */
+.falken .board-b72b1 {
+    /*    border: 2px solid #404040; */
+    border: 1px solid black;
+
+    /* #2 */
+    padding: 20px;
+
+    /* #3 */
+    outline: 2px solid black;
+}
+
+/* white square */
+.falken .white-1e1d7 {
+    background-color: #f4f4f4;
+    color: rgba(2, 2, 2, 0.75);
+}
+
+/* black square */
+.falken .black-3c85d {
+    color: rgba(2, 2, 2, 0.75);
+    background-color: #636b6a;
+}
+
+.falken .alpha-d2270 {
+    bottom: -15px;
+    right: 20px;
+}
+
+.falken .numeric-fc462 {
+    top: 20px;
+    left: -15px;
+}
+
+/* notation */
+.falken .notation-322f9 {
+    /* cursor: default;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+    font-size: 12px;
+
+}
+
+
+/*************** End falken pattern *****************************/
 
 /* Pattern for something greenish. */
 /* board */

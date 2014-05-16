@@ -16,6 +16,10 @@ var pgnView = function (boardId, configuration) {
     var that = {};
     var boardConfiguration = {};
 
+    function localPath() {
+        var jsFileLocation = $('script[src*=pgnviewerjs]').attr('src');  // the js file path
+        return jsFileLocation.replace('pgnviewerjs.js', '');   // the js folder path
+    }
     function copyBoardConfiguration(source, target, keys) {
         var pieceStyle = source.pieceStyle || 'wikipedia';
         $.each(keys, function(i, key) {
@@ -26,9 +30,9 @@ var pgnView = function (boardId, configuration) {
         var myPieceStyles = ['case', 'chesscom', 'condal', 'leipzig', 'maya', 'merida'];
         if (! target.pieceTheme) {
             if (myPieceStyles.indexOf(pieceStyle) >= 0) {
-                target.pieceTheme = '../img/chesspieces/' + pieceStyle + '/{piece}.png';
+                target.pieceTheme = localPath() + '../img/chesspieces/' + pieceStyle + '/{piece}.png';
             } else {
-                target.pieceTheme = '../chessboardjs/img/chesspieces/' + pieceStyle + '/{piece}.png';
+                target.pieceTheme = localPath() + '../chessboardjs/img/chesspieces/' + pieceStyle + '/{piece}.png';
             }
         }
 
