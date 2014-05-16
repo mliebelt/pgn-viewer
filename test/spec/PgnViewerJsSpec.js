@@ -2,7 +2,7 @@ describe("PGN Viewer", function() {
     var pgnv;
 
     beforeEach(function() {
-        pgnv = new PgnViewer('b', { position: 'start' });
+        pgnv = pgnView('b', { position: 'start' });
     });
 
     it("should be instantiated with the inital position", function() {
