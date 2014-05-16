@@ -1,28 +1,49 @@
+'use strict';
+
 /**
- * Created by Markus on 03.05.2014.
  * This implements the PgnViewerJS that uses chessboardjs and chess.js as libraries.
  *
  * Configuration object for the board:
  * * position: FEN position for the start, default is 'start' for start position
  * * orientation: 'black' or 'white', default is 'black'
  * * showNotation: true or false, default is true
+ * * pieceStyle: defines the pieces to use. Depending on the choosen pieces, the pieceTheme is definied
  * * pieceTheme: allows to adapt the path to the pieces, default is 'img/chesspieces/alpha/{piece}.png'
+ *
  */
 
-function PgnViewer (boardId, configuration) {
-    var pieceStyle = configuration.pieceStyle || 'wikipedia';
+var pgnView = function (boardId, configuration) {
+    var that = {};
+    var boardConfiguration = {};
+
+    function copyBoardConfiguration(source, target, keys) {
+        var pieceStyle = source.pieceStyle || 'wikipedia';
+        $.each(keys, function(i, key) {
+            if (source[key]) {
+                target[key] = source[key];
+            }
+        });
+        var myPieceStyles = ['case', 'chesscom', 'condal', 'leipzig', 'maya', 'merida'];
+        if (! target.pieceTheme) {
+            if (myPieceStyles.indexOf(pieceStyle) >= 0) {
+                target.pieceTheme = '../img/chesspieces/' + pieceStyle + '/{piece}.png';
+            } else {
+                target.pieceTheme = '../chessboardjs/img/chesspieces/' + pieceStyle + '/{piece}.png';
+            }
+        }
+
+    };
     var theme = configuration.theme || 'default';
     var game = new Chess();
-    var myPieceStyles = ['case', 'chesscom', 'condal', 'leipzig', 'maya', 'merida'];
-    if (myPieceStyles.indexOf(pieceStyle) >= 0) {
-        configuration.pieceTheme = '../img/chesspieces/' + pieceStyle + '/{piece}.png';
-    } else {
-        configuration.pieceTheme = '../chessboardjs/img/chesspieces/' + pieceStyle + '/{piece}.png';
-    }
+    copyBoardConfiguration(configuration, boardConfiguration, ['position', 'orientation', 'showNotation', 'pieceTheme']);
 
     var innerBoardId = boardId + 'Inner';
     var movesId = boardId + 'Moves';
 
+    /**
+     * Generates all HTML elements needed for display of the (playing) board and
+     * the moves. Generates that in dependence of the theme
+     */
     var generateHTML = function() {
         var divBoard = document.getElementById(boardId);
         if (divBoard == null) {
@@ -37,7 +58,7 @@ function PgnViewer (boardId, configuration) {
         divBoard.appendChild(innerBoardDiv);
         divBoard.appendChild(movesDiv);
     }();
-    var board = new ChessBoard(innerBoardId, configuration);
+    var board = new ChessBoard(innerBoardId, boardConfiguration);
 
     /**
      * Generates the HTML (for the given moves). Includes the following: move number,
@@ -81,9 +102,9 @@ function PgnViewer (boardId, configuration) {
         }
     }();
 
-    // Copy of the orignal version, try to improve by the following aspects:
-    // * Allow comments
-    // * Allow variations
+    /** Copy of the orignal version, try to improve by the following aspects:
+     *  Allow comments
+    /*  Allow variations */
     var loadPgn = function(pgn_string) {
         function mask(str) {
             return str.replace(/\\/g, '\\');
