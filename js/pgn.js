@@ -15,17 +15,25 @@ var pgn = function (spec) {
         Site: "the location of the event",
         Date: "the starting date of the game (format: YYYY.MM.TT)",
         Round: "the playing round ordinal of the game",
-        Board: "the board number in a team event",
         White: "the player of the white pieces (last name, pre name)",
         Black: "the player of the black pieces (last name, pre name)",
         Result: "the result of the game (1 - 0, 1/2 - 1/2, 0 - 1)",
+        // from here, the keys are optional, order may be different
+        Board: "the board number in a team event",
         ECO: "ECO-Opening-Key (ECO = 'Encyclopaedia of Chess Openings')",
         WhitemyELO: "myELO-score white (at the beginning of the game)",
         BlackmyELO: "myELO-score black (at the beginning of the game)",
-        TimeControl: "This tag describes the time control used with the game. The first digit shows the number of moves and the second the time-limit. (10/2592000)",
         WhiteDays: "rate in days for white",
         BlackDays: "rate in days for black",
-        myChessNo: "identification-no. of the game on the myChess.de - server"
+        myChessNo: "identification-no. of the game on the myChess.de - server",
+        // From here it was from Wikipedia
+        Annotator: "The person providing notes to the game.",
+        PlyCount: "String value denoting total number of half-moves played.",
+        TimeControl: "40/7200:3600 (moves per seconds: sudden death seconds)",
+        Time: 'Time the game started, in "HH:MM:SS" format, in local clock time.',
+        Termination: 'Gives more details about the termination of the game. It may be "abandoned", "adjudication" (result determined by third-party adjudication), "death", "emergency", "normal", "rules infraction", "time forfeit", or "unterminated".',
+        Mode: '"OTB" (over-the-board) "ICS" (Internet Chess Server)'
+
     }
     /**
      * Main function, automatically called when calling pgn function.

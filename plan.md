@@ -15,17 +15,19 @@ there is of course no guarantee that anything will be implemented soon.
 
 ## Order of plan
 
-### Show boards (/)
+### Visual
+
+#### Show boards (/)
 
 * Transport the features of chessboardjs, so that the same configuration is possible.
 * Works sufficiently now.
 
-### Add additional figure sets (/)
+#### Add additional figure sets (/)
 
 * Add as figure sets the ones from chess.com and from ChessTempo Merida.
 * Added as well case, condal, leipzig and maya from ChessTempo.
 
-#### Additional feature (!)
+##### Additional feature
 
 * Allow others to add figure sets as well.
 * Provide a registry, and provide there an additional path to the set (relative to the
@@ -34,6 +36,32 @@ there is of course no guarantee that anything will be implemented soon.
   * Path to the piece style (only variant here).
   * Directory named as the piece style.
   * Then '/{piece}.png'
+
+#### Generate from PGN structure moves
+
+* Generate a reasonable frame for the moves (id: <ID>Moves, class: moves).
+* Generate the moves in a pleasant style.
+* Look at different books and try to adapt some of the styles, allow the style to be set
+  (as attribute moveStyle).
+    
+#### Different move styles
+
+* one or two column (depending on how much to show)
+* Main moves flowing or one move (white and black) on one line.
+* References to the diagrams (numbered, who is to move)
+* Variations flowing in block mode (normally)
+* Use Figurine instead of the move letters (for white and black with the same symbols)
+
+#### Different PGN header display
+
+* None at all (default?)
+* White and Black players bold, rest flowing (order?)
+* Normal order is
+  * Wikipedia definition
+    * Mandatory: Event, Site, Date, Round, White, Black, Result.
+    * Optional: Annotator, PlyCount, TimeControl, Time, Termination, Mode, ...
+  * New in Chess: Event, Notes by <Annotator>, White, Black, Event, Date
+  * Sicilian Love: White, Black, Round, Site, Year
 
 ### Generate moves from PNG (main line)
 
