@@ -127,12 +127,55 @@
 
 /* black square */
 .sportverlag .black-3c85d {
-    color: #eee;
-    background-image: -webkit-repeating-linear-gradient(top left, #333 1%, #eee 8%);
+    color: rgba(2, 2, 2, 0.75);
+    /*background-image: -webkit-repeating-linear-gradient(top left, #333 1%, #eee 8%);*/
+    background-image: url("../img/pattern/diagonal1x3.png");
 }
 
 
 /*************** End sportverlag pattern *****************************/
+
+/* Pattern for beyer. */
+/* board */
+.beyer .board-b72b1 {
+    /*    border: 2px solid #404040; */
+    padding: 4px;
+    outline: 1px solid black;
+
+}
+
+/* white square */
+.beyer .white-1e1d7 {
+    background-color: #f4f4f4;
+    color: rgba(2, 2, 2, 0.75);
+}
+
+/* black square */
+.beyer .black-3c85d {
+    color: rgba(2, 2, 2, 0.75);
+    /*background-image: -webkit-repeating-linear-gradient(top left, #333 1%, #eee 8%);*/
+    background-image: url("../img/pattern/vertical1x3.png");
+}
+
+.beyer .alpha-d2270 {
+    bottom: -22px;
+    right: 20px;
+}
+
+.beyer .numeric-fc462 {
+    top: 18px;
+    left: -17px;
+}
+
+/* notation */
+.beyer .notation-322f9 {
+    /* cursor: default;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+    font-size: 12px;
+}
+
+/*************** End Beyer pattern *****************************/
+
 /* board */
 .falken .board-b72b1 {
     /*    border: 2px solid #404040; */

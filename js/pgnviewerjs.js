@@ -27,7 +27,7 @@ var pgnView = function (boardId, configuration) {
                 target[key] = source[key];
             }
         });
-        var myPieceStyles = ['case', 'chesscom', 'condal', 'leipzig', 'maya', 'merida'];
+        var myPieceStyles = ['case', 'chesscom', 'condal', 'leipzig', 'maya', 'merida', 'beyer'];
         if (! target.pieceTheme) {
             if (myPieceStyles.indexOf(pieceStyle) >= 0) {
                 target.pieceTheme = localPath() + '../img/chesspieces/' + pieceStyle + '/{piece}.png';
