@@ -2,7 +2,7 @@
 /**
  * Defines the pgn function / object that is used for readin
  * pgn. This should build then a structure that is easier to
- * use, but contains all the informatione necessary to do all
+ * use, but contains all the information necessary to do all
  * the things we want to do.
  * @param spec
  * @returns {{}}
@@ -10,7 +10,7 @@
 
 var pgn = function (spec) {
     var that = {};
-    var grammar = "{ function makeInteger(o) { return parseInt(o.join(''), 10); } } start = pgn pgn = (move)+ (mn:moveNumber whiteSpace halfMove)?  moveNumber = num:integer'.' { return num; } integer 'integer' = digits:[0-9]+ { return makeInteger(digits); } whiteSpace = ' '+ { return '';} move = whiteSpace? mn:moveNumber whiteSpace hm:halfMove whiteSpace hmt:halfMove whiteSpace? { return [mn, hm, hmt]; } / moveEllipse whiteSpace halfMove whiteSpace? { return [hm]; } halfMove = fig:figure? str:strike? col:column row:row {return (fig ? fig : '') + (str ? str : '') + col + row; } / 'O-O-O' / 'O-O' moveEllipse = integer'...' figure = [RNBQK] column = [a-h] row = [1-8] strike = 'x' / column'x' / row'x'";
+    var grammar = "{ function makeInteger(o) { return parseInt(o.join(''), 10); } } start = pgn pgn = moves:(move)+ (mn:moveNumber whiteSpace hm:halfMove)?  moveNumber = num:integer'.' { return num; } integer 'integer' = digits:[0-9]+ { return makeInteger(digits); } whiteSpace = ' '+ { return '';} move = whiteSpace? mn:moveNumber whiteSpace hm:halfMove whiteSpace hmt:halfMove whiteSpace? { white = {}; black = {}; white.moveNumber = mn, white.notation = hm; white.turn = 'w'; black.moveNumber = mn; black.notation = hmt; black.turn = 'b'; return [white, black]; } / whiteSpace? me:moveEllipse whiteSpace hm:halfMove whiteSpace? { return me + ' ' + hm; } halfMove = fig:figure? str:strike? col:column row:row {return (fig ? fig : '') + (str ? str : '') + col + row; } / 'O-O-O' / 'O-O' moveEllipse = integer'...' figure = [RNBQK] column = [a-h] row = [1-8] strike = 'x' / column'x' / row'x'";
     var parser = PEG.buildParser(grammar);
     that.PGN_KEYS = {
         Event: "the name of the tournament or match event",
@@ -89,7 +89,17 @@ var pgn = function (spec) {
         that.moves_string = movesString.trim();
         // Store moves in a separate object.
         var tmp_moves = parser.parse(movesString);
-        that.moves = tmp_moves;
+        var tmp_moves2 = tmp_moves[0];
+        if (tmp_moves[1]) {
+            tmp_moves2.push(tmp_moves[1]);
+        }
+        that.moves = [];
+        for (var i = 0; i < tmp_moves2.length; i++) {
+            var arr = tmp_moves2[i];
+            that.moves.push(arr[0]);
+            if (arr[1]) { that.moves.push(arr[1])};
+        }
+        var prev = that.moves[0]
     }
 
     /**

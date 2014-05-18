@@ -22,8 +22,18 @@ describe("When working with a pgn file as string", function() {
     })
 
     describe("When having read the moves", function() {
-        it("should have 8 moves read", function() {
-            expect(my_pgn.getMoves()[0].length).toEqual(8);
+        it("should have 16 half-moves read", function() {
+            expect(my_pgn.getMoves().length).toEqual(16);
+            var first = my_pgn.getMoves()[0];
+            var sec = my_pgn.getMoves()[1];
+            var seventh = my_pgn.getMoves()[6];
+            expect(first.notation).toEqual("e4");
+            expect(first.turn).toEqual('w');
+            expect(sec.turn).toEqual('b');
+            expect(sec.moveNumber).toEqual(1);
+            expect(seventh.moveNumber).toEqual(4);
+            expect(seventh.turn).toEqual('w');
+            expect(seventh.notation).toEqual('Nxd4');
         })
     })
 
