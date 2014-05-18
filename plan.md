@@ -27,7 +27,7 @@ there is of course no guarantee that anything will be implemented soon.
 * Add as figure sets the ones from chess.com and from ChessTempo Merida.
 * Added as well case, condal, leipzig and maya from ChessTempo.
 
-##### Additional feature
+##### Additional figures
 
 * Allow others to add figure sets as well.
 * Provide a registry, and provide there an additional path to the set (relative to the

@@ -10,6 +10,8 @@
 
 var pgn = function (spec) {
     var that = {};
+    var grammar = "{ function makeInteger(o) { return parseInt(o.join(''), 10); } } start = pgn pgn = (move)+ (mn:moveNumber whiteSpace halfMove)?  moveNumber = num:integer'.' { return num; } integer 'integer' = digits:[0-9]+ { return makeInteger(digits); } whiteSpace = ' '+ { return '';} move = whiteSpace? mn:moveNumber whiteSpace hm:halfMove whiteSpace hmt:halfMove whiteSpace? { return [mn, hm, hmt]; } / moveEllipse whiteSpace halfMove whiteSpace? { return [hm]; } halfMove = fig:figure? str:strike? col:column row:row {return (fig ? fig : '') + (str ? str : '') + col + row; } / 'O-O-O' / 'O-O' moveEllipse = integer'...' figure = [RNBQK] column = [a-h] row = [1-8] strike = 'x' / column'x' / row'x'";
+    var parser = PEG.buildParser(grammar);
     that.PGN_KEYS = {
         Event: "the name of the tournament or match event",
         Site: "the location of the event",
@@ -42,7 +44,7 @@ var pgn = function (spec) {
         // work here with the pgn, bind the resulting structure inside the pgn instance itself
         var input = that.inputPgn();
         var restString = readHeaders();
-        that.moves = readMoves(restString);
+        readMoves(restString);
         return that;
     };
 
@@ -85,14 +87,31 @@ var pgn = function (spec) {
      */
     function readMoves(movesString) {
         that.moves_string = movesString.trim();
+        // Store moves in a separate object.
+        var tmp_moves = parser.parse(movesString);
+        that.moves = tmp_moves;
+    }
+
+    /**
+     * Returns the move that matches the id.
+     * @param id the ID of the move
+     */
+    function getMove(id) {
+        return that.moves[id];
     }
 
     // This defines the public API of the pgn function.
     that.inputPgn = function () { return spec.pgn; };
+    that.movesString = function () { return that.moves_string; };
     that.readHeaders = readHeaders;
-    that.readMoves = readMoves;
+    that.readMoves = function () { return readMoves; };
+    // returns the object to be used outside
+    that.getMoves = function () { return that.moves; };
+    that.getMove = function (id) { return that.getMove(id); };
+
     that.getHeaders = function() { return that.headers; };
     that.splitHeaders = splitHeaders;
+    that.getParser = function() { return parser; };
     load_pgn();
     return that;
 }

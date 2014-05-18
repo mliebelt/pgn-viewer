@@ -1,0 +1,46 @@
+[Event "Stetten - Weil der Stadt Kreisklasse 20"]
+[Site "?"]
+[Date "2014.03.09"]
+[Round "?"]
+[White "Langer"]
+[Black "Liebelt, Markus"]
+[Result "0-1"]
+[ECO "B23"]
+[WhiteElo "1520"]
+[BlackElo "1713"]
+[Annotator "markusliebelt@gmail."]
+[PlyCount "96"]
+[EventDate "2014.03.09"]
+[EventType "team"]
+[EventRounds "8"]
+
+1. e4 c5 2. Nc3 d6 3. Bb5+ Bd7 4. Bxd7+ Qxd7 5. f4 Nc6 6. Nf3 Nf6 7. h3 e6 8.
+d3 Be7 9. O-O O-O 10. Bd2 a6 11. Ne2 Qc7 12. Ng3 {einige schwächere Züge von
+Weiß} d5 13. e5 Nd7 14. Qe2 {erlaubt die folgende Verwicklung} Nd4 15. Nxd4
+cxd4 {die offene C-Linie ist schwierig, dazu hat der Läufer keine Felder} 16.
+Be1 (16. c3 dxc3 17. Bxc3 Qb6+ 18. d4 {geht für Weiß}) 16... Rac8 17. Rc1 (17.
+c3 dxc3 18. Bxc3 Qb6+ 19. d4 {ist immer noch besser}) 17... Qb6 18. b3 (18. Rb1
+Rc6 19. Bf2 Qc7 {hält die Balance noch länger}) 18... Ba3 19. Rd1 Qc5 20. Qg4
+f5 (20... Qxc2 {wäre möglich} 21. Nh5 g6 22. Rf2 Qc5 23. Re2 Rc7 24. Nf6+ Nxf6
+25. exf6 Rfc8 {müsste für Schwarz reichen, da Weiß nie das Feld g7 bekommt.})
+21. exf6 Rxf6 22. Nh5 (22. Rf2 {wäre deutlich schwieriger gewesen} Qc7 23. f5
+Ne5 24. Qh5 Rcf8 25. fxe6 g6 26. Qg5 Be7 27. Rxf6 Rxf6 28. Qd2 Rxe6 {sieht für
+Weiß spielbar aus}) 22... Rg6 23. Qe2 Qxc2 24. Rd2 Qc6 25. f5 {der
+entscheidende Fehler} (25. Rf2 Bd6 26. Rc2 Qxc2 27. Qxc2 Rxc2 28. Rxc2 Kf7 {
+ist besser für Schwarz, aber noch lange nicht gewonnen}) 25... exf5 26. Rxf5 (
+26. Rd1 Re6 27. Qf3 g6 28. Nf4 Re3 29. Qxd5+ Qxd5 30. Nxd5 Re5 31. Nf4 {spielt
+sich bequem für Scharz}) 26... Re6 27. Qf2 g6 28. Qg3 Qc1 (28... Bd6 29. Qf2
+Qc1 30. Re2 Rxe2 31. Qxe2 gxf5 32. Qe6+ Kh8 33. Qxd6 Qxe1+ 34. Kh2 Qe5+ {wäre
+noch stärker gewesen}) 29. Rf1 Rce8 30. Qf3 gxh5 (30... Rf8 {noch sicherer} 31.
+Qd1 gxh5 32. Bf2 Qxd1 33. Rdxd1 Bb2 {hält alles fest}) 31. Qxd5 Qc6 32. Qg5+
+Rg6 33. Qxh5 Nf6 (33... Bc1 34. Re2 Re5 {wegen des Matts auf g2} 35. Rf5 Bg5
+36. Rfxe5 Nxe5 37. Bh4 (37. Rxe5 Be3+ 38. Rxe3 Qxg2#) 37... Be3+ 38. Kh2 Qd6 {
+sieht furchtbar aus}) (33... Ne5 34. Qf5 Bb4 35. Rdf2 Bxe1 36. Rxe1 Nf3+ 37.
+Rxf3 Rxe1+ {ist auch sicher gewonnen}) 34. Qd1 Nd5 35. Rc2 Qd7 36. Bf2 Ne3 (
+36... Qxh3 37. Bxd4 (37. Bg3 Rxg3 {typische Fritz-Züge}) 37... Bd6 38. Re1 (38.
+g4 Rxg4+ {gewinnt schneller}) 38... Qh2+ 39. Kf1 Qh1+ 40. Bg1 Rf8+ 41. Qf3
+Rxf3+ 42. gxf3 Qxg1+ 43. Ke2 Re6+ 44. Kd2 Qxe1#) 37. Bxe3 Rxe3 38. Qh5 Rxh3 39.
+Qxg6+ {Verzweifelung} hxg6 40. gxh3 Qxh3 41. Rcf2 Qxd3 42. Rf7 Qg3+ 43. Kh1 d3
+(43... Qh3+ 44. Kg1 d3 {geht noch schneller}) 44. R7f3 Qh4+ 45. Kg2 d2 46. Rd3
+Qe4+ 47. Rff3 Qe2+ 48. Kg3 d1=Q {sollte reichen, Weiß gibt auf} 0-1
+
