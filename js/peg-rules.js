@@ -8,7 +8,7 @@ start
     = pgn
 
 pgn
-    = moves:(move)+ (mn:moveNumber whiteSpace hm:halfMove)?
+    = moves:(move)+ (mn:moveNumber whiteSpace? hm:halfMove)?
 
     moveNumber
         = num:integer"." { return num; }
@@ -20,13 +20,17 @@ whiteSpace
     = " "+ { return '';}
 
 move
-    = whiteSpace? mn:moveNumber whiteSpace hm:halfMove whiteSpace hmt:halfMove whiteSpace? { white = {}; black = {}; white.moveNumber = mn, white.notation = hm; white.turn = 'w'; black.moveNumber = mn; black.notation = hmt; black.turn = 'b'; return [white, black]; }
-/ whiteSpace? me:moveEllipse whiteSpace hm:halfMove whiteSpace? { return me + " " + hm; }
+    = whiteSpace? mn:moveNumber whiteSpace? hm:halfMove whiteSpace hmt:halfMove whiteSpace? { white = {}; black = {}; white.moveNumber = mn, white.notation = hm; white.turn = 'w'; black.moveNumber = mn; black.notation = hmt; black.turn = 'b'; return [white, black]; }
+/ whiteSpace? me:moveEllipse whiteSpace? hm:halfMove whiteSpace? { return me + " " + hm; }
 
 halfMove
     = fig:figure? str:strike? col:column row:row {return (fig ? fig : '') + (str ? str : '') + col + row; }
 / 'O-O-O'
 / 'O-O'
+
+discriminator
+  = column
+  / row
 
 moveEllipse
     = integer"..."
@@ -42,8 +46,8 @@ row
 
 strike
     = 'x'
-    / column'x'
-/ row'x'
+  / column 'x'
+  / row 'x'
 
 
 

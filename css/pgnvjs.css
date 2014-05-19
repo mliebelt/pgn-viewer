@@ -1,6 +1,11 @@
 .moves a {
     text-decoration: underline;
 }
+
+.moves .move a.yellow {
+    background-color: #ffff00;
+}
+
 /* Pattern of the Zeit journal */
 /* board */
 .zeit .board-b72b1 {

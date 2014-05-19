@@ -8,9 +8,9 @@
  * @returns {{}}
  */
 
-var pgn = function (spec) {
+var pgnReader = function (spec) {
     var that = {};
-    var grammar = "{ function makeInteger(o) { return parseInt(o.join(''), 10); } } start = pgn pgn = moves:(move)+ (mn:moveNumber whiteSpace hm:halfMove)?  moveNumber = num:integer'.' { return num; } integer 'integer' = digits:[0-9]+ { return makeInteger(digits); } whiteSpace = ' '+ { return '';} move = whiteSpace? mn:moveNumber whiteSpace hm:halfMove whiteSpace hmt:halfMove whiteSpace? { white = {}; black = {}; white.moveNumber = mn, white.notation = hm; white.turn = 'w'; black.moveNumber = mn; black.notation = hmt; black.turn = 'b'; return [white, black]; } / whiteSpace? me:moveEllipse whiteSpace hm:halfMove whiteSpace? { return me + ' ' + hm; } halfMove = fig:figure? str:strike? col:column row:row {return (fig ? fig : '') + (str ? str : '') + col + row; } / 'O-O-O' / 'O-O' moveEllipse = integer'...' figure = [RNBQK] column = [a-h] row = [1-8] strike = 'x' / column'x' / row'x'";
+    var grammar = "{ function makeInteger(o) { return parseInt(o.join(''), 10); } } start = pgn pgn = moves:(move)+ (mn:moveNumber whiteSpace? hm:halfMove)?  moveNumber = num:integer'.' { return num; } integer 'integer' = digits:[0-9]+ { return makeInteger(digits); } whiteSpace = ' '+ { return '';} move = whiteSpace? mn:moveNumber whiteSpace? hm:halfMove whiteSpace hmt:halfMove whiteSpace? { white = {}; black = {}; white.moveNumber = mn, white.notation = hm; white.turn = 'w'; black.moveNumber = mn; black.notation = hmt; black.turn = 'b'; return [white, black]; } / whiteSpace? me:moveEllipse whiteSpace? hm:halfMove whiteSpace? { return me + ' ' + hm; } halfMove = fig:figure? & checkdisc disc:discriminator str:strike? col:column row:row ch:check? {return (fig ? fig : '') + (disc ? disc : '') + (str ? str : '') + col + row + (ch ? ch : ''); } / fig:figure? str:strike? col:column row:row ch:check? {return (fig ? fig : '') + (str ? str : '') + col + row + (ch ? ch : ''); } / 'O-O-O' / 'O-O' check = '+' discriminator = column / row checkdisc = discriminator strike? column row moveEllipse = integer'...' figure = [RNBQK] column = [a-h] row = [1-8] strike = 'x'";
     var parser = PEG.buildParser(grammar);
     that.PGN_KEYS = {
         Event: "the name of the tournament or match event",

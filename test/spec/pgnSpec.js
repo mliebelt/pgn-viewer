@@ -5,7 +5,7 @@ describe("When working with a pgn file as string", function() {
     var my_pgn;
 
     beforeEach(function() {
-        my_pgn =  pgn({pgn: "1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Be3 e6 7. f3 Be7 8. Qd2 Qc7 "});
+        my_pgn =  pgnReader({pgn: "1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Be3 e6 7. f3 Be7 8. Qd2 Qc7 "});
     });
 
     describe("When creating move objects", function() {
@@ -54,7 +54,7 @@ describe("When reading PGN with headers", function() {
             '[White "Adolf Anderssen"]',
             '[Black "Jean Dufresne"]',
             '1. e2 e4 2. Nf3 Nc6'];
-        my_pgn = pgn({pgn: pgn_string.join(" ")});
+        my_pgn = pgnReader({pgn: pgn_string.join(" ")});
     });
 
     it("should know the input pgn", function() {
