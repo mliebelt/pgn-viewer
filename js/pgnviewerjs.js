@@ -101,8 +101,8 @@ var pgnView = function (boardId, configuration) {
         };
 
         // Start working with PGN, if available
-        if (! configuration.pgn) { return; }
-        that.mypgn = pgnReader( { pgn: configuration.pgn } );
+//        if (! configuration.pgn) { return; }
+        that.mypgn = pgnReader( { pgn: configuration.pgn ? configuration.pgn : ''} );
         var myMoves = that.mypgn.getMoves();
         game.reset();
         var movesDiv = document.getElementById(movesId);

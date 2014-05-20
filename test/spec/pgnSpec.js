@@ -8,19 +8,6 @@ describe("When working with a pgn file as string", function() {
         my_pgn =  pgnReader({pgn: "1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Be3 e6 7. f3 Be7 8. Qd2 Qc7 "});
     });
 
-    describe("When creating move objects", function() {
-        beforeEach(function() {
-            m1 = move({notation: "e4", beforeComment: "Es geht los!"});
-        });
-
-        it("should have the content set", function() {
-            expect(m1.notation).toEqual("e4");
-            expect(m1.prev).toBeUndefined();
-            expect(m1.next).toBeUndefined();
-
-        })
-    })
-
     describe("When having read the moves", function() {
         it("should have 16 half-moves read", function() {
             expect(my_pgn.getMoves().length).toEqual(16);
@@ -30,7 +17,7 @@ describe("When working with a pgn file as string", function() {
             expect(first.notation).toEqual("e4");
             expect(first.turn).toEqual('w');
             expect(sec.turn).toEqual('b');
-            expect(sec.moveNumber).toEqual(1);
+            expect(sec.moveNumber).toBeUndefined();
             expect(seventh.moveNumber).toEqual(4);
             expect(seventh.turn).toEqual('w');
             expect(seventh.notation).toEqual('Nxd4');
@@ -71,6 +58,7 @@ describe("When reading PGN with headers", function() {
         expect(my_pgn.getHeaders().Site).toEqual("Berlin GER");
         expect(my_pgn.getHeaders().Date).toEqual("1852.??.??");
         expect(my_pgn.movesString()).toEqual("1. e2 e4 2. Nf3 Nc6");
+        expect(my_pgn.getMoves().length).toEqual(4);
     })
 })
 

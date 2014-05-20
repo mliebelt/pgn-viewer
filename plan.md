@@ -77,6 +77,19 @@ Given a PNG string with some moves do the following:
 
 Do all of that with a new example HTML file.
 
+### Ensure edge-cases of PGN are handled appropriate
+
+Current edge-cases are the following:
+
+* Ending with a half-move of white
+* Starting not with the initial position (headers have to include a FEN string, see below)
+
+Later (with variations):
+
+* starting and / or ending with a half-move, with that different notation for the move number
+  then.
+* Being recursive, that means variations holds an array of pgn result then
+
 ### Understand FEN in a better way
 
 Currently, FEN is black magic. I have to understand what is inside a FEN string, and construct

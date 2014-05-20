@@ -10,7 +10,7 @@
 
 var pgnReader = function (spec) {
     var that = {};
-    var grammar = "{ function makeInteger(o) { return parseInt(o.join(''), 10); } } start = pgn pgn = moves:(move)+ (mn:moveNumber whiteSpace? hm:halfMove)?  moveNumber = num:integer'.' { return num; } integer 'integer' = digits:[0-9]+ { return makeInteger(digits); } whiteSpace = ' '+ { return '';} move = whiteSpace? mn:moveNumber whiteSpace? hm:halfMove whiteSpace hmt:halfMove whiteSpace? { white = {}; black = {}; white.moveNumber = mn, white.notation = hm; white.turn = 'w'; black.moveNumber = mn; black.notation = hmt; black.turn = 'b'; return [white, black]; } / whiteSpace? me:moveEllipse whiteSpace? hm:halfMove whiteSpace? { return me + ' ' + hm; } halfMove = fig:figure? & checkdisc disc:discriminator str:strike? col:column row:row ch:check? {return (fig ? fig : '') + (disc ? disc : '') + (str ? str : '') + col + row + (ch ? ch : ''); } / fig:figure? str:strike? col:column row:row ch:check? {return (fig ? fig : '') + (str ? str : '') + col + row + (ch ? ch : ''); } / 'O-O-O' / 'O-O' check = '+' discriminator = column / row checkdisc = discriminator strike? column row moveEllipse = integer'...' figure = [RNBQK] column = [a-h] row = [1-8] strike = 'x'";
+    var grammar = "{ function makeInteger(o) { return parseInt(o.join(''), 10); } } pgn = pw:pgnStartWhite all:pgnBlack? { arr = (all ? all : []); arr.push(pw); arr.reverse(); return arr; } / pb:pgnStartBlack all:pgnWhite? { arr = (all ? all : []); arr.push(pb); arr.reverse(); return arr; } / whiteSpace? { return [[]]; } pgnStartWhite = whiteSpace? pw:pgnWhite { return pw; } pgnStartBlack = whiteSpace? me:moveEllipse all:pgnBlack { last = all[all.length - 1]; last.moveNumber = me; return all; } pgnWhite = whiteSpace? mn:moveNumber whiteSpace? hm:halfMove  whiteSpace? all:pgnBlack? { arr = (all ? all : []); move = {}; move.turn = 'w'; move.moveNumber = mn; move.notation = hm; arr.push(move); return arr; } pgnBlack = whiteSpace? hm:halfMove whiteSpace? all:pgnWhite? { arr = (all ? all : []); move = {}; move.turn = 'b', move.notation = hm; arr.push(move); return arr; } moveNumber = num:integer'.' { return num; } integer 'integer' = digits:[0-9]+ { return makeInteger(digits); } whiteSpace = ' '+ { return '';} halfMove = fig:figure? & checkdisc disc:discriminator str:strike? col:column row:row ch:check? {return (fig ? fig : '') + (disc ? disc : '') + (str ? str : '') + col + row + (ch ? ch : ''); } / fig:figure? str:strike? col:column row:row ch:check? {return (fig ? fig : '') + (str ? str : '') + col + row + (ch ? ch : ''); } / 'O-O-O' / 'O-O' check = '+' discriminator = column / row checkdisc = discriminator strike? column row moveEllipse = num:integer'...' { return num; } figure = [RNBQK] column = [a-h] row = [1-8] strike = 'x'";
     var parser = PEG.buildParser(grammar);
     that.PGN_KEYS = {
         Event: "the name of the tournament or match event",
@@ -88,18 +88,9 @@ var pgnReader = function (spec) {
     function readMoves(movesString) {
         that.moves_string = movesString.trim();
         // Store moves in a separate object.
-        var tmp_moves = parser.parse(movesString);
-        var tmp_moves2 = tmp_moves[0];
-        if (tmp_moves[1]) {
-            tmp_moves2.push(tmp_moves[1]);
-        }
-        that.moves = [];
-        for (var i = 0; i < tmp_moves2.length; i++) {
-            var arr = tmp_moves2[i];
-            that.moves.push(arr[0]);
-            if (arr[1]) { that.moves.push(arr[1])};
-        }
-        var prev = that.moves[0]
+        that.moves = parser.parse(that.moves_string)[0];
+        // Has to be brought into the right order
+        that.moves.reverse();
     }
 
     /**

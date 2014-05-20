@@ -6,6 +6,17 @@
     background-color: #ffff00;
 }
 
+.moves .move a {
+    text-decoration: none;
+    border: 1px solid transparent;
+}
+
+.moves .move a:hover {
+    border: 1px yellow dotted;
+    background-color: #ffff00;
+    cursor: crosshair;
+}
+
 /* Pattern of the Zeit journal */
 /* board */
 .zeit .board-b72b1 {

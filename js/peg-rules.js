@@ -4,14 +4,21 @@
     }
 }
 
-start
-    = pgn
-
 pgn
-    = moves:(move)+ (mn:moveNumber whiteSpace? hm:halfMove)?
+    = pw:pgnStartWhite all:pgnBlack? { arr = (all ? all : []); arr.push(pw); arr.reverse(); return arr; }
+/ pb:pgnStartBlack all:pgnWhite? { arr = (all ? all : []); arr.push(pb); arr.reverse(); return arr; }
+/ whiteSpace? { return []; }
 
-    moveNumber
-        = num:integer"." { return num; }
+pgnStartWhite = whiteSpace? pw:pgnWhite { return pw; }
+
+pgnStartBlack = whiteSpace? me:moveEllipse all:pgnBlack { last = all[all.length - 1]; last.moveNumber = me; return all; }
+
+pgnWhite = whiteSpace? mn:moveNumber whiteSpace? hm:halfMove  whiteSpace? all:pgnBlack? { arr = (all ? all : []); move = {}; move.turn = 'w'; move.moveNumber = mn; move.notation = hm; arr.push(move); return arr; }
+
+pgnBlack = whiteSpace? hm:halfMove whiteSpace? all:pgnWhite? { arr = (all ? all : []); move = {}; move.turn = 'b', move.notation = hm; arr.push(move); return arr; }
+
+moveNumber
+    = num:integer"." { return num; }
 
 integer "integer"
     = digits:[0-9]+ { return makeInteger(digits); }
@@ -19,21 +26,23 @@ integer "integer"
 whiteSpace
     = " "+ { return '';}
 
-move
-    = whiteSpace? mn:moveNumber whiteSpace? hm:halfMove whiteSpace hmt:halfMove whiteSpace? { white = {}; black = {}; white.moveNumber = mn, white.notation = hm; white.turn = 'w'; black.moveNumber = mn; black.notation = hmt; black.turn = 'b'; return [white, black]; }
-/ whiteSpace? me:moveEllipse whiteSpace? hm:halfMove whiteSpace? { return me + " " + hm; }
-
 halfMove
-    = fig:figure? str:strike? col:column row:row {return (fig ? fig : '') + (str ? str : '') + col + row; }
+    = fig:figure? & checkdisc disc:discriminator str:strike? col:column row:row ch:check? {return (fig ? fig : '') + (disc ? disc : '') + (str ? str : '') + col + row + (ch ? ch : ''); }
+/ fig:figure? str:strike? col:column row:row ch:check? {return (fig ? fig : '') + (str ? str : '') + col + row + (ch ? ch : ''); }
 / 'O-O-O'
 / 'O-O'
 
+check = '+'
+
 discriminator
-  = column
-  / row
+    = column
+    / row
+
+checkdisc
+    = discriminator strike? column row
 
 moveEllipse
-    = integer"..."
+    = num:integer"..." { return num; }
 
 figure
     = [RNBQK]
@@ -46,10 +55,6 @@ row
 
 strike
     = 'x'
-  / column 'x'
-  / row 'x'
-
-
 
 /*
  Examples
