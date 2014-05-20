@@ -7,7 +7,7 @@
 pgn
     = pw:pgnStartWhite all:pgnBlack? { arr = (all ? all : []); arr.push(pw); arr.reverse(); return arr; }
 / pb:pgnStartBlack all:pgnWhite? { arr = (all ? all : []); arr.push(pb); arr.reverse(); return arr; }
-/ whiteSpace? { return []; }
+/ whiteSpace? { return [[]]; }
 
 pgnStartWhite = whiteSpace? pw:pgnWhite { return pw; }
 
@@ -27,12 +27,17 @@ whiteSpace
     = " "+ { return '';}
 
 halfMove
-    = fig:figure? & checkdisc disc:discriminator str:strike? col:column row:row ch:check? {return (fig ? fig : '') + (disc ? disc : '') + (str ? str : '') + col + row + (ch ? ch : ''); }
-/ fig:figure? str:strike? col:column row:row ch:check? {return (fig ? fig : '') + (str ? str : '') + col + row + (ch ? ch : ''); }
+    = fig:figure? & checkdisc disc:discriminator str:strike? col:column row:row pr:promotion? ch:check? {return (fig ? fig : '') + (disc ? disc : '') + (str ? str : '') + col + row + (ch ? ch : ''); }
+/ fig:figure? str:strike? col:column row:row pr:promotion? ch:check? {return (fig ? fig : '') + (str ? str : '') + col + row + (pr ? pr : '') +  (ch ? ch : ''); }
 / 'O-O-O'
 / 'O-O'
 
 check = '+'
+  / '#'
+
+promotion
+  = '=' f:figure { return '=' + f; }
+
 
 discriminator
     = column
@@ -55,31 +60,3 @@ row
 
 strike
     = 'x'
-
-/*
- Examples
- ========
-
- 1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Be3 e6 7. f3 Be7 8. Qd2 Qc7 9. O-O-O
-
- Output
- ------
-
- [
- [
- "1 e4 c5",
- "2 Nf3 d6",
- "3 d4 c,xd4",
- "4 Nxd4 Nf6",
- "5 Nc3 a6",
- "6 Be3 e6",
- "7 f3 Be7",
- "8 Qd2 Qc7"
- ],
- [
- 9,
- "",
- "O-O-O"
- ]
- ]
- */
