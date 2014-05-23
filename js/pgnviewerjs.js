@@ -69,6 +69,13 @@ var pgnView = function (boardId, configuration) {
      * link to FEN (position after move)
      */
     var generateMoves = function() {
+
+        var generateCommentSpan = function(comment) {
+            var span = document.createElement('span');
+            span.setAttribute("class", "comment");
+            span.appendChild(document.createTextNode(" " + comment + " "));
+            return span;
+        }
         // Generates one move from the current position
         var generateMove = function(i, game, move, movesDiv) {
             var pgn_move = game.move(move.notation);
@@ -76,18 +83,21 @@ var pgnView = function (boardId, configuration) {
             var span = document.createElement("span");
             span.setAttribute('class', "move");
             if (pgn_move.color == 'w') {
+                span.setAttribute('class', "move white");
                 var mn = move.moveNumber;
                 var num = document.createElement('span');
                 num.setAttribute('class', "moveNumber");
                 num.appendChild(document.createTextNode("" + mn + ". "));
                 span.appendChild(num);
             }
+            if (move.commentBefore) { span.appendChild(generateCommentSpan(move.commentBefore))};
             var link = document.createElement('a');
             link.setAttribute('id', "move" + i);
             var text = document.createTextNode(pgn_move.san);
             link.appendChild(text);
             span.appendChild(link);
             span.appendChild(document.createTextNode(" "));
+            if (move.commentAfter) { span.appendChild(generateCommentSpan(move.commentAfter))};
             movesDiv.appendChild(span);
             $('#move' + i).on('click', function() {
                 board.position(fen);

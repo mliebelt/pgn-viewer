@@ -40,4 +40,20 @@ describe("PGN Viewer", function() {
         })
 
     })
+    describe("When reading PGN with comments", function() {
+        beforeEach(function() {
+            var pgn = '1. e4 { first comment } e5 { second comment } 2. {now before } Nf3';
+            pgnv = pgnView("b", {pgn: pgn, position: 'start'});
+        });
+
+        it ("should have seen these comments", function() {
+            var moves = pgnv.getPgn().getMoves();
+            expect(moves[0].commentAfter).toEqual("first comment");
+            expect(moves[0].commentBefore).toBeNull();
+            expect(moves[1].commentAfter).toEqual("second comment");
+            expect(moves[1].commentBefore).toBeNull();
+            expect(moves[2].commentBefore).toEqual("now before");
+            expect(moves[2].commentAfter).toBeNull();
+        })
+    })
 })

@@ -17,6 +17,26 @@
     cursor: crosshair;
 }
 
+.moves .move {
+    font-size: 18px;
+    color: black;
+}
+
+.moves .move .moveNumber {
+    font-size: 24px;
+}
+
+.moves .move .comment {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    color: darkslategray;
+}
+
+.moves .white:before {
+    content: '\A';
+    display: block;
+}
+
 /* Pattern of the Zeit journal */
 /* board */
 .zeit .board-b72b1 {

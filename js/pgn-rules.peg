@@ -13,9 +13,17 @@ pgnStartWhite = whiteSpace? pw:pgnWhite { return pw; }
 
 pgnStartBlack = whiteSpace? me:moveEllipse all:pgnBlack { last = all[all.length - 1]; last.moveNumber = me; return all; }
 
-pgnWhite = whiteSpace? mn:moveNumber whiteSpace? hm:halfMove  whiteSpace? all:pgnBlack? { arr = (all ? all : []); move = {}; move.turn = 'w'; move.moveNumber = mn; move.notation = hm; arr.push(move); return arr; }
+pgnWhite = whiteSpace? mn:moveNumber whiteSpace? cb:comment? whiteSpace? hm:halfMove  whiteSpace? ca:comment? whiteSpace? all:pgnBlack? { arr = (all ? all : []); move = {}; move.turn = 'w'; move.moveNumber = mn; move.notation = hm; move.commentBefore = cb; move.commentAfter = ca; arr.push(move); return arr; }
 
-pgnBlack = whiteSpace? hm:halfMove whiteSpace? all:pgnWhite? { arr = (all ? all : []); move = {}; move.turn = 'b', move.notation = hm; arr.push(move); return arr; }
+pgnBlack = whiteSpace? cb:comment? whiteSpace? hm:halfMove whiteSpace? ca:comment? whiteSpace? all:pgnWhite? { arr = (all ? all : []); move = {}; move.turn = 'b', move.notation = hm; move.commentBefore = cb; move.commentAfter = ca; arr.push(move); return arr; }
+
+comment
+  = cl cm:[^}]+ cr { return cm.join("").trim(); }
+
+cl = '{'
+
+cr = '}'
+
 
 moveNumber
     = num:integer"." { return num; }
