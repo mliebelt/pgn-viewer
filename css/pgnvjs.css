@@ -34,7 +34,7 @@
 
 .moves .white:before {
     content: '\A';
-    display: block;
+    /*display: block;*/
 }
 
 /* Pattern of the Zeit journal */

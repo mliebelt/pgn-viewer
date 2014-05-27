@@ -27,7 +27,7 @@ there is of course no guarantee that anything will be implemented soon.
 * Add as figure sets the ones from chess.com and from ChessTempo Merida.
 * Added as well case, condal, leipzig and maya from ChessTempo.
 
-##### Additional figures
+##### Additional figures (working)
 
 * Allow others to add figure sets as well.
 * Provide a registry, and provide there an additional path to the set (relative to the
@@ -37,7 +37,7 @@ there is of course no guarantee that anything will be implemented soon.
   * Directory named as the piece style.
   * Then '/{piece}.png'
 
-#### Generate from PGN structure moves
+#### Generate from PGN structure moves (working)
 
 * Generate a reasonable frame for the moves (id: <ID>Moves, class: moves).
 * Generate the moves in a pleasant style.
@@ -51,6 +51,8 @@ there is of course no guarantee that anything will be implemented soon.
 * References to the diagrams (numbered, who is to move)
 * Variations flowing in block mode (normally)
 * Use Figurine instead of the move letters (for white and black with the same symbols)
+* white and black together (without comment) as block, if more than one block fits on one line,
+  make two or more blocks.
 
 #### Different PGN header display
 
@@ -63,7 +65,28 @@ there is of course no guarantee that anything will be implemented soon.
   * New in Chess: Event, Notes by <Annotator>, White, Black, Event, Date
   * Sicilian Love: White, Black, Round, Site, Year
 
-### Generate moves from PNG (main line)
+### Prepare different layouts for headers
+
+* See the example with Chess.com
+* Try to find different examples, and build them in plain HTML (including CSS)
+* Use that CSS later for different styles
+  * Styles for the board itself
+  * Styles for the display of the moves and comments
+  * Styles for the display of the headers
+* Generate all HTML elements, so that they can be included easily. Works well
+  for the board and the moves, will work for the headers additionally.
+  
+### Allow additional boards
+  
+* Use a special comment for that (like {diagram})
+* The generation should be the same as the main board (with the same configuration)
+  but reduced size of course.
+* Play with different layout possibilities:
+  * Centered, moves then below
+  * Left, moves flowing to the right
+  * Other ??
+
+### Generate moves from PNG (main line) (/)
 
 Given a PNG string with some moves do the following:
 
@@ -77,7 +100,7 @@ Given a PNG string with some moves do the following:
 
 Do all of that with a new example HTML file.
 
-### Ensure edge-cases of PGN are handled appropriate
+### Ensure edge-cases of PGN are handled appropriate (/)
 
 Current edge-cases are the following:
 
@@ -107,6 +130,11 @@ the current move number, ...
 * See http://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs (NAGs) for the meaning
 * how to represent them as symbols?
 * Is there a font for the special symbols, or are these available everywhere?
+
+### PGN Comments (/)
+
+* Allows comments at all reasonable places.
+* Hold them as commentBefore and commentAfter attributes in the move objects.
 
 ### Provide a FEN API that can be used from the outside.
 
@@ -145,3 +173,41 @@ The following is needed to construct a full-blown PgnViewer:
   * Special symbols, that denote something in chess notation
 
 Is there a specification available, is that spec available offline, to study it?
+
+### Define useful API for pgnView (/)
+
+Currently the API is only one: call the function with a unique ID (for the DIVs needed),
+and the configuration with everything included: PGN, configuration parameters for chess or
+chessboardjs, additional parameters for anything, ...
+
+This is difficult to use and will lead in short time to a mess of code, because everything
+has to fit in the configuration. 
+
+So try to find the needed API for clients. How will they use the viewer, and what are
+therefore the APIs needed?
+
+Here are some ides how to structure this:
+
+* Even if it is not very functional, use JS objects (with new ...) and some core APIs for them.
+* Provide more than one functional interface, that wraps the core behavior and adds some
+  defaults and what to do at the beginning.
+  * pgnView: Provide a viewer for a pgn game, with some variants.
+  * pgnEdit: Provide a viewer that allows to edit a game.
+  * pgnBoard: Provide just a board for some position (by giving a FEN string).
+  * pgnBase: Base functionality, used by all others. Decide what is here or in the others.
+  
+### Structure pgnviewer.js cleaner
+  
+Currently the whole thing is a hack. it is not pleasant, growing, and more variables are visible
+in more places than wished. At least the following should be done:
+  
+* Find the parts that define the board (only)
+  * configuration needed by chessboardjs, div for it, copying the part of the configuration,
+    filling the defaults and dependent parameters
+  * utility functions to drive the board: setting position, moving, UI elements for that, ...
+* Define the parts for the moves (that correspond to the board
+  * DIV for the moves
+  * How to structure, expand, ... the DIV
+* Define the parts for the UI itself: What is needed for viewing, annotation, editing, ...
+* Define the reading and writing of PGN (only), how to handle it, and what is the API to
+  work with the PGN object.

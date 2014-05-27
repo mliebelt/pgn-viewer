@@ -1,17 +1,23 @@
+/**
+ * Ensure that the div element for the board is empty.
+ */
+var clearHTML = function(boardId) {
+    var divBoard = document.getElementById(boardId);
+    var child = null;
+    while (child = divBoard.firstChild) {
+        divBoard.removeChild(child);
+    };
+}
+
 describe("PGN Viewer", function() {
     var pgnv;
-
     beforeEach(function() {
-        pgnv = pgnView('b', { position: 'start' });
+        clearHTML("b");
     });
-
-    it("should be instantiated with the inital position", function() {
-        expect(pgnv.chess().turn()).toEqual("w");
-    })
 
     describe("When reading only moves", function() {
         beforeEach(function() {
-
+            clearHTML("b");
             var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7#";
             pgnv = pgnView("b", {pgn: pgn, position: "start"});
         });
@@ -23,6 +29,7 @@ describe("PGN Viewer", function() {
 
     describe("When reading PGN with headers", function() {
         beforeEach(function() {
+            clearHTML("b");
             var pgn = ['[Event "Casual Game"]',
                 '[Site "Berlin GER"] [Date "1852.??.??"] [EventDate "?"] [Round "?"]',
                 '[Result "1-0"] [White "Adolf Anderssen"] [Black "Jean Dufresne"] [ECO "C52"]',
@@ -42,6 +49,7 @@ describe("PGN Viewer", function() {
     })
     describe("When reading PGN with comments", function() {
         beforeEach(function() {
+            clearHTML("b");
             var pgn = '1. e4 { first comment } e5 { second comment } 2. {now before } Nf3';
             pgnv = pgnView("b", {pgn: pgn, position: 'start'});
         });
@@ -54,6 +62,30 @@ describe("PGN Viewer", function() {
             expect(moves[1].commentBefore).toBeNull();
             expect(moves[2].commentBefore).toEqual("now before");
             expect(moves[2].commentAfter).toBeNull();
+        })
+    })
+
+    describe("When only displaying a board", function() {
+        beforeEach(function() {
+            clearHTML("b");
+            var pgnb = pgnBoard("b",
+                {position: 'start', pieceStyle: 'maya', theme: 'blue'});
+        })
+
+        it ("should have the start position", function() {
+            $('#bInner');
+        })
+    })
+
+    describe("When opening an editor", function() {
+        beforeEach(function() {
+            clearHTML("b");
+            var pgne = pgnEdit("b",
+                {position: 'start'});
+        });
+
+        it ("should have the start position", function() {
+            //
         })
     })
 })
