@@ -1,3 +1,18 @@
+div.buttons > .prev {
+    background-image: url("../img/buttons/ff/resultset_previous.png");
+    width: 20px;
+    height: 20px;
+}
+div.buttons > .next {
+    background-image: url("../img/buttons/ff/resultset_next.png");
+    width: 20px;
+    height: 20px;
+}
+
+div.buttons > button {
+    margin: 5px;
+}
+
 .moves a {
     text-decoration: underline;
 }
@@ -67,9 +82,10 @@
 
 .chesscom .header {
     font-family: "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     padding: 15px;
     background-color: #f3f3f3;
+    font-weight: bold;
 }
 
 .chesscom .players {
@@ -78,8 +94,9 @@
 
 .chesscom .moves {
     padding: 3px 3px;
-    font-size: 18px;
+    font-size: 13px;
     font-family: "Trebuchet MS", Arial, sans-serif;
+    font-weight: bold;
     position: relative;
     float: right;
     width: 388px;
