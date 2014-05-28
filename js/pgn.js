@@ -40,20 +40,24 @@ var pgnReader = function (spec) {
     /**
      * Main function, automatically called when calling pgn function.
      */
-    function load_pgn() {
+    var load_pgn = function () {
         // work here with the pgn, bind the resulting structure inside the pgn instance itself
-        var input = that.inputPgn();
+        var input = inputPgn();
         var restString = readHeaders();
         readMoves(restString);
         return that;
     };
+
+    var inputPgn = function() {
+        return spec.pgn;
+    }
 
     /**
      * Reads the headers from the pgn string given, returns what is not consumed
      * by the headers.
      * @returns {string} the remainding moves
      */
-    function readHeaders() {
+    var readHeaders = function () {
         var h = splitHeaders(spec.pgn);
         // return at the end what is not consumed by the headers.
         that.headers = h;
@@ -66,7 +70,7 @@ var pgnReader = function (spec) {
      * @param string the pgn string that contains (at the beginning) the headers of the game
      * @returns the headers read
      */
-    function splitHeaders(string) {
+    var splitHeaders = function (string) {
         var h = {};
         var list = string.match(/\[([^\]]+)]/g);
         if (list === null) { return h; };
@@ -85,7 +89,7 @@ var pgnReader = function (spec) {
     /**
      * Read moves read the moves that are not part of the headers.
      */
-    function readMoves(movesString) {
+    var readMoves = function(movesString) {
         that.moves_string = movesString.trim();
         // Store moves in a separate object.
         that.moves = parser.parse(that.moves_string)[0];
@@ -97,22 +101,22 @@ var pgnReader = function (spec) {
      * Returns the move that matches the id.
      * @param id the ID of the move
      */
-    function getMove(id) {
+    var getMove = function(id) {
         return that.moves[id];
-    }
+    };
+
+    load_pgn();
 
     // This defines the public API of the pgn function.
-    that.inputPgn = function () { return spec.pgn; };
-    that.movesString = function () { return that.moves_string; };
-    that.readHeaders = readHeaders;
-    that.readMoves = function () { return readMoves; };
-    // returns the object to be used outside
-    that.getMoves = function () { return that.moves; };
-    that.getMove = function (id) { return that.getMove(id); };
-
-    that.getHeaders = function() { return that.headers; };
-    that.splitHeaders = splitHeaders;
-    that.getParser = function() { return parser; };
-    load_pgn();
-    return that;
+    return {
+        inputPgn: inputPgn,
+        movesString: function () { return that.moves_string; },
+        readHeaders: readHeaders,
+        readMoves: function () { return readMoves; },
+        getMoves: function () { return that.moves; },
+        getMove: getMove,
+        getHeaders: function() { return that.headers; },
+        splitHeaders: splitHeaders,
+        getParser: function() { return parser; }
+    }
 }

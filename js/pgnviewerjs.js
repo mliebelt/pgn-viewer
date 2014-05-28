@@ -14,12 +14,23 @@ var pgnBase = function (boardId, configuration) {
     var game = new Chess();
     var innerBoardId = boardId + 'Inner';
     var movesId = boardId + 'Moves';
+    var buttonsId = boardId + 'Button';
 
     /**
      * Generates all HTML elements needed for display of the (playing) board and
      * the moves. Generates that in dependence of the theme
      */
     var generateHTML = function() {
+        var generateButtons = function() {
+            var prev = document.createElement("button");
+            prev.setAttribute('id', buttonsId + 'Prev');
+            prev.setAttribute('class', theme + " prev");
+            buttonsBoardDiv.appendChild(prev);
+            var next = document.createElement("button");
+            next.setAttribute('id', buttonsId + 'Next');
+            next.setAttribute('class', theme + " next");
+            buttonsBoardDiv.appendChild(next);
+        };
         var divBoard = document.getElementById(boardId);
         if (divBoard == null) {
             return;
@@ -27,10 +38,15 @@ var pgnBase = function (boardId, configuration) {
         var innerBoardDiv = document.createElement("div");
         innerBoardDiv.setAttribute('id', innerBoardId);
         innerBoardDiv.setAttribute('class', theme);
+        var buttonsBoardDiv = document.createElement("div");
+        generateButtons();
+        buttonsBoardDiv.setAttribute('id', buttonsId);
+        buttonsBoardDiv.setAttribute('class', theme + " buttons");
         var movesDiv = document.createElement("div");
         movesDiv.setAttribute('id', movesId);
         movesDiv.setAttribute('class', "moves");
         divBoard.appendChild(innerBoardDiv);
+        divBoard.appendChild(buttonsBoardDiv);
         divBoard.appendChild(movesDiv);
     };
     /**
@@ -70,6 +86,9 @@ var pgnBase = function (boardId, configuration) {
      * link to FEN (position after move)
      */
     var generateMoves = function(board) {
+        that.mypgn = pgnReader( { pgn: configuration.pgn ? configuration.pgn : ''} );
+        var myMoves = that.mypgn.getMoves();
+        game.reset();
 
         var generateCommentSpan = function(comment) {
             var span = document.createElement('span');
@@ -77,10 +96,50 @@ var pgnBase = function (boardId, configuration) {
             span.appendChild(document.createTextNode(" " + comment + " "));
             return span;
         };
+
+        // Bind the necessary functions to move the pieces.
+        var bindFunctions = function() {
+            $('.buttons > .next').on('click', function() {
+                var fen = null;
+                if (typeof that.currentMove == 'undefined') {
+                    fen = that.mypgn.getMove(0).fen;
+                    makeMove(null, 0, fen);
+                } else {
+                    fen = that.mypgn.getMove(that.currentMove + 1).fen;
+                    makeMove(that.currentMove, that.currentMove + 1, fen);
+                }
+            })
+            $('.buttons > .prev').on('click', function() {
+                var fen = null;
+                if (typeof that.currentMove == 'undefined') {
+                    /*fen = that.mypgn.getMove(0).fen;
+                    makeMove(null, 0, fen);*/
+                } else {
+                    fen = that.mypgn.getMove(that.currentMove - 1).fen;
+                    makeMove(that.currentMove, that.currentMove - 1, fen);
+                }
+            })
+        };
+
+        var moveSpan = function(i) {
+            return $('#move' + i);
+        }
+
+        // Makes the move on the board from the current position to the next position.
+        var makeMove = function(curr, next, fen) {
+            board.position(fen);
+            if (curr) {
+                moveSpan(curr).removeClass();
+            }
+            moveSpan(next).addClass('yellow');
+            that.currentMove = next;
+        };
+
         // Generates one move from the current position
         var generateMove = function(i, game, move, movesDiv) {
             var pgn_move = game.move(move.notation);
             var fen = game.fen();
+            move.fen = fen;
             var span = document.createElement("span");
             span.setAttribute('class', "move");
             if (pgn_move.color == 'w') {
@@ -102,32 +161,26 @@ var pgnBase = function (boardId, configuration) {
             movesDiv.appendChild(span);
             var currMoveSpan = $('#move' + i);
             currMoveSpan.on('click', function() {
-                board.position(fen);
-                if (that.currentMove) {
-                    that.currentMove.removeClass();
-                }
-                currMoveSpan.addClass('yellow');
-                that.currentMove = currMoveSpan;
+                makeMove(that.currentMove, i, fen);
             });
             return this;
         };
 
         // Start working with PGN, if available
 //        if (! configuration.pgn) { return; }
-        that.mypgn = pgnReader( { pgn: configuration.pgn ? configuration.pgn : ''} );
-        var myMoves = that.mypgn.getMoves();
-        game.reset();
         var movesDiv = document.getElementById(movesId);
         for (var i = 0; i < myMoves.length; i++) {
             var move = myMoves[i];
             generateMove(i, game, move, movesDiv);
         }
+        bindFunctions();
     };
 
     return {
         // PUBLIC API
         chess: game,
         getPgn: function() { return that.mypgn; },
+        pgn: that.mypgn,
         generateHTML: generateHTML,
         generateBoard: generateBoard,
         generateMoves: generateMoves
@@ -152,7 +205,8 @@ var pgnView = function(boardId, configuration) {
     base.generateMoves(board);
     return {
         chess: base.chess,
-        getPgn: base.getPgn
+        getPgn: base.getPgn,
+        pgn: base.pgn
     }
 };
 
