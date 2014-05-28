@@ -26,6 +26,10 @@ var pgnBase = function (boardId, configuration) {
      */
     var generateHTML = function() {
         var generateButtons = function() {
+            var first = document.createElement("button");
+            first.setAttribute('id', buttonsId + 'First');
+            first.setAttribute('class', theme + " first");
+            buttonsBoardDiv.appendChild(first);
             var prev = document.createElement("button");
             prev.setAttribute('id', buttonsId + 'Prev');
             prev.setAttribute('class', theme + " prev");
@@ -34,6 +38,10 @@ var pgnBase = function (boardId, configuration) {
             next.setAttribute('id', buttonsId + 'Next');
             next.setAttribute('class', theme + " next");
             buttonsBoardDiv.appendChild(next);
+            var last = document.createElement("button");
+            last.setAttribute('id', buttonsId + 'Last');
+            last.setAttribute('class', theme + " last");
+            buttonsBoardDiv.appendChild(last);
         };
         var divBoard = document.getElementById(boardId);
         if (divBoard == null) {
@@ -123,6 +131,14 @@ var pgnBase = function (boardId, configuration) {
                     makeMove(that.currentMove, that.currentMove - 1, fen);
                 }
             })
+            $('.buttons > .first').on('click', function() {
+                var fen = that.mypgn.getMove(0).fen;
+                makeMove(null, 0, fen);
+            })
+            $('.buttons > .last').on('click', function() {
+                var fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
+                makeMove(that.currentMove, that.currentMove - 1, fen);
+            })
         };
 
         var moveSpan = function(i) {
@@ -132,7 +148,7 @@ var pgnBase = function (boardId, configuration) {
         // Makes the move on the board from the current position to the next position.
         var makeMove = function(curr, next, fen) {
             board.position(fen);
-            if (curr) {
+            if (typeof curr != 'undefined') {
                 moveSpan(curr).removeClass();
             }
             moveSpan(next).addClass('yellow');
