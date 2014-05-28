@@ -130,8 +130,7 @@ var pgnBase = function (boardId, configuration) {
         getPgn: function() { return that.mypgn; },
         generateHTML: generateHTML,
         generateBoard: generateBoard,
-        generateMoves: generateMoves,
-        clearHTML: clearHTML
+        generateMoves: generateMoves
 
     }
 
