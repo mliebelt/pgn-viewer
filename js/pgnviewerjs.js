@@ -16,6 +16,10 @@ var pgnBase = function (boardId, configuration) {
     var movesId = boardId + 'Moves';
     var buttonsId = boardId + 'Button';
 
+    var hideHTML = function(eleName) {
+        var ele = "#" + boardId + eleName;
+        $(ele)[0].style.display = "none";
+    }
     /**
      * Generates all HTML elements needed for display of the (playing) board and
      * the moves. Generates that in dependence of the theme
@@ -183,8 +187,8 @@ var pgnBase = function (boardId, configuration) {
         pgn: that.mypgn,
         generateHTML: generateHTML,
         generateBoard: generateBoard,
-        generateMoves: generateMoves
-
+        generateMoves: generateMoves,
+        hideHTML: hideHTML
     }
 
 };
@@ -228,6 +232,7 @@ var pgnView = function(boardId, configuration) {
 var pgnBoard = function(boardId, configuration) {
     var base = pgnBase(boardId, configuration);
     base.generateHTML();
+    base.hideHTML("Button");
     var board = base.generateBoard();
     return {
         chess: base.chess,
