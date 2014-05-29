@@ -10,8 +10,7 @@
 
 var pgnReader = function (spec) {
     var that = {};
-    var grammar = "{ function makeInteger(o) { return parseInt(o.join(''), 10); } } pgn = pw:pgnStartWhite all:pgnBlack? { arr = (all ? all : []); arr.push(pw); arr.reverse(); return arr; } / pb:pgnStartBlack all:pgnWhite? { arr = (all ? all : []); arr.push(pb); arr.reverse(); return arr; } / whiteSpace? { return [[]]; } pgnStartWhite = whiteSpace? pw:pgnWhite { return pw; } pgnStartBlack = whiteSpace? me:moveEllipse all:pgnBlack { last = all[all.length - 1]; last.moveNumber = me; return all; } pgnWhite = whiteSpace? mn:moveNumber whiteSpace? cb:comment? whiteSpace? hm:halfMove  whiteSpace? ca:comment? whiteSpace? all:pgnBlack? { arr = (all ? all : []); move = {}; move.turn = 'w'; move.moveNumber = mn; move.notation = hm; move.commentBefore = cb; move.commentAfter = ca; arr.push(move); return arr; } pgnBlack = whiteSpace? cb:comment? whiteSpace? hm:halfMove whiteSpace? ca:comment? whiteSpace? all:pgnWhite? { arr = (all ? all : []); move = {}; move.turn = 'b', move.notation = hm; move.commentBefore = cb; move.commentAfter = ca; arr.push(move); return arr; } comment = cl cm:[^}]+ cr { return cm.join('').trim(); } cl = '{' cr = '}' moveNumber = num:integer'.' { return num; } integer 'integer' = digits:[0-9]+ { return makeInteger(digits); } whiteSpace = ' '+ { return '';} halfMove = fig:figure? & checkdisc disc:discriminator str:strike? col:column row:row pr:promotion? ch:check? {return (fig ? fig : '') + (disc ? disc : '') + (str ? str : '') + col + row + (ch ? ch : ''); } / fig:figure? str:strike? col:column row:row pr:promotion? ch:check? {return (fig ? fig : '') + (str ? str : '') + col + row + (pr ? pr : '') +  (ch ? ch : ''); } / 'O-O-O' / 'O-O' check = '+' / '#' promotion = '=' f:figure { return '=' + f; } discriminator = column / row checkdisc = discriminator strike? column row moveEllipse = num:integer'...' { return num; } figure = [RNBQK] column = [a-h] row = [1-8] strike = 'x'";
-    var parser = PEG.buildParser(grammar);
+    var parser = pgnParser;
     that.PGN_KEYS = {
         Event: "the name of the tournament or match event",
         Site: "the location of the event",
@@ -36,34 +35,26 @@ var pgnReader = function (spec) {
         Termination: 'Gives more details about the termination of the game. It may be "abandoned", "adjudication" (result determined by third-party adjudication), "death", "emergency", "normal", "rules infraction", "time forfeit", or "unterminated".',
         Mode: '"OTB" (over-the-board) "ICS" (Internet Chess Server)'
 
-    }
+    };
     /**
      * Main function, automatically called when calling pgn function.
      */
     var load_pgn = function () {
-        // work here with the pgn, bind the resulting structure inside the pgn instance itself
-        var input = inputPgn();
         var restString = readHeaders();
         readMoves(restString);
         return that;
     };
 
-    var inputPgn = function() {
-        return spec.pgn;
-    }
-
     /**
      * Reads the headers from the pgn string given, returns what is not consumed
      * by the headers.
-     * @returns {string} the remainding moves
+     * @returns {string} the remaining moves
      */
     var readHeaders = function () {
-        var h = splitHeaders(spec.pgn);
-        // return at the end what is not consumed by the headers.
-        that.headers = h;
+        that.headers = splitHeaders(spec.pgn);
         var index = spec.pgn.lastIndexOf("]");
         return spec.pgn.substring(index + 1);
-    }
+    };
 
     /**
      * Split the headers (marked by []), and collect them in the return value.
@@ -73,7 +64,7 @@ var pgnReader = function (spec) {
     var splitHeaders = function (string) {
         var h = {};
         var list = string.match(/\[([^\]]+)]/g);
-        if (list === null) { return h; };
+        if (list === null) { return h; }
         for (var i=0; i < list.length; i++) {
             var ret = list[i].match(/\[(\w+)\s+\"([^\"]+)\"/);
             if (ret) {
@@ -84,7 +75,7 @@ var pgnReader = function (spec) {
             }
         }
         return h;
-    }
+    };
 
     /**
      * Read moves read the moves that are not part of the headers.
@@ -93,9 +84,7 @@ var pgnReader = function (spec) {
         that.moves_string = movesString.trim();
         // Store moves in a separate object.
         that.moves = parser.parse(that.moves_string)[0];
-        // Has to be brought into the right order
-        that.moves.reverse();
-    }
+    };
 
     /**
      * Returns the move that matches the id.
@@ -109,7 +98,6 @@ var pgnReader = function (spec) {
 
     // This defines the public API of the pgn function.
     return {
-        inputPgn: inputPgn,
         movesString: function () { return that.moves_string; },
         readHeaders: readHeaders,
         readMoves: function () { return readMoves; },
@@ -119,4 +107,4 @@ var pgnReader = function (spec) {
         splitHeaders: splitHeaders,
         getParser: function() { return parser; }
     }
-}
+};
