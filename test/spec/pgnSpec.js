@@ -131,4 +131,47 @@ describe("When reading PGN with headers", function() {
     })
 })
 
+describe("When reading PGN with variations", function() {
+    var my_pgn;
+
+    it("should understand one variation for white", function() {
+        my_pgn = pgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6) exf4"});
+        expect(my_pgn.getMoves().length).toEqual(4);
+        expect(my_pgn.getMove(0).variations.length).toEqual(0);
+        expect(my_pgn.getMove(1).variations.length).toEqual(0);
+        expect(my_pgn.getMove(2).variations.length).toEqual(1);
+        expect(my_pgn.getMove(3).variations.length).toEqual(0);
+        expect(my_pgn.getMove(2).variations[0].length).toEqual(2);
+        expect(my_pgn.getMove(2).variations[0][0].notation).toEqual("Nf3");
+        expect(my_pgn.getMove(2).variations[0][1].notation).toEqual("Nc6");
+    })
+
+    it("should understand one variation for black with move number", function () {
+        my_pgn = pgnReader({pgn: "1. e4 e5 (1... d5 2. exd5 Qxd5)"});
+        expect(my_pgn.getMoves().length).toEqual(2);
+        expect(my_pgn.getMove(1).variations.length).toEqual(1);
+        expect(my_pgn.getMove(0).variations.length).toEqual(0);
+        expect(my_pgn.getMove(1).variations[0].length).toEqual(3);
+        expect(my_pgn.getMove(1).variations[0][2].notation).toEqual("Qxd5");
+    })
+
+    it("should understand one variation for black without move number", function () {
+        my_pgn = pgnReader({pgn: "1. e4 e5 (d5 2. exd5 Qxd5)"});
+        expect(my_pgn.getMoves().length).toEqual(2);
+        expect(my_pgn.getMove(1).variations.length).toEqual(1);
+        expect(my_pgn.getMove(0).variations.length).toEqual(0);
+        expect(my_pgn.getMove(1).variations[0].length).toEqual(3);
+        expect(my_pgn.getMove(1).variations[0][2].notation).toEqual("Qxd5");
+    })
+
+    it("should understand nested variations", function() {
+        my_pgn = pgnReader({pgn: "1. e4 e5 (d5 2. exd5 Qxd5 (2... Nf6))"});
+        expect(my_pgn.getMoves().length).toEqual(2);
+        expect(my_pgn.getMove(1).variations[0].length).toEqual(3);
+        expect(my_pgn.getMove(1).variations[0][2].notation).toEqual("Qxd5");
+        expect(my_pgn.getMove(1).variations[0][2].variations.length).toEqual(1);
+        expect(my_pgn.getMove(1).variations[0][2].variations[0][0].notation).toEqual("Nf6");
+    })
+})
+
 
