@@ -44,7 +44,7 @@ there is of course no guarantee that anything will be implemented soon.
 * Look at different books and try to adapt some of the styles, allow the style to be set
   (as attribute moveStyle).
     
-#### Different move styles
+#### Different move styles (working)
 
 * one or two column (depending on how much to show)
 * Main moves flowing or one move (white and black) on one line.
@@ -153,7 +153,7 @@ to add their own one. Describe what steps users have to do to do it well.
 
 See the default `pgnvjs.css` with the themes `blue` and `green` and the example `sample.html`.
 
-### Read PGN including the comments and variations
+### Read PGN including the comments and variations (/)
 
 Currently, chess.js is only able to read the main line in a PGN string (I tried it).
 The following is needed to construct a full-blown PgnViewer:
@@ -173,6 +173,18 @@ The following is needed to construct a full-blown PgnViewer:
   * Special symbols, that denote something in chess notation
 
 Is there a specification available, is that spec available offline, to study it?
+
+### Generate PGN including comments and variations (working)
+
+* Decide the structure of all moves (div, span, IDs, classes, hierarchy).
+* Use the linked moves in generation.
+* Allow different styling by CSS only (for the `<div class="moves">...</div>`)
+* Provide examples for
+  * main line in one column
+  * main line in one paragraph
+  * variations inlined
+  * variations separated by paragraphs
+  * different styling for them
 
 ### Define useful API for pgnView (/)
 
@@ -196,7 +208,7 @@ Here are some ides how to structure this:
   * pgnBoard: Provide just a board for some position (by giving a FEN string).
   * pgnBase: Base functionality, used by all others. Decide what is here or in the others.
   
-### Structure pgnviewer.js cleaner
+### Structure pgnviewer.js cleaner (/)
   
 Currently the whole thing is a hack. it is not pleasant, growing, and more variables are visible
 in more places than wished. At least the following should be done:

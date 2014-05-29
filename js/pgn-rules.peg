@@ -6,9 +6,9 @@
 
 pgn
   = pw:pgnStartWhite all:pgnBlack?
-      { arr = (all ? all : []); arr.push(pw); arr.reverse(); return arr; }
+      { arr = (all ? all : []); arr.unshift(pw);return arr; }
   / pb:pgnStartBlack all:pgnWhite?
-    { arr = (all ? all : []); arr.push(pb); arr.reverse(); return arr; }
+    { arr = (all ? all : []); arr.unshift(pb); return arr; }
   / whiteSpace?
     { return [[]]; }
 
@@ -16,22 +16,22 @@ pgnStartWhite
   = whiteSpace? pw:pgnWhite { return pw; }
 
 pgnStartBlack
-  = whiteSpace? me:moveEllipse all:pgnBlack
-    { last = all[all.length - 1]; last.moveNumber = me; return all; }
+  = whiteSpace? me:moveEllipse? all:pgnBlack
+    { last = all[0]; last.moveNumber = me; return all; }
 
 pgnWhite
   = whiteSpace? mn:moveNumber whiteSpace? cb:comment? whiteSpace?
-    hm:halfMove  whiteSpace? ca:comment? whiteSpace? all:pgnBlack?
+    hm:halfMove  whiteSpace? ca:comment? whiteSpace? vari:variationWhite? all:pgnBlack?
     { arr = (all ? all : []); move = {}; move.turn = 'w'; move.moveNumber = mn;
-      move.notation = hm; move.commentBefore = cb; move.commentAfter = ca;
-      arr.push(move); return arr; }
+      move.notation = hm; move.commentBefore = cb; move.commentAfter = ca; 
+      move.variations = (vari ? vari : []); arr.unshift(move); return arr; }
 
 pgnBlack
   = whiteSpace? cb:comment? whiteSpace?
-    hm:halfMove whiteSpace? ca:comment? whiteSpace? all:pgnWhite?
+    hm:halfMove whiteSpace? ca:comment? whiteSpace? vari:variationBlack? all:pgnWhite?
     { arr = (all ? all : []); move = {}; move.turn = 'b'; move.notation = hm;
       move.commentBefore = cb; move.commentAfter = ca;
-      arr.push(move); return arr; }
+      move.variations = (vari ? vari : []); arr.unshift(move); return arr; }
 
 comment
   = cl cm:[^}]+ cr { return cm.join("").trim(); }
@@ -40,6 +40,17 @@ cl = '{'
 
 cr = '}'
 
+variationWhite
+  = pl vari:pgnWhite pr whiteSpace? all:variationWhite?
+    { arr = (all ? all : []); arr.unshift(vari); return arr; }
+
+variationBlack
+  = pl vari:pgnStartBlack pr whiteSpace? all:variationBlack?
+    { arr = (all ? all : []); arr.unshift(vari); return arr; }
+
+pl = '('
+
+pr = ')'
 
 moveNumber
     = num:integer"." { return num; }

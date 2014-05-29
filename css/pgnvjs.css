@@ -39,18 +39,20 @@ div.buttons > button {
 }
 
 .moves .move {
-    font-size: 18px;
+    font-size: 16px;
+    font-family: Georgia, "Bitstream Charter", serif;;
     color: black;
+    font-weight: 700;
+    line-height: 24px;
 }
 
 .moves .move .moveNumber {
-    font-size: 24px;
+/*    font-size: 24px;*/
 }
 
 .moves .move .comment {
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    color: darkslategray;
+    color: green;
+    font-weight: 500;
 }
 
 .moves .white:before {
@@ -82,8 +84,7 @@ div.buttons > button {
 /* board */
 .chesscom .board-b72b1 {
     /*    border: 2px solid #404040; */
-    border-color: white;
-    border-width: 0px;
+    border: 0 white;
 }
 
 .chesscom .header {
@@ -152,8 +153,7 @@ div.buttons > button {
 /* board */
 .informator .board-b72b1 {
     /*    border: 2px solid #404040; */
-    border-color: black;
-    border-width: 4px;
+    border: 4px black;
 }
 
 /* white square */
@@ -174,8 +174,7 @@ div.buttons > button {
 /* board */
 .sportverlag .board-b72b1 {
     /*    border: 2px solid #404040; */
-    border-color: black;
-    border-width: 4px;
+    border: 4px black;
 }
 
 /* white square */
@@ -290,14 +289,14 @@ div.buttons > button {
 
 /* white square */
 .green .white-1e1d7 {
-    background-color: lightgreen;
-    color: rgba(0, 100, 0, 0.75);
+    background-color: rgba(144, 238, 144, 0.50);
+    color: rgba(0, 65, 0, 0.50);
 }
 
 /* black square */
 .green .black-3c85d {
-    color: lightgreen;
-    background-color: rgba(0, 100, 0, 0.75);
+    color: rgba(144, 238, 144, 0.50);
+    background-color: rgba(0, 65, 0, 0.50);
 }
 
 /* highlighted square */

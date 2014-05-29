@@ -16,10 +16,15 @@ var pgnBase = function (boardId, configuration) {
     var movesId = boardId + 'Moves';
     var buttonsId = boardId + 'Button';
 
+    /**
+     * Allow to hide HTML by calling this function. It will prepend
+     * the boardId, and search for an ID in the DOM.
+     * @param eleName
+     */
     var hideHTML = function(eleName) {
         var ele = "#" + boardId + eleName;
         $(ele)[0].style.display = "none";
-    }
+    };
     /**
      * Generates all HTML elements needed for display of the (playing) board and
      * the moves. Generates that in dependence of the theme
@@ -117,33 +122,35 @@ var pgnBase = function (boardId, configuration) {
                     fen = that.mypgn.getMove(0).fen;
                     makeMove(null, 0, fen);
                 } else {
-                    fen = that.mypgn.getMove(that.currentMove + 1).fen;
-                    makeMove(that.currentMove, that.currentMove + 1, fen);
+                    var next = that.mypgn.getMove(that.currentMove).nextMove;
+                    fen = that.mypgn.getMove(next).fen;
+                    makeMove(that.currentMove, next, fen);
                 }
-            })
+            });
             $('.buttons > .prev').on('click', function() {
                 var fen = null;
                 if (typeof that.currentMove == 'undefined') {
                     /*fen = that.mypgn.getMove(0).fen;
                     makeMove(null, 0, fen);*/
                 } else {
-                    fen = that.mypgn.getMove(that.currentMove - 1).fen;
-                    makeMove(that.currentMove, that.currentMove - 1, fen);
+                    var prev = that.mypgn.getMove(that.currentMove).prevMove;
+                    fen = that.mypgn.getMove(prev).fen;
+                    makeMove(that.currentMove, prev, fen);
                 }
-            })
+            });
             $('.buttons > .first').on('click', function() {
                 var fen = that.mypgn.getMove(0).fen;
                 makeMove(null, 0, fen);
-            })
+            });
             $('.buttons > .last').on('click', function() {
                 var fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
                 makeMove(that.currentMove, that.currentMove - 1, fen);
-            })
+            });
         };
 
         var moveSpan = function(i) {
             return $('#move' + i);
-        }
+        };
 
         // Makes the move on the board from the current position to the next position.
         var makeMove = function(curr, next, fen) {
@@ -156,10 +163,17 @@ var pgnBase = function (boardId, configuration) {
         };
 
         // Generates one move from the current position
-        var generateMove = function(i, game, move, movesDiv) {
+        var generateMove = function(currentCounter, game, move, prevCounter, movesDiv) {
             var pgn_move = game.move(move.notation);
             var fen = game.fen();
             move.fen = fen;
+            if (prevCounter != null) {
+                var prevMove = that.mypgn.getMove(prevCounter);
+                prevMove.nextMove = currentCounter;
+                move.prevMove = prevCounter;
+            } else {
+                move.preMove = null;
+            }
             var span = document.createElement("span");
             span.setAttribute('class', "move");
             if (pgn_move.color == 'w') {
@@ -170,28 +184,29 @@ var pgnBase = function (boardId, configuration) {
                 num.appendChild(document.createTextNode("" + mn + ". "));
                 span.appendChild(num);
             }
-            if (move.commentBefore) { span.appendChild(generateCommentSpan(move.commentBefore))};
+            if (move.commentBefore) { span.appendChild(generateCommentSpan(move.commentBefore))}
             var link = document.createElement('a');
-            link.setAttribute('id', "move" + i);
+            link.setAttribute('id', "move" + currentCounter);
             var text = document.createTextNode(pgn_move.san);
             link.appendChild(text);
             span.appendChild(link);
             span.appendChild(document.createTextNode(" "));
-            if (move.commentAfter) { span.appendChild(generateCommentSpan(move.commentAfter))};
+            if (move.commentAfter) { span.appendChild(generateCommentSpan(move.commentAfter))}
             movesDiv.appendChild(span);
-            var currMoveSpan = $('#move' + i);
+            var currMoveSpan = $('#move' + currentCounter);
             currMoveSpan.on('click', function() {
-                makeMove(that.currentMove, i, fen);
+                makeMove(that.currentMove, currentCounter, fen);
             });
-            return this;
+            return currentCounter;
         };
 
         // Start working with PGN, if available
 //        if (! configuration.pgn) { return; }
         var movesDiv = document.getElementById(movesId);
+        var prev = null;
         for (var i = 0; i < myMoves.length; i++) {
             var move = myMoves[i];
-            generateMove(i, game, move, movesDiv);
+            prev = generateMove(i, game, move, prev, movesDiv);
         }
         bindFunctions();
     };
@@ -272,6 +287,6 @@ var pgnBoard = function(boardId, configuration) {
 var pgnEdit = function(boardId, configuration) {
     configuration.draggable = true;
     var base = pgnBase(boardId, configuration);
-    base.generateHTML()
-    var board = base.generateBoard();
+    base.generateHTML();
+    base.generateBoard();
 };
