@@ -69,7 +69,7 @@ var pgnBase = function (boardId, configuration) {
     /**
      * Generate the board that uses the unique innerBoardId and the part of the configuration
      * that is for the board only. Returns the resulting object (as reference for others).
-     * @returns {Window.ChessBoard} the board object that may play the moves later
+     * @returns {Window.ChessBoard} the board object that may play the moveslater
      */
     var generateBoard = function() {
         function copyBoardConfiguration(source, target, keys) {
@@ -107,6 +107,12 @@ var pgnBase = function (boardId, configuration) {
         var myMoves = that.mypgn.getMoves();
         game.reset();
 
+        /**
+         * Comments are generated inline, there is no special block rendering
+         * possible for them.
+         * @param comment the comment to render as span
+         * @returns {HTMLElement} the new created span with the comment as text
+         */
         var generateCommentSpan = function(comment) {
             var span = document.createElement('span');
             span.setAttribute("class", "comment");
@@ -122,7 +128,7 @@ var pgnBase = function (boardId, configuration) {
                     fen = that.mypgn.getMove(0).fen;
                     makeMove(null, 0, fen);
                 } else {
-                    var next = that.mypgn.getMove(that.currentMove).nextMove;
+                    var next = that.mypgn.getMove(that.currentMove).next
                     fen = that.mypgn.getMove(next).fen;
                     makeMove(that.currentMove, next, fen);
                 }
@@ -133,7 +139,7 @@ var pgnBase = function (boardId, configuration) {
                     /*fen = that.mypgn.getMove(0).fen;
                     makeMove(null, 0, fen);*/
                 } else {
-                    var prev = that.mypgn.getMove(that.currentMove).prevMove;
+                    var prev = that.mypgn.getMove(that.currentMove).prev;
                     fen = that.mypgn.getMove(prev).fen;
                     makeMove(that.currentMove, prev, fen);
                 }
@@ -164,16 +170,10 @@ var pgnBase = function (boardId, configuration) {
 
         // Generates one move from the current position
         var generateMove = function(currentCounter, game, move, prevCounter, movesDiv) {
+            // TODO Error handling if move could not be done
             var pgn_move = game.move(move.notation);
             var fen = game.fen();
             move.fen = fen;
-            if (prevCounter != null) {
-                var prevMove = that.mypgn.getMove(prevCounter);
-                prevMove.nextMove = currentCounter;
-                move.prevMove = prevCounter;
-            } else {
-                move.preMove = null;
-            }
             var span = document.createElement("span");
             span.setAttribute('class', "move");
             if (pgn_move.color == 'w') {

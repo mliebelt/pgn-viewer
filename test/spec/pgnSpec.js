@@ -136,7 +136,7 @@ describe("When reading PGN with variations", function() {
 
     it("should understand one variation for white", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6) exf4"});
-        expect(my_pgn.getMoves().length).toEqual(4);
+        expect(my_pgn.movesMainLine.length).toEqual(4);
         expect(my_pgn.getMove(0).variations.length).toEqual(0);
         expect(my_pgn.getMove(1).variations.length).toEqual(0);
         expect(my_pgn.getMove(2).variations.length).toEqual(1);
@@ -148,7 +148,7 @@ describe("When reading PGN with variations", function() {
 
     it("should understand one variation for black with move number", function () {
         my_pgn = pgnReader({pgn: "1. e4 e5 (1... d5 2. exd5 Qxd5)"});
-        expect(my_pgn.getMoves().length).toEqual(2);
+        expect(my_pgn.movesMainLine.length).toEqual(2);
         expect(my_pgn.getMove(1).variations.length).toEqual(1);
         expect(my_pgn.getMove(0).variations.length).toEqual(0);
         expect(my_pgn.getMove(1).variations[0].length).toEqual(3);
@@ -157,7 +157,7 @@ describe("When reading PGN with variations", function() {
 
     it("should understand one variation for black without move number", function () {
         my_pgn = pgnReader({pgn: "1. e4 e5 (d5 2. exd5 Qxd5)"});
-        expect(my_pgn.getMoves().length).toEqual(2);
+        expect(my_pgn.movesMainLine.length).toEqual(2);
         expect(my_pgn.getMove(1).variations.length).toEqual(1);
         expect(my_pgn.getMove(0).variations.length).toEqual(0);
         expect(my_pgn.getMove(1).variations[0].length).toEqual(3);
@@ -166,7 +166,7 @@ describe("When reading PGN with variations", function() {
 
     it("should understand nested variations", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 (d5 2. exd5 Qxd5 (2... Nf6))"});
-        expect(my_pgn.getMoves().length).toEqual(2);
+        expect(my_pgn.movesMainLine.length).toEqual(2);
         expect(my_pgn.getMove(1).variations[0].length).toEqual(3);
         expect(my_pgn.getMove(1).variations[0][2].notation).toEqual("Qxd5");
         expect(my_pgn.getMove(1).variations[0][2].variations.length).toEqual(1);
@@ -174,4 +174,58 @@ describe("When reading PGN with variations", function() {
     })
 })
 
+describe("When iterating over moves", function() {
+    var moves;
+    beforeEach(function () {
+        moves = [];
+    });
+    var flatMoves = function (pgn) {
+        var my_pgn = pgnReader({pgn: pgn});
+        my_pgn.eachMove(function (index, prev, currMove, prevMove) {
+            moves.push(currMove);
+        });
+    };
+    it("should find the main line", function () {
+        flatMoves("1. e4 e5");
+        expect(moves.length).toEqual(2);
+        expect(moves[0].notation).toEqual("e4");
+        expect(moves[1].notation).toEqual("e5");
+    });
+
+    it("should find the first variation", function () {
+        flatMoves("1. e4 e5 (1... d5)");
+        expect(moves.length).toEqual(3);
+        expect(moves[0].notation).toEqual("e4");
+        expect(moves[2].notation).toEqual("d5");
+    });
+
+    it("should find all variations", function () {
+        flatMoves("1. e4 e5 (1... d5) 2. d4 (2. Nf3 Nc6)");
+        expect(moves.length).toEqual(6);
+        expect(moves[0].notation).toEqual("e4");
+        expect(moves[2].notation).toEqual("d5");
+        expect(moves[3].notation).toEqual("d4");
+        expect(moves[4].notation).toEqual("Nf3");
+    });
+
+    it("should find nested variations", function () {
+        flatMoves("1. e4 e5 (1... d5) 2. Nf3 Nc6 (2... d6 3. d4 (3. Be2)) 3. Bb5");
+        expect(moves.length).toEqual(9);
+        expect(moves[0].notation).toEqual("e4");
+        expect(moves[1].notation).toEqual("e5");
+        expect(moves[2].notation).toEqual("d5");
+        expect(moves[4].notation).toEqual("Nc6");
+        expect(moves[5].notation).toEqual("d6");
+        expect(moves[6].notation).toEqual("d4");
+        expect(moves[7].notation).toEqual("Be2");
+        expect(moves[8].notation).toEqual("Bb5");
+    });
+
+    it("should know its indices", function () {
+        flatMoves("1. e4 e5 (1... d5 2. exd5) 2. d4");
+        for (var i = 0; i < moves.length; i++) {
+            expect(moves[i].index).toEqual(i);
+        }
+    });
+})
 

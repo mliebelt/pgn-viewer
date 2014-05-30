@@ -62,28 +62,38 @@ var pgnReader = function (spec) {
      * @returns the headers read
      */
     var splitHeaders = function (string) {
-        var h = {};
+        var headers = {};
         var list = string.match(/\[([^\]]+)]/g);
-        if (list === null) { return h; }
+        if (list === null) { return headers; }
         for (var i=0; i < list.length; i++) {
             var ret = list[i].match(/\[(\w+)\s+\"([^\"]+)\"/);
             if (ret) {
                 var key = ret[1];
                 if (that.PGN_KEYS[key]) {
-                    h[key] = ret[2];
+                    headers[key] = ret[2];
                 }
             }
         }
-        return h;
+        return headers;
     };
 
     /**
      * Read moves read the moves that are not part of the headers.
      */
     var readMoves = function(movesString) {
+        var wireMoves = function(current, prev, currentMove, prevMove) {
+            if (prevMove != null) {
+                currentMove.prev = prev;
+                if (! prevMove.next) { // only set, if not set already
+                    prevMove.next = current;
+                }
+            }
+            currentMove.index = current;
+        };
         that.moves_string = movesString.trim();
         // Store moves in a separate object.
-        that.moves = parser.parse(that.moves_string)[0];
+        that.movesMainLine = parser.parse(that.moves_string)[0];
+        eachMove(wireMoves);
     };
 
     /**
@@ -94,6 +104,47 @@ var pgnReader = function (spec) {
         return that.moves[id];
     };
 
+    /**
+     * Iterate over all moves in the right order as listed in the notation.
+     * Start with the main line, and for each move with variation, iterate
+     * over the variation as well.
+     * @param called the function to call with the arguments:
+     *   currentIndex: the current index to use (and remember)
+     *   prevIndex: the previous index of the move before
+     *   currentMove: the current move
+     *   prevMove: the previous move
+     */
+    var eachMove = function(called) {
+        that.moves = [];
+        var eachMoveVariation = function(moveArray, prevMoveVariation) {
+            var prevMoveVar = prevMoveVariation;
+            for (var j = 0; j < moveArray.length; j++) {
+                current++;
+                currentMove = moveArray[j];
+                prev = prevMoveVar.index;
+                that.moves.push(currentMove);
+                called(current, prev, currentMove, prevMoveVar);
+                for (var v = 0; v < currentMove.variations.length; v++) {
+                    eachMoveVariation(currentMove.variations[v], prevMoveVar);
+                }
+                prevMoveVar = currentMove;
+            }
+        };
+        var current = 0;
+        var prev = null;
+        var currentMove = null;
+        var prevMove = null;
+        for (var i = 0, tot = that.movesMainLine.length; i < tot; i++) {
+            currentMove = that.movesMainLine[i];
+            that.moves.push(currentMove);
+            called(current, prev, currentMove, prevMove);
+            for (var v = 0; v < currentMove.variations.length; v++) {
+                eachMoveVariation(currentMove.variations[v], prevMove);
+            }
+            current++; prevMove = currentMove; prev = prevMove.index;
+        }
+    };
+
     load_pgn();
 
     // This defines the public API of the pgn function.
@@ -102,9 +153,11 @@ var pgnReader = function (spec) {
         readHeaders: readHeaders,
         readMoves: function () { return readMoves; },
         getMoves: function () { return that.moves; },
+        movesMainLine: that.movesMainLine,
         getMove: getMove,
         getHeaders: function() { return that.headers; },
         splitHeaders: splitHeaders,
-        getParser: function() { return parser; }
+        getParser: function() { return parser; },
+        eachMove: eachMove
     }
 };

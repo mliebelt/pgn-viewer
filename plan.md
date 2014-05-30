@@ -186,6 +186,21 @@ Is there a specification available, is that spec available offline, to study it?
   * variations separated by paragraphs
   * different styling for them
 
+### Iterate over all moves including variations in the right order
+
+* Create an iterator that can be used in the generation of the moves.
+* Each move should know its counter / index when asked.
+* Cache all moves (main line and variations) in the same cache. The index
+  is the index of this cache (only). The function getMove(index) should
+  work on this cache.
+* The index is the same that is used as key in the span / div for the move.
+  This index should be varied by:
+  * <game-id>move<index>
+  * When locating an element in the page, the game-id should be taken into
+    consideration.
+* Call a function with the following arguments:
+  * Current move, last move, current index, last index, 
+
 ### Define useful API for pgnView (/)
 
 Currently the API is only one: call the function with a unique ID (for the DIVs needed),
