@@ -13,10 +13,33 @@ div.buttons > .last {
     background-image: url("../img/buttons/ff/resultset_last.png");
 }
 
+div.green > .prev {
+    background-image: url("../img/buttons/tango/go-previous.png");
+}
+div.green > .next {
+    background-image: url("../img/buttons/tango/go-next.png");
+}
+
+div.green > .first {
+    background-image: url("../img/buttons/tango/go-first.png");
+}
+
+div.green > .last {
+    background-image: url("../img/buttons/tango/go-last.png");
+}
+div.green > .play {
+    background-image: url("../img/buttons/tango/media-playback-start.png");
+}
+
 div.buttons > button {
     margin: 5px;
     width: 20px;
     height: 20px;
+}
+div.green > button {
+    margin: 5px;
+    width: 36px;
+    height: 36px;
 }
 
 .moves a {
@@ -289,14 +312,14 @@ div.buttons > button {
 
 /* white square */
 .green .white-1e1d7 {
-    background-color: rgba(144, 238, 144, 0.50);
-    color: rgba(0, 65, 0, 0.50);
+    background-color: rgba(116, 185, 48, 0.80);
+    color: rgba(116, 185, 48, 0.20);
 }
 
 /* black square */
 .green .black-3c85d {
-    color: rgba(144, 238, 144, 0.50);
-    background-color: rgba(0, 65, 0, 0.50);
+    color: rgba(116, 185, 48, 0.80);
+    background-color: rgba(116, 185, 48, 0.20);
 }
 
 /* highlighted square */
@@ -358,7 +381,7 @@ div.buttons > button {
 .blue .notation-322f9 {
     /* cursor: default;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
-    font-size: 40px;
+    font-size: 20px;
 
 }
 

@@ -43,6 +43,10 @@ var pgnBase = function (boardId, configuration) {
             next.setAttribute('id', buttonsId + 'Next');
             next.setAttribute('class', theme + " next");
             buttonsBoardDiv.appendChild(next);
+            var play = document.createElement("button");
+            play.setAttribute('id', buttonsId + 'Play');
+            play.setAttribute('class', theme + " play");
+            buttonsBoardDiv.appendChild(play);
             var last = document.createElement("button");
             last.setAttribute('id', buttonsId + 'Last');
             last.setAttribute('class', theme + " last");

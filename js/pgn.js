@@ -138,10 +138,12 @@ var pgnReader = function (spec) {
             currentMove = that.movesMainLine[i];
             that.moves.push(currentMove);
             called(current, prev, currentMove, prevMove);
-            for (var v = 0; v < currentMove.variations.length; v++) {
-                eachMoveVariation(currentMove.variations[v], prevMove);
-            }
-            current++; prevMove = currentMove; prev = prevMove.index;
+            $.each(currentMove.variations, function(v, variation) {
+                eachMoveVariation(variation, prevMove);
+            })
+            current++;
+            prevMove = prevMove ? getMove(prevMove.next) : currentMove;
+            prev = prevMove.index;
         }
     };
 

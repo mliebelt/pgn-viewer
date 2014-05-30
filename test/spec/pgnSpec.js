@@ -227,5 +227,21 @@ describe("When iterating over moves", function() {
             expect(moves[i].index).toEqual(i);
         }
     });
+
+    it ("should know its previous and next move", function() {
+        flatMoves("1. e4 e5 (1... d5 2. exd5) (1... c5) 2. d4");
+        expect(moves[0].prev).toBeUndefined();
+        expect(moves[0].next).toEqual(1);
+        expect(moves[1].prev).toEqual(0);
+        expect(moves[1].next).toEqual(5);
+        expect(moves[2].prev).toEqual(0);
+        expect(moves[2].next).toEqual(3);
+        expect(moves[3].prev).toEqual(2);
+        expect(moves[3].next).toBeUndefined();
+        expect(moves[4].prev).toEqual(0);
+        expect(moves[4].next).toBeUndefined();
+        expect(moves[5].prev).toEqual(1);
+        expect(moves[5].next).toBeUndefined();
+    })
 })
 
