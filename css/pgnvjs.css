@@ -17,6 +17,10 @@ div.buttons > .play {
     background-image: url("../img/buttons/ff/control_play_blue.png");
 }
 
+div.buttons > .stop {
+    background-image: url("../img/buttons/ff/control_stop_blue.png");
+}
+
 div.buttons > .flipper {
     background-image: url("../img/blackwhite-flipper.vers1.png");
 }

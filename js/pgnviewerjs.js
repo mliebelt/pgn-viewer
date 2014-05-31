@@ -144,7 +144,7 @@ var pgnBase = function (boardId, configuration) {
             var timer = $.timer(function() {
                 nextMove();
             });
-            timer.set({ time : 1000});
+            timer.set({ time : 500});
             $('#' + buttonsId + 'Flipper').on('click', function() {
                 board.flip();
             })
@@ -164,19 +164,27 @@ var pgnBase = function (boardId, configuration) {
             });
             $('#' + buttonsId + 'First').on('click', function() {
                 var fen = that.mypgn.getMove(0).fen;
-                makeMove(null, 0, fen);
+                makeMove(that.currentMove, 0, fen);
             });
             $('#' + buttonsId + 'Last' ).on('click', function() {
                 var fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
-                makeMove(that.currentMove, that.currentMove - 1, fen);
+                makeMove(that.currentMove, that.mypgn.getMoves().length - 1, fen);
             });
             $('#' + buttonsId + 'Play').on('click', function() {
                 timer.toggle();
+                var playButton = $('#' + buttonsId + 'Play')[0];
+                var clString = playButton.getAttribute('class');
+                if (clString.indexOf('play') < 0) { // has the stop button
+                    clString = clString.replace('stop', 'play');
+                } else {
+                    clString = clString.replace('play', 'stop');
+                }
+                playButton.setAttribute('class', clString);
             })
         };
 
         var moveSpan = function(i) {
-            return $('#move' + i);
+            return $('#' + movesId + i);
         };
 
         // Makes the move on the board from the current position to the next position.
@@ -207,14 +215,14 @@ var pgnBase = function (boardId, configuration) {
             }
             if (move.commentBefore) { span.appendChild(generateCommentSpan(move.commentBefore))}
             var link = document.createElement('a');
-            link.setAttribute('id', "move" + currentCounter);
+            link.setAttribute('id', movesId + currentCounter);
             var text = document.createTextNode(pgn_move.san);
             link.appendChild(text);
             span.appendChild(link);
             span.appendChild(document.createTextNode(" "));
             if (move.commentAfter) { span.appendChild(generateCommentSpan(move.commentAfter))}
             movesDiv.appendChild(span);
-            var currMoveSpan = $('#move' + currentCounter);
+            var currMoveSpan = $('#' + movesId + currentCounter);
             currMoveSpan.on('click', function() {
                 makeMove(that.currentMove, currentCounter, fen);
             });
