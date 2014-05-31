@@ -31,6 +31,10 @@ var pgnBase = function (boardId, configuration) {
      */
     var generateHTML = function() {
         var generateButtons = function() {
+            var flipper = document.createElement("button");
+            flipper.setAttribute('id', buttonsId + "Flipper");
+            flipper.setAttribute("class", theme + " flipper");
+            buttonsBoardDiv.appendChild(flipper);
             var first = document.createElement("button");
             first.setAttribute('id', buttonsId + 'First');
             first.setAttribute('class', theme + " first");
@@ -126,7 +130,7 @@ var pgnBase = function (boardId, configuration) {
 
         // Bind the necessary functions to move the pieces.
         var bindFunctions = function() {
-            $('.buttons > .next').on('click', function() {
+            var nextMove = function () {
                 var fen = null;
                 if (typeof that.currentMove == 'undefined') {
                     fen = that.mypgn.getMove(0).fen;
@@ -136,8 +140,18 @@ var pgnBase = function (boardId, configuration) {
                     fen = that.mypgn.getMove(next).fen;
                     makeMove(that.currentMove, next, fen);
                 }
+            };
+            var timer = $.timer(function() {
+                nextMove();
             });
-            $('.buttons > .prev').on('click', function() {
+            timer.set({ time : 1000});
+            $('#' + buttonsId + 'Flipper').on('click', function() {
+                board.flip();
+            })
+            $('#' + buttonsId + 'Next').on('click', function() {
+                nextMove();
+            });
+            $('#' + buttonsId + 'Prev').on('click', function() {
                 var fen = null;
                 if (typeof that.currentMove == 'undefined') {
                     /*fen = that.mypgn.getMove(0).fen;
@@ -148,14 +162,17 @@ var pgnBase = function (boardId, configuration) {
                     makeMove(that.currentMove, prev, fen);
                 }
             });
-            $('.buttons > .first').on('click', function() {
+            $('#' + buttonsId + 'First').on('click', function() {
                 var fen = that.mypgn.getMove(0).fen;
                 makeMove(null, 0, fen);
             });
-            $('.buttons > .last').on('click', function() {
+            $('#' + buttonsId + 'Last' ).on('click', function() {
                 var fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
                 makeMove(that.currentMove, that.currentMove - 1, fen);
             });
+            $('#' + buttonsId + 'Play').on('click', function() {
+                timer.toggle();
+            })
         };
 
         var moveSpan = function(i) {

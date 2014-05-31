@@ -13,6 +13,14 @@ div.buttons > .last {
     background-image: url("../img/buttons/ff/resultset_last.png");
 }
 
+div.buttons > .play {
+    background-image: url("../img/buttons/ff/control_play_blue.png");
+}
+
+div.buttons > .flipper {
+    background-image: url("../img/blackwhite-flipper.vers1.png");
+}
+
 div.green > .prev {
     background-image: url("../img/buttons/tango/go-previous.png");
 }
@@ -35,6 +43,8 @@ div.buttons > button {
     margin: 5px;
     width: 20px;
     height: 20px;
+    background-repeat: no-repeat;
+    background-position: 50%;
 }
 div.green > button {
     margin: 5px;
