@@ -93,7 +93,7 @@ var pgnReader = function (spec) {
         that.moves_string = movesString.trim();
         // Store moves in a separate object.
         that.movesMainLine = parser.parse(that.moves_string)[0];
-        eachMove2(wireMoves);
+        eachMove(wireMoves);
     };
 
     /**
@@ -105,86 +105,59 @@ var pgnReader = function (spec) {
     };
 
     /**
-     * Iterate over all moves in the right order as listed in the notation.
-     * Start with the main line, and for each move with variation, iterate
-     * over the variation as well.
-     * @param called the function to call with the arguments:
-     *   currentIndex: the current index to use (and remember)
-     *   prevIndex: the previous index of the move before
-     *   currentMove: the current move
-     *   prevMove: the previous move
+     * Final algorithm to read and map the moves. Seems to be tricky ...
+     * @param called the function that will be called (here wireMoves in readMoves)
      */
     var eachMove = function(called) {
         that.moves = [];
-        var eachMoveVariation = function(moveArray, prevMoveVariation, level) {
-            var prevMoveVar = prevMoveVariation;
-            for (var j = 0; j < moveArray.length; j++) {
-                current++;
-                currentMove = moveArray[j];
-                currentMove.variationLevel = level;
-                prev = prevMoveVar.index;
-                that.moves.push(currentMove);
-                called(current, prev, currentMove, prevMoveVar);
-                for (var v = 0; v < currentMove.variations.length; v++) {
-                    eachMoveVariation(currentMove.variations[v], prevMoveVar, level + 1);
-                }
-                if (currentMove.variations.length == 0) {
-                    prevMoveVar = currentMove;
-                }
-            }
-            prev = prevMoveVariation.next; // returning from a (possible) recursive call
-            prevMoveVar = that.moves[prev];
-        };
-        var current = 0;
-        var prev = null;
-        var currentMove = null;
-        var prevMove = null;
-        for (var i = 0, tot = that.movesMainLine.length; i < tot; i++) {
-            currentMove = that.movesMainLine[i];
-            that.moves.push(currentMove);
-            currentMove.variationLevel = 0;
-            called(current, prev, currentMove, prevMove);
-            $.each(currentMove.variations, function(v, variation) {
-                eachMoveVariation(variation, prevMove, 1);
-            })
-            current++;
-            prevMove = prevMove ? getMove(prevMove.next) : currentMove;
-            prev = prevMove.index;
-        }
-    };
-
-    var eachMove2 = function(called) {
-        that.moves = [];
         var current = -1;
-        var prevPerLevel = [null];
-        var prev = null;
-        var eachMoveVariation = function(moveArray, level) {
-            for (var i = 0; i < moveArray.length; i++) {
-                var prev = prevPerLevel[level];
-                var prevMove = (prev == null) ? null : that.moves[prev];
-                current++;
-                var currentMove = moveArray[i];
-                currentMove.variationLevel = level;
-                if (i != 0 && (moveArray[i - 1].variations.length == 0)) { // first move of a variation takes the argument prev
-                    prev = current - 1;
-                    prevPerLevel[level] = prev;
-                    prevMove = that.moves[prev];
-                }
-                that.moves.push(currentMove);
-                called(current, prev, currentMove, prevMove);
-                $.each(currentMove.variations, function(v, variation) {
-                    prevPerLevel.push(prev);
-                    eachMoveVariation(variation, level + 1);
-                })
+        /**
+         * Search for the right previous move. Go back until you find a move on the same
+         * level. Only used inside the eachMode algorithm
+         * @param level the current level to the move
+         * @param index the current index where the search (backwards) should start
+         * @returns {*} the resulting move or null, if none was found (should not happen)
+         */
+        var findPrevMove = function(level, index) {
+            while (index >= 0) {
+                if (that.moves[index].variationLevel == level) {
+                    return that.moves[index]
+                };
+                index--
             }
-            prevPerLevel.pop();
-            if (prevPerLevel.length != 0) {
-                var curr = that.moves[prevPerLevel[level - 1]].next;
-                prevPerLevel[level - 1] = curr;
-                prev = curr;
-            }
+            return null;
         }
-        eachMoveVariation(that.movesMainLine, 0);
+        /**
+         * Recursive call that does the whole work
+         * @param moveArray move array, first call with the main line
+         * @param level the level of variation, 0 for the main line
+         * @param prev the index of the previous move
+         *          * null when main line and the first move
+         *          * the correct one if the index is 0
+         *          * overwritten by current - 1 if iterating and not the first move
+         */
+        var eachMoveVariation = function(moveArray, level, prev) {
+            var prevMove = (prev != null ? that.moves[prev] : null);
+            $.each(moveArray, function(i, move) {
+                current++;
+                move.variationLevel = level;
+                that.moves.push(move);
+                if (i > 0) {
+                    if (that.moves[current - 1].variationLevel > level) {
+                        prevMove = findPrevMove(level, current -1);
+                        prev = prevMove.index;
+                    } else {
+                        prev = current - 1;
+                        prevMove = that.moves[prev];
+                    }
+                }
+                called(current, prev, move, prevMove);
+                $.each(move.variations, function(v, variation) {
+                    eachMoveVariation(variation, level + 1, prev);
+                })
+            })
+        }
+        eachMoveVariation(that.movesMainLine, 0, null);
     }
     load_pgn();
 

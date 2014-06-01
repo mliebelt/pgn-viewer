@@ -274,3 +274,68 @@ describe("When iterating over moves", function() {
     })
 })
 
+describe("Default a new read algorithm for PGN", function() {
+    var my_pgn;
+    it ("should read the main line", function() {
+        my_pgn = pgnReader({pgn: "1. e4 e5 2. Nf3"});
+        var moves = my_pgn.getMoves();
+        expect(moves.length).toEqual(3);
+        expect(moves[0].prev).toBeUndefined();
+        expect(moves[0].next).toEqual(1);
+        expect(moves[1].prev).toEqual(0);
+        expect(moves[1].next).toEqual(2);
+        expect(moves[2].prev).toEqual(1);
+        expect(moves[2].next).toBeUndefined();
+    })
+
+    it ("should read one variation for black", function() {
+        my_pgn = pgnReader({pgn: "1. e4 e5 (1... d5 2. Nf3)"});
+        var moves = my_pgn.getMoves();
+        expect(moves.length).toEqual(4);
+        expect(moves[0].prev).toBeUndefined();
+        expect(moves[0].next).toEqual(1);
+        expect(moves[1].prev).toEqual(0);
+        expect(moves[1].next).toBeUndefined();
+        expect(moves[2].prev).toEqual(0);
+        expect(moves[2].next).toEqual(3);
+        expect(moves[3].prev).toEqual(2);
+        expect(moves[3].next).toBeUndefined();
+    })
+
+    it ("should read one variation for white", function() {
+        my_pgn = pgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6)"});
+        var moves = my_pgn.getMoves();
+        expect(moves.length).toEqual(5);
+        expect(moves[0].prev).toBeUndefined();
+        expect(moves[0].next).toEqual(1);
+        expect(moves[1].prev).toEqual(0);
+        expect(moves[1].next).toEqual(2);
+        expect(moves[2].prev).toEqual(1);
+        expect(moves[2].next).toBeUndefined();
+        expect(moves[3].prev).toEqual(1);
+        expect(moves[3].next).toEqual(4);
+        expect(moves[4].prev).toEqual(3);
+        expect(moves[4].next).toBeUndefined();
+    })
+
+    it ("should read one variation for white with move after", function() {
+        my_pgn = pgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6) 2... xf4 3. Nf3"});
+        var moves = my_pgn.getMoves();
+        expect(moves.length).toEqual(7);
+        expect(moves[0].prev).toBeUndefined();
+        expect(moves[0].next).toEqual(1);
+        expect(moves[1].prev).toEqual(0);
+        expect(moves[1].next).toEqual(2);
+        expect(moves[2].prev).toEqual(1);
+        expect(moves[2].next).toEqual(5);
+        expect(moves[3].prev).toEqual(1);
+        expect(moves[3].next).toEqual(4);
+        expect(moves[4].prev).toEqual(3);
+        expect(moves[4].next).toBeUndefined();
+        expect(moves[5].prev).toEqual(2);
+        expect(moves[5].next).toEqual(6);
+        expect(moves[6].prev).toEqual(5);
+        expect(moves[6].next).toBeUndefined();
+    })
+})
+
