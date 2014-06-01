@@ -41,7 +41,7 @@ cl = '{'
 cr = '}'
 
 variationWhite
-  = pl vari:pgnWhite pr whiteSpace? all:variationWhite?
+  = pl vari:pgnWhite pr whiteSpace? all:variationWhite? whiteSpace? me:moveEllipse? 
     { arr = (all ? all : []); arr.unshift(vari); return arr; }
 
 variationBlack

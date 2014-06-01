@@ -197,16 +197,39 @@ var pgnBase = function (boardId, configuration) {
             that.currentMove = next;
         };
 
+        // Returns true, if the move is the start of a variation
+        var startVariation = function(move) {
+            return  move.variationLevel > 0 && (myMoves[move.prev].next != move.index);
+        }
+        // Returns true, if the move is the end of a variation
+        var endVariation = function(move) {
+            return move.variationLevel > 0 && ! move.next;
+        }
         // Generates one move from the current position
         var generateMove = function(currentCounter, game, move, prevCounter, movesDiv) {
+            // In case of variant, the previous move is different to the current fen
+            var isNextOfPrev = false;
+            if (prevCounter != move.prev) {
+                game.load(myMoves[move.prev].fen);
+                isNextOfPrev = true;
+            }
             // TODO Error handling if move could not be done
             var pgn_move = game.move(move.notation);
             var fen = game.fen();
             move.fen = fen;
             var span = document.createElement("span");
-            span.setAttribute('class', "move");
+            var clAttr = "move";
+            if (move.variationLevel > 0) {
+                clAttr = clAttr + " var var" + move.variationLevel;
+            }
             if (pgn_move.color == 'w') {
-                span.setAttribute('class', "move white");
+                clAttr = clAttr + " white";
+            }
+            span.setAttribute('class', clAttr);
+            if (startVariation(move)) {
+                span.appendChild(document.createTextNode(" ( "));
+            }
+            if (pgn_move.color == 'w') {
                 var mn = move.moveNumber;
                 var num = document.createElement('span');
                 num.setAttribute('class', "moveNumber");
@@ -220,6 +243,9 @@ var pgnBase = function (boardId, configuration) {
             link.appendChild(text);
             span.appendChild(link);
             span.appendChild(document.createTextNode(" "));
+            if (endVariation(move)) {
+                span.appendChild(document.createTextNode(" ) "));
+            }
             if (move.commentAfter) { span.appendChild(generateCommentSpan(move.commentAfter))}
             movesDiv.appendChild(span);
             var currMoveSpan = $('#' + movesId + currentCounter);

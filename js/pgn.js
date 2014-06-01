@@ -93,7 +93,7 @@ var pgnReader = function (spec) {
         that.moves_string = movesString.trim();
         // Store moves in a separate object.
         that.movesMainLine = parser.parse(that.moves_string)[0];
-        eachMove(wireMoves);
+        eachMove2(wireMoves);
     };
 
     /**
@@ -116,19 +116,24 @@ var pgnReader = function (spec) {
      */
     var eachMove = function(called) {
         that.moves = [];
-        var eachMoveVariation = function(moveArray, prevMoveVariation) {
+        var eachMoveVariation = function(moveArray, prevMoveVariation, level) {
             var prevMoveVar = prevMoveVariation;
             for (var j = 0; j < moveArray.length; j++) {
                 current++;
                 currentMove = moveArray[j];
+                currentMove.variationLevel = level;
                 prev = prevMoveVar.index;
                 that.moves.push(currentMove);
                 called(current, prev, currentMove, prevMoveVar);
                 for (var v = 0; v < currentMove.variations.length; v++) {
-                    eachMoveVariation(currentMove.variations[v], prevMoveVar);
+                    eachMoveVariation(currentMove.variations[v], prevMoveVar, level + 1);
                 }
-                prevMoveVar = currentMove;
+                if (currentMove.variations.length == 0) {
+                    prevMoveVar = currentMove;
+                }
             }
+            prev = prevMoveVariation.next; // returning from a (possible) recursive call
+            prevMoveVar = that.moves[prev];
         };
         var current = 0;
         var prev = null;
@@ -137,9 +142,10 @@ var pgnReader = function (spec) {
         for (var i = 0, tot = that.movesMainLine.length; i < tot; i++) {
             currentMove = that.movesMainLine[i];
             that.moves.push(currentMove);
+            currentMove.variationLevel = 0;
             called(current, prev, currentMove, prevMove);
             $.each(currentMove.variations, function(v, variation) {
-                eachMoveVariation(variation, prevMove);
+                eachMoveVariation(variation, prevMove, 1);
             })
             current++;
             prevMove = prevMove ? getMove(prevMove.next) : currentMove;
@@ -147,6 +153,39 @@ var pgnReader = function (spec) {
         }
     };
 
+    var eachMove2 = function(called) {
+        that.moves = [];
+        var current = -1;
+        var prevPerLevel = [null];
+        var prev = null;
+        var eachMoveVariation = function(moveArray, level) {
+            for (var i = 0; i < moveArray.length; i++) {
+                var prev = prevPerLevel[level];
+                var prevMove = (prev == null) ? null : that.moves[prev];
+                current++;
+                var currentMove = moveArray[i];
+                currentMove.variationLevel = level;
+                if (i != 0 && (moveArray[i - 1].variations.length == 0)) { // first move of a variation takes the argument prev
+                    prev = current - 1;
+                    prevPerLevel[level] = prev;
+                    prevMove = that.moves[prev];
+                }
+                that.moves.push(currentMove);
+                called(current, prev, currentMove, prevMove);
+                $.each(currentMove.variations, function(v, variation) {
+                    prevPerLevel.push(prev);
+                    eachMoveVariation(variation, level + 1);
+                })
+            }
+            prevPerLevel.pop();
+            if (prevPerLevel.length != 0) {
+                var curr = that.moves[prevPerLevel[level - 1]].next;
+                prevPerLevel[level - 1] = curr;
+                prev = curr;
+            }
+        }
+        eachMoveVariation(that.movesMainLine, 0);
+    }
     load_pgn();
 
     // This defines the public API of the pgn function.

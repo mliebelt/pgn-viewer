@@ -181,9 +181,7 @@ describe("When iterating over moves", function() {
     });
     var flatMoves = function (pgn) {
         var my_pgn = pgnReader({pgn: pgn});
-        my_pgn.eachMove(function (index, prev, currMove, prevMove) {
-            moves.push(currMove);
-        });
+        moves = my_pgn.getMoves();
     };
     it("should find the main line", function () {
         flatMoves("1. e4 e5");
@@ -221,6 +219,18 @@ describe("When iterating over moves", function() {
         expect(moves[8].notation).toEqual("Bb5");
     });
 
+    it ("should find follow-ups of nested variations", function() {
+        flatMoves("1. e4 e5 2. Nf3 (2. f4 xf4 (2... d5) 3. Nf3 {is hot}) 2... Nc6");
+        expect(moves.length).toEqual(8);
+        expect(moves[5].prev).toEqual(3);
+        expect(moves[5].next).toBeUndefined();
+        expect(moves[6].prev).toEqual(4);
+        expect(moves[6].next).toBeUndefined();
+        expect(moves[7].prev).toEqual(2);
+        expect(moves[7].next).toBeUndefined();
+
+    })
+
     it("should know its indices", function () {
         flatMoves("1. e4 e5 (1... d5 2. exd5) 2. d4");
         for (var i = 0; i < moves.length; i++) {
@@ -229,6 +239,20 @@ describe("When iterating over moves", function() {
     });
 
     it ("should know its previous and next move", function() {
+        flatMoves("1. e4 e5 (1... d5 2. exd5) 2. d4");
+        expect(moves[0].prev).toBeUndefined();
+        expect(moves[0].next).toEqual(1);
+        expect(moves[1].prev).toEqual(0);
+        expect(moves[1].next).toEqual(4);
+        expect(moves[2].prev).toEqual(0);
+        expect(moves[2].next).toEqual(3);
+        expect(moves[3].prev).toEqual(2);
+        expect(moves[3].next).toBeUndefined();
+        expect(moves[4].prev).toEqual(1);
+        expect(moves[4].next).toBeUndefined();
+    })
+
+    it ("should know its previous and next move with 2 variations", function() {
         flatMoves("1. e4 e5 (1... d5 2. exd5) (1... c5) 2. d4");
         expect(moves[0].prev).toBeUndefined();
         expect(moves[0].next).toEqual(1);
@@ -242,6 +266,11 @@ describe("When iterating over moves", function() {
         expect(moves[4].next).toBeUndefined();
         expect(moves[5].prev).toEqual(1);
         expect(moves[5].next).toBeUndefined();
+    })
+
+    it ("should read complete games", function() {
+        flatMoves("1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. c4 Nb6 5. Nf3 Nc6 6. exd6 cxd6 7. Nc3 g6 8. Nd5 {ein grober Fehler, der sofort einen Bauern verliert} Nxd5 9. cxd5 Qa5+ 10. Bd2 Qxd5 11. Qa4 Bg7 12. Bc4 {Weiß stellt sich immer schlechter} Qe4+ 13. Be3 d5 14. Bb5 {sieht nach Bauernrückgewinn aus} O-O 15. Bxc6 bxc6 16. Qxc6 {der Bauer ist vergiftet} Bg4 17. O-O (17. Nh4 Qd3 18. Nf3 (18. f3 Qxe3+) 18... Rac8 19. Qa4 Bxf3 20. gxf3 Rc2 {kostet die Dame}) 17... Bxf3 18. gxf3 Qxf3 {ist noch am Besten für Weiß} 19. Qd7 e6 20. Rfc1 Bxd4 21. Bxd4 Qg4+ { kostet den zweiten Bauern} 22. Kf1 Qxd4 23. b3 Rfd8 24. Qb7 e5 25. Rd1 Qb6 26.  Qe7 Qd6 {jeder Abtausch hilft} 27. Qxd6 Rxd6 28. Rd2 Rc8 29. Re1 f6 30. Red1 d4 31. f4 Kf7 32. fxe5 fxe5 33. Ke2 Ke6 34. a4 Rc3 35. Rd3 Rxd3 36. Kxd3 Rc6 37.  Rb1 Rc3+ 38. Kd2 Rh3 39. b4 Kd5 40. a5 Rxh2+ 41. Kc1 Kc4 {und Weiß hat nichts mehr} 42. Rb2 Rxb2 43. Kxb2 Kxb4 {höchste Zeit, aufzugeben} 44. Kc2 e4 45. Kd2 Kb3 46. a6 Kb2 47. Ke2 Kc2 48. Ke1 d3 49. Kf2 d2 50. Kg3 d1=Q 51. Kf4 Qd5 52.  Kg3 Qe5+ 53. Kf2 Kd2 54. Kg2 Ke2 55. Kh3 Kf2 56. Kg4 Qg3#");
+        expect(moves[0].prev).toBeUndefined();
     })
 })
 

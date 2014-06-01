@@ -83,6 +83,12 @@ div.green > button {
     line-height: 24px;
 }
 
+.moves .move.var {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
 .moves .move .moveNumber {
 /*    font-size: 24px;*/
 }
