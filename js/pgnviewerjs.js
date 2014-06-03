@@ -12,6 +12,7 @@ var pgnBase = function (boardId, configuration) {
     var that = {};
     var theme = configuration.theme || 'default';
     var game = new Chess();
+    var headersId = boardId + 'Headers';
     var innerBoardId = boardId + 'Inner';
     var movesId = boardId + 'Moves';
     var buttonsId = boardId + 'Button';
@@ -60,9 +61,15 @@ var pgnBase = function (boardId, configuration) {
         if (divBoard == null) {
             return;
         }
+        divBoard.setAttribute('class', theme + ' whole');
+        var headersDiv = document.createElement("div");
+        headersDiv.setAttribute('id', headersId);
+        headersDiv.setAttribute("class", theme + " headers");
+        var outerInnerBoardDiv = document.createElement("div");
+        outerInnerBoardDiv.setAttribute("class", "outerBoard");
         var innerBoardDiv = document.createElement("div");
         innerBoardDiv.setAttribute('id', innerBoardId);
-        innerBoardDiv.setAttribute('class', theme);
+        innerBoardDiv.setAttribute('class', theme + " board");
         var buttonsBoardDiv = document.createElement("div");
         generateButtons();
         buttonsBoardDiv.setAttribute('id', buttonsId);
@@ -70,9 +77,13 @@ var pgnBase = function (boardId, configuration) {
         var movesDiv = document.createElement("div");
         movesDiv.setAttribute('id', movesId);
         movesDiv.setAttribute('class', "moves");
-        divBoard.appendChild(innerBoardDiv);
-        divBoard.appendChild(buttonsBoardDiv);
+        outerInnerBoardDiv.appendChild(innerBoardDiv);
+        outerInnerBoardDiv.appendChild(buttonsBoardDiv);
+        divBoard.appendChild(outerInnerBoardDiv);
         divBoard.appendChild(movesDiv);
+        var endDiv = document.createElement("div");
+        endDiv.setAttribute('class', "endBoard");
+        divBoard.appendChild(endDiv);
     };
     /**
      * Generate the board that uses the unique innerBoardId and the part of the configuration
@@ -144,7 +155,7 @@ var pgnBase = function (boardId, configuration) {
             var timer = $.timer(function() {
                 nextMove();
             });
-            timer.set({ time : 500});
+            timer.set({ time : (configuration.timerTime ? configuration.timerTime : 700)});
             $('#' + buttonsId + 'Flipper').on('click', function() {
                 board.flip();
             })
