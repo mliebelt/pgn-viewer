@@ -90,11 +90,18 @@ var pgnReader = function (spec) {
             }
             currentMove.index = current;
         };
+        var remindEndGame = function() {
+            if (typeof that.movesMainLine[that.movesMainLine.length - 1] == "string") {
+                that.endGame = that.movesMainLine.pop();
+            }
+        };
         that.moves_string = movesString.trim();
         // Store moves in a separate object.
         that.movesMainLine = parser.parse(that.moves_string)[0];
+        remindEndGame();
         eachMove(wireMoves);
     };
+
 
     /**
      * Returns the move that matches the id.
@@ -122,11 +129,11 @@ var pgnReader = function (spec) {
             while (index >= 0) {
                 if (that.moves[index].variationLevel == level) {
                     return that.moves[index]
-                };
-                index--
+                }
+                index--;
             }
             return null;
-        }
+        };
         /**
          * Recursive call that does the whole work
          * @param moveArray move array, first call with the main line
@@ -156,9 +163,9 @@ var pgnReader = function (spec) {
                     eachMoveVariation(variation, level + 1, prev);
                 })
             })
-        }
+        };
         eachMoveVariation(that.movesMainLine, 0, null);
-    }
+    };
     load_pgn();
 
     // This defines the public API of the pgn function.

@@ -25,6 +25,7 @@ pgnWhite
     { arr = (all ? all : []); move = {}; move.turn = 'w'; move.moveNumber = mn;
       move.notation = hm; move.commentBefore = cb; move.commentAfter = ca; 
       move.variations = (vari ? vari : []); arr.unshift(move); return arr; }
+  / endGame
 
 pgnBlack
   = whiteSpace? cb:comment? whiteSpace?
@@ -32,6 +33,13 @@ pgnBlack
     { arr = (all ? all : []); move = {}; move.turn = 'b'; move.notation = hm;
       move.commentBefore = cb; move.commentAfter = ca;
       move.variations = (vari ? vari : []); arr.unshift(move); return arr; }
+  / endGame
+
+endGame
+  = "1:0" { return ["1:0"]; }
+  / "0:1" { return ["0:1"]; }
+  / "1/2-1/2"  { return ["1/2-1/2"]; }
+  / "*"  { return ["*"]; }
 
 comment
   = cl cm:[^}]+ cr { return cm.join("").trim(); }
@@ -53,7 +61,7 @@ pl = '('
 pr = ')'
 
 moveNumber
-    = num:integer"." { return num; }
+    = num:integer"."* { return num; }
 
 integer "integer"
     = digits:[0-9]+ { return makeInteger(digits); }
