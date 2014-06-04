@@ -130,6 +130,20 @@ At least move number, turn, en-passent, rochade, ... should be possible.
 * Call a function with the following arguments:
   * Current move, last move, current index, last index, 
 
+### Infrastructure
+
+#### Building distribution
+
+* Use Grunt for building a distribution
+* Extract only the files that are needed.
+* Decide which ones of them should be used in which version.
+* Decide which ones should be minified (all?) and / or concatenated
+* Decide if more than one distribution is needed
+  + With minimal figure sets (merida, wikipedia?)
+  + What else?
+* Let the structure as is, see if configuration for paths is needed (if someone
+  wants to deploy on different paths).
+
 ## Done and mostly finished
 
 ### Visual

@@ -116,6 +116,29 @@ When you use PgnViewerJS, you have to provide a frame for that. The following ex
 
         </body>
     </html>
+
+## Configuration
+    
+There are a growing number of parameters for the configuration, so here is the idea behind it:
+    
+* board parameter: Used partly by the used chessboard.js, partly in the UI
+  * showNotation: false or true (default). To show a-h and 1-8 on the board.
+  * orientation: 'black' or 'white' (default). Orientation of the board, the color is at the bottom.
+  * theme: HTML class given to the board, the moves, ... See the file `pgnvjs.css` for examples.
+    Used are currently: 'green', 'zeit' (like the German paper), 'blue', 'chesscom' (similar
+    to chess.com), 'informator' (tried to be similar to it), 'sportverlag' (a German VERLAG), 
+    'beyer' (another one), 'falken' (had the Najdorf from Nunn from Falken).
+  * pieceStyle: 'wikipedia' (default), alpha, uscf (all from chessboard.js),
+    'case', 'condal', 'maya', 'merida', 'leipzig' (from ChessTempoViewer),
+    'chesscom' (from Chess.com)
+  * pieceTheme: Normally adapted automatically, only necessary, when you want to
+    integrate your own pieceStyle that has to use a different path. Should be
+    relative to the javascript file `pgnviewerjs.js`.
+  * timerTime: delay time for the timer, default is 700 ms. Only used when
+    pressing the play button.
+* chess parameters: Used most by chess.js and pgn.js.    
+  * position: a FEN string or 'start' or 'clear' ?? (default)
+  * pgn: a whole game (or part of a game from the given position)    
     
 ## API
     

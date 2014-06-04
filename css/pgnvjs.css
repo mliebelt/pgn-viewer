@@ -129,12 +129,13 @@ div.green > button {
 
 /* Pattern of the Chess.com similar */
 /* board */
-.chesscom .board-b72b1 {
+.chesscom.whole {
     /*    border: 2px solid #404040; */
-    border: 0 white;
+    border: 2px gray solid;
+    width: 800px;
 }
 
-.chesscom .header {
+.chesscom .headers {
     font-family: "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif;
     font-size: 18px;
     padding: 15px;
@@ -144,6 +145,11 @@ div.green > button {
 
 .chesscom .players {
     font-weight: 900;
+}
+
+.chesscom .outerBoard {
+    float: left;
+    width: 388px;
 }
 
 .chesscom .moves {
@@ -160,6 +166,9 @@ div.green > button {
     text-align: left;
 }
 
+.chesscom .endBoard {
+    clear: both;
+}
 .chesscom .moves a {
     text-decoration: none;
 }
