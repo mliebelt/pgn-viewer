@@ -79,6 +79,7 @@ var pgnBase = function (boardId, configuration) {
         movesDiv.setAttribute('class', "moves");
         outerInnerBoardDiv.appendChild(innerBoardDiv);
         outerInnerBoardDiv.appendChild(buttonsBoardDiv);
+        divBoard.appendChild(headersDiv);
         divBoard.appendChild(outerInnerBoardDiv);
         divBoard.appendChild(movesDiv);
         var endDiv = document.createElement("div");
@@ -115,6 +116,29 @@ var pgnBase = function (boardId, configuration) {
         var boardConfiguration = {};
         copyBoardConfiguration(configuration, boardConfiguration, ['position', 'orientation', 'showNotation', 'pieceTheme']);
         return new ChessBoard(innerBoardId, boardConfiguration);
+    };
+
+    /**
+     * Generate a useful notation for the headers, allow for styling. First a version
+     * that just works.
+     */
+    var generateHeaders = function() {
+        var div_h = $('#' + headersId)[0];
+        var headers = that.mypgn.getHeaders();
+        var allowed = ['White', 'Black', 'ECO', 'Result'];
+        var white = document.createElement('span');
+        white.setAttribute('class', theme + " whiteHeader");
+        if (headers.White) {
+            white.appendChild(document.createTextNode(" White: " + headers.White));
+        }
+        div_h.appendChild(white);
+        //div_h.appendChild(document.createTextNode(" - "));
+        var black = document.createElement('span');
+        black.setAttribute('class', theme + " blackHeader");
+        if (headers.Black) {
+            black.appendChild(document.createTextNode(" Black: " + headers.Black));
+        }
+        div_h.appendChild(black);
     };
 
     /**
@@ -275,6 +299,7 @@ var pgnBase = function (boardId, configuration) {
             prev = generateMove(i, game, move, prev, movesDiv);
         }
         bindFunctions();
+        generateHeaders();
     };
 
     return {
