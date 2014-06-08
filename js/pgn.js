@@ -34,8 +34,14 @@ var pgnReader = function (spec) {
         Time: 'Time the game started, in "HH:MM:SS" format, in local clock time.',
         Termination: 'Gives more details about the termination of the game. It may be "abandoned", "adjudication" (result determined by third-party adjudication), "death", "emergency", "normal", "rules infraction", "time forfeit", or "unterminated".',
         Mode: '"OTB" (over-the-board) "ICS" (Internet Chess Server)'
-
     };
+    /**
+     * Returns the NAGs as defined in http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm#c10
+     * The index is the index number after the '$' sign like in $3 == 'very good move'.
+     * @type {Array} the array with the (english) explanations.
+     */
+    that.PGN_NAGS = [];
+
     /**
      * Main function, automatically called when calling pgn function.
      */

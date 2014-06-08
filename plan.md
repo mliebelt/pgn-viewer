@@ -49,7 +49,7 @@ there is of course no guarantee that anything will be implemented soon.
 * white and black together (without comment) as block, if more than one block fits on one line,
   make two or more blocks.
 
-#### Different PGN header display
+#### Different PGN header display (working)
 
 * None at all (default?)
 * White and Black players bold, rest flowing (order?)
@@ -60,7 +60,7 @@ there is of course no guarantee that anything will be implemented soon.
   * New in Chess: Event, Notes by <Annotator>, White, Black, Event, Date
   * Sicilian Love: White, Black, Round, Site, Year
 
-#### Prepare different layouts for headers
+#### Prepare different layouts for headers (working)
 
 * See the example with Chess.com
 * Try to find different examples, and build them in plain HTML (including CSS)
@@ -114,21 +114,6 @@ At least move number, turn, en-passent, rochade, ... should be possible.
   * variations inlined
   * variations separated by paragraphs
   * different styling for them
-
-#### Iterate over all moves including variations in the right order (working)
-
-* Create an iterator that can be used in the generation of the moves.
-* Each move should know its counter / index when asked.
-* Cache all moves (main line and variations) in the same cache. The index
-  is the index of this cache (only). The function getMove(index) should
-  work on this cache.
-* The index is the same that is used as key in the span / div for the move.
-  This index should be varied by:
-  * <game-id>move<index>
-  * When locating an element in the page, the game-id should be taken into
-    consideration.
-* Call a function with the following arguments:
-  * Current move, last move, current index, last index, 
 
 ### Infrastructure
 
@@ -258,6 +243,21 @@ The following is needed to construct a full-blown PgnViewer:
   * Special symbols, that denote something in chess notation
 
 Is there a specification available, is that spec available offline, to study it?
+
+#### Iterate over all moves including variations in the right order (/)
+
+* Create an iterator that can be used in the generation of the moves.
+* Each move should know its counter / index when asked.
+* Cache all moves (main line and variations) in the same cache. The index
+  is the index of this cache (only). The function getMove(index) should
+  work on this cache.
+* The index is the same that is used as key in the span / div for the move.
+  This index should be varied by:
+  * <game-id>move<index>
+  * When locating an element in the page, the game-id should be taken into
+    consideration.
+* Call a function with the following arguments:
+  * Current move, last move, current index, last index, 
 
 
 

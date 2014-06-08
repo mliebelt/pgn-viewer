@@ -21,18 +21,18 @@ pgnStartBlack
 
 pgnWhite
   = whiteSpace? mn:moveNumber whiteSpace? cb:comment? whiteSpace?
-    hm:halfMove  whiteSpace? ca:comment? whiteSpace? vari:variationWhite? all:pgnBlack?
+    hm:halfMove  nag:nag?  whiteSpace? ca:comment? whiteSpace? vari:variationWhite? all:pgnBlack?
     { arr = (all ? all : []); move = {}; move.turn = 'w'; move.moveNumber = mn;
       move.notation = hm; move.commentBefore = cb; move.commentAfter = ca; 
-      move.variations = (vari ? vari : []); arr.unshift(move); return arr; }
+      move.variations = (vari ? vari : []); move.nag = (nag ? nag : null); arr.unshift(move); return arr; }
   / endGame
 
 pgnBlack
   = whiteSpace? cb:comment? whiteSpace?
-    hm:halfMove whiteSpace? ca:comment? whiteSpace? vari:variationBlack? all:pgnWhite?
+    hm:halfMove  nag:nag? whiteSpace? ca:comment? whiteSpace? vari:variationBlack? all:pgnWhite?
     { arr = (all ? all : []); move = {}; move.turn = 'b'; move.notation = hm;
       move.commentBefore = cb; move.commentAfter = ca;
-      move.variations = (vari ? vari : []); arr.unshift(move); return arr; }
+      move.variations = (vari ? vari : []); arr.unshift(move); move.nag = (nag ? nag : null); return arr; }
   / endGame
 
 endGame
@@ -84,6 +84,17 @@ check
 
 promotion
   = '=' f:figure { return '=' + f; }
+
+nag
+  = '$' num:integer { return '$' + num; }
+  / '!!' { return '$3'; }
+  / '??' { return '$4'; }
+  / '!?' { return '$5'; }
+  / '?!' { return '$6'; }
+  / '!' { return '$1'; }
+  / '?' { return '$2'; }
+  / '=' { return '$10'; }
+  / '∞' { return '$13'; }
 
 discriminator
   = column
