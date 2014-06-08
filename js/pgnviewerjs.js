@@ -122,25 +122,45 @@ var pgnBase = function (boardId, configuration) {
      * Generate a useful notation for the headers, allow for styling. First a version
      * that just works.
      */
+
     var generateHeaders = function() {
+        if (configuration.headers == false) { return; }
         var div_h = $('#' + headersId)[0];
         var headers = that.mypgn.getHeaders();
         var allowed = ['White', 'Black', 'ECO', 'Result'];
         var white = document.createElement('span');
         white.setAttribute('class', theme + " whiteHeader");
         if (headers.White) {
-            white.appendChild(document.createTextNode(" White: " + headers.White));
+            white.appendChild(document.createTextNode(headers.White));
         }
         div_h.appendChild(white);
         //div_h.appendChild(document.createTextNode(" - "));
         var black = document.createElement('span');
         black.setAttribute('class', theme + " blackHeader");
         if (headers.Black) {
-            black.appendChild(document.createTextNode(" Black: " + headers.Black));
+            black.appendChild(document.createTextNode(headers.Black));
         }
         div_h.appendChild(black);
-    };
+        var rest = "";
+        var appendHeader = function(result, header, separator) {
+            if (header) {
+                if (result.length > 0) {
+                    result += separator;
+                }
+                result += header;
+            }
+            return result;
+        };
+        [headers.Event, headers.Site, headers.Round, headers.Date,
+         headers.ECO, headers.Result].forEach(function(header) {
+            rest = appendHeader(rest, header, " | ");
+        });
+        var restSpan = document.createElement("span");
+        restSpan.setAttribute("class", theme + " restHeader");
+        restSpan.appendChild(document.createTextNode(rest));
+        div_h.appendChild(restSpan);
 
+    };
     /**
      * Generates the HTML (for the given moves). Includes the following: move number,
      * link to FEN (position after move)

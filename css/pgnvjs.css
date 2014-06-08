@@ -138,9 +138,42 @@ div.green > button {
 .chesscom .headers {
     font-family: "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif;
     font-size: 18px;
-    padding: 15px;
+/*    padding: 15px;*/
     background-color: #f3f3f3;
     font-weight: bold;
+}
+
+/*.chesscom .headers > .whiteHeader:before {
+    content: " White: ";
+}*/
+
+.chesscom .headers > .whiteHeader {
+    display: inline-block;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+/*
+.chesscom .headers > .whiteHeader:after {
+    display: block;
+    content: " ";
+}
+*/
+
+.chesscom .headers > .blackHeader:before {
+    content: "  vs. ";
+}
+
+.chesscom .headers > .blackHeader {
+    display: inline-block;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+.chesscom .headers > .restHeader {
+    display: block;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    font-weight: 500;
+    font-size: 80%;
 }
 
 .chesscom .players {
