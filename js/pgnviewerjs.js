@@ -30,7 +30,9 @@ var pgnBase = function (boardId, configuration) {
         }
     };
     $.i18n.init(i18n_option);
-
+    if (configuration.locale) {
+        $.i18n.setLng(configuration.locale);
+    }
     /**
      * Allow to hide HTML by calling this function. It will prepend
      * the boardId, and search for an ID in the DOM.

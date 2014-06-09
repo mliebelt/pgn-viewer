@@ -136,6 +136,16 @@ There are a growing number of parameters for the configuration, so here is the i
     relative to the javascript file `pgnviewerjs.js`.
   * timerTime: delay time for the timer, default is 700 ms. Only used when
     pressing the play button.
+  * locale: 'en', 'de' or others defined by the files in `locales/*.json`. Default
+    is defined by the browser, and may be overridden for each game. The locale
+    influences the following:
+    * Move notation: Nf3 (en) == Sf3 (de), ...
+    * Move annotation: $XX (PGN) == "with compensation for white" (en) ==
+      "Mit Kompensation für Weiß" (de), ...
+    * Move headers: Depending on the theme, there may be headers generated like
+      * Event, Site, Round, Date, Result (en)
+      * Veranstaltung, Ort, Runde, Datum, Resultat (de)
+      * ...
 * chess parameters: Used most by chess.js and pgn.js.    
   * position: a FEN string or 'start' or 'clear' ?? (default)
   * pgn: a whole game (or part of a game from the given position)    
