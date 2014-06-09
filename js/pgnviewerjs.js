@@ -10,12 +10,26 @@
 
 var pgnBase = function (boardId, configuration) {
     var that = {};
+    function localPath() {
+        var jsFileLocation = $('script[src*=pgnviewerjs]').attr('src');  // the js file path
+        return jsFileLocation.replace('pgnviewerjs.js', '');   // the js folder path
+    }
+
     var theme = configuration.theme || 'default';
     var game = new Chess();
     var headersId = boardId + 'Headers';
     var innerBoardId = boardId + 'Inner';
     var movesId = boardId + 'Moves';
     var buttonsId = boardId + 'Button';
+    var i18n_option = {
+        getAsync: false,
+        resGetPath: localPath() + '../locales/__ns__-__lng__.json',
+        ns: {
+            namespaces: ['chess', 'nag'],
+            defaultNs: 'chess'
+        }
+    };
+    $.i18n.init(i18n_option);
 
     /**
      * Allow to hide HTML by calling this function. It will prepend
@@ -93,10 +107,6 @@ var pgnBase = function (boardId, configuration) {
      */
     var generateBoard = function() {
         function copyBoardConfiguration(source, target, keys) {
-            function localPath() {
-                var jsFileLocation = $('script[src*=pgnviewerjs]').attr('src');  // the js file path
-                return jsFileLocation.replace('pgnviewerjs.js', '');   // the js folder path
-            }
             var pieceStyle = source.pieceStyle || 'wikipedia';
             $.each(keys, function(i, key) {
                 if (source[key]) {
@@ -169,6 +179,28 @@ var pgnBase = function (boardId, configuration) {
         that.mypgn = pgnReader( { pgn: configuration.pgn ? configuration.pgn : ''} );
         var myMoves = that.mypgn.getMoves();
         game.reset();
+        var NAGs = [
+            null,
+            "!",
+            "?",
+            "!!",
+            "??",
+            "!?",
+            "?!",
+            "□",
+            null,
+            null,
+            "=",
+            null,
+            null,
+            "∞",
+            "⩲",
+            "⩱",
+            "±",
+            "∓",
+            "+−",
+            "-+"
+        ];
 
         /**
          * Comments are generated inline, there is no special block rendering
@@ -262,6 +294,21 @@ var pgnBase = function (boardId, configuration) {
         }
         // Generates one move from the current position
         var generateMove = function(currentCounter, game, move, prevCounter, movesDiv) {
+            var nag_to_symbol = function(string) {
+                var number = parseInt(string.substring(1));
+                var ret = NAGs[number];
+                return (typeof ret != 'undefined') ? ret : "";
+            };
+            var move_from_notation = function(move) {
+                if (typeof move.row == 'undefined') {
+                    return move.notation; // move like O-O and O-O-O
+                }
+                var fig = $.t(move.fig);
+                var disc = move.disc ? move.disc : "";
+                var check = move.check ? move.check : "";
+                var prom = move.promotion ? move.promotion : "";
+                return fig + disc + move.col + move.row + prom + check;
+            }
             // In case of variant, the previous move is different to the current fen
             var isNextOfPrev = false;
             if (prevCounter != move.prev) {
@@ -269,7 +316,7 @@ var pgnBase = function (boardId, configuration) {
                 isNextOfPrev = true;
             }
             // TODO Error handling if move could not be done
-            var pgn_move = game.move(move.notation);
+            var pgn_move = game.move(move.notation.notation);
             var fen = game.fen();
             move.fen = fen;
             var span = document.createElement("span");
@@ -294,7 +341,13 @@ var pgnBase = function (boardId, configuration) {
             if (move.commentBefore) { span.appendChild(generateCommentSpan(move.commentBefore))}
             var link = document.createElement('a');
             link.setAttribute('id', movesId + currentCounter);
-            var text = document.createTextNode(pgn_move.san);
+//            var san = pgn_move.san;
+//            var figure = $.t(pgn_move.piece);
+            var san = move_from_notation(move.notation);
+            if (move.nag) {
+                san += nag_to_symbol(move.nag);
+            }
+            var text = document.createTextNode(san);
             link.appendChild(text);
             span.appendChild(link);
             span.appendChild(document.createTextNode(" "));

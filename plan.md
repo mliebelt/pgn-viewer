@@ -38,6 +38,12 @@ there is of course no guarantee that anything will be implemented soon.
 * Generate the moves in a pleasant style.
 * Look at different books and try to adapt some of the styles, allow the style to be set
   (as attribute moveStyle).
+  
+#### Generate PGN move from data
+  
+* We have to know every detail from moves, so the resulting notation is not sufficient.
+* Collect the details during parsing, and give them out (additionally) so that it can
+  be used when generating move output.
     
 #### Different move styles (working)
 
@@ -93,7 +99,7 @@ is taken by `chess.js`:
 But not all of this information is available from the outside. So it is difficult to get
 the current move number, ...
 
-#### PGN Annotations
+#### PGN Annotations (working)
 
 * See http://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs (NAGs) for the meaning
 * how to represent them as symbols?
