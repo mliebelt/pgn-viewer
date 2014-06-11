@@ -286,7 +286,7 @@ var pgnBase = function (boardId, configuration) {
             that.currentMove = next;
         };
 
-        // Returns true, if the move is the start of a variation
+        // Returns true, if the move is the start of a (new) variation
         var startVariation = function(move) {
             return  move.variationLevel > 0 && (myMoves[move.prev].next != move.index);
         }
@@ -295,7 +295,7 @@ var pgnBase = function (boardId, configuration) {
             return move.variationLevel > 0 && ! move.next;
         }
         // Generates one move from the current position
-        var generateMove = function(currentCounter, game, move, prevCounter, movesDiv) {
+        var generateMove = function(currentCounter, game, move, prevCounter, movesDiv, varStack) {
             var nag_to_symbol = function(string) {
                 var number = parseInt(string.substring(1));
                 var ret = NAGs[number];
@@ -310,7 +310,14 @@ var pgnBase = function (boardId, configuration) {
                 var check = move.check ? move.check : "";
                 var prom = move.promotion ? move.promotion : "";
                 return fig + disc + move.col + move.row + prom + check;
-            }
+            };
+            var append_to_current_div = function(span, movesDiv, varStack) {
+                if (varStack.length == 0) {
+                    movesDiv.appendChild(span);
+                } else {
+                    varStack[varStack.length - 1].appendChild(span);
+                }
+            };
             // In case of variant, the previous move is different to the current fen
             var isNextOfPrev = false;
             if (prevCounter != move.prev) {
@@ -331,7 +338,15 @@ var pgnBase = function (boardId, configuration) {
             }
             span.setAttribute('class', clAttr);
             if (startVariation(move)) {
-                span.appendChild(document.createTextNode(" ( "));
+                var varDiv = document.createElement("div");
+                varDiv.setAttribute('class', "variation");
+                if (varStack.length == 0) {
+                    movesDiv.appendChild(varDiv);
+                } else {
+                    varStack[varStack.length - 1].appendChild(varDiv);
+                }
+                varStack.push(varDiv);
+                //span.appendChild(document.createTextNode(" ( "));
             }
             if (pgn_move.color == 'w') {
                 var mn = move.moveNumber;
@@ -353,11 +368,13 @@ var pgnBase = function (boardId, configuration) {
             link.appendChild(text);
             span.appendChild(link);
             span.appendChild(document.createTextNode(" "));
-            if (endVariation(move)) {
-                span.appendChild(document.createTextNode(" ) "));
-            }
             if (move.commentAfter) { span.appendChild(generateCommentSpan(move.commentAfter))}
-            movesDiv.appendChild(span);
+            append_to_current_div(span, movesDiv, varStack);
+            //movesDiv.appendChild(span);
+            if (endVariation(move)) {
+                //span.appendChild(document.createTextNode(" ) "));
+                varStack.pop();
+            }
             var currMoveSpan = $('#' + movesId + currentCounter);
             currMoveSpan.on('click', function() {
                 makeMove(that.currentMove, currentCounter, fen);
@@ -369,9 +386,10 @@ var pgnBase = function (boardId, configuration) {
 //        if (! configuration.pgn) { return; }
         var movesDiv = document.getElementById(movesId);
         var prev = null;
+        var varStack = [];
         for (var i = 0; i < myMoves.length; i++) {
             var move = myMoves[i];
-            prev = generateMove(i, game, move, prev, movesDiv);
+            prev = generateMove(i, game, move, prev, movesDiv, varStack);
         }
         bindFunctions();
         generateHeaders();
