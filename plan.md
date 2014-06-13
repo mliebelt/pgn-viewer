@@ -124,6 +124,16 @@ At least move number, turn, en-passent, rochade, ... should be possible.
   * variations separated by paragraphs
   * different styling for them
 
+#### Bind keys
+
+* Allow to stear a game by function keys.
+* If more than one game is displayed, only the game that has focus (the user has clicked in)
+  can be driven by the function keys.
+* Use the following function keys:
+  * "left": prevMove
+  * "right": nextMove
+  * "space": 
+  
 ### Infrastructure
 
 #### Building distribution

@@ -219,6 +219,12 @@ var pgnBase = function (boardId, configuration) {
 
         // Bind the necessary functions to move the pieces.
         var bindFunctions = function() {
+            var bind_key = function(key, to_call) {
+                jQuery("#" + boardId).bind('keydown', key,function (evt){
+                    to_call();
+                    return false;
+                });
+            }
             var nextMove = function () {
                 var fen = null;
                 if (typeof that.currentMove == 'undefined') {
@@ -228,6 +234,18 @@ var pgnBase = function (boardId, configuration) {
                     var next = that.mypgn.getMove(that.currentMove).next
                     fen = that.mypgn.getMove(next).fen;
                     makeMove(that.currentMove, next, fen);
+                }
+            };
+            var prevMove = function () {
+                var fen = null;
+                if (typeof that.currentMove == 'undefined') {
+                    /*fen = that.mypgn.getMove(0).fen;
+                     makeMove(null, 0, fen);*/
+                }
+                else {
+                    var prev = that.mypgn.getMove(that.currentMove).prev;
+                    fen = that.mypgn.getMove(prev).fen;
+                    makeMove(that.currentMove, prev, fen);
                 }
             };
             var timer = $.timer(function() {
@@ -241,15 +259,7 @@ var pgnBase = function (boardId, configuration) {
                 nextMove();
             });
             $('#' + buttonsId + 'Prev').on('click', function() {
-                var fen = null;
-                if (typeof that.currentMove == 'undefined') {
-                    /*fen = that.mypgn.getMove(0).fen;
-                    makeMove(null, 0, fen);*/
-                } else {
-                    var prev = that.mypgn.getMove(that.currentMove).prev;
-                    fen = that.mypgn.getMove(prev).fen;
-                    makeMove(that.currentMove, prev, fen);
-                }
+                prevMove();
             });
             $('#' + buttonsId + 'First').on('click', function() {
                 var fen = that.mypgn.getMove(0).fen;
@@ -259,7 +269,7 @@ var pgnBase = function (boardId, configuration) {
                 var fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
                 makeMove(that.currentMove, that.mypgn.getMoves().length - 1, fen);
             });
-            $('#' + buttonsId + 'Play').on('click', function() {
+            function togglePlay() {
                 timer.toggle();
                 var playButton = $('#' + buttonsId + 'Play')[0];
                 var clString = playButton.getAttribute('class');
@@ -269,6 +279,12 @@ var pgnBase = function (boardId, configuration) {
                     clString = clString.replace('play', 'stop');
                 }
                 playButton.setAttribute('class', clString);
+            }
+            bind_key("left", prevMove);
+            bind_key("right", nextMove);
+            bind_key("space", togglePlay);
+            $('#' + buttonsId + 'Play').on('click', function() {
+                togglePlay();
             })
         };
 
