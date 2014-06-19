@@ -44,6 +44,9 @@ there is of course no guarantee that anything will be implemented soon.
 * We have to know every detail from moves, so the resulting notation is not sufficient.
 * Collect the details during parsing, and give them out (additionally) so that it can
   be used when generating move output.
+* What support is available from chess.js? The following should be clarified:
+  * Disambiguation: is that necessary or not? Examples: Nd7, Ng8, move Nf6 is not clear.
+    But when white pins the black Nd7, then Nf6 does not need disambiguation.
     
 #### Different move styles (working)
 
@@ -121,6 +124,16 @@ At least move number, turn, en-passent, rochade, ... should be possible.
   * variations separated by paragraphs
   * different styling for them
 
+#### Bind keys
+
+* Allow to stear a game by function keys.
+* If more than one game is displayed, only the game that has focus (the user has clicked in)
+  can be driven by the function keys.
+* Use the following function keys:
+  * "left": prevMove
+  * "right": nextMove
+  * "space": 
+  
 ### Infrastructure
 
 #### Building distribution

@@ -88,9 +88,40 @@ div.green > button {
 }
 
 .moves .move.var {
-    font-size: 14px;
     font-weight: 500;
-    line-height: 20px;
+}
+
+.moves > .variation {
+    font-size: 100%;
+    display: block;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.moves > .variation:before {
+    content: ' ( ';
+}
+
+.moves > .variation > .variation:before {
+    content: ' ( ';
+}
+
+.moves > .variation > .variation {
+    font-size: 90%;
+    padding: 4px;
+}
+
+.moves > .variation > .variation:after {
+    content: ' ) ';
+}
+
+.moves > .variation:after {
+    content: ' ) ';
+}
+
+.moves > .varblock .white:before {
+    display: inline;
 }
 
 .moves .move .moveNumber {
@@ -104,7 +135,7 @@ div.green > button {
 
 .moves .white:before {
     content: '\A';
-    /*display: block;*/
+    display: inline-block;
 }
 
 /* Pattern of the Zeit journal */
