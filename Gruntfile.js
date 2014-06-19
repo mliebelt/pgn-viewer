@@ -6,8 +6,8 @@ module.exports = function(grunt) {
         concat: {
             dist: {
                 src: [
-                    'chessboardjs/js/jquery-1.10.1.min.js',
-                    'chessboardjs/js/chess.js',
+                    'chessboardjs/js/jquery-1.11.1.js',
+                    'chess.js/chess.js',
                     'chessboardjs/js/chessboard.js',
                     'chessboardjs/js/json3.min.js',
                     'js/*.js'],
