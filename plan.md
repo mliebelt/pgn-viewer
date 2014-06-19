@@ -136,9 +136,17 @@ At least move number, turn, en-passent, rochade, ... should be possible.
   
 ### Infrastructure
 
-#### Building distribution
+#### Structure of the project
 
-* Use Grunt for building a distribution
+* Get rid of the sub-modules. This was initially a good idea, but is not well now.
+* Use instead
+  * separate folders during development, so it is easier to develop (and replace older versions
+    by newer ones)
+  * Rules in the Gruntfile which files should be selected for the distribution (in which order)  
+
+#### Building distribution  (working)
+
+* Use Grunt for building a distribution (/)
 * Extract only the files that are needed.
 * Decide which ones of them should be used in which version.
 * Decide which ones should be minified (all?) and / or concatenated
@@ -147,6 +155,28 @@ At least move number, turn, en-passent, rochade, ... should be possible.
   + What else?
 * Let the structure as is, see if configuration for paths is needed (if someone
   wants to deploy on different paths).
+
+#### Structure distribution
+
+* What should be the structure of a distributed application? I had problems (first) in using the gruntified application ...
+* Does it make sense to have different ones: small, typical, full?
+* What should be the different parts in it?
+
+#### Distribution and GitHub
+
+* What are normal patterns for distributions on GitHub?
+* Which one of them is the right approach for mine?
+* What are the requirements (of myself) according to GitHub and packaging?
+* Is there a way to provide an example web site for showing how the application works in real life (without buying something)?
+
+#### Provide web site for distribution
+
+* Design a web site for this project that helps to make marketing.
+* Provide the examples / documentation / ... separated from the development.
+* Ensure that building the distribution also builds the sources of the web site.
+* Use Skeleton for the Look of that web site, but ensure that the files needed for that
+  are separated from the files needed for PgnViewerJS.
+* Start building the documentation as a web site, so it is easier to use it locally and distribute it.  
 
 ## Done and mostly finished
 

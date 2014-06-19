@@ -9,6 +9,7 @@
  */
 
 var pgnBase = function (boardId, configuration) {
+    var VERSION = "0.9.0";
     var that = {};
     function localPath() {
         var jsFileLocation = $('script[src*=pgnviewerjs]').attr('src');  // the js file path
@@ -32,6 +33,10 @@ var pgnBase = function (boardId, configuration) {
     $.i18n.init(i18n_option);
     if (configuration.locale) {
         $.i18n.setLng(configuration.locale);
+    }
+    // Ensure that position is set.
+    if (! configuration.position) {
+        configuration.position = 'start';
     }
     /**
      * Allow to hide HTML by calling this function. It will prepend
@@ -441,7 +446,8 @@ var pgnView = function(boardId, configuration) {
     return {
         chess: base.chess,
         getPgn: base.getPgn,
-        pgn: base.pgn
+        pgn: base.pgn,
+        version: base.VERSION
     }
 };
 
