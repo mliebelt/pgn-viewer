@@ -124,25 +124,38 @@ At least move number, turn, en-passent, rochade, ... should be possible.
   * variations separated by paragraphs
   * different styling for them
 
-#### Bind keys
-
-* Allow to stear a game by function keys.
-* If more than one game is displayed, only the game that has focus (the user has clicked in)
-  can be driven by the function keys.
-* Use the following function keys:
-  * "left": prevMove
-  * "right": nextMove
-  * "space": 
-  
 ### Infrastructure
 
-#### Structure of the project
+#### Structure of the project (working)
 
 * Get rid of the sub-modules. This was initially a good idea, but is not well now.
 * Use instead
   * separate folders during development, so it is easier to develop (and replace older versions
     by newer ones)
-  * Rules in the Gruntfile which files should be selected for the distribution (in which order)  
+  * Rules in the Gruntfile which files should be selected for the distribution (in which order) 
+
+The real structure as distribution should be the following:
+
+/ root of the files
+  readme.md
+  /js
+    /pgnviewerjs.js (minified version)
+  /css
+    chessboard.css (original file, no change)
+    pgnvjs.css (rules for PgnViewerJS only, changes to chessboard.css separated from the rest)
+  /img
+    /buttons (for theming the additional buttons)
+      /ff (buttons of ?? SEARCH FOR SOURCE)
+      /tango (buttons of tango item theme SEARCH FOR SOURCE) http://tango.freedesktop.org/releases/tango-icon-theme-0.8.90.tar.gz
+    /chesspieces
+      /separate folders for each piece theme
+    /pattern
+      *.png (pattern used in file pgnvjs.css)
+    blackwhite-* (button for flipping sided --> should be moved to buttons)
+  /locales
+    chess-*.json (names of the chess pieces, defaults not necesary)
+    nag-*.json (meanings of NAG (http://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs), not used at the moment. Should be rendered when used in the PGN notation (e.g. by output of ChessBase))
+    
 
 #### Building distribution  (working)
 
@@ -169,7 +182,7 @@ At least move number, turn, en-passent, rochade, ... should be possible.
 * What are the requirements (of myself) according to GitHub and packaging?
 * Is there a way to provide an example web site for showing how the application works in real life (without buying something)?
 
-#### Provide web site for distribution
+#### Provide web site for distribution (working)
 
 * Design a web site for this project that helps to make marketing.
 * Provide the examples / documentation / ... separated from the development.
@@ -308,5 +321,13 @@ Is there a specification available, is that spec available offline, to study it?
 * Call a function with the following arguments:
   * Current move, last move, current index, last index, 
 
+#### Bind keys (/)
 
-
+* Allow to stear a game by function keys.
+* If more than one game is displayed, only the game that has focus (the user has clicked in)
+  can be driven by the function keys.
+* Use the following function keys:
+  * "left": prevMove
+  * "right": nextMove
+  * "space": 
+  
