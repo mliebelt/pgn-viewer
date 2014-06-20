@@ -42,6 +42,46 @@
 /* #Page Styles
 ================================================== */
 
+table tbody tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+table {
+    border: 2px solid #f9f9f9;
+}
+
+table thead {
+    background: #f9f9f9;
+    font-weight: 700;
+}
+
+table thead tr th {
+    padding: 9px 10px;
+}
+
+table tbody tr td {
+    color: #333;
+    padding: 9px 10px;
+    vertical-align: top;
+    border: none;
+}
+
+code {
+    background: none;
+    color: #000;
+    font-family: 'Droid Sans Mono', 'Courier New', monospace;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+code.plain {
+    color: #d94d3a;
+}
+
+code.string {
+    color: blue;
+}
+
 /* #Media Queries
 ================================================== */
 
