@@ -18,9 +18,20 @@
 
 	<!-- CSS
   ================================================== -->
+    <link rel="stylesheet" href="css/prettify.css">
 	<link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" href="css/skeleton.css">
 	<link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="dist/css/chessboard.css">
+    <link rel="stylesheet" href="dist/css/pgnvjs.css">
+
+
+    <!-- JS for PgnViewerJS
+    ================================================= -->
+    <script src="dist/js/pgnviewerjs.js" type="text/javascript"></script>
+    <script src="js/run_prettify.js" type="text/javascript"></script>
+
 
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -32,6 +43,9 @@
 	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+    <!-- JS
+    ================================================= -->
 
 </head>
 <body>
@@ -63,23 +77,72 @@
                 </ul>
             </div>
         </div><!-- container -->
-		<div class="one-third column">
-			<h3>About Skeleton?</h3>
-			<p>Skeleton is a small collection of well-organized CSS files that can help you rapidly develop sites that look beautiful at any size, be it a 17" laptop screen or an iPhone. It's based on a responsive grid, but also provides very basic CSS for typography, buttons, forms and media queries. Go ahead, resize this super basic page to see the grid in action.</p>
-		</div>
-		<div class="one-third column">
-			<h3>Three Core Principles</h3>
-			<p>Skeleton is built on three core principles:</p>
-			<ul class="square">
-				<li><strong>A Responsive Grid Down To Mobile</strong>: Elegant scaling from a browser to tablets to mobile.</li>
-				<li><strong>Fast to Start</strong>: It's a tool for rapid development with best practices</li>
-				<li><strong>Style Agnostic</strong>: It provides the most basic, beautiful styles, but is meant to be overwritten.</li>
-			</ul>
-		</div>
-		<div class="one-third column">
-			<h3>Docs &amp; Support</h3>
-			<p>The easiest way to really get started with Skeleton is to check out the full docs and info at <a href="http://www.getskeleton.com">www.getskeleton.com.</a>. Skeleton is also open-source and has a <a href="https://github.com/dhgamache/skeleton">project on git</a>, so check that out if you want to report bugs or create a pull request. If you have any questions, thoughts, concerns or feedback, please don't hesitate to email me at <a href="mailto:hi@getskeleton.com">hi@getskeleton.com</a>.</p>
-		</div>
+        <nav id="tabs" class="primary">
+            <div class="sixteen columns">
+                <ul>
+                    <li><a href="#">Boards</a>
+                        <ul>
+                            <li><a href="#">Simple</a> </li>
+                            <li><a href="#">Themes</a> </li>
+                            <li><a href="#">Position</a> </li>
+                            <li><a href="#">Others</a> </li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Games</a>
+                        <ul>
+                            <li><a href="#">Chess.com Style</a></li>
+                            <li><a href="#">Normal</a></li>
+                            <li><a href="#">Falken</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Moves</a>
+                        <ul>
+                            <li><a href="#">Chess.com Style</a> </li>
+                            <li><a href="#">Normal Style</a> </li>
+                            <li><a href="#">Variations</a> </li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Themes & Styles</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container" style="margin-top: 45px;">
+            <div class="seven columns">
+                Here is the source code and some explanation.
+
+                <h5>HTML</h5>
+
+                <pre class="prettyprint lang-html">
+&lt;div id="board2">&lt;/div>
+                </pre>
+
+                <h5>JavaScript</h5>
+
+                <pre class="prettyprint lang-js">
+    var pgn = "1. e4 Nf6 2. e5 Nd5 3. d4 d6 4....";
+    var pgnv = pgnView("board2", {
+        pieceStyle: 'merida',
+        locale: 'de',
+        pgn: pgn,
+        headers: false});
+                </pre>
+
+            </div>
+            <div class="seven columns offset-by-two">
+                <div id="board2"></div>
+
+                <script>
+                    var pgn = "1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. c4 Nb6 5. Nf3 Nc6 6. exd6 cxd6 7. Nc3 g6 8. Nd5 {ein grober Fehler, der sofort einen Bauern verliert} Nxd5 9. cxd5 Qa5+ 10. Bd2 Qxd5 11. Qa4 Bg7 12. Bc4 {Weiß stellt sich immer schlechter} Qe4+ 13. Be3 d5 14. Bb5 {sieht nach Bauernrückgewinn aus} O-O 15. Bxc6 bxc6 16. Qxc6 {der Bauer ist vergiftet} Bg4 17. O-O (17. Nh4 Qd3 18. Nf3 (18. f3 Qxe3+ 19. Kf1 Bxd4) 18... Rac8 19. Qa4 Bxf3 20. gxf3 Rc2 {kostet die Dame}) 17... Bxf3 18. gxf3 Qxf3 {ist noch am Besten für Weiß} 19. Qd7 e6 20. Rfc1 Bxd4 21. Bxd4 Qg4+ { kostet den zweiten Bauern} 22. Kf1 Qxd4 23. b3 Rfd8 24. Qb7 e5 25. Rd1 Qb6 26.  Qe7 Qd6 {jeder Abtausch hilft} 27. Qxd6 Rxd6 28. Rd2 Rc8 29. Re1 f6 30. Red1 d4 31. f4 Kf7 32. fxe5 fxe5 33. Ke2 Ke6 34. a4 Rc3 35. Rd3 Rxd3 36. Kxd3 Rc6 37.  Rb1 Rc3+ 38. Kd2 Rh3 39. b4 Kd5 40. a5 Rxh2+ 41. Kc1 Kc4 {und Weiß hat nichts mehr} 42. Rb2 Rxb2 43. Kxb2 Kxb4 {höchste Zeit, aufzugeben} 44. Kc2 e4 45. Kd2 Kb3 46. a6 Kb2 47. Ke2 Kc2 48. Ke1 d3 49. Kf2 d2 50. Kg3 d1=Q 51. Kf4 Qd5 52.  Kg3 Qe5+ 53. Kf2 Kd2 54. Kg2 Ke2 55. Kh3 Kf2 56. Kg4 Qg3#";
+                    var pgnv = pgnView("board2", {
+                        pieceStyle: 'merida',
+                        locale: 'de',
+                        pgn: pgn,
+                        headers: false});
+                </script>
+
+            </div>
+        </div>
 
 	</div><!-- container -->
 

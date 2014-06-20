@@ -25,7 +25,13 @@ module.exports = function(grunt) {
             all: {
                 files: [
                     {
-                        src: ['locales/**', 'img/buttons/**', 'img/chesspieces/**', 'img/pattern/**', 'img/*.png', 'css/**'],
+                        src: [
+                            'locales/**',
+                            'img/buttons/**',
+                            'img/chesspieces/**',
+                            'img/pattern/**',
+                            'img/*.png',
+                            'css/**'],
                         dest: 'dist',
                         expand: true
                     }
@@ -34,8 +40,20 @@ module.exports = function(grunt) {
             chessboardjs: {
                 files: [
                     {
-                        expand: true, cwd: 'chessboardjs/', src: ['img/chesspieces/**', 'css/chessboard.css'],
+                        expand: true,
+                        cwd: 'chessboardjs/',
+                        src: ['img/chesspieces/**', 'css/chessboard.css'],
                         dest: 'dist/'}
+                ]
+            },
+            markdown: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'docu',
+                        src: ['css/**', 'img/**'],
+                        dest: 'dist/doc'
+                    }
                 ]
             }
         },
@@ -45,10 +63,12 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         src: '*.md',
-                        dest: 'dist/',
+                        dest: 'dist/doc/',
                         ext: '.html'
                     }
-                ]
+                ],
+                options: {
+                    template: 'template.jst'}
             }
         }
     });

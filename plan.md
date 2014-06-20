@@ -126,50 +126,19 @@ At least move number, turn, en-passent, rochade, ... should be possible.
 
 ### Infrastructure
 
-#### Structure of the project (working)
-
-* Get rid of the sub-modules. This was initially a good idea, but is not well now.
-* Use instead
-  * separate folders during development, so it is easier to develop (and replace older versions
-    by newer ones)
-  * Rules in the Gruntfile which files should be selected for the distribution (in which order) 
-
-The real structure as distribution should be the following:
-
-/ root of the files
-  readme.md
-  /js
-    /pgnviewerjs.js (minified version)
-  /css
-    chessboard.css (original file, no change)
-    pgnvjs.css (rules for PgnViewerJS only, changes to chessboard.css separated from the rest)
-  /img
-    /buttons (for theming the additional buttons)
-      /ff (buttons of ?? SEARCH FOR SOURCE)
-      /tango (buttons of tango item theme SEARCH FOR SOURCE) http://tango.freedesktop.org/releases/tango-icon-theme-0.8.90.tar.gz
-    /chesspieces
-      /separate folders for each piece theme
-    /pattern
-      *.png (pattern used in file pgnvjs.css)
-    blackwhite-* (button for flipping sided --> should be moved to buttons)
-  /locales
-    chess-*.json (names of the chess pieces, defaults not necesary)
-    nag-*.json (meanings of NAG (http://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs), not used at the moment. Should be rendered when used in the PGN notation (e.g. by output of ChessBase))
-    
-
 #### Building distribution  (working)
 
 * Use Grunt for building a distribution (/)
-* Extract only the files that are needed.
-* Decide which ones of them should be used in which version.
-* Decide which ones should be minified (all?) and / or concatenated
+* Extract only the files that are needed. (/)
+* Decide which ones of them should be used in which version. (/)
+* Decide which ones should be minified (all?) and / or concatenated (/)
 * Decide if more than one distribution is needed
   + With minimal figure sets (merida, wikipedia?)
   + What else?
 * Let the structure as is, see if configuration for paths is needed (if someone
   wants to deploy on different paths).
 
-#### Structure distribution
+#### Structure distribution (working)
 
 * What should be the structure of a distributed application? I had problems (first) in using the gruntified application ...
 * Does it make sense to have different ones: small, typical, full?
@@ -184,12 +153,16 @@ The real structure as distribution should be the following:
 
 #### Provide web site for distribution (working)
 
-* Design a web site for this project that helps to make marketing.
+* Design a web site for this project that helps to make marketing. (/)
 * Provide the examples / documentation / ... separated from the development.
-* Ensure that building the distribution also builds the sources of the web site.
+* Ensure that building the distribution also builds the sources of the web site. (/)
 * Use Skeleton for the Look of that web site, but ensure that the files needed for that
-  are separated from the files needed for PgnViewerJS.
-* Start building the documentation as a web site, so it is easier to use it locally and distribute it.  
+  are separated from the files needed for PgnViewerJS. (/)
+* Start building the documentation as a web site, so it is easier to use it locally and distribute it.
+* Web site is currently: http://mliebelt.bplaced.net/pgnvjs
+* Decide on the right UI for the examples. With minimal Javascript, and if possible only one file.
+  The example from chessboardjs seems appropriate, perhaps it is easy to create
+  something similar (or just copy it) with my own examples.
 
 ## Done and mostly finished
 
@@ -331,3 +304,35 @@ Is there a specification available, is that spec available offline, to study it?
   * "right": nextMove
   * "space": 
   
+### Infrastructure
+
+#### Structure of the project (/)
+
+* Get rid of the sub-modules. This was initially a good idea, but is not well now.
+* Use instead
+  * separate folders during development, so it is easier to develop (and replace older versions
+    by newer ones)
+  * Rules in the Gruntfile which files should be selected for the distribution (in which order) 
+
+The real structure as distribution should be the following:
+
+    / root of the files
+      readme.md
+      /js
+        /pgnviewerjs.js (minified version)
+      /css
+        chessboard.css (original file, no change)
+        pgnvjs.css (rules for PgnViewerJS only, changes to chessboard.css separated from the rest)
+      /img
+        /buttons (for theming the additional buttons)
+          /ff (buttons of ?? SEARCH FOR SOURCE)
+          /tango (buttons of tango item theme SEARCH FOR SOURCE) http://tango.freedesktop.org/releases/tango-icon-theme-0.8.90.tar.gz
+        /chesspieces
+          /separate folders for each piece theme
+        /pattern
+          *.png (pattern used in file pgnvjs.css)
+        blackwhite-* (button for flipping sided --> should be moved to buttons)
+      /locales
+        chess-*.json (names of the chess pieces, defaults not necesary)
+        nag-*.json (meanings of NAG (http://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs), not used at the moment. Should be rendered when used in the PGN notation (e.g. by output of ChessBase))
+    
