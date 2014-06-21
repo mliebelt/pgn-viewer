@@ -122,13 +122,8 @@ var pgnBase = function (boardId, configuration) {
             });
             var myPieceStyles = ['case', 'chesscom', 'condal', 'leipzig', 'maya', 'merida', 'beyer'];
             if (! target.pieceTheme) {
-                if (myPieceStyles.indexOf(pieceStyle) >= 0) {
-                    target.pieceTheme = localPath() + '../img/chesspieces/' + pieceStyle + '/{piece}.png';
-                } else {
-                    target.pieceTheme = localPath() + '../chessboardjs/img/chesspieces/' + pieceStyle + '/{piece}.png';
-                }
+                target.pieceTheme = localPath() + '../img/chesspieces/' + pieceStyle + '/{piece}.png';
             }
-
         }
         var boardConfiguration = {};
         copyBoardConfiguration(configuration, boardConfiguration, ['position', 'orientation', 'showNotation', 'pieceTheme']);

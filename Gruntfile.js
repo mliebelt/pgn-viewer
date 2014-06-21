@@ -55,6 +55,15 @@ module.exports = function(grunt) {
                         dest: 'dist/doc'
                     }
                 ]
+            },
+            docu: {
+                files: [
+                    {
+                        src: ['dist/**'],
+                        dest: 'docu',
+                        expand: true
+                    }
+                ]
             }
         },
         markdown: {
