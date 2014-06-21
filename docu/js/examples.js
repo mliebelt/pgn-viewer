@@ -46,11 +46,11 @@ var highlightExample = function(id) {
 };
 
 var showExample = function(number) {
-//    var groupIndex = parseInt($('li#example_' + number)
-//        .parent('ul').attr('id').replace('group_container_', ''), 10);
-//
-//    $('ul#group_container_' + groupIndex).css('display', '');
-//    highlightGroupHeader(groupIndex);
+    var groupIndex = parseInt($('li#example_' + number)
+        .parent('ul').attr('id').replace('group_container_', ''), 10);
+
+    $('ul#group_container_' + groupIndex).css('display', '');
+    highlightGroupHeader(groupIndex);
     highlightExample(number);
 
     $('#example_name').html(examples[number].name);
@@ -93,7 +93,7 @@ var clickGroupHeader = function() {
 
 var init = function() {
     $('#examples_list_container').on('click', 'li', clickExample);
-    $('#examples_list_container').on('click', 'h4', null);
+    $('#examples_list_container').on('click', 'h4', clickGroupHeader);
     loadExampleFromHash();
 };
 $(document).ready(init);
