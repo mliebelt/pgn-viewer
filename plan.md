@@ -57,6 +57,7 @@ there is of course no guarantee that anything will be implemented soon.
 * Use Figurine instead of the move letters (for white and black with the same symbols)
 * white and black together (without comment) as block, if more than one block fits on one line,
   make two or more blocks.
+* What about the diagrams themselves? What is a pleasant style? How to map that on HTML, and ensure that the print-out will work?  
 
 #### Different PGN header display (working)
 
