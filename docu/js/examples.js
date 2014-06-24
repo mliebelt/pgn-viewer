@@ -58,7 +58,7 @@ examples["1020"] = {
 };
 examples["1021"] = {
     desc: "ChessBoard with theme 'zeit' / 'green' and pieceStyle 'merida' / 'case'.",
-    html: "<div id=\"board\" style=\"width: 300px\"><\/div>\n<div id=\"board2\" style=\"width: 300px\"><\/div>",
+    html: "<div id=\"board\" style=\"width: 300px; margin: 20px\"><\/div>\n<div id=\"board2\" style=\"width: 300px;margin: 20px\"><\/div>",
     name: "Theme: Zeit and Style: Merida",
     jsStr: "var board = pgnBoard('board', {" +
         "\n     pieceStyle: 'merida', " +
@@ -91,6 +91,19 @@ examples["1022"] = {
         pgnBoard('b1', {position: fen1});
         pgnBoard('b2', {position: fen2});
         pgnBoard('b3', {position: fen3});
+    }
+};
+
+examples["1023"] = {
+    desc: "ChessBoard with different additional configuration parameters. Used are here orientation and showNotation.",
+    html: "<div id=\"b1\" style=\"width: 300px; margin: 20px\"><\/div>" +
+        "\n<div id=\"b2\" style=\"width: 300px; margin: 20px\"><\/div>",
+    name: "Additional parameters",
+    jsStr: "pgnBoard('b1', {orientation: 'black'});" +
+        "\npgnBoard('b2', {showNotation: false});",
+    jsFn: function() {
+        pgnBoard('b1', {orientation: 'black'});
+        pgnBoard('b2', {showNotation: false});
     }
 };
 

@@ -116,7 +116,7 @@ var pgnBase = function (boardId, configuration) {
         function copyBoardConfiguration(source, target, keys) {
             var pieceStyle = source.pieceStyle || 'wikipedia';
             $.each(keys, function(i, key) {
-                if (source[key]) {
+                if (typeof source[key] != "undefined") {
                     target[key] = source[key];
                 }
             });
@@ -384,7 +384,8 @@ var pgnBase = function (boardId, configuration) {
             link.appendChild(text);
             span.appendChild(link);
             span.appendChild(document.createTextNode(" "));
-            if (move.commentAfter) { span.appendChild(generateCommentSpan(move.commentAfter))}
+            if (move.commentAfter && move.commentAfter != 'diagram') {
+                span.appendChild(generateCommentSpan(move.commentAfter))}
             append_to_current_div(span, movesDiv, varStack);
             //movesDiv.appendChild(span);
             if (endVariation(move)) {
@@ -395,6 +396,14 @@ var pgnBase = function (boardId, configuration) {
             currMoveSpan.on('click', function() {
                 makeMove(that.currentMove, currentCounter, fen);
             });
+            if (move.commentAfter && move.commentAfter == 'diagram') {
+                var diaDiv = document.createElement('div');
+                var diaID = boardId + "dia" + currentCounter;
+                diaDiv.setAttribute('id', diaID);
+                append_to_current_div(diaDiv, movesDiv, varStack);
+                configuration.position = fen;
+                pgnBoard(diaID, configuration);
+            }
             return currentCounter;
         };
 
@@ -491,3 +500,12 @@ var pgnEdit = function(boardId, configuration) {
     base.generateHTML();
     base.generateBoard();
 };
+
+var pgnPrint = function(boardId, configuration) {
+    var base = pgnBase(boardId, configuration);
+    base.generateHTML();
+    base.hideHTML("Button");
+    base.hideHTML("Inner");
+    var board = base.generateBoard();
+    base.generateMoves(board);
+}

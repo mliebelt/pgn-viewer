@@ -80,15 +80,22 @@ there is of course no guarantee that anything will be implemented soon.
 * Generate all HTML elements, so that they can be included easily. Works well
   for the board and the moves, will work for the headers additionally.
   
-#### Allow additional boards
+#### Allow additional boards (working)
   
-* Use a special comment for that (like {diagram})
+* Use a special comment for that (like {diagram}) (/)
 * The generation should be the same as the main board (with the same configuration)
   but reduced size of course.
 * Play with different layout possibilities:
   * Centered, moves then below
   * Left, moves flowing to the right
   * Other ??
+* Whole layout has to change (for pgnPrint)
+  * Skip the normal board generation.
+  * The boards (as part of the move div) will be contained there.
+* pgnView could suppress the additional diagrams (normally), and switch then
+  to print-out mode when the HTML page is printed. Is there something JavaScript
+  can do to be noticed?
+* Use pgnBoard for the diagram-boards, as normal, with the configuration given by the normal call. So only difference is the creation of the moves, and that the board-id is generated during creation of the moves.  
 
 #### Understand FEN in a better way
 
