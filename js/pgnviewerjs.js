@@ -18,6 +18,7 @@ var pgnBase = function (boardId, configuration) {
 
     var theme = configuration.theme || 'default';
     var game = new Chess();
+    var board;              // Will be set later, but has to be a known variable
     var headersId = boardId + 'Headers';
     var innerBoardId = boardId + 'Inner';
     var movesId = boardId + 'Moves';
@@ -47,6 +48,99 @@ var pgnBase = function (boardId, configuration) {
         var ele = "#" + boardId + eleName;
         $(ele)[0].style.display = "none";
     };
+
+    /**
+     * The function removes the background of the marked fields for moves.
+     */
+    var removeGreySquares = function() {
+        $('#' + boardId + ' .square-55d63').css('background', '');
+    };
+
+    /**
+     * The function marks the fields grey that are reachable by a move.
+     * @param square the ID of the square
+     */
+    var greySquare = function(square) {
+        var squareEl = $('#' + boardId + ' .square-' + square);
+        var background = '#a9a9a9';
+        if (squareEl.hasClass('black-3c85d') === true) {
+            background = '#696969';
+        }
+        squareEl.css('background', background);
+    };
+
+    /**
+     * Start the drag of piece only if possible
+     * @param source not used here
+     * @param piece the piece string
+     * @returns {boolean}
+     */
+    var onDragStart = function(source, piece) {
+        // do not pick up pieces if the game is over
+        // or if it's not that side's turn
+        if (game.game_over() === true ||
+            (game.turn() === 'w' && piece.search(/^b/) !== -1) ||
+            (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
+            return false;
+        }
+    };
+
+    /**
+     * Called when a piece is dropped.
+     * @param source the start square
+     * @param target the end square
+     * @returns {string} 'snapback' if illegal
+     */
+    var onDrop = function(source, target) {
+        removeGreySquares();
+        // see if the move is legal
+        var move = game.move({
+            from: source,
+            to: target,
+            promotion: 'q' // NOTE: always promote to a queen for example simplicity
+        });
+        // illegal move
+        if (move === null) return 'snapback';
+    };
+
+    /**
+     * Mark possible squares as "valid" for the player.
+     * @param square the square to move from
+     * @param piece the piece to move (not used here)
+     */
+    var onMouseoverSquare = function(square, piece) {
+        // get list of possible moves for this square
+        var moves = game.moves({
+            square: square,
+            verbose: true
+        });
+        // exit if there are no moves available for this square
+        if (moves.length === 0) return;
+        // highlight the square they moused over
+        greySquare(square);
+        // highlight the possible squares for this piece
+        for (var i = 0; i < moves.length; i++) {
+            greySquare(moves[i].to);
+        }
+    };
+
+    /**
+     * Called when ???
+     * @param square
+     * @param piece
+     */
+    var onMouseoutSquare = function(square, piece) {
+        removeGreySquares();
+    };
+
+    /**
+     * Called when the piece is released. Here should be the logic for calling all
+     * pgn enhancement.
+     */
+    var onSnapEnd = function() {
+        board.position(game.fen());
+    };
+
     /**
      * Generates all HTML elements needed for display of the (playing) board and
      * the moves. Generates that in dependence of the theme
@@ -119,6 +213,7 @@ var pgnBase = function (boardId, configuration) {
      * @returns {Window.ChessBoard} the board object that may play the moveslater
      */
     var generateBoard = function() {
+
         function copyBoardConfiguration(source, target, keys) {
             var pieceStyle = source.pieceStyle || 'wikipedia';
             $.each(keys, function(i, key) {
@@ -132,8 +227,11 @@ var pgnBase = function (boardId, configuration) {
             }
         }
         var boardConfiguration = {};
-        copyBoardConfiguration(configuration, boardConfiguration, ['position', 'orientation', 'showNotation', 'pieceTheme']);
-        return new ChessBoard(innerBoardId, boardConfiguration);
+        copyBoardConfiguration(configuration, boardConfiguration,
+            ['position', 'orientation', 'showNotation', 'pieceTheme', 'draggable',
+            'onDragStart', 'onDrop', 'onMouseoutSquare', 'onMouseoverSquare', 'onSnapEnd']);
+        board = new ChessBoard(innerBoardId, boardConfiguration);
+        return board;
     };
 
     /**
@@ -424,6 +522,7 @@ var pgnBase = function (boardId, configuration) {
         }
         bindFunctions();
         generateHeaders();
+        game.reset();
     };
 
     return {
@@ -434,7 +533,12 @@ var pgnBase = function (boardId, configuration) {
         generateHTML: generateHTML,
         generateBoard: generateBoard,
         generateMoves: generateMoves,
-        hideHTML: hideHTML
+        hideHTML: hideHTML,
+        onDragStart: onDragStart,
+        onDrop: onDrop,
+        onMouseoutSquare: onMouseoutSquare,
+        onMouseoverSquare: onMouseoverSquare,
+        onSnapEnd: onSnapEnd
     }
 
 };
@@ -451,8 +555,8 @@ var pgnBase = function (boardId, configuration) {
 var pgnView = function(boardId, configuration) {
     var base = pgnBase(boardId, configuration);
     base.generateHTML();
-    var board = base.generateBoard();
-    base.generateMoves(board);
+    var b = base.generateBoard();
+    base.generateMoves(b);
     return {
         chess: base.chess,
         getPgn: base.getPgn,
@@ -480,10 +584,10 @@ var pgnBoard = function(boardId, configuration) {
     var base = pgnBase(boardId, configuration);
     base.generateHTML();
     base.hideHTML("Button");
-    var board = base.generateBoard();
+    var b = base.generateBoard();
     return {
         chess: base.chess,
-        board: board
+        board: b
     }
 
 };
@@ -501,10 +605,16 @@ var pgnBoard = function(boardId, configuration) {
  *    allowAnnotations: false or true (default)
  */
 var pgnEdit = function(boardId, configuration) {
-    configuration.draggable = true;
     var base = pgnBase(boardId, configuration);
+    configuration.draggable = true;
+    configuration.onDragStart = base.onDragStart;
+    configuration.onDrop = base.onDrop;
+    configuration.onMouseoutSquare = base.onMouseoutSquare;
+    configuration.onMouseoverSquare = base.onMouseoverSquare;
+    configuration.onSnapEnd = base.onSnapEnd;
     base.generateHTML();
-    base.generateBoard();
+    var b = base.generateBoard();
+    base.generateMoves(b);
 };
 
 var pgnPrint = function(boardId, configuration) {
@@ -512,6 +622,6 @@ var pgnPrint = function(boardId, configuration) {
     base.generateHTML();
     base.hideHTML("Button");
     base.hideHTML("Inner");
-    var board = base.generateBoard();
-    base.generateMoves(board);
+    var b = base.generateBoard();
+    base.generateMoves(b);
 }
