@@ -32,6 +32,15 @@ there is of course no guarantee that anything will be implemented soon.
   * Directory named as the piece style.
   * Then '/{piece}.png'
 
+#### Allow sizing of board by configuration (working)
+
+* Add parameters for
+  * size: size of the whole (board and moves)
+  * boardSize: width == height of the board
+  * moveSize: width of the move div
+* Change the divs by JavaScript
+* The combination of the sizes may be difficult, and not all are understood. There should be rules that are easy to understand, so that the configuration is not trial and error.  
+
 #### Generate from PGN structure moves (working)
 
 * Generate a reasonable frame for the moves (id: <ID>Moves, class: moves).
@@ -97,6 +106,8 @@ there is of course no guarantee that anything will be implemented soon.
   to print-out mode when the HTML page is printed. Is there something JavaScript
   can do to be noticed?
 * Use pgnBoard for the diagram-boards, as normal, with the configuration given by the normal call. So only difference is the creation of the moves, and that the board-id is generated during creation of the moves.  
+* Allow additional / different styling. Configuration gives the default, and inside
+  the comment, additional configuration can be given that overrides the default.
 
 #### Understand FEN in a better way
 
@@ -131,6 +142,13 @@ At least move number, turn, en-passent, rochade, ... should be possible.
   * variations inlined
   * variations separated by paragraphs
   * different styling for them
+
+#### Allow multiple comments
+
+* This is at least needed for combining normal comments with diagram comments. They often go together, and at the moment, only one of the 2 can be used.
+* Decide if a diagram comment is allowed before the move (does not make sense for me).
+
+
 
 ### Infrastructure
 

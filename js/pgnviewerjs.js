@@ -82,12 +82,18 @@ var pgnBase = function (boardId, configuration) {
         if (divBoard == null) {
             return;
         }
+        if (configuration.size) {
+            divBoard.style.width = configuration.size;
+        }
         divBoard.setAttribute('class', theme + ' whole');
         var headersDiv = document.createElement("div");
         headersDiv.setAttribute('id', headersId);
         headersDiv.setAttribute("class", theme + " headers");
         var outerInnerBoardDiv = document.createElement("div");
         outerInnerBoardDiv.setAttribute("class", "outerBoard");
+        if (configuration.boardSize) {
+            outerInnerBoardDiv.style.width = configuration.size;
+        }
         var innerBoardDiv = document.createElement("div");
         innerBoardDiv.setAttribute('id', innerBoardId);
         innerBoardDiv.setAttribute('class', theme + " board");
