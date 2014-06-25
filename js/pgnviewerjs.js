@@ -188,26 +188,26 @@ var pgnBase = function (boardId, configuration) {
         var myMoves = that.mypgn.getMoves();
         game.reset();
         var NAGs = [
-            null,
-            "!",
-            "?",
-            "!!",
-            "??",
-            "!?",
-            "?!",
-            "□",
-            null,
-            null,
-            "=",
-            null,
-            null,
-            "∞",
-            "⩲",
-            "⩱",
-            "±",
-            "∓",
-            "+−",
-            "-+"
+            null,   // Just to fill, index 0
+            "!",    // 1
+            "?",    // 2
+            "!!",   // 3
+            "??",   // 4
+            "!?",   // 5
+            "?!",   // 6
+            "□",    // 7
+            null,   // 8
+            null,   // 9
+            "=",    // 10
+            null,   // 11
+            null,   // 12
+            "∞",    // 13
+            "⩲",    // 14
+            "⩱",    // 15
+            "±",    // 16
+            "∓",    // 17
+            "+−",   // 18
+            "-+"    // 19
         ];
 
         /**

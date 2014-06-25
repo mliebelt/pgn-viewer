@@ -41,6 +41,15 @@ there is of course no guarantee that anything will be implemented soon.
 * Change the divs by JavaScript
 * The combination of the sizes may be difficult, and not all are understood. There should be rules that are easy to understand, so that the configuration is not trial and error.  
 
+#### Allow styling of board (and others) by configuration (working)
+
+* Styling of size does work (more or less), why not style other things.
+* Styling should be possible for defined things:
+  * board color (black and white)
+  * border (for notation)
+  * notation itself (depending on board color, different possibly for black and white)
+* This allows to style boards individually, CSS is for the default styling.  
+
 #### Generate from PGN structure moves (working)
 
 * Generate a reasonable frame for the moves (id: <ID>Moves, class: moves).
@@ -108,6 +117,21 @@ there is of course no guarantee that anything will be implemented soon.
 * Use pgnBoard for the diagram-boards, as normal, with the configuration given by the normal call. So only difference is the creation of the moves, and that the board-id is generated during creation of the moves.  
 * Allow additional / different styling. Configuration gives the default, and inside
   the comment, additional configuration can be given that overrides the default.
+
+#### Define UI for Editing
+
+* Editing needs additional UI elements for doing its job. These are (stolen mostly from Scid):
+  * Buttons for variation management: delete current, increase weight, delete line, delete after
+  * Buttons for annotations: drop-down list of annotation symbols (including none) that work on the current move.
+  * UI for comments: text field, buttons for add before and add after comment
+  * Popup-menu, if necessary: promotion to ..., [replace move, new variation, new main line, ...], 
+  
+#### Define functions for Editing
+  
+* chessboardjs provides in its example section the following (which should be used):
+  * Only allow legal moves
+  * Highlight legal moves
+  * 
 
 #### Understand FEN in a better way
 
