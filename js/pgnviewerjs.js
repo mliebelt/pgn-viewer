@@ -328,7 +328,7 @@ var pgnBase = function (boardId, configuration) {
                     to_call();
                     return false;
                 });
-            }
+            };
             var nextMove = function () {
                 var fen = null;
                 if (typeof that.currentMove == 'undefined') {
@@ -399,6 +399,7 @@ var pgnBase = function (boardId, configuration) {
         // Makes the move on the board from the current position to the next position.
         var makeMove = function(curr, next, fen) {
             board.position(fen);
+            game.load(fen);
             if (typeof curr != 'undefined') {
                 moveSpan(curr).removeClass();
             }
