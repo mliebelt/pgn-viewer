@@ -12,25 +12,12 @@ there is of course no guarantee that anything will be implemented soon.
    * clicking on moves
    * clicking on next and previous button
    * clicking on play button
+* Allows to add interactively variations to the game, and show these as additional notation.
+* Allows to export the current game play as notation in PGN, and export the current position as FEN string.   
 
 ## Planed and working
 
 ### Visual
-
-#### Add additional figure sets (/)
-
-* Add as figure sets the ones from chess.com and from ChessTempo Merida.
-* Added as well case, condal, leipzig and maya from ChessTempo.
-
-##### Additional figures (working)
-
-* Allow others to add figure sets as well.
-* Provide a registry, and provide there an additional path to the set (relative to the
-  JavaScript file that loads it).
-* Organisation has to be the same:
-  * Path to the piece style (only variant here).
-  * Directory named as the piece style.
-  * Then '/{piece}.png'
 
 #### Allow sizing of board by configuration (working)
 
@@ -217,6 +204,21 @@ At least move number, turn, en-passent, rochade, ... should be possible.
 ## Done and mostly finished
 
 ### Visual
+
+#### Add additional figure sets (/)
+
+* Add as figure sets the ones from chess.com and from ChessTempo Merida.
+* Added as well case, condal, leipzig and maya from ChessTempo.
+
+##### Additional figures (/)
+
+* Allow others to add figure sets as well.
+* Provide a registry, and provide there an additional path to the set (relative to the
+  JavaScript file that loads it).
+* Organisation has to be the same:
+  * Path to the piece style (only variant here).
+  * Directory named as the piece style.
+  * Then '/{piece}.png'
 
 #### Show boards (/)
 

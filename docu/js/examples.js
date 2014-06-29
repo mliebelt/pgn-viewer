@@ -43,7 +43,7 @@ examples["1003"] = {
     jsStr: "var pgn = \"1. f4 e6 2. g4 Qh4#\";\nvar board = pgnEdit('board', {pgn: pgn});",
     jsFn: function() {
         var pgn = "1. f4 e6 2. g4 Qh4#";
-        var board = pgnView('board', {pgn: pgn});
+        var board = pgnEdit('board', {pgn: pgn});
     }
 };
 
