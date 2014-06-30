@@ -493,3 +493,12 @@ div.green > button {
     left: 0px;
 
 }
+
+/* Styling when moves are possible */
+.square-55d63.black-3c85d.possible {
+    background-color: #696969;
+}
+
+.square-55d63.white-1e1d7.possible {
+    background-color: #a9a9a9;
+}

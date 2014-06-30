@@ -39,6 +39,9 @@ var pgnBase = function (boardId, configuration) {
     if (! configuration.position) {
         configuration.position = 'start';
     }
+
+    // Some Utility functions without context
+
     /**
      * Allow to hide HTML by calling this function. It will prepend
      * the boardId, and search for an ID in the DOM.
@@ -52,21 +55,16 @@ var pgnBase = function (boardId, configuration) {
     /**
      * The function removes the background of the marked fields for moves.
      */
-    var removeGreySquares = function() {
-        $('#' + boardId + ' .square-55d63').css('background', '');
+    var removePossibleSquares = function() {
+        $('#' + boardId + ' .square-55d63').removeClass('possible');
     };
 
     /**
-     * The function marks the fields grey that are reachable by a move.
+     * The function marks the fields 'possible' that are reachable by a move.
      * @param square the ID of the square
      */
-    var greySquare = function(square) {
-        var squareEl = $('#' + boardId + ' .square-' + square);
-        var background = '#a9a9a9';
-        if (squareEl.hasClass('black-3c85d') === true) {
-            background = '#696969';
-        }
-        squareEl.css('background', background);
+    var possibleSquare = function(square) {
+        $('#' + boardId + ' .square-' + square).addClass('possible');
     };
 
     /**
@@ -92,7 +90,7 @@ var pgnBase = function (boardId, configuration) {
      * @returns {string} 'snapback' if illegal
      */
     var onDrop = function(source, target) {
-        removeGreySquares();
+        removePossibleSquares();
         // see if the move is legal
         var move = game.move({
             from: source,
@@ -117,10 +115,10 @@ var pgnBase = function (boardId, configuration) {
         // exit if there are no moves available for this square
         if (moves.length === 0) return;
         // highlight the square they moused over
-        greySquare(square);
+        possibleSquare(square);
         // highlight the possible squares for this piece
         for (var i = 0; i < moves.length; i++) {
-            greySquare(moves[i].to);
+            possibleSquare(moves[i].to);
         }
     };
 
@@ -130,7 +128,7 @@ var pgnBase = function (boardId, configuration) {
      * @param piece
      */
     var onMouseoutSquare = function(square, piece) {
-        removeGreySquares();
+        removePossibleSquares();
     };
 
     /**
@@ -618,6 +616,14 @@ var pgnEdit = function(boardId, configuration) {
     base.generateMoves(b);
 };
 
+/**
+ * Defines a utiliy function to get a printable version of a game, enriched
+ * by diagrams, comments, ... Does  not allow to replay the game (no buttons),
+ * disables all editing functionality.
+ * @param boardId the unique ID of the board (per HTML page)
+ * @param configuration the configuration, mainly here the board style and position.
+ * Rest will be ignored.
+ */
 var pgnPrint = function(boardId, configuration) {
     var base = pgnBase(boardId, configuration);
     base.generateHTML();
