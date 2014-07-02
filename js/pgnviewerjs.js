@@ -9,38 +9,49 @@
  */
 
 var pgnBase = function (boardId, configuration) {
+    // Section defines the variables needed everywhere.
     var VERSION = "0.9.0";
     var that = {};
+    var theme = configuration.theme || 'default';
+    var game = new Chess();
+    var board;              // Will be set later, but has to be a known variable
+    // IDs needed for styling and adressing the HTML elements
+    var headersId = boardId + 'Headers';
+    var innerBoardId = boardId + 'Inner';
+    var movesId = boardId + 'Moves';
+    var buttonsId = boardId + 'Button';
+
+    // Anonymous function, has not to be visible from the outside
+    (function(){
+        var i18n_option = {
+            getAsync: false,
+            resGetPath: localPath() + '../locales/__ns__-__lng__.json',
+            ns: {
+                namespaces: ['chess', 'nag'],
+                defaultNs: 'chess'
+            }
+        };
+        $.i18n.init(i18n_option);
+        if (configuration.locale) {
+            $.i18n.setLng(configuration.locale);
+        }
+        // Ensure that position is set.
+        if (!configuration.position) {
+            configuration.position = 'start';
+        }
+    })();
+
+    // Some Utility functions without context
+
+    /**
+     * Returns the local path (needed for adressing piece image files).
+     * @returns {XML|string|void}
+     */
     function localPath() {
         var jsFileLocation = $('script[src*=pgnviewerjs]').attr('src');  // the js file path
         return jsFileLocation.replace('pgnviewerjs.js', '');   // the js folder path
     }
 
-    var theme = configuration.theme || 'default';
-    var game = new Chess();
-    var board;              // Will be set later, but has to be a known variable
-    var headersId = boardId + 'Headers';
-    var innerBoardId = boardId + 'Inner';
-    var movesId = boardId + 'Moves';
-    var buttonsId = boardId + 'Button';
-    var i18n_option = {
-        getAsync: false,
-        resGetPath: localPath() + '../locales/__ns__-__lng__.json',
-        ns: {
-            namespaces: ['chess', 'nag'],
-            defaultNs: 'chess'
-        }
-    };
-    $.i18n.init(i18n_option);
-    if (configuration.locale) {
-        $.i18n.setLng(configuration.locale);
-    }
-    // Ensure that position is set.
-    if (! configuration.position) {
-        configuration.position = 'start';
-    }
-
-    // Some Utility functions without context
 
     /**
      * Allow to hide HTML by calling this function. It will prepend
