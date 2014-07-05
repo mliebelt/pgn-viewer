@@ -175,7 +175,7 @@ div#examples_list_container h4 {
     font-size: 14px;
     font-weight: normal;
     margin: 0px;
-    padding: 15px 20px;
+    padding: 5px 8px;
 }
 div#examples_list_container h4.active {
     background: #4d4d4d;
@@ -195,7 +195,7 @@ div#examples_list_container li {
     color: #666;
     cursor: pointer;
     list-style: none;
-    padding: 5px 0px 5px 20px;
+    padding: 2px 0px 2px 20px;
 }
 div#examples_list_container li:hover {
     color: #222;

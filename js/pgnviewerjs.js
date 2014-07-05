@@ -195,7 +195,7 @@ var pgnBase = function (boardId, configuration) {
         var outerInnerBoardDiv = document.createElement("div");
         outerInnerBoardDiv.setAttribute("class", "outerBoard");
         if (configuration.boardSize) {
-            outerInnerBoardDiv.style.width = configuration.size;
+            outerInnerBoardDiv.style.width = configuration.boardSize;
         }
         var innerBoardDiv = document.createElement("div");
         innerBoardDiv.setAttribute('id', innerBoardId);
@@ -207,6 +207,9 @@ var pgnBase = function (boardId, configuration) {
         var movesDiv = document.createElement("div");
         movesDiv.setAttribute('id', movesId);
         movesDiv.setAttribute('class', "moves");
+        if (configuration.movesSize) {
+            movesDiv.style.width = configuration.movesSize;
+        }
         outerInnerBoardDiv.appendChild(innerBoardDiv);
         outerInnerBoardDiv.appendChild(buttonsBoardDiv);
         divBoard.appendChild(headersDiv);
@@ -256,14 +259,14 @@ var pgnBase = function (boardId, configuration) {
         var white = document.createElement('span');
         white.setAttribute('class', theme + " whiteHeader");
         if (headers.White) {
-            white.appendChild(document.createTextNode(headers.White));
+            white.appendChild(document.createTextNode(headers.White + " "));
         }
         div_h.appendChild(white);
         //div_h.appendChild(document.createTextNode(" - "));
         var black = document.createElement('span');
         black.setAttribute('class', theme + " blackHeader");
         if (headers.Black) {
-            black.appendChild(document.createTextNode(headers.Black));
+            black.appendChild(document.createTextNode(" " + headers.Black));
         }
         div_h.appendChild(black);
         var rest = "";
