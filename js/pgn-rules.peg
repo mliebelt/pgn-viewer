@@ -21,7 +21,7 @@ pgnStartBlack
 
 pgnWhite
   = whiteSpace? mn:moveNumber whiteSpace? cb:comment? whiteSpace?
-    hm:halfMove  nag:nag?  whiteSpace? ca:comment? whiteSpace? vari:variationWhite? all:pgnBlack?
+    hm:halfMove  nag:nags?  whiteSpace? ca:comment? whiteSpace? vari:variationWhite? all:pgnBlack?
     { arr = (all ? all : []); move = {}; move.turn = 'w'; move.moveNumber = mn;
       move.notation = hm; move.commentBefore = cb; move.commentAfter = ca; 
       move.variations = (vari ? vari : []); move.nag = (nag ? nag : null); arr.unshift(move); return arr; }
@@ -84,6 +84,9 @@ check
 
 promotion
   = '=' f:figure { return '=' + f; }
+
+nags
+  = nag:nag whiteSpace? nags:nags? { arr = (nags ? nags : []); arr.unshift(nag); return arr; }
 
 nag
   = '$' num:integer { return '$' + num; }

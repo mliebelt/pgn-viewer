@@ -151,24 +151,33 @@ var pgnBase = function (boardId, configuration) {
         board.position(game.fen());
     };
 
+    // Utility function for generating general HTML elements with id, class (with theme)
+    function createEle(kind, id, clazz, my_theme) {
+        var ele = document.createElement(kind);
+        if (id) { ele.setAttribute("id", id); }
+        if (clazz) {
+            if (my_theme) {
+                ele.setAttribute("class", theme + " " + clazz);
+            } else {
+                ele.setAttribute("class", clazz);
+            }
+        }
+        return ele;
+    }
+
     /**
      * Generates all HTML elements needed for display of the (playing) board and
      * the moves. Generates that in dependence of the theme
      */
     var generateHTML = function() {
-        var generateButtons = function(buttonDiv) {
-            function addButton(name, buttonDiv) {
-                var button = document.createElement("button");
-                button.setAttribute('id', buttonsId + name);
-                button.setAttribute("class", theme + " " + name);
-                buttonDiv.appendChild(button);
-            }
-            addButton("flipper", buttonDiv);
-            addButton("first", buttonDiv);
-            addButton("prev", buttonDiv);
-            addButton("next", buttonDiv);
-            addButton("play", buttonDiv);
-            addButton("last", buttonDiv);
+        // Utility function for generating buttons divs
+        function addButton(name, buttonDiv) {
+            buttonDiv.appendChild(createEle("button", buttonsId + name, name, theme));
+        }
+        // Generates the view buttons (only)
+        var generateViewButtons = function(buttonDiv) {
+            ["flipper", "first", "prev", "next", "play", "last"].forEach(function(entry) {
+                addButton(entry, buttonDiv)});
         };
         var divBoard = document.getElementById(boardId);
         if (divBoard == null) {
@@ -178,24 +187,15 @@ var pgnBase = function (boardId, configuration) {
             divBoard.style.width = configuration.size;
         }
         divBoard.setAttribute('class', theme + ' whole');
-        var headersDiv = document.createElement("div");
-        headersDiv.setAttribute('id', headersId);
-        headersDiv.setAttribute("class", theme + " headers");
-        var outerInnerBoardDiv = document.createElement("div");
-        outerInnerBoardDiv.setAttribute("class", "outerBoard");
+        var headersDiv = createEle("div", headersId, "headers", theme);
+        var outerInnerBoardDiv = createEle("div", null, "outerBoard", null);
         if (configuration.boardSize) {
             outerInnerBoardDiv.style.width = configuration.boardSize;
         }
-        var innerBoardDiv = document.createElement("div");
-        innerBoardDiv.setAttribute('id', innerBoardId);
-        innerBoardDiv.setAttribute('class', theme + " board");
-        var buttonsBoardDiv = document.createElement("div");
-        generateButtons(buttonsBoardDiv);
-        buttonsBoardDiv.setAttribute('id', buttonsId);
-        buttonsBoardDiv.setAttribute('class', theme + " buttons");
-        var movesDiv = document.createElement("div");
-        movesDiv.setAttribute('id', movesId);
-        movesDiv.setAttribute('class', "moves");
+        var innerBoardDiv = createEle("div", innerBoardId, "board", theme);
+        var buttonsBoardDiv = createEle("div", buttonsId, "buttons", theme);
+        generateViewButtons(buttonsBoardDiv);
+        var movesDiv = createEle("div", movesId, "moves", null);
         if (configuration.movesSize) {
             movesDiv.style.width = configuration.movesSize;
         }
@@ -204,8 +204,7 @@ var pgnBase = function (boardId, configuration) {
         divBoard.appendChild(headersDiv);
         divBoard.appendChild(outerInnerBoardDiv);
         divBoard.appendChild(movesDiv);
-        var endDiv = document.createElement("div");
-        endDiv.setAttribute('class', "endBoard");
+        var endDiv = createEle("div", null, "endBoard", null);
         divBoard.appendChild(endDiv);
     };
     /**
@@ -214,7 +213,6 @@ var pgnBase = function (boardId, configuration) {
      * @returns {Window.ChessBoard} the board object that may play the moveslater
      */
     var generateBoard = function() {
-
         function copyBoardConfiguration(source, target, keys) {
             var pieceStyle = source.pieceStyle || 'wikipedia';
             $.each(keys, function(i, key) {
@@ -245,15 +243,13 @@ var pgnBase = function (boardId, configuration) {
         var div_h = $('#' + headersId)[0];
         var headers = that.mypgn.getHeaders();
         var allowed = ['White', 'Black', 'ECO', 'Result'];
-        var white = document.createElement('span');
-        white.setAttribute('class', theme + " whiteHeader");
+        var white = createEle('span', null, "whiteHeader", theme);
         if (headers.White) {
             white.appendChild(document.createTextNode(headers.White + " "));
         }
         div_h.appendChild(white);
         //div_h.appendChild(document.createTextNode(" - "));
-        var black = document.createElement('span');
-        black.setAttribute('class', theme + " blackHeader");
+        var black = createEle('span', null, "blackHeader", theme);
         if (headers.Black) {
             black.appendChild(document.createTextNode(" " + headers.Black));
         }
@@ -272,8 +268,7 @@ var pgnBase = function (boardId, configuration) {
          headers.ECO, headers.Result].forEach(function(header) {
             rest = appendHeader(rest, header, " | ");
         });
-        var restSpan = document.createElement("span");
-        restSpan.setAttribute("class", theme + " restHeader");
+        var restSpan = createEle("span", null, "restHeader", theme);
         restSpan.appendChild(document.createTextNode(rest));
         div_h.appendChild(restSpan);
 
@@ -316,8 +311,7 @@ var pgnBase = function (boardId, configuration) {
          * @returns {HTMLElement} the new created span with the comment as text
          */
         var generateCommentSpan = function(comment) {
-            var span = document.createElement('span');
-            span.setAttribute("class", "comment");
+            var span = createEle('span', null, "comment");
             span.appendChild(document.createTextNode(" " + comment + " "));
             return span;
         };
@@ -418,10 +412,14 @@ var pgnBase = function (boardId, configuration) {
         }
         // Generates one move from the current position
         var generateMove = function(currentCounter, game, move, prevCounter, movesDiv, varStack) {
-            var nag_to_symbol = function(string) {
-                var number = parseInt(string.substring(1));
-                var ret = NAGs[number];
-                return (typeof ret != 'undefined') ? ret : "";
+            var nag_to_symbol = function(array) {
+                var ret_string = "";
+                for (var i = 0; i < array.length; i++) {
+                    var number = parseInt(array[i].substring(1));
+                    var ret = NAGs[number];
+                    ret_string += (typeof ret != 'undefined') ? ret : "";
+                }
+                return ret_string;
             };
             var move_from_notation = function(move) {
                 if (typeof move.row == 'undefined') {
@@ -441,6 +439,7 @@ var pgnBase = function (boardId, configuration) {
                 }
             };
             // In case of variant, the previous move is different to the current fen
+            // Currently not used  anywhere else, so could be removed later
             var isNextOfPrev = false;
             if (prevCounter != move.prev) {
                 game.load(myMoves[move.prev].fen);
@@ -460,8 +459,7 @@ var pgnBase = function (boardId, configuration) {
             }
             span.setAttribute('class', clAttr);
             if (startVariation(move)) {
-                var varDiv = document.createElement("div");
-                varDiv.setAttribute('class', "variation");
+                var varDiv = createEle("div", null, "variation");
                 if (varStack.length == 0) {
                     movesDiv.appendChild(varDiv);
                 } else {
@@ -472,16 +470,12 @@ var pgnBase = function (boardId, configuration) {
             }
             if (pgn_move.color == 'w') {
                 var mn = move.moveNumber;
-                var num = document.createElement('span');
-                num.setAttribute('class', "moveNumber");
+                var num = createEle('span', null, "moveNumber");
                 num.appendChild(document.createTextNode("" + mn + ". "));
                 span.appendChild(num);
             }
             if (move.commentBefore) { span.appendChild(generateCommentSpan(move.commentBefore))}
-            var link = document.createElement('a');
-            link.setAttribute('id', movesId + currentCounter);
-//            var san = pgn_move.san;
-//            var figure = $.t(pgn_move.piece);
+            var link = createEle('a', movesId + currentCounter, null, null);
             var san = move_from_notation(move.notation);
             if (move.nag) {
                 san += nag_to_symbol(move.nag);
@@ -503,9 +497,8 @@ var pgnBase = function (boardId, configuration) {
                 makeMove(that.currentMove, currentCounter, fen);
             });
             if (move.commentAfter && move.commentAfter == 'diagram') {
-                var diaDiv = document.createElement('div');
                 var diaID = boardId + "dia" + currentCounter;
-                diaDiv.setAttribute('id', diaID);
+                var diaDiv = createEle('div', diaID);
                 append_to_current_div(diaDiv, movesDiv, varStack);
                 configuration.position = fen;
                 pgnBoard(diaID, configuration);

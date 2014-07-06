@@ -134,7 +134,7 @@ The following cases should be allowed:
   
 UI of Scid is here totally different: Adds a lot of buttons, for each possible annotation one, and pressing the button, the annotation is added to the collection of annotations. Pressing clear will remove all annotations.
   
-Currently, PgnViewerJS does not allow more than one annotation. This has to be changed in the grammar. 
+Currently, PgnViewerJS does not allow more than one annotation. This has to be changed in the grammar. (/)
   
 Annotations are provided by a button, with the entries: Clear, !, !!, ...
 
