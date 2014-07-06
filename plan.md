@@ -112,13 +112,47 @@ there is of course no guarantee that anything will be implemented soon.
   * Buttons for annotations: drop-down list of annotation symbols (including none) that work on the current move.
   * UI for comments: text field, buttons for add before and add after comment
   * Popup-menu, if necessary: promotion to ..., [replace move, new variation, new main line, ...], 
+
+##### Variation management
+
+The following cases should be allowed:
+
+* A move of a variation is selected, and it is changed to the main line. The main line (up from that move) will then changed to the variation. The following cases are possible:
+** Only one variation: Main line and variation are switched.
+** More than one variation on the same level: the selected variation is made the main line, and the main line will get the first variation. All other variations are made additional variations.
+* A move of a variation is selected, and it is upgraded / downgraded: Only the order of the variations have to be changed, the rest will be the same.
+* A move of a variation is selected, and the line is deleted: The whole line is deleted, nothing more necessary.
+* A move of a variation is selected, and the move and the rest of the variation is deleted: Do exactly that, nothing more to do. It is not necessary to additionally allow to deleted  the variation after the move, because then that move should be selected. 
+* A move is done on the board: The new move is
+  * inserted as the next move, if the previous move was the last one
+  * inserted as the first move of the first variation, if the current move has no variation yet.
+  * inserted as the first move of a new variation, if the current move has variations.
+  * just done, if there is a next move of the main line of in the variations that matches that move. This move is then selected.
+  Every time a move is done, the move is added to the moves display, and then the new move is selected then.
   
-#### Define functions for Editing
+##### Annotations
+  
+UI of Scid is here totally different: Adds a lot of buttons, for each possible annotation one, and pressing the button, the annotation is added to the collection of annotations. Pressing clear will remove all annotations.
+  
+Currently, PgnViewerJS does not allow more than one annotation. This has to be changed in the grammar. 
+  
+Annotations are provided by a button, with the entries: Clear, !, !!, ...
+
+Scid used annotation 'D' for diagram, and when that is exported to PGN, this is converted to annotation $201. In the official documentation, this is not found, but could be used anyway.
+  
+###### Comments
+  
+For comments, the following is needed:
+  
+* Comment entry field. Text line or text editor.
+* How to do comments before? There are different possibilities to do that, like switching from end comment to begin comment and vice versae.   
+
+#### Define functions for Editing (working)
   
 * chessboardjs provides in its example section the following (which should be used):
-  * Only allow legal moves
-  * Highlight legal moves
-  * 
+  * Only allow legal moves (/)
+  * Highlight legal moves (/)
+  * Snapback on wrong drop (/)
 
 #### Understand FEN in a better way
 

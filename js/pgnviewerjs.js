@@ -22,6 +22,7 @@ var pgnBase = function (boardId, configuration) {
     var buttonsId = boardId + 'Button';
 
     // Anonymous function, has not to be visible from the outside
+    // Does all the initialization stuff only needed once, here mostly internationalization.
     (function(){
         var i18n_option = {
             getAsync: false,
@@ -155,31 +156,19 @@ var pgnBase = function (boardId, configuration) {
      * the moves. Generates that in dependence of the theme
      */
     var generateHTML = function() {
-        var generateButtons = function() {
-            var flipper = document.createElement("button");
-            flipper.setAttribute('id', buttonsId + "Flipper");
-            flipper.setAttribute("class", theme + " flipper");
-            buttonsBoardDiv.appendChild(flipper);
-            var first = document.createElement("button");
-            first.setAttribute('id', buttonsId + 'First');
-            first.setAttribute('class', theme + " first");
-            buttonsBoardDiv.appendChild(first);
-            var prev = document.createElement("button");
-            prev.setAttribute('id', buttonsId + 'Prev');
-            prev.setAttribute('class', theme + " prev");
-            buttonsBoardDiv.appendChild(prev);
-            var next = document.createElement("button");
-            next.setAttribute('id', buttonsId + 'Next');
-            next.setAttribute('class', theme + " next");
-            buttonsBoardDiv.appendChild(next);
-            var play = document.createElement("button");
-            play.setAttribute('id', buttonsId + 'Play');
-            play.setAttribute('class', theme + " play");
-            buttonsBoardDiv.appendChild(play);
-            var last = document.createElement("button");
-            last.setAttribute('id', buttonsId + 'Last');
-            last.setAttribute('class', theme + " last");
-            buttonsBoardDiv.appendChild(last);
+        var generateButtons = function(buttonDiv) {
+            function addButton(name, buttonDiv) {
+                var button = document.createElement("button");
+                button.setAttribute('id', buttonsId + name);
+                button.setAttribute("class", theme + " " + name);
+                buttonDiv.appendChild(button);
+            }
+            addButton("flipper", buttonDiv);
+            addButton("first", buttonDiv);
+            addButton("prev", buttonDiv);
+            addButton("next", buttonDiv);
+            addButton("play", buttonDiv);
+            addButton("last", buttonDiv);
         };
         var divBoard = document.getElementById(boardId);
         if (divBoard == null) {
@@ -201,7 +190,7 @@ var pgnBase = function (boardId, configuration) {
         innerBoardDiv.setAttribute('id', innerBoardId);
         innerBoardDiv.setAttribute('class', theme + " board");
         var buttonsBoardDiv = document.createElement("div");
-        generateButtons();
+        generateButtons(buttonsBoardDiv);
         buttonsBoardDiv.setAttribute('id', buttonsId);
         buttonsBoardDiv.setAttribute('class', theme + " buttons");
         var movesDiv = document.createElement("div");
@@ -368,26 +357,26 @@ var pgnBase = function (boardId, configuration) {
                 nextMove();
             });
             timer.set({ time : (configuration.timerTime ? configuration.timerTime : 700)});
-            $('#' + buttonsId + 'Flipper').on('click', function() {
+            $('#' + buttonsId + 'flipper').on('click', function() {
                 board.flip();
             })
-            $('#' + buttonsId + 'Next').on('click', function() {
+            $('#' + buttonsId + 'next').on('click', function() {
                 nextMove();
             });
-            $('#' + buttonsId + 'Prev').on('click', function() {
+            $('#' + buttonsId + 'prev').on('click', function() {
                 prevMove();
             });
-            $('#' + buttonsId + 'First').on('click', function() {
+            $('#' + buttonsId + 'first').on('click', function() {
                 var fen = that.mypgn.getMove(0).fen;
                 makeMove(that.currentMove, 0, fen);
             });
-            $('#' + buttonsId + 'Last' ).on('click', function() {
+            $('#' + buttonsId + 'last' ).on('click', function() {
                 var fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
                 makeMove(that.currentMove, that.mypgn.getMoves().length - 1, fen);
             });
             function togglePlay() {
                 timer.toggle();
-                var playButton = $('#' + buttonsId + 'Play')[0];
+                var playButton = $('#' + buttonsId + 'play')[0];
                 var clString = playButton.getAttribute('class');
                 if (clString.indexOf('play') < 0) { // has the stop button
                     clString = clString.replace('stop', 'play');
@@ -399,7 +388,7 @@ var pgnBase = function (boardId, configuration) {
             bind_key("left", prevMove);
             bind_key("right", nextMove);
             bind_key("space", togglePlay);
-            $('#' + buttonsId + 'Play').on('click', function() {
+            $('#' + buttonsId + 'play').on('click', function() {
                 togglePlay();
             })
         };
