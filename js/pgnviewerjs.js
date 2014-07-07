@@ -152,7 +152,7 @@ var pgnBase = function (boardId, configuration) {
     };
 
     // Utility function for generating general HTML elements with id, class (with theme)
-    function createEle(kind, id, clazz, my_theme) {
+    function createEle(kind, id, clazz, my_theme, father) {
         var ele = document.createElement(kind);
         if (id) { ele.setAttribute("id", id); }
         if (clazz) {
@@ -161,6 +161,9 @@ var pgnBase = function (boardId, configuration) {
             } else {
                 ele.setAttribute("class", clazz);
             }
+        }
+        if (father) {
+            father.appendChild(ele);
         }
         return ele;
     }
@@ -172,13 +175,21 @@ var pgnBase = function (boardId, configuration) {
     var generateHTML = function() {
         // Utility function for generating buttons divs
         function addButton(name, buttonDiv) {
-            buttonDiv.appendChild(createEle("button", buttonsId + name, name, theme));
+            createEle("button", buttonsId + name, name, theme, buttonDiv);
         }
         // Generates the view buttons (only)
         var generateViewButtons = function(buttonDiv) {
             ["flipper", "first", "prev", "next", "play", "last"].forEach(function(entry) {
                 addButton(entry, buttonDiv)});
         };
+        // Generates the edit buttons (only)
+        var generateEditButtons = function(buttonDiv) {
+            ["deleteVar", "promoteVar", "deleteMoves", "nags"].forEach(function(entry) {
+                addButton(entry, buttonDiv)});
+        };
+        var generateCommentDiv = function(commentDiv) {
+            var text = createEle("textarea", null, "comment", theme, commentDiv);
+        }
         var divBoard = document.getElementById(boardId);
         if (divBoard == null) {
             return;
@@ -187,25 +198,23 @@ var pgnBase = function (boardId, configuration) {
             divBoard.style.width = configuration.size;
         }
         divBoard.setAttribute('class', theme + ' whole');
-        var headersDiv = createEle("div", headersId, "headers", theme);
-        var outerInnerBoardDiv = createEle("div", null, "outerBoard", null);
+        var headersDiv = createEle("div", headersId, "headers", theme, divBoard);
+        var outerInnerBoardDiv = createEle("div", null, "outerBoard", null, divBoard);
         if (configuration.boardSize) {
             outerInnerBoardDiv.style.width = configuration.boardSize;
         }
-        var innerBoardDiv = createEle("div", innerBoardId, "board", theme);
-        var buttonsBoardDiv = createEle("div", buttonsId, "buttons", theme);
+        var innerBoardDiv = createEle("div", innerBoardId, "board", theme, outerInnerBoardDiv);
+        var buttonsBoardDiv = createEle("div", buttonsId, "buttons", theme, outerInnerBoardDiv);
         generateViewButtons(buttonsBoardDiv);
-        var movesDiv = createEle("div", movesId, "moves", null);
+        var editButtonsBoardDiv = createEle("div", "edit" + buttonsId, "edit", theme, outerInnerBoardDiv);
+        generateEditButtons(editButtonsBoardDiv);
+        var commentBoardDiv = createEle("div", "comment" + buttonsId, "comment", theme, outerInnerBoardDiv);
+        generateCommentDiv(commentBoardDiv);
+        var movesDiv = createEle("div", movesId, "moves", null, divBoard);
         if (configuration.movesSize) {
             movesDiv.style.width = configuration.movesSize;
         }
-        outerInnerBoardDiv.appendChild(innerBoardDiv);
-        outerInnerBoardDiv.appendChild(buttonsBoardDiv);
-        divBoard.appendChild(headersDiv);
-        divBoard.appendChild(outerInnerBoardDiv);
-        divBoard.appendChild(movesDiv);
-        var endDiv = createEle("div", null, "endBoard", null);
-        divBoard.appendChild(endDiv);
+        var endDiv = createEle("div", null, "endBoard", null, divBoard);
     };
     /**
      * Generate the board that uses the unique innerBoardId and the part of the configuration
@@ -243,17 +252,15 @@ var pgnBase = function (boardId, configuration) {
         var div_h = $('#' + headersId)[0];
         var headers = that.mypgn.getHeaders();
         var allowed = ['White', 'Black', 'ECO', 'Result'];
-        var white = createEle('span', null, "whiteHeader", theme);
+        var white = createEle('span', null, "whiteHeader", theme, div_h);
         if (headers.White) {
             white.appendChild(document.createTextNode(headers.White + " "));
         }
-        div_h.appendChild(white);
         //div_h.appendChild(document.createTextNode(" - "));
-        var black = createEle('span', null, "blackHeader", theme);
+        var black = createEle('span', null, "blackHeader", theme, div_h);
         if (headers.Black) {
             black.appendChild(document.createTextNode(" " + headers.Black));
         }
-        div_h.appendChild(black);
         var rest = "";
         var appendHeader = function(result, header, separator) {
             if (header) {
@@ -268,9 +275,8 @@ var pgnBase = function (boardId, configuration) {
          headers.ECO, headers.Result].forEach(function(header) {
             rest = appendHeader(rest, header, " | ");
         });
-        var restSpan = createEle("span", null, "restHeader", theme);
+        var restSpan = createEle("span", null, "restHeader", theme, div_h);
         restSpan.appendChild(document.createTextNode(rest));
-        div_h.appendChild(restSpan);
 
     };
     /**
@@ -368,6 +374,10 @@ var pgnBase = function (boardId, configuration) {
                 var fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
                 makeMove(that.currentMove, that.mypgn.getMoves().length - 1, fen);
             });
+            $('#comment' + buttonsId + " textarea.comment").change(function() {
+                moveSpan(that.currentMove)[0].nextSibling.nextSibling.innerText =
+                   " " + $('#comment' + buttonsId + " textarea.comment").val() + " ";
+            })
             function togglePlay() {
                 timer.toggle();
                 var playButton = $('#' + buttonsId + 'play')[0];
@@ -400,6 +410,7 @@ var pgnBase = function (boardId, configuration) {
             }
             moveSpan(next).addClass('yellow');
             that.currentMove = next;
+            $("#" + boardId + " textarea.comment").val(myMoves[next].commentAfter);
         };
 
         // Returns true, if the move is the start of a (new) variation
@@ -449,7 +460,6 @@ var pgnBase = function (boardId, configuration) {
             var pgn_move = game.move(move.notation.notation);
             var fen = game.fen();
             move.fen = fen;
-            var span = document.createElement("span");
             var clAttr = "move";
             if (move.variationLevel > 0) {
                 clAttr = clAttr + " var var" + move.variationLevel;
@@ -457,7 +467,7 @@ var pgnBase = function (boardId, configuration) {
             if (pgn_move.color == 'w') {
                 clAttr = clAttr + " white";
             }
-            span.setAttribute('class', clAttr);
+            var span = createEle("span", null, clAttr);
             if (startVariation(move)) {
                 var varDiv = createEle("div", null, "variation");
                 if (varStack.length == 0) {
@@ -470,19 +480,17 @@ var pgnBase = function (boardId, configuration) {
             }
             if (pgn_move.color == 'w') {
                 var mn = move.moveNumber;
-                var num = createEle('span', null, "moveNumber");
+                var num = createEle('span', null, "moveNumber", null, span);
                 num.appendChild(document.createTextNode("" + mn + ". "));
-                span.appendChild(num);
             }
             if (move.commentBefore) { span.appendChild(generateCommentSpan(move.commentBefore))}
-            var link = createEle('a', movesId + currentCounter, null, null);
+            var link = createEle('a', movesId + currentCounter, null, null, span);
             var san = move_from_notation(move.notation);
             if (move.nag) {
                 san += nag_to_symbol(move.nag);
             }
             var text = document.createTextNode(san);
             link.appendChild(text);
-            span.appendChild(link);
             span.appendChild(document.createTextNode(" "));
             if (move.commentAfter && move.commentAfter != 'diagram') {
                 span.appendChild(generateCommentSpan(move.commentAfter))}
@@ -627,4 +635,4 @@ var pgnPrint = function(boardId, configuration) {
     base.hideHTML("Inner");
     var b = base.generateBoard();
     base.generateMoves(b);
-}
+};

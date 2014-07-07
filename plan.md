@@ -112,6 +112,8 @@ there is of course no guarantee that anything will be implemented soon.
   * Buttons for annotations: drop-down list of annotation symbols (including none) that work on the current move.
   * UI for comments: text field, buttons for add before and add after comment
   * Popup-menu, if necessary: promotion to ..., [replace move, new variation, new main line, ...], 
+* Edit: Delete variation, Promote variation, Delete moves after, Drop Down NAG
+* Edit Comment: Text editor
 
 ##### Variation management
 
@@ -145,7 +147,10 @@ Scid used annotation 'D' for diagram, and when that is exported to PGN, this is 
 For comments, the following is needed:
   
 * Comment entry field. Text line or text editor.
-* How to do comments before? There are different possibilities to do that, like switching from end comment to begin comment and vice versae.   
+* How to do comments before? There are different possibilities to do that, like switching from end comment to begin comment and vice versae.
+* Different possiblities:
+  * Comments are created all the time (before and after)
+  * Then the position of the comments is known
 
 #### Define functions for Editing (working)
   

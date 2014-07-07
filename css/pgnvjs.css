@@ -21,6 +21,18 @@ div.buttons > .stop {
     background-image: url("../img/buttons/ff/control_pause_blue.png");
 }
 
+div.edit > .deleteVar {
+    background-image: url("../img/buttons/ff/edit-delete.png");
+}
+
+div.edit > .promoteVar {
+    background-image: url("../img/buttons/ff/go-up.png");
+}
+
+div.edit > .deleteMoves {
+    background-image: url("../img/buttons/ff/edit-cut.png");
+}
+
 div.buttons > .flipper {
     background-image: url("../img/blackwhite-flipper.vers1.png");
 }
@@ -47,12 +59,17 @@ div.green > .stop {
     background-image: url("../img/buttons/tango/media-playback-pause.png");
 }
 
-div.buttons > button {
+div.buttons > button, div.edit > button {
     margin: 5px;
     width: 20px;
     height: 20px;
     background-repeat: no-repeat;
     background-position: 50%;
+}
+
+div.comment > textarea.comment {
+    width: 100%;
+    height: 50px;
 }
 div.green > button {
     margin: 5px;
