@@ -59,8 +59,8 @@ var pgnBase = function (boardId, configuration) {
      * the boardId, and search for an ID in the DOM.
      * @param eleName
      */
-    var hideHTML = function(eleName) {
-        var ele = "#" + boardId + eleName;
+    var hideHTML = function(eleName, prefix) {
+        var ele = "#" + (prefix ? prefix : "") + boardId + eleName;
         $(ele)[0].style.display = "none";
     };
 
@@ -279,6 +279,11 @@ var pgnBase = function (boardId, configuration) {
         restSpan.appendChild(document.createTextNode(rest));
 
     };
+
+    function commentText() {
+        return " " + $('#comment' + buttonsId + " textarea.comment").val() + " ";
+    }
+
     /**
      * Generates the HTML (for the given moves). Includes the following: move number,
      * link to FEN (position after move)
@@ -375,8 +380,7 @@ var pgnBase = function (boardId, configuration) {
                 makeMove(that.currentMove, that.mypgn.getMoves().length - 1, fen);
             });
             $('#comment' + buttonsId + " textarea.comment").change(function() {
-                moveSpan(that.currentMove)[0].nextSibling.nextSibling.innerText =
-                   " " + $('#comment' + buttonsId + " textarea.comment").val() + " ";
+                moveSpan(that.currentMove).find(".comment").text(commentText());
             })
             function togglePlay() {
                 timer.toggle();
@@ -400,15 +404,18 @@ var pgnBase = function (boardId, configuration) {
         var moveSpan = function(i) {
             return $('#' + movesId + i);
         };
+        var moveASpan = function(i) {
+            return $('#' + movesId + i + " a");
+        }
 
         // Makes the move on the board from the current position to the next position.
         var makeMove = function(curr, next, fen) {
             board.position(fen);
             game.load(fen);
             if (typeof curr != 'undefined') {
-                moveSpan(curr).removeClass();
+                moveASpan(curr).removeClass();
             }
-            moveSpan(next).addClass('yellow');
+            moveASpan(next).addClass('yellow');
             that.currentMove = next;
             $("#" + boardId + " textarea.comment").val(myMoves[next].commentAfter);
         };
@@ -467,7 +474,7 @@ var pgnBase = function (boardId, configuration) {
             if (pgn_move.color == 'w') {
                 clAttr = clAttr + " white";
             }
-            var span = createEle("span", null, clAttr);
+            var span = createEle("span", movesId + currentCounter, clAttr);
             if (startVariation(move)) {
                 var varDiv = createEle("div", null, "variation");
                 if (varStack.length == 0) {
@@ -484,7 +491,7 @@ var pgnBase = function (boardId, configuration) {
                 num.appendChild(document.createTextNode("" + mn + ". "));
             }
             if (move.commentBefore) { span.appendChild(generateCommentSpan(move.commentBefore))}
-            var link = createEle('a', movesId + currentCounter, null, null, span);
+            var link = createEle('a', null, null, null, span);
             var san = move_from_notation(move.notation);
             if (move.nag) {
                 san += nag_to_symbol(move.nag);
@@ -500,8 +507,7 @@ var pgnBase = function (boardId, configuration) {
                 //span.appendChild(document.createTextNode(" ) "));
                 varStack.pop();
             }
-            var currMoveSpan = $('#' + movesId + currentCounter);
-            currMoveSpan.on('click', function() {
+            moveSpan(currentCounter).on('click', function() {
                 makeMove(that.currentMove, currentCounter, fen);
             });
             if (move.commentAfter && move.commentAfter == 'diagram') {
@@ -560,6 +566,8 @@ var pgnView = function(boardId, configuration) {
     base.generateHTML();
     var b = base.generateBoard();
     base.generateMoves(b);
+    base.hideHTML("Button", "edit");
+    base.hideHTML("Button", "comment");
     return {
         chess: base.chess,
         getPgn: base.getPgn,
@@ -587,6 +595,8 @@ var pgnBoard = function(boardId, configuration) {
     var base = pgnBase(boardId, configuration);
     base.generateHTML();
     base.hideHTML("Button");
+    base.hideHTML("Button", "edit");
+    base.hideHTML("Button", "comment");
     var b = base.generateBoard();
     return {
         chess: base.chess,
@@ -633,6 +643,8 @@ var pgnPrint = function(boardId, configuration) {
     base.generateHTML();
     base.hideHTML("Button");
     base.hideHTML("Inner");
+    base.hideHTML("Button", "edit");
+    base.hideHTML("Button", "comment");
     var b = base.generateBoard();
     base.generateMoves(b);
 };
