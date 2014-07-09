@@ -57,30 +57,29 @@ var pgnReader = function (spec) {
      * @returns {string} the remaining moves
      */
     var readHeaders = function () {
+        /**
+         * Split the headers (marked by []), and collect them in the return value.
+         * @param string the pgn string that contains (at the beginning) the headers of the game
+         * @returns the headers read
+         */
+        var splitHeaders = function (string) {
+            var headers = {};
+            var list = string.match(/\[([^\]]+)]/g);
+            if (list === null) { return headers; }
+            for (var i=0; i < list.length; i++) {
+                var ret = list[i].match(/\[(\w+)\s+\"([^\"]+)\"/);
+                if (ret) {
+                    var key = ret[1];
+                    if (that.PGN_KEYS[key]) {
+                        headers[key] = ret[2];
+                    }
+                }
+            }
+            return headers;
+        };
         that.headers = splitHeaders(spec.pgn);
         var index = spec.pgn.lastIndexOf("]");
         return spec.pgn.substring(index + 1);
-    };
-
-    /**
-     * Split the headers (marked by []), and collect them in the return value.
-     * @param string the pgn string that contains (at the beginning) the headers of the game
-     * @returns the headers read
-     */
-    var splitHeaders = function (string) {
-        var headers = {};
-        var list = string.match(/\[([^\]]+)]/g);
-        if (list === null) { return headers; }
-        for (var i=0; i < list.length; i++) {
-            var ret = list[i].match(/\[(\w+)\s+\"([^\"]+)\"/);
-            if (ret) {
-                var key = ret[1];
-                if (that.PGN_KEYS[key]) {
-                    headers[key] = ret[2];
-                }
-            }
-        }
-        return headers;
     };
 
     /**
@@ -188,3 +187,31 @@ var pgnReader = function (spec) {
         eachMove: eachMove
     }
 };
+
+/*
+ What could be a good API for using the PGN object after having read the moves?
+ The following are the things that happen when someone is playing on the board (changing
+ the PGN implicitly):
+ * Adding a move at the end, rewiring that move with others
+   * Adding it as a first variation
+   * Adding it as another variation
+   * Adding it at the end of the main line or the end of a variation
+ * Removing a move (with all moves following, no other option, removing all references as well (prev move))
+ * Changing the NAGs of a move
+ * Adding or removing comments to a move (before or after the move)
+
+ APIs could be:
+ * addMove(move, moveBefore):
+        depending on the kind of moveBefore, it will be added as
+         next move main line,
+         first move first variation
+         first move next variation
+         last move current variation
+ * deleteMove(move):
+        ensures that nothing is left, all references are deleted, the moves array is set to null there
+ * changeNag(nag,move):
+        change the nag of the given move
+ * changeCommentBefore(comment, move)
+ * changeCommentAfter(comment, move)
+ * getMove(index): exists,
+ */

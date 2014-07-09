@@ -15,14 +15,43 @@ div.theme.whole
 
 Here only one move
 
-span#boardIDMove
+span#boardMoves36
   span.moveNumber
-    = . SAPCE
-  span.comment
-    = commentText
-  a#id
+    = 19. SPACE
+  span.comment+before
+    = SPACE commentText SPACE
+  a
     = san (+ nag)
-  = SPACE
-  span.comment
-    = commentText
+  span.comment+after
+    = SPACE commentText SPACE
   div.diagram
+div.variation
+  span#boardMoves37.move+var+var1+white
+    span.moveNumber
+    ...
+  span#boardMoves38.move+var+var1
+    ...
+
+Possible (better) format for one move (with some variations)
+
+span#boardMoves1
+  span.moveNumber
+  span.comment+before
+  a (with move + nag)
+  span.comment+after
+  div.diagram
+  div.variation
+    span#boardMoves2
+      span.moveNumber
+      span.comment+before
+      a (with move + nag)
+      span.comment+after
+      div.diagram
+      div.variation
+
+Where:
+* span.moveNumber may be empty (or is all the time for black, only when starting as variation)
+* span.comment+before and span.comment+after may be empty
+* a has to be filled
+* div.diagram is only set when needed
+* div.variation is added on demand
