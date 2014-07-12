@@ -233,18 +233,30 @@ div.green > button {
     width: 388px;
 }
 
-.chesscom .moves {
+.movesOuterScroller {
+    position: relative;
+    float: right;
+    width: 388px;
+}
+
+.chesscom .movesScroller {
     padding: 3px 3px;
     font-size: 13px;
     font-family: "Trebuchet MS", Arial, sans-serif;
     font-weight: bold;
-    position: relative;
-    float: right;
-    width: 388px;
     border-right: 2px solid #f3f3f3;
     background: #ffffff;
     vertical-align: baseline;
     text-align: left;
+    overflow: auto;
+}
+
+.movesScroller {
+}
+
+.movesScroller .moves {
+    position: relative;
+    overflow: auto;
 }
 
 .chesscom .endBoard {

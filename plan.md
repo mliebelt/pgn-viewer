@@ -22,11 +22,14 @@ there is of course no guarantee that anything will be implemented soon.
 #### Allow sizing of board by configuration (working)
 
 * Add parameters for
-  * size: size of the whole (board and moves)
-  * boardSize: width == height of the board
-  * moveSize: width of the move div
+  * size: size of the whole (board and moves) (/)
+  * boardSize: width == height of the board (/)
+  * moveWidth: width of the move div (/)
+  * moveHeight: width of the move div (/)
 * Change the divs by JavaScript
 * The combination of the sizes may be difficult, and not all are understood. There should be rules that are easy to understand, so that the configuration is not trial and error.  
+* Ensure that reasonable defaults are used when not all parameters are given.
+* Allow setting of parameters by styles (e.g. chesscom should set width and height of board and moves).
 
 #### Allow styling of board (and others) by configuration (working)
 
@@ -239,6 +242,11 @@ At least move number, turn, en-passent, rochade, ... should be possible.
 * Decide on the right UI for the examples. With minimal Javascript, and if possible only one file.
   The example from chessboardjs seems appropriate, perhaps it is easy to create
   something similar (or just copy it) with my own examples.
+
+##### Collect nice games (working)
+
+* Collect nice games and insert them into the examples
+* Fix errors in the grammar while working on the games
 
 ## Done and mostly finished
 

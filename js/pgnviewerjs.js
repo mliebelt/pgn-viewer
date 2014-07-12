@@ -65,6 +65,27 @@ var pgnBase = function (boardId, configuration) {
     };
 
     /**
+     * Scroll if element is not visible
+     * @param element the element to show by scrolling
+     * @returns {boolean}
+     */
+    function scrollToView(element){
+        var eleRect = element[0].getBoundingClientRect();
+        var scrollerRect = $("#" + element[0].id).parent().parent()[0].getBoundingClientRect();
+        var movesRect = $("#" + element[0].id).parent()[0].getBoundingClientRect();
+        var offsetTop = eleRect.top - movesRect.top;
+        var offsetBottom = eleRect.bottom - movesRect.top;
+        var visible_area_start = $("#" + element[0].id).parent().parent().scrollTop();
+        var visible_area_end = visible_area_start + $("#" + element[0].id).parent().parent().innerHeight();
+        if(offsetTop < visible_area_start || offsetBottom > visible_area_end){
+            $("#" + element[0].id).parent().parent().animate(
+                {scrollTop: visible_area_start + (eleRect.top - (scrollerRect.top + visible_area_end - visible_area_start)) + 30}, configuration.timerTime - 200);
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * The function removes the background of the marked fields for moves.
      */
     var removePossibleSquares = function() {
@@ -210,9 +231,22 @@ var pgnBase = function (boardId, configuration) {
         generateEditButtons(editButtonsBoardDiv);
         var commentBoardDiv = createEle("div", "comment" + buttonsId, "comment", theme, outerInnerBoardDiv);
         generateCommentDiv(commentBoardDiv);
-        var movesDiv = createEle("div", movesId, "moves", null, divBoard);
-        if (configuration.movesSize) {
-            movesDiv.style.width = configuration.movesSize;
+        // Ensure that moves are scrollable (by styling CSS) when necessary
+        var movesDiv;
+        if (configuration.scrollable) {
+            movesDiv = createEle("div", null, "movesOuterScroller", null, divBoard);
+            var movesInnerDiv = createEle("div", null, "movesScroller", null, movesDiv);
+            createEle("div", movesId, "moves", null, movesInnerDiv);
+        } else {
+            movesDiv = createEle("div", movesId, "moves", null, divBoard);
+        }
+
+        if (configuration.movesWidth) {
+            movesDiv.style.width = configuration.movesWidth;
+        }
+        if (configuration.movesHeight) {
+            movesDiv.style.height = configuration.movesHeight;
+            movesDiv.firstChild.style.height = configuration.movesHeight;
         }
         var endDiv = createEle("div", null, "endBoard", null, divBoard);
     };
@@ -417,6 +451,7 @@ var pgnBase = function (boardId, configuration) {
             }
             moveASpan(next).addClass('yellow');
             that.currentMove = next;
+            scrollToView(moveSpan(next));
             $("#" + boardId + " textarea.comment").val(myMoves[next].commentAfter);
         };
 

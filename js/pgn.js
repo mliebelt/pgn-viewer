@@ -182,7 +182,7 @@ var pgnReader = function (spec) {
         movesMainLine: that.movesMainLine,
         getMove: getMove,
         getHeaders: function() { return that.headers; },
-        splitHeaders: splitHeaders,
+//        splitHeaders: splitHeaders,
         getParser: function() { return parser; },
         eachMove: eachMove
     }

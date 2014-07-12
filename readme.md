@@ -172,3 +172,8 @@ things users should know to use the viewer in the best way possible.
   * board: Access to the inner board, that uses a chess object
   * moves: inner structure of each move, the linking of them, and how to
     find the next and previous moves.
+    
+## Public site
+    
+See the documentation on the public site (PgnViewerJS)[http://mliebelt.bplaced.net/pgnvjs/]
+for the current state, some working examples, and a little bit background.
