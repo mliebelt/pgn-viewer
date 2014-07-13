@@ -209,6 +209,16 @@ var pgnBase = function (boardId, configuration) {
                 addButton(entry, buttonDiv)});
         };
         var generateCommentDiv = function(commentDiv) {
+            var radio = createEle("div", null, "commentRadio", theme, commentDiv);
+            var mc = createEle("input", null, "moveComment", theme, radio);
+            mc.type = "radio"; mc.value = "move"; mc.name = "radio";
+            createEle("label", null, "labelMoveComment", theme, radio).appendChild(document.createTextNode("Move"));
+            var mb = createEle("input", null, "beforeComment", theme, radio);
+            mb.type = "radio"; mb.value = "before"; mb.name = "radio";
+            createEle("label", null, "labelBeforeComment", theme, radio).appendChild(document.createTextNode("Before"));
+            var ma = createEle("input", null, "afterComment", theme, radio);
+            ma.type = "radio"; ma.value = "after"; ma.name = "radio";
+            createEle("label", null, "labelAfterComment", theme, radio).appendChild(document.createTextNode("After"));
             var text = createEle("textarea", null, "comment", theme, commentDiv);
         }
         var divBoard = document.getElementById(boardId);
@@ -414,8 +424,21 @@ var pgnBase = function (boardId, configuration) {
                 makeMove(that.currentMove, that.mypgn.getMoves().length - 1, fen);
             });
             $('#comment' + buttonsId + " textarea.comment").change(function() {
-                moveSpan(that.currentMove).find(".comment").text(commentText());
-            })
+                var text = commentText();
+                moveSpan(that.currentMove).find(".comment").text(text);
+                that.mypgn.getMove(that.currentMove).commentAfter = text;
+            });
+            var rad = ["moveComment", "beforeComment", "afterComment"];
+            var prevComment = null;
+            for (var i = 0;i < rad.length; i++) {
+                $('#comment' + buttonsId + " ." + rad[i]).click(function() {
+                    (prevComment)? console.log(prevComment.value):null;
+                    if(this !== prevComment) {
+                        prevComment = this;
+                    }
+                    console.log(this.value)
+                });
+            }
             function togglePlay() {
                 timer.toggle();
                 var playButton = $('#' + buttonsId + 'play')[0];
