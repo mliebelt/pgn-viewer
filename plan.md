@@ -92,6 +92,7 @@ there is of course no guarantee that anything will be implemented soon.
 #### Allow additional boards (working)
   
 * Use a special comment for that (like {diagram}) (/)
+* which is not so nice because it binds the comment, that may be used for other things. Provide therefore a different notation for diagrams, e.g. by using a NAG that is not reserverd for that. What about $512??
 * The generation should be the same as the main board (with the same configuration)
   but reduced size of course.
 * Play with different layout possibilities:
@@ -184,7 +185,7 @@ the current move number, ...
 
 At least move number, turn, en-passent, rochade, ... should be possible.
 
-#### Generate PGN including comments and variations (working)
+#### Generate from PGN including comments and variations (working)
 
 * Decide the structure of all moves (div, span, IDs, classes, hierarchy).
 * Use the linked moves in generation.
@@ -195,6 +196,12 @@ At least move number, turn, en-passent, rochade, ... should be possible.
   * variations inlined
   * variations separated by paragraphs
   * different styling for them
+
+#### Generate PGN from current situation
+
+* Allows in an easy manner to see the current PGN as it would be exported.
+* Or allow export of PGN (for example to the clipboard)
+* Try to be here very strict, and (of course) ensure that everything that is exported can be read again.
 
 #### Allow multiple comments
 

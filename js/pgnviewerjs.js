@@ -365,9 +365,11 @@ var pgnBase = function (boardId, configuration) {
          * @param comment the comment to render as span
          * @returns {HTMLElement} the new created span with the comment as text
          */
-        var generateCommentSpan = function(comment) {
-            var span = createEle('span', null, "comment");
-            span.appendChild(document.createTextNode(" " + comment + " "));
+        var generateCommentSpan = function(comment, clazz) {
+            var span = createEle('span', null, "comment " + clazz);
+            if (comment && (typeof comment !== undefined)) {
+                span.appendChild(document.createTextNode(" " + comment + " "));
+            }
             return span;
         };
 
@@ -425,18 +427,21 @@ var pgnBase = function (boardId, configuration) {
             });
             $('#comment' + buttonsId + " textarea.comment").change(function() {
                 var text = commentText();
-                moveSpan(that.currentMove).find(".comment").text(text);
-                that.mypgn.getMove(that.currentMove).commentAfter = text;
+                var checked = $("#comment" + buttonsId + " :checked").val() || "after";
+                moveSpan(that.currentMove).find("." + checked + "Comment").text(text);
+                if (prevComment === "after") {
+                    that.mypgn.getMove(that.currentMove).commentAfter = text;
+                } else if (prevComment === "before") {
+                    that.mypgn.getMove(that.currentMove).commentBefore = text;
+                }
             });
             var rad = ["moveComment", "beforeComment", "afterComment"];
             var prevComment = null;
             for (var i = 0;i < rad.length; i++) {
                 $('#comment' + buttonsId + " ." + rad[i]).click(function() {
-                    (prevComment)? console.log(prevComment.value):null;
-                    if(this !== prevComment) {
-                        prevComment = this;
+                    if(this.value !== prevComment) {
+                        prevComment = this.value;
                     }
-                    console.log(this.value)
                 });
             }
             function togglePlay() {
@@ -465,7 +470,22 @@ var pgnBase = function (boardId, configuration) {
             return $('#' + movesId + i + " a");
         }
 
-        // Makes the move on the board from the current position to the next position.
+        /**
+         * Fills the comment field depending on which and if a comment is filled for that move.
+         */
+        function fillComment(moveNumber) {
+            var myMove = myMoves[moveNumber];
+            if (myMove.commentAfter) {
+                $("#" + boardId + " input.afterComment").prop('checked', true);
+                $("#" + boardId + " textarea.comment").val(myMove.commentAfter);
+            } else if (myMove.commentBefore) {
+                $("#" + boardId + " input.beforeComment").prop('checked', true);
+                $("#" + boardId + " textarea.comment").val(myMove.commentBefore);
+            } else {
+                $("#" + boardId + " textarea.comment").val("");
+            }
+        }
+
         var makeMove = function(curr, next, fen) {
             board.position(fen);
             game.load(fen);
@@ -475,7 +495,7 @@ var pgnBase = function (boardId, configuration) {
             moveASpan(next).addClass('yellow');
             that.currentMove = next;
             scrollToView(moveSpan(next));
-            $("#" + boardId + " textarea.comment").val(myMoves[next].commentAfter);
+            fillComment(next);
         };
 
         // Returns true, if the move is the start of a (new) variation
@@ -514,13 +534,6 @@ var pgnBase = function (boardId, configuration) {
                     varStack[varStack.length - 1].appendChild(span);
                 }
             };
-            // In case of variant, the previous move is different to the current fen
-            // Currently not used  anywhere else, so could be removed later
-            var isNextOfPrev = false;
-            if (prevCounter != move.prev) {
-                game.load(myMoves[move.prev].fen);
-                isNextOfPrev = true;
-            }
             // TODO Error handling if move could not be done
             var pgn_move = game.move(move.notation.notation);
             var fen = game.fen();
@@ -543,12 +556,13 @@ var pgnBase = function (boardId, configuration) {
                 varStack.push(varDiv);
                 //span.appendChild(document.createTextNode(" ( "));
             }
+            span.appendChild(generateCommentSpan(move.commentMove, "moveComment"));
             if (pgn_move.color == 'w') {
                 var mn = move.moveNumber;
                 var num = createEle('span', null, "moveNumber", null, span);
                 num.appendChild(document.createTextNode("" + mn + ". "));
             }
-            if (move.commentBefore) { span.appendChild(generateCommentSpan(move.commentBefore))}
+            span.appendChild(generateCommentSpan(move.commentBefore, "beforeComment"));
             var link = createEle('a', null, null, null, span);
             var san = move_from_notation(move.notation);
             if (move.nag) {
@@ -557,8 +571,7 @@ var pgnBase = function (boardId, configuration) {
             var text = document.createTextNode(san);
             link.appendChild(text);
             span.appendChild(document.createTextNode(" "));
-            if (move.commentAfter && move.commentAfter != 'diagram') {
-                span.appendChild(generateCommentSpan(move.commentAfter))}
+            span.appendChild(generateCommentSpan(move.commentAfter, "afterComment"));
             append_to_current_div(span, movesDiv, varStack);
             //movesDiv.appendChild(span);
             if (endVariation(move)) {
