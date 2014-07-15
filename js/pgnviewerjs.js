@@ -429,19 +429,28 @@ var pgnBase = function (boardId, configuration) {
                 var text = commentText();
                 var checked = $("#comment" + buttonsId + " :checked").val() || "after";
                 moveSpan(that.currentMove).find("." + checked + "Comment").text(text);
-                if (prevComment === "after") {
+                if (checked === "after") {
                     that.mypgn.getMove(that.currentMove).commentAfter = text;
-                } else if (prevComment === "before") {
+                } else if (checked === "before") {
                     that.mypgn.getMove(that.currentMove).commentBefore = text;
+                } else if (checked === "move") {
+                    that.mypgn.getMove(that.currentMove).commentMove = text;
                 }
             });
             var rad = ["moveComment", "beforeComment", "afterComment"];
             var prevComment = null;
             for (var i = 0;i < rad.length; i++) {
                 $('#comment' + buttonsId + " ." + rad[i]).click(function() {
-                    if(this.value !== prevComment) {
-                        prevComment = this.value;
+                    var checked = this.value;
+                    var text;
+                    if (checked === "after") {
+                        text = that.mypgn.getMove(that.currentMove).commentAfter;
+                    } else if (checked === "before") {
+                        text = that.mypgn.getMove(that.currentMove).commentBefore;
+                    } else if (checked === "move") {
+                        text = that.mypgn.getMove(that.currentMove).commentMove;
                     }
+                    $("#" + boardId + " textarea.comment").val(text);
                 });
             }
             function togglePlay() {
@@ -481,8 +490,11 @@ var pgnBase = function (boardId, configuration) {
             } else if (myMove.commentBefore) {
                 $("#" + boardId + " input.beforeComment").prop('checked', true);
                 $("#" + boardId + " textarea.comment").val(myMove.commentBefore);
+            } else if (myMove.commentMove) {
+                $("#" + boardId + " input.moveComment").prop('checked', true);
+                $("#" + boardId + " textarea.comment").val(myMove.commentMove);
             } else {
-                $("#" + boardId + " textarea.comment").val("");
+                    $("#" + boardId + " textarea.comment").val("");
             }
         }
 
