@@ -16,20 +16,20 @@ pgnStartWhite
   = whiteSpace? pw:pgnWhite { return pw; }
 
 pgnStartBlack
-  = whiteSpace? me:moveEllipse? all:pgnBlack
-    { last = all[0]; last.moveNumber = me; return all; }
+  = whiteSpace? cm:comment? whiteSpace? me:moveEllipse? all:pgnBlack
+    { last = all[0]; last.moveNumber = me; last.commentMove = cm; return all; }
 
 pgnWhite
-  = whiteSpace? mn:moveNumber whiteSpace? cb:comment? whiteSpace?
+  = whiteSpace? cm:comment? whiteSpace? mn:moveNumber whiteSpace? cb:comment? whiteSpace?
     hm:halfMove  nag:nags?  whiteSpace? ca:comment? whiteSpace? vari:variationWhite? all:pgnBlack?
     { arr = (all ? all : []); move = {}; move.turn = 'w'; move.moveNumber = mn;
-      move.notation = hm; move.commentBefore = cb; move.commentAfter = ca; 
+      move.notation = hm; move.commentBefore = cb; move.commentAfter = ca; move.commentMove = cm;
       move.variations = (vari ? vari : []); move.nag = (nag ? nag : null); arr.unshift(move); return arr; }
   / endGame
 
 pgnBlack
   = whiteSpace? cb:comment? whiteSpace?
-    hm:halfMove  nag:nag? whiteSpace? ca:comment? whiteSpace? vari:variationBlack? all:pgnWhite?
+    hm:halfMove  nag:nags? whiteSpace? ca:comment? whiteSpace? vari:variationBlack? all:pgnWhite?
     { arr = (all ? all : []); move = {}; move.turn = 'b'; move.notation = hm;
       move.commentBefore = cb; move.commentAfter = ca;
       move.variations = (vari ? vari : []); arr.unshift(move); move.nag = (nag ? nag : null); return arr; }
@@ -61,7 +61,7 @@ pl = '('
 pr = ')'
 
 moveNumber
-    = num:integer"."* { return num; }
+    = num:integer"."? { return num; }
 
 integer "integer"
     = digits:[0-9]+ { return makeInteger(digits); }

@@ -113,23 +113,38 @@ describe("When reading PGN with headers", function() {
         my_pgn = pgnReader({pgn: pgn_string.join(" ")});
     });
 
-    it("should know the input pgn", function() {
+    it("should know the input pgn (the moves)", function() {
         expect(my_pgn.movesString()).toEqual("1. e2 e4 2. Nf3 Nc6");
-    })
-
-    it("should split headers into parts", function() {
-        var h = my_pgn.splitHeaders('[a "Hallo"] [b "Hallo"]');
-        expect(h["a"]).toBeUndefined();  // Because that is not an allowed key
-    })
+        expect(my_pgn.getMoves().length).toEqual(4);
+    });
 
     it("should have these headers read", function() {
         expect(Object.keys(my_pgn.getHeaders()).length).toEqual(7); // EventDate is not valid
         expect(my_pgn.getHeaders().Site).toEqual("Berlin GER");
         expect(my_pgn.getHeaders().Date).toEqual("1852.??.??");
-        expect(my_pgn.movesString()).toEqual("1. e2 e4 2. Nf3 Nc6");
-        expect(my_pgn.getMoves().length).toEqual(4);
     })
-})
+});
+
+describe("When reading pgn with wrong headers", function() {
+    beforeEach(function() {
+        var pgn_string = ['[Event "Casual Game"]',
+            '[Site "Berlin GER"]',
+            '[Date "1852.??.??"]',
+            '[EventDate "?"]',
+            '[Round "?"]',
+            '[Result "1-0"]',
+            '[White "Adolf Anderssen"]',
+            '[Black "Jean Dufresne"]',
+            '[a "Hallo"]',
+            '[b "Hallo"]',
+            '1. e2 e4 2. Nf3 Nc6'];
+        my_pgn = pgnReader({pgn: pgn_string.join(" ")});
+    });
+    it("should ignore wrong headers", function() {
+        var h = my_pgn.getHeaders();
+        expect(h["a"]).toBeUndefined();  // Because that is not an allowed key
+    });
+});
 
 describe("When reading PGN with variations", function() {
     var my_pgn;
@@ -172,7 +187,29 @@ describe("When reading PGN with variations", function() {
         expect(my_pgn.getMove(1).variations[0][2].variations.length).toEqual(1);
         expect(my_pgn.getMove(1).variations[0][2].variations[0][0].notation.notation).toEqual("Nf6");
     })
+});
+
+describe("When reading variations with comments", function() {
+    var my_pgn;
+
+    it("should understand move, before and after comment in principle", function() {
+        my_pgn = pgnReader({pgn: "{START} 1. {BEFORE} d4 {AFTER} e5"});
+        expect(my_pgn.getMove(0).commentMove).toEqual("START");
+        expect(my_pgn.getMove(0).commentBefore).toEqual("BEFORE");
+        expect(my_pgn.getMove(0).commentAfter).toEqual("AFTER");
+        expect(my_pgn.getMove(0).notation.notation).toEqual("d4");
+    });
+
+    it("should understand comments for variation with white", function() {
+        my_pgn = pgnReader({pgn: "1. d4 ({START} 1. {BEFORE} d4 {AFTER} e5) 1... d5"});
+        var var_first = my_pgn.getMove(0).variations[0][0];
+        expect(var_first.commentMove).toEqual("START");
+        expect(var_first.commentBefore).toEqual("BEFORE");
+        expect(var_first.commentAfter).toEqual("AFTER");
+        expect(var_first.notation.notation).toEqual("d4");
+    })
 })
+;
 
 describe("When iterating over moves", function() {
     var moves;
@@ -266,13 +303,13 @@ describe("When iterating over moves", function() {
         expect(moves[4].next).toBeUndefined();
         expect(moves[5].prev).toEqual(1);
         expect(moves[5].next).toBeUndefined();
-    })
+    });
 
     it ("should read complete games", function() {
         flatMoves("1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. c4 Nb6 5. Nf3 Nc6 6. exd6 cxd6 7. Nc3 g6 8. Nd5 {ein grober Fehler, der sofort einen Bauern verliert} Nxd5 9. cxd5 Qa5+ 10. Bd2 Qxd5 11. Qa4 Bg7 12. Bc4 {Weiß stellt sich immer schlechter} Qe4+ 13. Be3 d5 14. Bb5 {sieht nach Bauernrückgewinn aus} O-O 15. Bxc6 bxc6 16. Qxc6 {der Bauer ist vergiftet} Bg4 17. O-O (17. Nh4 Qd3 18. Nf3 (18. f3 Qxe3+) 18... Rac8 19. Qa4 Bxf3 20. gxf3 Rc2 {kostet die Dame}) 17... Bxf3 18. gxf3 Qxf3 {ist noch am Besten für Weiß} 19. Qd7 e6 20. Rfc1 Bxd4 21. Bxd4 Qg4+ { kostet den zweiten Bauern} 22. Kf1 Qxd4 23. b3 Rfd8 24. Qb7 e5 25. Rd1 Qb6 26.  Qe7 Qd6 {jeder Abtausch hilft} 27. Qxd6 Rxd6 28. Rd2 Rc8 29. Re1 f6 30. Red1 d4 31. f4 Kf7 32. fxe5 fxe5 33. Ke2 Ke6 34. a4 Rc3 35. Rd3 Rxd3 36. Kxd3 Rc6 37.  Rb1 Rc3+ 38. Kd2 Rh3 39. b4 Kd5 40. a5 Rxh2+ 41. Kc1 Kc4 {und Weiß hat nichts mehr} 42. Rb2 Rxb2 43. Kxb2 Kxb4 {höchste Zeit, aufzugeben} 44. Kc2 e4 45. Kd2 Kb3 46. a6 Kb2 47. Ke2 Kc2 48. Ke1 d3 49. Kf2 d2 50. Kg3 d1=Q 51. Kf4 Qd5 52.  Kg3 Qe5+ 53. Kf2 Kd2 54. Kg2 Ke2 55. Kh3 Kf2 56. Kg4 Qg3#");
         expect(moves[0].prev).toBeUndefined();
     })
-})
+});
 
 describe("Default a new read algorithm for PGN", function() {
     var my_pgn;
@@ -286,7 +323,7 @@ describe("Default a new read algorithm for PGN", function() {
         expect(moves[1].next).toEqual(2);
         expect(moves[2].prev).toEqual(1);
         expect(moves[2].next).toBeUndefined();
-    })
+    });
 
     it ("should read one variation for black", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 (1... d5 2. Nf3)"});
@@ -300,7 +337,7 @@ describe("Default a new read algorithm for PGN", function() {
         expect(moves[2].next).toEqual(3);
         expect(moves[3].prev).toEqual(2);
         expect(moves[3].next).toBeUndefined();
-    })
+    });
 
     it ("should read one variation for white", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6)"});
@@ -316,7 +353,7 @@ describe("Default a new read algorithm for PGN", function() {
         expect(moves[3].next).toEqual(4);
         expect(moves[4].prev).toEqual(3);
         expect(moves[4].next).toBeUndefined();
-    })
+    });
 
     it ("should read one variation for white with move after", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6) 2... xf4 3. Nf3"});
@@ -337,19 +374,19 @@ describe("Default a new read algorithm for PGN", function() {
         expect(moves[6].prev).toEqual(5);
         expect(moves[6].next).toBeUndefined();
     })
-})
+});
 
 describe("Additional notations like", function() {
     it("should read all notation symbols in the standard notation", function() {
         my_pgn = pgnReader({pgn: "1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?"});
         var moves = my_pgn.getMoves();
         expect(moves.length).toEqual(6);
-        expect(moves[0].nag).toEqual("$1");
-        expect(moves[1].nag).toEqual("$2");
-        expect(moves[2].nag).toEqual("$3");
-        expect(moves[3].nag).toEqual("$4");
-        expect(moves[4].nag).toEqual("$6");
-        expect(moves[5].nag).toEqual("$5");
+        expect(moves[0].nag).toEqual(["$1"]);
+        expect(moves[1].nag).toEqual(["$2"]);
+        expect(moves[2].nag).toEqual(["$3"]);
+        expect(moves[3].nag).toEqual(["$4"]);
+        expect(moves[4].nag).toEqual(["$6"]);
+        expect(moves[5].nag).toEqual(["$5"]);
     })
-})
+});
 

@@ -592,7 +592,7 @@ var pgnParser = (function () {
                     if (s3 !== peg$FAILED) {
                         s4 = peg$parsehalfMove();
                         if (s4 !== peg$FAILED) {
-                            s5 = peg$parsenag();
+                            s5 = peg$parsenags();
                             if (s5 === peg$FAILED) {
                                 s5 = peg$c1;
                             }
@@ -956,28 +956,20 @@ var pgnParser = (function () {
         }
 
         function peg$parsemoveNumber() {
-            var s0, s1, s2, s3;
+            var s0, s1, s2;
 
             s0 = peg$currPos;
             s1 = peg$parseinteger();
             if (s1 !== peg$FAILED) {
-                s2 = [];
                 if (input.charCodeAt(peg$currPos) === 46) {
-                    s3 = peg$c35;
+                    s2 = peg$c35;
                     peg$currPos++;
                 } else {
-                    s3 = peg$FAILED;
+                    s2 = peg$FAILED;
                     if (peg$silentFails === 0) { peg$fail(peg$c36); }
                 }
-                while (s3 !== peg$FAILED) {
-                    s2.push(s3);
-                    if (input.charCodeAt(peg$currPos) === 46) {
-                        s3 = peg$c35;
-                        peg$currPos++;
-                    } else {
-                        s3 = peg$FAILED;
-                        if (peg$silentFails === 0) { peg$fail(peg$c36); }
-                    }
+                if (s2 === peg$FAILED) {
+                    s2 = peg$c1;
                 }
                 if (s2 !== peg$FAILED) {
                     peg$reportedPos = s0;

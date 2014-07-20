@@ -1,10 +1,12 @@
 'use strict';
 /**
- * Defines the pgn function / object that is used for readin
+ * Defines the pgnReader function / object that is used for reading and writing
  * pgn. This should build then a structure that is easier to
  * use, but contains all the information necessary to do all
- * the things we want to do.
- * @param spec
+ * the things we want to do. So calling this function with no argument will
+ * just give you a pgnReader that is able to record moves and write them out.
+ * @param spec object with keys
+ *  'pgn': the pgn string, if missing replaced with an empty string
  * @returns {{}}
  */
 

@@ -512,7 +512,8 @@ var pgnBase = function (boardId, configuration) {
 
         // Returns true, if the move is the start of a (new) variation
         var startVariation = function(move) {
-            return  move.variationLevel > 0 && (myMoves[move.prev].next != move.index);
+            return  move.variationLevel > 0 &&
+                ( (move.prev === undefined) || (myMoves[move.prev].next != move.index));
         }
         // Returns true, if the move is the end of a variation
         var endVariation = function(move) {
@@ -546,8 +547,21 @@ var pgnBase = function (boardId, configuration) {
                     varStack[varStack.length - 1].appendChild(span);
                 }
             };
+            // In case of variant, the previous move is different to the current fen
+            var isNextOfPrev = false;
+            if (prevCounter != move.prev) {
+                if (typeof move.prev === "number") {
+                    game.load(myMoves[move.prev].fen);
+                } else {
+                    game.reset();
+                }
+                isNextOfPrev = true;
+            }
             // TODO Error handling if move could not be done
             var pgn_move = game.move(move.notation.notation);
+            if (pgn_move === null || (pgn_move === undefined)) {
+                window.alert("No pgn move found in: " + move);
+            }
             var fen = game.fen();
             move.fen = fen;
             var clAttr = "move";
