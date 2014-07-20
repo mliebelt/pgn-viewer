@@ -146,7 +146,7 @@ Annotations are provided by a button, with the entries: Clear, !, !!, ...
 
 Scid used annotation 'D' for diagram, and when that is exported to PGN, this is converted to annotation $201. In the official documentation, this is not found, but could be used anyway.
   
-###### Comments
+###### Comments (/)
   
 For comments, the following is needed:
   
@@ -155,6 +155,10 @@ For comments, the following is needed:
 * Different possiblities:
   * Comments are created all the time (before and after)
   * Then the position of the comments is known
+* Add additional example for comment that shows
+  * main line with all kind of comments
+  * variations with comments
+  * combinations of main line comments and variation comments
 
 #### Define functions for Editing (working)
   
