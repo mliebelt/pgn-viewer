@@ -378,7 +378,7 @@ describe("Default a new read algorithm for PGN", function() {
 
 describe("Additional notations like", function() {
     it("should read all notation symbols in the standard notation", function() {
-        my_pgn = pgnReader({pgn: "1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?"});
+        var my_pgn = pgnReader({pgn: "1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?"});
         var moves = my_pgn.getMoves();
         expect(moves.length).toEqual(6);
         expect(moves[0].nag).toEqual(["$1"]);
@@ -388,5 +388,13 @@ describe("Additional notations like", function() {
         expect(moves[4].nag).toEqual(["$6"]);
         expect(moves[5].nag).toEqual(["$5"]);
     })
+});
+
+describe("Writing PGN like", function() {
+    it("should write the normalized notation of the main line", function() {
+        var my_pgn = pgnReader({pgn: "1. e4 e5 2. Nf3 Nc6 3. Bb5"});
+        var res = my_pgn.write_pgn();
+        expect(res).toEqual("1. e4 d5 2. Nf3 Nc6 3. Bb5");
+    });
 });
 

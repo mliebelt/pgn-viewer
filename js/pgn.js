@@ -10,6 +10,40 @@
  * @returns {{}}
  */
 
+    // Initializes a new instance of the StringBuilder class
+// and appends the given value if supplied
+function StringBuilder(value) {
+    var that = {};
+    that.strings = new Array("");
+    // Appends the given value to the end of this instance.
+    var append = function (value) {
+        if (value) {
+            that.strings.push(value);
+        }
+    };
+
+
+// Clears the string buffer
+    var clear = function () {
+        that.strings.length = 1;
+    };
+
+// Converts this instance to a String.
+    var toString = function () {
+        return that.strings.join("");
+    };
+
+    append(value);
+
+    return {
+        append: append,
+        clear: clear,
+        toString: toString
+    }
+}
+
+
+
 var pgnReader = function (spec) {
     var that = {};
     var parser = pgnParser;
@@ -119,6 +153,26 @@ var pgnReader = function (spec) {
     };
 
     /**
+     * Writes the pgn (fully) of the current game. The algorithm goes like that:
+     * * Start with the first move (there has to be only one in the main line)
+     * * For each move (call that recursively)
+     * * print-out the move itself
+     * * then the variations (one by one)
+     * * then the next move of the main line
+     * @return the string of all moves
+     */
+    var write_pgn = function() {
+        var write_pgn2 = function(move, _sb) {
+            var write_move = function(move, sb) {
+
+            }
+            return "";
+        };
+        var sb = StringBuilder("");
+        return write_pgn2(getMove(0), sb);
+    };
+
+    /**
      * Final algorithm to read and map the moves. Seems to be tricky ...
      * @param called the function that will be called (here wireMoves in readMoves)
      */
@@ -186,7 +240,8 @@ var pgnReader = function (spec) {
         getHeaders: function() { return that.headers; },
 //        splitHeaders: splitHeaders,
         getParser: function() { return parser; },
-        eachMove: eachMove
+        eachMove: function() { return eachMove(); },
+        write_pgn: function() { return write_pgn(); }
     }
 };
 
