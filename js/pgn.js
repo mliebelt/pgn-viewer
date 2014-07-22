@@ -22,13 +22,29 @@ function StringBuilder(value) {
         }
     };
 
-
-// Clears the string buffer
+    // Clears the string buffer
     var clear = function () {
         that.strings.length = 1;
     };
 
-// Converts this instance to a String.
+    // Returns the length of the final string (without building it)
+    var length = function () {
+        return that.strings.reduce(function(previousValue, currentValue, index, array){
+            return previousValue + currentValue.length;
+        }, 0);
+    };
+
+    // Return true if the receiver is empty. Don't compute length!!
+    var isEmpty = function () {
+        for (var i = 0; i < that.strings.length; i++) {
+            if (that.strings[i].length > 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Converts this instance to a String.
     var toString = function () {
         return that.strings.join("");
     };
@@ -38,7 +54,8 @@ function StringBuilder(value) {
     return {
         append: append,
         clear: clear,
-        toString: toString
+        toString: toString,
+        length: length
     }
 }
 
@@ -162,11 +179,88 @@ var pgnReader = function (spec) {
      * @return the string of all moves
      */
     var write_pgn = function() {
-        var write_pgn2 = function(move, _sb) {
-            var write_move = function(move, sb) {
+        var left_variation = false;
 
+        // Prepend a space if necessary
+        function prepend_space(sb) {
+            if (!sb.isEmpty) {
+                sb.append(" ");
             }
-            return "";
+        }
+
+        var write_comment = function(comment, sb) {
+            if (comment === undefined || comment === null) {
+                return;
+            }
+            prepend_space(sb);
+            sb.append("{");
+            sb.append(comment);
+            sb.append("}");
+        }
+
+        var write_comment_move = function(move, sb) {
+            write_comment(move.commentMove);
+        };
+
+        var write_comment_before = function(move, sb) {
+            write_comment(move.commentBefore);
+        };
+
+        var write_comment_after = function(move, sb) {
+            write_comment(move.commentAfter);
+        };
+
+        var write_move_number = function (move, sb) {
+            prepend_space(sb);
+            if (move.turn === "w") {
+                sb.append("" + move.moveNumber);
+                sb.append(". ");
+            } else if (left_variation) {
+                sb.append("" + move.moveNumber);
+                sb.append("... ");
+            }
+        };
+
+        var write_notation = function (move, sb) {
+            sb.append(move.notation.notation);
+        };
+
+        var write_NAGs = function(move, sb) {
+
+        };
+
+        var write_variations = function (move, sb) {
+
+        };
+
+        var get_next_move = function (move) {
+            return null;
+        };
+
+        var write_pgn2 = function(move, _sb) {
+            /**
+             * Write the normalised notation: comment move, move number (if necessary),
+             * comment before, move, NAGs, comment after, variations.
+             * Then go into recursion for the next move.
+             * @param move the move in the exploded format
+             * @param sb the string builder to use
+             */
+            var write_move = function(move, sb) {
+                if (move === null) {
+                    return;
+                }
+                write_comment_move(move, sb);
+                write_move_number(move, sb);
+                write_comment_before(move, sb);
+                write_notation(move, sb);
+                write_NAGs(move, sb);
+                write_comment_after(move, sb);
+                write_variations(move, sb);
+                var next = get_next_move(move);
+                write_move(next, sb);
+            };
+            write_move(move, sb);
+            return sb.toString();
         };
         var sb = StringBuilder("");
         return write_pgn2(getMove(0), sb);
