@@ -391,18 +391,28 @@ describe("Additional notations like", function() {
 });
 
 describe("Writing PGN like", function() {
-    xit("should write an empty PGN string", function() {
+    it("should write an empty PGN string", function() {
+        var my_pgn = pgnReader({pgn: ""});
+        var res = my_pgn.write_pgn();
+        expect(res).toEqual("");
+    });
 
+    it("should write the normalized notation of the main line with only one move", function() {
+        var my_pgn = pgnReader({pgn: "1. e4"});
+        var res = my_pgn.write_pgn();
+        expect(res).toEqual("1. e4");
     });
 
     it("should write the normalized notation of the main line", function() {
         var my_pgn = pgnReader({pgn: "1. e4 e5 2. Nf3 Nc6 3. Bb5"});
         var res = my_pgn.write_pgn();
-        expect(res).toEqual("1. e4 d5 2. Nf3 Nc6 3. Bb5");
+        expect(res).toEqual("1. e4 e5 2. Nf3 Nc6 3. Bb5");
     });
 
-    xit("should write the notation for a main line including comments", function () {
-
+    it("should write the notation for a main line including comments", function () {
+        var my_pgn = pgnReader({pgn: "{FIRST} 1. {SECOND} e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5"});
+        var res = my_pgn.write_pgn();
+        expect(res).toEqual("{FIRST} 1. {SECOND} e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5");
     });
 
     xit("should write all NAGs in their known parts", function () {

@@ -44,6 +44,15 @@ function StringBuilder(value) {
         return true;
     }
 
+    // Return the last character (as string) of the receiver.
+    // Return null if none is found
+    var lastChar = function () {
+        if (that.strings.length === 0) {
+            return null;
+        }
+        return that.strings[that.strings.length - 1].slice(-1);
+    }
+
     // Converts this instance to a String.
     var toString = function () {
         return that.strings.join("");
@@ -55,7 +64,9 @@ function StringBuilder(value) {
         append: append,
         clear: clear,
         toString: toString,
-        length: length
+        length: length,
+        isEmpty: isEmpty,
+        lastChar: lastChar
     }
 }
 
@@ -183,7 +194,7 @@ var pgnReader = function (spec) {
 
         // Prepend a space if necessary
         function prepend_space(sb) {
-            if (!sb.isEmpty) {
+            if ( (!sb.isEmpty()) && (sb.lastChar() != " ")) {
                 sb.append(" ");
             }
         }
@@ -196,32 +207,33 @@ var pgnReader = function (spec) {
             sb.append("{");
             sb.append(comment);
             sb.append("}");
-        }
+        };
 
         var write_comment_move = function(move, sb) {
-            write_comment(move.commentMove);
+            write_comment(move.commentMove, sb);
         };
 
         var write_comment_before = function(move, sb) {
-            write_comment(move.commentBefore);
+            write_comment(move.commentBefore, sb);
         };
 
         var write_comment_after = function(move, sb) {
-            write_comment(move.commentAfter);
+            write_comment(move.commentAfter, sb);
         };
 
         var write_move_number = function (move, sb) {
             prepend_space(sb);
             if (move.turn === "w") {
                 sb.append("" + move.moveNumber);
-                sb.append(". ");
+                sb.append(".");
             } else if (left_variation) {
                 sb.append("" + move.moveNumber);
-                sb.append("... ");
+                sb.append("...");
             }
         };
 
         var write_notation = function (move, sb) {
+            prepend_space(sb);
             sb.append(move.notation.notation);
         };
 
@@ -234,7 +246,7 @@ var pgnReader = function (spec) {
         };
 
         var get_next_move = function (move) {
-            return null;
+            return move.next ? getMove(move.next) : null;
         };
 
         var write_pgn2 = function(move, _sb) {
@@ -246,7 +258,7 @@ var pgnReader = function (spec) {
              * @param sb the string builder to use
              */
             var write_move = function(move, sb) {
-                if (move === null) {
+                if (move === null || move === undefined) {
                     return;
                 }
                 write_comment_move(move, sb);
@@ -335,7 +347,7 @@ var pgnReader = function (spec) {
 //        splitHeaders: splitHeaders,
         getParser: function() { return parser; },
         eachMove: function() { return eachMove(); },
-        write_pgn: function() { return write_pgn(); }
+        write_pgn: write_pgn
     }
 };
 
