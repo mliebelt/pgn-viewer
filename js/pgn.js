@@ -106,6 +106,47 @@ var pgnReader = function (spec) {
      */
     that.PGN_NAGS = [];
 
+    var NAGs = [
+        null,   // Just to fill, index 0
+        "!",    // 1
+        "?",    // 2
+        "!!",   // 3
+        "??",   // 4
+        "!?",   // 5
+        "?!",   // 6
+        "□",    // 7
+        null,   // 8
+        null,   // 9
+        "=",    // 10
+        null,   // 11
+        null,   // 12
+        "∞",    // 13
+        "⩲",    // 14
+        "⩱",    // 15
+        "±",    // 16
+        "∓",    // 17
+        "+−",   // 18
+        "-+"    // 19
+    ];
+
+    /**
+     * Returns the NAG notation from the array of symbols
+     * @param array the NAG symbols like $1, $3, ...
+     * @returns {string} the result string like !, !!
+     */
+    var nag_to_symbol = function(array) {
+        var ret_string = "";
+        if (array === null || array === undefined) {
+            return ret_string;
+        }
+        for (var i = 0; i < array.length; i++) {
+            var number = parseInt(array[i].substring(1));
+            var ret = NAGs[number];
+            ret_string += (typeof ret != 'undefined') ? ret : "";
+        }
+        return ret_string;
+    };
+
     /**
      * Main function, automatically called when calling pgn function.
      */
@@ -238,39 +279,51 @@ var pgnReader = function (spec) {
         };
 
         var write_NAGs = function(move, sb) {
+            sb.append(nag_to_symbol(move.nag));
+        };
 
+        var write_variation = function (variation, sb) {
+            prepend_space(sb);
+            sb.append("(");
+            write_move(variation[0], sb);
+            prepend_space(sb);
+            sb.append(")");
         };
 
         var write_variations = function (move, sb) {
-
+            for (var i = 0; i < move.variations.length; i++) {
+                write_variation(move.variations[i], sb);
+            }
         };
 
         var get_next_move = function (move) {
             return move.next ? getMove(move.next) : null;
         };
 
+        /**
+         * Write the normalised notation: comment move, move number (if necessary),
+         * comment before, move, NAGs, comment after, variations.
+         * Then go into recursion for the next move.
+         * @param move the move in the exploded format
+         * @param sb the string builder to use
+         */
+        var write_move = function(move, sb) {
+            if (move === null || move === undefined) {
+                return;
+            }
+            write_comment_move(move, sb);
+            write_move_number(move, sb);
+            write_comment_before(move, sb);
+            write_notation(move, sb);
+            write_NAGs(move, sb);
+            write_comment_after(move, sb);
+            write_variations(move, sb);
+            var next = get_next_move(move);
+            write_move(next, sb);
+        };
+
         var write_pgn2 = function(move, _sb) {
-            /**
-             * Write the normalised notation: comment move, move number (if necessary),
-             * comment before, move, NAGs, comment after, variations.
-             * Then go into recursion for the next move.
-             * @param move the move in the exploded format
-             * @param sb the string builder to use
-             */
-            var write_move = function(move, sb) {
-                if (move === null || move === undefined) {
-                    return;
-                }
-                write_comment_move(move, sb);
-                write_move_number(move, sb);
-                write_comment_before(move, sb);
-                write_notation(move, sb);
-                write_NAGs(move, sb);
-                write_comment_after(move, sb);
-                write_variations(move, sb);
-                var next = get_next_move(move);
-                write_move(next, sb);
-            };
+
             write_move(move, sb);
             return sb.toString();
         };
@@ -347,7 +400,8 @@ var pgnReader = function (spec) {
 //        splitHeaders: splitHeaders,
         getParser: function() { return parser; },
         eachMove: function() { return eachMove(); },
-        write_pgn: write_pgn
+        write_pgn: write_pgn,
+        nag_to_symbol: nag_to_symbol
     }
 };
 

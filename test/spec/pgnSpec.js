@@ -415,12 +415,16 @@ describe("Writing PGN like", function() {
         expect(res).toEqual("{FIRST} 1. {SECOND} e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5");
     });
 
-    xit("should write all NAGs in their known parts", function () {
-
+    it("should write all NAGs in their known parts", function () {
+        var my_pgn = pgnReader({pgn: "1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?"});
+        var res = my_pgn.write_pgn();
+        expect(res).toEqual("1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?");
     });
 
-    xit("should write the notation for a main line with one variation", function () {
-
+    it("should write the notation for a main line with one variation", function () {
+        var my_pgn = pgnReader({pgn: "1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) 2. Nf3"});
+        var res = my_pgn.write_pgn();
+        expect(res).toEqual("1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) 2. Nf3");
     });
 
     xit("should write the notation for a main line with several variations", function () {

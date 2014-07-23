@@ -336,28 +336,6 @@ var pgnBase = function (boardId, configuration) {
         that.mypgn = pgnReader( { pgn: configuration.pgn ? configuration.pgn : ''} );
         var myMoves = that.mypgn.getMoves();
         game.reset();
-        var NAGs = [
-            null,   // Just to fill, index 0
-            "!",    // 1
-            "?",    // 2
-            "!!",   // 3
-            "??",   // 4
-            "!?",   // 5
-            "?!",   // 6
-            "□",    // 7
-            null,   // 8
-            null,   // 9
-            "=",    // 10
-            null,   // 11
-            null,   // 12
-            "∞",    // 13
-            "⩲",    // 14
-            "⩱",    // 15
-            "±",    // 16
-            "∓",    // 17
-            "+−",   // 18
-            "-+"    // 19
-        ];
 
         /**
          * Comments are generated inline, there is no special block rendering
@@ -521,15 +499,7 @@ var pgnBase = function (boardId, configuration) {
         }
         // Generates one move from the current position
         var generateMove = function(currentCounter, game, move, prevCounter, movesDiv, varStack) {
-            var nag_to_symbol = function(array) {
-                var ret_string = "";
-                for (var i = 0; i < array.length; i++) {
-                    var number = parseInt(array[i].substring(1));
-                    var ret = NAGs[number];
-                    ret_string += (typeof ret != 'undefined') ? ret : "";
-                }
-                return ret_string;
-            };
+
             var move_from_notation = function(move) {
                 if (typeof move.row == 'undefined') {
                     return move.notation; // move like O-O and O-O-O
@@ -592,7 +562,7 @@ var pgnBase = function (boardId, configuration) {
             var link = createEle('a', null, null, null, span);
             var san = move_from_notation(move.notation);
             if (move.nag) {
-                san += nag_to_symbol(move.nag);
+                san += mypgn.nag_to_symbol(move.nag);
             }
             var text = document.createTextNode(san);
             link.appendChild(text);
