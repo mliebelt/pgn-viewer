@@ -205,9 +205,10 @@ var pgnBase = function (boardId, configuration) {
         };
         // Generates the edit buttons (only)
         var generateEditButtons = function(buttonDiv) {
-            ["deleteVar", "promoteVar", "deleteMoves", "nags"].forEach(function(entry) {
+            ["deleteVar", "promoteVar", "deleteMoves", "nags", "pgn"].forEach(function(entry) {
                 addButton(entry, buttonDiv)});
         };
+
         var generateCommentDiv = function(commentDiv) {
             var radio = createEle("div", null, "commentRadio", theme, commentDiv);
             var mc = createEle("input", null, "moveComment", theme, radio);
@@ -239,6 +240,7 @@ var pgnBase = function (boardId, configuration) {
         generateViewButtons(buttonsBoardDiv);
         var editButtonsBoardDiv = createEle("div", "edit" + buttonsId, "edit", theme, outerInnerBoardDiv);
         generateEditButtons(editButtonsBoardDiv);
+        var pgnDiv  = createEle("div", "pgn" + buttonsId, "pgn", theme, outerInnerBoardDiv);
         var commentBoardDiv = createEle("div", "comment" + buttonsId, "comment", theme, outerInnerBoardDiv);
         generateCommentDiv(commentBoardDiv);
         // Ensure that moves are scrollable (by styling CSS) when necessary
@@ -403,6 +405,11 @@ var pgnBase = function (boardId, configuration) {
                 var fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
                 makeMove(that.currentMove, that.mypgn.getMoves().length - 1, fen);
             });
+            $('#' + buttonsId + "pgn").on('click', function() {
+                $('#pgn' + buttonsId).hide(200);
+                var str = computePgn();
+                showPgn(str);
+            });
             $('#comment' + buttonsId + " textarea.comment").change(function() {
                 var text = commentText();
                 var checked = $("#comment" + buttonsId + " :checked").val() || "after";
@@ -488,15 +495,14 @@ var pgnBase = function (boardId, configuration) {
             fillComment(next);
         };
 
-        // Returns true, if the move is the start of a (new) variation
-        var startVariation = function(move) {
-            return  move.variationLevel > 0 &&
-                ( (move.prev === undefined) || (myMoves[move.prev].next != move.index));
-        }
-        // Returns true, if the move is the end of a variation
-        var endVariation = function(move) {
-            return move.variationLevel > 0 && ! move.next;
-        }
+        var computePgn = function() {
+            return that.mypgn.write_pgn();
+        };
+
+        var showPgn = function (val) {
+            $('#pgn' + buttonsId).text(val).show(1000);
+        };
+
         // Generates one move from the current position
         var generateMove = function(currentCounter, game, move, prevCounter, movesDiv, varStack) {
 
@@ -542,7 +548,7 @@ var pgnBase = function (boardId, configuration) {
                 clAttr = clAttr + " white";
             }
             var span = createEle("span", movesId + currentCounter, clAttr);
-            if (startVariation(move)) {
+            if (that.mypgn.startVariation(move)) {
                 var varDiv = createEle("div", null, "variation");
                 if (varStack.length == 0) {
                     movesDiv.appendChild(varDiv);
@@ -562,7 +568,7 @@ var pgnBase = function (boardId, configuration) {
             var link = createEle('a', null, null, null, span);
             var san = move_from_notation(move.notation);
             if (move.nag) {
-                san += mypgn.nag_to_symbol(move.nag);
+                san += that.mypgn.nag_to_symbol(move.nag);
             }
             var text = document.createTextNode(san);
             link.appendChild(text);
@@ -570,7 +576,7 @@ var pgnBase = function (boardId, configuration) {
             span.appendChild(generateCommentSpan(move.commentAfter, "afterComment"));
             append_to_current_div(span, movesDiv, varStack);
             //movesDiv.appendChild(span);
-            if (endVariation(move)) {
+            if (that.mypgn.endVariation(move)) {
                 //span.appendChild(document.createTextNode(" ) "));
                 varStack.pop();
             }

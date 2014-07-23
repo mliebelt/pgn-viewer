@@ -221,6 +221,16 @@ var pgnReader = function (spec) {
         return that.moves[id];
     };
 
+    // Returns true, if the move is the start of a (new) variation
+    var startVariation = function(move) {
+        return  move.variationLevel > 0 &&
+            ( (move.prev === undefined) || (that.moves[move.prev].next != move.index));
+    };
+    // Returns true, if the move is the end of a variation
+    var endVariation = function(move) {
+        return move.variationLevel > 0 && ! move.next;
+    };
+
     /**
      * Writes the pgn (fully) of the current game. The algorithm goes like that:
      * * Start with the first move (there has to be only one in the main line)
@@ -267,7 +277,7 @@ var pgnReader = function (spec) {
             if (move.turn === "w") {
                 sb.append("" + move.moveNumber);
                 sb.append(".");
-            } else if (left_variation) {
+            } else if (startVariation(move)) {
                 sb.append("" + move.moveNumber);
                 sb.append("...");
             }
@@ -401,7 +411,9 @@ var pgnReader = function (spec) {
         getParser: function() { return parser; },
         eachMove: function() { return eachMove(); },
         write_pgn: write_pgn,
-        nag_to_symbol: nag_to_symbol
+        nag_to_symbol: nag_to_symbol,
+        startVariation: startVariation,
+        endVariation: endVariation
     }
 };
 
