@@ -1,23 +1,29 @@
 # Plan for PgnViewerJS
 
 The following describes  what is planed for the viewer. This is more concrete than `readme.md`, but
-there is of course no guarantee that anything will be implemented soon.
+there is of course no guarantee that anything will be implemented soon. To inform about the current situation, there are 3 states known:
 
-## Planed features
+* <>: Empty  == planed
+* <(working)> == working on that feature, but not (yet) finished
+* <(/)> == done
 
-* Allows to show one or more chess games complete
-* Allow to play through the games forward and backward, including variations.
+If a whole section is completely done, it is moved altogether in the done section at the bottom.
+
+## Planed features (working)
+
+* Allows to show one or more chess games complete (/)
+* Allow to play through the games forward and backward, including variations. (/)
 * Allows to play from a legal position legal moves, and adds these moves to the notation (in a different style)
 * Allows to play through
-   * clicking on moves
-   * clicking on next and previous button
-   * clicking on play button
+   * clicking on moves (/)
+   * clicking on next and previous button (/)
+   * clicking on play button (/)
 * Allows to add interactively variations to the game, and show these as additional notation.
-* Allows to export the current game play as notation in PGN, and export the current position as FEN string.   
+* Allows to export the current game play as notation in PGN, and export the current position as FEN string. (working)   
 
-## Planed and working
+## Planed and working (working)
 
-### Visual
+### Visual (working)
 
 #### Allow sizing of board by configuration (working)
 
@@ -40,13 +46,21 @@ there is of course no guarantee that anything will be implemented soon.
   * notation itself (depending on board color, different possibly for black and white)
 * This allows to style boards individually, CSS is for the default styling.  
 
-#### Generate from PGN structure moves (working)
+What styling is available at the moment (see the additional documentation):
 
-* Generate a reasonable frame for the moves (id: <ID>Moves, class: moves).
-* Generate the moves in a pleasant style.
-* Look at different books and try to adapt some of the styles, allow the style to be set
-  (as attribute moveStyle).
-  
+    pieceTheme  <string>        of the pieces to take
+    theme       <string>        CSS class added to a lot of divs
+    headers     <true|false>    if headers should be shown
+    scrollable  <true|false>    if movesDiv should be fixed with scroll bars
+
+The following styling should be added to allow styling of CSS things:
+
+    whiteColor  <color>     the color of the white fields on the board
+    blackColor  <color>     the color of the black fields on the board
+    borderColor <color>     the color of the border
+    whiteFontColor  <color> the color of the a-h,1-8 characters on white fields
+    blackFontColor  <color> the color of the a-h,1-8 characters on black fields
+    
 #### Generate PGN move from data
   
 * We have to know every detail from moves, so the resulting notation is not sufficient.
@@ -55,6 +69,8 @@ there is of course no guarantee that anything will be implemented soon.
 * What support is available from chess.js? The following should be clarified:
   * Disambiguation: is that necessary or not? Examples: Nd7, Ng8, move Nf6 is not clear.
     But when white pins the black Nd7, then Nf6 does not need disambiguation.
+  * I have read that this depends on reading moves (more lax, that means there may
+    be additional information there that is not needed, which is no error). Writing is more strict, and there disambiguation should only used if necessary, and only there.
     
 #### Different move styles (working)
 
@@ -80,21 +96,25 @@ there is of course no guarantee that anything will be implemented soon.
 
 #### Prepare different layouts for headers (working)
 
-* See the example with Chess.com
+* See the example with Chess.com (/)
 * Try to find different examples, and build them in plain HTML (including CSS)
 * Use that CSS later for different styles
-  * Styles for the board itself
-  * Styles for the display of the moves and comments
-  * Styles for the display of the headers
+  * Styles for the board itself (/)
+  * Styles for the display of the moves and comments (working)
+  * Styles for the display of the headers (working)
 * Generate all HTML elements, so that they can be included easily. Works well
-  for the board and the moves, will work for the headers additionally.
+  for the board and the moves, will work for the headers additionally. (/)
   
 #### Allow additional boards (working)
   
-* Use a special comment for that (like {diagram}) (/)
+* ---Use a special comment for that (like {diagram})--- don't do that (/)
 * which is not so nice because it binds the comment, that may be used for other things. Provide therefore a different notation for diagrams, e.g. by using a NAG that is not reserverd for that. What about $512??
+* The notation could be alternatively like:
+  1. e4 D f5?? D
+  the D is the symbol for diagram, and means that after that move, a diagram is shown
+* Then the different possibilities for comments help much more ....  
 * The generation should be the same as the main board (with the same configuration)
-  but reduced size of course.
+  but reduced size of course. (/)
 * Play with different layout possibilities:
   * Centered, moves then below
   * Left, moves flowing to the right
@@ -105,21 +125,25 @@ there is of course no guarantee that anything will be implemented soon.
 * pgnView could suppress the additional diagrams (normally), and switch then
   to print-out mode when the HTML page is printed. Is there something JavaScript
   can do to be noticed?
+  Alternatively, this could be done altogether with CSS only. Combinations are:
+  * pgnView + D + view | edit: hide for normal mode, show for printing
+  * pgnBoard: show all the time
+  * pgnPrint + D: show all the time
 * Use pgnBoard for the diagram-boards, as normal, with the configuration given by the normal call. So only difference is the creation of the moves, and that the board-id is generated during creation of the moves.  
 * Allow additional / different styling. Configuration gives the default, and inside
   the comment, additional configuration can be given that overrides the default.
 
-#### Define UI for Editing
+#### Define UI for Editing (working)
 
 * Editing needs additional UI elements for doing its job. These are (stolen mostly from Scid):
   * Buttons for variation management: delete current, increase weight, delete line, delete after
   * Buttons for annotations: drop-down list of annotation symbols (including none) that work on the current move.
-  * UI for comments: text field, buttons for add before and add after comment
-  * Popup-menu, if necessary: promotion to ..., [replace move, new variation, new main line, ...], 
+  * UI for comments: text field, buttons for add before and add after comment (/)
+  * Popup-menu, if necessary: promotion to ..., [replace move, new variation, new main line, ...],  
 * Edit: Delete variation, Promote variation, Delete moves after, Drop Down NAG
-* Edit Comment: Text editor
+* Edit Comment: Text editor (/)
 
-##### Variation management
+##### Variation management (working)
 
 The following cases should be allowed:
 
@@ -146,20 +170,6 @@ Annotations are provided by a button, with the entries: Clear, !, !!, ...
 
 Scid used annotation 'D' for diagram, and when that is exported to PGN, this is converted to annotation $201. In the official documentation, this is not found, but could be used anyway.
   
-###### Comments (/)
-  
-For comments, the following is needed:
-  
-* Comment entry field. Text line or text editor.
-* How to do comments before? There are different possibilities to do that, like switching from end comment to begin comment and vice versae.
-* Different possiblities:
-  * Comments are created all the time (before and after)
-  * Then the position of the comments is known
-* Add additional example for comment that shows
-  * main line with all kind of comments
-  * variations with comments
-  * combinations of main line comments and variation comments
-
 #### Define functions for Editing (working)
   
 * chessboardjs provides in its example section the following (which should be used):
@@ -182,37 +192,20 @@ the current move number, ...
 #### PGN Annotations (working)
 
 * See http://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs (NAGs) for the meaning
-* how to represent them as symbols?
+* how to represent them as symbols? (/)
 * Is there a font for the special symbols, or are these available everywhere?
+* Add symbol and number for the diagram extension
 
 #### Provide a FEN API that can be used from the outside.
 
 At least move number, turn, en-passent, rochade, ... should be possible.
 
-#### Generate from PGN including comments and variations (working)
+#### Generate PGN from current situation (working)
 
-* Decide the structure of all moves (div, span, IDs, classes, hierarchy).
-* Use the linked moves in generation.
-* Allow different styling by CSS only (for the `<div class="moves">...</div>`)
-* Provide examples for
-  * main line in one column
-  * main line in one paragraph
-  * variations inlined
-  * variations separated by paragraphs
-  * different styling for them
-
-#### Generate PGN from current situation
-
-* Allows in an easy manner to see the current PGN as it would be exported.
+* Allows in an easy manner to see the current PGN as it would be exported. (/)
 * Or allow export of PGN (for example to the clipboard)
-* Try to be here very strict, and (of course) ensure that everything that is exported can be read again.
-
-#### Allow multiple comments
-
-* This is at least needed for combining normal comments with diagram comments. They often go together, and at the moment, only one of the 2 can be used.
-* Decide if a diagram comment is allowed before the move (does not make sense for me).
-
-
+* Try to be here very strict, and (of course) ensure that everything that is exported can be read again. (/)
+* Allow to hide the export by a button.
 
 ### Infrastructure
 
@@ -225,8 +218,23 @@ At least move number, turn, en-passent, rochade, ... should be possible.
 * Decide if more than one distribution is needed
   + With minimal figure sets (merida, wikipedia?)
   + What else?
+  + Provide some "cleverness" when figure sets are missing. There should be
+    at least a check at the beginning, so that symbols are shown.
+    This could be similar to font sets like "Helvetica Neue", Helvetica, Arial, sans-serif (but predefined)
+    * Define the figure sets that are similar and can replace each other, ensure
+      that at least one (Merida) is available.
 * Let the structure as is, see if configuration for paths is needed (if someone
   wants to deploy on different paths).
+* Define the Grunt task to deploy the example distribution and the documentation automatically without any additional work to do:
+  * minified JS
+  * CSS
+  * images
+* Provide variations of the JS files:
+  * as current: all, not minified
+  * no jQ: all without jQuery, not minified
+  * as current: all, minified
+  * no jQ.min: all without jQuery, minified
+  So everyone can choose what is best for him.
 
 #### Structure distribution (working)
 
@@ -259,9 +267,17 @@ At least move number, turn, en-passent, rochade, ... should be possible.
 * Collect nice games and insert them into the examples
 * Fix errors in the grammar while working on the games
 
-## Done and mostly finished
+## Done and mostly finished (/)
 
-### Visual
+### Visual (/)
+
+#### Generate from PGN structure moves (/)
+
+* Generate a reasonable frame for the moves (id: <ID>Moves, class: moves).
+* Generate the moves in a pleasant style.
+* Look at different books and try to adapt some of the styles, allow the style to be set
+  (as attribute moveStyle).
+  
 
 #### Add additional figure sets (/)
 
@@ -295,6 +311,38 @@ to add their own one. Describe what steps users have to do to do it well.
   * Adjust what you want to adjust.
 
 See the default `pgnvjs.css` with the themes `blue` and `green` and the example `sample.html`.
+
+###### Comments (/)
+  
+For comments, the following is needed:
+  
+* Comment entry field. Text line or text editor.
+* How to do comments before? There are different possibilities to do that, like switching from end comment to begin comment and vice versae.
+* Different possibilities:
+  * Comments are created all the time (before and after)
+  * Then the position of the comments is known
+* Add additional example for comment that shows
+  * main line with all kind of comments
+  * variations with comments
+  * combinations of main line comments and variation comments
+
+#### Generate from PGN including comments and variations (/)
+
+* Decide the structure of all moves (div, span, IDs, classes, hierarchy).
+* Use the linked moves in generation.
+* Allow different styling by CSS only (for the `<div class="moves">...</div>`)
+* Provide examples for
+  * main line in one column
+  * main line in one paragraph
+  * variations inlined
+  * variations separated by paragraphs
+  * different styling for them
+
+#### Allow multiple comments (/)
+
+* This is at least needed for combining normal comments with diagram comments. They often go together, and at the moment, only one of the 2 can be used.
+* Decide if a diagram comment is allowed before the move (does not make sense for me).
+* Decision: don't use a comment for diagrams, so no need for multiple comments
 
 #### Define useful API for pgnView (/)
 

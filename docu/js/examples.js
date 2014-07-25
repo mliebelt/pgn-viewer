@@ -37,7 +37,8 @@ examples["1002"] = {
 
 examples["1003"] = {
     desc: "Use PgnViewerJS for viewing a game with the option to edit it by adding variations, comments, " +
-        "... This is not implemented yet!! So the diagram on the right is a placeholder.",
+        "... This is not fully implemented yet!! So the diagram on the right is a placeholder. The" +
+        " diagram is playable, but the moves are not noted (yet).",
     html: "<div id=\"board\" style=\"width: 300px\"><\/div>",
     name: "Editing a game",
     jsStr: "var pgn = \"1. f4 e6 2. g4 Qh4#\";\nvar board = pgnEdit('board', {pgn: pgn});",
@@ -150,12 +151,19 @@ examples["1052"] = {
     }
 };
 examples["1100"] = {
-    desc: "This is an example of a chess game, where the moves are shown ...",
-    html: "",
-    name: "Chess.com Style (Moves)",
-    jsStr: "",
+    desc: "This is an example of a chess game, where the moves are not only shown, but can be " +
+        "changed. Try to play on the board, use the move, before and after comments, switch " +
+        "between them. Try to find the PGN button, and refresh the display when you have changed " +
+        "a comment.",
+    html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
+    name: "Edit game",
+    jsStr: "...",
     jsFn: function() {
-
+        var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
+            '[Result "1-0"][ECO "C52"]',
+            '[Site "Berlin"][Date "1852"]',
+            '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0'].join(" ");
+        pgnv = pgnEdit("b1", {pgn: pgn});
     }
 };
 examples["1101"] = {

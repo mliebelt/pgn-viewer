@@ -66,7 +66,9 @@ div.buttons > button, div.edit > button {
     background-repeat: no-repeat;
     background-position: 50%;
 }
-
+div.commentRadio label {
+    display: inline;
+}
 div.comment > textarea.comment {
     width: 100%;
     height: 50px;
@@ -111,8 +113,8 @@ div.green > button {
 .moves > .variation {
     font-size: 100%;
     display: block;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
 }
@@ -126,7 +128,8 @@ div.green > button {
 
 .moves > .variation > .variation {
     font-size: 90%;
-    padding: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .moves > .variation > .variation:after {
@@ -155,15 +158,16 @@ div.green > button {
     display: inline-block;
 }
 
-.pgn {
+div.pgn {
     font-family: 'Droid Sans Mono', 'Courier New', monospace;
     font-size: 16px;
+    /*border: dotted 2px #696969;*/
 }
 /* Pattern of the Zeit journal */
 /* board */
 .zeit .board-b72b1 {
     /*    border: 2px solid #404040; */
-    border-color: green;
+    border-color: #6494b1;
     /*border-width: 20px;*/
 }
 

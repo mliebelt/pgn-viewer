@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>Documentation of PgnViewerJS</title>
+	<meta name="description" content="Shows the documentation that could be used to include PgnViewerJS in your web site.">
+	<meta name="author" content="Markus Liebelt">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/skeleton.css">
+	<link rel="stylesheet" href="css/layout.css">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicons
+	================================================== -->
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+</head>
+<body>
+
+
+
+	<!-- Primary Page Layout
+	================================================== -->
+
+	<!-- Delete everything in this .container and get started on your own site! -->
+
+	<div class="container">
+		<div class="sixteen columns">
+			<h1 class="remove-bottom" style="margin-top: 40px">PgnViewerJS</h1>
+			<h5>Version 0.9.0</h5>
+			<hr />
+		</div>
+        <div class="container">
+            <div class="two columns">
+                <h1>ML</h1>
+            </div>
+
+            <div id="nav" class="fourteen columns">
+                <ul>
+                    <li><a href="index2.html">Home</a></li>
+                    <li><a href="docu.html">Documentation</a></li>
+                    <li><a href="examples2.html">Examples</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div><!-- container -->
+		<div class="four columns">
+			<h3>About</h3>
+			<p>PgnViewerJS was born as the third or fourth attempt to get a nice PGN viewer
+                for our chess club web site. PGN stands for <b>P</b>ortable <b>G</b>ame
+                <b>N</b>otation which was born in the late 80s, early 90s of the last
+                century. I provided some of the translations there ...</p>
+
+            <p>I first started using pgn4web and ... as part of our Wordpress Installation,
+            but I had difficulties here and there. At the end, I wanted to have a viewer
+            that was at least as nice as the one from chess.com</p>
+		</div>
+		<div class="six columns">
+			<h3>Implementation</h3>
+			<p>The implementation contains the following parts:</p>
+			<ul class="square">
+				<li><strong>Chess.js</strong>: Small JavaScript library that provides the
+                    base functionality for playing chess (but without a board).</li>
+				<li><strong>Chessboardjs</strong>: Builds the missing building blocks for
+                    displaying a chess board, with some functions: Moving pieces, some
+                animations, ...</li>
+				<li><strong>jQuery</strong></li>
+				<li><strong>jQuery Timer</strong></li>
+				<li><strong>jQuery Hotkeys</strong></li>
+				<li><strong>PgnViewerJS</strong>: builds the wrapper, makes  the move output,
+                allows some different interfaces: pgnBoard, pgnPrint, pgnView, pgnEdit</li>
+			</ul>
+		</div>
+		<div class="six columns">
+			<h3>How To &amp; Support</h3>
+			<p>To start with PgnViewerJS, you have to do the following steps:</p>
+            <ul class="square">
+                <li>Fill the head of your HTML file with the relevant definitions ...</li>
+                <li>Define in the body 2 parts:
+                    <ul class="square">
+                        <li>A <code>div</code> section with a unique ID.</li>
+                        <li>A <code>script</code> section that defines which API of the
+                            viewer should be used. See the <a href="examples.html">
+                                examples section</a> how to do it.</li>
+                    </ul>
+                </li>
+                <li>Fill the configuration of the PgnViewerJS with the relevant
+                aspects: starting position, theme, piece style, size, ...</li>
+                <li>Include in the body the moves that should be rendered and for
+                the API <code>pgnView</code> should be playable.</li>
+            </ul>
+		</div>
+
+	</div><!-- container -->
+
+
+<!-- End Document
+================================================== -->
+</body>
+</html>

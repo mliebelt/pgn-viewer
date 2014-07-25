@@ -427,12 +427,16 @@ describe("Writing PGN like", function() {
         expect(res).toEqual("1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) 2. Nf3");
     });
 
-    xit("should write the notation for a main line with several variations", function () {
-
+    it("should write the notation for a main line with several variations", function () {
+        var my_pgn = pgnReader({pgn: "1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) ( 1... c5 2. Nf3 d6 ) 2. Nf3"});
+        var res = my_pgn.write_pgn();
+        expect(res).toEqual("1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) ( 1... c5 2. Nf3 d6 ) 2. Nf3");
     });
 
-    xit("should write the notation for a main line with stacked variations", function () {
-
+    it("should write the notation for a main line with stacked variations", function () {
+        var my_pgn = pgnReader({pgn: "1. e4 e5 ( 1... c5 2. Nf3 d6 ( 2... Nc6 3. d4) 3. d4 ) 2. Nf3"});
+        var res = my_pgn.write_pgn();
+        expect(res).toEqual("1. e4 e5 ( 1... c5 2. Nf3 d6 ( 2... Nc6 3. d4 ) 3. d4 ) 2. Nf3");
     });
 });
 
