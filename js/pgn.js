@@ -75,6 +75,7 @@ function StringBuilder(value) {
 var pgnReader = function (spec) {
     var that = {};
     var parser = pgnParser;
+    var game = new Chess();
     that.PGN_KEYS = {
         Event: "the name of the tournament or match event",
         Site: "the location of the event",
@@ -104,8 +105,6 @@ var pgnReader = function (spec) {
      * The index is the index number after the '$' sign like in $3 == 'very good move'.
      * @type {Array} the array with the (english) explanations.
      */
-    that.PGN_NAGS = [];
-
     var NAGs = [
         null,   // Just to fill, index 0
         "!",    // 1
@@ -129,6 +128,13 @@ var pgnReader = function (spec) {
         "-+"    // 19
     ];
 
+    that.PGN_NAGS = {};
+
+    // build the reverse index
+    for (var i = 0; i < NAGs.length; i++) {
+        that.PGN_NAGS[NAGs[i]] = i;
+    }
+
     /**
      * Returns the NAG notation from the array of symbols
      * @param array the NAG symbols like $1, $3, ...
@@ -145,6 +151,20 @@ var pgnReader = function (spec) {
             ret_string += (typeof ret != 'undefined') ? ret : "";
         }
         return ret_string;
+    };
+
+    /**
+     * Returns the SYM notation for a single NAG (like !!, ?!, ...)
+     * @param string the NAG in the chess notation
+     * @returns {*} the symbold like $0, $3, ...
+     */
+    var symbol_to_nag = function(string) {
+        var nag = that.PGN_NAGS[string];
+        if (nag === "undefined") {
+            return null;
+        } else {
+            return "$" + nag;
+        }
     };
 
     /**
@@ -379,6 +399,12 @@ var pgnReader = function (spec) {
                 current++;
                 move.variationLevel = level;
                 that.moves.push(move);
+
+                // Checks the move on a real board, and hold the fen
+                var pgn_move = game.move(move.notation.notation);
+                var fen = game.fen();
+                move.fen = fen;
+
                 if (i > 0) {
                     if (that.moves[current - 1].variationLevel > level) {
                         prevMove = findPrevMove(level, current -1);
@@ -398,6 +424,71 @@ var pgnReader = function (spec) {
     };
     load_pgn();
 
+    /**
+     * Adds the move to the current state after moveNumber.
+     * In all cases the following has to be done:
+     * * compute a complete move object
+     * * Add that to the end of moves (returning the index)
+     * * Wire the previous move to that new one
+     *
+     * Depending on the current situation, the following will be necessary:
+     * * add to the end of the main line
+     * * add to the end of a variation
+     * * add as a new variation to the current one
+     * * completely ignore it, because the move is already there
+     * @param move the move notation (simplest form)
+     * @param moveNumber the number of the previous made move, null if it is the first one
+     */
+    var addMove = function (move, moveNumber) {
+//        window.alert("Move " + move + " after move with number " + moveNumber + " to do.");
+        var get_turn = function (moveNumber) {
+              return getMove(moveNumber).turn === "w" ? 'b' : "w";
+        };
+        var real_move = {};
+        real_move.notation = {};
+        real_move.variations = [];
+        if (moveNumber == null) {
+            game.reset();
+            real_move.turn = "w";
+            real_move.moveNumber = 1;
+        } else {
+            game.load(getMove(moveNumber).fen);
+            real_move.turn = get_turn(moveNumber);
+            if (real_move.turn === "w") {
+                real_move.moveNumber = getMove(getMove(moveNumber).prev).moveNumber + 1;
+            }
+        }
+        var pgn_move = game.move(move);
+        real_move.fen = game.fen();
+        real_move.notation.notation = pgn_move.san;
+        that.moves.push(real_move);
+        real_move.prev = moveNumber;
+        var next = that.moves.length - 1;
+        if (moveNumber != null) {
+            getMove(moveNumber).next = next;
+        }
+        return next;
+    };
+
+    /**
+     * Adds the nag to the move with move number moveNumber
+     * @param nag the nag in normal notation or as symbol
+     * @param moveNumber the number of the move
+     */
+    var addNag = function (nag, moveNumber) {
+        var move = getMove(moveNumber);
+        if (move.nag === null) {
+            move.nag = [];
+        }
+        var nagSym = (nag[0] == "$") ? nag : symbol_to_nag(nag);
+        move.nag.push(nagSym);
+    };
+
+    var clearNags = function (moveNumber) {
+        var move = getMove(moveNumber);
+        move.nag = [];
+    };
+
     // This defines the public API of the pgn function.
     return {
         movesString: function () { return that.moves_string; },
@@ -413,7 +504,10 @@ var pgnReader = function (spec) {
         write_pgn: write_pgn,
         nag_to_symbol: nag_to_symbol,
         startVariation: startVariation,
-        endVariation: endVariation
+        endVariation: endVariation,
+        addNag: addNag,
+        clearNags: clearNags,
+        addMove: addMove
     }
 };
 
@@ -435,11 +529,14 @@ var pgnReader = function (spec) {
          next move main line,
          first move first variation
          first move next variation
-         last move current variation
+         last move current variation (similar t onext move main line)
+         first move next variation / new variation
  * deleteMove(move):
-        ensures that nothing is left, all references are deleted, the moves array is set to null there
- * changeNag(nag,move):
-        change the nag of the given move
+        ensures that nothing is left, all references are deleted, the moves array is set to null, there are no references left (prev / next) in other moves
+ * addNag(nag,move):
+        add the nag of the given move
+ * clearNags(move): Clear the nags of the move with number <move>
+ * changeCommentMove(comment, move)
  * changeCommentBefore(comment, move)
  * changeCommentAfter(comment, move)
  * getMove(index): exists,

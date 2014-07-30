@@ -208,8 +208,7 @@ describe("When reading variations with comments", function() {
         expect(var_first.commentAfter).toEqual("AFTER");
         expect(var_first.notation.notation).toEqual("d4");
     })
-})
-;
+});
 
 describe("When iterating over moves", function() {
     var moves;
@@ -439,4 +438,121 @@ describe("Writing PGN like", function() {
         expect(res).toEqual("1. e4 e5 ( 1... c5 2. Nf3 d6 ( 2... Nc6 3. d4 ) 3. d4 ) 2. Nf3");
     });
 });
+
+describe("When reading a PGN game", function () {
+    it ("should have the fen stored with each move", function () {
+        var my_pgn = pgnReader({pgn: "1. d4 e5"});
+        expect(my_pgn.getMoves().length).toEqual(2);
+        expect(my_pgn.getMoves()[0].fen).toBeDefined();
+        expect(my_pgn.getMoves()[1].fen).toBeDefined();
+    });
+});
+
+describe("When making moves in PGN", function() {
+    var empty, my_pgn;
+    beforeEach(function () {
+        my_pgn = pgnReader({pgn: "1. d4 e5"});
+        empty = pgnReader({pgn: ""});
+    });
+
+    it("should have no moves with an empty PGN string", function () {
+        expect(empty.getMoves().length).toEqual(0);
+    });
+
+    it("should write a move on the initial position", function () {
+        empty.addMove("e4", null);
+        expect(empty.getMoves().length).toEqual(1);
+        expect(empty.getMove(0).notation.notation).toEqual("e4");
+    });
+
+    it("should write a move in the position with white on turn", function () {
+        my_pgn.addMove("e4", 1);
+        expect(my_pgn.getMoves().length).toEqual(3);
+        expect(my_pgn.getMove(2).turn).toEqual("w");
+    });
+
+    it("should write a move in the position with black on turn", function () {
+        my_pgn = pgnReader({pgn: "1. d4 e5 2. e4"});
+        my_pgn.addMove("exd4", 2);
+        expect(my_pgn.getMoves().length).toEqual(4);
+        expect(my_pgn.getMove(3).turn).toEqual("b");
+    });
+
+    xit("should start new variation in the middle of the main line", function () {
+
+    });
+
+    xit("should start a second variation in the middle of the main line, when the current move has already a variation", function () {
+
+    });
+
+    xit("should use the existing move in the main line", function () {
+
+    });
+
+    xit("should use the existing move in the variation", function () {
+
+    });
+});
+
+describe("When upvoting or deleting lines" , function () {
+    xit("should upvote the first line as main line", function () {
+
+    });
+
+    xit("should upvote the second line as first line", function () {
+
+    });
+
+    xit("should delete the rest of a variation (including the move)", function () {
+
+    });
+
+    xit("should delete the rest of the main line (without variation)", function () {
+
+    });
+
+    xit("should delete the rest of the main line, replace it by the first variation", function () {
+
+    });
+
+    xit("should delete the whole variation with the first move", function () {
+
+    });
+});
+
+describe("When working with NAGs", function () {
+    var my_pgn;
+    beforeEach(function () {
+        my_pgn = pgnReader({pgn: "1. d4 e5"});
+    });
+
+    it ("should add selected NAG as first when empty", function () {
+        my_pgn.addNag("??", 1);
+        expect(my_pgn.getMove(1).nag[0]).toEqual("$4");
+        my_pgn.addNag("!!", 0);
+        expect(my_pgn.getMove(0).nag[0]).toEqual("$3");
+    });
+
+    it("should add selected NAG as last when already some", function () {
+        my_pgn.addNag("??", 1);
+        my_pgn.addNag("!!", 1);
+        expect(my_pgn.getMove(1).nag[1]).toEqual("$3");
+        expect(my_pgn.getMove(1).nag[0]).toEqual("$4");
+    });
+
+    it("should clear all NAGs", function () {
+        my_pgn.addNag("??", 1);
+        expect(my_pgn.getMove(1).nag[0]).toEqual("$4");
+        my_pgn.clearNags(1);
+        expect(my_pgn.getMove(1).nag.length).toEqual(0);
+    });
+
+    it("should ignore clear when no NAGs", function () {
+        my_pgn.clearNags(1);
+        expect(my_pgn.getMove(1).nag.length).toEqual(0);
+        my_pgn.clearNags(1);
+        expect(my_pgn.getMove(1).nag.length).toEqual(0);
+    });
+})
 

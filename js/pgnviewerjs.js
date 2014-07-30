@@ -131,7 +131,11 @@ var pgnBase = function (boardId, configuration) {
             promotion: 'q' // NOTE: always promote to a queen for example simplicity
         });
         // illegal move
-        if (move === null) return 'snapback';
+        if (move === null) {
+            return 'snapback';
+        } else {
+            that.currentMoveNotation = move.san;
+        }
     };
 
     /**
@@ -170,6 +174,7 @@ var pgnBase = function (boardId, configuration) {
      */
     var onSnapEnd = function() {
         board.position(game.fen());
+        that.currentMove = that.mypgn.addMove(that.currentMoveNotation, that.currentMove);
     };
 
     // Utility function for generating general HTML elements with id, class (with theme)
@@ -534,17 +539,17 @@ var pgnBase = function (boardId, configuration) {
                 isNextOfPrev = true;
             }
             // TODO Error handling if move could not be done
-            var pgn_move = game.move(move.notation.notation);
-            if (pgn_move === null || (pgn_move === undefined)) {
-                window.alert("No pgn move found in: " + move);
-            }
-            var fen = game.fen();
-            move.fen = fen;
+//            var pgn_move = game.move(move.notation.notation);
+//            if (pgn_move === null || (pgn_move === undefined)) {
+//                window.alert("No pgn move found in: " + move);
+//            }
+//            var fen = game.fen();
+//            move.fen = fen;
             var clAttr = "move";
             if (move.variationLevel > 0) {
                 clAttr = clAttr + " var var" + move.variationLevel;
             }
-            if (pgn_move.color == 'w') {
+            if (move.turn == 'w') {
                 clAttr = clAttr + " white";
             }
             var span = createEle("span", movesId + currentCounter, clAttr);
@@ -559,7 +564,7 @@ var pgnBase = function (boardId, configuration) {
                 //span.appendChild(document.createTextNode(" ( "));
             }
             span.appendChild(generateCommentSpan(move.commentMove, "moveComment"));
-            if (pgn_move.color == 'w') {
+            if (move.turn == 'w') {
                 var mn = move.moveNumber;
                 var num = createEle('span', null, "moveNumber", null, span);
                 num.appendChild(document.createTextNode("" + mn + ". "));
@@ -581,7 +586,7 @@ var pgnBase = function (boardId, configuration) {
                 varStack.pop();
             }
             moveSpan(currentCounter).on('click', function() {
-                makeMove(that.currentMove, currentCounter, fen);
+                makeMove(that.currentMove, currentCounter, move.fen);
             });
             if (move.commentAfter && move.commentAfter == 'diagram') {
                 var diaID = boardId + "dia" + currentCounter;

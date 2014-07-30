@@ -92,5 +92,6 @@ module.exports = function(grunt) {
 
     // Default task.
     grunt.registerTask('default', ['clean', 'concat',  'uglify', 'copy']);
+    grunt.registerTask('deploy-all', ['default']);
 
 };
