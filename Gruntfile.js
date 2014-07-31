@@ -80,6 +80,71 @@ module.exports = function(grunt) {
                 options: {
                     template: 'template.jst'}
             }
+        },
+        'ftp-deploy': {
+            docu: {
+                auth: {
+                    host: 'mliebelt.bplaced.net',
+                    port: 21,
+                    authKey: 'my-key'
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'docu/',
+                        src: '**',
+                        dest: 'pgnvjs'
+                    }]
+            }
+        },
+        ftp_push: {
+            docu_all: {
+                options: {
+                    authKey: "bplaced",
+                    host: "mliebelt.bplaced.net",
+                    dest: "/pgnvjs/",
+                    port: 21
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'docu',
+                        src: [
+                            "**"
+                        ]
+                    }
+                ]
+            },
+            docu_min: {
+                options: {
+                    authKey: "bplaced",
+                    host: "mliebelt.bplaced.net",
+                    dest: "/pgnvjs/",
+                    port: 21
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'docu',
+                        src: ["*.html"]
+                    }
+                ]
+            },
+            dist_min: {
+                options: {
+                    authKey: "bplaced",
+                    host: "mliebelt.bplaced.net",
+                    dest: "/pgnvjs/dist/js",
+                    port: 21
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'dist/js/min',
+                        src: ["pgnviewerjs.js"]
+                    }
+                ]
+            }
         }
     });
 
@@ -89,6 +154,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-markdown');
+    grunt.loadNpmTasks('grunt-ftp-deploy');
+    grunt.loadNpmTasks('grunt-ftp-push');
 
     // Default task.
     grunt.registerTask('default', ['clean', 'concat',  'uglify', 'copy']);
