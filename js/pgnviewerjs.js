@@ -28,7 +28,7 @@ var pgnBase = function (boardId, configuration) {
             getAsync: false,
             resGetPath: localPath() + '../locales/__ns__-__lng__.json',
             ns: {
-                namespaces: ['chess', 'nag'],
+                namespaces: ['chess', 'nag', 'buttons'],
                 defaultNs: 'chess'
             }
         };
@@ -202,6 +202,8 @@ var pgnBase = function (boardId, configuration) {
         // Utility function for generating buttons divs
         function addButton(name, buttonDiv) {
             createEle("button", buttonsId + name, name, theme, buttonDiv);
+            var title = $.t("buttons:" + name);
+            $("#" + buttonsId + name).attr("title", title);
         }
         // Generates the view buttons (only)
         var generateViewButtons = function(buttonDiv) {

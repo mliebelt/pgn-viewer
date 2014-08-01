@@ -177,3 +177,7 @@ things users should know to use the viewer in the best way possible.
     
 See the documentation on the public site (PgnViewerJS)[http://mliebelt.bplaced.net/pgnvjs/]
 for the current state, some working examples, and a little bit background.
+
+## References
+
+* http://www.famfamfam.com/lab/icons/silk/: Used part of the icons in the UI

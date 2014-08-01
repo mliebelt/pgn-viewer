@@ -144,6 +144,36 @@ module.exports = function(grunt) {
                         src: ["pgnviewerjs.js"]
                     }
                 ]
+            },
+            dist_locales: {
+                options: {
+                    authKey: "bplaced",
+                    host: "mliebelt.bplaced.net",
+                    dest: "/pgnvjs/dist/locales",
+                    port: 21
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'dist/locales',
+                        src: ["*.json"]
+                    }
+                ]
+            },
+            dist_css: {
+                options: {
+                    authKey: "bplaced",
+                    host: "mliebelt.bplaced.net",
+                    dest: "/pgnvjs/dist/css",
+                    port: 21
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'dist/css',
+                        src: ["*.css"]
+                    }
+                ]
             }
         }
     });
@@ -159,6 +189,7 @@ module.exports = function(grunt) {
 
     // Default task.
     grunt.registerTask('default', ['clean', 'concat',  'uglify', 'copy']);
-    grunt.registerTask('deploy-all', ['default']);
+    grunt.registerTask('deploy-all', ['ftp_push:dist_min', 'ftp_push:docu_min',
+        'ftp_push:dist_locales', 'ftp_push:dist_css']);
 
 };
