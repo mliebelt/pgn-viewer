@@ -1,0 +1,48 @@
+[Event "Leipzig"]
+[Date "????.??.??"]
+[White "N.N."]
+[Black "Mieses, Jacques"]
+[Result "0-1"]
+[Setup "1"]
+[FEN "5r1k/p5p1/4pq2/2Q4p/8/5P2/P2r2PP/1R2R1K1 b - - 0 1"]
+[Plycount "17"]
+[Sourcedate "2014.05.08"]
+
+{ Black's active rook is counterbalanced by White's wonderfully-placed queen,
+so unless Black whips up an immediate attack against White's king, the game
+will probably end in a draw. To this end, the move 1...Qg6 is very tempting,
+since after 2.Qxf8+ Kh7 White does not have any more checks and 3.g3 fails to
+3...Qc2. However, White can refine his defense with 3.g4, when 3...Qc2 no
+longer works on account of 4.Qf4. But Jacques Mieses, one of the greatest
+tacticians of the early twentieth century, was not ready to give up just yet. } 1...Qg6!! ( 1...Rxg2+ 2.Kxg2 Qxf3+ 3.Kg1 Qg4+ 4.Kh1 Qf3+ 5.Kg1 { leads
+only to a draw by perpetual. } ) 2.Qxf8+ { In retrospect, } ( 2.g3 Rxf3 3.Rb3 { was far more resilient, but here too, after } 3...Qf7 4.Rb5 Kg8 { White's position
+is nearly hopeless, since } 5.Qxh5?? { fails to } 5...Rxg3+! 6.hxg3 Qf2+ { ,
+mating. } ) 2...Kh7 3.g4! { White does not fall for 3.g3 and puts Mieses's
+opportunistic sacrifice to the test. } ( 3.g3 Qc2 { and there is no good way to
+stop mate along the second rank. } ) 3...hxg4 { Black must throw wood into the
+fire before White extinguishes the attack. The threat of mate is renewed, and
+White's king must flee the g-file. } ( 3...Qc2 4.Qf4 Rg2+ 5.Kh1 { and h2 is
+defended! } ) 4.Kh1 { Once again, directly attacking h6 pawn leads nowhere, so
+Mieses uses his pawn as a battering ram to intensify the attack. } 4...g3! { No
+place is safe! Now, with the b8-h2 diagonal closed off, ...Qh5(6) indeed
+becomes a threat, but it appears that he is a tepmo behind. } ( 4...Qh6? 5.Qb8 gxf3 6.Qe5 Qg6 7.Qe4 ) 5.Qf4 { At this point, N.N. (a sobriquet applied
+to players whose identity is not known - it is short for Nomen Nescio, "I do
+not know the name" in Latin) must have breathed a sigh of relief, since it
+appears that Black's attack has fizzled out. Indeed, with the queen now fully
+involved in the defense, it looks like the worst is behind him. } 5...Rxh2+ { Forced,
+since neither } ( 5...g2+ 6.Kg1 { nor } ) ( 5...Qh5 6.Qxd2 Qxf3+ 7.Kg1 { are any
+good. } ) 6.Kg1 { In considering 1...Qg6, many players would have stopped their
+calculation here. After 6...Qc2 7.Qxg3 or 6...Qh5 7.Qxg3 the attack is over,
+and White retains his extra rook. However, a pawn on g3(6) and a rook on the
+h-file should immediately set off your tactical alarm. Although White's queen
+is close, it still will not be able to parry an attack along the h-file... } 6...Rh1+!! { If the position before this move were given as a problem, I would
+expect almost anyone - especially seasoned tacticians - to find ...Rh1+ in a
+matter of seconds. However, if this position appears on move 6 of your
+calculation, it is extremely difficult to see. Remember that there was no one
+tapping Mieses on the shoulder, telling him to look for an unexpected mating
+combination in the midst of his calculation. } 7.Kg2 ( 7.Kxh1 Qh5+ { Amazingly,
+White's queen is totally helpless against the mating attack. } 8.Kg1 Qh2+ 9.Kf1 Qf2# ) 7...Qc2+ { Now, Black's own queen joins the fray, and White is
+busted. } 8.Kxg3 Qh2+ 9.Kg4 Qh4# { A tremendous combination that could only be
+unearthed through self-confidence, patience, cold-bloodedness, and, of course,
+sharp tactical vision. }
+0-1

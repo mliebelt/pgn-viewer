@@ -1,0 +1,48 @@
+[Event "Barcelona Casino"]
+[Site "Barcelona"]
+[Date "2007.10.19"]
+[Round "2"]
+[White "Krasenkow, Michal"]
+[Black "Nakamura, Hikaru"]
+[Result "0-1"]
+[ECO "A14"]
+[WhiteElo "2668"]
+[BlackElo "2648"]
+[Setup "1"]
+[FEN "2r1r1k1/3nbppp/bqN2n2/p7/2p5/6P1/PB1N1PBP/1R1QR1K1 b - - 0 20"]
+[Plycount "17"]
+[Eventdate "2007.10.18"]
+[Eventtype "tourn"]
+[Eventrounds "9"]
+[Eventcountry "ESP"]
+[Eventcategory "15"]
+[Source "ChessBase"]
+[Sourcedate "2007.11.14"]
+
+{ It is only move 20, but Black seems to be facing some serious problems. White
+threatens both 21.Nxe7+ and 21.Bxf6, and it is not clear how to simultaneously
+parry both threats. Krasenkow was probably expecting 20...Bb4, but that does
+not solve all of Black's problems after 21.Rxe8+ Rxe8 22.Bc3 (see below).
+Nakamura's choice does not seem to help either: } 20...Rxc6 { Black takes care
+of the first threat, but what about the second one? } ( 20...Bb4?! 21.Rxe8+ Rxe8 22.Bc3 Qc5 ( 22...Bxc3 23.Rxb6 Nxb6 24.Nf1 { with Ne3 to follow, when
+Black will not have enough compensation. } ) 23.Nxb4 axb4 24.Bxb4 Qf5 25.Qf3 Qxf3 26.Bxf3 { and the endgame is very pleasant for White. } ) 21.Bxf6 { What
+now? Black's queen, rook, and dark-squared bishop are all under fire, and it
+looks like the only way to retain a defensible position is to sacrifice the
+queen with 21...Nxf6, although Black will not have nearly enough compensation.
+However, Nakamura had very, very different thoughts on his mind: } 21...Qxf2+!! { A
+move that should be framed in the Louvre, perhaps replacing the Mona Lisa.
+Black is not exploiting any inherent weaknesses in White's position, but
+merely utilizing the concrete arrangement of pieces on the board - an
+arrangement that permits a sacrifice of such rare beauty. Black's idea is
+revealed on the next move: } 22.Kxf2 ( 22.Kh1 Rxf6 23.Ne4 Qa7 24.Nxf6+ Nxf6 { is completely lost. } ) 22...Bc5+ { And now, to his horror, Krasenkow realized
+that 23.Kf1 is impossible on account of 23...c3+, when the dormant a6 springs
+to life in volcano-like fashion. With the first rank entirely off-limits, the
+naked king has no choice but to venture even deeper into the danger zone. } 23.Kf3 ( 23.Kf1 c3+ 24.Re2 { and now } 24...c2! { is most accurate, when White loses
+everything: } 25.Qxc2 Bxe2+ 26.Ke1 Bd3+ 27.Kd1 Bxc2+ 28.Kxc2 Rxf6 ) ( 23.Re3 Bxe3+ 24.Ke1 { offers no relief either: } 24...Bxd2+ 25.Kxd2 Rd6+ 26.Kc3 Rxd1 27.Rxd1 Nxf6 { and White ends up down a piece and two pawns. } ) ( 23.Bd4 Bxd4+ 24.Kf3 Rf6+ 25.Kg4 Ne5+ { is practically a transposition to the game. } ) 23...Rxf6+ { Once the sacrifice is discovered, most of the work is already done.
+With the king completely exposed, Black does not even need to calculate -
+every move is perfectly natural. } 24.Kg4 Ne5+ 25.Kg5 ( 25.Rxe5 Bc8+ 26.Kh4 Rxe5 { and there is no defense against the crushing ...Rh6+. } ) ( 25.Kh5 Bc8 26.Ne4 Rf5+ 27.Ng5 g6+ 28.Kh4 { Black has a few ways to win, but the beautiful } 28...Rf4+!! 29.gxf4 Bf2# { is the quickest! } ) ( 25.Kh3 Rh6+ 26.Qh5 Rxh5# ) 25...Rg6+ 26.Kh5 f6 { Notice that all of White's pieces are still on the first or
+second rank, and none of them can even come close to helping the ailing
+monarch. His gigantic material advantage could not have mattered less! } 27.Rxe5 ( 27.Bd5+ Kh8 28.Kh4 Rh6+ 29.Qh5 { does allow White to escape immediate
+checkmate, but suffice it to say that after } 29...g5+ 30.Kh3 Rxh5+ 31.Kg2 Rd8 { Karpovian technique will not be required to win the game! } ) 27...Rxe5+ 28.Kh4 Bc8 { To defend against ...Rh6, White needs to give up pretty much all of his
+remaining pieces. Krasenkow prudently decided not to prolong the agony. }
+0-1
