@@ -444,6 +444,24 @@ var pgnReader = function (spec) {
         var get_turn = function (moveNumber) {
               return getMove(moveNumber).turn === "w" ? 'b' : "w";
         };
+
+        // Returns the existing move number or null
+        function existing_move(move, moveNumber) {
+            if (moveNumber == null) return null;
+            var prevMove = getMove(moveNumber);
+            if (typeof prevMove == "undefined") return null;
+            game.load(prevMove.fen);
+            var pgn_move = game.move(move);
+            var nextMove = getMove(prevMove.next);
+            if (typeof nextMove == "undefined") return null;
+            if (nextMove.notation.notation == pgn_move.san) {
+                return prevMove.next;
+            }
+            return null;
+        }
+
+        var curr = existing_move(move, moveNumber);
+        if (curr) return curr;
         var real_move = {};
         real_move.notation = {};
         real_move.variations = [];

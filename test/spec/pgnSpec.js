@@ -478,15 +478,19 @@ describe("When making moves in PGN", function() {
         expect(my_pgn.getMove(3).turn).toEqual("b");
     });
 
+    it("should use the existing move in the main line", function () {
+        my_pgn = pgnReader({pgn: "1. e4 e5 2. Nf3 Nc6"});
+        my_pgn.addMove("Nf3", 1);
+        expect(my_pgn.getMoves().length).toEqual(4);
+        expect(my_pgn.getMove(2).turn).toEqual("w");
+        expect(my_pgn.getMove(2).notation.notation).toEqual("Nf3");
+    });
+
     xit("should start new variation in the middle of the main line", function () {
 
     });
 
     xit("should start a second variation in the middle of the main line, when the current move has already a variation", function () {
-
-    });
-
-    xit("should use the existing move in the main line", function () {
 
     });
 

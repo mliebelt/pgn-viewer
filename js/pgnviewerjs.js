@@ -174,9 +174,13 @@ var pgnBase = function (boardId, configuration) {
      */
     var onSnapEnd = function() {
         board.position(game.fen());
-        that.currentMove = that.mypgn.addMove(that.currentMoveNotation, that.currentMove);
+        var cur = that.currentMove;
+        that.currentMove = that.mypgn.addMove(that.currentMoveNotation, cur);
         var move = that.mypgn.getMove(that.currentMove);
-        generateMove(that.currentMove, null, move, move.prev, document.getElementById(movesId), []);
+        if (moveSpan(that.currentMove).length == 0) {
+            generateMove(that.currentMove, null, move, move.prev, document.getElementById(movesId), []);
+        }
+        unmarkMark(cur, that.currentMove);
     };
 
     // Utility function for generating general HTML elements with id, class (with theme)
@@ -462,6 +466,18 @@ var pgnBase = function (boardId, configuration) {
     };
 
     /**
+     * Unmark the current move, mark the next one.
+     * @param curr the current move number
+     * @param next the next move number
+     */
+    function unmarkMark(curr, next) {
+        if (typeof curr != 'undefined') {
+            moveASpan(curr).removeClass();
+        }
+        moveASpan(next).addClass('yellow');
+    }
+
+    /**
      * Plays the move that is already in the noation on the board.
      * @param curr the current move number
      * @param next the move to take now
@@ -470,10 +486,7 @@ var pgnBase = function (boardId, configuration) {
     var makeMove = function(curr, next, fen) {
         board.position(fen);
         game.load(fen);
-        if (typeof curr != 'undefined') {
-            moveASpan(curr).removeClass();
-        }
-        moveASpan(next).addClass('yellow');
+        unmarkMark(curr, next);
         that.currentMove = next;
         scrollToView(moveSpan(next));
         fillComment(next);
