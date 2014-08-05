@@ -423,6 +423,9 @@ var pgnBase = function (boardId, configuration) {
         if (that.mypgn.startVariation(move)) {
             var varDiv = createEle("div", null, "variation");
             if (varStack.length == 0) {
+                // TODO: Here is the part where variation display goes wrong.
+                // TODO: The variation div has to be added to the moves span,
+                // TODO: not after the current move span.
                 movesDiv.appendChild(varDiv);
             } else {
                 varStack[varStack.length - 1].appendChild(varDiv);

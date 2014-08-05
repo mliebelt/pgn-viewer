@@ -460,6 +460,16 @@ var pgnReader = function (spec) {
             return null;
         }
 
+        // Handle possible variation
+        function handle_variation(move, prev, next) {
+            var prevMove = getMove(prev);
+            if (prevMove.next) {    // has a next move set, so should be a variation
+                prevMove.variations[0] = [move];
+            } else {    // main variation
+                prevMove.next = next;
+            }
+        }
+
         var curr = existing_move(move, moveNumber);
         if (curr) return curr;
         var real_move = {};
@@ -483,7 +493,7 @@ var pgnReader = function (spec) {
         real_move.prev = moveNumber;
         var next = that.moves.length - 1;
         if (moveNumber != null) {
-            getMove(moveNumber).next = next;
+            handle_variation(real_move, moveNumber, next);
         }
         return next;
     };

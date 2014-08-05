@@ -61,7 +61,7 @@ The following styling should be added to allow styling of CSS things:
     whiteFontColor  <color> the color of the a-h,1-8 characters on white fields
     blackFontColor  <color> the color of the a-h,1-8 characters on black fields
     
-#### Generate PGN move from data
+#### Generate PGN move from data (working)
   
 * We have to know every detail from moves, so the resulting notation is not sufficient.
 * Collect the details during parsing, and give them out (additionally) so that it can
@@ -159,6 +159,11 @@ The following cases should be allowed:
   * inserted as the first move of a new variation, if the current move has variations.
   * just done, if there is a next move of the main line of in the variations that matches that move. This move is then selected.
   Every time a move is done, the move is added to the moves display, and then the new move is selected then.
+  
+The following structure is needed, so that the variation management is possible:
+  
+* The variations have to be a part of the move, which means that adding a variation div after the move is not sufficient. It has to be part of the move. By adding moves (addMove in PGN and on the board), the moves are added after the current move. If that move has variations, the variations will go to the end, if they are not part of the current move.
+* It should be checked if it necessary to build the variation array like it was done in the past. The first move should be added in the variation-array, but the rest of the moves don't have to be part of it. It is just sufficient that the move is linked to the previous one and vice versae. 
   
 ##### Annotations
   
