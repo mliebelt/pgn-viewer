@@ -399,12 +399,6 @@ var pgnReader = function (spec) {
                 current++;
                 move.variationLevel = level;
                 that.moves.push(move);
-
-                // Checks the move on a real board, and hold the fen
-                var pgn_move = game.move(move.notation.notation);
-                var fen = game.fen();
-                move.fen = fen;
-
                 if (i > 0) {
                     if (that.moves[current - 1].variationLevel > level) {
                         prevMove = findPrevMove(level, current -1);
@@ -415,6 +409,20 @@ var pgnReader = function (spec) {
                     }
                 }
                 called(current, prev, move, prevMove);
+                // Checks the move on a real board, and hold the fen
+                if (typeof move.prev == "number") {
+                    game.load(getMove(move.prev).fen);
+                } else {
+                    game.reset();
+                }
+                var pgn_move = game.move(move.notation.notation);
+                if (pgn_move == null) {
+                //    window.alert("No legal move: " + move.notation.notation);
+                }
+                var fen = game.fen();
+                move.fen = fen;
+
+
                 $.each(move.variations, function(v, variation) {
                     eachMoveVariation(variation, level + 1, prev);
                 })

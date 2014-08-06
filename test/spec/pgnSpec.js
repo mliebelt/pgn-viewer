@@ -159,6 +159,11 @@ describe("When reading PGN with variations", function() {
         expect(my_pgn.getMove(2).variations[0].length).toEqual(2);
         expect(my_pgn.getMove(2).variations[0][0].notation.notation).toEqual("Nf3");
         expect(my_pgn.getMove(2).variations[0][1].notation.notation).toEqual("Nc6");
+        expect(my_pgn.getMove(3).prev).toEqual(1);
+        expect(my_pgn.getMove(1).next).toEqual(2);
+        expect(my_pgn.getMove(3).next).toEqual(4);
+        expect(my_pgn.getMove(4).prev).toEqual(3);
+        expect(my_pgn.getMove(5).prev).toEqual(2);
     })
 
     it("should understand one variation for black with move number", function () {
@@ -168,6 +173,8 @@ describe("When reading PGN with variations", function() {
         expect(my_pgn.getMove(0).variations.length).toEqual(0);
         expect(my_pgn.getMove(1).variations[0].length).toEqual(3);
         expect(my_pgn.getMove(1).variations[0][2].notation.notation).toEqual("Qxd5");
+        expect(my_pgn.getMove(2).prev).toEqual(0);
+        expect(my_pgn.getMove(3).prev).toEqual(2);
     })
 
     it("should understand one variation for black without move number", function () {
@@ -177,6 +184,8 @@ describe("When reading PGN with variations", function() {
         expect(my_pgn.getMove(0).variations.length).toEqual(0);
         expect(my_pgn.getMove(1).variations[0].length).toEqual(3);
         expect(my_pgn.getMove(1).variations[0][2].notation.notation).toEqual("Qxd5");
+        expect(my_pgn.getMove(2).prev).toEqual(0);
+        expect(my_pgn.getMove(3).prev).toEqual(2);
     })
 
     it("should understand nested variations", function() {
@@ -186,6 +195,13 @@ describe("When reading PGN with variations", function() {
         expect(my_pgn.getMove(1).variations[0][2].notation.notation).toEqual("Qxd5");
         expect(my_pgn.getMove(1).variations[0][2].variations.length).toEqual(1);
         expect(my_pgn.getMove(1).variations[0][2].variations[0][0].notation.notation).toEqual("Nf6");
+        expect(my_pgn.getMove(2).prev).toEqual(0);
+        expect(my_pgn.getMove(5).prev).toEqual(3);
+    })
+
+    xit ("should know how to handle variation of the first move", function () {
+        my_pgn = pgnReader({pgn: "1. e4 ( 1. d4 d5 ) e5"});
+        expect(my_pgn.getMove(1).prev).isUndefined();
     })
 });
 

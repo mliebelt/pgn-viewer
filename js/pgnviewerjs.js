@@ -426,7 +426,14 @@ var pgnBase = function (boardId, configuration) {
                 // TODO: Here is the part where variation display goes wrong.
                 // TODO: The variation div has to be added to the moves span,
                 // TODO: not after the current move span.
-                moveSpan(move.prev)[0].appendChild(varDiv);
+                // This is the head of the current variation
+                var varHead = null;
+                if (typeof move.prev == "number") {
+                    varHead = that.mypgn.getMove(move.prev).next;
+                } else {
+                    varHead = 0;
+                }
+                moveSpan(varHead)[0].appendChild(varDiv);
                 // movesDiv.appendChild(varDiv);
             } else {
                 varStack[varStack.length - 1].appendChild(varDiv);
@@ -458,6 +465,7 @@ var pgnBase = function (boardId, configuration) {
         }
         moveSpan(currentCounter).on('click', function() {
             makeMove(that.currentMove, currentCounter, move.fen);
+            event.stopPropagation();
         });
         if (move.commentAfter && move.commentAfter == 'diagram') {
             var diaID = boardId + "dia" + currentCounter;
