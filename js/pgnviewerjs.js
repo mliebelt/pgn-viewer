@@ -180,7 +180,7 @@ var pgnBase = function (boardId, configuration) {
         if (moveSpan(that.currentMove).length == 0) {
             generateMove(that.currentMove, null, move, move.prev, document.getElementById(movesId), []);
         }
-        unmarkMark(cur, that.currentMove);
+        unmarkMark(that.currentMove);
     };
 
     // Utility function for generating general HTML elements with id, class (with theme)
@@ -361,7 +361,7 @@ var pgnBase = function (boardId, configuration) {
         return $('#' + movesId + i);
     };
     var moveASpan = function(i) {
-        return $('#' + movesId + i + " a");
+        return $('#' + movesId + i + "> a");
     }
 
     /**
@@ -426,7 +426,8 @@ var pgnBase = function (boardId, configuration) {
                 // TODO: Here is the part where variation display goes wrong.
                 // TODO: The variation div has to be added to the moves span,
                 // TODO: not after the current move span.
-                movesDiv.appendChild(varDiv);
+                moveSpan(move.prev)[0].appendChild(varDiv);
+                // movesDiv.appendChild(varDiv);
             } else {
                 varStack[varStack.length - 1].appendChild(varDiv);
             }
@@ -469,14 +470,12 @@ var pgnBase = function (boardId, configuration) {
     };
 
     /**
-     * Unmark the current move, mark the next one.
+     * Unmark all marked moves, mark the next one.
      * @param curr the current move number
      * @param next the next move number
      */
-    function unmarkMark(curr, next) {
-        if (typeof curr != 'undefined') {
-            moveASpan(curr).removeClass();
-        }
+    function unmarkMark(next) {
+        $("div#" + movesId + " a.yellow").removeClass('yellow');
         moveASpan(next).addClass('yellow');
     }
 
@@ -489,7 +488,7 @@ var pgnBase = function (boardId, configuration) {
     var makeMove = function(curr, next, fen) {
         board.position(fen);
         game.load(fen);
-        unmarkMark(curr, next);
+        unmarkMark(next);
         that.currentMove = next;
         scrollToView(moveSpan(next));
         fillComment(next);

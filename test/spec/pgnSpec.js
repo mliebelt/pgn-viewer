@@ -201,12 +201,12 @@ describe("When reading variations with comments", function() {
     });
 
     it("should understand comments for variation with white", function() {
-        my_pgn = pgnReader({pgn: "1. d4 ({START} 1. {BEFORE} d4 {AFTER} e5) 1... d5"});
+        my_pgn = pgnReader({pgn: "1. d4 ({START} 1. {BEFORE} e4 {AFTER} e5) 1... d5"});
         var var_first = my_pgn.getMove(0).variations[0][0];
         expect(var_first.commentMove).toEqual("START");
         expect(var_first.commentBefore).toEqual("BEFORE");
         expect(var_first.commentAfter).toEqual("AFTER");
-        expect(var_first.notation.notation).toEqual("d4");
+        expect(var_first.notation.notation).toEqual("e4");
     })
 });
 

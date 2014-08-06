@@ -113,7 +113,7 @@ div.green > button {
     font-weight: 500;
 }
 
-.moves > .variation {
+.moves .variation {
     font-size: 100%;
     display: block;
     padding-left: 5px;
@@ -121,25 +121,25 @@ div.green > button {
     padding-top: 5px;
     padding-bottom: 5px;
 }
-.moves > .variation:before {
+.moves .variation:before {
     content: ' ( ';
 }
 
-.moves > .variation > .variation:before {
+.moves .variation .variation:before {
     content: ' ( ';
 }
 
-.moves > .variation > .variation {
+.moves .variation .variation {
     font-size: 90%;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.moves > .variation > .variation:after {
+.moves .variation .variation:after {
     content: ' ) ';
 }
 
-.moves > .variation:after {
+.moves .variation:after {
     content: ' ) ';
 }
 
