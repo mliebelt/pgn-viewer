@@ -202,13 +202,6 @@ Annotations are provided by a button, with the entries: Clear, !, !!, ...
 
 Scid used annotation 'D' for diagram, and when that is exported to PGN, this is converted to annotation $201. In the official documentation, this is not found, but could be used anyway.
   
-#### Define functions for Editing (working)
-  
-* chessboardjs provides in its example section the following (which should be used):
-  * Only allow legal moves (/)
-  * Highlight legal moves (/)
-  * Snapback on wrong drop (/)
-
 #### Understand FEN in a better way
 
 Currently, FEN is black magic. I have to understand what is inside a FEN string, and construct
@@ -414,6 +407,13 @@ in more places than wished. At least the following should be done:
 * Define the reading and writing of PGN (only), how to handle it, and what is the API to
   work with the PGN object.
   
+#### Define functions for Editing (/)
+  
+* chessboardjs provides in its example section the following (which should be used):
+  * Only allow legal moves (/)
+  * Highlight legal moves (/)
+  * Snapback on wrong drop (/)
+
 ### PGN
 
 #### Generate moves from PNG (main line) (/)

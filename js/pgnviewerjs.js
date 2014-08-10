@@ -253,7 +253,9 @@ var pgnBase = function (boardId, configuration) {
         generateViewButtons(buttonsBoardDiv);
         var editButtonsBoardDiv = createEle("div", "edit" + buttonsId, "edit", theme, outerInnerBoardDiv);
         generateEditButtons(editButtonsBoardDiv);
-        var pgnDiv  = createEle("div", "pgn" + buttonsId, "pgn", theme, outerInnerBoardDiv);
+        var outerPgnDiv = createEle("div", "outerpgn" + buttonsId, "outerpgn", theme, outerInnerBoardDiv);
+        var pgnHideButton  = addButton("hidePGN", outerPgnDiv);
+        var pgnDiv  = createEle("div", "pgn" + buttonsId, "pgn", theme, outerPgnDiv);
         var commentBoardDiv = createEle("div", "comment" + buttonsId, "comment", theme, outerInnerBoardDiv);
         generateCommentDiv(commentBoardDiv);
         // Ensure that moves are scrollable (by styling CSS) when necessary
@@ -587,7 +589,12 @@ var pgnBase = function (boardId, configuration) {
                 $('#pgn' + buttonsId).hide(200);
                 var str = computePgn();
                 showPgn(str);
+                $("#" + boardId + " .outerpgn").show();
             });
+            $('#' + boardId + " .hidePGN").on("click", function () {
+                $( "#" + boardId + " .outerpgn").hide( "fold");
+            });
+            $("#" + boardId + ' .outerpgn').hide();
             $('#comment' + buttonsId + " textarea.comment").change(function() {
                 var text = commentText();
                 var checked = $("#comment" + buttonsId + " :checked").val() || "after";

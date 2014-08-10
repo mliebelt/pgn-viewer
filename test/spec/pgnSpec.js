@@ -199,9 +199,11 @@ describe("When reading PGN with variations", function() {
         expect(my_pgn.getMove(5).prev).toEqual(3);
     })
 
-    xit ("should know how to handle variation of the first move", function () {
+    it ("should know how to handle variation of the first move", function () {
         my_pgn = pgnReader({pgn: "1. e4 ( 1. d4 d5 ) e5"});
-        expect(my_pgn.getMove(1).prev).isUndefined();
+        expect(my_pgn.getMove(1).prev).toEqual(undefined);
+        expect(my_pgn.getMove(my_pgn.getMove(0).next).notation.notation).toEqual("e5");
+        expect(my_pgn.getMove(my_pgn.getMove(1).next).notation.notation).toEqual("d5");
     })
 });
 

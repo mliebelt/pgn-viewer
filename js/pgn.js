@@ -454,6 +454,7 @@ var pgnReader = function (spec) {
         };
 
         // Returns the existing move number or null
+        // Should include all variations as well
         function existing_move(move, moveNumber) {
             if (moveNumber == null) return null;
             var prevMove = getMove(moveNumber);
@@ -464,6 +465,14 @@ var pgnReader = function (spec) {
             if (typeof nextMove == "undefined") return null;
             if (nextMove.notation.notation == pgn_move.san) {
                 return prevMove.next;
+            } else { // check if there exists variations
+                var mainMove = getMove(prevMove.next);
+                for (i = 0; i < mainMove.variations.length; i++) {
+                    var variation = mainMove.variations[i];
+                    if (variation[0].notation.notation == pgn_move.san) {
+                        return variation[0].index;
+                    }
+                }
             }
             return null;
         }
@@ -472,7 +481,7 @@ var pgnReader = function (spec) {
         function handle_variation(move, prev, next) {
             var prevMove = getMove(prev);
             if (prevMove.next) {    // has a next move set, so should be a variation
-                prevMove.variations[0] = [move];
+                getMove(prevMove.next).variations.push([move]);
             } else {    // main variation
                 prevMove.next = next;
             }
@@ -500,6 +509,7 @@ var pgnReader = function (spec) {
         that.moves.push(real_move);
         real_move.prev = moveNumber;
         var next = that.moves.length - 1;
+        real_move.index = next;
         if (moveNumber != null) {
             handle_variation(real_move, moveNumber, next);
         }

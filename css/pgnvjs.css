@@ -40,6 +40,18 @@ div.edit > .pgn {
     background-image: url("../img/buttons/ff/script_save.png");
 }
 
+button.hidePGN {
+    /*display: none;*/
+    background-image: url("../img/buttons/ff/cancel.png");
+    width: 20px;
+    height: 20px;
+}
+
+div.outerpgn {
+    padding: 10px;
+    border: 1px solid grey;
+}
+
 div.green > .prev {
     background-image: url("../img/buttons/tango/go-previous.png");
 }
