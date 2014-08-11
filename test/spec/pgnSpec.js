@@ -510,8 +510,8 @@ describe("When making moves in PGN", function() {
         expect(my_pgn.getMoves().length).toEqual(5);
         expect(my_pgn.getMove(4).turn).toEqual("w");
         expect(my_pgn.getMove(4).notation.notation).toEqual("f4");
-        expect(my_pgn.getMove(1).variations.length).toEqual(1);
-        expect(my_pgn.getMove(1).variations[0][0].notation.notation).toEqual("f4");
+        expect(my_pgn.getMove(2).variations.length).toEqual(1);
+        expect(my_pgn.getMove(2).variations[0][0].notation.notation).toEqual("f4");
     });
 
     xit("should start a second variation in the middle of the main line, when the current move has already a variation", function () {

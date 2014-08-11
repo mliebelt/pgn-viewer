@@ -57,7 +57,8 @@ var pgnBase = function (boardId, configuration) {
     /**
      * Allow to hide HTML by calling this function. It will prepend
      * the boardId, and search for an ID in the DOM.
-     * @param eleName
+     * @param eleName the element name added to the boardId
+     * @param prefix the prefix used for the unique Id
      */
     var hideHTML = function(eleName, prefix) {
         var ele = "#" + (prefix ? prefix : "") + boardId + eleName;
@@ -71,12 +72,13 @@ var pgnBase = function (boardId, configuration) {
      */
     function scrollToView(element){
         var eleRect = element[0].getBoundingClientRect();
-        var scrollerRect = $("#" + element[0].id).parent().parent()[0].getBoundingClientRect();
-        var movesRect = $("#" + element[0].id).parent()[0].getBoundingClientRect();
+        var eleParent = $("#" + element[0].id).parent();
+        var scrollerRect = eleParent.parent()[0].getBoundingClientRect();
+        var movesRect = eleParent[0].getBoundingClientRect();
         var offsetTop = eleRect.top - movesRect.top;
         var offsetBottom = eleRect.bottom - movesRect.top;
-        var visible_area_start = $("#" + element[0].id).parent().parent().scrollTop();
-        var visible_area_end = visible_area_start + $("#" + element[0].id).parent().parent().innerHeight();
+        var visible_area_start = eleParent.parent().scrollTop();
+        var visible_area_end = visible_area_start + eleParent.parent().innerHeight();
         if(offsetTop < visible_area_start || offsetBottom > visible_area_end){
             $("#" + element[0].id).parent().parent().animate(
                 {scrollTop: visible_area_start + (eleRect.top - (scrollerRect.top + visible_area_end - visible_area_start)) + 30}, configuration.timerTime - 200);
@@ -207,9 +209,10 @@ var pgnBase = function (boardId, configuration) {
     var generateHTML = function() {
         // Utility function for generating buttons divs
         function addButton(name, buttonDiv) {
-            createEle("button", buttonsId + name, name, theme, buttonDiv);
+            var button = createEle("button", buttonsId + name, name, theme, buttonDiv);
             var title = $.t("buttons:" + name);
             $("#" + buttonsId + name).attr("title", title);
+            return button;
         }
         // Generates the view buttons (only)
         var generateViewButtons = function(buttonDiv) {
@@ -219,7 +222,9 @@ var pgnBase = function (boardId, configuration) {
         // Generates the edit buttons (only)
         var generateEditButtons = function(buttonDiv) {
             ["deleteVar", "promoteVar", "deleteMoves", "nags", "pgn"].forEach(function(entry) {
-                addButton(entry, buttonDiv)});
+                var but = addButton(entry, buttonDiv);
+                but.className = but.className + " gray";
+            });
         };
 
         var generateCommentDiv = function(commentDiv) {
@@ -233,8 +238,8 @@ var pgnBase = function (boardId, configuration) {
             var ma = createEle("input", null, "afterComment", theme, radio);
             ma.type = "radio"; ma.value = "after"; ma.name = "radio";
             createEle("label", null, "labelAfterComment", theme, radio).appendChild(document.createTextNode("After"));
-            var text = createEle("textarea", null, "comment", theme, commentDiv);
-        }
+            createEle("textarea", null, "comment", theme, commentDiv);
+        };
         var divBoard = document.getElementById(boardId);
         if (divBoard == null) {
             return;
@@ -243,7 +248,7 @@ var pgnBase = function (boardId, configuration) {
             divBoard.style.width = configuration.size;
         }
         divBoard.setAttribute('class', theme + ' whole');
-        var headersDiv = createEle("div", headersId, "headers", theme, divBoard);
+        createEle("div", headersId, "headers", theme, divBoard);
         var outerInnerBoardDiv = createEle("div", null, "outerBoard", null, divBoard);
         if (configuration.boardSize) {
             outerInnerBoardDiv.style.width = configuration.boardSize;
@@ -280,7 +285,7 @@ var pgnBase = function (boardId, configuration) {
     /**
      * Generate the board that uses the unique innerBoardId and the part of the configuration
      * that is for the board only. Returns the resulting object (as reference for others).
-     * @returns {Window.ChessBoard} the board object that may play the moveslater
+     * @returns {Window.ChessBoard} the board object that may play the moves later
      */
     var generateBoard = function() {
         function copyBoardConfiguration(source, target, keys) {
@@ -290,7 +295,6 @@ var pgnBase = function (boardId, configuration) {
                     target[key] = source[key];
                 }
             });
-            var myPieceStyles = ['case', 'chesscom', 'condal', 'leipzig', 'maya', 'merida', 'beyer'];
             if (! target.pieceTheme) {
                 target.pieceTheme = localPath() + '../img/chesspieces/' + pieceStyle + '/{piece}.png';
             }
@@ -364,7 +368,7 @@ var pgnBase = function (boardId, configuration) {
     };
     var moveASpan = function(i) {
         return $('#' + movesId + i + "> a");
-    }
+    };
 
     /**
      * Generates one move from the current position.
