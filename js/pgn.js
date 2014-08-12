@@ -485,6 +485,7 @@ var pgnReader = function (spec) {
                 move.variationLevel = (prevMove.variationLevel ? prevMove.variationLevel : 0) + 1;
             } else {    // main variation
                 prevMove.next = next;
+                move.variationLevel = prevMove.variationLevel;
             }
         }
 
