@@ -223,7 +223,8 @@ var pgnBase = function (boardId, configuration) {
         var generateEditButtons = function(buttonDiv) {
             ["deleteVar", "promoteVar", "deleteMoves", "nags", "pgn"].forEach(function(entry) {
                 var but = addButton(entry, buttonDiv);
-                but.className = but.className + " gray";
+                //but.className = but.className + " gray"; // just a test, worked.
+                // only gray out if not usable, check that later.
             });
         };
 
@@ -494,6 +495,24 @@ var pgnBase = function (boardId, configuration) {
     }
 
     /**
+     * Check which buttons should be grayed out
+     */
+    var checkGray = function (next) {
+        $("div.buttons .gray").removeClass('gray');
+        var move = that.mypgn.getMove(next);
+        if (typeof move.prev != "number") {
+            ["prev", "first"].forEach(function(name) {
+                $("div.buttons ." + name).addClass('gray');
+            });
+        }
+        if (typeof move.next != "number") {
+            ["next", "play", "last"].forEach(function(name) {
+                $("div.buttons ." + name).addClass('gray');
+            });
+        }
+    };
+
+    /**
      * Plays the move that is already in the noation on the board.
      * @param curr the current move number
      * @param next the move to take now
@@ -506,6 +525,7 @@ var pgnBase = function (boardId, configuration) {
         that.currentMove = next;
         scrollToView(moveSpan(next));
         fillComment(next);
+        checkGray(next);
     };
 
     /**
