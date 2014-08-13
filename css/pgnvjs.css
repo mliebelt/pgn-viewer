@@ -51,10 +51,12 @@ button.hidePGN {
     background-image: url("../img/buttons/ff/cancel.png");
     width: 16px;
     height: 16px;
+    background-repeat: no-repeat;
+    background-position: 50%;
 }
 
 div.outerpgn {
-    padding: 10px;
+    padding: 6px;
     border: 1px solid grey;
 }
 

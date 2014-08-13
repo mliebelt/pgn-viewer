@@ -292,6 +292,35 @@ At least move number, turn, en-passent, rochade, ... should be possible.
 * Collect nice games and insert them into the examples
 * Fix errors in the grammar while working on the games
 
+##### Provide the feature in a useful manner
+
+Look if the current categories are the right ones, and nothing is missing.
+
+* Basics: Give minimal hints, more examples will follow later
+  * Board
+  * Viewer
+  * Print
+  * Edit
+* Boards: Only minimal examples, there are much more (and interesting). See examples/boards.html
+  * Simple: The default board, with everything as default.
+  * Themes: Perhaps more could be added (or smaller ones)
+  * Position: Smaller boards, and more positions
+  * Others: Only small features, are there more ???
+* Games: Show the combination of boards and moves to whole games
+  * Chess.com Style: Hopefully impressive
+  * Normal: Boring, but ok.
+  * Falken: Interesting, because different
+* Moves: Here the examples are missing
+  * Main variation
+  * Different styles of comments
+  * Different variations, combined with comments
+  * Moves in the print style with different boards
+  * Combination of NAGs
+  * Editing possibilities of moves: Adding, change prio / order, Adding NAGs, comments
+* Themes & Styles: What is missing?
+  * Don't know.
+  * Internationalisation!! At least en, de, perhaps fr
+
 ## Done and mostly finished (/)
 
 ### Visual (/)

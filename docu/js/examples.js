@@ -25,7 +25,7 @@ examples["1001"] = {
 
 examples["1002"] = {
     desc: "Use PgnViewerJS for displaying a game in typical notation, with diagrams and different styles " +
-        "for the moves, the boards, ... This is not implemented yet!! So the diagram on the right is a placeholder.",
+        "for the moves, the boards, ... This is not implemented correctly, but will be soon.",
     html: "<div id=\"board\" style=\"width: 250px\"><\/div>",
     name: "Printing a game",
     jsStr: "var pgn = \"1. f4 e6 2. g4 Qh4#\";\nvar board = pgnPrint('board', {pgn: pgn});",
@@ -36,15 +36,15 @@ examples["1002"] = {
 };
 
 examples["1003"] = {
-    desc: "Use PgnViewerJS for viewing a game with the option to edit it by adding variations, comments, " +
-        "... This is not fully implemented yet!! So the diagram on the right is a placeholder. The" +
-        " diagram is playable, but the moves are not noted (yet).",
+    desc: "Use PgnViewerJS for viewing a game with the option to edit it by adding variations, comments, ..." +
+        "So start playing on the board, take moves back, and test variations. Not all " +
+        "buttons are implemented, but the PGN button works and displays the current " +
+        "game in the pgn notation (including comments).",
     html: "<div id=\"board\" style=\"width: 300px\"><\/div>",
     name: "Editing a game",
-    jsStr: "var pgn = \"1. f4 e6 2. g4 Qh4#\";\nvar board = pgnEdit('board', {pgn: pgn});",
+    jsStr: "var board = pgnEdit('board', {});",
     jsFn: function() {
-        var pgn = "1. f4 e6 2. g4 Qh4#";
-        var board = pgnEdit('board', {pgn: pgn});
+        var board = pgnEdit('board', {});
     }
 };
 
@@ -153,7 +153,8 @@ examples["1052"] = {
 examples["1100"] = {
     desc: "This is an example of a chess game, where the moves are not only shown, but can be " +
         "changed. Try to play on the board, use the move, before and after comments, switch " +
-        "between them. Try to find the PGN button, and refresh the display when you have changed " +
+        "between them. Insert new moves, and see the display changing. " +
+        "Try to find the PGN button, and refresh the display when you have changed " +
         "a comment.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Edit game",
@@ -167,21 +168,26 @@ examples["1100"] = {
     }
 };
 examples["1101"] = {
-    desc: "Here the normal layout of the moves, with some special characters, ...",
-    html: "",
-    name: "Normal Style (Moves)",
-    jsStr: "",
+    desc: "Here the normal layout of the moves, with some special characters, the so called NAGs. PNGViewerJS knows the NAGs, and " +
+        "translates them in the correct notation. The following game " +
+        "is not really correct commented, but it shows the different options.\nNot all characters are available in all fonts, so we should " +
+        "check that ....",
+    html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
+    name: "Annotated moves",
+    jsStr: "...",
     jsFn: function() {
-
+        var pgn = '1. e4$1 e5$2 2. Nf3$3 Nc6$4 3. Bb5$5 a6$6 4. Ba4$7 Nf6$10 5. O-O$13 Be7$14 6. Re1$15 b5$16 7. Bb3$17 O-O$18 8. c3$19 d5$3';
+        var pgnv = pgnView('b1', {pgn: pgn});
     }
 };
 examples["1102"] = {
-    desc: "Here a game with a lot of variations, sometimes two or more levels deep.",
-    html: "",
+    desc: "Here a game with a lot of variations, sometimes two or more levels deep. This is part of my opening repertoire as white.",
+    html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Variations in Moves",
-    jsStr: "",
+    jsStr: "...",
     jsFn: function() {
-
+        var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'
+        var pgnv = pgnView('b1', {pgn: pgn});
     }
 };
 examples["1150"] = {

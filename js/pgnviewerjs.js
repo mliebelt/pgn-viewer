@@ -752,6 +752,7 @@ var pgnBoard = function(boardId, configuration) {
     base.hideHTML("Button");
     base.hideHTML("Button", "edit");
     base.hideHTML("Button", "comment");
+    base.hideHTML("Button", "outerpgn");
     var b = base.generateBoard();
     return {
         chess: base.chess,
@@ -800,6 +801,7 @@ var pgnPrint = function(boardId, configuration) {
     base.hideHTML("Inner");
     base.hideHTML("Button", "edit");
     base.hideHTML("Button", "comment");
+    base.hideHTML("Button", "outerpgn");
     var b = base.generateBoard();
     base.generateMoves(b);
 };

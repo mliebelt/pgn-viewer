@@ -13,19 +13,22 @@ For that purpose, it does not write everything anew, but it uses for that the fo
 * [chess.js](https://github.com/jhlywa/chess.js) Base library to model 
   chess in JavaScript
 
+See the working examples on the public site [PgnViewerJS](http://mliebelt.bplaced.net/pgnvjs/examples2.html) to see what is working at the moment.
+
 # Features
 
-This implementation will have the following features (in the future):
+This implementation has the following features:
 
-* Allows to show one or more chess games complete, with a lot of different
+* Allows to show one chess games complete, with a lot of different
   styles, themes, tuning, ...
-* Allow to play through the games forward and backward, including variations.
+* Allows to play through the games forward and backward, including variations.
 * Allows to play from a legal position only legal moves, and adds these 
   moves to the notation (in a different style)
 * Allows to play through
   * clicking on moves
   * clicking on next and previous button
   * clicking on play button
+* Allows to add moves to a game, when in the right 'mode'.  
 * Knows all PGN notation elements, and knows how to render them.  
 
 # Interface
@@ -37,30 +40,19 @@ There are 2 parts to the interface:
 
 ## Examples
 
-The included example `examples/sample.html` is my first try how to show 
-the board. It will be expanded later by others (complete) examples that 
+The included examples in the directory `examples` are helping me to develop
+the functionality. To start them, just clone the repository, and open one
+of the files in a modern browser. They will be expanded later by others (complete) examples that 
 may be used to study the usage.
-
-To use the examples, you have to first download this repository, and 
-open the example files in the browser.
-See the different parameters used in this example, to customize the drawing of the board.
-
-The second example `examples/pgn.html` shows the first few moves of a 
-game together with the (clickable) notation. This shows (at the moment) 
-the deficits I have in using `chess.js` as a library.
-
-The third one `examples/evergreen.html` shows one of the most prominent
-games ever, with a beautiful ending. Play through the gmae, and try
-to manipulate the CSS and the parameters to see differences.
 
 ## Using the viewer
 
 To use the viewer in an HTML page, you have to do the following steps:
 
-   * include the necessary libraries (should be as short as possible)
-   * include the necessary CSS files
-   * Include a simple JavaScript inside your HTML page.
-   * Include the necessary div containers for rendering of the 
+   * Include the necessary libraries (should be as short as possible)
+   * Include the necessary CSS files
+   * Include some simple JavaScript code inside your HTML page.
+   * Include the necessary div container for rendering of the 
    board and the moves
 
 ### JavaScript call inside page
@@ -78,7 +70,7 @@ Alternative call could be:
     pgnView("demo", cfg};
     </script>
 
-There are 3 different options to call the viewer:
+There are 4 different options to call the viewer:
 
 1. pgnBoard: The simplest one just to draw a board. This should work
   with a FEN string as argument. If you give a PGN notation, the board
@@ -86,6 +78,8 @@ There are 3 different options to call the viewer:
 2. pgnView: Render a whole game, and allow to play through it. It may
   be (later) possible to add additional boards, and to disable the
   playing funtionality, just to show a static game (e.g. for printing it).
+3. pgnPrint: Prints a whole game (including comments and diagrams where noted)
+  in a notation comparable to that used in books and magazines. 
 3. pgnEdit: Adds editing functionality, so that the user has the
   option to add (or remove) variants, add comments and PGN notation,
   and to copy at least the current notation to the clipboard, as an
@@ -102,12 +96,21 @@ When you use PgnViewerJS, you have to provide a frame for that. The following ex
             <title>Simple Example</title>
             <!-- Libraries used: chessboardjs and chess.js from GitHub -->
             <script src="chessboardjs/js/chessboard.js" type="text/javascript"></script>
-            <script src="chessboardjs/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+            <script src="chessboardjs/js/jquery-1.11.1.js" type="text/javascript"></script>
             <script src="chessboardjs/js/json3.min.js" type="text/javascript"></script>
             <script src="chess.js/chess.js" type="text/javascript"></script>
 
             <!-- CSS used: chessboardjs from GitHub -->
             <link href="chessboardjs/css/chessboard.css" type="text/css" rel="stylesheet"/>
+            
+             <!-- My own library -->
+             <script src="../js/pgnviewerjs.js" type="text/javascript"></script>
+             <script src="../js/jquery.timer.js" type="text/javascript"></script>
+             <script src="../js/i18next-1.7.3.js" type="text/javascript"></script>
+             <script src="../js/pgn.js" type="text/javascript"></script>
+             <script src="../js/peg-0.8.0.js" type="text/javascript"></script>
+             <script src="../js/pgn-parser.js" type="text/javascript"></script>
+             <script src="../js/jquery.hotkeys.js" type="text/javascript"></script>
 
         </head>
         <body>
@@ -147,7 +150,7 @@ There are a growing number of parameters for the configuration, so here is the i
       * Veranstaltung, Ort, Runde, Datum, Resultat (de)
       * ...
 * chess parameters: Used most by chess.js and pgn.js.    
-  * position: a FEN string or 'start' or 'clear' ?? (default)
+  * position: a FEN string or 'start' (default) or 'clear' (for an empty board) 
   * pgn: a whole game (or part of a game from the given position)    
     
 ## API
@@ -175,9 +178,11 @@ things users should know to use the viewer in the best way possible.
     
 ## Public site
     
-See the documentation on the public site (PgnViewerJS)[http://mliebelt.bplaced.net/pgnvjs/]
-for the current state, some working examples, and a little bit background.
+See the documentation on the public site [PgnViewerJS](http://mliebelt.bplaced.net/pgnvjs/index2.html)
+for the current state, some working examples, and a little bit as background. This
+site is growing, and allows me to show the early alpha implementation to others.
 
 ## References
 
 * http://www.famfamfam.com/lab/icons/silk/: Used part of the icons in the UI
+* **TODO** Collect here all references that are used in the implementation. This is only fair to the many ones that have provided additional parts of the implementation.

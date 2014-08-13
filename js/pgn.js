@@ -483,6 +483,9 @@ var pgnReader = function (spec) {
             if (prevMove.next) {    // has a next move set, so should be a variation
                 getMove(prevMove.next).variations.push([move]);
                 move.variationLevel = (prevMove.variationLevel ? prevMove.variationLevel : 0) + 1;
+                if (move.turn == 'b') {
+                    move.moveNumber = prevMove.moveNumber;
+                }
             } else {    // main variation
                 prevMove.next = next;
                 move.variationLevel = prevMove.variationLevel;
