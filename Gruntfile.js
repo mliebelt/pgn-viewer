@@ -130,6 +130,21 @@ module.exports = function(grunt) {
                     }
                 ]
             },
+            docu_js: {
+                options: {
+                    authKey: "bplaced",
+                    host: "mliebelt.bplaced.net",
+                    dest: "/pgnvjs/js",
+                    port: 21
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'docu/js',
+                        src: ["*.js"]
+                    }
+                ]
+            },
             dist_min: {
                 options: {
                     authKey: "bplaced",
