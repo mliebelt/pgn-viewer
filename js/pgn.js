@@ -362,6 +362,16 @@ var pgnReader = function (spec) {
     };
 
     /**
+     * Return true if the diagram NAG (== $220) is found.
+     * @param move
+     */
+    var has_diagram_nag = function(move) {
+        if (typeof move.nag == "undefined") return false;
+        if (move.nag == null) return false;
+        return move.nag.indexOf('$220') > -1;
+    };
+
+    /**
      * Final algorithm to read and map the moves. Seems to be tricky ...
      * @param called the function that will be called (here wireMoves in readMoves)
      */
@@ -558,7 +568,8 @@ var pgnReader = function (spec) {
         endVariation: endVariation,
         addNag: addNag,
         clearNags: clearNags,
-        addMove: addMove
+        addMove: addMove,
+        has_diagram_nag: has_diagram_nag
     }
 };
 

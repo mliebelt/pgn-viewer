@@ -48,11 +48,11 @@
 Here an example how to mix chess moves with more than one diagram, where the board is <b>not</b> playable.
 </p>
 <script>
-    var pgn = "1. e4 e5 {diagram} 2. Nf3 Nc6 {diagram}" +
-            " 3. Bb5 a6 {diagram} 4. Ba4 Nf6 {diagram}" +
-            " 5. O-O b5 {diagram} 6. Bb3 Be7 {diagram}" +
+    var pgn = "1. e4 e5D 2. Nf3 Nc6D" +
+            " 3. Bb5 a6D 4. Ba4 Nf6D" +
+            " 5. O-O b5D 6. Bb3 Be7D" +
             " 7. Re1 d5 {the well known Marshall Gambit, analyzed up to 20 moves at least}" +
-            " 8. {the main variation} exd5 {diagram} ";
+            " 8. {the main variation} exd5D ";
     pgnPrint("board", {pgn: pgn, showNotation: false});
 </script>
 

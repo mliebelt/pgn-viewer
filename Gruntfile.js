@@ -81,6 +81,17 @@ module.exports = function(grunt) {
                     template: 'template.jst'}
             }
         },
+        compress: {
+            main: {
+                options: {
+                    archive: 'PgnViewerJS.zip'
+                },
+                expand: true,
+                cwd: 'dist/',
+                src: ['**/*'],
+                dest: ''
+            }
+        },
         'ftp-deploy': {
             docu: {
                 auth: {
@@ -201,10 +212,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-markdown');
     grunt.loadNpmTasks('grunt-ftp-deploy');
     grunt.loadNpmTasks('grunt-ftp-push');
+    grunt.loadNpmTasks('grunt-contrib-compress');
 
     // Default task.
     grunt.registerTask('default', ['clean', 'concat',  'uglify', 'copy']);
     grunt.registerTask('deploy-all', ['ftp_push:dist_min', 'ftp_push:docu_min',
-        'ftp_push:dist_locales', 'ftp_push:dist_css']);
+        'ftp_push:dist_locales', 'ftp_push:dist_css', 'ftp_push:docu_js']);
 
 };

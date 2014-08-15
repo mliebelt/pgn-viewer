@@ -182,7 +182,16 @@ See the documentation on the public site [PgnViewerJS](http://mliebelt.bplaced.n
 for the current state, some working examples, and a little bit as background. This
 site is growing, and allows me to show the early alpha implementation to others.
 
+### Available versions
+
+I will provide downloads of the versions, that should be easy to install. Just unpack
+locally, and copy one of the examples and play with them.
+
+* [Version 0.9.0](PgnViewerJS-0.9.0.zip): Nearly feature complete, roughly documented,
+  stable enough to play with it.
+
 ## References
 
 * http://www.famfamfam.com/lab/icons/silk/: Used part of the icons in the UI
+* http://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs Definition of the NAGs (partly used)
 * **TODO** Collect here all references that are used in the implementation. This is only fair to the many ones that have provided additional parts of the implementation.
