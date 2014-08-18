@@ -6,9 +6,17 @@ module.exports = function(grunt) {
         clean: ["dist/css", 'dist/js', 'dist/img', 'dist/locales', 'dist/doc', "docu/dist/css",
             'docu/dist/js', 'docu/dist/img', 'docu/dist/locales', 'docu/dist/doc'],
         concat: {
-            js: {
+            all: {
                 src: [
                     'chessboardjs/js/jquery-1.11.1.js',
+                    'chess.js/chess.js',
+                    'chessboardjs/js/chessboard.js',
+                    'chessboardjs/js/json3.min.js',
+                    'js/*.js'],
+                dest: 'dist/js/pgnviewerjs.js'
+            },
+            no_jq: {
+                src: [
                     'chess.js/chess.js',
                     'chessboardjs/js/chessboard.js',
                     'chessboardjs/js/json3.min.js',
@@ -171,6 +179,21 @@ module.exports = function(grunt) {
                     }
                 ]
             },
+            dist_debug: {
+                options: {
+                    authKey: "bplaced",
+                    host: "mliebelt.bplaced.net",
+                    dest: "/pgnvjs/dist/js",
+                    port: 21
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'dist/js',
+                        src: ["pgnviewerjs.js"]
+                    }
+                ]
+            },
             dist_locales: {
                 options: {
                     authKey: "bplaced",
@@ -215,7 +238,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-compress');
 
     // Default task.
-    grunt.registerTask('default', ['clean', 'concat',  'uglify', 'copy']);
+    grunt.registerTask('default', ['clean', 'concat:all',  'uglify', 'copy']);
+    grunt.registerTask('debug', ['clean', 'concat:all', 'copy']);
     grunt.registerTask('deploy-all', ['ftp_push:dist_min', 'ftp_push:docu_min',
         'ftp_push:dist_locales', 'ftp_push:dist_css', 'ftp_push:docu_js']);
 

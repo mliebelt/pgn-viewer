@@ -108,7 +108,7 @@ checkdisc
   = discriminator strike? column row
 
 moveEllipse
-  = num:integer"..." { return num; }
+  = num:integer"."+ { return num; }
 
 figure
   = [RNBQK]

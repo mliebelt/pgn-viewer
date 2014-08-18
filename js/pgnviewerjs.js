@@ -50,7 +50,8 @@ var pgnBase = function (boardId, configuration) {
      */
     function localPath() {
         var jsFileLocation = $('script[src*=pgnviewerjs]').attr('src');  // the js file path
-        return jsFileLocation.replace('pgnviewerjs.js', '');   // the js folder path
+        var index = jsFileLocation.indexOf('pgnviewerjs');
+        return jsFileLocation.substring(0, index);   // the js folder path
     }
 
 
