@@ -266,6 +266,9 @@ At least move number, turn, en-passent, rochade, ... should be possible.
 * What should be the structure of a distributed application? I had problems (first) in using the gruntified application ...
 * Does it make sense to have different ones: small, typical, full?
 * What should be the different parts in it?
+* Version the distribution (by a simple mechanism) so that when changing something, which is
+  relevant to distribute, the version can be incremented, and then the distribution can be
+  built and uploaded.
 
 #### Distribution and GitHub
 
@@ -321,6 +324,13 @@ Look if the current categories are the right ones, and nothing is missing.
   * Don't know.
   * Internationalisation!! At least en, de, perhaps fr
 
+##### Provide public documentation
+
+* Provide additional to the web site (or instead of it?) examples that are included
+  in the distribution that can be downloaded.
+* Zip the examples together with the rest, so that when expanding the distribution,
+  the examples can be run just by double-clicking them.
+  
 ## Done and mostly finished (/)
 
 ### Visual (/)

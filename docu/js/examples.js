@@ -25,12 +25,14 @@ examples["1001"] = {
 
 examples["1002"] = {
     desc: "Use PgnViewerJS for displaying a game in typical notation, with diagrams and different styles " +
-        "for the moves, the boards, ... This is not implemented correctly, but will be soon.",
+        "for the moves, the boards, ... Looks similar to the style of some magazines or books. " +
+        "For the diagram, I have taken the NAG 'D' (or $220), see <a href=\"http://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs\">NAGs at Wikipedia</a> for details",
     html: "<div id=\"board\" style=\"width: 250px\"><\/div>",
     name: "Printing a game",
-    jsStr: "var pgn = \"1. f4 e6 2. g4 Qh4#\";\nvar board = pgnPrint('board', {pgn: pgn});",
+    jsStr: "var pgn = \"1. f4 e6 2. g4D Qh4#$220\";\nvar board = pgnPrint('board', {pgn: pgn});",
     jsFn: function() {
-        var pgn = "1. f4 e6 2. g4 {diagram} Qh4# {diagram}";
+        var pgn = "1. f4 e6 2. g4D { what a horrible move (but the shortest mate " +
+            "you can get ...) } Qh4#$220";
         var board = pgnPrint('board', {pgn: pgn});
     }
 };

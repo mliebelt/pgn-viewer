@@ -98,6 +98,7 @@ nag
   / '?' { return '$2'; }
   / '=' { return '$10'; }
   / '∞' { return '$13'; }
+  / 'D' { return '$220'; }
 
 discriminator
   = column
@@ -107,7 +108,7 @@ checkdisc
   = discriminator strike? column row
 
 moveEllipse
-  = num:integer"..." { return num; }
+  = num:integer"."+ { return num; }
 
 figure
   = [RNBQK]

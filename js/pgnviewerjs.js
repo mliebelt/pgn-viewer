@@ -50,7 +50,8 @@ var pgnBase = function (boardId, configuration) {
      */
     function localPath() {
         var jsFileLocation = $('script[src*=pgnviewerjs]').attr('src');  // the js file path
-        return jsFileLocation.replace('pgnviewerjs.js', '');   // the js folder path
+        var index = jsFileLocation.indexOf('pgnviewerjs');
+        return jsFileLocation.substring(0, index);   // the js folder path
     }
 
 
@@ -394,10 +395,10 @@ var pgnBase = function (boardId, configuration) {
             var prom = move.promotion ? move.promotion : "";
             return fig + disc + move.col + move.row + prom + check;
         };
-        var append_to_current_div = function(move, span, movesDiv, varStack) {
+        var append_to_current_div = function(index, span, movesDiv, varStack) {
             if (varStack.length == 0) {
-                if (move.prev) {
-                    $(span).insertAfter(moveSpan(move.prev));
+                if (typeof index == "number") {
+                    $(span).insertAfter(moveSpan(index));
                 } else {
                     movesDiv.appendChild(span);
                 }
@@ -464,7 +465,7 @@ var pgnBase = function (boardId, configuration) {
         link.appendChild(text);
         span.appendChild(document.createTextNode(" "));
         span.appendChild(generateCommentSpan(move.commentAfter, "afterComment"));
-        append_to_current_div(move, span, movesDiv, varStack);
+        append_to_current_div(move.prev, span, movesDiv, varStack);
         //movesDiv.appendChild(span);
         if (that.mypgn.endVariation(move)) {
             //span.appendChild(document.createTextNode(" ) "));
@@ -474,11 +475,11 @@ var pgnBase = function (boardId, configuration) {
             makeMove(that.currentMove, currentCounter, move.fen);
             event.stopPropagation();
         });
-        if (move.commentAfter && move.commentAfter == 'diagram') {
+        if (that.mypgn.has_diagram_nag(move)) {
             var diaID = boardId + "dia" + currentCounter;
             var diaDiv = createEle('div', diaID);
-            append_to_current_div(move, diaDiv, movesDiv, varStack);
-            configuration.position = fen;
+            span.appendChild(diaDiv);
+            configuration.position = move.fen;
             pgnBoard(diaID, configuration);
         }
         return currentCounter;
