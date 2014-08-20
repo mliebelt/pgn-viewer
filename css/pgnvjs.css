@@ -89,6 +89,15 @@ div.buttons > button, div.edit > button {
     background-repeat: no-repeat;
     background-position: 50%;
 }
+
+div.edit > button.ui-multiselect {
+    height: 24px;
+}
+
+.ui-widget {
+    font-size: 1em;
+}
+
 div.commentRadio label {
     display: inline;
 }

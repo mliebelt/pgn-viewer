@@ -203,6 +203,19 @@ var pgnBase = function (boardId, configuration) {
         return ele;
     }
 
+    function generateNAGMenu(buttonDiv) {
+// create the NAG menu here ...
+        var sel = createEle("select", buttonsId + "nag", "nag", theme, buttonDiv);
+        sel.setAttribute("multiple", "multiple");
+        $.each(that.mypgn.NAGS, function (index, value) {
+            if (value != null) {
+                var opt = createEle("option", null, null, theme, sel);
+                opt.setAttribute("value", index);
+                opt.text = value;
+            }
+        });
+    }
+
     /**
      * Generates all HTML elements needed for display of the (playing) board and
      * the moves. Generates that in dependence of the theme
@@ -222,10 +235,13 @@ var pgnBase = function (boardId, configuration) {
         };
         // Generates the edit buttons (only)
         var generateEditButtons = function(buttonDiv) {
-            ["deleteVar", "promoteVar", "deleteMoves", "nags", "pgn"].forEach(function(entry) {
+            ["deleteVar", "promoteVar", "deleteMoves"].forEach(function(entry) {
                 var but = addButton(entry, buttonDiv);
                 //but.className = but.className + " gray"; // just a test, worked.
                 // only gray out if not usable, check that later.
+            });
+            ["pgn"].forEach(function(entry) {
+                var but = addButton(entry, buttonDiv);
             });
         };
 
@@ -548,6 +564,15 @@ var pgnBase = function (boardId, configuration) {
         }
     }
 
+    /**
+     * Add (or remote) a NAG from the current move. Ignore it, if there is
+     * no current move.
+     */
+    function changeNAG(value, checked) {
+        console.log("clicked: " + value + " Checked? " + checked);
+        var move = that.mypgn.addNag("$" + value, that.currentMove)
+    }
+
 
     /**
      * Generates the HTML (for the given moves). Includes the following: move number,
@@ -595,7 +620,7 @@ var pgnBase = function (boardId, configuration) {
             timer.set({ time : (configuration.timerTime ? configuration.timerTime : 700)});
             $('#' + buttonsId + 'flipper').on('click', function() {
                 board.flip();
-            })
+            });
             $('#' + buttonsId + 'next').on('click', function() {
                 nextMove();
             });
@@ -686,8 +711,22 @@ var pgnBase = function (boardId, configuration) {
             prev = generateMove(i, game, move, prev, movesDiv, varStack);
         }
         bindFunctions();
+        generateNAGMenu($("#edit" + boardId + "Button")[0]);
         generateHeaders();
         game.reset();
+        $(function(){
+            $("select").multiselect({
+                header: false,
+                selectedList: 4,
+                minWidth: 80,
+                checkAllText: "",
+                uncheckAllText: "Clean",
+                noneSelectedText: "NAGs",
+                click: function(event, ui) { /* event: the original event object ui.value: value of the checkbox ui.text: text of the checkbox ui.checked: whether or not the input was checked or unchecked (boolean) */
+                    changeNAG(ui.value, ui.checked);
+                }
+            });
+        });
     };
 
     return {

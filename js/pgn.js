@@ -105,7 +105,7 @@ var pgnReader = function (spec) {
      * The index is the index number after the '$' sign like in $3 == 'very good move'.
      * @type {Array} the array with the (english) explanations.
      */
-    var NAGs = [
+    that.NAGs = [
         null,   // Just to fill, index 0
         "!",    // 1
         "?",    // 2
@@ -131,8 +131,8 @@ var pgnReader = function (spec) {
     that.PGN_NAGS = {};
 
     // build the reverse index
-    for (var i = 0; i < NAGs.length; i++) {
-        that.PGN_NAGS[NAGs[i]] = i;
+    for (var i = 0; i < that.NAGs.length; i++) {
+        that.PGN_NAGS[that.NAGs[i]] = i;
     }
 
     /**
@@ -147,7 +147,7 @@ var pgnReader = function (spec) {
         }
         for (var i = 0; i < array.length; i++) {
             var number = parseInt(array[i].substring(1));
-            var ret = NAGs[number];
+            var ret = that.NAGs[number];
             ret_string += (typeof ret != 'undefined') ? ret : "";
         }
         return ret_string;
@@ -569,7 +569,9 @@ var pgnReader = function (spec) {
         addNag: addNag,
         clearNags: clearNags,
         addMove: addMove,
-        has_diagram_nag: has_diagram_nag
+        has_diagram_nag: has_diagram_nag,
+        PGN_NAGS: that.PGN_NAGS,
+        NAGS: that.NAGs
     }
 };
 
