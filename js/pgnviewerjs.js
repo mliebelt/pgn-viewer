@@ -184,6 +184,7 @@ var pgnBase = function (boardId, configuration) {
             generateMove(that.currentMove, null, move, move.prev, document.getElementById(movesId), []);
         }
         unmarkMark(that.currentMove);
+        updateUI(that.currentMove);
     };
 
     // Utility function for generating general HTML elements with id, class (with theme)
@@ -400,17 +401,6 @@ var pgnBase = function (boardId, configuration) {
      * @return {*} the current counter which may the next prev counter
      */
     var generateMove = function(currentCounter, game, move, prevCounter, movesDiv, varStack) {
-
-        var move_from_notation = function(move) {
-            if (typeof move.row == 'undefined') {
-                return move.notation; // move like O-O and O-O-O
-            }
-            var fig = $.t(move.fig);
-            var disc = move.disc ? move.disc : "";
-            var check = move.check ? move.check : "";
-            var prom = move.promotion ? move.promotion : "";
-            return fig + disc + move.col + move.row + prom + check;
-        };
         var append_to_current_div = function(index, span, movesDiv, varStack) {
             if (varStack.length == 0) {
                 if (typeof index == "number") {
@@ -422,20 +412,6 @@ var pgnBase = function (boardId, configuration) {
                 varStack[varStack.length - 1].appendChild(span);
             }
         };
-//            if (prevCounter != move.prev) {
-//                if (typeof move.prev === "number") {
-//                    game.load(myMoves[move.prev].fen);
-//                } else {
-//                    game.reset();
-//                }
-//            }
-        // TODO Error handling if move could not be done
-//            var pgn_move = game.move(move.notation.notation);
-//            if (pgn_move === null || (pgn_move === undefined)) {
-//                window.alert("No pgn move found in: " + move);
-//            }
-//            var fen = game.fen();
-//            move.fen = fen;
         var clAttr = "move";
         if (move.variationLevel > 0) {
             clAttr = clAttr + " var var" + move.variationLevel;
@@ -447,9 +423,6 @@ var pgnBase = function (boardId, configuration) {
         if (that.mypgn.startVariation(move)) {
             var varDiv = createEle("div", null, "variation");
             if (varStack.length == 0) {
-                // TODO: Here is the part where variation display goes wrong.
-                // TODO: The variation div has to be added to the moves span,
-                // TODO: not after the current move span.
                 // This is the head of the current variation
                 var varHead = null;
                 if (typeof move.prev == "number") {
@@ -473,10 +446,7 @@ var pgnBase = function (boardId, configuration) {
         }
         span.appendChild(generateCommentSpan(move.commentBefore, "beforeComment"));
         var link = createEle('a', null, null, null, span);
-        var san = move_from_notation(move.notation);
-        if (move.nag) {
-            san += that.mypgn.nag_to_symbol(move.nag);
-        }
+        var san = that.mypgn.sanWithNags(move);
         var text = document.createTextNode(san);
         link.appendChild(text);
         span.appendChild(document.createTextNode(" "));
@@ -514,7 +484,7 @@ var pgnBase = function (boardId, configuration) {
     /**
      * Check which buttons should be grayed out
      */
-    var checkGray = function (next) {
+    var updateUI = function (next) {
         $("div.buttons .gray").removeClass('gray');
         var move = that.mypgn.getMove(next);
         if (typeof move.prev != "number") {
@@ -527,6 +497,8 @@ var pgnBase = function (boardId, configuration) {
                 $("div.buttons ." + name).addClass('gray');
             });
         }
+        // Update the drop-down for NAGs
+        $("select#" + buttonsId + "nag").multiselect("uncheckAll");
     };
 
     /**
@@ -542,7 +514,7 @@ var pgnBase = function (boardId, configuration) {
         that.currentMove = next;
         scrollToView(moveSpan(next));
         fillComment(next);
-        checkGray(next);
+        updateUI(next);
     };
 
     /**
@@ -570,7 +542,17 @@ var pgnBase = function (boardId, configuration) {
      */
     function changeNAG(value, checked) {
         console.log("clicked: " + value + " Checked? " + checked);
-        var move = that.mypgn.addNag("$" + value, that.currentMove)
+        var move = that.mypgn.changeNag("$" + value, that.currentMove, checked);
+        updateMoveSAN(that.currentMove);
+    }
+
+    /**
+     * Updates the visual display of the move (only the notation, not the comments).
+     * @param moveIndex the index of the move to update
+     */
+    function updateMoveSAN(moveIndex) {
+        var move = that.mypgn.getMove(moveIndex);
+        $("#" + movesId + moveIndex + " > a").text(that.mypgn.sanWithNags(move));
     }
 
 
@@ -715,14 +697,19 @@ var pgnBase = function (boardId, configuration) {
         generateHeaders();
         game.reset();
         $(function(){
-            $("select").multiselect({
+            $("select#" + buttonsId + "nag").multiselect({
                 header: false,
                 selectedList: 4,
                 minWidth: 80,
                 checkAllText: "",
                 uncheckAllText: "Clean",
                 noneSelectedText: "NAGs",
-                click: function(event, ui) { /* event: the original event object ui.value: value of the checkbox ui.text: text of the checkbox ui.checked: whether or not the input was checked or unchecked (boolean) */
+                click: function(event, ui) {
+                //  event: the original event object
+//                    ui.value: value of the checkbox
+//                    ui.text: text of the checkbox
+//                    ui.checked: whether or not the input was checked or unchecked (boolean)
+
                     changeNAG(ui.value, ui.checked);
                 }
             });

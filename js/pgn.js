@@ -154,6 +154,30 @@ var pgnReader = function (spec) {
     };
 
     /**
+     * Returns the real notation from the move (excluding NAGs).
+     * @param notation
+     * @return {*}
+     */
+    var san = function(notation) {
+        if (typeof notation.row == 'undefined') {
+            return notation.notation; // move like O-O and O-O-O
+        }
+        var fig = $.t(notation.fig);
+        var disc = notation.disc ? notation.disc : "";
+        var check = notation.check ? notation.check : "";
+        var prom = notation.promotion ? notation.promotion : "";
+        return fig + disc + notation.col + notation.row + prom + check;
+    };
+
+    var sanWithNags = function (move) {
+        var _san = san(move.notation);
+        if (move.nag) {
+            _san += nag_to_symbol(move.nag);
+        }
+        return _san;
+    };
+
+    /**
      * Returns the SYM notation for a single NAG (like !!, ?!, ...)
      * @param string the NAG in the chess notation
      * @returns {*} the symbold like $0, $3, ...
@@ -520,7 +544,16 @@ var pgnReader = function (spec) {
         }
         var pgn_move = game.move(move);
         real_move.fen = game.fen();
-        real_move.notation.notation = pgn_move.san;
+        if (pgn_move.to.substring(0,1) != "O") {
+            real_move.notation.notation = pgn_move.san;
+            real_move.notation.col = pgn_move.to.substring(0,1);
+            real_move.notation.row = pgn_move.to.substring(1,2);
+        } else {
+            real_move.notation = pgn_move.san;
+        }
+        if (pgn_move.piece != "p") {
+            real_move.notation.fig = pgn_move.piece.charAt(0).toUpperCase();
+        }
         that.moves.push(real_move);
         real_move.prev = moveNumber;
         var next = that.moves.length - 1;
@@ -536,13 +569,20 @@ var pgnReader = function (spec) {
      * @param nag the nag in normal notation or as symbol
      * @param moveNumber the number of the move
      */
-    var addNag = function (nag, moveNumber) {
+    var changeNag = function (nag, moveNumber, added) {
         var move = getMove(moveNumber);
-        if (move.nag === null) {
+        if (move.nag == null) {
             move.nag = [];
         }
         var nagSym = (nag[0] == "$") ? nag : symbol_to_nag(nag);
-        move.nag.push(nagSym);
+        if (added) {
+            move.nag.push(nagSym);
+        } else {
+            var index = move.nag.indexOf(nagSym);
+            if (index > -1) {
+                move.nag.splice(index, 1);
+            }
+        }
     };
 
     var clearNags = function (moveNumber) {
@@ -566,12 +606,14 @@ var pgnReader = function (spec) {
         nag_to_symbol: nag_to_symbol,
         startVariation: startVariation,
         endVariation: endVariation,
-        addNag: addNag,
+        changeNag: changeNag,
         clearNags: clearNags,
         addMove: addMove,
         has_diagram_nag: has_diagram_nag,
         PGN_NAGS: that.PGN_NAGS,
-        NAGS: that.NAGs
+        NAGS: that.NAGs,
+        san: san,
+        sanWithNags: sanWithNags
     }
 };
 

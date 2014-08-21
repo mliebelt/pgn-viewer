@@ -100,22 +100,6 @@ module.exports = function(grunt) {
                 dest: ''
             }
         },
-        'ftp-deploy': {
-            docu: {
-                auth: {
-                    host: 'mliebelt.bplaced.net',
-                    port: 21,
-                    authKey: 'my-key'
-                },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'docu/',
-                        src: '**',
-                        dest: 'pgnvjs'
-                    }]
-            }
-        },
         ftp_push: {
             docu_all: {
                 options: {
