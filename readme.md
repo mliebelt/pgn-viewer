@@ -13,7 +13,7 @@ For that purpose, it does not write everything anew, but it uses for that the fo
 * [chess.js](https://github.com/jhlywa/chess.js) Base library to model 
   chess in JavaScript
 
-See the working examples on the public site [PgnViewerJS](http://mliebelt.bplaced.net/pgnvjs/examples2.html) to see what is working at the moment.
+See the working examples on the my new GitHub Pages site [PgnViewerJS](http://mliebelt.github.io/PgnViewerJS/) to see what is working at the moment. Or look at the temporary site [Temp PgnViewerJS](http://mliebelt.bplaced.net/pgnvjs/examples2.html) for the working examples.
 
 # Features
 
