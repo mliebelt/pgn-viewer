@@ -1,0 +1,13 @@
+{
+    "flipper" : "Tourner le damier",
+    "first" : "Allez à coup permier",
+    "prev" : "Allez à coup précédent",
+    "next" : "Alles à coup prochain",
+    "play" : "Play / stop tous les coups",
+    "last" : "Allez à coup dernier",
+    "deleteVar" : "Radier variation",
+    "promoteVar" : "Valoriser variation",
+    "deleteMoves" : "Radier reste les coups from ici",
+    "nags" : "NAGs menu",
+    "pgn" : "Visualiser PGN de partie"
+}

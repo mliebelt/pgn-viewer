@@ -22,13 +22,13 @@ describe("When working with a pgn file as string", function() {
             expect(seventh.turn).toEqual('w');
             expect(seventh.notation.notation).toEqual('Nxd4');
         })
-    })
+    });
 
     it("should have a parser available", function() {
         expect(my_pgn.getParser()).toBeDefined();
     })
 
-})
+});
 
 describe("When working with different PGN beginnings and endings", function() {
     var my_pgn;
@@ -43,7 +43,7 @@ describe("When working with different PGN beginnings and endings", function() {
         expect(my_pgn.getMoves().length).toEqual(1);
         expect(my_pgn.getMoves()[0].notation.notation).toEqual("e4");
         expect(my_pgn.getMoves()[0].moveNumber).toEqual(1);
-    })
+    });
 
     it ("should work with black's first move only", function() {
         my_pgn = pgnReader({pgn: "1... e5"});
@@ -51,7 +51,7 @@ describe("When working with different PGN beginnings and endings", function() {
         expect(my_pgn.getMoves()[0].notation.notation).toEqual("e5");
         expect(my_pgn.getMoves()[0].turn).toEqual("b");
         expect(my_pgn.getMoves()[0].moveNumber).toEqual(1);
-    })
+    });
 
     it ("should work with white beginning and black ending", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 2. d4 cxd4"});
@@ -62,7 +62,7 @@ describe("When working with different PGN beginnings and endings", function() {
         expect(my_pgn.getMoves()[3].notation.notation).toEqual("cxd4");
         expect(my_pgn.getMoves()[3].turn).toEqual("b");
         expect(my_pgn.getMoves()[3].moveNumber).toBeUndefined();
-    })
+    });
 
     it ("should work with black beginning and white ending", function() {
         my_pgn = pgnReader({pgn: "1... e5 2. d4 cxd4 3. c3"});
@@ -77,27 +77,27 @@ describe("When working with different PGN beginnings and endings", function() {
         expect(my_pgn.getMoves()[2].turn).toEqual("b");
         expect(my_pgn.getMoves()[2].moveNumber).toBeUndefined();
     })
-})
+});
 
 describe("When using all kind of notation", function() {
     var my_pgn;
     it ("should know how to move all kind of figures", function() {
         my_pgn = pgnReader({pgn: "1. e4 Nf6 2. Bb5 c6 3. Ba4 Qa5 4. Nc3 Nf6 5. O-O e6 6. Re1 "});
         expect(my_pgn.getMoves().length).toEqual(11);
-    })
+    });
 
     it ("should know different variants of strikes", function() {
         my_pgn = pgnReader({pgn: "1. e5 d5 2. xd5 Nc6 3. 5xc6 bxc6 4. Qdxd6"});
         expect(my_pgn.getMoves().length).toEqual(7);
         expect(my_pgn.getMoves()[2].notation.notation).toEqual("xd5");
-    })
+    });
 
     it ("should know all special symbols normally needed (promotion, check, mate)", function() {
         my_pgn = pgnReader({pgn: "1. f3 e5 2. g4 Qh4#"});
         expect(my_pgn.getMoves().length).toEqual(4);
         my_pgn = pgnReader({pgn: "1. e7+ d2 2. e8=Q d1=R#"});
     })
-})
+});
 
 describe("When reading PGN with headers", function() {
     beforeEach(function() {
@@ -138,7 +138,7 @@ describe("When reading pgn with wrong headers", function() {
             '[a "Hallo"]',
             '[b "Hallo"]',
             '1. e2 e4 2. Nf3 Nc6'];
-        my_pgn = pgnReader({pgn: pgn_string.join(" ")});
+        var my_pgn = pgnReader({pgn: pgn_string.join(" ")});
     });
     it("should ignore wrong headers", function() {
         var h = my_pgn.getHeaders();
@@ -164,7 +164,7 @@ describe("When reading PGN with variations", function() {
         expect(my_pgn.getMove(3).next).toEqual(4);
         expect(my_pgn.getMove(4).prev).toEqual(3);
         expect(my_pgn.getMove(5).prev).toEqual(2);
-    })
+    });
 
     it("should understand one variation for black with move number", function () {
         my_pgn = pgnReader({pgn: "1. e4 e5 (1... d5 2. exd5 Qxd5)"});
@@ -175,7 +175,7 @@ describe("When reading PGN with variations", function() {
         expect(my_pgn.getMove(1).variations[0][2].notation.notation).toEqual("Qxd5");
         expect(my_pgn.getMove(2).prev).toEqual(0);
         expect(my_pgn.getMove(3).prev).toEqual(2);
-    })
+    });
 
     it("should understand one variation for black without move number", function () {
         my_pgn = pgnReader({pgn: "1. e4 e5 (d5 2. exd5 Qxd5)"});
@@ -186,7 +186,7 @@ describe("When reading PGN with variations", function() {
         expect(my_pgn.getMove(1).variations[0][2].notation.notation).toEqual("Qxd5");
         expect(my_pgn.getMove(2).prev).toEqual(0);
         expect(my_pgn.getMove(3).prev).toEqual(2);
-    })
+    });
 
     it("should understand nested variations", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 (d5 2. exd5 Qxd5 (2... Nf6))"});
@@ -197,7 +197,7 @@ describe("When reading PGN with variations", function() {
         expect(my_pgn.getMove(1).variations[0][2].variations[0][0].notation.notation).toEqual("Nf6");
         expect(my_pgn.getMove(2).prev).toEqual(0);
         expect(my_pgn.getMove(5).prev).toEqual(3);
-    })
+    });
 
     it ("should know how to handle variation of the first move", function () {
         my_pgn = pgnReader({pgn: "1. e4 ( 1. d4 d5 ) e5"});
@@ -283,7 +283,7 @@ describe("When iterating over moves", function() {
         expect(moves[7].prev).toEqual(2);
         expect(moves[7].next).toBeUndefined();
 
-    })
+    });
 
     it("should know its indices", function () {
         flatMoves("1. e4 e5 (1... d5 2. exd5) 2. d4");
@@ -304,7 +304,7 @@ describe("When iterating over moves", function() {
         expect(moves[3].next).toBeUndefined();
         expect(moves[4].prev).toEqual(1);
         expect(moves[4].next).toBeUndefined();
-    })
+    });
 
     it ("should know its previous and next move with 2 variations", function() {
         flatMoves("1. e4 e5 (1... d5 2. exd5) (1... c5) 2. d4");
@@ -556,21 +556,21 @@ describe("When working with NAGs", function () {
     });
 
     it ("should add selected NAG as first when empty", function () {
-        my_pgn.addNag("??", 1);
+        my_pgn.changeNag("??", 1, true);
         expect(my_pgn.getMove(1).nag[0]).toEqual("$4");
-        my_pgn.addNag("!!", 0);
+        my_pgn.changeNag("!!", 0, true);
         expect(my_pgn.getMove(0).nag[0]).toEqual("$3");
     });
 
     it("should add selected NAG as last when already some", function () {
-        my_pgn.addNag("??", 1);
-        my_pgn.addNag("!!", 1);
+        my_pgn.changeNag("??", 1, true);
+        my_pgn.changeNag("!!", 1, true);
         expect(my_pgn.getMove(1).nag[1]).toEqual("$3");
         expect(my_pgn.getMove(1).nag[0]).toEqual("$4");
     });
 
     it("should clear all NAGs", function () {
-        my_pgn.addNag("??", 1);
+        my_pgn.changeNag("??", 1, true);
         expect(my_pgn.getMove(1).nag[0]).toEqual("$4");
         my_pgn.clearNags(1);
         expect(my_pgn.getMove(1).nag.length).toEqual(0);
@@ -582,5 +582,5 @@ describe("When working with NAGs", function () {
         my_pgn.clearNags(1);
         expect(my_pgn.getMove(1).nag.length).toEqual(0);
     });
-})
+});
 

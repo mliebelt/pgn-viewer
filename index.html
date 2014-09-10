@@ -44,8 +44,6 @@
 ================================================== -->
 
 <!-- Delete everything in this .container and get started on your own site! -->
-<script src="docu/js/prettify.js" type="text/javascript"></script>
-<script src="docu/js/examples.js" type="text/javascript"></script>
 
 <div class="container">
     <div class="sixteen columns">
@@ -69,13 +67,13 @@
         </div>
     </div><!-- container -->
     <div class="container">
-        <div id="examples_list_container" class="five columns">
+        <div class="five columns">
             <h2>Overview PgnViewerJS</h2>
             This is the raw documentation of work in progress, made available by GitHub Pages (which is great).
             You will find on this documentation the following:
-            <ul>
+            <ul class="square">
                 <li>A bunch of prepared documentation (overview, API, examples), which are available
-                above in the menu (all menu entries except the one named "Home PgnViewerJS".</li>
+                above in the menu (all menu entries except the one named "Home PgnViewerJS").</li>
                 <li>Some references on things you may be interested in like structure of this implementation,
                 used plugins, additional examples, ...</li>
             </ul>
@@ -88,13 +86,13 @@
             <h2>Behavior, Structure, Tests, Examples, ...</h2>
             Here are the things that may help to get a better understanding what PgnViewerJS provides, how it
             is developed, and what may be reachable in a foreseeable future.
-            <ul>
-                <li>Testing: Testing of the faw functionality (nearly no UI) is done with Jasmine. See the file
+            <ul class="square">
+                <li>Testing: Testing of the raw functionality (nearly no UI) is done with Jasmine. See the file
                 <a href="test/SpecRunner.html">SpecRunner.html</a> that should work out of the box. It shows a line
                 of dots (hopefully all green), and you are able to check the status. If something goes wrong, just
                 use the debugging tools of your browser.</li>
                 <li>Structure: Well, mostly grown. Some of it is understandable:
-                    <ul>
+                    <ul class="disc">
                         <li><code>chess.js</code> Base library from <a href="https://github.com/jhlywa/chess.js">GitHub</a>
                         that knows chess inside-out.</li>
                         <li><code>chessboardjs</code> Base library for building a chessboard from
@@ -103,8 +101,8 @@
                         <li>docu: the "official" documentation, will be polished at some point in time</li>
                         <li>examples: the example directory (more below)</li>
                     </ul></li>
-                <li>Examples: here comes it ...
-                    <ul>
+                <li>Examples: see the following directly linked (or the others in the directory <a href="examples">examples</a>).
+                    <ul class="disc">
                         <li><a href="examples/board.html">board</a> Shows different boards </li>
                         <li><a href="examples/comments.html">comments</a> games with a lot of comments (and faults) </li>
                         <li><a href="examples/edit.html">edit</a> shows how to edit games online (without the chance

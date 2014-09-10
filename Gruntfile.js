@@ -40,7 +40,7 @@ module.exports = function(grunt) {
                             'img/chesspieces/**',
                             'img/pattern/**',
                             'img/*.png',
-                            'css/**'],
+                            'css/images/**'],
                         dest: 'dist',
                         expand: true
                     }
@@ -98,6 +98,20 @@ module.exports = function(grunt) {
                 cwd: 'dist/',
                 src: ['**/*'],
                 dest: ''
+            }
+        },
+        concat_css: {
+            options: {
+                // Task-specific options go here.
+            },
+            all: {
+                src: [
+                    "chessboardjs/css/chessboard.css",
+                    "css/jquery-ui.css",
+                    "css/jquery.multiselect.css",
+                    "css/pgnvjs.css"
+                ],
+                dest: "dist/css/pgnvjs.css"
             }
         },
         ftp_push: {
@@ -220,9 +234,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-ftp-deploy');
     grunt.loadNpmTasks('grunt-ftp-push');
     grunt.loadNpmTasks('grunt-contrib-compress');
+    grunt.loadNpmTasks('grunt-concat-css');
 
     // Default task.
-    grunt.registerTask('default', ['clean', 'concat:all',  'uglify', 'copy']);
+    grunt.registerTask('default', ['clean', 'concat:all', 'concat_css',  'uglify', 'copy']);
     grunt.registerTask('debug', ['clean', 'concat:all', 'copy']);
     grunt.registerTask('deploy-all', ['ftp_push:dist_min', 'ftp_push:docu_min',
         'ftp_push:dist_locales', 'ftp_push:dist_css', 'ftp_push:docu_js']);

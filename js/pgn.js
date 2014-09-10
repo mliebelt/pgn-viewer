@@ -568,6 +568,7 @@ var pgnReader = function (spec) {
      * Adds the nag to the move with move number moveNumber
      * @param nag the nag in normal notation or as symbol
      * @param moveNumber the number of the move
+     * @param added true, if the nag should be added
      */
     var changeNag = function (nag, moveNumber, added) {
         var move = getMove(moveNumber);
