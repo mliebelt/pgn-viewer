@@ -1,6 +1,6 @@
 # PgnViewerJS
 
-PgnViewer JS is just a simple JavaScript implementation to show PGN files 
+PgnViewerJS is just a simple JavaScript implementation to show PGN files 
 (Portable Game Notation == Chess)
 in a web page. There are some tools out there, a lot of them with nice
 functionality, but none of them met all my expectations, so this is a try
@@ -13,7 +13,7 @@ For that purpose, it does not write everything anew, but it uses for that the fo
 * [chess.js](https://github.com/jhlywa/chess.js) Base library to model 
   chess in JavaScript
 
-See the working examples on the my new GitHub Pages site [PgnViewerJS](http://mliebelt.github.io/PgnViewerJS/) to see what is working at the moment. Or look at the temporary site [Temp PgnViewerJS](http://mliebelt.bplaced.net/pgnvjs/examples2.html) for the working examples.
+See the working examples on my new GitHub Pages site [PgnViewerJS](http://mliebelt.github.io/PgnViewerJS/) to see what is working at the moment. Or look at the temporary site [Temp PgnViewerJS](http://mliebelt.bplaced.net/pgnvjs/examples2.html) for the working examples.
 
 # Features
 
@@ -24,7 +24,7 @@ This implementation has the following features:
 * Allows to play through the games forward and backward, including variations.
 * Allows to play from a legal position only legal moves, and adds these 
   moves to the notation (in a different style)
-* Allows to play through
+* Allows to play through by
   * clicking on moves
   * clicking on next and previous button
   * clicking on play button
@@ -38,12 +38,21 @@ There are 2 parts to the interface:
    * How does the UI work?
    * How is this viewer used?
 
-## Examples
+## UI modes
 
-The included examples in the directory `examples` are helping me to develop
-the functionality. To start them, just clone the repository, and open one
-of the files in a modern browser. They will be expanded later by others (complete) examples that 
-may be used to study the usage.
+There are four different kind of usages, which lead to 3 modes:
+
+* pgnBoard, pgnPrint will just show a position or a whole chess game, 
+without any interaction possible.
+* pgnView renders the whole game, and allows to play it through, jump
+to any position.
+* pgnEdit is a superset of pgnView, that allows to additional add variations,
+change the order of main line and variations, and allows all other kind of
+interactions that are possible: adding comments, PGN notation elements, whatever.
+
+There is at the moment no way to save a game that was edited in `pgnEdit` mode. But
+you may at least copy the whole notation, and insert it again in the HTML code of
+your web page.
 
 ## Using the viewer
 
@@ -54,6 +63,22 @@ To use the viewer in an HTML page, you have to do the following steps:
    * Include some simple JavaScript code inside your HTML page.
    * Include the necessary div container for rendering of the 
    board and the moves
+
+So a rough template will look like:
+
+    <!DOCTYPE html>
+        <head>
+            <link href="dist/css/pgnvjs.css" rel="stylesheet">
+            <script src="dist/js/pgnviewerjs.js" type="text/javascript"></script>
+        </head>
+        <body>
+            <div id="board"></div>
+            <script>
+                cfg = { pieceStyle: 'merida' };
+                pgnView("demo",cfg);
+            </script>   
+        </body>
+    </html>
 
 ### JavaScript call inside page
 
@@ -85,41 +110,6 @@ There are 4 different options to call the viewer:
   and to copy at least the current notation to the clipboard, as an
   input for later.
   
-### HTML frame
-
-When you use PgnViewerJS, you have to provide a frame for that. The following example is the minimal frame to use.
-
-    <!DOCTYPE html>
-    <html>
-        <head lang="en">
-            <meta charset="UTF-8">
-            <title>Simple Example</title>
-            <!-- Libraries used: chessboardjs and chess.js from GitHub -->
-            <script src="chessboardjs/js/chessboard.js" type="text/javascript"></script>
-            <script src="chessboardjs/js/jquery-1.11.1.js" type="text/javascript"></script>
-            <script src="chessboardjs/js/json3.min.js" type="text/javascript"></script>
-            <script src="chess.js/chess.js" type="text/javascript"></script>
-
-            <!-- CSS used: chessboardjs from GitHub -->
-            <link href="chessboardjs/css/chessboard.css" type="text/css" rel="stylesheet"/>
-            
-             <!-- My own library -->
-             <script src="../js/pgnviewerjs.js" type="text/javascript"></script>
-             <script src="../js/jquery.timer.js" type="text/javascript"></script>
-             <script src="../js/i18next-1.7.3.js" type="text/javascript"></script>
-             <script src="../js/pgn.js" type="text/javascript"></script>
-             <script src="../js/peg-0.8.0.js" type="text/javascript"></script>
-             <script src="../js/pgn-parser.js" type="text/javascript"></script>
-             <script src="../js/jquery.hotkeys.js" type="text/javascript"></script>
-
-        </head>
-        <body>
-        <div id="board" style="width: 400px"></div>
-        <script>Insert here the script</script>
-
-        </body>
-    </html>
-
 ## Configuration
     
 There are a growing number of parameters for the configuration, so here is the idea behind it:
