@@ -568,9 +568,10 @@ var pgnBase = function (boardId, configuration) {
         // Bind the necessary functions to move the pieces.
         var bindFunctions = function() {
             var bind_key = function(key, to_call) {
-                jQuery("#" + boardId).bind('keydown', key,function (evt){
+//                jQuery("#" + boardId + "Moves").bind('keydown', key,function (evt){
+                jQuery("#" + boardId + ",#" + boardId + "Moves").bind('keydown', key,function (evt){
                     to_call();
-                    return false;
+                    evt.stopPropagation();
                 });
             };
             var nextMove = function () {

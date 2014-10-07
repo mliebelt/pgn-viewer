@@ -4,7 +4,8 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         clean: ["dist/css", 'dist/js', 'dist/img', 'dist/locales', 'dist/doc', "docu/dist/css",
-            'docu/dist/js', 'docu/dist/img', 'docu/dist/locales', 'docu/dist/doc'],
+            'docu/dist/js', 'docu/dist/img', 'docu/dist/locales', 'docu/dist/doc',
+            'dist-nojq/css', 'dist-nojq/js'],
         concat: {
             all: {
                 src: [
@@ -15,13 +16,13 @@ module.exports = function(grunt) {
                     'js/*.js'],
                 dest: 'dist/js/pgnviewerjs.js'
             },
-            no_jq: {
+            nojq: {
                 src: [
                     'chess.js/chess.js',
                     'chessboardjs/js/chessboard.js',
                     'chessboardjs/js/json3.min.js',
                     'js/*.js'],
-                dest: 'dist/js/pgnviewerjs.js'
+                dest: 'dist-nojq/js/pgnviewerjs.js'
             }
         },
         uglify: {
@@ -46,6 +47,21 @@ module.exports = function(grunt) {
                     }
                 ]
             },
+            nojq: {
+                files: [
+                    {
+                        src: [
+                            'locales/**',
+                            'img/buttons/**',
+                            'img/chesspieces/**',
+                            'img/pattern/**',
+                            'img/*.png',
+                            'css/images/**'],
+                        dest: 'dist-nojq',
+                        expand: true
+                    }
+                ]
+            },
             chessboardjs: {
                 files: [
                     {
@@ -62,15 +78,6 @@ module.exports = function(grunt) {
                         cwd: 'docu',
                         src: ['css/**', 'img/**'],
                         dest: 'dist/doc'
-                    }
-                ]
-            },
-            docu: {
-                files: [
-                    {
-                        src: ['dist/**'],
-                        dest: 'docu',
-                        expand: true
                     }
                 ]
             }
@@ -112,6 +119,15 @@ module.exports = function(grunt) {
                     "css/pgnvjs.css"
                 ],
                 dest: "dist/css/pgnvjs.css"
+            },
+            nojq: {
+                src: [
+                    "chessboardjs/css/chessboard.css",
+                    "css/jquery-ui.css",
+                    "css/jquery.multiselect.css",
+                    "css/pgnvjs.css"
+                ],
+                dest: "dist-nojq/css/pgnvjs.css"
             }
         },
         ftp_push: {
@@ -237,8 +253,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-concat-css');
 
     // Default task.
-    grunt.registerTask('default', ['clean', 'concat:all', 'concat_css',  'uglify', 'copy']);
-    grunt.registerTask('debug', ['clean', 'concat:all', 'copy']);
+    grunt.registerTask('default', ['clean', 'concat:all', 'concat_css',  'uglify', 'copy:all']);
+    grunt.registerTask('debug', ['clean', 'concat:all', 'copy:all']);
+    grunt.registerTask('nojq', ['clean', 'concat:nojq', 'concat_css:nojq', 'copy:nojq' ]);
     grunt.registerTask('deploy-all', ['ftp_push:dist_min', 'ftp_push:docu_min',
         'ftp_push:dist_locales', 'ftp_push:dist_css', 'ftp_push:docu_js']);
 

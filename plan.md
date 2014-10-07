@@ -232,6 +232,18 @@ At least move number, turn, en-passent, rochade, ... should be possible.
 * Try to be here very strict, and (of course) ensure that everything that is exported can be read again. (/)
 * Allow to hide the export by a button.
 
+#### Allow keyboard shortcuts (working)
+
+* Currently working only when I have clicked before on one of the buttons.
+* Should be easy to add it to other parts of the HTML code as well.
+* After having clicken on a move, the keyboard shortcuts don't work any more. Where are they consumed? Can I see that?
+
+Question for Stackoverflow: Why does a key handler that is bound to the whole div does not work in all circumstances? Where are the events consumed? Is there a way to debug that easily?
+
+I have found some situations where the key-bindings work, and some where they don't work. Is it easy to see all events and who handles these?
+
+A possible workaround could be to give focus to a button, when the user clicks on a move. 
+
 ### Infrastructure
 
 #### Building distribution  (working)
@@ -260,6 +272,50 @@ At least move number, turn, en-passent, rochade, ... should be possible.
   * as current: all, minified
   * no jQ.min: all without jQuery, minified
   So everyone can choose what is best for him.
+
+Here are the size differences in using the files (from a copy of Bash `ls -ls`):
+
+    $ ls -laR
+    .:
+    -rw-r--r--    1 mliebelt Administ  1270549 Oct  6 16:22 pgnviewerjs.js
+
+    ./min:
+    -rw-r--r--    1 mliebelt Administ   496786 Oct  6 16:22 pgnviewerjs.js
+
+So the difference between minified or not is huge, but what is the reason for that big file? Especially when using the library not standalone, but in a different context, it should be possible to strip down it a little bit.
+
+    $ du -s *
+    153     css
+    388     img
+    1727    js
+    27      locales
+
+So compared to the rest, js is the differentiator. img files are only read on a per-file basis, that doesn't matter. CSS could be minified, but only on a second step.
+
+    $ ls -laR *js/js
+    chessboardjs/js:
+    -rw-r--r--    1 mliebelt Administ    44294 Aug 10  2013 chessboard.js
+    -rw-r--r--    1 mliebelt Administ   282766 Jun 19 15:48 jquery-1.11.1.js
+    -rw-r--r--    1 mliebelt Administ     7354 Apr 10 23:27 json3.min.js
+
+So of the 1.2 MB file is jQuery only 280 KB.
+
+    $ ls -laR js
+    -rw-r--r--    1 mliebelt Administ    97221 Jun  9 15:46 i18next-1.7.3.js
+    -rw-r--r--    1 mliebelt Administ   480809 Aug 20 16:47 jquery-ui.js
+    -rw-r--r--    1 mliebelt Administ     3080 Jun 17  2012 jquery.hotkeys.js
+    -rw-r--r--    1 mliebelt Administ    19580 Aug 20 16:47 jquery.multiselect.js
+    -rw-r--r--    1 mliebelt Administ     4112 May 31 15:39 jquery.timer.js
+    -rw-r--r--    1 mliebelt Administ   162553 May 19 07:33 peg-0.8.0.js
+    -rw-r--r--    1 mliebelt Administ    65929 Aug 19 06:15 pgn-parser.js
+    -rw-r--r--    1 mliebelt Administ    23924 Sep 12 11:49 pgn.js
+    -rw-r--r--    1 mliebelt Administ    34457 Aug 22 07:34 pgnviewerjs.js
+
+Here is the meaning of the different files:
+
+* i18n*.js: internationalization, needed for different languages
+* jquery-ui.js: only for parts of the UI, here the multi-select of annotations. I could try to minimize that, so that only the needed widgets and features are integrated. Or we get it from another site, which is a standard (WordPress.org??)
+* jquery.hotkeys: Allows to bring event handler that react on keys. 
 
 #### Structure distribution (working)
 
