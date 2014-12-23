@@ -14,21 +14,25 @@ module.exports = function(grunt) {
                     'chessboardjs/js/chessboard.js',
                     'chessboardjs/js/json3.min.js',
                     'js/*.js'],
-                dest: 'dist/js/pgnviewerjs.js'
+                dest: 'dist/js/pgnvjs.js'
             },
             nojq: {
                 src: [
                     'chess.js/chess.js',
                     'chessboardjs/js/chessboard.js',
-                    'chessboardjs/js/json3.min.js',
+                    //'chessboardjs/js/json3.min.js',
                     'js/*.js'],
-                dest: 'dist-nojq/js/pgnviewerjs.js'
+                dest: 'dist-nojq/js/pgnvjs.js'
             }
         },
         uglify: {
             js: {
-                src: ['dist/js/pgnviewerjs.js'],
-                dest: 'dist/js/min/pgnviewerjs.js'
+                src: ['dist/js/pgnvjs.js'],
+                dest: 'dist/js/min/pgnvjs.js'
+            },
+            nojq: {
+                src: ['dist-nojq/js/pgnvjs.js'],
+                dest: 'dist-nojq/js/min/pgnvjs.js'
             }
         },
         copy: {
@@ -255,7 +259,7 @@ module.exports = function(grunt) {
     // Default task.
     grunt.registerTask('default', ['clean', 'concat:all', 'concat_css',  'uglify', 'copy:all']);
     grunt.registerTask('debug', ['clean', 'concat:all', 'copy:all']);
-    grunt.registerTask('nojq', ['clean', 'concat:nojq', 'concat_css:nojq', 'copy:nojq' ]);
+    grunt.registerTask('nojq', ['clean', 'concat:nojq', 'concat_css:nojq', 'copy:nojq', 'uglify:nojq' ]);
     grunt.registerTask('deploy-all', ['ftp_push:dist_min', 'ftp_push:docu_min',
         'ftp_push:dist_locales', 'ftp_push:dist_css', 'ftp_push:docu_js']);
 

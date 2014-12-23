@@ -26,7 +26,7 @@ var pgnBase = function (boardId, configuration) {
     (function(){
         var i18n_option = {
             getAsync: false,
-            resGetPath: localPath() + '../locales/__ns__-__lng__.json',
+            resGetPath: localPath() + 'locales/__ns__-__lng__.json',
             ns: {
                 namespaces: ['chess', 'nag', 'buttons'],
                 defaultNs: 'chess'
@@ -45,13 +45,14 @@ var pgnBase = function (boardId, configuration) {
     // Some Utility functions without context
 
     /**
-     * Returns the local path (needed for adressing piece image files).
+     * Returns the local path (needed for addressing piece image files).
      * @returns {XML|string|void}
      */
     function localPath() {
-        var jsFileLocation = $('script[src*=pgnviewerjs]').attr('src');  // the js file path
-        var index = jsFileLocation.indexOf('pgnviewerjs');
-        return jsFileLocation.substring(0, index);   // the js folder path
+        var jsFileLocation = $('script[src*=pgnvjs]').attr('src');  // the js file path
+        var index = jsFileLocation.indexOf('pgnvjs');
+        console.log("Local path: " + jsFileLocation.substring(0, index - 3));
+        return jsFileLocation.substring(0, index - 3);   // the father of the js folder
     }
 
 
@@ -315,7 +316,7 @@ var pgnBase = function (boardId, configuration) {
                 }
             });
             if (! target.pieceTheme) {
-                target.pieceTheme = localPath() + '../img/chesspieces/' + pieceStyle + '/{piece}.png';
+                target.pieceTheme = localPath() + 'img/chesspieces/' + pieceStyle + '/{piece}.png';
             }
         }
         var boardConfiguration = {};
