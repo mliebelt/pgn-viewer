@@ -193,7 +193,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: 'dist/js/min',
-                        src: ["pgnviewerjs.js"]
+                        src: ["pgnvjs.js"]
                     }
                 ]
             },
@@ -208,7 +208,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: 'dist/js',
-                        src: ["pgnviewerjs.js"]
+                        src: ["pgnvjs.js"]
                     }
                 ]
             },

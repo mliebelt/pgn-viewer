@@ -373,11 +373,12 @@ var pgnBase = function (boardId, configuration) {
      * Comments are generated inline, there is no special block rendering
      * possible for them.
      * @param comment the comment to render as span
+     * @param clazz class parameter appended to differentiate different comments
      * @returns {HTMLElement} the new created span with the comment as text
      */
     var generateCommentSpan = function(comment, clazz) {
         var span = createEle('span', null, "comment " + clazz);
-        if (comment && (typeof comment !== undefined)) {
+        if (comment && (typeof comment == "string")) {
             span.appendChild(document.createTextNode(" " + comment + " "));
         }
         return span;
@@ -474,7 +475,6 @@ var pgnBase = function (boardId, configuration) {
 
     /**
      * Unmark all marked moves, mark the next one.
-     * @param curr the current move number
      * @param next the next move number
      */
     function unmarkMark(next) {
@@ -543,7 +543,7 @@ var pgnBase = function (boardId, configuration) {
      */
     function changeNAG(value, checked) {
         console.log("clicked: " + value + " Checked? " + checked);
-        var move = that.mypgn.changeNag("$" + value, that.currentMove, checked);
+        that.mypgn.changeNag("$" + value, that.currentMove, checked);
         updateMoveSAN(that.currentMove);
     }
 
