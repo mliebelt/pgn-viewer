@@ -503,7 +503,7 @@ var pgnBase = function (boardId, configuration) {
     };
 
     /**
-     * Plays the move that is already in the noation on the board.
+     * Plays the move that is already in the notation on the board.
      * @param curr the current move number
      * @param next the move to take now
      * @param fen the fen of the move to make

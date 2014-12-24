@@ -33,9 +33,10 @@ If a whole section is completely done, it is moved altogether in the done sectio
   * moveWidth: width of the move div (/)
   * moveHeight: width of the move div (/)
 * Change the divs by JavaScript
-* The combination of the sizes may be difficult, and not all are understood. There should be rules that are easy to understand, so that the configuration is not trial and error.  
+* The combination of the sizes may be difficult, and not all are understood. There should be rules that are easy to understand, so that the configuration is not trial and error prune.
 * Ensure that reasonable defaults are used when not all parameters are given.
 * Allow setting of parameters by styles (e.g. chesscom should set width and height of board and moves).
+* Copy the general layout from the RPB Chessboard. There are 4, I need at least 3: left, right, normal (I don't like popup). That allows to use the moves size independet from the board size.
 
 #### Allow styling of board (and others) by configuration (working)
 
