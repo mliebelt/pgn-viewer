@@ -61,6 +61,14 @@ The following styling should be added to allow styling of CSS things:
     whiteFontColor  <color> the color of the a-h,1-8 characters on white fields
     blackFontColor  <color> the color of the a-h,1-8 characters on black fields
     
+
+Have a look at https://chess24.com/en/read/news/baku-gp-round-10-caruana-gelfand-are-back and see how they have done the boards. There are a lot of ideas implemented here:
+
+* Board is draggable (that means can be displayed in a separate window)
+* Switch between notation and meta-data
+* There are popups when you want to make a move, but there are variations. Very handy ...
+
+
 #### Generate PGN move from data (working)
   
 * We have to know every detail from moves, so the resulting notation is not sufficient.
