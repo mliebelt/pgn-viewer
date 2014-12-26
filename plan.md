@@ -13,12 +13,12 @@ If a whole section is completely done, it is moved altogether in the done sectio
 
 * Allows to show one or more chess games complete (/)
 * Allow to play through the games forward and backward, including variations. (/)
-* Allows to play from a legal position legal moves, and adds these moves to the notation (in a different style)
-* Allows to play through
+* Allows to play from a legal position legal moves, and adds these moves to the notation (/)
+* Allows to play through (/)
    * clicking on moves (/)
    * clicking on next and previous button (/)
    * clicking on play button (/)
-* Allows to add interactively variations to the game, and show these as additional notation.
+* Allows to add interactively variations to the game, and show these as additional notation. (working)
 * Allows to export the current game play as notation in PGN, and export the current position as FEN string. (working)   
 
 ## Planed and working (working)
@@ -33,9 +33,10 @@ If a whole section is completely done, it is moved altogether in the done sectio
   * moveWidth: width of the move div (/)
   * moveHeight: width of the move div (/)
 * Change the divs by JavaScript
-* The combination of the sizes may be difficult, and not all are understood. There should be rules that are easy to understand, so that the configuration is not trial and error.  
+* The combination of the sizes may be difficult, and not all are understood. There should be rules that are easy to understand, so that the configuration is not trial and error prune.
 * Ensure that reasonable defaults are used when not all parameters are given.
 * Allow setting of parameters by styles (e.g. chesscom should set width and height of board and moves).
+* Copy the general layout from the RPB Chessboard. There are 4, I need at least 3: left, right, normal (I don't like popup). That allows to use the moves size independet from the board size.
 
 #### Allow styling of board (and others) by configuration (working)
 

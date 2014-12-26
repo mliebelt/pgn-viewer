@@ -521,6 +521,18 @@ describe("When making moves in PGN", function() {
     xit("should use the existing move in the variation", function () {
 
     });
+
+    it("should know how to  notate castling", function() {
+        my_pgn = pgnReader({pgn: "1. e4 e5 2. Nf3 Nf6 3. Bc4 Bc5"});
+        my_pgn.addMove("O-O", 5);
+        expect(my_pgn.getMoves().length).toEqual(7);
+        expect(my_pgn.getMove(6).turn).toEqual("w");
+        expect(my_pgn.getMove(6).notation.notation).toEqual("O-O");
+        my_pgn.addMove("O-O", 6);
+        expect(my_pgn.getMoves().length).toEqual(8);
+        expect(my_pgn.getMove(7).turn).toEqual("b");
+        expect(my_pgn.getMove(7).notation.notation).toEqual("O-O");
+    })
 });
 
 describe("When upvoting or deleting lines" , function () {
