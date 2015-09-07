@@ -455,7 +455,9 @@ var pgnReader = function (spec) {
                 }
                 var fen = game.fen();
                 move.fen = fen;
-
+                if (pgn_move != null && pgn_move.flags == 'c') {
+                    move.notation.disc = 'x';
+                }
 
                 $.each(move.variations, function(v, variation) {
                     eachMoveVariation(variation, level + 1, prev);
@@ -552,6 +554,9 @@ var pgnReader = function (spec) {
             real_move.notation.row = pgn_move.to.substring(1,2);
             if (pgn_move.piece != "p") {
                 real_move.notation.fig = pgn_move.piece.charAt(0).toUpperCase();
+            }
+            if (pgn_move.flags == game.FLAGS.CAPTURE) {
+                real_move.notation.disc = 'x';
             }
         } else {
             real_move.notation.notation = pgn_move.san;
