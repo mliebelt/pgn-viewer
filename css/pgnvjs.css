@@ -4,55 +4,114 @@ div.edit .gray, div.buttons .gray {
     filter: grayscale(100%);
 }
 
-div.buttons > .prev {
+/** Font Awesome buttons (see http://fontawesome.io/)
+    Used only with the class default for the spans. */
+
+div.buttons, div.edit {
+    margin-top: 10px;
+}
+div.buttons> span.button.default:before {
+    display: inline-block;
+    line-height: 1;
+    font-weight: normal;
+    font-variant: normal;
+    font-style: normal;
+    font-size: 14px;
+    font-family: FontAwesome;
+    color: #71a0df;
+    text-rendering: auto;
+    /*vertical-align: 50%;*/
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+div.buttons > span.button.default {
+    margin: 5px;
+    padding: 4px;
+    border: solid lightgrey 1px;
+    border-radius: 4px;
+}
+
+div.buttons > span.button:hover {
+    cursor: pointer;
+    border: solid dimgrey 1px;
+}
+
+div.buttons > .button.flipper.default:before {
+    content: "\f042";
+}div.buttons > .button.first.default:before {
+    content: "\f049";
+}div.buttons > .button.prev.default:before {
+    content: "\f048";
+}div.buttons > .button.next.default:before {
+    content: "\f051";
+}div.buttons > .button.last.default:before {
+    content: "\f050";
+}div.buttons > .button.play.default:before {
+    content: "\f144";
+}
+div.buttons > .button.stop.default:before {
+    content: "\f04c";
+}
+
+/** ff buttons as images, built different. */
+div.buttons.blue > .button, div.edit.blue > .button {
+    margin: 5px;
+    width: 20px;
+    height: 20px;
+    background: no-repeat 50%;
+    display: inline-block;
+    border: solid lightgrey 1px;
+    border-radius: 4px;
+}
+div.buttons > .button.flipper.blue {
+    background-image: url("../img/blackwhite-flipper.vers1.png");
+}
+
+div.buttons > .button.prev.blue {
     background-image: url("../img/buttons/ff/resultset_previous.png");
 }
-div.buttons > .next {
+div.buttons > .button.next.blue {
     background-image: url("../img/buttons/ff/resultset_next.png");
 }
 
-div.buttons > .first {
+div.buttons > .button.first.blue {
     background-image: url("../img/buttons/ff/resultset_first.png");
 }
 
-div.buttons > .last {
+div.buttons > .button.last.blue {
     background-image: url("../img/buttons/ff/resultset_last.png");
 }
 
-div.buttons > .play {
+div.buttons > .button.play.blue {
     background-image: url("../img/buttons/ff/control_play_blue.png");
 }
 
-div.buttons > .stop {
+div.buttons > .button.stop.blue {
     background-image: url("../img/buttons/ff/control_pause_blue.png");
 }
 
-div.edit > .deleteVar {
+div.edit > .button.deleteVar {
     background-image: url("../img/buttons/ff/edit-delete.png");
 }
 
-div.edit > .promoteVar {
+div.edit > .button.promoteVar {
     background-image: url("../img/buttons/ff/go-up.png");
 }
 
-div.edit > .deleteMoves {
+div.edit > .button.deleteMoves {
     background-image: url("../img/buttons/ff/edit-cut.png");
 }
 
-div.buttons > .flipper {
-    background-image: url("../img/blackwhite-flipper.vers1.png");
-}
-div.edit > .pgn {
+div.edit > .button.pgn {
     background-image: url("../img/buttons/ff/script_save.png");
 }
 
-button.hidePGN {
+span.button.hidePGN {
     /*display: none;*/
-    background-image: url("../img/buttons/ff/cancel.png");
     width: 16px;
     height: 16px;
-    background-repeat: no-repeat;
-    background-position: 50%;
+    background: url("../img/buttons/ff/cancel.png") no-repeat 50%;
 }
 
 div.outerpgn {
@@ -60,38 +119,52 @@ div.outerpgn {
     border: 1px solid grey;
 }
 
-div.green > .prev {
+/* Green buttons from the tango theme. */
+div.buttons.green > .button, div.edit.green > .button {
+    margin: 5px;
+    width: 30px;
+    height: 30px;
+    background: no-repeat 50%;
+    display: inline-block;
+    border: solid lightgrey 1px;
+    border-radius: 4px;
+}
+div.green > .green.flipper {
+    background-image: url("../img/blackwhite-flipper.vers1.png");
+}
+div.green > .green.prev {
     background-image: url("../img/buttons/tango/go-previous.png");
 }
-div.green > .next {
+div.green > .green.next {
     background-image: url("../img/buttons/tango/go-next.png");
 }
 
-div.green > .first {
+div.green > .green.first {
     background-image: url("../img/buttons/tango/go-first.png");
 }
 
-div.green > .last {
+div.green > .green.last {
     background-image: url("../img/buttons/tango/go-last.png");
 }
-div.green > .play {
+div.green > .green.play {
     background-image: url("../img/buttons/tango/media-playback-start.png");
 }
 
-div.green > .stop {
+div.green > .green.stop {
     background-image: url("../img/buttons/tango/media-playback-pause.png");
 }
 
-div.buttons > button, div.edit > button {
+div.buttons > span.button.ff, div.edit > span.button {
     margin: 5px;
     width: 20px;
     height: 20px;
-    background-repeat: no-repeat;
-    background-position: 50%;
+    background: no-repeat 50%;
+    display: inline-block;
 }
 
 div.edit > button.ui-multiselect {
     height: 24px;
+    vertical-align: 50%;
 }
 
 .ui-widget {
@@ -105,7 +178,7 @@ div.comment > textarea.comment {
     width: 100%;
     height: 50px;
 }
-div.green > button {
+div.green > span.button {
     margin: 5px;
     width: 36px;
     height: 36px;
@@ -145,10 +218,7 @@ div.green > button {
 .moves .variation {
     font-size: 100%;
     display: block;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px;
 }
 .moves .variation:before {
     content: ' ( ';
@@ -558,8 +628,8 @@ div.pgn {
 }
 
 .blue .numeric-fc462 {
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
 
 }
 

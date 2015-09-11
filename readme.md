@@ -168,7 +168,7 @@ things users should know to use the viewer in the best way possible.
     
 ## Public site
     
-See the documentation on the public site [PgnViewerJS](http://mliebelt.bplaced.net/pgnvjs/index2.html)
+See the documentation on the public site [PgnViewerJS](http://mliebelt.github.io/PgnViewerJS/docu/index2.html)
 for the current state, some working examples, and a little bit as background. This
 site is growing, and allows me to show the early alpha implementation to others.
 

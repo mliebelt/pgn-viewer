@@ -194,7 +194,7 @@ var pgnBase = function (boardId, configuration) {
         if (id) { ele.setAttribute("id", id); }
         if (clazz) {
             if (my_theme) {
-                ele.setAttribute("class", theme + " " + clazz);
+                ele.setAttribute("class", my_theme + " " + clazz);
             } else {
                 ele.setAttribute("class", clazz);
             }
@@ -225,7 +225,8 @@ var pgnBase = function (boardId, configuration) {
     var generateHTML = function() {
         // Utility function for generating buttons divs
         function addButton(name, buttonDiv) {
-            var button = createEle("button", buttonsId + name, name, theme, buttonDiv);
+            var l_theme = (['green', 'blue'].indexOf(theme) >= 0) ? theme : 'default';
+            var button = createEle("span", buttonsId + name, "button " + name, l_theme, buttonDiv);
             var title = $.t("buttons:" + name);
             $("#" + buttonsId + name).attr("title", title);
             return button;
