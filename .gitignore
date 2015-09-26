@@ -3,3 +3,4 @@
 .ftpauth
 dist-nojq
 **/Thumbs.db
+node_modules

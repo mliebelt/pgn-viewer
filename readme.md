@@ -12,8 +12,17 @@ For that purpose, it does not write everything anew, but it uses for that the fo
  all functionality to display chess positions, move pieces, ...
 * [chess.js](https://github.com/jhlywa/chess.js) Base library to model 
   chess in JavaScript
+* [pegjs](https://github.com/pegjs/pegjs) Parser Generator implemented in Javascript.
+  Used to translate the grammer file `pgn-rules.peg` into a Javascript representation.
 
-See the working examples on my new GitHub Pages site [PgnViewerJS](http://mliebelt.github.io/PgnViewerJS/) to see what is working at the moment. Or look at the temporary site [Temp PgnViewerJS](http://mliebelt.bplaced.net/pgnvjs/examples2.html) for the working examples.
+See the working examples on my new GitHub Pages site [PgnViewerJS](http://mliebelt.github.io/PgnViewerJS/) to see what is working at the moment.
+
+# Development and Releases
+
+* Development will be done (in the future) on the branch `develop` and in future branches.
+* The current release will be the content of the `master` branch.
+* Use the GitHub `Download ZIP` functionality to get the current release.
+* Or go to the github.io pages (documentation), where the current (and former) versions will be available.
 
 # Features
 
