@@ -2,3 +2,4 @@
 .ftppass
 .ftpauth
 dist-nojq
+**/Thumbs.db
