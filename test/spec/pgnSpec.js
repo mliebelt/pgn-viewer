@@ -205,6 +205,13 @@ describe("When reading PGN with variations", function() {
         expect(my_pgn.getMove(my_pgn.getMove(0).next).notation.notation).toEqual("e5");
         expect(my_pgn.getMove(my_pgn.getMove(1).next).notation.notation).toEqual("d5");
     })
+
+    it ("should know about variations in syntax for variants", function() {
+        my_pgn = pgnReader({pgn: "1. e4 e5 ( 1. ... d5 )"});
+        expect(my_pgn.movesMainLine.length).toEqual(2);
+        expect(my_pgn.getMove(1).variations[0].length).toEqual(1);
+        expect(my_pgn.getMove(1).variations[0][0].notation.notation).toEqual("d5");
+    })
 });
 
 describe("When reading variations with comments", function() {
