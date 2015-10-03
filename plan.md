@@ -25,6 +25,14 @@ If a whole section is completely done, it is moved altogether in the done sectio
 
 ### Visual (working)
 
+#### Allow default configuration used by all pgnViewers on the same page (planned)
+
+* Provide a global configuration which is the base for the local configuration (implicitly).
+* This would allow to first make the global configuration right.
+* Then base the local configuration on the global one.
+* Especially if someone does not like the defaults provided (or want to have their own defaults),
+this would help a lot.
+
 #### Allow sizing of board by configuration (working)
 
 * Add parameters for
