@@ -11,10 +11,34 @@ The following is the (rough) development documentation. When do you need it:
 
 The following gives an overview over the parts that are relevant for development:
 
+* Branching model: which branches are used, and how
 * Used libraries: which library comes from where, which version is used, why, how is the library integrated?
 * Javascript structure: which directory has which content, what is source, what is produced by the build process
 * gh-pages: How to publish the documentation, examples, ... (without removing anything)
 * Testing: how are the tests done, what to expect, what does not work, ...
+
+### Branching Model
+
+* GitHub does not make any statement which branching model to use, so you are free to get your own (working).
+* I want to publish with GitHub, so I have to use `gh-pages` for that.
+* Additionally I want to be able to exchange sources between different computers (I use) and ensure that I am
+working on each computer all the time on the latest sources. So I created the branch develop for that.
+* After having understood what is the strength of Git, I want to use feature branches here or there.
+
+So these requirements give the following branching model (only textually, have to draw that):
+
+* Use `develop` for development. No `dist` files there, ensure that.
+* Use `rebase` when possible to get an easy to follow history.
+* Use `squash` when merging something from `develop` to the `master` to build a new release. So each
+commit on the master should be only one commit, which is then nicely documented.
+* Merge the changes of the master to the `gh-pages` branch, clean-up, build the documentation, and 
+ `rebase` and `squash` here as well.
+* Try to use big-binaries that are available from GitHub now, to include the (zipped) distro only. 
+
+##### TODOs
+
+* Start an (explicit) feature branch when starting development for a feature (or bug fix).
+* Start that branch from `develop` first.
 
 ### Used Libraries
 
@@ -144,7 +168,8 @@ The following gives some hints, what the different directories and files (beside
         templ.css: documentation how to create and embedd a new style. Not sure if that works.
     /dist: Will be generated on the master / gh-pages for a new release
     /dist-nojq: Variation that does not contain jquery (to minimize the distribution)
-    /docu: Provides the base for the documentation on github pages. Uses the (then created) dist directory.
+    /docu: Provides the base for the documentation on github pages. 
+           Uses the (then created) dist directory.
         /css: Additional styling
         /img: 
         /js
@@ -155,6 +180,29 @@ The following gives some hints, what the different directories and files (beside
     /examples: see the different section about examples
     /img: Collection of images for different things, has to be documented.
     /js: Javascript files documented in detail above
+    /locales: used for localization by i18next
+    /node_modules: automatically installed by using Grunt, not saved in Git
+    /test: Uses Jasmine for testing, so following those conventions
+        /lib: Contains library files of Jasmine
+        /spec: Constains the specs defined by the application
+            ChessJsSpec.js: checks main functionality of chess.js
+            pgnSpec.js: checks the pgn reading / writing part (only)
+            PgnViewerJsSpec.js: Should contain tests for the UI (not really used at the moment)
+        SpecRunner.html: Just open in the browser, to run the tests
+    bugs.md: obsolete, use GitHub issues instead all the time
+    dev.md: developer documentation (this file)
+    Gruntfile.js: Build file with all tasks
+    index.html: Home page for gh-pages, only used there
+    LICENSE.md: Apache 2.0 commons license
+    package.json: Dependency information, helps to install (automatically?)
+      the correct components for the build process
+    plan.md: Contains all plans I had over the time. Documentation of status:
+      * Planed features: in work or (partly) finished
+      * Finished features: all finished
+      * Features finished are marked by (/)
+      * Features in work are marked by (working)
+    readme.md: Main documentation file for GitHub (master)
+    todos.txt: tempory notes, only interesting for the developer
         
     
 ##### TODOs
@@ -164,9 +212,21 @@ The following gives some hints, what the different directories and files (beside
     
 ### gh-pages publishing
 
+* The branch gh-pages is currently used to "publish" PgnViewerJS (which works quite well).
+* The process is difficult, and I should only have the relevant files on the relevant branches
+
+##### TODOs
+
+
 ### Testing
 
 * Upgraded to the latest Jasmine version (2.3.4)
 * Checked that all unit tests work again (without any change).
+
+##### TODOs
+
+* Complete the set of necessary tests by checking the plans, and which plans are implemented.
+* Structure the sections by those plans, so there is a bigger set of things to do all the time.
+* Include `xit` parts when there is no (useful) test at the moment, only the idea what to test.
 
 ### Build Process

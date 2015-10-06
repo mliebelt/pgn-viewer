@@ -1,0 +1,16 @@
+I have to have a place where I can add TODOs, that are not automatically pushed ...
+
+* Internet (only possible when on the internet)
+    * How to add a version number in Grunt-Files to some tasks
+        * Version for the ZIP-File
+        * Where do we need a version as well? A search brings the following results:
+            * docu/*.html files: How to include version in HTML (==> Template parser)
+        * `package.json` already contains a definition of `version`, so it should at least possible
+        to add the version inside the Grunt build process
+    * How to add that version in the documentation (possibly in the examples)?
+    * How to exclude `node_modules` (normally) from the search process and result in IntelliJ
+    * chess.js should know when to castle, but I did not find an API for that. What do I have to do? Look that up in the web site.
+      * Found in code `move.flags & BITS.KSIDE_CASTLE`
+      seems to be the same as "castling king side allowed"
+      * Ditto for move.flags & BITS.QSIDE_CASTLE. Do I
+      have access to the move flags? And how to decide (without any move) if castling is allowed or not? Does not work ...
