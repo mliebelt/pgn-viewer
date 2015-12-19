@@ -521,12 +521,27 @@ describe("When making moves in PGN", function() {
         expect(my_pgn.getMove(2).variations[0][0].notation.notation).toEqual("f4");
     });
 
-    xit("should start a second variation in the middle of the main line, when the current move has already a variation", function () {
-
+    it("should start a second variation in the middle of the main line, when the current move has already a variation", function () {
+        my_pgn = pgnReader({pgn: "1. e4 e5 2. Nf3 Nc6"});
+        my_pgn.addMove("f4", 1); // first variation
+        my_pgn.addMove("d4", 1); // second variation to the same FEN
+        expect(my_pgn.getMoves().length).toEqual(6);
+        expect(my_pgn.getMove(5).turn).toEqual("w");
+        expect(my_pgn.getMove(5).notation.notation).toEqual("d4");
+        expect(my_pgn.getMove(2).variations.length).toEqual(2);
+        expect(my_pgn.getMove(2).variations[0][0].notation.notation).toEqual("f4");
+        expect(my_pgn.getMove(2).variations[1][0].notation.notation).toEqual("d4");
     });
 
-    xit("should use the existing move in the variation", function () {
-
+    it("should use the existing move in the variation", function () {
+        my_pgn = pgnReader({pgn: "1. e4 e5 2. Nf3 Nc6"});
+        my_pgn.addMove("Nf3", 1); // first main line
+        my_pgn.addMove("Nc6", 2); // second main line
+        expect(my_pgn.getMoves().length).toEqual(4);
+        expect(my_pgn.getMove(2).turn).toEqual("w");
+        expect(my_pgn.getMove(2).notation.notation).toEqual("Nf3");
+        expect(my_pgn.getMove(3).turn).toEqual("b");
+        expect(my_pgn.getMove(3).notation.notation).toEqual("Nc6");
     });
 
     it("should know how to  notate castling", function() {

@@ -10,9 +10,29 @@ describe("Chess Game", function() {
     expect(chess.turn()).toEqual("w");
   });
 
-    xit ("should know the castling rules", function() {
-       expect(chess.castling()).toEqual("Whatever");
+  describe("know the castling rules", function() {
+    xit ("should know the castling rules from moves", function() {
+      expect(chess.castling()).toEqual("Whatever");
     });
+
+    xit("should know the castling rules from FEN only white", function() {
+      var fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+      chess = new Chess(fen);
+      // ==> e4 e5 Nf3 Nc6 Bc4 Bc5 ==> only white castle allowed
+      // how to create a game from FEN?
+    });
+
+    xit("should know the castling rules from FEN white and black", function() {
+      var fen = "r1bqk2r/pppp1ppp/2n2n2/2b1p3/2B1P3/3P1N2/PPP2PPP/RNBQK2R w KQkq - 1 5";
+      chess = new Chess(fen);
+    });
+
+    xit("should know the castling rules from FEN only black", function(){
+      var fen ="rnbqk2r/pppp1ppp/5n2/4p3/1b1PP3/5N2/PPPB1PPP/RN1QKB1R b KQkq - 2 4";
+      chess = new Chess(fen);
+    })
+  });
+
 
   describe("when reads a plain pgn", function() {
     beforeEach(function() {

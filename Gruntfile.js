@@ -5,7 +5,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         clean: ["dist/css", 'dist/js', 'dist/img', 'dist/locales', 'dist/doc', "docu/dist/css",
             'docu/dist/js', 'docu/dist/img', 'docu/dist/locales', 'docu/dist/doc',
-            'dist-nojq/css', 'dist-nojq/js', 'dist-nojq/img', 'dist-nojq/locales'],
+            'dist-nojq/css', 'dist-nojq/js', 'dist-nojq/img', 'dist-nojq/locales', 'PgnViewerJS.zip'],
         concat: {
             all: {
                 src: [
@@ -103,7 +103,7 @@ module.exports = function(grunt) {
         compress: {
             main: {
                 options: {
-                    archive: 'PgnViewerJS.zip'
+                    archive: 'PgnViewerJS.zip'  // How to add the version number here??
                 },
                 expand: true,
                 cwd: 'dist/',
