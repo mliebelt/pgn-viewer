@@ -3,11 +3,11 @@
  */
 var clearHTML = function(boardId) {
     var divBoard = document.getElementById(boardId);
-    var child = null;
+    var child;
     while (child = divBoard.firstChild) {
         divBoard.removeChild(child);
-    };
-}
+    }
+};
 
 describe("PGN Viewer", function() {
     var pgnv;
@@ -25,7 +25,7 @@ describe("PGN Viewer", function() {
         it("should have 47 half-moves", function() {
             expect(pgnv.getPgn().getMoves().length).toEqual(47);
         })
-    })
+    });
 
     describe("When reading PGN with headers", function() {
         beforeEach(function() {
@@ -46,7 +46,7 @@ describe("PGN Viewer", function() {
             expect(Object.keys(pgnv.getPgn().getHeaders()).length).toBeGreaterThan(1);
         })
 
-    })
+    });
     describe("When reading PGN with comments", function() {
         beforeEach(function() {
             clearHTML("b");
@@ -62,8 +62,8 @@ describe("PGN Viewer", function() {
             expect(moves[1].commentBefore).toBeNull();
             expect(moves[2].commentBefore).toEqual("now before");
             expect(moves[2].commentAfter).toBeNull();
-        })
-    })
+        });
+    });
 
     describe("When reading PGN with variations", function() {
         beforeEach(function() {
@@ -78,18 +78,18 @@ describe("PGN Viewer", function() {
             expect(var_first.commentAfter).toEqual("AFTER");
             expect(var_first.notation.notation).toEqual("e4");
         })
-    })
+    });
     describe("When only displaying a board", function() {
         beforeEach(function() {
             clearHTML("b");
             var pgnb = pgnBoard("b",
                 {position: 'start', pieceStyle: 'maya', theme: 'blue'});
-        })
+        });
 
         it ("should have the start position", function() {
             $('#bInner');
         })
-    })
+    });
 
     describe("When opening an editor", function() {
         beforeEach(function() {
@@ -101,5 +101,17 @@ describe("PGN Viewer", function() {
         it ("should have the start position", function() {
             //
         })
+    });
+
+    describe("When making moves in PGN", function() {
+        beforeEach(function() {
+            clearHTML("b");
+            var pgn = "1. e4 e5 2. Nf3 Nc6";
+            pgnv = pgnView("b", {pgn: pgn, position: "start"});
+        });
+
+        it("should have an additional move", function() {
+
+        })
     })
-})
+});

@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <head>
     <link href="../dist/css/pgnvjs.css" rel="stylesheet">
-    <script src="../dist/js/pgnviewerjs.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <script src="../dist/js/pgnvjs.js" type="text/javascript"></script>
 </head>
 <body>
+<h2>Minimal configuration</h2>
+
+This example shows the minimal configuration when using the distributed version of PgnViewerJS. There are only three
+files needed:
+
+<ul>
+    <li>dist/css/pgnvjs.css: The concatenated css files of the directory CSS.</li>
+    <li>font-awesome.min.css: Taken from the internet, may be part later of the concatenated version ...</li>
+    <li>dist/js/pgnv.js: The concatenated js files of the directory js (and all the other plugins used).</li>
+</ul>
 <div id="board" style="width: 300px"></div>
 <script>
     cfg = { pieceStyle: 'merida', pgn: '1. e4 e5 2. f4 exf4' };

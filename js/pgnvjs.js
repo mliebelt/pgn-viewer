@@ -26,7 +26,7 @@ var pgnBase = function (boardId, configuration) {
     (function(){
         var i18n_option = {
             getAsync: false,
-            resGetPath: localPath() + '../locales/__ns__-__lng__.json',
+            resGetPath: localPath() + 'locales/__ns__-__lng__.json',
             ns: {
                 namespaces: ['chess', 'nag', 'buttons'],
                 defaultNs: 'chess'
@@ -45,13 +45,14 @@ var pgnBase = function (boardId, configuration) {
     // Some Utility functions without context
 
     /**
-     * Returns the local path (needed for adressing piece image files).
+     * Returns the local path (needed for addressing piece image files).
      * @returns {XML|string|void}
      */
     function localPath() {
-        var jsFileLocation = $('script[src*=pgnviewerjs]').attr('src');  // the js file path
-        var index = jsFileLocation.indexOf('pgnviewerjs');
-        return jsFileLocation.substring(0, index);   // the js folder path
+        var jsFileLocation = $('script[src*=pgnvjs]').attr('src');  // the js file path
+        var index = jsFileLocation.indexOf('pgnvjs');
+        console.log("Local path: " + jsFileLocation.substring(0, index - 3));
+        return jsFileLocation.substring(0, index - 3);   // the father of the js folder
     }
 
 
@@ -193,7 +194,7 @@ var pgnBase = function (boardId, configuration) {
         if (id) { ele.setAttribute("id", id); }
         if (clazz) {
             if (my_theme) {
-                ele.setAttribute("class", theme + " " + clazz);
+                ele.setAttribute("class", my_theme + " " + clazz);
             } else {
                 ele.setAttribute("class", clazz);
             }
@@ -224,7 +225,8 @@ var pgnBase = function (boardId, configuration) {
     var generateHTML = function() {
         // Utility function for generating buttons divs
         function addButton(name, buttonDiv) {
-            var button = createEle("button", buttonsId + name, name, theme, buttonDiv);
+            var l_theme = (['green', 'blue'].indexOf(theme) >= 0) ? theme : 'default';
+            var button = createEle("span", buttonsId + name, "button " + name, l_theme, buttonDiv);
             var title = $.t("buttons:" + name);
             $("#" + buttonsId + name).attr("title", title);
             return button;
@@ -315,7 +317,7 @@ var pgnBase = function (boardId, configuration) {
                 }
             });
             if (! target.pieceTheme) {
-                target.pieceTheme = localPath() + '../img/chesspieces/' + pieceStyle + '/{piece}.png';
+                target.pieceTheme = localPath() + 'img/chesspieces/' + pieceStyle + '/{piece}.png';
             }
         }
         var boardConfiguration = {};
@@ -372,11 +374,12 @@ var pgnBase = function (boardId, configuration) {
      * Comments are generated inline, there is no special block rendering
      * possible for them.
      * @param comment the comment to render as span
+     * @param clazz class parameter appended to differentiate different comments
      * @returns {HTMLElement} the new created span with the comment as text
      */
     var generateCommentSpan = function(comment, clazz) {
         var span = createEle('span', null, "comment " + clazz);
-        if (comment && (typeof comment !== undefined)) {
+        if (comment && (typeof comment == "string")) {
             span.appendChild(document.createTextNode(" " + comment + " "));
         }
         return span;
@@ -473,7 +476,6 @@ var pgnBase = function (boardId, configuration) {
 
     /**
      * Unmark all marked moves, mark the next one.
-     * @param curr the current move number
      * @param next the next move number
      */
     function unmarkMark(next) {
@@ -502,7 +504,7 @@ var pgnBase = function (boardId, configuration) {
     };
 
     /**
-     * Plays the move that is already in the noation on the board.
+     * Plays the move that is already in the notation on the board.
      * @param curr the current move number
      * @param next the move to take now
      * @param fen the fen of the move to make
@@ -542,7 +544,7 @@ var pgnBase = function (boardId, configuration) {
      */
     function changeNAG(value, checked) {
         console.log("clicked: " + value + " Checked? " + checked);
-        var move = that.mypgn.changeNag("$" + value, that.currentMove, checked);
+        that.mypgn.changeNag("$" + value, that.currentMove, checked);
         updateMoveSAN(that.currentMove);
     }
 

@@ -455,7 +455,9 @@ var pgnReader = function (spec) {
                 }
                 var fen = game.fen();
                 move.fen = fen;
-
+                if (pgn_move != null && pgn_move.flags == 'c') {
+                    move.notation.disc = 'x';
+                }
 
                 $.each(move.variations, function(v, variation) {
                     eachMoveVariation(variation, level + 1, prev);
@@ -544,15 +546,20 @@ var pgnReader = function (spec) {
         }
         var pgn_move = game.move(move);
         real_move.fen = game.fen();
-        if (pgn_move.to.substring(0,1) != "O") {
+        // san is the real notation, in case of O-O is that O-O.
+        // to is the to field, in case of (white) O-O is that g1.
+        if (pgn_move.san.substring(0,1) != "O") {
             real_move.notation.notation = pgn_move.san;
             real_move.notation.col = pgn_move.to.substring(0,1);
             real_move.notation.row = pgn_move.to.substring(1,2);
+            if (pgn_move.piece != "p") {
+                real_move.notation.fig = pgn_move.piece.charAt(0).toUpperCase();
+            }
+            if (pgn_move.flags == game.FLAGS.CAPTURE) {
+                real_move.notation.disc = 'x';
+            }
         } else {
-            real_move.notation = pgn_move.san;
-        }
-        if (pgn_move.piece != "p") {
-            real_move.notation.fig = pgn_move.piece.charAt(0).toUpperCase();
+            real_move.notation.notation = pgn_move.san;
         }
         that.moves.push(real_move);
         real_move.prev = moveNumber;
