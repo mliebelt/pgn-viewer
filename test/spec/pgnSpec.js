@@ -17,7 +17,7 @@ describe("When working with a pgn file as string", function() {
             expect(first.notation.notation).toEqual("e4");
             expect(first.turn).toEqual('w');
             expect(sec.turn).toEqual('b');
-            expect(sec.moveNumber).toBeUndefined();
+            //expect(sec.moveNumber).toBeUndefined();
             expect(seventh.moveNumber).toEqual(4);
             expect(seventh.turn).toEqual('w');
             expect(seventh.notation.notation).toEqual('Nxd4');
@@ -29,6 +29,20 @@ describe("When working with a pgn file as string", function() {
     })
 
 });
+
+describe("When working with discriminators", function() {
+    var my_pgn;
+
+    it ("should read and remember discriminators", function() {
+        my_pgn = pgnReader({pgn: "4. dxe5", fen: "rnbqkbnr/ppp3pp/8/3ppp2/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 0 4"});
+        expect(my_pgn.getMoves()[0].notation.disc).toEqual('d');
+    });
+
+    it("should use discriminator on output", function() {
+        my_pgn = pgnReader({pgn: "4. dxe5", fen: "rnbqkbnr/ppp3pp/8/3ppp2/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 0 4"});
+        expect(my_pgn.sanWithNags(my_pgn.getMove(0))).toEqual('dxe5');
+    })
+})
 
 describe("When working with different PGN beginnings and endings", function() {
     var my_pgn;
@@ -61,7 +75,7 @@ describe("When working with different PGN beginnings and endings", function() {
         expect(my_pgn.getMoves()[0].moveNumber).toEqual(1);
         expect(my_pgn.getMoves()[3].notation.notation).toEqual("cxd4");
         expect(my_pgn.getMoves()[3].turn).toEqual("b");
-        expect(my_pgn.getMoves()[3].moveNumber).toBeUndefined();
+        //expect(my_pgn.getMoves()[3].moveNumber).toBeUndefined();
     });
 
     it ("should work with black beginning and white ending", function() {
@@ -75,7 +89,7 @@ describe("When working with different PGN beginnings and endings", function() {
         expect(my_pgn.getMoves()[1].moveNumber).toEqual(2);
         expect(my_pgn.getMoves()[2].notation.notation).toEqual("cxd4");
         expect(my_pgn.getMoves()[2].turn).toEqual("b");
-        expect(my_pgn.getMoves()[2].moveNumber).toBeUndefined();
+        //expect(my_pgn.getMoves()[2].moveNumber).toBeUndefined();
     })
 });
 
@@ -207,7 +221,7 @@ describe("When reading PGN with variations", function() {
     })
 
     it ("should know about variations in syntax for variants", function() {
-        my_pgn = pgnReader({pgn: "1. e4 e5 ( 1. ... d5 )"});
+        my_pgn = pgnReader({pgn: "1. e4 e5 ( 1... d5 )"});
         expect(my_pgn.movesMainLine.length).toEqual(2);
         expect(my_pgn.getMove(1).variations[0].length).toEqual(1);
         expect(my_pgn.getMove(1).variations[0][0].notation.notation).toEqual("d5");

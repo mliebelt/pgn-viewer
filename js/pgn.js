@@ -72,8 +72,20 @@ function StringBuilder(value) {
 
 
 
-var pgnReader = function (spec) {
+var pgnReader = function (configuration) {
     var that = {};
+    var initialize_configuration = function(configuration) {
+        if (typeof configuration.position == 'undefined') {
+            configuration.position = 'start';
+        }
+        if (typeof configuration.pgn == 'undefined') {
+            configuration.pgn = '';
+        }
+        if (typeof configuration.locale == 'undefined') {
+            configuration.locale = 'en';
+        }
+    }
+    initialize_configuration(configuration);
     var parser = pgnParser;
     var game = new Chess();
     that.PGN_KEYS = {
@@ -162,7 +174,7 @@ var pgnReader = function (spec) {
         if (typeof notation.row == 'undefined') {
             return notation.notation; // move like O-O and O-O-O
         }
-        var fig = $.t(notation.fig);
+        var fig = i18n.t(notation.fig);
         var disc = notation.disc ? notation.disc : "";
         var check = notation.check ? notation.check : "";
         var prom = notation.promotion ? notation.promotion : "";
@@ -226,9 +238,9 @@ var pgnReader = function (spec) {
             }
             return headers;
         };
-        that.headers = splitHeaders(spec.pgn);
-        var index = spec.pgn.lastIndexOf("]");
-        return spec.pgn.substring(index + 1);
+        that.headers = splitHeaders(configuration.pgn);
+        var index = configuration.pgn.lastIndexOf("]");
+        return configuration.pgn.substring(index + 1);
     };
 
     /**
@@ -444,10 +456,16 @@ var pgnReader = function (spec) {
                 }
                 called(current, prev, move, prevMove);
                 // Checks the move on a real board, and hold the fen
+                // TODO: Use the position from the configuration, to ensure, that games
+                // could be played not starting at the start position.
                 if (typeof move.prev == "number") {
                     game.load(getMove(move.prev).fen);
                 } else {
-                    game.reset();
+                    if (configuration.position == 'start') {
+                        game.reset();
+                    } else {
+                        game.load(configuration.position);
+                    }
                 }
                 var pgn_move = game.move(move.notation.notation);
                 if (pgn_move == null) {
@@ -534,7 +552,11 @@ var pgnReader = function (spec) {
         real_move.notation = {};
         real_move.variations = [];
         if (moveNumber == null) {
-            game.reset();
+            if (configuration.position == 'start') {
+                game.reset();
+            } else {
+                game.load(configuration.position)
+            }
             real_move.turn = "w";
             real_move.moveNumber = 1;
         } else {

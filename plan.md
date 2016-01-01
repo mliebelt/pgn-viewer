@@ -318,12 +318,12 @@ So compared to the rest, js is the differentiator. img files are only read on a 
 So of the 1.2 MB file is jQuery only 280 KB.
 
     $ ls -laR js
-    -rw-r--r--    1 mliebelt Administ    97221 Jun  9 15:46 i18next-1.7.3.js
+    -rw-r--r--    1 mliebelt Administ    97221 Jun  9 15:46 i18next-1.11.2.js
     -rw-r--r--    1 mliebelt Administ   480809 Aug 20 16:47 jquery-ui.js
     -rw-r--r--    1 mliebelt Administ     3080 Jun 17  2012 jquery.hotkeys.js
     -rw-r--r--    1 mliebelt Administ    19580 Aug 20 16:47 jquery.multiselect.js
     -rw-r--r--    1 mliebelt Administ     4112 May 31 15:39 jquery.timer.js
-    -rw-r--r--    1 mliebelt Administ   162553 May 19 07:33 peg-0.8.0.js
+    -rw-r--r--    1 mliebelt Administ   162553 May 19 07:33 peg-0.9.0.js
     -rw-r--r--    1 mliebelt Administ    65929 Aug 19 06:15 pgn-parser.js
     -rw-r--r--    1 mliebelt Administ    23924 Sep 12 11:49 pgn.js
     -rw-r--r--    1 mliebelt Administ    34457 Aug 22 07:34 pgnviewerjs.js

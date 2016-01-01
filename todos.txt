@@ -14,3 +14,11 @@ I have to have a place where I can add TODOs, that are not automatically pushed 
       seems to be the same as "castling king side allowed"
       * Ditto for move.flags & BITS.QSIDE_CASTLE. Do I
       have access to the move flags? And how to decide (without any move) if castling is allowed or not? Does not work ...
+
+## Tickets
+
+#### Missing discriminator
+
+* Check why the discriminator is missing sometimes.
+* Check if there is a functionality to get the discriminiator upfront (by using the chess.js library)
+* if not, check what has to be done to get it.

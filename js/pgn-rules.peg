@@ -6,32 +6,33 @@
 
 pgn
   = pw:pgnStartWhite all:pgnBlack?
-      { arr = (all ? all : []); arr.unshift(pw);return arr; }
+      { var arr = (all ? all : []); arr.unshift(pw);return arr; }
   / pb:pgnStartBlack all:pgnWhite?
-    { arr = (all ? all : []); arr.unshift(pb); return arr; }
+    { var arr = (all ? all : []); arr.unshift(pb); return arr; }
   / whiteSpace?
     { return [[]]; }
 
 pgnStartWhite
-  = whiteSpace? pw:pgnWhite { return pw; }
+  = pw:pgnWhite { return pw; }
 
 pgnStartBlack
-  = whiteSpace? cm:comment? whiteSpace? me:moveEllipse? all:pgnBlack
-    { last = all[0]; last.moveNumber = me; last.commentMove = cm; return all; }
+  = pb:pgnBlack { return pb; }
 
 pgnWhite
   = whiteSpace? cm:comment? whiteSpace? mn:moveNumber whiteSpace? cb:comment? whiteSpace?
-    hm:halfMove  nag:nags?  whiteSpace? ca:comment? whiteSpace? vari:variationWhite? all:pgnBlack?
-    { arr = (all ? all : []); move = {}; move.turn = 'w'; move.moveNumber = mn;
+    hm:halfMove  whiteSpace? nag:nags?  whiteSpace? ca:comment? whiteSpace? vari:variationWhite? all:pgnBlack?
+    { var arr = (all ? all : []);
+      var move = {}; move.turn = 'w'; move.moveNumber = mn;
       move.notation = hm; move.commentBefore = cb; move.commentAfter = ca; move.commentMove = cm;
       move.variations = (vari ? vari : []); move.nag = (nag ? nag : null); arr.unshift(move); return arr; }
   / endGame
 
 pgnBlack
-  = whiteSpace? cb:comment? whiteSpace?
-    hm:halfMove  nag:nags? whiteSpace? ca:comment? whiteSpace? vari:variationBlack? all:pgnWhite?
-    { arr = (all ? all : []); move = {}; move.turn = 'b'; move.notation = hm;
-      move.commentBefore = cb; move.commentAfter = ca;
+  = whiteSpace? cm:comment? whiteSpace? me:moveEllipse? whiteSpace? cb:comment? whiteSpace?
+    hm:halfMove whiteSpace?  nag:nags? whiteSpace? ca:comment? whiteSpace? vari:variationBlack? all:pgnWhite?
+    { var arr = (all ? all : []);
+      var move = {}; move.turn = 'b'; move.moveNumber = me;
+      move.notation = hm; move.commentBefore = cb; move.commentAfter = ca;
       move.variations = (vari ? vari : []); arr.unshift(move); move.nag = (nag ? nag : null); return arr; }
   / endGame
 
@@ -49,12 +50,12 @@ cl = '{'
 cr = '}'
 
 variationWhite
-  = pl vari:pgnWhite pr whiteSpace? all:variationWhite? whiteSpace? me:moveEllipse? 
-    { arr = (all ? all : []); arr.unshift(vari); return arr; }
+  = pl vari:pgnWhite pr whiteSpace? all:variationWhite? whiteSpace? me:moveEllipse?
+    { var arr = (all ? all : []); arr.unshift(vari); return arr; }
 
 variationBlack
   = pl vari:pgnStartBlack pr whiteSpace? all:variationBlack?
-    { arr = (all ? all : []); arr.unshift(vari); return arr; }
+    { var arr = (all ? all : []); arr.unshift(vari); return arr; }
 
 pl = '('
 
@@ -72,11 +73,11 @@ whiteSpace
 halfMove
   = fig:figure? & checkdisc disc:discriminator str:strike?
     col:column row:row pr:promotion? ch:check?
-    { hm = {}; hm.fig = (fig ? fig : null); hm.disc =  (disc ? disc : null); hm.strike = (str ? str : null); hm.col = col; hm.row = row; hm.check = (ch ? ch : null); hm.promotion = pr; hm.notation = (fig ? fig : "") + (disc ? disc : "") + (str ? str : "") + col + row + (pr ? pr : "") + (ch ? ch : ""); return hm; }
+    { var hm = {}; hm.fig = (fig ? fig : null); hm.disc =  (disc ? disc : null); hm.strike = (str ? str : null); hm.col = col; hm.row = row; hm.check = (ch ? ch : null); hm.promotion = pr; hm.notation = (fig ? fig : "") + (disc ? disc : "") + (str ? str : "") + col + row + (pr ? pr : "") + (ch ? ch : ""); return hm; }
   / fig:figure? str:strike? col:column row:row pr:promotion? ch:check?
-    { hm = {}; hm.fig = (fig ? fig : null); hm.strike = (str ? str : null); hm.col = col; hm.row = row; hm.check = (ch ? ch : null); hm.notation = (fig ? fig : "") + (str ? str : "") + col  + row + (pr ? pr : "") + (ch ? ch : ""); hm.promotion = pr; return hm; }
-  / 'O-O-O' { hm = {}; hm.notation = 'O-O-O'; return  hm; }
-  / 'O-O' { hm = {}; hm.notation = 'O-O'; return  hm; }
+    { var hm = {}; hm.fig = (fig ? fig : null); hm.strike = (str ? str : null); hm.col = col; hm.row = row; hm.check = (ch ? ch : null); hm.notation = (fig ? fig : "") + (str ? str : "") + col  + row + (pr ? pr : "") + (ch ? ch : ""); hm.promotion = pr; return hm; }
+  / 'O-O-O' { var hm = {}; hm.notation = 'O-O-O'; return  hm; }
+  / 'O-O' { var hm = {}; hm.notation = 'O-O'; return  hm; }
 
 check
   = '+'
@@ -86,7 +87,7 @@ promotion
   = '=' f:figure { return '=' + f; }
 
 nags
-  = nag:nag whiteSpace? nags:nags? { arr = (nags ? nags : []); arr.unshift(nag); return arr; }
+  = nag:nag whiteSpace? nags:nags? { var arr = (nags ? nags : []); arr.unshift(nag); return arr; }
 
 nag
   = '$' num:integer { return '$' + num; }

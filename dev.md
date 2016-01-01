@@ -95,7 +95,7 @@ sufficient.
 * Is it wise to use Jasemine for that job? At least it works at the moment ...
 * Try to read all tickets to the robustness of parsing, and try to match each one by creating a test case for it.
 
-#### i18next-1.7.3.js
+#### i18next-1.11.2.js
 
 * Copy of i18next.com (from the comment in that file)
 * Initialize it (`i18n.init`) inside an anonymous function.

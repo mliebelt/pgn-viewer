@@ -10,10 +10,18 @@ module.exports = function(grunt) {
             all: {
                 src: [
                     'chessboardjs/js/jquery-1.11.1.js',
+                    'js/jquery-ui.js',
                     'chess.js/chess.js',
                     'chessboardjs/js/chessboard.js',
                     'chessboardjs/js/json3.min.js',
-                    'js/*.js'],
+                    'js/i18next-1.11.2.js',
+                    'js/jquery.hotkeys.js',
+                    'js/jquery.multiselect.js',
+                    'js/jquery.timer.js',
+                    'js/pgn.js',
+                    'js/pgn-parser.js',
+                    'js/pgnvjs.js'
+                ],
                 dest: 'dist/js/pgnvjs.js'
             },
             nojq: {
