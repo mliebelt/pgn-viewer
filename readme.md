@@ -177,7 +177,7 @@ site is growing, and allows me to show the early alpha implementation to others.
 I will provide downloads of the versions, that should be easy to install. Just unpack
 locally, and copy one of the examples and play with them.
 
-* [Version 0.9.0](PgnViewerJS-0.9.0.zip): Nearly feature complete, roughly documented,
+* [Version 0.9.0](dist/PgnViewerJS-0.9.0.zip): Nearly feature complete, roughly documented,
   stable enough to play with it.
 
 ## References

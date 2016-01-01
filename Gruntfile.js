@@ -99,7 +99,7 @@ module.exports = function(grunt) {
         compress: {
             main: {
                 options: {
-                    archive: 'PgnViewerJS.zip'
+                    archive: 'dist/PgnViewerJS-0.9.0.zip'
                 },
                 expand: true,
                 cwd: 'dist/',
