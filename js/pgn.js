@@ -175,10 +175,11 @@ var pgnReader = function (configuration) {
             return notation.notation; // move like O-O and O-O-O
         }
         var fig = i18n.t(notation.fig);
-        var disc = notation.disc ? notation.disc : "";
-        var check = notation.check ? notation.check : "";
-        var prom = notation.promotion ? notation.promotion : "";
-        return fig + disc + notation.col + notation.row + prom + check;
+        var disc = notation.disc ? notation.disc : '';
+        var strike = notation.strike ? notation.strike : '';
+        var check = notation.check ? notation.check : '';
+        var prom = notation.promotion ? notation.promotion : '';
+        return fig + disc + strike + notation.col + notation.row + prom + check;
     };
 
     var sanWithNags = function (move) {
@@ -474,7 +475,7 @@ var pgnReader = function (configuration) {
                 var fen = game.fen();
                 move.fen = fen;
                 if (pgn_move != null && pgn_move.flags == 'c') {
-                    move.notation.disc = 'x';
+                    move.notation.strike = 'x';
                 }
 
                 $.each(move.variations, function(v, variation) {

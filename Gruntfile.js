@@ -111,11 +111,11 @@ module.exports = function(grunt) {
         compress: {
             main: {
                 options: {
-                    archive: 'PgnViewerJS.zip'  // How to add the version number here??
+                    archive: 'dist/PgnViewerJS-0.9.1.zip'
                 },
                 expand: true,
                 cwd: 'dist/',
-                src: ['**/*'],
+                src: ['**/*', '!PgnViewerJS-*.zip'],
                 dest: ''
             }
         },

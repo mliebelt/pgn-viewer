@@ -341,11 +341,22 @@ examples["1209"] = {
     "to move, this was not recognized by the viewer. Hover over the black pieces to see that they are " +
     "the only ones now to move.",
     html: "<div id='board' style='width: 360px'/>",
-    name: "#13: FEN not recognized (unsolved)",
+    name: "#13: FEN not recognized",
     jsStr: 'pgnEdit("board", {position: "rnbqkbnr/pp1p1ppp/4p3/4P3/2PQ4/2N5/PP3PPP/R1B1KBNR b KQkq - 0 6"});',
     jsFn: function() {
         pgnEdit("board", {position: "rnbqkbnr/pp1p1ppp/4p3/4P3/2PQ4/2N5/PP3PPP/R1B1KBNR b KQkq - 0 6"});
 
+    }
+};
+examples["1210"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/14'>ticket 14</a> at GitHub. " +
+    "Currently, the result of a game (as part of the notation, not the header) is parsed, but not " +
+    "displayed as part of the notation.",
+    html: "<div id='board' style='width: 360px'/>",
+    name: "#14: Parsing rules for result (unsolved)",
+    jsStr: 'pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});',
+    jsFn: function() {
+        pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});
     }
 };
 

@@ -72,7 +72,7 @@
                 <b>N</b>otation which was born in the late 80s, early 90s of the last
                 century. I provided some of the translations there ...</p>
 
-            <p>I first started using pgn4web and ... as part of our Wordpress Installation,
+            <p>I first started using pgn4web and others as part of our Wordpress Installation,
             but I had difficulties here and there. At the end, I wanted to have a viewer
             that was at least as nice as the one from chess.com</p>
 		</div>
@@ -86,8 +86,7 @@
                     displaying a chess board, with some functions: Moving pieces, some
                 animations, ...</li>
 				<li><strong>jQuery</strong></li>
-				<li><strong>jQuery Timer</strong></li>
-				<li><strong>jQuery Hotkeys</strong></li>
+				<li><strong>PEG.js</strong>: Parser Generator for JavaScript to read pgn notation.</li>
 				<li><strong>PgnViewerJS</strong>: builds the wrapper, makes  the move output,
                 allows some different interfaces: pgnBoard, pgnPrint, pgnView, pgnEdit</li>
 			</ul>
@@ -96,7 +95,9 @@
 			<h3>How To &amp; Support</h3>
 			<p>To start with PgnViewerJS, you have to do the following steps:</p>
             <ul class="square">
-                <li>Fill the head of your HTML file with the relevant definitions ...</li>
+                <li>Download the current sources or the distro from below.</li>
+                <li>Fill the head of your HTML file with the relevant definitions, examples are included
+                in the distro in the directory <code>examples</code>.</li>
                 <li>Define in the body 2 parts:
                     <ul class="square">
                         <li>A <code>div</code> section with a unique ID.</li>
@@ -106,9 +107,7 @@
                     </ul>
                 </li>
                 <li>Fill the configuration of the PgnViewerJS with the relevant
-                aspects: starting position, theme, piece style, size, ...</li>
-                <li>Include in the body the moves that should be rendered and for
-                the API <code>pgnView</code> should be playable.</li>
+                aspects: starting position, moves, theme, piece style, size, ...</li>
             </ul>
 		</div>
     </div>
@@ -116,7 +115,8 @@
         <div class="eight columns">
             <h2>Downloads</h2>
             <ul>
-                <li><a href="PgnViewerJS-0.9.0.zip">Version 0.9.0</a> </li>
+                <li><a href="../dist/PgnViewerJS-0.9.1.zip">Version 0.9.1</a> </li>
+                <li><a href="../dist/PgnViewerJS-0.9.0.zip">Version 0.9.0</a> </li>
             </ul>
         </div>
         <div class="eight columns">
