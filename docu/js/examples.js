@@ -176,56 +176,187 @@ examples["1101"] = {
         "check that ....",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Annotated moves",
-    jsStr: "...",
+    jsStr: "var pgn = '1. e4$1 e5$2 2. Nf3$3 Nc6$4 3. Bb5$5 a6$6 4. Ba4$7 Nf6$10 5. O-O$13 Be7$14 6. Re1$15 b5$16 7. Bb3$17 O-O$18 8. c3$19 d5$3';\npgnView('b1', {pgn: pgn});",
     jsFn: function() {
         var pgn = '1. e4$1 e5$2 2. Nf3$3 Nc6$4 3. Bb5$5 a6$6 4. Ba4$7 Nf6$10 5. O-O$13 Be7$14 6. Re1$15 b5$16 7. Bb3$17 O-O$18 8. c3$19 d5$3';
-        var pgnv = pgnView('b1', {pgn: pgn});
+        pgnView('b1', {pgn: pgn});
     }
 };
 examples["1102"] = {
     desc: "Here a game with a lot of variations, sometimes two or more levels deep. This is part of my opening repertoire as white.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Variations in Moves",
-    jsStr: "...",
+    jsStr: 'var pgn = \'2. e4 e5 (1... c5) ...\';\npgnView(\'b1\', {pgn: pgn});',
     jsFn: function() {
         var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'
-        var pgnv = pgnView('b1', {pgn: pgn});
+        pgnView('b1', {pgn: pgn});
     }
 };
 examples["1150"] = {
-    desc: "",
-    html: "",
+    desc: "Here is an example game in the style of chess.com",
+    html: '<div id="board2" style="width: 300px;margin-right: 25px"></div>',
     name: "Themes: Chess.com",
-    jsStr: "",
+    jsStr: "var pgn = \"1. e4 e5 2. Nf3 Nc6  ...  24. Bxe7# 1:0\"\;\npgnv = pgnView(\"board2\", {pgn: pgn, position: \"start\", pieceStyle: 'chesscom', theme: 'zeit'});",
     jsFn: function() {
-
+        var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0";
+        pgnv = pgnView("board2", {pgn: pgn, position: "start", pieceStyle: 'chesscom', theme: 'zeit'});
     }
 };
 examples["1151"] = {
-    desc: "",
-    html: "",
+    desc: "Here the style green for the start position.",
+    html: '<div id="board" style="width: 400px; margin-right: 25px">',
     name: "Themes: Green",
-    jsStr: "",
+    jsStr: "var cfg = { showNotation: false, theme: 'green' };\nvar board = pgnBoard('board', cfg);",
     jsFn: function() {
-
+        var cfg = { showNotation: false, position: 'start', theme: 'green' };
+        var board = pgnBoard('board', cfg);
     }
 };
 examples["1152"] = {
     desc: "",
-    html: "",
+    html: '<div id="board2" style="width: 400px"></div>',
     name: "Themes: Zeit",
+    jsStr: "cfg = { pieceStyle: 'uscf', orientation: 'black', position: 'start', theme: 'zeit'};\nvar board2 = pgnBoard('board2', cfg);",
+    jsFn: function() {
+        cfg = { pieceStyle: 'uscf', orientation: 'black', position: 'start', theme: 'zeit'};
+        var board2 = pgnBoard("board2", cfg);    }
+};
+examples["1153"] = {
+    desc: "Chess board in the informator style",
+    html: '<div id="board" style="width: 400px">',
+    name: "Themes: Informator",
+    jsStr: "var cfg = { showNotation: false, position: 'start', theme: 'informator' };\nvar board = pgnBoard('board', cfg);",
+    jsFn: function() {
+        var cfg = { showNotation: false, position: 'start', theme: 'informator' };
+        var board = pgnBoard('board', cfg);
+    }
+};
+examples["1200"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/2'>ticket 2</a> at GitHub. The idea here is," +
+    " that you may define a start position, but don't show the moves (immediately) to allow the reader to" +
+    " guess the move",
+    html: "",
+    name: "#2: Guess the move (unsolved)",
     jsStr: "",
     jsFn: function() {
 
     }
 };
-examples["1153"] = {
-    desc: "",
+examples["1201"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/3'>ticket 3</a> at GitHub. Add a style " +
+    "that looks like the (dark) one at lichess.org. lichess itself has a lot of possibilities, but just mimic " +
+    "some of them, especially the ones that have the moves to the right.",
     html: "",
-    name: "Themes: Informator",
+    name: "#3: Add lichess.org (unsolved)",
     jsStr: "",
     jsFn: function() {
 
+    }
+};
+examples["1202"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/4'>ticket 4</a> at GitHub. Formerly, all " +
+    "themes used real buttons for the buttons, but the play buttons are now mostly done with FontAwesome. See the three " +
+    "games, the first two with real buttons, the third with font buttons from FontAwesome.",
+    html: '<div id="board1" style="width: 400px"/><div id="board2" style="width: 400px"/><div id="board3" style="width: 400px"/>',
+    name: "#4: Use FontAwesome for the UI",
+    jsStr: "pgnView('board1', { pgn: '1. e4 e5 2. Nf3 Nc6', theme: 'green' });\npgnView('board2', { pgn: '1. e4 e5 2. Nf3 Nc6', theme: 'blue' });\npgnView('board3', { pgn: '1. e4 e5 2. Nf3 Nc6' });",
+    jsFn: function() {
+        pgnView('board1', { pgn: '1. e4 e5 2. Nf3 Nc6', theme: 'green' });
+        pgnView('board2', { pgn: '1. e4 e5 2. Nf3 Nc6', theme: 'blue' });
+        pgnView('board3', { pgn: '1. e4 e5 2. Nf3 Nc6' });
+    }
+};
+examples["1203"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/5'>ticket 5</a> at GitHub. Shows in an example " +
+    "that the input with captures leads to output that include in the capture moves the character 'x'",
+    html: '<div id="board1" style="width: 400px"/>',
+    name: "#5: Missing capture symbol",
+    jsStr: "pgnView('board1', { pgn: '1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Nf6 5. Nc3 Nxd4 6. Qxd4' });",
+    jsFn: function() {
+        pgnView('board1', { pgn: '1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Nf6 5. Nc3 Nxd4 6. Qxd4' });
+    }
+};
+examples["1204"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/6'>ticket 6</a> at GitHub. " +
+    "The boards above have the three locales fr, de, and en, and show the moves initially in the language " +
+    "of choice. However, when you edit the games, you will see that the last locale (here english) is used " +
+    "in all of them.",
+    html: '<div id="board" style="width: 200px;float: left;margin-right: 20px"/>\n<div id="board1" style="width: 200px;float: left;margin-right: 20px"/>\n<div id="board2" style="width: 200px;float: left;margin-right: 20px"/>',
+    name: "#6: locale in edit mode (unsolved)",
+    jsStr: "",
+    jsFn: function() {
+        var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5";
+        pgnEdit("board", {pgn: pgn, locale: 'fr'});
+        pgnEdit("board1", {pgn: pgn,locale: 'de'});
+        pgnEdit("board2", {pgn: pgn, locale: 'en'});
+    }
+};
+examples["1205"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/9'>ticket 9</a> at GitHub. " +
+    "The example shows different nags ('$' followed by a number) with variations in white space " +
+    "directly before it. ",
+    html: '<div id="board" style="width: 300px"/>',
+    name: "#9: spaces after a half move before a NAG",
+    jsStr: 'pgnView("board", {pgn: "1. e4 $1 e5 $2 2. Nf3 $3 Nc6 $4 3. Bc4$13 Bc5$14 4. c3$15 Nxc4$16"});',
+    jsFn: function() {
+        pgnView("board", {pgn: "1. e4 $1 e5 $2 2. Nf3 $3 Nc6 $4 3. Bc4$13 Bc5$14 4. c3$15 Nxc4$16"});
+    }
+};
+examples["1206"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/10'>ticket 10</a> at GitHub. Demonstrates " +
+    "that additional move numbers from black are allowed where it makes sense. With a longer comment, the move " +
+    "number may help in the orientation of the reader (when constructing the PGN string).",
+    html: '<div id="board" style="width: 300px"/>',
+    name: "#10: repeating move number",
+    jsStr: 'pgnView("board", {pgn: "1. e4 { comment } 1... e5"});',
+    jsFn: function() {
+        pgnView("board", {pgn: "1. e4 { comment } 1... e5"});
+    }
+};
+examples["1207"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/11'>ticket 11</a> at GitHub. " +
+    "As you can see, black has with move 4 two possibilities to capture back the bishop, and the chosen one " +
+    "is clearly included in the pgn provided, but not displayed in the output of PGN.",
+    html: "<div id='board' style='width: 360px'/>",
+    name: "#11: disabmbiguation in print format (unsolved)",
+    jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Bxc6 dxc6"});',
+    jsFn: function() {
+        pgnView("board", {pgn: "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Bxc6 dxc6"});
+    }
+};
+examples["1208"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/12'>ticket 12</a> at GitHub. The idea " +
+    "here is, that more than one pgn game could be included for the same viewer, and the viewer would then " +
+    "allow to first select the game, and then play through the game.",
+    html: "",
+    name: "#12: display of many games (unsolved)",
+    jsStr: "",
+    jsFn: function() {
+
+    }
+};
+examples["1209"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/13'>ticket 13</a> at GitHub. " +
+    "The problem here was, that when a game in edit mode was provided with a start position with black " +
+    "to move, this was not recognized by the viewer. Hover over the black pieces to see that they are " +
+    "the only ones now to move.",
+    html: "<div id='board' style='width: 360px'/>",
+    name: "#13: FEN not recognized",
+    jsStr: 'pgnEdit("board", {position: "rnbqkbnr/pp1p1ppp/4p3/4P3/2PQ4/2N5/PP3PPP/R1B1KBNR b KQkq - 0 6"});',
+    jsFn: function() {
+        pgnEdit("board", {position: "rnbqkbnr/pp1p1ppp/4p3/4P3/2PQ4/2N5/PP3PPP/R1B1KBNR b KQkq - 0 6"});
+
+    }
+};
+examples["1210"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/14'>ticket 14</a> at GitHub. " +
+    "Currently, the result of a game (as part of the notation, not the header) is parsed, but not " +
+    "displayed as part of the notation.",
+    html: "<div id='board' style='width: 360px'/>",
+    name: "#14: Parsing rules for result (unsolved)",
+    jsStr: 'pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});',
+    jsFn: function() {
+        pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});
     }
 };
 
