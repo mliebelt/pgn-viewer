@@ -10,8 +10,9 @@
 
 var pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
-    var VERSION = "0.9.0";
+    var VERSION = "0.9.1";
     var that = {};
+    that.configuration = configuration;
     var theme = configuration.theme || 'default';
     var game = new Chess();
     var board;              // Will be set later, but has to be a known variable
@@ -32,7 +33,7 @@ var pgnBase = function (boardId, configuration) {
                 defaultNs: 'chess'
             }
         };
-        $.i18n.init(i18n_option);
+        $.i18n.init(i18n_option, function (err, t) {});
         if (configuration.locale) {
             $.i18n.setLng(configuration.locale);
         }
@@ -227,7 +228,7 @@ var pgnBase = function (boardId, configuration) {
         function addButton(name, buttonDiv) {
             var l_theme = (['green', 'blue'].indexOf(theme) >= 0) ? theme : 'default';
             var button = createEle("span", buttonsId + name, "button " + name, l_theme, buttonDiv);
-            var title = $.t("buttons:" + name);
+            var title = i18n.t("buttons:" + name);
             $("#" + buttonsId + name).attr("title", title);
             return button;
         }
@@ -563,9 +564,13 @@ var pgnBase = function (boardId, configuration) {
      * link to FEN (position after move)
      */
     var generateMoves = function(board) {
-        that.mypgn = pgnReader( { pgn: configuration.pgn ? configuration.pgn : ''} );
+        that.mypgn = pgnReader( that.configuration );
         var myMoves = that.mypgn.getMoves();
-        game.reset();
+        if (that.configuration.position == 'start') {
+            game.reset();
+        } else {
+            game.load(that.configuration.position);
+        }
 
         // Bind the necessary functions to move the pieces.
         var bindFunctions = function() {
@@ -698,7 +703,7 @@ var pgnBase = function (boardId, configuration) {
         bindFunctions();
         generateNAGMenu($("#edit" + boardId + "Button")[0]);
         generateHeaders();
-        game.reset();
+        //game.reset(); // TODO: Not needed any more??
         $(function(){
             $("select#" + buttonsId + "nag").multiselect({
                 header: false,

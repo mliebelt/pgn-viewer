@@ -46,7 +46,7 @@
 	<div class="container">
 		<div class="sixteen columns">
 			<h1 class="remove-bottom" style="margin-top: 40px">PgnViewerJS</h1>
-			<h5>Version 0.9.0</h5>
+			<h5>Version 0.9.1</h5>
 			<hr />
 		</div>
         <div class="container">
@@ -67,7 +67,7 @@
 			<h3>Documentation</h3>
 			<p>The following documentation explains in great detail how to use the PgnViewerJS.
             It tries to be a reference that can be used to modify and adapt working
-            examples. For some of the examples, see the <a href="examples.html">examples section</a>
+            examples. For some of the examples, see the <a href="examples2.html">examples section</a>
             and use them as starting template.</p>
             <h4>Configuration</h4>
             <p>The configuration is used when calling one of the APIs of the
@@ -89,7 +89,7 @@
                         <td>yes</td>
                         <td>-</td>
                         <td>ID of the container for board, moves, and buttons.</td>
-                        <td>See all examples on the page <a href="examples.html">examples</a> .</td>
+                        <td>See all examples on the page <a href="examples2.html">examples</a> .</td>
                     </tr>
                 <tr>
                     <td><code class="js plain">position</code>
@@ -97,7 +97,7 @@
                     <td>no</td>
                     <td><code class="js string">'start'</code></td>
                     <td>Defines the position of the board, or where the games starts.</td>
-                    <td>...</td>
+                    <td>See <a href="examples2.html#1022">Position</a> how to show different positions.</td>
                 </tr>
                 <tr>
                     <td><code class="js plain">pgn</code></td>
@@ -106,7 +106,7 @@
                     <td>The moves of the game. Only necessary, if a whole game
                     should be shown. The moves are then shown in a container
                     that may be additionally styled by the theme selected.</td>
-                    <td>See the examples ....</td>
+                    <td>See the <a href="examples2.html#1051">Games Examples</a> how to do that.</td>
                 </tr>
                 <tr>
                     <td><code class="js plain">showNotation</code></td>
@@ -115,7 +115,7 @@
                     <td>Defines if the columns and rows should be show the labels
                     a to h (for the columns) and 1 to 8 (for the rows). If shown,
                     it could be styled by CSS.
-                    <td>See ...</td>
+                    <td>See the <a href="examples2.html#1023">second board</a> of the examples.</td>
                 </tr>
                 <tr>
                     <td><code class="js plain">orientation</code>
@@ -125,7 +125,7 @@
                     <td>Defines if the board has 'white' at the bottom or 'black'.
                     May be switched at any time, if the buttons are rendered, that
                     include an orientation-switch button.</td>
-                    <td>Example ...</td>
+                    <td>See the <a href="examples2.html#1023">first board</a> of the examples.</td>
                 </tr>
                 <tr>
                     <td><code class="js plain">theme</code></td><td>no</td><td>n.a.</td>
@@ -133,8 +133,7 @@
                     board, the moves, the buttons, ... It tries to reproduce
                     typical designs used in chess books, online sites, you name it.
                     And you may of course add your own themes.</td>
-                    <td>See the file <a>Themes</a> for different examples of the
-                    same game.</td>
+                    <td>See <a href="examples2.html#1021">Themes</a> for different boards.</td>
                 </tr>
                 <tr>
                     <td><code class="js plain">pieceStyle</code>
@@ -152,14 +151,14 @@
                     <td><code class="js string">'wikipedia'</code></td>
                     <td>Defines the piece style to take. These are all PNG files,
                     that are then scaled by the browser.</td>
-                    <td>See the examples on ...</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td><code class="js plain">timerTime</code></td>
                     <td>no</td>
                     <td>700 milliseconds</td>
                     <td>Time in milliseconds, when a game is shown by autoplay.</td>
-                    <td>See</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td><code class="js plain">locale</code>
@@ -167,7 +166,7 @@
                     <td>no</td>
                     <td><code class="js string">'en'</code> </td>
                     <td>Locale used for rendering figure symbols, PEG notation, ...</td>
-                    <td>See the page <a href="#">locales</a> for examples.</td>
+                    <td>See the ticket about <a href="examples2.html#1204">locales</a> for examples.</td>
                 </tr>
                 </tbody>
             </table>
@@ -191,7 +190,7 @@
                     <td>ID, position</td>
                     <td>theme, pieceStyle, orientation, showNotation</td>
                     <td>Displays (only) a board, in the size given by the container.</td>
-                    <td>See the page <a href="#">boards</a> for some examples.</td>
+                    <td>See the page <a href="examples2.html#1021">boards</a> for some examples.</td>
                 </tr>
                 <tr>
                     <td><code class="js plain">pgnPrint</code> </td>
@@ -200,7 +199,7 @@
                     <td>Shows the whole game in a notation seen normally in
                     magazines or books. Does <strong>not</strong> allow to
                     play the game interactively.</td>
-                    <td>See ...</td>
+                    <td>See the page <a href="examples2.html#1002">print</a> for a small example.</td>
                 </tr>
                 <tr>
                     <td><code class="js plain">pgnView</code> </td>
@@ -210,7 +209,7 @@
                     variations, ...) so that the reader may replay the game.
                     There are some key bindings, so by pressing LEFT or RIGHT,
                     the moves are played forth and back.</td>
-                    <td>See ...</td>
+                    <td>See the page <a href="examples2.html#1001">viewer</a> for a minimal example.</td>
                 </tr>
                 <tr>
                     <td><code class="js plain">pgnEdit</code> </td>
@@ -219,7 +218,7 @@
                     <td>Allows to replay the game, and try variations that are
                     automatically recorded and shown. By pressing the PGN button,
                     the reader gets a text script that may be later used.</td>
-                    <td>See ...</td>
+                    <td>See the page <a href="examples2.html#1003">edit</a> for an empty example.</td>
                 </tr>
                 </tbody>
             </table>

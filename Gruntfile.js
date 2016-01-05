@@ -5,15 +5,23 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         clean: ["dist/css", 'dist/js', 'dist/img', 'dist/locales', 'dist/doc', "docu/dist/css",
             'docu/dist/js', 'docu/dist/img', 'docu/dist/locales', 'docu/dist/doc',
-            'dist-nojq/css', 'dist-nojq/js'],
+            'dist-nojq/css', 'dist-nojq/js', 'dist-nojq/img', 'dist-nojq/locales', 'PgnViewerJS.zip'],
         concat: {
             all: {
                 src: [
                     'chessboardjs/js/jquery-1.11.1.js',
+                    'js/jquery-ui.js',
                     'chess.js/chess.js',
                     'chessboardjs/js/chessboard.js',
                     'chessboardjs/js/json3.min.js',
-                    'js/*.js'],
+                    'js/i18next-1.11.2.js',
+                    'js/jquery.hotkeys.js',
+                    'js/jquery.multiselect.js',
+                    'js/jquery.timer.js',
+                    'js/pgn.js',
+                    'js/pgn-parser.js',
+                    'js/pgnvjs.js'
+                ],
                 dest: 'dist/js/pgnvjs.js'
             },
             nojq: {
@@ -103,11 +111,11 @@ module.exports = function(grunt) {
         compress: {
             main: {
                 options: {
-                    archive: 'dist/PgnViewerJS-0.9.0.zip'
+                    archive: 'dist/PgnViewerJS-0.9.1.zip'
                 },
                 expand: true,
                 cwd: 'dist/',
-                src: ['**/*'],
+                src: ['**/*', '!PgnViewerJS-*.zip'],
                 dest: ''
             }
         },
