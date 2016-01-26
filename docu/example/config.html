@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Configurator for the configuration of PgnViewerJS</title>
+    <meta name="description" content="Shows variable parameters of the configuration in a UI.">
+    <meta name="author" content="Markus Liebelt">
+
+    <!-- CSS
+================================================== -->
+    <link rel="stylesheet" href="../../dist/css/pgnvjs.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+    <!-- JS for PgnViewerJS
+    ================================================= -->
+    <script src="../../dist/js/pgnvjs.js" type="text/javascript"></script>
+    <style>
+        #config {
+            float: left;
+        }
+        #outer {
+            float: right;
+        }
+        #nofloat {
+            clear: both;
+        }
+        .number {
+            width: 60px;
+        }
+        #pgn {
+            width: 90%;
+            height: 100px;
+        }
+        #fen {
+            width: 90%;
+        }
+        #config_out {
+            width: 90%;
+            height: 100px;
+        }
+    </style>
+
+</head>
+<body>
+
+<h1>Configuration Builder</h1>
+
+The following forms allow to "construct" a configuration for the PgnViewerJS. It demonstrates all possibilities,
+and helps to define a new configuration.
+
+<div id="config">
+    <form id="config_form">
+        <!-- PGN Input-->
+        <label for="pgn">PGN</label>
+        <textarea id="pgn"></textarea>
+        <br/>
+        <!-- FEN Input -->
+        <label for="fen">FEN</label>
+        <input type="text" id="fen">
+        <br/>
+         <!--Mode for the display-->
+        <label for="modus">Modus</label>
+        <select id="modus">
+            <option value="pgnBoard">pgnBoard</option>
+            <option value="pgnView">pgnView</option>
+            <option value="pgnEdit">pgnEdit</option>
+            <option value="pgnPrint">pgnPrint</option>
+        </select>
+        <!-- Position -->
+        <label for="game">Game</label>
+        <select id="game">
+            <option value="start">No Game</option>
+            <option value="evergreen">Evergreen</option>
+            <option value="r1bqk2r/pppp1Np1/2n2n1p/2b1p3/2B1P3/8/PPPP1PPP/RNBQ1RK1 b kq - 0 6">Black at move</option>
+            <option value="r1bqk2r/pppp1Npp/2n2n2/4p3/2B1P3/8/PPPP1bPP/RNBQK2R w KQkq - 0 6">White at move</option>>
+        </select>
+        <!-- Show Notation -->
+        <label for="notation">Show Notation</label>
+        <input type="checkbox" id="notation">
+        <!-- Orientation: white or black -->
+        <label for="orientation">Orientation</label>
+        <input type="checkbox" id="orientation" value="true">
+        <br/>
+        <!-- Theme: zeit, blue, green, default -->
+        <label for="theme">Theme</label>
+        <select id="theme">
+            <option value="default">default</option>
+            <option value="zeit">zeit</option>
+            <option value="green">green</option>
+            <option value="blue">blue</option>
+            <option value="falken">falken</option>
+            <option value="beyer">beyer</option>
+            <option value="sportverlag">sportverlag</option>
+            <option value="chesscom">chesscom</option>
+            <option value="informator">informator</option>
+        </select>
+        <!-- pieceStyle: -->
+        <label for="pieceStyle">Piece Style</label>
+        <select id="pieceStyle">
+            <option value="wikipedia">wikipedia</option>
+            <option value="alpha">alpha</option>
+            <option value="uscf">uscf</option>
+            <option value="case">case</option>
+            <option value="condal">condal</option>
+            <option value="maya">maya</option>
+            <option value="merida">merida</option>
+            <option value="leipzig">leipzig</option>
+            <option value="chesscom">chesscom</option>
+            <option value="beyer">beyer</option>
+        </select>
+        <!-- locale -->
+        <label for="locale">Locale</label>
+        <select id="locale">
+            <option value="en">en</option>
+            <option value="de">de</option>
+            <option value="fr">fr</option>
+        </select>
+        <br/>
+        <!-- timerTime -->
+        <label for="timerTime">timerTime</label>
+        <input type="number" id="timerTime" class="number">
+        <!-- size -->
+        <label for="size">size</label>
+        <input type="number" id="size" class="number">
+        <!-- boardSize -->
+        <label for="boardSize">boardSize</label>
+        <input type="number" id="boardSize" class="number">
+        <!-- scrollable -->
+        <!-- movesWidth -->
+        <!-- movesHeight -->
+        <br/>
+
+        <h2>Configuration output</h2>
+
+        <p>The following is the output of the configuration done above. You may
+        copy/paste that to your HTML file (with the relevant headers included).</p>
+        <!-- config_out -->
+        <textarea id="config_out" readonly="true"></textarea>
+    </form>
+</div>
+
+<div id="outer">
+    <div id="board" style="width: 400px"></div>
+</div>
+<div id="nofloat"></div>
+<script>
+    var doingRefreshAlready = false;
+    var changedSomething = function() {
+        if (! doingRefreshAlready) {
+            refreshPgn();
+        }
+    }
+    var changedGame = function() {
+        var evergreenPgn = '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0';
+        if (! doingRefreshAlready) {
+            var game = document.getElementById('game').value;
+            if (game === 'start') {
+                document.getElementById('fen').value = '';
+                document.getElementById('pgn').value = '';
+            } else if (game === 'evergreen') {
+                document.getElementById('pgn').value = evergreenPgn;
+                document.getElementById('fen').value = '';
+            } else {
+                document.getElementById('pgn').value = '';
+                document.getElementById('fen').value = game;
+            }
+            refreshPgn();
+        }
+    }
+    var refreshPgn = function() {
+        doingRefreshAlready = true;
+        var configuration = {};
+        var modus = document.getElementById('modus').value;
+        var notation = document.getElementById('notation').checked;
+        var orientation = document.getElementById('orientation').checked;
+        document.getElementById('orientation').value = true;
+        var theme = document.getElementById('theme').value;
+        var pieceStyle = document.getElementById('pieceStyle').value;
+        var locale = document.getElementById('locale').value;
+        var timerTime = document.getElementById('timerTime').value;
+        var size = document.getElementById('size').value;
+        var boardSize = document.getElementById('boardSize').value;
+        var pgn = document.getElementById('pgn').value;
+        var fen = document.getElementById('fen').value;
+
+        configuration['position']= 'start';
+        if (fen != '') {
+            configuration['position']= fen;
+        }
+        if (notation) { configuration['showNotation'] = true} else { configuration['showNotation'] = false }
+        configuration['notation']= notation;
+        if (orientation) { configuration['orientation'] = 'white'} else {
+            configuration['orientation'] = 'black'
+        }
+        configuration['theme']= theme;
+        configuration['pieceStyle']= pieceStyle;
+        configuration['locale']= locale;
+        configuration['timerTime']= timerTime;
+        if (size !== "") {
+            configuration['size']= size + 'px';
+        }
+        if (boardSize != '') {
+            configuration['boardSize']= boardSize + 'px';
+        }
+        configuration['pgn']= pgn;
+        configuration['fen']= fen;
+        document.getElementById('config_out').value = printConfig(configuration);
+        var fun = window[modus];
+        if (typeof fun === 'function') {
+            fun('board', configuration);
+        }
+        doingRefreshAlready = false;
+    };
+    var printConfig = function(config) {
+        var output = "<div id='board'></div>\n" +
+                "<script>\n" +
+                "config = {";
+        var props = ['pgn','position', 'showNotation', 'orientation', 'theme',
+                    'pieceStyle', 'locale', 'timerTime', 'size', 'boardSize'];
+        for (property of props) {
+            var val = config[property];
+            if (val != '' && (val != undefined)) {
+                val = (typeof val === "string") ? "'" + val + "'" : val;
+                output += property + ': ' + val+', ';
+            }
+        }
+        output += "};\n";
+        output += document.getElementById('modus').value;
+        output += "(board, config);\n";
+        output += '<';
+        output += '/script>';
+        return output;
+    }
+    var initPgn = function() {
+        $('#notation').prop('checked', true);
+        $('#orientation').prop('checked', true);
+        document.getElementById('modus').onchange = changedSomething;
+        document.getElementById('game').onchange = changedGame;
+        document.getElementById('notation').onclick = changedSomething;
+        document.getElementById('orientation').onclick = changedSomething;
+        document.getElementById('theme').onchange = changedSomething;
+        document.getElementById('pieceStyle').onchange = changedSomething;
+        document.getElementById('locale').onchange = changedSomething;
+        document.getElementById('timerTime').oninput = changedSomething;
+        document.getElementById('size').oninput = changedSomething;
+        document.getElementById('boardSize').oninput = changedSomething;
+        document.getElementById('pgn').onchange = changedSomething;
+        document.getElementById('fen').onchange = changedSomething;
+        changedGame();
+    }
+    window.onload = initPgn();
+</script>
+
+</body>
+</html>

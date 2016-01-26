@@ -130,7 +130,11 @@ examples["1051"] = {
     desc: "An example for a normal game, with the standard style. Try to use the buttons, and play the game forth and back. You may set any position in the game by just clicking on the move.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Normal Games",
-    jsStr: "",
+    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]" +
+    "[Result \"1-0\"][ECO \"C52\"]" +
+    "[Site \"Berlin\"][Date \"1852\"]" +
+    "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 ...'\n" +
+    'pgnv = pgnView("b1", {pgn: pgn});',
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
@@ -143,7 +147,8 @@ examples["1052"] = {
     desc: "The same game in a more traditional style",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Falken Style",
-    jsStr: "",
+    jsStr: "var pgn = '1. e4 ...'\n" +
+    'pgnv = pgnView("b1", {pgn: pgn, theme: "falken"});',
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
@@ -160,7 +165,8 @@ examples["1100"] = {
         "a comment.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Edit game",
-    jsStr: "...",
+    jsStr: "pgn = '1. e4 ...';\n" +
+    "pgnv = pgnEdit(\"b1\", {pgn: pgn});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
@@ -186,7 +192,7 @@ examples["1102"] = {
     desc: "Here a game with a lot of variations, sometimes two or more levels deep. This is part of my opening repertoire as white.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Variations in Moves",
-    jsStr: 'var pgn = \'2. e4 e5 (1... c5) ...\';\npgnView(\'b1\', {pgn: pgn});',
+    jsStr: 'var pgn = \'2. e4 e5 (1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6) ...\';\npgnView(\'b1\', {pgn: pgn});',
     jsFn: function() {
         var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'
         pgnView('b1', {pgn: pgn});

@@ -20358,6 +20358,9 @@ var pgnBase = function (boardId, configuration) {
         var divBoard = document.getElementById(boardId);
         if (divBoard == null) {
             return;
+        } else {
+            // ensure that the board is empty before filling it
+            $('#'+boardId).find('div').remove();
         }
         if (configuration.size) {
             divBoard.style.width = configuration.size;

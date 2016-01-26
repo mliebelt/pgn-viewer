@@ -11,7 +11,8 @@ If a whole section is completely done, it is moved altogether in the done sectio
 
 ## Planed features (working)
 
-* Allows to show one or more chess games complete (/)
+* Allows to show one chess game complete (/)
+* Allows to show more chess games complete
 * Allow to play through the games forward and backward, including variations. (/)
 * Allows to play from a legal position legal moves, and adds these moves to the notation (/)
 * Allows to play through (/)
@@ -25,7 +26,7 @@ If a whole section is completely done, it is moved altogether in the done sectio
 
 ### Visual (working)
 
-#### Allow default configuration used by all pgnViewers on the same page (planned)
+#### Allow default configuration used by all pgnViewers on the same page (planed)
 
 * Provide a global configuration which is the base for the local configuration (implicitly).
 * This would allow to first make the global configuration right.
@@ -41,10 +42,12 @@ this would help a lot.
   * moveWidth: width of the move div (/)
   * moveHeight: width of the move div (/)
 * Change the divs by JavaScript
-* The combination of the sizes may be difficult, and not all are understood. There should be rules that are easy to understand, so that the configuration is not trial and error prune.
+* The combination of the sizes may be difficult, and not all are understood. There should be rules that are easy to 
+  understand, so that the configuration is not trial and error prune.
 * Ensure that reasonable defaults are used when not all parameters are given.
 * Allow setting of parameters by styles (e.g. chesscom should set width and height of board and moves).
-* Copy the general layout from the RPB Chessboard. There are 4, I need at least 3: left, right, normal (I don't like popup). That allows to use the moves size independet from the board size.
+* Copy the general layout from the RPB Chessboard. There are 4, I need at least 3: left, right, normal (I don't like 
+  popup). That allows to use the moves size independet from the board size.
 
 #### Allow styling of board (and others) by configuration (working)
 
@@ -71,11 +74,13 @@ The following styling should be added to allow styling of CSS things:
     blackFontColor  <color> the color of the a-h,1-8 characters on black fields
     
 
-Have a look at https://chess24.com/en/read/news/baku-gp-round-10-caruana-gelfand-are-back and see how they have done the boards. There are a lot of ideas implemented here:
+Have a look at https://chess24.com/en/read/news/baku-gp-round-10-caruana-gelfand-are-back and see how they have done 
+the boards. There are a lot of ideas implemented here:
 
 * Board is draggable (that means can be displayed in a separate window)
 * Switch between notation and meta-data
 * There are popups when you want to make a move, but there are variations. Very handy ...
+* tabular moves with comments inlined, looks nice.
 
 
 #### Generate PGN move from data (working)
@@ -125,10 +130,11 @@ Have a look at https://chess24.com/en/read/news/baku-gp-round-10-caruana-gelfand
 #### Allow additional boards (working)
   
 * ---Use a special comment for that (like {diagram})--- don't do that (/)
-* which is not so nice because it binds the comment, that may be used for other things. Provide therefore a different notation for diagrams, e.g. by using a NAG that is not reserverd for that. What about $512??
+* which is not so nice because it binds the comment, that may be used for other things. Provide therefore a different 
+  notation for diagrams, e.g. by using a NAG that is not reserverd for that. What about $512??
 * The notation could be alternatively like:
-  1. e4 D f5?? D
-  the D is the symbol for diagram, and means that after that move, a diagram is shown
+  1. e4 D f5?? D (/)
+  the D is the symbol for diagram, and means that after that move, a diagram is shown (/)
 * Then the different possibilities for comments help much more ....  
 * The generation should be the same as the main board (with the same configuration)
   but reduced size of course. (/)
@@ -279,7 +285,7 @@ A possible workaround could be to give focus to a button, when the user clicks o
       that at least one (Merida) is available.
 * Let the structure as is, see if configuration for paths is needed (if someone
   wants to deploy on different paths).
-* Define the Grunt task to deploy the example distribution and the documentation automatically without any additional work to do:
+* Define the Grunt task to deploy the example distribution and the documentation automatically without any additional work to do: (/)
   * minified JS
   * CSS
   * images
@@ -353,15 +359,15 @@ Here is the meaning of the different files:
 #### Provide web site for distribution (working)
 
 * Design a web site for this project that helps to make marketing. (/)
-* Provide the examples / documentation / ... separated from the development.
+* Provide the examples / documentation / ... separated from the development. (/)
 * Ensure that building the distribution also builds the sources of the web site. (/)
 * Use Skeleton for the Look of that web site, but ensure that the files needed for that
   are separated from the files needed for PgnViewerJS. (/)
-* Start building the documentation as a web site, so it is easier to use it locally and distribute it.
-* Web site is currently: http://mliebelt.bplaced.net/pgnvjs
-* Decide on the right UI for the examples. With minimal Javascript, and if possible only one file.
+* Start building the documentation as a web site, so it is easier to use it locally and distribute it. (/)
+* Decide on the right UI for the examples. With minimal Javascript, and if possible only one file. (/)
   The example from chessboardjs seems appropriate, perhaps it is easy to create
   something similar (or just copy it) with my own examples.
+* Use gh-pages branch for the distribution, and link it from the home page. (/)  
 
 ##### Collect nice games (working)
 
@@ -400,9 +406,19 @@ Look if the current categories are the right ones, and nothing is missing.
 ##### Provide public documentation
 
 * Provide additional to the web site (or instead of it?) examples that are included
-  in the distribution that can be downloaded.
+  in the distribution that can be downloaded. (/)
 * Zip the examples together with the rest, so that when expanding the distribution,
-  the examples can be run just by double-clicking them.
+  the examples can be run just by double-clicking them. (/)
+  
+##### Provide configuration configurator
+  
+* Create a minimal web application (one HTML page with small additional JavaScript) that demonstrates
+  the changes in configuration in life examples.
+* The UI should consist mostly in two regions:
+  * Left: The configuration of the board (half page wide)
+  * Right: The example chess application then
+* The form should have all possible configuration parameter available. If possible, they should be  presented
+  in the usual drop-down selection manner. 
   
 ## Done and mostly finished (/)
 
