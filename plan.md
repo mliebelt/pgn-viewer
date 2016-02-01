@@ -14,7 +14,7 @@ If a whole section is completely done, it is moved altogether in the done sectio
 * Allows to show one chess game complete (/)
 * Allows to show more chess games complete
 * Allow to play through the games forward and backward, including variations. (/)
-* Allows to play from a legal position legal moves, and adds these moves to the notation (/)
+* Allows to play from a legal position legal moves, and add those moves to the notation (/)
 * Allows to play through (/)
    * clicking on moves (/)
    * clicking on next and previous button (/)
@@ -45,9 +45,9 @@ this would help a lot.
 * The combination of the sizes may be difficult, and not all are understood. There should be rules that are easy to 
   understand, so that the configuration is not trial and error prune.
 * Ensure that reasonable defaults are used when not all parameters are given.
-* Allow setting of parameters by styles (e.g. chesscom should set width and height of board and moves).
+* Allow setting of parameters by themes (e.g. chesscom should set width and height of board and moves).
 * Copy the general layout from the RPB Chessboard. There are 4, I need at least 3: left, right, normal (I don't like 
-  popup). That allows to use the moves size independet from the board size.
+  popup). That allows to use the moves size independent from the board size.
 
 #### Allow styling of board (and others) by configuration (working)
 
@@ -62,17 +62,25 @@ What styling is available at the moment (see the additional documentation):
 
     pieceTheme  <string>        of the pieces to take
     theme       <string>        CSS class added to a lot of divs
-    headers     <true|false>    if headers should be shown
+    headers     <true|false>    if headers should be shown (this could be dependent as well from
+                                the  existence of headers. No headers, no need to show them.
     scrollable  <true|false>    if movesDiv should be fixed with scroll bars
 
 The following styling should be added to allow styling of CSS things:
 
     whiteColor  <color>     the color of the white fields on the board
     blackColor  <color>     the color of the black fields on the board
+    highlight   <color>     the hightlight color to highlight squares when moving
+    possible-black  <color> highlight color for possible moves (black square)
+    possible-white  <color> highlight color for possible moves (white square)
     borderColor <color>     the color of the border
     whiteFontColor  <color> the color of the a-h,1-8 characters on white fields
     blackFontColor  <color> the color of the a-h,1-8 characters on black fields
     
+It should also be possible to add padding and margin to some of the elements. That gets really
+complicated at the end. I have to draw a example wire frame model of a complete board (or some
+boards) to show the different possibilities. If you use the configurator, you see strange things
+happening when mixing size, boardSize and others.
 
 Have a look at https://chess24.com/en/read/news/baku-gp-round-10-caruana-gelfand-are-back and see how they have done 
 the boards. There are a lot of ideas implemented here:
@@ -92,7 +100,11 @@ the boards. There are a lot of ideas implemented here:
   * Disambiguation: is that necessary or not? Examples: Nd7, Ng8, move Nf6 is not clear.
     But when white pins the black Nd7, then Nf6 does not need disambiguation.
   * I have read that this depends on reading moves (more lax, that means there may
-    be additional information there that is not needed, which is no error). Writing is more strict, and there disambiguation should only used if necessary, and only there.
+    be additional information there that is not needed, which is no error). 
+    Writing is more strict, and there disambiguation should only used if necessary, and only there.
+    
+See the [PGN spec](http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm) about details
+when generating PGN in comparison to reading PGN.
     
 #### Different move styles (working)
 
@@ -103,7 +115,15 @@ the boards. There are a lot of ideas implemented here:
 * Use Figurine instead of the move letters (for white and black with the same symbols)
 * white and black together (without comment) as block, if more than one block fits on one line,
   make two or more blocks.
-* What about the diagrams themselves? What is a pleasant style? How to map that on HTML, and ensure that the print-out will work?  
+* What about the diagrams themselves? What is a pleasant style? How to map that on HTML, 
+  and ensure that the print-out will work?  
+
+To see different possibilities, compare at least:
+
+* chess.com
+* lichess.org
+* chess24.com
+* different publications (New in Chess, Week in Chess, books, ...)
 
 #### Different PGN header display (working)
 
@@ -137,7 +157,7 @@ the boards. There are a lot of ideas implemented here:
   the D is the symbol for diagram, and means that after that move, a diagram is shown (/)
 * Then the different possibilities for comments help much more ....  
 * The generation should be the same as the main board (with the same configuration)
-  but reduced size of course. (/)
+  but reduced size of course. (working)
 * Play with different layout possibilities:
   * Centered, moves then below
   * Left, moves flowing to the right
@@ -164,7 +184,8 @@ the boards. There are a lot of ideas implemented here:
   * UI for comments: text field, buttons for add before and add after comment (/)
   * Popup-menu, if necessary: promotion to ..., [replace move, new variation, new main line, ...],  
 * Edit: Delete variation, Promote variation, Delete moves after, Drop Down NAG
-* Edit Comment: Text editor (/)
+* Edit Comment: Text editor (working)
+  * Comment should be removed when the next move is selected, so both way synchronized
 
 ##### Variation management (working)
 
@@ -217,13 +238,16 @@ Examples:
   
 ##### Annotations
   
-UI of Scid is here totally different: Adds a lot of buttons, for each possible annotation one, and pressing the button, the annotation is added to the collection of annotations. Pressing clear will remove all annotations.
+UI of Scid is here totally different: Adds a lot of buttons, for each possible annotation one, +
+and pressing the button, the annotation is added to the collection of annotations. Pressing clear 
+will remove all annotations.
   
 Currently, PgnViewerJS does not allow more than one annotation. This has to be changed in the grammar. (/)
   
 Annotations are provided by a button, with the entries: Clear, !, !!, ...
 
-Scid used annotation 'D' for diagram, and when that is exported to PGN, this is converted to annotation $201. In the official documentation, this is not found, but could be used anyway.
+Scid used annotation 'D' for diagram, and when that is exported to PGN, this is converted to 
+annotation $201. In the official documentation, this is not found, but could be used anyway.
   
 #### Understand FEN in a better way
 

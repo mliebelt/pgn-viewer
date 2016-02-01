@@ -15,6 +15,26 @@ I have to have a place where I can add TODOs, that are not automatically visible
       * Ditto for move.flags & BITS.QSIDE_CASTLE. Do I
       have access to the move flags? And how to decide (without any move) if castling is allowed or not? Does not work ...
 
+## Restructure Code
+
+The code at the moment is not easy to understand, and parts of it lays in the mis-structure that happened over time.
+Try to restructure the code to get the following:
+
+* functions are only inside that scope available where they should be used.
+* functions that are only used once could be "inlined" in some way.
+* Extract common parameters that go everywhere (constant!) or are part of the configuration (could be computed all time), and see what to do with it.
+
+### Avoid hide HTML
+
+Instead, implement for each function exactly what is neeeded:
+
+* board: Board only
+* view: Viewer including pgn display, buttons for moving
+* print: Board only as part of pgn display, no buttons
+* edit: as view, additional edit and comment buttons
+
+This means that the whole `generateHTML` has to be broken in different parts, that may be added or not (on demand).
+
 ## Documentation
 
 * Add documentation how to create a base example: example HTML file for the 4 different cases (board, view, edit, print),

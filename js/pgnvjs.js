@@ -90,105 +90,6 @@ var pgnBase = function (boardId, configuration) {
         return true;
     }
 
-    /**
-     * The function removes the background of the marked fields for moves.
-     */
-    var removePossibleSquares = function() {
-        $('#' + boardId + ' .square-55d63').removeClass('possible');
-    };
-
-    /**
-     * The function marks the fields 'possible' that are reachable by a move.
-     * @param square the ID of the square
-     */
-    var possibleSquare = function(square) {
-        $('#' + boardId + ' .square-' + square).addClass('possible');
-    };
-
-    /**
-     * Start the drag of piece only if possible
-     * @param source not used here
-     * @param piece the piece string
-     * @returns {boolean}
-     */
-    var onDragStart = function(source, piece) {
-        // do not pick up pieces if the game is over
-        // or if it's not that side's turn
-        if (game.game_over() === true ||
-            (game.turn() === 'w' && piece.search(/^b/) !== -1) ||
-            (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
-            return false;
-        }
-    };
-
-    /**
-     * Called when a piece is dropped.
-     * @param source the start square
-     * @param target the end square
-     * @returns {string} 'snapback' if illegal
-     */
-    var onDrop = function(source, target) {
-        removePossibleSquares();
-        // see if the move is legal
-        var move = game.move({
-            from: source,
-            to: target,
-            promotion: 'q' // NOTE: always promote to a queen for example simplicity
-        });
-        // illegal move
-        if (move === null) {
-            return 'snapback';
-        } else {
-            that.currentMoveNotation = move.san;
-        }
-    };
-
-    /**
-     * Mark possible squares as "valid" for the player.
-     * @param square the square to move from
-     * @param piece the piece to move (not used here)
-     */
-    var onMouseoverSquare = function(square, piece) {
-        // get list of possible moves for this square
-        var moves = game.moves({
-            square: square,
-            verbose: true
-        });
-        // exit if there are no moves available for this square
-        if (moves.length === 0) return;
-        // highlight the square they moused over
-        possibleSquare(square);
-        // highlight the possible squares for this piece
-        for (var i = 0; i < moves.length; i++) {
-            possibleSquare(moves[i].to);
-        }
-    };
-
-    /**
-     * Called when ???
-     * @param square
-     * @param piece
-     */
-    var onMouseoutSquare = function(square, piece) {
-        removePossibleSquares();
-    };
-
-    /**
-     * Called when the piece is released. Here should be the logic for calling all
-     * pgn enhancement.
-     */
-    var onSnapEnd = function() {
-        board.position(game.fen());
-        var cur = that.currentMove;
-        that.currentMove = that.mypgn.addMove(that.currentMoveNotation, cur);
-        var move = that.mypgn.getMove(that.currentMove);
-        if (moveSpan(that.currentMove).length == 0) {
-            generateMove(that.currentMove, null, move, move.prev, document.getElementById(movesId), []);
-        }
-        unmarkMark(that.currentMove);
-        updateUI(that.currentMove);
-    };
-
     // Utility function for generating general HTML elements with id, class (with theme)
     function createEle(kind, id, clazz, my_theme, father) {
         var ele = document.createElement(kind);
@@ -332,68 +233,8 @@ var pgnBase = function (boardId, configuration) {
         return board;
     };
 
-    /**
-     * Generate a useful notation for the headers, allow for styling. First a version
-     * that just works.
-     */
-
-    var generateHeaders = function() {
-        if (configuration.headers == false) { return; }
-        var div_h = $('#' + headersId)[0];
-        var headers = that.mypgn.getHeaders();
-        var allowed = ['White', 'Black', 'ECO', 'Result'];
-        var white = createEle('span', null, "whiteHeader", theme, div_h);
-        if (headers.White) {
-            white.appendChild(document.createTextNode(headers.White + " "));
-        }
-        //div_h.appendChild(document.createTextNode(" - "));
-        var black = createEle('span', null, "blackHeader", theme, div_h);
-        if (headers.Black) {
-            black.appendChild(document.createTextNode(" " + headers.Black));
-        }
-        var rest = "";
-        var appendHeader = function(result, header, separator) {
-            if (header) {
-                if (result.length > 0) {
-                    result += separator;
-                }
-                result += header;
-            }
-            return result;
-        };
-        [headers.Event, headers.Site, headers.Round, headers.Date,
-         headers.ECO, headers.Result].forEach(function(header) {
-            rest = appendHeader(rest, header, " | ");
-        });
-        var restSpan = createEle("span", null, "restHeader", theme, div_h);
-        restSpan.appendChild(document.createTextNode(rest));
-
-    };
-
-    function commentText() {
-        return " " + $('#comment' + buttonsId + " textarea.comment").val() + " ";
-    }
-
-    /**
-     * Comments are generated inline, there is no special block rendering
-     * possible for them.
-     * @param comment the comment to render as span
-     * @param clazz class parameter appended to differentiate different comments
-     * @returns {HTMLElement} the new created span with the comment as text
-     */
-    var generateCommentSpan = function(comment, clazz) {
-        var span = createEle('span', null, "comment " + clazz);
-        if (comment && (typeof comment == "string")) {
-            span.appendChild(document.createTextNode(" " + comment + " "));
-        }
-        return span;
-    };
-
     var moveSpan = function(i) {
         return $('#' + movesId + i);
-    };
-    var moveASpan = function(i) {
-        return $('#' + movesId + i + "> a");
     };
 
     /**
@@ -408,6 +249,21 @@ var pgnBase = function (boardId, configuration) {
      * @return {*} the current counter which may the next prev counter
      */
     var generateMove = function(currentCounter, game, move, prevCounter, movesDiv, varStack) {
+        /**
+         * Comments are generated inline, there is no special block rendering
+         * possible for them.
+         * @param comment the comment to render as span
+         * @param clazz class parameter appended to differentiate different comments
+         * @returns {HTMLElement} the new created span with the comment as text
+         */
+        var generateCommentSpan = function(comment, clazz) {
+            var span = createEle('span', null, "comment " + clazz);
+            if (comment && (typeof comment == "string")) {
+                span.appendChild(document.createTextNode(" " + comment + " "));
+            }
+            return span;
+        };
+
         var append_to_current_div = function(index, span, movesDiv, varStack) {
             if (varStack.length == 0) {
                 if (typeof index == "number") {
@@ -483,6 +339,10 @@ var pgnBase = function (boardId, configuration) {
      * @param next the next move number
      */
     function unmarkMark(next) {
+        var moveASpan = function(i) {
+            return $('#' + movesId + i + "> a");
+        };
+
         $("div#" + movesId + " a.yellow").removeClass('yellow');
         moveASpan(next).addClass('yellow');
     }
@@ -514,6 +374,25 @@ var pgnBase = function (boardId, configuration) {
      * @param fen the fen of the move to make
      */
     var makeMove = function(curr, next, fen) {
+        /**
+         * Fills the comment field depending on which and if a comment is filled for that move.
+         */
+        function fillComment(moveNumber) {
+            var myMove = that.mypgn.getMove(moveNumber);
+            if (myMove.commentAfter) {
+                $("#" + boardId + " input.afterComment").prop('checked', true);
+                $("#" + boardId + " textarea.comment").val(myMove.commentAfter);
+            } else if (myMove.commentBefore) {
+                $("#" + boardId + " input.beforeComment").prop('checked', true);
+                $("#" + boardId + " textarea.comment").val(myMove.commentBefore);
+            } else if (myMove.commentMove) {
+                $("#" + boardId + " input.moveComment").prop('checked', true);
+                $("#" + boardId + " textarea.comment").val(myMove.commentMove);
+            } else {
+                $("#" + boardId + " textarea.comment").val("");
+            }
+        }
+
         board.position(fen);
         game.load(fen);
         unmarkMark(next);
@@ -522,45 +401,6 @@ var pgnBase = function (boardId, configuration) {
         fillComment(next);
         updateUI(next);
     };
-
-    /**
-     * Fills the comment field depending on which and if a comment is filled for that move.
-     */
-    function fillComment(moveNumber) {
-        var myMove = that.mypgn.getMove(moveNumber);
-        if (myMove.commentAfter) {
-            $("#" + boardId + " input.afterComment").prop('checked', true);
-            $("#" + boardId + " textarea.comment").val(myMove.commentAfter);
-        } else if (myMove.commentBefore) {
-            $("#" + boardId + " input.beforeComment").prop('checked', true);
-            $("#" + boardId + " textarea.comment").val(myMove.commentBefore);
-        } else if (myMove.commentMove) {
-            $("#" + boardId + " input.moveComment").prop('checked', true);
-            $("#" + boardId + " textarea.comment").val(myMove.commentMove);
-        } else {
-            $("#" + boardId + " textarea.comment").val("");
-        }
-    }
-
-    /**
-     * Add (or remote) a NAG from the current move. Ignore it, if there is
-     * no current move.
-     */
-    function changeNAG(value, checked) {
-        console.log("clicked: " + value + " Checked? " + checked);
-        that.mypgn.changeNag("$" + value, that.currentMove, checked);
-        updateMoveSAN(that.currentMove);
-    }
-
-    /**
-     * Updates the visual display of the move (only the notation, not the comments).
-     * @param moveIndex the index of the move to update
-     */
-    function updateMoveSAN(moveIndex) {
-        var move = that.mypgn.getMove(moveIndex);
-        $("#" + movesId + moveIndex + " > a").text(that.mypgn.sanWithNags(move));
-    }
-
 
     /**
      * Generates the HTML (for the given moves). Includes the following: move number,
@@ -574,6 +414,43 @@ var pgnBase = function (boardId, configuration) {
         } else {
             game.load(that.configuration.position);
         }
+
+        /**
+         * Generate a useful notation for the headers, allow for styling. First a version
+         * that just works.
+         */
+        var generateHeaders = function() {
+            if (configuration.headers == false) { return; }
+            var div_h = $('#' + headersId)[0];
+            var headers = that.mypgn.getHeaders();
+            var allowed = ['White', 'Black', 'ECO', 'Result'];
+            var white = createEle('span', null, "whiteHeader", theme, div_h);
+            if (headers.White) {
+                white.appendChild(document.createTextNode(headers.White + " "));
+            }
+            //div_h.appendChild(document.createTextNode(" - "));
+            var black = createEle('span', null, "blackHeader", theme, div_h);
+            if (headers.Black) {
+                black.appendChild(document.createTextNode(" " + headers.Black));
+            }
+            var rest = "";
+            var appendHeader = function(result, header, separator) {
+                if (header) {
+                    if (result.length > 0) {
+                        result += separator;
+                    }
+                    result += header;
+                }
+                return result;
+            };
+            [headers.Event, headers.Site, headers.Round, headers.Date,
+                headers.ECO, headers.Result].forEach(function(header) {
+                rest = appendHeader(rest, header, " | ");
+            });
+            var restSpan = createEle("span", null, "restHeader", theme, div_h);
+            restSpan.appendChild(document.createTextNode(rest));
+
+        };
 
         // Bind the necessary functions to move the pieces.
         var bindFunctions = function() {
@@ -639,6 +516,9 @@ var pgnBase = function (boardId, configuration) {
             });
             $("#" + boardId + ' .outerpgn').hide();
             $('#comment' + buttonsId + " textarea.comment").change(function() {
+                function commentText() {
+                    return " " + $('#comment' + buttonsId + " textarea.comment").val() + " ";
+                }
                 var text = commentText();
                 var checked = $("#comment" + buttonsId + " :checked").val() || "after";
                 moveSpan(that.currentMove).find("." + checked + "Comment").text(text);
@@ -716,7 +596,26 @@ var pgnBase = function (boardId, configuration) {
                 uncheckAllText: "Clean",
                 noneSelectedText: "NAGs",
                 click: function(event, ui) {
-                //  event: the original event object
+                    /**
+                     * Add (or remote) a NAG from the current move. Ignore it, if there is
+                     * no current move.
+                     */
+                    function changeNAG(value, checked) {
+                        /**
+                         * Updates the visual display of the move (only the notation, not the comments).
+                         * @param moveIndex the index of the move to update
+                         */
+                        function updateMoveSAN(moveIndex) {
+                            var move = that.mypgn.getMove(moveIndex);
+                            $("#" + movesId + moveIndex + " > a").text(that.mypgn.sanWithNags(move));
+                        }
+
+                        console.log("clicked: " + value + " Checked? " + checked);
+                        that.mypgn.changeNag("$" + value, that.currentMove, checked);
+                        updateMoveSAN(that.currentMove);
+                    }
+
+                    //  event: the original event object
 //                    ui.value: value of the checkbox
 //                    ui.text: text of the checkbox
 //                    ui.checked: whether or not the input was checked or unchecked (boolean)
@@ -730,17 +629,12 @@ var pgnBase = function (boardId, configuration) {
     return {
         // PUBLIC API
         chess: game,
+        board: board,
         getPgn: function() { return that.mypgn; },
-        pgn: that.mypgn,
         generateHTML: generateHTML,
         generateBoard: generateBoard,
         generateMoves: generateMoves,
-        hideHTML: hideHTML,
-        onDragStart: onDragStart,
-        onDrop: onDrop,
-        onMouseoutSquare: onMouseoutSquare,
-        onMouseoverSquare: onMouseoverSquare,
-        onSnapEnd: onSnapEnd
+        hideHTML: hideHTML
     }
 
 };
@@ -764,7 +658,6 @@ var pgnView = function(boardId, configuration) {
     return {
         chess: base.chess,
         getPgn: base.getPgn,
-        pgn: base.pgn,
         version: base.VERSION
     }
 };
@@ -812,13 +705,101 @@ var pgnBoard = function(boardId, configuration) {
  *    allowAnnotations: false or true (default)
  */
 var pgnEdit = function(boardId, configuration) {
+    var removePossibleSquares = function() {
+        $('#' + boardId + ' .square-55d63').removeClass('possible');
+    }
+    var possibleSquare = function(square) {
+        $('#' + boardId + ' .square-' + square).addClass('possible');
+    };
+
+    /**
+     * Start the drag of piece only if possible
+     * @param source not used here
+     * @param piece the piece string
+     * @returns {boolean}
+     */
+    var onDragStart = function(source, piece) {
+        // do not pick up pieces if the game is over
+        // or if it's not that side's turn
+        if (base.chess.game_over() === true ||
+            (base.chess.turn() === 'w' && piece.search(/^b/) !== -1) ||
+            (base.chess.turn() === 'b' && piece.search(/^w/) !== -1)) {
+            return false;
+        }
+    };
+    /**
+     * Called when a piece is dropped.
+     * @param source the start square
+     * @param target the end square
+     * @returns {string} 'snapback' if illegal
+     */
+    var onDrop = function(source, target) {
+
+        removePossibleSquares();
+        // see if the move is legal
+        var move = base.chess.move({
+            from: source,
+            to: target,
+            promotion: 'q' // NOTE: always promote to a queen for example simplicity
+        });
+        // illegal move
+        if (move === null) {
+            return 'snapback';
+        } else {
+            base.currentMoveNotation = move.san;
+        }
+    };
+    /**
+     * Mark possible squares as "valid" for the player.
+     * @param square the square to move from
+     * @param piece the piece to move (not used here)
+     */
+    var onMouseoverSquare = function(square, piece) {
+        // get list of possible moves for this square
+        var moves = base.chess.moves({
+            square: square,
+            verbose: true
+        });
+        // exit if there are no moves available for this square
+        if (moves.length === 0) return;
+        // highlight the square they moused over
+        possibleSquare(square);
+        // highlight the possible squares for this piece
+        for (var i = 0; i < moves.length; i++) {
+            possibleSquare(moves[i].to);
+        }
+    };
+    /**
+     * Called when ???
+     * @param square
+     * @param piece
+     */
+    var onMouseoutSquare = function(square, piece) {
+        removePossibleSquares();
+    };
+    /**
+     * Called when the piece is released. Here should be the logic for calling all
+     * pgn enhancement.
+     */
+    var onSnapEnd = function() {
+        board.position(base.chess.fen());
+        var cur = base.currentMove;
+        base.currentMove = base.mypgn.addMove(base.currentMoveNotation, cur);
+        var move = base.mypgn.getMove(base.currentMove);
+        if (moveSpan(base.currentMove).length == 0) {
+            generateMove(base.currentMove, null, move, move.prev, document.getElementById(movesId), []);
+        }
+        unmarkMark(base.currentMove);
+        updateUI(base.currentMove);
+    };
+
     var base = pgnBase(boardId, configuration);
     configuration.draggable = true;
-    configuration.onDragStart = base.onDragStart;
-    configuration.onDrop = base.onDrop;
-    configuration.onMouseoutSquare = base.onMouseoutSquare;
-    configuration.onMouseoverSquare = base.onMouseoverSquare;
-    configuration.onSnapEnd = base.onSnapEnd;
+    configuration.onDragStart = onDragStart;
+    configuration.onDrop = onDrop;
+    configuration.onMouseoutSquare = onMouseoutSquare;
+    configuration.onMouseoverSquare = onMouseoverSquare;
+    configuration.onSnapEnd = onSnapEnd;
     base.generateHTML();
     var b = base.generateBoard();
     base.generateMoves(b);
@@ -840,6 +821,6 @@ var pgnPrint = function(boardId, configuration) {
     base.hideHTML("Button", "edit");
     base.hideHTML("Button", "comment");
     base.hideHTML("Button", "outerpgn");
-    var b = base.generateBoard();
+    var board = base.generateBoard();
     base.generateMoves(b);
 };
