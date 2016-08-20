@@ -108,7 +108,7 @@ div.edit > .button.pgn {
 }
 
 span.button.hidePGN {
-    /*display: none;*/
+    display: inline-block;
     width: 16px;
     height: 16px;
     background: url("../img/buttons/ff/cancel.png") no-repeat 50%;
@@ -412,19 +412,19 @@ div.pgn {
 /* board */
 .informator .board-b72b1 {
     /*    border: 2px solid #404040; */
-    border: 4px black;
+    border: 4px solid black;
 }
 
 /* white square */
 .informator .white-1e1d7 {
     background-color: #eeeeee;
-    color: rgba(100, 100, 100, 0.05);
+    color: #aaaaaa;
 }
 
 /* black square */
 .informator .black-3c85d {
-    color: #aaaaaa;
-    background-color: rgba(100, 100, 100, 0.75);
+    color: #eeeeee;
+    background-color: #aaaaaa;
 }
 
 /*************** End informator pattern *****************************/

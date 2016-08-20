@@ -269,14 +269,76 @@ var pgnReader = function (configuration) {
         eachMove(wireMoves);
     };
 
+    /**
+     * Checks if the move with index id is a valid move
+     * @param id the index of the moves in the moves array
+     * @returns {boolean} true, if there exists a move with that index, false else
+     */
+    var isMove = function(id) {
+        return that.moves.length > id;
+    }
 
     /**
-     * Returns the move that matches the id.
+     * Returns true, if the move with ID id is delelted.
+     * @param id the numerical index
+     * @returns {boolean} true, if deleted
+     */
+    var isDeleted = function(id) {
+        if (! isMove(id))
+            return true; // Every non-existing moves is "deleted"
+        var current = that.moves[id];
+        if (current === null) {
+            return true;
+        }
+        if (id == 0 && (current))
+            return false;
+        return (current.prev === null);
+    }
+
+
+    /**
+     * Returns the move that matches the id. Take into consideration:
+     * <ul><li>if the move has no pre, and it is not the first one, the move should be considered deleted</li>
+     * <li>if the move has no pre, but it is the first one, it is the first move</li>
+     * </ul>
+     * So only remove a move, if the move is not deleted
      * @param id the ID of the move
      */
     var getMove = function(id) {
         return that.moves[id];
     };
+
+    /**
+     * Deletes the move that matches the id (including the move itself).
+     * There are some cases to expect:
+     * <ul><li>the first move of the main line: delete everything</li>
+     * <li>some move in between of the main line: make the first variation the main line, and the rest variations the
+     * variations of the now main line</li>
+     * <li>the first move of some variation: delete the whole variation</li>
+     * <li>some move in the variation (not the first): delete the rest moves of that variation</li>
+     * </ul>
+     */
+    var deleteMove = function(id) {
+        if (isDeleted(id)) {
+            return;
+        }
+        // 1. Main line first move
+        if (id === 0) {
+            // Delete all moves
+            that.moves = [];
+            return;
+        }
+        // 2. Main line some other move, no variation
+        var current = getMove(id);
+        if (current.variationLevel === 0 && (current.variations.length === 0)) { // Main line, no variations
+            if (current.next !== undefined) {
+                deleteMove(current.next);
+            }
+            that.moves[current.prev].next = null;
+            that.moves[id] = null;
+        }
+    };
+
 
     // Returns true, if the move is the start of a (new) variation
     var startVariation = function(move) {
@@ -625,6 +687,8 @@ var pgnReader = function (configuration) {
     return {
         movesString: function () { return that.moves_string; },
         readHeaders: readHeaders,
+        deleteMove: deleteMove,
+        isDeleted: isDeleted,
         readMoves: function () { return readMoves; },
         getMoves: function () { return that.moves; },
         movesMainLine: that.movesMainLine,
@@ -644,7 +708,8 @@ var pgnReader = function (configuration) {
         PGN_NAGS: that.PGN_NAGS,
         NAGS: that.NAGs,
         san: san,
-        sanWithNags: sanWithNags
+        sanWithNags: sanWithNags,
+        game: game
     }
 };
 

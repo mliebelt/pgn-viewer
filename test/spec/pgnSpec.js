@@ -30,17 +30,29 @@ describe("When working with a pgn file as string", function() {
 
 });
 
-describe("When working with discriminators", function() {
+describe("When working with disambiguator", function() {
     var my_pgn;
 
-    it ("should read and remember discriminators", function() {
+    it ("should read and remember disambiguator", function() {
         my_pgn = pgnReader({pgn: "4. dxe5", fen: "rnbqkbnr/ppp3pp/8/3ppp2/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 0 4"});
         expect(my_pgn.getMoves()[0].notation.disc).toEqual('d');
     });
 
-    it("should use discriminator on output", function() {
+    it("should use disambiguator on output", function() {
         my_pgn = pgnReader({pgn: "4. dxe5", fen: "rnbqkbnr/ppp3pp/8/3ppp2/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 0 4"});
         expect(my_pgn.sanWithNags(my_pgn.getMove(0))).toEqual('dxe5');
+    });
+
+    it ("should understand that disambiguator is not needed", function() {
+        my_pgn = pgnReader({fen: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 5 4'});
+        var dis = my_pgn.game.get_disambiguator("Nf6xc4");
+        expect(dis).toEqual("bla");
+    });
+
+    it ("should understand that disambiguator is needed here", function() {
+        my_pgn = pgnReader({fen: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 1 4'});
+        var dis = my_pgn.game.get_disambiguator("fxe5");
+        expect(dis).toEqual("d");
     })
 })
 
@@ -572,20 +584,19 @@ describe("When making moves in PGN", function() {
 });
 
 describe("When upvoting or deleting lines" , function () {
-    xit("should upvote the first line as main line", function () {
-
+    it("should delete the whole main line", function() {
+        my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 Nc6"});
+        my_pgn.deleteMove(0);
+        expect(my_pgn.isDeleted(0)).toBeTruthy();
     });
 
-    xit("should upvote the second line as first line", function () {
-
-    });
-
-    xit("should delete the rest of a variation (including the move)", function () {
-
-    });
-
-    xit("should delete the rest of the main line (without variation)", function () {
-
+    it("should delete the rest of the main line (without variation)", function () {
+        my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 Nc6"});
+        my_pgn.deleteMove(2);
+        expect(my_pgn.isDeleted(0)).toBeFalsy();
+        expect(my_pgn.isDeleted(1)).toBeFalsy();
+        expect(my_pgn.isDeleted(2)).toBeTruthy();
+        expect(my_pgn.isDeleted(3)).toBeTruthy();
     });
 
     xit("should delete the rest of the main line, replace it by the first variation", function () {
@@ -595,6 +606,21 @@ describe("When upvoting or deleting lines" , function () {
     xit("should delete the whole variation with the first move", function () {
 
     });
+
+    xit("should delete the rest of a variation (including the move)", function () {
+
+    });
+
+    xit("should upvote the first line as main line", function () {
+
+    });
+
+    xit("should upvote the second line as first line", function () {
+
+    });
+
+
+
 });
 
 describe("When working with NAGs", function () {

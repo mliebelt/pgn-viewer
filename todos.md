@@ -24,6 +24,8 @@ Try to restructure the code to get the following:
 * functions that are only used once could be "inlined" in some way.
 * Extract common parameters that go everywhere (constant!) or are part of the configuration (could be computed all time), and see what to do with it.
 
+ * Use Font Awesome in a local copy, not the net version. This is used for all other resources, so why not here ...
+
 ### Avoid hide HTML
 
 Instead, implement for each function exactly what is neeeded:
@@ -34,7 +36,24 @@ Instead, implement for each function exactly what is neeeded:
 * edit: as view, additional edit and comment buttons
 
 This means that the whole `generateHTML` has to be broken in different parts, that may be added or not (on demand).
+And that the whole structure is more malleable, so anyone could construct their own structure. What are the parts
+that have to be kepts so that everything works again?
 
+### Add features to board
+
+#### notation
+
+notation should not only be true or false, but also possible outside of the board. Additionally, the position
+could be signaled as well. The following is normal:
+
+* combinations of N,S,E,W,C like N, NW, NC
+* Meaning
+  * N == NC
+  * NC == top of the board, there the center
+  * NW == top of the board, there the left
+* This should be independent of the size of the board (and the fields) working.
+* This would also allow to add a color to the board, which will shine through on the border (if you want).
+  
 ## Documentation
 
 * Add documentation how to create a base example: example HTML file for the 4 different cases (board, view, edit, print),
@@ -53,5 +72,9 @@ This means that the whole `generateHTML` has to be broken in different parts, th
 
 #### Missing discriminator
 
-* Check if there is a functionality to get the discriminiator upfront (by using the chess.js library)
-* if not, check what has to be done to get it.
+* Check if there is a functionality to get the discriminator upfront (by using the chess.js library)
+* See the function get_disambiguator in the library. So should work, find a test to check that (as unit test).
+* Find at least the following examples for that:
+  * Normal moves where no diammbiguator is needed.
+  * Normal situation where the disambiguator has to be used.
+  * Difficult situation where 2 moves could be possible, but one is not allowed (because the king is in check then).

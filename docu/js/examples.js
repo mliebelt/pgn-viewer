@@ -365,6 +365,72 @@ examples["1210"] = {
         pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});
     }
 };
+examples["1211"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/16'>ticket 16</a> at GitHub. " +
+    "The parser is not as robust as it could be so I have to add some flexibility here. The " +
+    "following is only one of many examples that the rules for reading are more strict that they should be.",
+    html: "<div id='board' style='width: 360px'/>",
+    name: "#16: Make import more robust (unsolved)",
+    jsStr: 'pgnView("board", {pgn: "f4 e6 g4 Qd8-h4#"});',
+    jsFn: function() {
+        pgnView("board", {pgn: "f4 e6 g4 Qd8-h4#"});
+    }
+};
+examples["1212"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/19'>ticket 19</a> at GitHub. " +
+    "This could be a feature to provide additional functions to allow adding moves. " +
+    "This is currently implemented (only) to allow adding moves at the end to the current position, " +
+    "I don't know what will happen if you do that at any other place.",
+    html: "<div id='board' style='width: 360px'/>",
+    name: "#19: Adding moves from a backend in real time",
+    jsStr: 'pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});',
+    jsFn: function() {
+        pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});
+    }
+};
+examples["1213"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/20'>ticket 20</a> at GitHub. " +
+    "Clicking on variations in Firefox didn't worked at all.",
+    html: "<div id='b1' style='width: 360px'/>",
+    name: "#20: Clicking on variation in Firefox does not work",
+    jsStr: 'var pgn = \'2. e4 e5 (1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6) ...\';\npgnView(\'b1\', {pgn: pgn});',
+    jsFn: function() {
+        var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'
+        pgnView('b1', {pgn: pgn});    }
+};
+examples["1214"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/21'>ticket 21</a> at GitHub. " +
+    "The results 1-0 and 0-1 in the move notation led to a failure at the end.",
+    html: "<div id='board' style='width: 360px'/>",
+    name: "#21: Parsing rules for result (unsolved)",
+    jsStr: 'pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0-1"});',
+    jsFn: function() {
+        pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0-1"});
+    }
+};
+examples["1215"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/22'>ticket 22</a> at GitHub. " +
+    "Integrate stockfish.js in the viewer, to allow analyzing games ad hoc.",
+    html: "<div id='board' style='width: 360px'/>",
+    name: "#22: Integrate stockfish.js in the viewer (unsolved)",
+    jsStr: 'pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});',
+    jsFn: function() {
+        pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});
+    }
+};
+examples["1216"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/23'>ticket 23</a> at GitHub. " +
+    "Use the pgn notation flag 'setup' and interpret it the right way as replacement for the fen parameter.",
+    html: "<div id='board' style='width: 360px'/>",
+    name: "#23: Use the pgn notation flag 'setup' (unsolved)",
+    jsStr: 'pgnView("board", {pgn: "[SetUp "1"]\
+        [FEN "rnbqkbnr/1ppppppp/p7/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2"]\
+        2. Nc3 e5 3. Nf3 Qe7"});',
+    jsFn: function() {
+        pgnView("board", {pgn: "[SetUp \"1\"]\
+        [FEN \"rnbqkbnr/1ppppppp/p7/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2\"] 2. Nc3 e5 3. Nf3 Qe7"});
+    }
+};
 
 var htmlEscape = function(str) {
     return (str + '')
