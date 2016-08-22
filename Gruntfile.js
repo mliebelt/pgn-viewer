@@ -56,6 +56,12 @@ module.exports = function(grunt) {
                             'css/images/**'],
                         dest: 'dist',
                         expand: true
+                    },
+                    {
+                        expand: true,
+                        cwd: 'font-awesome',
+                        src: 'fonts/**',
+                        dest: 'dist'
                     }
                 ]
             },
@@ -111,7 +117,7 @@ module.exports = function(grunt) {
         compress: {
             main: {
                 options: {
-                    archive: 'dist/PgnViewerJS-0.9.1.zip'
+                    archive: 'dist/PgnViewerJS-0.9.2.zip'
                 },
                 expand: true,
                 cwd: 'dist/',
@@ -128,6 +134,7 @@ module.exports = function(grunt) {
                     "chessboardjs/css/chessboard.css",
                     "css/jquery-ui.css",
                     "css/jquery.multiselect.css",
+                    "font-awesome/css/font-awesome.css",
                     "css/pgnvjs.css"
                 ],
                 dest: "dist/css/pgnvjs.css"
@@ -137,6 +144,7 @@ module.exports = function(grunt) {
                     "chessboardjs/css/chessboard.css",
                     "css/jquery-ui.css",
                     "css/jquery.multiselect.css",
+                    "font-awesome/css/font-awesome.css",
                     "css/pgnvjs.css"
                 ],
                 dest: "dist-nojq/css/pgnvjs.css"

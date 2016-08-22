@@ -380,7 +380,8 @@ examples["1212"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/19'>ticket 19</a> at GitHub. " +
     "This could be a feature to provide additional functions to allow adding moves. " +
     "This is currently implemented (only) to allow adding moves at the end to the current position, " +
-    "I don't know what will happen if you do that at any other place.",
+    "I don't know what will happen if you do that at any other place. Please have a look into the " +
+    "real example in `examples/pgnAddMoves.html`. The following is not the real example ...",
     html: "<div id='board' style='width: 360px'/>",
     name: "#19: Adding moves from a backend in real time",
     jsStr: 'pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});',
@@ -402,7 +403,7 @@ examples["1214"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/21'>ticket 21</a> at GitHub. " +
     "The results 1-0 and 0-1 in the move notation led to a failure at the end.",
     html: "<div id='board' style='width: 360px'/>",
-    name: "#21: Parsing rules for result (unsolved)",
+    name: "#21: Parsing rules for result",
     jsStr: 'pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0-1"});',
     jsFn: function() {
         pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0-1"});

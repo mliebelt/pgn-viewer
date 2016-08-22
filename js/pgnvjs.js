@@ -10,7 +10,7 @@
 
 var pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
-    var VERSION = "0.9.1";
+    var VERSION = "0.9.2";
     var that = {};
     that.configuration = configuration;
     var theme = configuration.theme || 'default';
@@ -830,7 +830,7 @@ var pgnEdit = function(boardId, configuration) {
 };
 
 /**
- * Defines a utiliy function to get a printable version of a game, enriched
+ * Defines a utility function to get a printable version of a game, enriched
  * by diagrams, comments, ... Does  not allow to replay the game (no buttons),
  * disables all editing functionality.
  * @param boardId the unique ID of the board (per HTML page)
@@ -846,5 +846,5 @@ var pgnPrint = function(boardId, configuration) {
     base.hideHTML("Button", "comment");
     base.hideHTML("Button", "outerpgn");
     var board = base.generateBoard();
-    base.generateMoves(b);
+    base.generateMoves(board);
 };
