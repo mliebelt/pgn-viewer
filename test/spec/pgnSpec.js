@@ -45,13 +45,13 @@ describe("When working with disambiguator", function() {
 
     it ("should understand that disambiguator is not needed", function() {
         my_pgn = pgnReader({fen: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 5 4'});
-        var dis = my_pgn.game.get_disambiguator("Nf6xc4");
+        var dis = my_pgn.game.get_disambiguator("Nf6xc4", true);
         expect(dis).toEqual("bla");
     });
 
     it ("should understand that disambiguator is needed here", function() {
         my_pgn = pgnReader({fen: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 1 4'});
-        var dis = my_pgn.game.get_disambiguator("fxe5");
+        var dis = my_pgn.game.get_disambiguator("fxe5", true);
         expect(dis).toEqual("d");
     })
 })
@@ -122,6 +122,23 @@ describe("When using all kind of notation", function() {
         my_pgn = pgnReader({pgn: "1. f3 e5 2. g4 Qh4#"});
         expect(my_pgn.getMoves().length).toEqual(4);
         my_pgn = pgnReader({pgn: "1. e7+ d2 2. e8=Q d1=R#"});
+    })
+
+    it ("should be robust with missing symbols (check)", function () {
+        my_pgn = pgnReader({pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5#"});
+        expect(my_pgn.getMoves().length).toEqual(13);
+        //expect(my_pgn.getMoves()[10].notation.notation).toEqual("Bxf7+");
+        expect(my_pgn.getMoves()[10].notation.check).toEqual('+');
+        var res = my_pgn.write_pgn();
+        expect(res).toEqual("1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7+ Ke7 7. Nd5#");
+    })
+
+    it ("should be robust with missing symbols (mate)", function () {
+        my_pgn = pgnReader({pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7+ Ke7 7. Nd5"})
+        expect(my_pgn.getMoves().length).toEqual(13);
+        expect(my_pgn.getMoves()[12].notation.check).toEqual('#');
+        var res = my_pgn.write_pgn();
+        expect(res).toEqual("1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7+ Ke7 7. Nd5#");
     })
 });
 

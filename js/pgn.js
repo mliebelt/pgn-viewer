@@ -390,6 +390,12 @@ var pgnReader = function (configuration) {
         var write_comment_after = function(move, sb) {
             write_comment(move.commentAfter, sb);
         };
+        
+        var write_check_or_mate  = function (move, sb) {
+            if (move.notation.check) {
+                sb.append(move.notation.check)
+            }
+        }
 
         var write_move_number = function (move, sb) {
             prepend_space(sb);
@@ -444,6 +450,7 @@ var pgnReader = function (configuration) {
             write_move_number(move, sb);
             write_comment_before(move, sb);
             write_notation(move, sb);
+            //write_check_or_mate(move, sb);    // not necessary if san from chess.js is used
             write_NAGs(move, sb);
             write_comment_after(move, sb);
             write_variations(move, sb);
@@ -530,14 +537,22 @@ var pgnReader = function (configuration) {
                         game.load(configuration.position);
                     }
                 }
-                var pgn_move = game.move(move.notation.notation);
+                var pgn_move = game.move(move.notation.notation, {'sloppy' : true});
                 if (pgn_move == null) {
                 //    window.alert("No legal move: " + move.notation.notation);
                 }
                 var fen = game.fen();
                 move.fen = fen;
+                if (pgn_move != null) {
+                    move.notation.notation = pgn_move.san;
+                }
                 if (pgn_move != null && pgn_move.flags == 'c') {
                     move.notation.strike = 'x';
+                }
+                if (pgn_move != null && game.in_checkmate()) {
+                    move.notation.check = '#';
+                } else if (pgn_move != null && game.in_check()) {
+                    move.notation.check = '+';
                 }
 
                 $.each(move.variations, function(v, variation) {
