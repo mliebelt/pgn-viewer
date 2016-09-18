@@ -30,7 +30,7 @@ describe("When working with a pgn file as string", function() {
 
 });
 
-describe("When working with disambiguator", function() {
+describe("ambiguator or variations of formats", function() {
     var my_pgn;
 
     it ("should read and remember disambiguator", function() {
@@ -43,16 +43,36 @@ describe("When working with disambiguator", function() {
         expect(my_pgn.sanWithNags(my_pgn.getMove(0))).toEqual('dxe5');
     });
 
-    it ("should understand that disambiguator is not needed", function() {
-        my_pgn = pgnReader({fen: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 5 4'});
-        var dis = my_pgn.game.get_disambiguator("Nf6xc4", true);
-        expect(dis).toEqual("bla");
+    it ("should understand that Long Algebraic Notation can be used when strike", function() {
+        my_pgn = pgnReader({pgn: '4... Nf6xe4', fen: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 5 4'});
+        expect(my_pgn.sanWithNags(my_pgn.getMove(0))).toEqual("Nxe4");
+    });
+
+    // chess.js does not allow to leave out the strike symbol, or I have to have more in the long notation
+    // even with the long variation, the move Nf6-e4 is not accepted, even not in sloppy mode
+    xit ("should understand that Long Algebraic Notation can leave out strike symbol", function() {
+        my_pgn = pgnReader({pgn: '4... Nf6e4', fen: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 5 4'});
+        expect(my_pgn.sanWithNags(my_pgn.getMove(0))).toEqual("Nxe4");
+    });
+
+    it ("should understand that Long Algebraic Notation can be used", function() {
+        my_pgn = pgnReader({pgn: '1. e2-e4 e7-e5'});
+        expect(my_pgn.sanWithNags(my_pgn.getMove(0))).toEqual("e4");
+        expect(my_pgn.sanWithNags(my_pgn.getMove(1))).toEqual("e5");
     });
 
     it ("should understand that disambiguator is needed here", function() {
-        my_pgn = pgnReader({fen: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 1 4'});
-        var dis = my_pgn.game.get_disambiguator("fxe5", true);
-        expect(dis).toEqual("d");
+        my_pgn = pgnReader({pgn: 'fxe5', fen: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 1 4'});
+        expect(my_pgn.sanWithNags(my_pgn.getMove(0))).toEqual("fxe5");
+    })
+    
+    it ("should understand optional pawn symbols", function () {
+        my_pgn = pgnReader({pgn: '1. Pe4 Pe5 2. Pd4 Pexd4'});
+        expect(my_pgn.getMoves().length).toEqual(4);
+        expect(my_pgn.sanWithNags(my_pgn.getMove(0))).toEqual("e4");
+        expect(my_pgn.sanWithNags(my_pgn.getMove(1))).toEqual("e5");
+        expect(my_pgn.sanWithNags(my_pgn.getMove(2))).toEqual("d4");
+        expect(my_pgn.sanWithNags(my_pgn.getMove(3))).toEqual("exd4");
     })
 })
 

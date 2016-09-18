@@ -166,6 +166,17 @@ var pgnReader = function (configuration) {
     };
 
     /**
+     * Returns the internationalized variation of the figure, or the original itself.
+     * Optional pawn symbols are ignored (SAN is used for output, not reading).
+     */
+    var figI18n = function (fig) {
+        if (fig == 'P') {
+            return '';
+        }
+        return i18n.isInitialized() ? i18n.t(fig) : fig;
+    }
+
+    /**
      * Returns the real notation from the move (excluding NAGs).
      * @param notation
      * @return {*}
@@ -174,7 +185,7 @@ var pgnReader = function (configuration) {
         if (typeof notation.row == 'undefined') {
             return notation.notation; // move like O-O and O-O-O
         }
-        var fig = i18n.t(notation.fig);
+        var fig = notation.fig ? figI18n(notation.fig) : '';
         var disc = notation.disc ? notation.disc : '';
         var strike = notation.strike ? notation.strike : '';
         var check = notation.check ? notation.check : '';

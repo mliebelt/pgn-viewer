@@ -186,6 +186,7 @@ site is growing, and allows me to show the early alpha implementation to others.
 I will provide downloads of the versions, that should be easy to install. Just unpack
 locally, and copy one of the examples and play with them.
 
+* [Version 0.9.2](dist/PgnViewerJS-0.9.2.zip): Some more bug fixes, examples to all issues at [GitHub](https://github.com/mliebelt/PgnViewerJS/issues), added Changelog.md, started restructuring the sources.
 * [Version 0.9.1](dist/PgnViewerJS-0.9.1.zip): Some bug fixes, examples to all issues at [GitHub](https://github.com/mliebelt/PgnViewerJS/issues),
   some additional examples and a lot of fixes in the documentation.
 * [Version 0.9.0](dist/PgnViewerJS-0.9.0.zip): Nearly feature complete, roughly documented,
