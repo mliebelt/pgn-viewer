@@ -46,7 +46,7 @@
 	<div class="container">
 		<div class="sixteen columns">
 			<h1 class="remove-bottom" style="margin-top: 40px">PgnViewerJS</h1>
-			<h5>Version 0.9.2</h5>
+			<h5>Version 0.9.3</h5>
 			<hr />
 		</div>
         <div class="container">
@@ -94,83 +94,118 @@
                         <td>ID of the container for board, moves, and buttons.</td>
                         <td>See all examples on the page <a href="examples2.html">examples</a> .</td>
                     </tr>
-                <tr>
-                    <td><code class="js plain">position</code>
-                    <p><code class="js string">'start'</code> or FEN string</p></td>
-                    <td>no</td>
-                    <td><code class="js string">'start'</code></td>
-                    <td>Defines the position of the board, or where the games starts.</td>
-                    <td>See <a href="examples2.html#1022">Position</a> how to show different positions.</td>
-                </tr>
-                <tr>
-                    <td><code class="js plain">pgn</code></td>
-                    <td>no</td>
-                    <td>-</td>
-                    <td>The moves of the game. Only necessary, if a whole game
-                    should be shown. The moves are then shown in a container
-                    that may be additionally styled by the theme selected.</td>
-                    <td>See the <a href="examples2.html#1051">Games Examples</a> how to do that.</td>
-                </tr>
-                <tr>
-                    <td><code class="js plain">showNotation</code></td>
-                    <td>no</td>
-                    <td>true</td>
-                    <td>Defines if the columns and rows should be show the labels
-                    a to h (for the columns) and 1 to 8 (for the rows). If shown,
-                    it could be styled by CSS.
-                    <td>See the <a href="examples2.html#1023">second board</a> of the examples.</td>
-                </tr>
-                <tr>
-                    <td><code class="js plain">orientation</code>
-                    <p>Possible values are <code class="js string">'white'</code> and <code class="js string">'black'</code></p></td>
-                    <td>no</td>
-                    <td><code class="js string">'white'</code></td>
-                    <td>Defines if the board has 'white' at the bottom or 'black'.
-                    May be switched at any time, if the buttons are rendered, that
-                    include an orientation-switch button.</td>
-                    <td>See the <a href="examples2.html#1023">first board</a> of the examples.</td>
-                </tr>
-                <tr>
-                    <td><code class="js plain">theme</code></td><td>no</td><td>n.a.</td>
-                    <td>The theme will be added to all classes of divs for the
-                    board, the moves, the buttons, ... It tries to reproduce
-                    typical designs used in chess books, online sites, you name it.
-                    And you may of course add your own themes.</td>
-                    <td>See <a href="examples2.html#1021">Themes</a> for different boards.</td>
-                </tr>
-                <tr>
-                    <td><code class="js plain">pieceStyle</code>
-                    <p><code class="js string">'wikipedia'</code>,
-                        <code class="js string">'wikipedia'</code>,
-                        <code class="js string">'slpha'</code>,
-                        <code class="js string">'uscf'</code> (all from chessboardjs),
-                        <code class="js string">'case'</code>,
-                        <code class="js string">'condal'</code>,
-                        <code class="js string">'maya'</code>,
-                        <code class="js string">'merida'</code> (my favorite),
-                        <code class="js string">'leipzig'</code> (all from ChessTempoViewer) and <code class="js string">'chesscom'</code> (from Chess.com).
-                    </p></td>
-                    <td>no</td>
-                    <td><code class="js string">'wikipedia'</code></td>
-                    <td>Defines the piece style to take. These are all PNG files,
-                    that are then scaled by the browser.</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><code class="js plain">timerTime</code></td>
-                    <td>no</td>
-                    <td>700 milliseconds</td>
-                    <td>Time in milliseconds, when a game is shown by autoplay.</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><code class="js plain">locale</code>
-                    <p>Currently supported are <code class="js string">de, en</code> </p></td>
-                    <td>no</td>
-                    <td><code class="js string">'en'</code> </td>
-                    <td>Locale used for rendering figure symbols, PEG notation, ...</td>
-                    <td>See the ticket about <a href="examples2.html#1204">locales</a> for examples.</td>
-                </tr>
+                    <tr>
+                        <td><code class="js plain">map of IDs</code></td>
+                        <td>yes</td>
+                        <td>-</td>
+                        <td>Alternative for the one ID for everything. You have to style your markup yourself.
+                            The IDs you can use in the map are:
+                            <ul>
+                                <li>inner: stands for the board alone (used in mode board, view, edit)</li>
+                                <li>header: (optional) headers of the game</li>
+                                <li>button: DIV for the buttons (only view and edit mode)</li>
+                                <li>moves: DIV for the PGN moves (only print, view and edit mode)</li>
+                                <li>editButton: DIV for the edit buttons (not finished yet)</li>
+                            </ul>
+                        </td>
+                        <td>See the example <a href="../examples/ticket25.html">ticket25.html</a> .</td>
+                    </tr>
+                    <tr>
+                        <td><code class="js plain">mode</code></td>
+                        <td>yes</td>
+                        <td>-</td>
+                        <td>This will be automatically set by using one of the (currently) 4 provided
+                            calls: pgnView, pgnBoard, pgnEdit, pgnPrint. The corresponding modes are:
+                            view, board, edit, print. <b>Don't try to set that on your own!!</b>.</td> 
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code class="js plain">position</code>
+                        <p><code class="js string">'start'</code> or FEN string</p></td>
+                        <td>no</td>
+                        <td><code class="js string">'start'</code></td>
+                        <td>Defines the position of the board, or where the game starts.</td>
+                        <td>See <a href="examples2.html#1022">Position</a> how to show different positions.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="js plain">pgn</code></td>
+                        <td>no</td>
+                        <td>-</td>
+                        <td>The moves of the game. Only necessary, if a whole game
+                        should be shown. The moves are then shown in a container
+                        that may be additionally styled by the theme selected.</td>
+                        <td>See the <a href="examples2.html#1051">Games Examples</a> how to do that.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="js plain">showNotation</code></td>
+                        <td>no</td>
+                        <td>true</td>
+                        <td>Defines if the columns and rows should be show the labels
+                        a to h (for the columns) and 1 to 8 (for the rows). If shown,
+                        it could be styled by CSS.
+                        <td>See the <a href="examples2.html#1023">second board</a> of the examples.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="js plain">orientation</code>
+                        <p>Possible values are <code class="js string">'white'</code> and <code class="js string">'black'</code></p></td>
+                        <td>no</td>
+                        <td><code class="js string">'white'</code></td>
+                        <td>Defines if the board has 'white' at the bottom or 'black'.
+                        May be switched at any time, if the buttons are rendered, that
+                        include an orientation-switch button.</td>
+                        <td>See the <a href="examples2.html#1023">first board</a> of the examples.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="js plain">theme</code></td><td>no</td><td>default</td>
+                        <td>The theme will be added to all classes of divs for the
+                        board, the moves, the buttons, ... It tries to reproduce
+                        typical designs used in chess books, online sites, you name it.
+                        And you may of course add your own themes. Current themese are: green, zeit, chesscom, informator, 
+                        sportverlag, beyer, falken, blue.</td>
+                        <td>See <a href="examples2.html#1021">Themes</a> for different boards and the <a href="examples2.html#1050">
+                            examples under games</a>.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="js plain">pieceStyle</code>
+                        <p><code class="js string">'wikipedia'</code>,
+                            <code class="js string">'wikipedia'</code>,
+                            <code class="js string">'alpha'</code>,
+                            <code class="js string">'uscf'</code> (all from chessboardjs),
+                            <code class="js string">'case'</code>,
+                            <code class="js string">'condal'</code>,
+                            <code class="js string">'maya'</code>,
+                            <code class="js string">'merida'</code> (my favorite),
+                            <code class="js string">'leipzig'</code> (all from ChessTempoViewer) and <code class="js string">'chesscom'</code> (from Chess.com).
+                        </p></td>
+                        <td>no</td>
+                        <td><code class="js string">'wikipedia'</code></td>
+                        <td>Defines the piece style to take. These are all PNG files,
+                        that are then scaled by the browser.</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><code class="js plain">timerTime</code></td>
+                        <td>no</td>
+                        <td>700 milliseconds</td>
+                        <td>Time in milliseconds, when a game is shown by autoplay.</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><code class="js plain">locale</code>
+                        <p>Currently supported are <code class="js string">de, en</code> </p></td>
+                        <td>no</td>
+                        <td><code class="js string">'en'</code> </td>
+                        <td>Locale used for rendering figure symbols, PEG notation, ...</td>
+                        <td>See the ticket about <a href="examples2.html#1204">locales</a> for examples.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="js plain">boardSize</code>
+                        <p>Size of the board (in CSS terms like '300px') </p></td>
+                        <td>no</td>
+                        <td>-</td>
+                        <td>Size of the board that is set on the DIV for the board. Alternative to set that directly in the HTML code.</td>
+                        <td>.</td>
+                    </tr>
                 </tbody>
             </table>
 

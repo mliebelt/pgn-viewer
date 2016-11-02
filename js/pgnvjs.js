@@ -10,17 +10,27 @@
 
 var pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
-    var VERSION = "0.9.2";
+    var VERSION = "0.9.3";
     var that = {};
     that.configuration = configuration;
     var theme = configuration.theme || 'default';
+    configuration['markup'] = (typeof boardId) == "object";
+    var hasMarkup = function() { return configuration['markup'] };
+    var hasMode = function(mode) { return configuration['mode'] === mode; }
     var game = new Chess();
     var board;              // Will be set later, but has to be a known variable
-    // IDs needed for styling and adressing the HTML elements
-    var headersId = boardId + 'Headers';
-    var innerBoardId = boardId + 'Inner';
-    var movesId = boardId + 'Moves';
-    var buttonsId = boardId + 'Button';
+    // IDs needed for styling and adressing the HTML elements, only used if no markup is done by the user
+    if (! hasMarkup()) {
+        var headersId = boardId + 'Headers';
+        var innerBoardId = boardId + 'Inner';
+        var movesId = boardId + 'Moves';
+        var buttonsId = boardId + 'Button';
+    } else { // will be filled later
+        var innerBoardId;
+        var headersId;
+        var movesId;
+        var buttonsId;
+    }
 
     // Anonymous function, has not to be visible from the outside
     // Does all the initialization stuff only needed once, here mostly internationalization.
@@ -262,51 +272,86 @@ var pgnBase = function (boardId, configuration) {
             createEle("label", null, "labelAfterComment", theme, radio).appendChild(document.createTextNode("After"));
             createEle("textarea", null, "comment", theme, commentDiv);
         };
-        var divBoard = document.getElementById(boardId);
-        if (divBoard == null) {
-            return;
+        if (hasMarkup()) {
+            if (boardId['header']) {
+                headersId = boardId['header']; // Real header will be built later
+                $("#" + headersId).addClass('headers');
+            }
+            if (boardId['inner']) {
+                innerBoardId = boardId['inner'];
+                $("#" + innerBoardId).addClass('board');
+            }
+            if (boardId['button']) {
+                buttonsId = boardId['button'];
+                $("#" + buttonsId).addClass('buttons');
+                var buttonsDiv = document.getElementById(buttonsId);
+                generateViewButtons(buttonsDiv);
+            }
+            if (boardId['moves']) {
+                movesId = boardId['moves'];
+                $("#" + movesId).addClass('moves');
+            }
+            if (boardId['editButton']) {
+                var editButtonsBoardDiv = document.getElementById(boardId['editButton']);
+                generateEditButtons(editButtonsBoardDiv);
+            }
         } else {
-            // ensure that the board is empty before filling it
-            $('#'+boardId).find('div').remove();
-        }
-        if (configuration.size) {
-            divBoard.style.width = configuration.size;
-        }
-        divBoard.setAttribute('class', theme + ' whole');
-        createEle("div", headersId, "headers", theme, divBoard);
-        var outerInnerBoardDiv = createEle("div", null, "outerBoard", null, divBoard);
-        if (configuration.boardSize) {
-            outerInnerBoardDiv.style.width = configuration.boardSize;
-        }
-        var innerBoardDiv = createEle("div", innerBoardId, "board", theme, outerInnerBoardDiv);
-        var buttonsBoardDiv = createEle("div", buttonsId, "buttons", theme, outerInnerBoardDiv);
-        generateViewButtons(buttonsBoardDiv);
-        var editButtonsBoardDiv = createEle("div", "edit" + buttonsId, "edit", theme, outerInnerBoardDiv);
-        generateEditButtons(editButtonsBoardDiv);
-        var outerPgnDiv = createEle("div", "outerpgn" + buttonsId, "outerpgn", theme, outerInnerBoardDiv);
-        var pgnHideButton  = addButton("hidePGN", outerPgnDiv);
-        var pgnDiv  = createEle("div", "pgn" + buttonsId, "pgn", theme, outerPgnDiv);
-        var commentBoardDiv = createEle("div", "comment" + buttonsId, "comment", theme, outerInnerBoardDiv);
-        generateCommentDiv(commentBoardDiv);
-        // Ensure that moves are scrollable (by styling CSS) when necessary
-        var movesDiv;
-        if (configuration.scrollable) {
-            movesDiv = createEle("div", null, "movesOuterScroller", null, divBoard);
-            var movesInnerDiv = createEle("div", null, "movesScroller", null, movesDiv);
-            createEle("div", movesId, "moves", null, movesInnerDiv);
-        } else {
-            movesDiv = createEle("div", movesId, "moves", null, divBoard);
-        }
+            var divBoard = document.getElementById(boardId);
+            if (divBoard == null) {
+                return;
+            } else {
+                // ensure that the board is empty before filling it
+                $('#'+boardId).find('div').remove();
+            }
+            if (configuration.size) {
+                divBoard.style.width = configuration.size;
+            }
+            divBoard.setAttribute('class', theme + ' whole');
+            createEle("div", headersId, "headers", theme, divBoard);
+            var outerInnerBoardDiv = createEle("div", null, "outerBoard", null, divBoard);
+            if (configuration.boardSize) {
+                outerInnerBoardDiv.style.width = configuration.boardSize;
+            }
+            var innerBoardDiv = createEle("div", innerBoardId, "board", theme, outerInnerBoardDiv);
+            if (hasMode('view') || hasMode('edit') ) {
+                var buttonsBoardDiv = createEle("div", buttonsId, "buttons", theme, outerInnerBoardDiv);
+                generateViewButtons(buttonsBoardDiv);
+            }
+            if (hasMode('edit')) {
+                var editButtonsBoardDiv = createEle("div", "edit" + buttonsId, "edit", theme, outerInnerBoardDiv);
+                generateEditButtons(editButtonsBoardDiv);
+                var outerPgnDiv = createEle("div", "outerpgn" + buttonsId, "outerpgn", theme, outerInnerBoardDiv);
+                var pgnHideButton  = addButton("hidePGN", outerPgnDiv);
+                var pgnDiv  = createEle("div", "pgn" + buttonsId, "pgn", theme, outerPgnDiv);
+                var commentBoardDiv = createEle("div", "comment" + buttonsId, "comment", theme, outerInnerBoardDiv);
+                generateCommentDiv(commentBoardDiv);
+            }
+            if (hasMode('print') || hasMode('view') || hasMode('edit')) {
+                // Ensure that moves are scrollable (by styling CSS) when necessary
+                var movesDiv;
+                if (configuration.scrollable) {
+                    movesDiv = createEle("div", null, "movesOuterScroller", null, divBoard);
+                    var movesInnerDiv = createEle("div", null, "movesScroller", null, movesDiv);
+                    createEle("div", movesId, "moves", null, movesInnerDiv);
+                } else {
+                    movesDiv = createEle("div", movesId, "moves", null, divBoard);
+                }
 
-        if (configuration.movesWidth) {
-            movesDiv.style.width = configuration.movesWidth;
+                if (configuration.movesWidth) {
+                    movesDiv.style.width = configuration.movesWidth;
+                }
+                if (configuration.movesHeight) {
+                    movesDiv.style.height = configuration.movesHeight;
+                    movesDiv.firstChild.style.height = configuration.movesHeight;
+                }
+            }
+            var endDiv = createEle("div", null, "endBoard", null, divBoard);
         }
-        if (configuration.movesHeight) {
-            movesDiv.style.height = configuration.movesHeight;
-            movesDiv.firstChild.style.height = configuration.movesHeight;
-        }
-        var endDiv = createEle("div", null, "endBoard", null, divBoard);
     };
+
+    var generateHTMLWithMarkup = function() {
+
+    }
     /**
      * Generate the board that uses the unique innerBoardId and the part of the configuration
      * that is for the board only. Returns the resulting object (as reference for others).
@@ -502,7 +547,9 @@ var pgnBase = function (boardId, configuration) {
         unmarkMark(next);
         that.currentMove = next;
         scrollToView(moveSpan(next));
-        fillComment(next);
+        if (hasMode('edit')) {
+            fillComment(next);
+        }
         updateUI(next);
     };
 
@@ -559,8 +606,13 @@ var pgnBase = function (boardId, configuration) {
         // Bind the necessary functions to move the pieces.
         var bindFunctions = function() {
             var bind_key = function(key, to_call) {
-//                jQuery("#" + boardId + "Moves").bind('keydown', key,function (evt){
-                jQuery("#" + boardId + ",#" + boardId + "Moves").bind('keydown', key,function (evt){
+                var key_ID;
+                if (hasMarkup()) {
+                    key_ID = "#" + boardId['moves'];
+                } else {
+                    key_ID = "#" + boardId + ",#" + boardId + "Moves";
+                }
+                jQuery(key_ID).bind('keydown', key,function (evt){
                     to_call();
                     evt.stopPropagation();
                 });
@@ -609,47 +661,49 @@ var pgnBase = function (boardId, configuration) {
                 var fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
                 makeMove(that.currentMove, that.mypgn.getMoves().length - 1, fen);
             });
-            $('#' + buttonsId + "pgn").on('click', function() {
-                //$('#pgn' + buttonsId).hide(200);
-                //$('#pgn' + buttonsId).fadeOut(400, "linear");
-                var str = computePgn();
-                showPgn(str);
-                $("#" + boardId + " .outerpgn").slideDown(700, "linear");
-            });
-            $('#' + boardId + " .hidePGN").on("click", function () {
-                $( "#" + boardId + " .outerpgn").slideUp(400);//hide( "fold");
-            });
-            $("#" + boardId + ' .outerpgn').hide();
-            $('#comment' + buttonsId + " textarea.comment").change(function() {
-                function commentText() {
-                    return " " + $('#comment' + buttonsId + " textarea.comment").val() + " ";
-                }
-                var text = commentText();
-                var checked = $("#comment" + buttonsId + " :checked").val() || "after";
-                moveSpan(that.currentMove).find("." + checked + "Comment").text(text);
-                if (checked === "after") {
-                    that.mypgn.getMove(that.currentMove).commentAfter = text;
-                } else if (checked === "before") {
-                    that.mypgn.getMove(that.currentMove).commentBefore = text;
-                } else if (checked === "move") {
-                    that.mypgn.getMove(that.currentMove).commentMove = text;
-                }
-            });
-            var rad = ["moveComment", "beforeComment", "afterComment"];
-            var prevComment = null;
-            for (var i = 0;i < rad.length; i++) {
-                $('#comment' + buttonsId + " ." + rad[i]).click(function() {
-                    var checked = this.value;
-                    var text;
-                    if (checked === "after") {
-                        text = that.mypgn.getMove(that.currentMove).commentAfter;
-                    } else if (checked === "before") {
-                        text = that.mypgn.getMove(that.currentMove).commentBefore;
-                    } else if (checked === "move") {
-                        text = that.mypgn.getMove(that.currentMove).commentMove;
-                    }
-                    $("#" + boardId + " textarea.comment").val(text);
+            if (hasMode('edit')) { // only relevant functions for edit mode
+                $('#' + buttonsId + "pgn").on('click', function() {
+                    //$('#pgn' + buttonsId).hide(200);
+                    //$('#pgn' + buttonsId).fadeOut(400, "linear");
+                    var str = computePgn();
+                    showPgn(str);
+                    $("#" + boardId + " .outerpgn").slideDown(700, "linear");
                 });
+                $('#' + boardId + " .hidePGN").on("click", function () {
+                    $( "#" + boardId + " .outerpgn").slideUp(400);//hide( "fold");
+                });
+                $("#" + boardId + ' .outerpgn').hide();
+                $('#comment' + buttonsId + " textarea.comment").change(function() {
+                    function commentText() {
+                        return " " + $('#comment' + buttonsId + " textarea.comment").val() + " ";
+                    }
+                    var text = commentText();
+                    var checked = $("#comment" + buttonsId + " :checked").val() || "after";
+                    moveSpan(that.currentMove).find("." + checked + "Comment").text(text);
+                    if (checked === "after") {
+                        that.mypgn.getMove(that.currentMove).commentAfter = text;
+                    } else if (checked === "before") {
+                        that.mypgn.getMove(that.currentMove).commentBefore = text;
+                    } else if (checked === "move") {
+                        that.mypgn.getMove(that.currentMove).commentMove = text;
+                    }
+                });
+                var rad = ["moveComment", "beforeComment", "afterComment"];
+                var prevComment = null;
+                for (var i = 0;i < rad.length; i++) {
+                    $('#comment' + buttonsId + " ." + rad[i]).click(function() {
+                        var checked = this.value;
+                        var text;
+                        if (checked === "after") {
+                            text = that.mypgn.getMove(that.currentMove).commentAfter;
+                        } else if (checked === "before") {
+                            text = that.mypgn.getMove(that.currentMove).commentBefore;
+                        } else if (checked === "move") {
+                            text = that.mypgn.getMove(that.currentMove).commentMove;
+                        }
+                        $("#" + boardId + " textarea.comment").val(text);
+                    });
+                }
             }
             function togglePlay() {
                 timer.toggle();
@@ -689,46 +743,47 @@ var pgnBase = function (boardId, configuration) {
             prev = generateMove(i, game, move, prev, movesDiv, varStack);
         }
         bindFunctions();
-        generateNAGMenu($("#edit" + boardId + "Button")[0]);
         generateHeaders();
-        //game.reset(); // TODO: Not needed any more??
-        $(function(){
-            $("select#" + buttonsId + "nag").multiselect({
-                header: false,
-                selectedList: 4,
-                minWidth: 80,
-                checkAllText: "",
-                uncheckAllText: "Clean",
-                noneSelectedText: "NAGs",
-                click: function(event, ui) {
-                    /**
-                     * Add (or remote) a NAG from the current move. Ignore it, if there is
-                     * no current move.
-                     */
-                    function changeNAG(value, checked) {
+        if (hasMode('edit')) {
+            generateNAGMenu($("#edit" + boardId + "Button")[0]);
+            $(function(){
+                $("select#" + buttonsId + "nag").multiselect({
+                    header: false,
+                    selectedList: 4,
+                    minWidth: 80,
+                    checkAllText: "",
+                    uncheckAllText: "Clean",
+                    noneSelectedText: "NAGs",
+                    click: function(event, ui) {
                         /**
-                         * Updates the visual display of the move (only the notation, not the comments).
-                         * @param moveIndex the index of the move to update
+                         * Add (or remote) a NAG from the current move. Ignore it, if there is
+                         * no current move.
                          */
-                        function updateMoveSAN(moveIndex) {
-                            var move = that.mypgn.getMove(moveIndex);
-                            $("#" + movesId + moveIndex + " > a").text(that.mypgn.sanWithNags(move));
+                        function changeNAG(value, checked) {
+                            /**
+                             * Updates the visual display of the move (only the notation, not the comments).
+                             * @param moveIndex the index of the move to update
+                             */
+                            function updateMoveSAN(moveIndex) {
+                                var move = that.mypgn.getMove(moveIndex);
+                                $("#" + movesId + moveIndex + " > a").text(that.mypgn.sanWithNags(move));
+                            }
+
+                            console.log("clicked: " + value + " Checked? " + checked);
+                            that.mypgn.changeNag("$" + value, that.currentMove, checked);
+                            updateMoveSAN(that.currentMove);
                         }
 
-                        console.log("clicked: " + value + " Checked? " + checked);
-                        that.mypgn.changeNag("$" + value, that.currentMove, checked);
-                        updateMoveSAN(that.currentMove);
+                        //  event: the original event object
+    //                    ui.value: value of the checkbox
+    //                    ui.text: text of the checkbox
+    //                    ui.checked: whether or not the input was checked or unchecked (boolean)
+
+                        changeNAG(ui.value, ui.checked);
                     }
-
-                    //  event: the original event object
-//                    ui.value: value of the checkbox
-//                    ui.text: text of the checkbox
-//                    ui.checked: whether or not the input was checked or unchecked (boolean)
-
-                    changeNAG(ui.value, ui.checked);
-                }
+                });
             });
-        });
+        }
     };
 
     return {
@@ -759,12 +814,11 @@ var pgnBase = function (boardId, configuration) {
  * @returns {{chess: chess, getPgn: getPgn}} all utility functions available
  */
 var pgnView = function(boardId, configuration) {
+    configuration['mode'] = 'view';
     var base = pgnBase(boardId, configuration);
     base.generateHTML();
     var b = base.generateBoard();
     base.generateMoves(b);
-    base.hideHTML("Button", "edit");
-    base.hideHTML("Button", "comment");
     return {
         chess: base.chess,
         getPgn: base.getPgn,
@@ -790,12 +844,9 @@ var pgnView = function(boardId, configuration) {
  *  theme: (only CSS related) some of zeit, blue, chesscom, ... (as string)
  */
 var pgnBoard = function(boardId, configuration) {
+    configuration['mode'] = 'board';
     var base = pgnBase(boardId, configuration);
     base.generateHTML();
-    base.hideHTML("Button");
-    base.hideHTML("Button", "edit");
-    base.hideHTML("Button", "comment");
-    base.hideHTML("Button", "outerpgn");
     var b = base.generateBoard();
     return {
         chess: base.chess,
@@ -817,6 +868,7 @@ var pgnBoard = function(boardId, configuration) {
  *    allowAnnotations: false or true (default)
  */
 var pgnEdit = function(boardId, configuration) {
+    configuration['mode'] = 'edit';
     var base = pgnBase(boardId, configuration);
     configuration.draggable = true;
     configuration.onDragStart = base.onDragStart;
@@ -838,13 +890,9 @@ var pgnEdit = function(boardId, configuration) {
  * Rest will be ignored.
  */
 var pgnPrint = function(boardId, configuration) {
+    configuration['mode'] = 'print';
     var base = pgnBase(boardId, configuration);
     base.generateHTML();
-    base.hideHTML("Button");
-    base.hideHTML("Inner");
-    base.hideHTML("Button", "edit");
-    base.hideHTML("Button", "comment");
-    base.hideHTML("Button", "outerpgn");
-    var board = base.generateBoard();
+//    var board = base.generateBoard();
     base.generateMoves(board);
 };

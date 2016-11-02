@@ -7,14 +7,28 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+### Fixed
+
+
+## [0.9.3]
+
+### Changed
+
 * Added example `pgnAddMoves.html` that shows how to use the viewer in a context where the moves come from the outside.
 * Switched to version 0.10.2 of [chess.js](https://github.com/jhlywa/chess.js) to add sloppy flag when reading moves.
+* Added additional format for calling the different modes. Instead of using the board ID (only), it is now possible to
+  give a map of IDs for header, inner (for the board), button and moves. Edit mode is not supported (yet). See the example file
+  ticket25.html for an example how to use it. 
 
 ### Fixed
 
+* [#25](https://github.com/mliebelt/PgnViewerJS/issues/25): Allow additional markup instead of the predefined layout of board, buttons, moves, ...
 * [#26](https://github.com/mliebelt/PgnViewerJS/issues/26): Ensure that the SAN from chess.js is used instead of the original notation. So chess and mate symbols are used independent of if they are included in the original notation or not. See the example `ticket26.html` in the sources.
 * [#27](https://github.com/mliebelt/PgnViewerJS/issues/27): Ensure that the sloppy mode is used to read PGN, so check and mate symbols don't make a difference then.
 * [#28](https://github.com/mliebelt/PgnViewerJS/issues/28): Added Long Algebraic Notation  to the parser, as well as some test cases. Fixed a bug in using san without having initialized i18n.
+* [#32](https://github.com/mliebelt/PgnViewerJS/issues/32): Internationalization for buttons does not work. Has to do with the local testing, so start a local web server to avoid this.
+* [#34](https://github.com/mliebelt/PgnViewerJS/issues/34): Added `reamde.html`, added links to `readme.md`, ensure that examples files are included.
+* [#35](https://github.com/mliebelt/PgnViewerJS/issues/35): Font Awesome icons don't work on Firefox when used locally. Similar workaround, start a local web server.
 
 
 ## [0.9.2]
