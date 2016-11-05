@@ -84,7 +84,7 @@ describe("When working with different PGN beginnings and endings", function() {
         expect(my_pgn.getMoves().length).toEqual(0);
     });
 
-    it("should work with white's first move only", function() {
+    it("should work with white's first   move only", function() {
         my_pgn = pgnReader({pgn: "1. e4"});
         expect(my_pgn.getMoves().length).toEqual(1);
         expect(my_pgn.getMoves()[0].notation.notation).toEqual("e4");
@@ -620,14 +620,14 @@ describe("When making moves in PGN", function() {
     })
 });
 
-describe("When upvoting or deleting lines" , function () {
+describe("When deleting lines" , function () {
     it("should delete the whole main line", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 Nc6"});
         my_pgn.deleteMove(0);
         expect(my_pgn.isDeleted(0)).toBeTruthy();
     });
 
-    it("should delete the rest of the main line (without variation)", function () {
+    it("should delete the rest of the line (without variation)", function () {
         my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 Nc6"});
         my_pgn.deleteMove(2);
         expect(my_pgn.isDeleted(0)).toBeFalsy();
@@ -636,17 +636,44 @@ describe("When upvoting or deleting lines" , function () {
         expect(my_pgn.isDeleted(3)).toBeTruthy();
     });
 
-    xit("should delete the rest of the main line, replace it by the first variation", function () {
-
+    it("should delete the rest of the line, replace it by the first variation", function () {
+        my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 (2. f4 exf4) Nc6"});
+        expect(my_pgn.getMove(3).variationLevel).toEqual(1);
+        my_pgn.deleteMove(2);
+        expect(my_pgn.isDeleted(0)).toBeFalsy();
+        expect(my_pgn.isDeleted(1)).toBeFalsy();
+        expect(my_pgn.isDeleted(2)).toBeTruthy();
+        expect(my_pgn.isDeleted(5)).toBeTruthy();
+        expect(my_pgn.getMove(3).variationLevel).toEqual(0);
+        expect(my_pgn.getMove(4).variationLevel).toEqual(0);
+        expect(my_pgn.getMove(1).next).toEqual(3);
     });
 
-    xit("should delete the whole variation with the first move", function () {
-
+    it("should delete the whole variation with the first move", function () {
+        my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 (2. f4 exf4) (2. d4 exd4) Nc6"});
+        expect(my_pgn.getMove(3).variationLevel).toEqual(1);
+        my_pgn.deleteMove(3);
+        expect(my_pgn.isDeleted(0)).toBeFalsy();
+        expect(my_pgn.isDeleted(1)).toBeFalsy();
+        expect(my_pgn.isDeleted(2)).toBeFalsy();
+        expect(my_pgn.isDeleted(3)).toBeTruthy();
+        expect(my_pgn.isDeleted(4)).toBeTruthy();
+        expect(my_pgn.getMove(2).variationLevel).toEqual(0);
+        expect(my_pgn.getMove(5).variationLevel).toEqual(1);
+        expect(my_pgn.getMove(6).variationLevel).toEqual(1);
     });
 
-    xit("should delete the rest of a variation (including the move)", function () {
-
+    it("should delete the rest of a variation (including the move)", function () {
+        my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 (2. f4 exf4 3. Nf3 d6) (2. d4 exd4) Nc6"});
+        expect(my_pgn.getMove(3).variationLevel).toEqual(1);
+        my_pgn.deleteMove(4);
+        expect(my_pgn.isDeleted(3)).toBeFalsy();
+        expect(my_pgn.isDeleted(4)).toBeTruthy();
     });
+
+});
+
+describe("When upvoting lines", function () {
 
     xit("should upvote the first line as main line", function () {
 
@@ -656,10 +683,12 @@ describe("When upvoting or deleting lines" , function () {
 
     });
 
+    xit("should ignore upvoting the main line", function () {
+
+    });
 
 
-});
-
+})
 describe("When working with NAGs", function () {
     var my_pgn;
     beforeEach(function () {

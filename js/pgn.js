@@ -290,7 +290,7 @@ var pgnReader = function (configuration) {
     }
 
     /**
-     * Returns true, if the move with ID id is delelted.
+     * Returns true, if the move with ID id is deleted.
      * @param id the numerical index
      * @returns {boolean} true, if deleted
      */
@@ -301,9 +301,9 @@ var pgnReader = function (configuration) {
         if (current === null) {
             return true;
         }
-        if (id == 0 && (current))
+        if (id == 0 && (current)) // The first move is not deleted
             return false;
-        return (current.prev === null);
+        return (current.prev === null); // All moves without a previous move are deleted
     }
 
 
@@ -330,6 +330,35 @@ var pgnReader = function (configuration) {
      * </ul>
      */
     var deleteMove = function(id) {
+        /**
+         * Removes the object at index from the array, returns the object.
+         */
+        var removeFromArray = function(array, index) {
+            var ret = array[index];
+            array.splice(index, 1);
+            return ret;
+        }
+
+        /**
+         * Updates the variation level for all moves.
+         */
+        var updateVariationLevel = function(move, varLevel) {
+            if (arguments.length === 0) {
+                // Workaround: we don't know which is the first move, so that that with index 0
+                var my_move = getMove(0);
+                updateVariationLevel(my_move, 0);
+            } else {
+                move.variationLevel = varLevel;
+                if (move.next !== undefined) {
+                    updateVariationLevel(getMove(move.next), varLevel);
+                }
+                for (var i = 0; i < move.variations.length; i++) {
+                    updateVariationLevel(move.variations[i][0], varLevel + 1);
+                }
+            }
+
+        }
+
         if (isDeleted(id)) {
             return;
         }
@@ -339,15 +368,41 @@ var pgnReader = function (configuration) {
             that.moves = [];
             return;
         }
-        // 2. Main line some other move, no variation
         var current = getMove(id);
-        if (current.variationLevel === 0 && (current.variations.length === 0)) { // Main line, no variations
+        // 2. First move of variation
+        if (startVariation(current)) {
+            var vars = getMove(getMove(current.prev).next).variations;
+            for (var i = 0; vars.length; i++) {
+                if (vars[i][0] === current) {
+                    var my_var = removeFromArray(vars, i);
+                    if (current.next !== undefined) {
+                       deleteMove(current.next);
+                    }        
+                    that.moves[current.index] = null;
+                    return;
+                }
+            }
+        }
+        // 3. Some line some other move, no variation
+        if (current.variations.length === 0) { 
             if (current.next !== undefined) {
                 deleteMove(current.next);
             }
             that.moves[current.prev].next = null;
             that.moves[id] = null;
+            return;
         }
+        // 4. Some line some other move, with variation
+        if (current.variations.length > 0) { 
+            if (current.next !== undefined) {
+                deleteMove(current.next);
+            }
+            var variation = removeFromArray(current.variations, 0);
+            var varLevel = variation[0].variationLevel;
+            that.moves[current.prev].next = variation[0].index;
+            that.moves[id] = null;
+            updateVariationLevel(variation[0], varLevel - 1);
+        } 
     };
 
 

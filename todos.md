@@ -79,7 +79,84 @@ could be signaled as well. The following is normal:
   * Normal situation where the disambiguator has to be used.
   * Difficult situation where 2 moves could be possible, but one is not allowed (because the king is in check then).
 
-#### Ticket 25
+#### Ticket 17: Edit Mode
+
+This is the one ticket that is missing from version 1.0. Without that, PgnViewerJS is not feature complete.
+
+What should be done here:
+
+1. Cleanup the UI. It is ugly, and complicated to use. It does not fit well into the customization that is available for the other modes (see ticket #25).
+2. Allow to cut variations and main lines.
+3. Allow to promote variations:
+   * 3rd to 2nd (only switching place)
+   * 1st to main line, current main line gets first variation then.
+
+Technically, the following has to  be done:
+
+* Ensure that the inner PGN format is converted in the necessary ways. There are already some test cases available for that (see: when upvoting or deleting lines).
+* Then recreate the HTML moves after each major change.
+
+I was successful when working with the edit mode, which means entering one move of the current variation. But this is not so easy when doing that with whole variations. Recreating the moves again should be easier.
+
+So startpoint here are the 2 functionalities:
+
+* `deleteMove(id)`: all cases are known, they have just to be implemented.
+* `promoteMove(id)`: cases are known as well, but is more difficult.
+
+To understand what has to be done, I should start with some analysis:
+
+* Take an example with some variations.
+* Record  the JSON format of the PGN part of it.
+
+base.getPgn() ==> Returns the pgn object
+pgn.getMoves() ==> Returns an array of all moves, the index hold in each move is the index to the array.
+move structure:
+* commentAfter
+* commentBefore
+* commentMove
+* fen: holds the position that is reached after making the move
+* index: index to the array, pgn.getMove(index) returns just that
+* moveNumber: (only for white) the move number
+* nag
+* next: next index of the  same line
+* notation: object in itself
+* prev: index of the previous move
+* turn: "w" or "b"
+* variationLevel: 0 for main line, ...
+* variations: array of arrays, each variation is one array. Promoting variation (same level) just switches that
+
+So here are the rules for the 2 functions:
+
+* deleteMove
+  * Ensure that them moves are deleted (from the array) so that the indices are intact
+  * Delete all moves later (next and variations) as well
+* promoteMove
+  * Promoting one variation over one other: simple, must exchange. Nothing to change else
+  * Promoting for the line above:
+    * create a new array for the previous line above (from the current move up to the end)
+    * Exchange the 2 arrays then  
+    * Add the moves of the previous variation to the line above
+
+So in the current situation (indentation is for variation) the following is done (only indices shown)
+
+0
+1
+2
+  3 - 4 - 5
+  6 - 7
+8
+
+Promote 3 will lead to
+
+0
+1
+3
+  2 - 8
+  6 - 7
+4
+5
+
+#### Ticket 25: Custom HTML
 
 It is necessary to restructure the current creation of the HTML sources. the reasons for it are:
 
