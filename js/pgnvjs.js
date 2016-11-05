@@ -249,7 +249,7 @@ var pgnBase = function (boardId, configuration) {
         };
         // Generates the edit buttons (only)
         var generateEditButtons = function(buttonDiv) {
-            ["deleteVar", "promoteVar", "deleteMoves"].forEach(function(entry) {
+            ["promoteVar", "deleteMoves"].forEach(function(entry) {
                 var but = addButton(entry, buttonDiv);
                 //but.className = but.className + " gray"; // just a test, worked.
                 // only gray out if not usable, check that later.

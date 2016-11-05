@@ -10,13 +10,13 @@ div.edit .gray, div.buttons .gray {
 div.buttons, div.edit {
     margin-top: 10px;
 }
-div.buttons> span.button.default:before {
+div.buttons> span.button.default:before, div.edit> span.button.default:before {
     display: inline-block;
     line-height: 1;
     font-weight: normal;
     font-variant: normal;
     font-style: normal;
-    font-size: 14px;
+    font-size: 18px;
     font-family: FontAwesome;
     color: #71a0df;
     text-rendering: auto;
@@ -25,14 +25,14 @@ div.buttons> span.button.default:before {
     -moz-osx-font-smoothing: grayscale;
 }
 
-div.buttons > span.button.default {
+div.buttons > span.button.default, div.edit > span.button.default, div.edit > button {
     margin: 5px;
     padding: 4px;
     border: solid lightgrey 1px;
     border-radius: 4px;
 }
 
-div.buttons > span.button:hover {
+div.buttons > span.button:hover,div.edit > span.button:hover  {
     cursor: pointer;
     border: solid dimgrey 1px;
 }
@@ -44,13 +44,17 @@ div.buttons > .button.flipper.default:before {
 }
 div.buttons > .button.first.default:before { /* fast-backward */
     content: "\f049";
-}div.buttons > .button.prev.default:before {    /* step-backward */
+}
+div.buttons > .button.prev.default:before {    /* step-backward */
     content: "\f048";
-}div.buttons > .button.next.default:before {    /* step-forward */
+}
+div.buttons > .button.next.default:before {    /* step-forward */
     content: "\f051";
-}div.buttons > .button.last.default:before {    /* fast-forward */
+}
+div.buttons > .button.last.default:before {    /* fast-forward */
     content: "\f050";
-}div.buttons > .button.play.default:before {    /* play-circle */
+}
+div.buttons > .button.play.default:before {    /* play-circle */
     content: "\f144";
 }
 div.buttons > .button.stop.default:before {     /* pause */
@@ -94,20 +98,20 @@ div.buttons > .button.stop.blue {
     background-image: url("../img/buttons/ff/control_pause_blue.png");
 }
 
-div.edit > .button.deleteVar {
-    background-image: url("../img/buttons/ff/edit-delete.png");
+div.edit > .button.promoteVar.default:before { /* hand-o-up */
+    content: "\f0a6";
+}
+div.edit > .button.deleteMoves.default:before { /* scissors  */ 
+    content: "\f0c4";
 }
 
-div.edit > .button.promoteVar {
-    background-image: url("../img/buttons/ff/go-up.png");
-}
-
-div.edit > .button.deleteMoves {
+/* div.edit > .button.deleteMoves {
     background-image: url("../img/buttons/ff/edit-cut.png");
-}
+} */
 
-div.edit > .button.pgn {
-    background-image: url("../img/buttons/ff/script_save.png");
+div.edit > .button.pgn.default:before {
+    /* background-image: url("../img/buttons/ff/script_save.png"); */
+    content: "\f02f";
 }
 
 span.button.hidePGN {
@@ -163,11 +167,6 @@ div.buttons > span.button.ff, div.edit > span.button {
     height: 20px;
     background: no-repeat 50%;
     display: inline-block;
-}
-
-div.edit > button.ui-multiselect {
-    height: 24px;
-    vertical-align: 50%;
 }
 
 .ui-widget {
