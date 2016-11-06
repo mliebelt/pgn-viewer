@@ -385,7 +385,7 @@ var pgnReader = function (configuration) {
         }
         // 3. Some line some other move, no variation
         if (current.variations.length === 0) { 
-            if (current.next !== undefined) {
+            if (current.next !== undefined && (current.next !== null)) {
                 deleteMove(current.next);
             }
             that.moves[current.prev].next = null;

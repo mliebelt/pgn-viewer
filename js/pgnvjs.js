@@ -349,9 +349,6 @@ var pgnBase = function (boardId, configuration) {
         }
     };
 
-    var generateHTMLWithMarkup = function() {
-
-    }
     /**
      * Generate the board that uses the unique innerBoardId and the part of the configuration
      * that is for the board only. Returns the resulting object (as reference for others).
@@ -419,6 +416,10 @@ var pgnBase = function (boardId, configuration) {
                 varStack[varStack.length - 1].appendChild(span);
             }
         };
+        // Ignore null moves
+        if (move === null || (move === undefined)) {
+            return prevCounter;
+        }
         var clAttr = "move";
         if (move.variationLevel > 0) {
             clAttr = clAttr + " var var" + move.variationLevel;
@@ -669,6 +670,14 @@ var pgnBase = function (boardId, configuration) {
                     showPgn(str);
                     $("#" + boardId + " .outerpgn").slideDown(700, "linear");
                 });
+                $('#' + buttonsId + "deleteMoves").on('click', function() {
+                    var prev = that.mypgn.getMove(that.currentMove).prev;
+                    var fen = that.mypgn.getMove(prev).fen;
+                    that.mypgn.deleteMove(that.currentMove);
+                    $("#" + movesId).html("");
+                    regenerateMoves(that.mypgn.getMoves());
+                    makeMove(null, prev, fen);
+                });
                 $('#' + boardId + " .hidePGN").on("click", function () {
                     $( "#" + boardId + " .outerpgn").slideUp(400);//hide( "fold");
                 });
@@ -732,16 +741,20 @@ var pgnBase = function (boardId, configuration) {
             $('#pgn' + buttonsId).text(val).show(1000);
         };
 
-
-        // Start working with PGN, if available
-//        if (! configuration.pgn) { return; }
-        var movesDiv = document.getElementById(movesId);
-        var prev = null;
-        var varStack = [];
-        for (var i = 0; i < myMoves.length; i++) {
-            var move = myMoves[i];
-            prev = generateMove(i, game, move, prev, movesDiv, varStack);
+        /**
+         * Regenerate the moves div, may be used the first time (DIV is empty)
+         * or later (moves have changed).
+         */
+        var regenerateMoves = function (myMoves) {
+            var movesDiv = document.getElementById(movesId);
+            var prev = null;
+            var varStack = [];
+            for (var i = 0; i < myMoves.length; i++) {
+                var move = myMoves[i];
+                prev = generateMove(i, game, move, prev, movesDiv, varStack);
+            }
         }
+        regenerateMoves(myMoves);
         bindFunctions();
         generateHeaders();
         if (hasMode('edit')) {
