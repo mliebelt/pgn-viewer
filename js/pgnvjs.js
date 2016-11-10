@@ -498,12 +498,12 @@ var pgnBase = function (boardId, configuration) {
     var updateUI = function (next) {
         $("div.buttons .gray").removeClass('gray');
         var move = that.mypgn.getMove(next);
-        if (typeof move.prev != "number") {
+        if (next === null) {
             ["prev", "first"].forEach(function(name) {
                 $("div.buttons ." + name).addClass('gray');
             });
         }
-        if (typeof move.next != "number") {
+        if ((next !== null) && (typeof move.next != "number")) {
             ["next", "play", "last"].forEach(function(name) {
                 $("div.buttons ." + name).addClass('gray');
             });
@@ -620,7 +620,7 @@ var pgnBase = function (boardId, configuration) {
             };
             var nextMove = function () {
                 var fen = null;
-                if (typeof that.currentMove == 'undefined') {
+                if ((typeof that.currentMove == 'undefined') || (that.currentMove === null)) {
                     fen = that.mypgn.getMove(0).fen;
                     makeMove(null, 0, fen);
                 } else {
@@ -637,9 +637,24 @@ var pgnBase = function (boardId, configuration) {
                 }
                 else {
                     var prev = that.mypgn.getMove(that.currentMove).prev;
-                    fen = that.mypgn.getMove(prev).fen;
-                    makeMove(that.currentMove, prev, fen);
+                    if (typeof prev === 'undefined') {
+                        firstMove();
+                    } else {
+                        fen = that.mypgn.getMove(prev).fen;
+                        makeMove(that.currentMove, prev, fen);
+                    }
                 }
+            };
+            var firstMove = function () {
+                if (that.configuration.position == 'start') {
+                    game.reset();
+                } else {
+                    game.load(that.configuration.position);
+                }
+                board.position(game.fen());
+                unmarkMark(null);
+                that.currentMove = null;
+                updateUI(null);
             };
             var timer = $.timer(function() {
                 nextMove();
@@ -655,8 +670,10 @@ var pgnBase = function (boardId, configuration) {
                 prevMove();
             });
             $('#' + buttonsId + 'first').on('click', function() {
-                var fen = that.mypgn.getMove(0).fen;
-                makeMove(that.currentMove, 0, fen);
+                // Goes to the position after the first move.
+                // var fen = that.mypgn.getMove(0).fen;
+                // makeMove(that.currentMove, 0, fen);
+                firstMove();
             });
             $('#' + buttonsId + 'last' ).on('click', function() {
                 var fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
