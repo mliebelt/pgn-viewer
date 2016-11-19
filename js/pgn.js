@@ -268,16 +268,24 @@ var pgnReader = function (configuration) {
             }
             currentMove.index = current;
         };
-        var remindEndGame = function() {
-            if (typeof that.movesMainLine[that.movesMainLine.length - 1] == "string") {
-                that.endGame = that.movesMainLine.pop();
+        var correctVariations = function() {
+            $.each(that.moves, function(index, move) {
+                for (i = 0; i < move.variations.length; i++) {
+                    move.variations[i] = move.variations[i][0];
+                }
+            })
+        }
+        var remindEndGame = function(movesMainLine) {
+            if (typeof movesMainLine[movesMainLine.length - 1] == "string") {
+                that.endGame = movesMainLine.pop();
             }
         };
-        that.moves_string = movesString.trim();
+        movesString = movesString.trim();
         // Store moves in a separate object.
-        that.movesMainLine = parser.parse(that.moves_string)[0];
-        remindEndGame();
-        eachMove(wireMoves);
+        var movesMainLine = parser.parse(movesString)[0];
+        remindEndGame(movesMainLine);
+        eachMove(wireMoves, movesMainLine);
+        correctVariations();
     };
 
     /**
@@ -334,8 +342,10 @@ var pgnReader = function (configuration) {
             if (move.next !== undefined) {
                 updateVariationLevel(getMove(move.next), varLevel);
             }
-            for (var i = 0; i < move.variations.length; i++) {
-                updateVariationLevel(move.variations[i][0], varLevel + 1);
+            if (move.variations) {
+                for (var i = 0; i < move.variations.length; i++) {
+                    updateVariationLevel(move.variations[i], varLevel + 1);
+                }
             }
         }
     };
@@ -374,7 +384,7 @@ var pgnReader = function (configuration) {
         if (startVariation(current)) {
             var vars = getMove(getMove(current.prev).next).variations;
             for (var i = 0; vars.length; i++) {
-                if (vars[i][0] === current) {
+                if (vars[i] === current) {
                     var my_var = removeFromArray(vars, i);
                     if (current.next !== undefined) {
                        deleteMove(current.next);
@@ -398,11 +408,11 @@ var pgnReader = function (configuration) {
             if (current.next !== undefined) {
                 deleteMove(current.next);
             }
-            var variation = removeFromArray(current.variations, 0);
-            var varLevel = variation[0].variationLevel;
-            that.moves[current.prev].next = variation[0].index;
+            var variationMove = removeFromArray(current.variations, 0);
+            var varLevel = variationMove.variationLevel;
+            that.moves[current.prev].next = variationMove.index;
             that.moves[id] = null;
-            updateVariationLevel(variation[0], varLevel - 1);
+            updateVariationLevel(variationMove, varLevel - 1);
         } 
     };
 
@@ -425,11 +435,11 @@ var pgnReader = function (configuration) {
         /**
          * Returns the first move of a variation.
          */
-        var firstMove = function(move) {
+        var firstMoveOfVariation = function(move) {
             if (startVariation(move)) {
                 return move;
             }
-            return firstMove(getMove(move.prev));
+            return firstMoveOfVariation(getMove(move.prev));
         }
         var move = getMove(id);
         // 1. Check that is variation
@@ -438,13 +448,13 @@ var pgnReader = function (configuration) {
         }
 
         // 2. Get the first move of the variation
-        var myFirst = firstMove(move);
+        var myFirst = firstMoveOfVariation(move);
 
         // 3. Get the index of that moves variation array
         var higherVariationMove = getMove(getMove(myFirst.prev).next);
         var indexVariation;
         for (i = 0; i < higherVariationMove.variations.length; i++) {
-            if (higherVariationMove.variations[i][0] === myFirst) {
+            if (higherVariationMove.variations[i] === myFirst) {
                 indexVariation = i;
             }
         }
@@ -452,12 +462,19 @@ var pgnReader = function (configuration) {
         // 4. If variation index is > 0 (not the first variation)
         if (indexVariation > 0) {
             // Just switch with the previous index
-            var tmpArray = higherVariationMove.variations[indexVariation-1];
+            var tmpMove = higherVariationMove.variations[indexVariation-1];
             higherVariationMove.variations[indexVariation-1] = higherVariationMove.variations[indexVariation];
-            higherVariationMove.variations[indexVariation] = tmpArray;
+            higherVariationMove.variations[indexVariation] = tmpMove;
         } else {
             // 5. Now the most difficult case: create new array from line above, switch that with
             // the variation
+            var tmpMove = higherVariationMove;
+            var tmpVariations = higherVariationMove.variations;
+            var prevMove = getMove(higherVariationMove.prev);
+            prevMove.next = move.index;
+            tmpMove.variations = move.variations;
+            move.variations = tmpVariations;
+            move.variations[0] = tmpMove;
         }
         // Update the variation level because there will be changes
         updateVariationLevel();
@@ -541,10 +558,10 @@ var pgnReader = function (configuration) {
             sb.append(nag_to_symbol(move.nag));
         };
 
-        var write_variation = function (variation, sb) {
+        var write_variation = function (move, sb) {
             prepend_space(sb);
             sb.append("(");
-            write_move(variation[0], sb);
+            write_move(move, sb);
             prepend_space(sb);
             sb.append(")");
         };
@@ -605,7 +622,7 @@ var pgnReader = function (configuration) {
      * Final algorithm to read and map the moves. Seems to be tricky ...
      * @param called the function that will be called (here wireMoves in readMoves)
      */
-    var eachMove = function(called) {
+    var eachMove = function(called, movesMainLine) {
         that.moves = [];
         var current = -1;
         /**
@@ -685,7 +702,8 @@ var pgnReader = function (configuration) {
                 })
             })
         };
-        eachMoveVariation(that.movesMainLine, 0, null);
+        that.firstMove = movesMainLine[0];
+        eachMoveVariation(movesMainLine, 0, null);
     };
     load_pgn();
 
@@ -726,8 +744,8 @@ var pgnReader = function (configuration) {
                 var mainMove = getMove(prevMove.next);
                 for (i = 0; i < mainMove.variations.length; i++) {
                     var variation = mainMove.variations[i];
-                    if (variation[0].notation.notation == pgn_move.san) {
-                        return variation[0].index;
+                    if (variation.notation.notation == pgn_move.san) {
+                        return variation.index;
                     }
                 }
             }
@@ -738,7 +756,7 @@ var pgnReader = function (configuration) {
         function handle_variation(move, prev, next) {
             var prevMove = getMove(prev);
             if (prevMove.next) {    // has a next move set, so should be a variation
-                getMove(prevMove.next).variations.push([move]);
+                getMove(prevMove.next).variations.push(move);
                 move.variationLevel = (prevMove.variationLevel ? prevMove.variationLevel : 0) + 1;
                 if (move.turn == 'b') {
                     move.moveNumber = prevMove.moveNumber;
@@ -833,8 +851,10 @@ var pgnReader = function (configuration) {
             returnedMoves = [];
         }
         returnedMoves.push(current);
-        for (var i = 0; i < current.variations.length; i++) {
-            getOrderedMoves(current.variations[i][0], returnedMoves);
+        if (current.variations) {
+            for (var i = 0; i < current.variations.length; i++) {
+                getOrderedMoves(current.variations[i], returnedMoves);
+            }
         }
         if (current.next) {
             return getOrderedMoves(getMove(current.next), returnedMoves);
@@ -843,9 +863,22 @@ var pgnReader = function (configuration) {
         }
     }
 
+    /**
+     * Return the moves of the main line.
+     */
+    var movesMainLine = function() {
+        var current = getMove(that.startMove);
+        var returnedMoves = [];
+        returnedMoves.push(current);
+        while (current.next) {
+            current = getMove(current.next);
+            returnedMoves.push(current);
+        }
+        return returnedMoves;
+    }
+
     // This defines the public API of the pgn function.
     return {
-        movesString: function () { return that.moves_string; },
         readHeaders: readHeaders,
         deleteMove: deleteMove,
         promoteMove: promoteMove,
@@ -858,7 +891,8 @@ var pgnReader = function (configuration) {
         getHeaders: function() { return that.headers; },
 //        splitHeaders: splitHeaders,
         getParser: function() { return parser; },
-        eachMove: function() { return eachMove(); },
+//        eachMove: function() { return eachMove(); },
+        movesMainLine: movesMainLine,
         write_pgn: write_pgn,
         nag_to_symbol: nag_to_symbol,
         startVariation: startVariation,

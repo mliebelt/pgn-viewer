@@ -176,7 +176,8 @@ describe("When reading PGN with headers", function() {
         my_pgn = pgnReader({pgn: pgn_string.join(" ")});
     });
 
-    it("should know the input pgn (the moves)", function() {
+    // Disabled that because not used any where
+    xit("should know the input pgn (the moves)", function() {
         expect(my_pgn.movesString()).toEqual("1. e2 e4 2. Nf3 Nc6");
         expect(my_pgn.getMoves().length).toEqual(4);
     });
@@ -214,14 +215,13 @@ describe("When reading PGN with variations", function() {
 
     it("should understand one variation for white", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6) exf4"});
-        expect(my_pgn.movesMainLine.length).toEqual(4);
+        expect(my_pgn.movesMainLine().length).toEqual(4);
         expect(my_pgn.getMove(0).variations.length).toEqual(0);
         expect(my_pgn.getMove(1).variations.length).toEqual(0);
         expect(my_pgn.getMove(2).variations.length).toEqual(1);
         expect(my_pgn.getMove(3).variations.length).toEqual(0);
-        expect(my_pgn.getMove(2).variations[0].length).toEqual(2);
-        expect(my_pgn.getMove(2).variations[0][0].notation.notation).toEqual("Nf3");
-        expect(my_pgn.getMove(2).variations[0][1].notation.notation).toEqual("Nc6");
+        expect(my_pgn.getMove(2).variations[0].notation.notation).toEqual("Nf3");
+        expect(my_pgn.getMove(my_pgn.getMove(2).variations[0].next).notation.notation).toEqual("Nc6");
         expect(my_pgn.getMove(3).prev).toEqual(1);
         expect(my_pgn.getMove(1).next).toEqual(2);
         expect(my_pgn.getMove(3).next).toEqual(4);
@@ -231,33 +231,30 @@ describe("When reading PGN with variations", function() {
 
     it("should understand one variation for black with move number", function () {
         my_pgn = pgnReader({pgn: "1. e4 e5 (1... d5 2. exd5 Qxd5)"});
-        expect(my_pgn.movesMainLine.length).toEqual(2);
+        expect(my_pgn.movesMainLine().length).toEqual(2);
         expect(my_pgn.getMove(1).variations.length).toEqual(1);
         expect(my_pgn.getMove(0).variations.length).toEqual(0);
-        expect(my_pgn.getMove(1).variations[0].length).toEqual(3);
-        expect(my_pgn.getMove(1).variations[0][2].notation.notation).toEqual("Qxd5");
+        expect(my_pgn.getMove(1).variations[0].notation.notation).toEqual("d5");
         expect(my_pgn.getMove(2).prev).toEqual(0);
         expect(my_pgn.getMove(3).prev).toEqual(2);
     });
 
     it("should understand one variation for black without move number", function () {
         my_pgn = pgnReader({pgn: "1. e4 e5 (d5 2. exd5 Qxd5)"});
-        expect(my_pgn.movesMainLine.length).toEqual(2);
+        expect(my_pgn.movesMainLine().length).toEqual(2);
         expect(my_pgn.getMove(1).variations.length).toEqual(1);
         expect(my_pgn.getMove(0).variations.length).toEqual(0);
-        expect(my_pgn.getMove(1).variations[0].length).toEqual(3);
-        expect(my_pgn.getMove(1).variations[0][2].notation.notation).toEqual("Qxd5");
+        expect(my_pgn.getMove(1).variations[0].notation.notation).toEqual("d5");
         expect(my_pgn.getMove(2).prev).toEqual(0);
         expect(my_pgn.getMove(3).prev).toEqual(2);
     });
 
     it("should understand nested variations", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 (d5 2. exd5 Qxd5 (2... Nf6))"});
-        expect(my_pgn.movesMainLine.length).toEqual(2);
-        expect(my_pgn.getMove(1).variations[0].length).toEqual(3);
-        expect(my_pgn.getMove(1).variations[0][2].notation.notation).toEqual("Qxd5");
-        expect(my_pgn.getMove(1).variations[0][2].variations.length).toEqual(1);
-        expect(my_pgn.getMove(1).variations[0][2].variations[0][0].notation.notation).toEqual("Nf6");
+        expect(my_pgn.movesMainLine().length).toEqual(2);
+        expect(my_pgn.getMove(1).variations[0].notation.notation).toEqual("d5");
+        expect(my_pgn.getMove(4).variations.length).toEqual(1);
+        expect(my_pgn.getMove(4).variations[0].notation.notation).toEqual("Nf6");
         expect(my_pgn.getMove(2).prev).toEqual(0);
         expect(my_pgn.getMove(5).prev).toEqual(3);
     });
@@ -271,9 +268,8 @@ describe("When reading PGN with variations", function() {
 
     it ("should know about variations in syntax for variants", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 ( 1... d5 )"});
-        expect(my_pgn.movesMainLine.length).toEqual(2);
-        expect(my_pgn.getMove(1).variations[0].length).toEqual(1);
-        expect(my_pgn.getMove(1).variations[0][0].notation.notation).toEqual("d5");
+        expect(my_pgn.movesMainLine().length).toEqual(2);
+        expect(my_pgn.getMove(1).variations[0].notation.notation).toEqual("d5");
     })
 });
 
@@ -290,7 +286,7 @@ describe("When reading variations with comments", function() {
 
     it("should understand comments for variation with white", function() {
         my_pgn = pgnReader({pgn: "1. d4 ({START} 1. {BEFORE} e4 {AFTER} e5) 1... d5"});
-        var var_first = my_pgn.getMove(0).variations[0][0];
+        var var_first = my_pgn.getMove(0).variations[0];
         expect(var_first.commentMove).toEqual("START");
         expect(var_first.commentBefore).toEqual("BEFORE");
         expect(var_first.commentAfter).toEqual("AFTER");
@@ -679,18 +675,18 @@ describe("When upvoting lines", function () {
     it("should upvote the second line as first line", function () {
         my_pgn = pgnReader({pgn: pgn});
         expect(my_pgn.getMove(3).variationLevel).toEqual(1);
-        expect(my_pgn.getMove(2).variations[0][0].index).toEqual(3);
-        expect(my_pgn.getMove(2).variations[1][0].index).toEqual(5);
+        expect(my_pgn.getMove(2).variations[0].index).toEqual(3);
+        expect(my_pgn.getMove(2).variations[1].index).toEqual(5);
         my_pgn.promoteMove(5);
-        expect(my_pgn.getMove(2).variations[0][0].index).toEqual(5);
-        expect(my_pgn.getMove(2).variations[1][0].index).toEqual(3);
+        expect(my_pgn.getMove(2).variations[0].index).toEqual(5);
+        expect(my_pgn.getMove(2).variations[1].index).toEqual(3);
     });
 
     it("should upvote the first line as main line", function () {
         my_pgn = pgnReader({pgn: pgn});
         expect(my_pgn.getMove(3).variationLevel).toEqual(1);
-        expect(my_pgn.getMove(2).variations[0][0].index).toEqual(3);
-        expect(my_pgn.getMove(2).variations[1][0].index).toEqual(5);
+        expect(my_pgn.getMove(2).variations[0].index).toEqual(3);
+        expect(my_pgn.getMove(2).variations[1].index).toEqual(5);
         my_pgn.promoteMove(3);
         expect(my_pgn.startVariation(my_pgn.getMove(2))).toBeTruthy();
         expect(my_pgn.getMove(2).variationLevel).toEqual(1);
@@ -700,11 +696,11 @@ describe("When upvoting lines", function () {
     it("should ignore upvoting the main line", function () {
         my_pgn = pgnReader({pgn: pgn});
         expect(my_pgn.getMove(3).variationLevel).toEqual(1);
-        expect(my_pgn.getMove(2).variations[0][0].index).toEqual(3);
-        expect(my_pgn.getMove(2).variations[1][0].index).toEqual(5);
+        expect(my_pgn.getMove(2).variations[0].index).toEqual(3);
+        expect(my_pgn.getMove(2).variations[1].index).toEqual(5);
         my_pgn.promoteMove(2);
-        expect(my_pgn.getMove(2).variations[0][0].index).toEqual(3);
-        expect(my_pgn.getMove(2).variations[1][0].index).toEqual(5);
+        expect(my_pgn.getMove(2).variations[0].index).toEqual(3);
+        expect(my_pgn.getMove(2).variations[1].index).toEqual(5);
     });
 
 

@@ -72,7 +72,7 @@ describe("PGN Viewer", function() {
 
         it("should understand comments for variation with white", function() {
             var my_pgn = pgnView("b", {pgn: "1. d4 ({START} 1. {BEFORE} e4 {AFTER} e5) 1... d5"});
-            var var_first = my_pgn.getPgn().getMove(0).variations[0][0];
+            var var_first = my_pgn.getPgn().getMove(0).variations[0];
             expect(var_first.commentMove).toEqual("START");
             expect(var_first.commentBefore).toEqual("BEFORE");
             expect(var_first.commentAfter).toEqual("AFTER");
