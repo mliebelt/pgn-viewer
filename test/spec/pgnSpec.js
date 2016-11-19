@@ -674,17 +674,37 @@ describe("When deleting lines" , function () {
 });
 
 describe("When upvoting lines", function () {
+    var pgn = "1. e4 e5 2. Nf3 (2. f4 exf4) (2. d4 exd4)";
 
-    xit("should upvote the first line as main line", function () {
-
+    it("should upvote the second line as first line", function () {
+        my_pgn = pgnReader({pgn: pgn});
+        expect(my_pgn.getMove(3).variationLevel).toEqual(1);
+        expect(my_pgn.getMove(2).variations[0][0].index).toEqual(3);
+        expect(my_pgn.getMove(2).variations[1][0].index).toEqual(5);
+        my_pgn.promoteMove(5);
+        expect(my_pgn.getMove(2).variations[0][0].index).toEqual(5);
+        expect(my_pgn.getMove(2).variations[1][0].index).toEqual(3);
     });
 
-    xit("should upvote the second line as first line", function () {
-
+    it("should upvote the first line as main line", function () {
+        my_pgn = pgnReader({pgn: pgn});
+        expect(my_pgn.getMove(3).variationLevel).toEqual(1);
+        expect(my_pgn.getMove(2).variations[0][0].index).toEqual(3);
+        expect(my_pgn.getMove(2).variations[1][0].index).toEqual(5);
+        my_pgn.promoteMove(3);
+        expect(my_pgn.startVariation(my_pgn.getMove(2))).toBeTruthy();
+        expect(my_pgn.getMove(2).variationLevel).toEqual(1);
+        expect(my_pgn.getMove(3).variationLevel).toEqual(0);
     });
 
-    xit("should ignore upvoting the main line", function () {
-
+    it("should ignore upvoting the main line", function () {
+        my_pgn = pgnReader({pgn: pgn});
+        expect(my_pgn.getMove(3).variationLevel).toEqual(1);
+        expect(my_pgn.getMove(2).variations[0][0].index).toEqual(3);
+        expect(my_pgn.getMove(2).variations[1][0].index).toEqual(5);
+        my_pgn.promoteMove(2);
+        expect(my_pgn.getMove(2).variations[0][0].index).toEqual(3);
+        expect(my_pgn.getMove(2).variations[1][0].index).toEqual(5);
     });
 
 

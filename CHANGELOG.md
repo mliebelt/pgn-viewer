@@ -7,6 +7,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+* Implemented deletion of moves (main line and variations) and upvoting of variations.
+
 ### Fixed
 
 

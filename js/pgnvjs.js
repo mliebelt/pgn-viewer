@@ -695,6 +695,14 @@ var pgnBase = function (boardId, configuration) {
                     regenerateMoves(that.mypgn.getMoves());
                     makeMove(null, prev, fen);
                 });
+                $('#' + buttonsId + "promoteVar").on('click', function() {
+                    var curr = that.currentMove;
+                    that.mypgn.promoteMove(that.currentMove);
+                    $("#" + movesId).html("");
+                    regenerateMoves(that.mypgn.getOrderedMoves());
+                    var fen = that.mypgn.getMove(curr).fen;
+                    makeMove(null, that.currentMove, fen);
+                });
                 $('#' + boardId + " .hidePGN").on("click", function () {
                     $( "#" + boardId + " .outerpgn").slideUp(400);//hide( "fold");
                 });
@@ -768,7 +776,7 @@ var pgnBase = function (boardId, configuration) {
             var varStack = [];
             for (var i = 0; i < myMoves.length; i++) {
                 var move = myMoves[i];
-                prev = generateMove(i, game, move, prev, movesDiv, varStack);
+                prev = generateMove(move.index, game, move, prev, movesDiv, varStack);
             }
         }
         regenerateMoves(myMoves);

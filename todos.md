@@ -156,6 +156,8 @@ Promote 3 will lead to
 4
 5
 
+We have the problem that by holding whole variations as arrays, and the main line as array, we have to do a lot of book-keeping to ensure by switching variations everything works fine. It would be much easier to just rewire the moves in a different form if only next and prev would be  used, and the variations array would have just the first move (and the rest would be found by using next). I will analyse how much changes I have to make to ensure that everything works again, and refactor then the code to switch to that scheme. 
+
 #### Ticket 25: Custom HTML
 
 It is necessary to restructure the current creation of the HTML sources. the reasons for it are:

@@ -319,6 +319,27 @@ var pgnReader = function (configuration) {
         return that.moves[id];
     };
 
+
+    /**
+     * Updates the variation level for all moves. If no arguments are given,
+     * update the variation level for all moves.
+     */
+    var updateVariationLevel = function(move, varLevel) {
+        if (arguments.length === 0) {
+            // Workaround: we don't know which is the first move, so that that with index 0
+            var my_move = getMove(0);
+            updateVariationLevel(my_move, 0);
+        } else {
+            move.variationLevel = varLevel;
+            if (move.next !== undefined) {
+                updateVariationLevel(getMove(move.next), varLevel);
+            }
+            for (var i = 0; i < move.variations.length; i++) {
+                updateVariationLevel(move.variations[i][0], varLevel + 1);
+            }
+        }
+    };
+
     /**
      * Deletes the move that matches the id (including the move itself).
      * There are some cases to expect:
@@ -337,26 +358,6 @@ var pgnReader = function (configuration) {
             var ret = array[index];
             array.splice(index, 1);
             return ret;
-        }
-
-        /**
-         * Updates the variation level for all moves.
-         */
-        var updateVariationLevel = function(move, varLevel) {
-            if (arguments.length === 0) {
-                // Workaround: we don't know which is the first move, so that that with index 0
-                var my_move = getMove(0);
-                updateVariationLevel(my_move, 0);
-            } else {
-                move.variationLevel = varLevel;
-                if (move.next !== undefined) {
-                    updateVariationLevel(getMove(move.next), varLevel);
-                }
-                for (var i = 0; i < move.variations.length; i++) {
-                    updateVariationLevel(move.variations[i][0], varLevel + 1);
-                }
-            }
-
         }
 
         if (isDeleted(id)) {
@@ -403,6 +404,63 @@ var pgnReader = function (configuration) {
             that.moves[id] = null;
             updateVariationLevel(variation[0], varLevel - 1);
         } 
+    };
+
+    /**
+     * Promotes the variation that is denoted by the move ID.
+     * These are the relevant cases:
+     * <ul>
+     * <li>Move is part of the main line: no promotion</li>
+     * <li>Move is part of the first variation: move the variation to the next level (or main line), make the previous promoted line the first variation.</li>
+     * <li>Move is part of second or higher variation: just switch index of variation arrays</li>
+     * </ul>
+     */
+    var promoteMove = function (id) {
+        /**
+         * Returns the index of the variation denoted by the move.
+         */
+        var indexOfVariationArray = function (move) {
+
+        };
+        /**
+         * Returns the first move of a variation.
+         */
+        var firstMove = function(move) {
+            if (startVariation(move)) {
+                return move;
+            }
+            return firstMove(getMove(move.prev));
+        }
+        var move = getMove(id);
+        // 1. Check that is variation
+        if (move.variationLevel === 0) {
+            return;
+        }
+
+        // 2. Get the first move of the variation
+        var myFirst = firstMove(move);
+
+        // 3. Get the index of that moves variation array
+        var higherVariationMove = getMove(getMove(myFirst.prev).next);
+        var indexVariation;
+        for (i = 0; i < higherVariationMove.variations.length; i++) {
+            if (higherVariationMove.variations[i][0] === myFirst) {
+                indexVariation = i;
+            }
+        }
+
+        // 4. If variation index is > 0 (not the first variation)
+        if (indexVariation > 0) {
+            // Just switch with the previous index
+            var tmpArray = higherVariationMove.variations[indexVariation-1];
+            higherVariationMove.variations[indexVariation-1] = higherVariationMove.variations[indexVariation];
+            higherVariationMove.variations[indexVariation] = tmpArray;
+        } else {
+            // 5. Now the most difficult case: create new array from line above, switch that with
+            // the variation
+        }
+        // Update the variation level because there will be changes
+        updateVariationLevel();
     };
 
 
@@ -577,6 +635,7 @@ var pgnReader = function (configuration) {
          */
         var eachMoveVariation = function(moveArray, level, prev) {
             var prevMove = (prev != null ? that.moves[prev] : null);
+            that.startMove = 0;
             $.each(moveArray, function(i, move) {
                 current++;
                 move.variationLevel = level;
@@ -764,14 +823,36 @@ var pgnReader = function (configuration) {
         move.nag = [];
     };
 
+    /**
+     * Return all moves in the order they are displayed: move, variations of that move,
+     * next move, ...
+     */
+    var getOrderedMoves = function(current, returnedMoves) {
+        if (arguments.length === 0) {
+            current = getMove(that.startMove);
+            returnedMoves = [];
+        }
+        returnedMoves.push(current);
+        for (var i = 0; i < current.variations.length; i++) {
+            getOrderedMoves(current.variations[i][0], returnedMoves);
+        }
+        if (current.next) {
+            return getOrderedMoves(getMove(current.next), returnedMoves);
+        } else {
+            return returnedMoves;
+        }
+    }
+
     // This defines the public API of the pgn function.
     return {
         movesString: function () { return that.moves_string; },
         readHeaders: readHeaders,
         deleteMove: deleteMove,
+        promoteMove: promoteMove,
         isDeleted: isDeleted,
         readMoves: function () { return readMoves; },
         getMoves: function () { return that.moves; },
+        getOrderedMoves: getOrderedMoves,
         movesMainLine: that.movesMainLine,
         getMove: getMove,
         getHeaders: function() { return that.headers; },
