@@ -443,7 +443,7 @@ var pgnReader = function (configuration) {
         }
         var move = getMove(id);
         // 1. Check that is variation
-        if (move.variationLevel === 0) {
+        if ((typeof move.variationLevel == "undefined") || (move.variationLevel === 0)) {
             return;
         }
 
@@ -471,10 +471,10 @@ var pgnReader = function (configuration) {
             var tmpMove = higherVariationMove;
             var tmpVariations = higherVariationMove.variations;
             var prevMove = getMove(higherVariationMove.prev);
-            prevMove.next = move.index;
-            tmpMove.variations = move.variations;
-            move.variations = tmpVariations;
-            move.variations[0] = tmpMove;
+            prevMove.next = myFirst.index;
+            tmpMove.variations = myFirst.variations;
+            myFirst.variations = tmpVariations;
+            myFirst.variations[0] = tmpMove;
         }
         // Update the variation level because there will be changes
         updateVariationLevel();
@@ -886,7 +886,6 @@ var pgnReader = function (configuration) {
         readMoves: function () { return readMoves; },
         getMoves: function () { return that.moves; },
         getOrderedMoves: getOrderedMoves,
-        movesMainLine: that.movesMainLine,
         getMove: getMove,
         getHeaders: function() { return that.headers; },
 //        splitHeaders: splitHeaders,

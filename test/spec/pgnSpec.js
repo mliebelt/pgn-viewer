@@ -577,7 +577,7 @@ describe("When making moves in PGN", function() {
         expect(my_pgn.getMove(4).turn).toEqual("w");
         expect(my_pgn.getMove(4).notation.notation).toEqual("f4");
         expect(my_pgn.getMove(2).variations.length).toEqual(1);
-        expect(my_pgn.getMove(2).variations[0][0].notation.notation).toEqual("f4");
+        expect(my_pgn.getMove(2).variations[0].notation.notation).toEqual("f4");
     });
 
     it("should start a second variation in the middle of the main line, when the current move has already a variation", function () {
@@ -588,8 +588,8 @@ describe("When making moves in PGN", function() {
         expect(my_pgn.getMove(5).turn).toEqual("w");
         expect(my_pgn.getMove(5).notation.notation).toEqual("d4");
         expect(my_pgn.getMove(2).variations.length).toEqual(2);
-        expect(my_pgn.getMove(2).variations[0][0].notation.notation).toEqual("f4");
-        expect(my_pgn.getMove(2).variations[1][0].notation.notation).toEqual("d4");
+        expect(my_pgn.getMove(2).variations[0].notation.notation).toEqual("f4");
+        expect(my_pgn.getMove(2).variations[1].notation.notation).toEqual("d4");
     });
 
     it("should use the existing move in the variation", function () {

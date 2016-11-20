@@ -775,8 +775,10 @@ var pgnBase = function (boardId, configuration) {
             var prev = null;
             var varStack = [];
             for (var i = 0; i < myMoves.length; i++) {
-                var move = myMoves[i];
-                prev = generateMove(move.index, game, move, prev, movesDiv, varStack);
+                if (! that.mypgn.isDeleted(i)) {
+                    var move = myMoves[i];
+                    prev = generateMove(move.index, game, move, prev, movesDiv, varStack);
+                }
             }
         }
         regenerateMoves(myMoves);
