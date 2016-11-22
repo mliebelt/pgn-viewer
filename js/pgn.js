@@ -74,6 +74,7 @@ function StringBuilder(value) {
 
 var pgnReader = function (configuration) {
     var that = {};
+    that.configuration = configuration;
     var initialize_configuration = function(configuration) {
         if (typeof configuration.position == 'undefined') {
             configuration.position = 'start';
@@ -110,7 +111,9 @@ var pgnReader = function (configuration) {
         TimeControl: "40/7200:3600 (moves per seconds: sudden death seconds)",
         Time: 'Time the game started, in "HH:MM:SS" format, in local clock time.',
         Termination: 'Gives more details about the termination of the game. It may be "abandoned", "adjudication" (result determined by third-party adjudication), "death", "emergency", "normal", "rules infraction", "time forfeit", or "unterminated".',
-        Mode: '"OTB" (over-the-board) "ICS" (Internet Chess Server)'
+        Mode: '"OTB" (over-the-board) "ICS" (Internet Chess Server)',
+        SetUp: '"0": position is start position, "1": tag FEN defines the position',
+        FEN: 'Alternative start position, tag SetUp has to be set to "1"'
     };
     /**
      * Returns the NAGs as defined in http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm#c10
@@ -227,6 +230,7 @@ var pgnReader = function (configuration) {
     /**
      * Reads the headers from the pgn string given, returns what is not consumed
      * by the headers.
+     * Ensure that the headers are interpreted and even modify the configuration.
      * @returns {string} the remaining moves
      */
     var readHeaders = function () {
@@ -250,7 +254,22 @@ var pgnReader = function (configuration) {
             }
             return headers;
         };
+        /**
+         * Implemment the logic to interpret the headers.
+         */
+        var interpretHeaders = function () {
+            if (that.headers['SetUp']) {
+                var setup = that.headers['SetUp'];
+                if (setup === '0') {
+                    configuration.position = 'start';
+                } else {
+                    var fen = that.headers['FEN'];
+                    configuration.position = fen;
+                }
+            }
+        } 
         that.headers = splitHeaders(configuration.pgn);
+        interpretHeaders();
         var index = configuration.pgn.lastIndexOf("]");
         return configuration.pgn.substring(index + 1);
     };
@@ -268,6 +287,10 @@ var pgnReader = function (configuration) {
             }
             currentMove.index = current;
         };
+        /**
+         * Originally variations are kept as array of moves. But after having linked prev and next,
+         * it is much easier to keep only the first move of the variation.
+         */
         var correctVariations = function() {
             $.each(that.moves, function(index, move) {
                 for (i = 0; i < move.variations.length; i++) {
@@ -879,6 +902,7 @@ var pgnReader = function (configuration) {
 
     // This defines the public API of the pgn function.
     return {
+        configuration: configuration,
         readHeaders: readHeaders,
         deleteMove: deleteMove,
         promoteMove: promoteMove,

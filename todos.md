@@ -223,3 +223,18 @@ What is the main difference in algorith here?
    * size: does not make sense, because it is the size of everything. Style it on your own then.
    * theme: set for the whole board, not useful if done with your own styling.
    * scrollable: generates a complicated DIV, not easy to replace an existing one instead  
+
+#### Ticket 23: use pgn notation tag "setup"
+
+The rules are the following:
+
+* Setup == "0": start position, replaces the default configuration position = 'start'.
+* Setup == "1": no start position, tag "FEN" has to be defined and defines the position then.   
+
+The following changes have to be done:
+
+* Check for the tags set.
+* If SetUp is used (in any of the upper / lowercase forms), it will be used.
+* Implement the logic to set position depending on the setup.
+
+Currently, the logic is implemented, but the start position is not shown. I have to debug that :-(

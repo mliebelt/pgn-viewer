@@ -7,9 +7,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-* Implemented deletion of moves (main line and variations) and upvoting of variations.
+* Implemented deletion of moves (main line and variations) and upvoting of variations. Refactored whole variation handling to make the code a little bit easier to understand.
+* Finished the long outstanding "edit" mode, that should be now feature complete.
+* Ensured that pgnReader is known from the beginning inside the pgnBase, so changes to the configuration are shared.
 
 ### Fixed
+
+* [#17](https://github.com/mliebelt/PgnViewerJS/issues/17): Implemented promotion and deletion of moves, cleanup of the UI
+* [#23](https://github.com/mliebelt/PgnViewerJS/issues/23): Interpretation of tag "SetUp" from the headers
+* [#33](https://github.com/mliebelt/PgnViewerJS/issues/33): Button "first" goes to inital position
 
 
 ## [0.9.3]

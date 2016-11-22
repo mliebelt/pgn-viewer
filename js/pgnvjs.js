@@ -13,6 +13,7 @@ var pgnBase = function (boardId, configuration) {
     var VERSION = "0.9.3";
     var that = {};
     that.configuration = configuration;
+    that.mypgn = pgnReader( that.configuration );
     var theme = configuration.theme || 'default';
     configuration['markup'] = (typeof boardId) == "object";
     var hasMarkup = function() { return configuration['markup'] };
@@ -559,7 +560,6 @@ var pgnBase = function (boardId, configuration) {
      * link to FEN (position after move)
      */
     var generateMoves = function(board) {
-        that.mypgn = pgnReader( that.configuration );
         var myMoves = that.mypgn.getMoves();
         if (that.configuration.position == 'start') {
             game.reset();
@@ -631,7 +631,7 @@ var pgnBase = function (boardId, configuration) {
             };
             var prevMove = function () {
                 var fen = null;
-                if (typeof that.currentMove == 'undefined') {
+                if ((typeof that.currentMove == 'undefined') || (that.currentMove == null)) {
                     /*fen = that.mypgn.getMove(0).fen;
                      makeMove(null, 0, fen);*/
                 }

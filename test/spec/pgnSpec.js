@@ -172,8 +172,11 @@ describe("When reading PGN with headers", function() {
             '[Result "1-0"]',
             '[White "Adolf Anderssen"]',
             '[Black "Jean Dufresne"]',
+            '[SetUp "0"]',
             '1. e2 e4 2. Nf3 Nc6'];
+        var pgn_string2 = ['[SetUp "1"]', '[FEN "8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57"]'];
         my_pgn = pgnReader({pgn: pgn_string.join(" ")});
+        my_pgn2 = pgnReader({pgn: pgn_string2.join(" ")});
     });
 
     // Disabled that because not used any where
@@ -183,9 +186,17 @@ describe("When reading PGN with headers", function() {
     });
 
     it("should have these headers read", function() {
-        expect(Object.keys(my_pgn.getHeaders()).length).toEqual(7); // EventDate is not valid
+        expect(Object.keys(my_pgn.getHeaders()).length).toEqual(8); // EventDate is not valid
         expect(my_pgn.getHeaders().Site).toEqual("Berlin GER");
         expect(my_pgn.getHeaders().Date).toEqual("1852.??.??");
+        expect(my_pgn.getHeaders().SetUp).toEqual("0");
+        expect(my_pgn.configuration.position).toEqual("start");
+    });
+
+    it("should have header mapped to FEN", function() {
+        expect(Object.keys(my_pgn2.getHeaders()).length).toEqual(2); // EventDate is not valid
+        expect(my_pgn2.getHeaders().SetUp).toEqual("1");
+        expect(my_pgn2.configuration.position).toEqual("8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57");
     })
 });
 
