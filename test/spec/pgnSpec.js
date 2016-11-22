@@ -532,6 +532,38 @@ describe("Writing PGN like", function() {
         var res = my_pgn.write_pgn();
         expect(res).toEqual("1. e4 e5 ( 1... c5 2. Nf3 d6 ( 2... Nc6 3. d4 ) 3. d4 ) 2. Nf3");
     });
+    it("should write the end of the game", function () {
+        var my_pgn = pgnReader({pgn: "1. e4 e5 0-1"});
+        expect(my_pgn.write_pgn()).toEqual("1. e4 e5 0-1");
+    });
+    it("should write the end of the game, understand all results: 1-0", function () {
+        var my_pgn = pgnReader({pgn: "1. e4 e5 1-0"});
+        expect(my_pgn.write_pgn()).toEqual("1. e4 e5 1-0");
+    });
+    it("should write the end of the game, understand all results: *", function () {
+        var my_pgn = pgnReader({pgn: "1. e4 e5 *"});
+        expect(my_pgn.write_pgn()).toEqual("1. e4 e5 *");
+    });
+    it("should write the end of the game, understand all results: 1/2-1/2", function () {
+        var my_pgn = pgnReader({pgn: "1. e4 e5 1/2-1/2"});
+        expect(my_pgn.write_pgn()).toEqual("1. e4 e5 1/2-1/2");
+    });
+    it("should write the end of the game as part of tags", function () {
+        var my_pgn = pgnReader({pgn: '[Result "0-1"] 1. e4 e5'});
+        expect(my_pgn.write_pgn()).toEqual("1. e4 e5 0-1");
+    });
+    it("should write the end of the game as part of tags, understand all results: *", function () {
+        var my_pgn = pgnReader({pgn: '[Result "*"] 1. e4 e5'});
+        expect(my_pgn.write_pgn()).toEqual("1. e4 e5 *");
+    });
+    it("should write the end of the game as part of tags, understand all results: 1/2-1/2", function () {
+        var my_pgn = pgnReader({pgn: '[Result "1/2-1/2"] 1. e4 e5'});
+        expect(my_pgn.write_pgn()).toEqual("1. e4 e5 1/2-1/2");
+    });
+    it("should write the end of the game as part of tags, understand all results: 1-0", function () {
+        var my_pgn = pgnReader({pgn: '[Result "1-0"] 1. e4 e5'});
+        expect(my_pgn.write_pgn()).toEqual("1. e4 e5 1-0");
+    });
 });
 
 describe("When reading a PGN game", function () {

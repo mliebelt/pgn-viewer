@@ -89,7 +89,7 @@ var pgnReader = function (configuration) {
     initialize_configuration(configuration);
     var parser = pgnParser;
     var game = new Chess();
-    that.PGN_KEYS = {
+    that.PGN_TAGS = {
         Event: "the name of the tournament or match event",
         Site: "the location of the event",
         Date: "the starting date of the game (format: YYYY.MM.TT)",
@@ -247,7 +247,7 @@ var pgnReader = function (configuration) {
                 var ret = list[i].match(/\[(\w+)\s+\"([^\"]+)\"/);
                 if (ret) {
                     var key = ret[1];
-                    if (that.PGN_KEYS[key]) {
+                    if (that.PGN_TAGS[key]) {
                         headers[key] = ret[2];
                     }
                 }
@@ -266,6 +266,9 @@ var pgnReader = function (configuration) {
                     var fen = that.headers['FEN'];
                     configuration.position = fen;
                 }
+            }
+            if (that.headers['Result']) {
+                that.endGame = that.headers['Result'];
             }
         } 
         that.headers = splitHeaders(configuration.pgn);
@@ -622,9 +625,17 @@ var pgnReader = function (configuration) {
             write_move(next, sb);
         };
 
+        var write_end_game = function(_sb) {
+            if (that.endGame) {
+                _sb.append(" ");
+                _sb.append(that.endGame);
+            }
+        }
+
         var write_pgn2 = function(move, _sb) {
 
             write_move(move, sb);
+            write_end_game(_sb);
             return sb.toString();
         };
         var sb = StringBuilder("");
