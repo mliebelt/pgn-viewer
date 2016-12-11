@@ -16871,105 +16871,1051 @@ G=function(b,c,a){a=F(b,c,a);a===e?delete b[c]:b[c]=a},F=function(b,c,a){var d=b
     i18n.noConflict = noConflict;
 
 })(typeof exports === 'undefined' ? window : exports);
-/*
- * jQuery Hotkeys Plugin
- * Copyright 2010, John Resig
- * Dual licensed under the MIT or GPL Version 2 licenses.
+/*global define:false */
+/**
+ * Copyright 2016 Craig Campbell
  *
- * Based upon the plugin by Tzury Bar Yochay:
- * http://github.com/tzuryby/hotkeys
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * Original idea by:
- * Binny V A, http://www.openjs.com/scripts/events/keyboard_shortcuts/
-*/
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Mousetrap is a simple keyboard shortcut library for Javascript with
+ * no external dependencies
+ *
+ * @version 1.6.0
+ * @url craig.is/killing/mice
+ */
+(function(window, document, undefined) {
 
-(function(jQuery){
-	
-	jQuery.hotkeys = {
-		version: "0.8",
+    // Check if mousetrap is used inside browser, if not, return
+    if (!window) {
+        return;
+    }
 
-		specialKeys: {
-			8: "backspace", 9: "tab", 13: "return", 16: "shift", 17: "ctrl", 18: "alt", 19: "pause",
-			20: "capslock", 27: "esc", 32: "space", 33: "pageup", 34: "pagedown", 35: "end", 36: "home",
-			37: "left", 38: "up", 39: "right", 40: "down", 45: "insert", 46: "del", 
-			96: "0", 97: "1", 98: "2", 99: "3", 100: "4", 101: "5", 102: "6", 103: "7",
-			104: "8", 105: "9", 106: "*", 107: "+", 109: "-", 110: ".", 111 : "/", 
-			112: "f1", 113: "f2", 114: "f3", 115: "f4", 116: "f5", 117: "f6", 118: "f7", 119: "f8", 
-			120: "f9", 121: "f10", 122: "f11", 123: "f12", 144: "numlock", 145: "scroll", 191: "/", 224: "meta"
-		},
-	
-		shiftNums: {
-			"`": "~", "1": "!", "2": "@", "3": "#", "4": "$", "5": "%", "6": "^", "7": "&", 
-			"8": "*", "9": "(", "0": ")", "-": "_", "=": "+", ";": ": ", "'": "\"", ",": "<", 
-			".": ">",  "/": "?",  "\\": "|"
-		}
-	};
+    /**
+     * mapping of special keycodes to their corresponding keys
+     *
+     * everything in this dictionary cannot use keypress events
+     * so it has to be here to map to the correct keycodes for
+     * keyup/keydown events
+     *
+     * @type {Object}
+     */
+    var _MAP = {
+        8: 'backspace',
+        9: 'tab',
+        13: 'enter',
+        16: 'shift',
+        17: 'ctrl',
+        18: 'alt',
+        20: 'capslock',
+        27: 'esc',
+        32: 'space',
+        33: 'pageup',
+        34: 'pagedown',
+        35: 'end',
+        36: 'home',
+        37: 'left',
+        38: 'up',
+        39: 'right',
+        40: 'down',
+        45: 'ins',
+        46: 'del',
+        91: 'meta',
+        93: 'meta',
+        224: 'meta'
+    };
 
-	function keyHandler( handleObj ) {
-		// Only care when a possible input has been specified
-		if ( typeof handleObj.data !== "string" ) {
-			return;
-		}
-		
-		var origHandler = handleObj.handler,
-			keys = handleObj.data.toLowerCase().split(" ");
-	
-		handleObj.handler = function( event ) {
-			// Don't fire in text-accepting inputs that we didn't directly bind to
-			if ( this !== event.target && (/textarea|select/i.test( event.target.nodeName ) ||
-				 event.target.type === "text") ) {
-				return;
-			}
-			
-			// Keypress represents characters, not special keys
-			var special = event.type !== "keypress" && jQuery.hotkeys.specialKeys[ event.which ],
-				character = String.fromCharCode( event.which ).toLowerCase(),
-				key, modif = "", possible = {};
+    /**
+     * mapping for special characters so they can support
+     *
+     * this dictionary is only used incase you want to bind a
+     * keyup or keydown event to one of these keys
+     *
+     * @type {Object}
+     */
+    var _KEYCODE_MAP = {
+        106: '*',
+        107: '+',
+        109: '-',
+        110: '.',
+        111 : '/',
+        186: ';',
+        187: '=',
+        188: ',',
+        189: '-',
+        190: '.',
+        191: '/',
+        192: '`',
+        219: '[',
+        220: '\\',
+        221: ']',
+        222: '\''
+    };
 
-			// check combinations (alt|ctrl|shift+anything)
-			if ( event.altKey && special !== "alt" ) {
-				modif += "alt+";
-			}
+    /**
+     * this is a mapping of keys that require shift on a US keypad
+     * back to the non shift equivelents
+     *
+     * this is so you can use keyup events with these keys
+     *
+     * note that this will only work reliably on US keyboards
+     *
+     * @type {Object}
+     */
+    var _SHIFT_MAP = {
+        '~': '`',
+        '!': '1',
+        '@': '2',
+        '#': '3',
+        '$': '4',
+        '%': '5',
+        '^': '6',
+        '&': '7',
+        '*': '8',
+        '(': '9',
+        ')': '0',
+        '_': '-',
+        '+': '=',
+        ':': ';',
+        '\"': '\'',
+        '<': ',',
+        '>': '.',
+        '?': '/',
+        '|': '\\'
+    };
 
-			if ( event.ctrlKey && special !== "ctrl" ) {
-				modif += "ctrl+";
-			}
-			
-			// TODO: Need to make sure this works consistently across platforms
-			if ( event.metaKey && !event.ctrlKey && special !== "meta" ) {
-				modif += "meta+";
-			}
+    /**
+     * this is a list of special strings you can use to map
+     * to modifier keys when you specify your keyboard shortcuts
+     *
+     * @type {Object}
+     */
+    var _SPECIAL_ALIASES = {
+        'option': 'alt',
+        'command': 'meta',
+        'return': 'enter',
+        'escape': 'esc',
+        'plus': '+',
+        'mod': /Mac|iPod|iPhone|iPad/.test(navigator.platform) ? 'meta' : 'ctrl'
+    };
 
-			if ( event.shiftKey && special !== "shift" ) {
-				modif += "shift+";
-			}
+    /**
+     * variable to store the flipped version of _MAP from above
+     * needed to check if we should use keypress or not when no action
+     * is specified
+     *
+     * @type {Object|undefined}
+     */
+    var _REVERSE_MAP;
 
-			if ( special ) {
-				possible[ modif + special ] = true;
+    /**
+     * loop through the f keys, f1 to f19 and add them to the map
+     * programatically
+     */
+    for (var i = 1; i < 20; ++i) {
+        _MAP[111 + i] = 'f' + i;
+    }
 
-			} else {
-				possible[ modif + character ] = true;
-				possible[ modif + jQuery.hotkeys.shiftNums[ character ] ] = true;
+    /**
+     * loop through to map numbers on the numeric keypad
+     */
+    for (i = 0; i <= 9; ++i) {
 
-				// "$" can be triggered as "Shift+4" or "Shift+$" or just "$"
-				if ( modif === "shift+" ) {
-					possible[ jQuery.hotkeys.shiftNums[ character ] ] = true;
-				}
-			}
+        // This needs to use a string cause otherwise since 0 is falsey
+        // mousetrap will never fire for numpad 0 pressed as part of a keydown
+        // event.
+        //
+        // @see https://github.com/ccampbell/mousetrap/pull/258
+        _MAP[i + 96] = i.toString();
+    }
 
-			for ( var i = 0, l = keys.length; i < l; i++ ) {
-				if ( possible[ keys[i] ] ) {
-					return origHandler.apply( this, arguments );
-				}
-			}
-		};
-	}
+    /**
+     * cross browser add event method
+     *
+     * @param {Element|HTMLDocument} object
+     * @param {string} type
+     * @param {Function} callback
+     * @returns void
+     */
+    function _addEvent(object, type, callback) {
+        if (object.addEventListener) {
+            object.addEventListener(type, callback, false);
+            return;
+        }
 
-	jQuery.each([ "keydown", "keyup", "keypress" ], function() {
-		jQuery.event.special[ this ] = { add: keyHandler };
-	});
+        object.attachEvent('on' + type, callback);
+    }
 
-})( jQuery );
+    /**
+     * takes the event and returns the key character
+     *
+     * @param {Event} e
+     * @return {string}
+     */
+    function _characterFromEvent(e) {
+
+        // for keypress events we should return the character as is
+        if (e.type == 'keypress') {
+            var character = String.fromCharCode(e.which);
+
+            // if the shift key is not pressed then it is safe to assume
+            // that we want the character to be lowercase.  this means if
+            // you accidentally have caps lock on then your key bindings
+            // will continue to work
+            //
+            // the only side effect that might not be desired is if you
+            // bind something like 'A' cause you want to trigger an
+            // event when capital A is pressed caps lock will no longer
+            // trigger the event.  shift+a will though.
+            if (!e.shiftKey) {
+                character = character.toLowerCase();
+            }
+
+            return character;
+        }
+
+        // for non keypress events the special maps are needed
+        if (_MAP[e.which]) {
+            return _MAP[e.which];
+        }
+
+        if (_KEYCODE_MAP[e.which]) {
+            return _KEYCODE_MAP[e.which];
+        }
+
+        // if it is not in the special map
+
+        // with keydown and keyup events the character seems to always
+        // come in as an uppercase character whether you are pressing shift
+        // or not.  we should make sure it is always lowercase for comparisons
+        return String.fromCharCode(e.which).toLowerCase();
+    }
+
+    /**
+     * checks if two arrays are equal
+     *
+     * @param {Array} modifiers1
+     * @param {Array} modifiers2
+     * @returns {boolean}
+     */
+    function _modifiersMatch(modifiers1, modifiers2) {
+        return modifiers1.sort().join(',') === modifiers2.sort().join(',');
+    }
+
+    /**
+     * takes a key event and figures out what the modifiers are
+     *
+     * @param {Event} e
+     * @returns {Array}
+     */
+    function _eventModifiers(e) {
+        var modifiers = [];
+
+        if (e.shiftKey) {
+            modifiers.push('shift');
+        }
+
+        if (e.altKey) {
+            modifiers.push('alt');
+        }
+
+        if (e.ctrlKey) {
+            modifiers.push('ctrl');
+        }
+
+        if (e.metaKey) {
+            modifiers.push('meta');
+        }
+
+        return modifiers;
+    }
+
+    /**
+     * prevents default for this event
+     *
+     * @param {Event} e
+     * @returns void
+     */
+    function _preventDefault(e) {
+        if (e.preventDefault) {
+            e.preventDefault();
+            return;
+        }
+
+        e.returnValue = false;
+    }
+
+    /**
+     * stops propogation for this event
+     *
+     * @param {Event} e
+     * @returns void
+     */
+    function _stopPropagation(e) {
+        if (e.stopPropagation) {
+            e.stopPropagation();
+            return;
+        }
+
+        e.cancelBubble = true;
+    }
+
+    /**
+     * determines if the keycode specified is a modifier key or not
+     *
+     * @param {string} key
+     * @returns {boolean}
+     */
+    function _isModifier(key) {
+        return key == 'shift' || key == 'ctrl' || key == 'alt' || key == 'meta';
+    }
+
+    /**
+     * reverses the map lookup so that we can look for specific keys
+     * to see what can and can't use keypress
+     *
+     * @return {Object}
+     */
+    function _getReverseMap() {
+        if (!_REVERSE_MAP) {
+            _REVERSE_MAP = {};
+            for (var key in _MAP) {
+
+                // pull out the numeric keypad from here cause keypress should
+                // be able to detect the keys from the character
+                if (key > 95 && key < 112) {
+                    continue;
+                }
+
+                if (_MAP.hasOwnProperty(key)) {
+                    _REVERSE_MAP[_MAP[key]] = key;
+                }
+            }
+        }
+        return _REVERSE_MAP;
+    }
+
+    /**
+     * picks the best action based on the key combination
+     *
+     * @param {string} key - character for key
+     * @param {Array} modifiers
+     * @param {string=} action passed in
+     */
+    function _pickBestAction(key, modifiers, action) {
+
+        // if no action was picked in we should try to pick the one
+        // that we think would work best for this key
+        if (!action) {
+            action = _getReverseMap()[key] ? 'keydown' : 'keypress';
+        }
+
+        // modifier keys don't work as expected with keypress,
+        // switch to keydown
+        if (action == 'keypress' && modifiers.length) {
+            action = 'keydown';
+        }
+
+        return action;
+    }
+
+    /**
+     * Converts from a string key combination to an array
+     *
+     * @param  {string} combination like "command+shift+l"
+     * @return {Array}
+     */
+    function _keysFromString(combination) {
+        if (combination === '+') {
+            return ['+'];
+        }
+
+        combination = combination.replace(/\+{2}/g, '+plus');
+        return combination.split('+');
+    }
+
+    /**
+     * Gets info for a specific key combination
+     *
+     * @param  {string} combination key combination ("command+s" or "a" or "*")
+     * @param  {string=} action
+     * @returns {Object}
+     */
+    function _getKeyInfo(combination, action) {
+        var keys;
+        var key;
+        var i;
+        var modifiers = [];
+
+        // take the keys from this pattern and figure out what the actual
+        // pattern is all about
+        keys = _keysFromString(combination);
+
+        for (i = 0; i < keys.length; ++i) {
+            key = keys[i];
+
+            // normalize key names
+            if (_SPECIAL_ALIASES[key]) {
+                key = _SPECIAL_ALIASES[key];
+            }
+
+            // if this is not a keypress event then we should
+            // be smart about using shift keys
+            // this will only work for US keyboards however
+            if (action && action != 'keypress' && _SHIFT_MAP[key]) {
+                key = _SHIFT_MAP[key];
+                modifiers.push('shift');
+            }
+
+            // if this key is a modifier then add it to the list of modifiers
+            if (_isModifier(key)) {
+                modifiers.push(key);
+            }
+        }
+
+        // depending on what the key combination is
+        // we will try to pick the best event for it
+        action = _pickBestAction(key, modifiers, action);
+
+        return {
+            key: key,
+            modifiers: modifiers,
+            action: action
+        };
+    }
+
+    function _belongsTo(element, ancestor) {
+        if (element === null || element === document) {
+            return false;
+        }
+
+        if (element === ancestor) {
+            return true;
+        }
+
+        return _belongsTo(element.parentNode, ancestor);
+    }
+
+    function Mousetrap(targetElement) {
+        var self = this;
+
+        targetElement = targetElement || document;
+
+        if (!(self instanceof Mousetrap)) {
+            return new Mousetrap(targetElement);
+        }
+
+        /**
+         * element to attach key events to
+         *
+         * @type {Element}
+         */
+        self.target = targetElement;
+
+        /**
+         * a list of all the callbacks setup via Mousetrap.bind()
+         *
+         * @type {Object}
+         */
+        self._callbacks = {};
+
+        /**
+         * direct map of string combinations to callbacks used for trigger()
+         *
+         * @type {Object}
+         */
+        self._directMap = {};
+
+        /**
+         * keeps track of what level each sequence is at since multiple
+         * sequences can start out with the same sequence
+         *
+         * @type {Object}
+         */
+        var _sequenceLevels = {};
+
+        /**
+         * variable to store the setTimeout call
+         *
+         * @type {null|number}
+         */
+        var _resetTimer;
+
+        /**
+         * temporary state where we will ignore the next keyup
+         *
+         * @type {boolean|string}
+         */
+        var _ignoreNextKeyup = false;
+
+        /**
+         * temporary state where we will ignore the next keypress
+         *
+         * @type {boolean}
+         */
+        var _ignoreNextKeypress = false;
+
+        /**
+         * are we currently inside of a sequence?
+         * type of action ("keyup" or "keydown" or "keypress") or false
+         *
+         * @type {boolean|string}
+         */
+        var _nextExpectedAction = false;
+
+        /**
+         * resets all sequence counters except for the ones passed in
+         *
+         * @param {Object} doNotReset
+         * @returns void
+         */
+        function _resetSequences(doNotReset) {
+            doNotReset = doNotReset || {};
+
+            var activeSequences = false,
+                key;
+
+            for (key in _sequenceLevels) {
+                if (doNotReset[key]) {
+                    activeSequences = true;
+                    continue;
+                }
+                _sequenceLevels[key] = 0;
+            }
+
+            if (!activeSequences) {
+                _nextExpectedAction = false;
+            }
+        }
+
+        /**
+         * finds all callbacks that match based on the keycode, modifiers,
+         * and action
+         *
+         * @param {string} character
+         * @param {Array} modifiers
+         * @param {Event|Object} e
+         * @param {string=} sequenceName - name of the sequence we are looking for
+         * @param {string=} combination
+         * @param {number=} level
+         * @returns {Array}
+         */
+        function _getMatches(character, modifiers, e, sequenceName, combination, level) {
+            var i;
+            var callback;
+            var matches = [];
+            var action = e.type;
+
+            // if there are no events related to this keycode
+            if (!self._callbacks[character]) {
+                return [];
+            }
+
+            // if a modifier key is coming up on its own we should allow it
+            if (action == 'keyup' && _isModifier(character)) {
+                modifiers = [character];
+            }
+
+            // loop through all callbacks for the key that was pressed
+            // and see if any of them match
+            for (i = 0; i < self._callbacks[character].length; ++i) {
+                callback = self._callbacks[character][i];
+
+                // if a sequence name is not specified, but this is a sequence at
+                // the wrong level then move onto the next match
+                if (!sequenceName && callback.seq && _sequenceLevels[callback.seq] != callback.level) {
+                    continue;
+                }
+
+                // if the action we are looking for doesn't match the action we got
+                // then we should keep going
+                if (action != callback.action) {
+                    continue;
+                }
+
+                // if this is a keypress event and the meta key and control key
+                // are not pressed that means that we need to only look at the
+                // character, otherwise check the modifiers as well
+                //
+                // chrome will not fire a keypress if meta or control is down
+                // safari will fire a keypress if meta or meta+shift is down
+                // firefox will fire a keypress if meta or control is down
+                if ((action == 'keypress' && !e.metaKey && !e.ctrlKey) || _modifiersMatch(modifiers, callback.modifiers)) {
+
+                    // when you bind a combination or sequence a second time it
+                    // should overwrite the first one.  if a sequenceName or
+                    // combination is specified in this call it does just that
+                    //
+                    // @todo make deleting its own method?
+                    var deleteCombo = !sequenceName && callback.combo == combination;
+                    var deleteSequence = sequenceName && callback.seq == sequenceName && callback.level == level;
+                    if (deleteCombo || deleteSequence) {
+                        self._callbacks[character].splice(i, 1);
+                    }
+
+                    matches.push(callback);
+                }
+            }
+
+            return matches;
+        }
+
+        /**
+         * actually calls the callback function
+         *
+         * if your callback function returns false this will use the jquery
+         * convention - prevent default and stop propogation on the event
+         *
+         * @param {Function} callback
+         * @param {Event} e
+         * @returns void
+         */
+        function _fireCallback(callback, e, combo, sequence) {
+
+            // if this event should not happen stop here
+            if (self.stopCallback(e, e.target || e.srcElement, combo, sequence)) {
+                return;
+            }
+
+            if (callback(e, combo) === false) {
+                _preventDefault(e);
+                _stopPropagation(e);
+            }
+        }
+
+        /**
+         * handles a character key event
+         *
+         * @param {string} character
+         * @param {Array} modifiers
+         * @param {Event} e
+         * @returns void
+         */
+        self._handleKey = function(character, modifiers, e) {
+            var callbacks = _getMatches(character, modifiers, e);
+            var i;
+            var doNotReset = {};
+            var maxLevel = 0;
+            var processedSequenceCallback = false;
+
+            // Calculate the maxLevel for sequences so we can only execute the longest callback sequence
+            for (i = 0; i < callbacks.length; ++i) {
+                if (callbacks[i].seq) {
+                    maxLevel = Math.max(maxLevel, callbacks[i].level);
+                }
+            }
+
+            // loop through matching callbacks for this key event
+            for (i = 0; i < callbacks.length; ++i) {
+
+                // fire for all sequence callbacks
+                // this is because if for example you have multiple sequences
+                // bound such as "g i" and "g t" they both need to fire the
+                // callback for matching g cause otherwise you can only ever
+                // match the first one
+                if (callbacks[i].seq) {
+
+                    // only fire callbacks for the maxLevel to prevent
+                    // subsequences from also firing
+                    //
+                    // for example 'a option b' should not cause 'option b' to fire
+                    // even though 'option b' is part of the other sequence
+                    //
+                    // any sequences that do not match here will be discarded
+                    // below by the _resetSequences call
+                    if (callbacks[i].level != maxLevel) {
+                        continue;
+                    }
+
+                    processedSequenceCallback = true;
+
+                    // keep a list of which sequences were matches for later
+                    doNotReset[callbacks[i].seq] = 1;
+                    _fireCallback(callbacks[i].callback, e, callbacks[i].combo, callbacks[i].seq);
+                    continue;
+                }
+
+                // if there were no sequence matches but we are still here
+                // that means this is a regular match so we should fire that
+                if (!processedSequenceCallback) {
+                    _fireCallback(callbacks[i].callback, e, callbacks[i].combo);
+                }
+            }
+
+            // if the key you pressed matches the type of sequence without
+            // being a modifier (ie "keyup" or "keypress") then we should
+            // reset all sequences that were not matched by this event
+            //
+            // this is so, for example, if you have the sequence "h a t" and you
+            // type "h e a r t" it does not match.  in this case the "e" will
+            // cause the sequence to reset
+            //
+            // modifier keys are ignored because you can have a sequence
+            // that contains modifiers such as "enter ctrl+space" and in most
+            // cases the modifier key will be pressed before the next key
+            //
+            // also if you have a sequence such as "ctrl+b a" then pressing the
+            // "b" key will trigger a "keypress" and a "keydown"
+            //
+            // the "keydown" is expected when there is a modifier, but the
+            // "keypress" ends up matching the _nextExpectedAction since it occurs
+            // after and that causes the sequence to reset
+            //
+            // we ignore keypresses in a sequence that directly follow a keydown
+            // for the same character
+            var ignoreThisKeypress = e.type == 'keypress' && _ignoreNextKeypress;
+            if (e.type == _nextExpectedAction && !_isModifier(character) && !ignoreThisKeypress) {
+                _resetSequences(doNotReset);
+            }
+
+            _ignoreNextKeypress = processedSequenceCallback && e.type == 'keydown';
+        };
+
+        /**
+         * handles a keydown event
+         *
+         * @param {Event} e
+         * @returns void
+         */
+        function _handleKeyEvent(e) {
+
+            // normalize e.which for key events
+            // @see http://stackoverflow.com/questions/4285627/javascript-keycode-vs-charcode-utter-confusion
+            if (typeof e.which !== 'number') {
+                e.which = e.keyCode;
+            }
+
+            var character = _characterFromEvent(e);
+
+            // no character found then stop
+            if (!character) {
+                return;
+            }
+
+            // need to use === for the character check because the character can be 0
+            if (e.type == 'keyup' && _ignoreNextKeyup === character) {
+                _ignoreNextKeyup = false;
+                return;
+            }
+
+            self.handleKey(character, _eventModifiers(e), e);
+        }
+
+        /**
+         * called to set a 1 second timeout on the specified sequence
+         *
+         * this is so after each key press in the sequence you have 1 second
+         * to press the next key before you have to start over
+         *
+         * @returns void
+         */
+        function _resetSequenceTimer() {
+            clearTimeout(_resetTimer);
+            _resetTimer = setTimeout(_resetSequences, 1000);
+        }
+
+        /**
+         * binds a key sequence to an event
+         *
+         * @param {string} combo - combo specified in bind call
+         * @param {Array} keys
+         * @param {Function} callback
+         * @param {string=} action
+         * @returns void
+         */
+        function _bindSequence(combo, keys, callback, action) {
+
+            // start off by adding a sequence level record for this combination
+            // and setting the level to 0
+            _sequenceLevels[combo] = 0;
+
+            /**
+             * callback to increase the sequence level for this sequence and reset
+             * all other sequences that were active
+             *
+             * @param {string} nextAction
+             * @returns {Function}
+             */
+            function _increaseSequence(nextAction) {
+                return function() {
+                    _nextExpectedAction = nextAction;
+                    ++_sequenceLevels[combo];
+                    _resetSequenceTimer();
+                };
+            }
+
+            /**
+             * wraps the specified callback inside of another function in order
+             * to reset all sequence counters as soon as this sequence is done
+             *
+             * @param {Event} e
+             * @returns void
+             */
+            function _callbackAndReset(e) {
+                _fireCallback(callback, e, combo);
+
+                // we should ignore the next key up if the action is key down
+                // or keypress.  this is so if you finish a sequence and
+                // release the key the final key will not trigger a keyup
+                if (action !== 'keyup') {
+                    _ignoreNextKeyup = _characterFromEvent(e);
+                }
+
+                // weird race condition if a sequence ends with the key
+                // another sequence begins with
+                setTimeout(_resetSequences, 10);
+            }
+
+            // loop through keys one at a time and bind the appropriate callback
+            // function.  for any key leading up to the final one it should
+            // increase the sequence. after the final, it should reset all sequences
+            //
+            // if an action is specified in the original bind call then that will
+            // be used throughout.  otherwise we will pass the action that the
+            // next key in the sequence should match.  this allows a sequence
+            // to mix and match keypress and keydown events depending on which
+            // ones are better suited to the key provided
+            for (var i = 0; i < keys.length; ++i) {
+                var isFinal = i + 1 === keys.length;
+                var wrappedCallback = isFinal ? _callbackAndReset : _increaseSequence(action || _getKeyInfo(keys[i + 1]).action);
+                _bindSingle(keys[i], wrappedCallback, action, combo, i);
+            }
+        }
+
+        /**
+         * binds a single keyboard combination
+         *
+         * @param {string} combination
+         * @param {Function} callback
+         * @param {string=} action
+         * @param {string=} sequenceName - name of sequence if part of sequence
+         * @param {number=} level - what part of the sequence the command is
+         * @returns void
+         */
+        function _bindSingle(combination, callback, action, sequenceName, level) {
+
+            // store a direct mapped reference for use with Mousetrap.trigger
+            self._directMap[combination + ':' + action] = callback;
+
+            // make sure multiple spaces in a row become a single space
+            combination = combination.replace(/\s+/g, ' ');
+
+            var sequence = combination.split(' ');
+            var info;
+
+            // if this pattern is a sequence of keys then run through this method
+            // to reprocess each pattern one key at a time
+            if (sequence.length > 1) {
+                _bindSequence(combination, sequence, callback, action);
+                return;
+            }
+
+            info = _getKeyInfo(combination, action);
+
+            // make sure to initialize array if this is the first time
+            // a callback is added for this key
+            self._callbacks[info.key] = self._callbacks[info.key] || [];
+
+            // remove an existing match if there is one
+            _getMatches(info.key, info.modifiers, {type: info.action}, sequenceName, combination, level);
+
+            // add this call back to the array
+            // if it is a sequence put it at the beginning
+            // if not put it at the end
+            //
+            // this is important because the way these are processed expects
+            // the sequence ones to come first
+            self._callbacks[info.key][sequenceName ? 'unshift' : 'push']({
+                callback: callback,
+                modifiers: info.modifiers,
+                action: info.action,
+                seq: sequenceName,
+                level: level,
+                combo: combination
+            });
+        }
+
+        /**
+         * binds multiple combinations to the same callback
+         *
+         * @param {Array} combinations
+         * @param {Function} callback
+         * @param {string|undefined} action
+         * @returns void
+         */
+        self._bindMultiple = function(combinations, callback, action) {
+            for (var i = 0; i < combinations.length; ++i) {
+                _bindSingle(combinations[i], callback, action);
+            }
+        };
+
+        // start!
+        _addEvent(targetElement, 'keypress', _handleKeyEvent);
+        _addEvent(targetElement, 'keydown', _handleKeyEvent);
+        _addEvent(targetElement, 'keyup', _handleKeyEvent);
+    }
+
+    /**
+     * binds an event to mousetrap
+     *
+     * can be a single key, a combination of keys separated with +,
+     * an array of keys, or a sequence of keys separated by spaces
+     *
+     * be sure to list the modifier keys first to make sure that the
+     * correct key ends up getting bound (the last key in the pattern)
+     *
+     * @param {string|Array} keys
+     * @param {Function} callback
+     * @param {string=} action - 'keypress', 'keydown', or 'keyup'
+     * @returns void
+     */
+    Mousetrap.prototype.bind = function(keys, callback, action) {
+        var self = this;
+        keys = keys instanceof Array ? keys : [keys];
+        self._bindMultiple.call(self, keys, callback, action);
+        return self;
+    };
+
+    /**
+     * unbinds an event to mousetrap
+     *
+     * the unbinding sets the callback function of the specified key combo
+     * to an empty function and deletes the corresponding key in the
+     * _directMap dict.
+     *
+     * TODO: actually remove this from the _callbacks dictionary instead
+     * of binding an empty function
+     *
+     * the keycombo+action has to be exactly the same as
+     * it was defined in the bind method
+     *
+     * @param {string|Array} keys
+     * @param {string} action
+     * @returns void
+     */
+    Mousetrap.prototype.unbind = function(keys, action) {
+        var self = this;
+        return self.bind.call(self, keys, function() {}, action);
+    };
+
+    /**
+     * triggers an event that has already been bound
+     *
+     * @param {string} keys
+     * @param {string=} action
+     * @returns void
+     */
+    Mousetrap.prototype.trigger = function(keys, action) {
+        var self = this;
+        if (self._directMap[keys + ':' + action]) {
+            self._directMap[keys + ':' + action]({}, keys);
+        }
+        return self;
+    };
+
+    /**
+     * resets the library back to its initial state.  this is useful
+     * if you want to clear out the current keyboard shortcuts and bind
+     * new ones - for example if you switch to another page
+     *
+     * @returns void
+     */
+    Mousetrap.prototype.reset = function() {
+        var self = this;
+        self._callbacks = {};
+        self._directMap = {};
+        return self;
+    };
+
+    /**
+     * should we stop this event before firing off callbacks
+     *
+     * @param {Event} e
+     * @param {Element} element
+     * @return {boolean}
+     */
+    Mousetrap.prototype.stopCallback = function(e, element) {
+        var self = this;
+
+        // if the element has the class "mousetrap" then no need to stop
+        if ((' ' + element.className + ' ').indexOf(' mousetrap ') > -1) {
+            return false;
+        }
+
+        if (_belongsTo(element, self.target)) {
+            return false;
+        }
+
+        // stop for input, select, and textarea
+        return element.tagName == 'INPUT' || element.tagName == 'SELECT' || element.tagName == 'TEXTAREA' || element.isContentEditable;
+    };
+
+    /**
+     * exposes _handleKey publicly so it can be overwritten by extensions
+     */
+    Mousetrap.prototype.handleKey = function() {
+        var self = this;
+        return self._handleKey.apply(self, arguments);
+    };
+
+    /**
+     * allow custom key mappings
+     */
+    Mousetrap.addKeycodes = function(object) {
+        for (var key in object) {
+            if (object.hasOwnProperty(key)) {
+                _MAP[key] = object[key];
+            }
+        }
+        _REVERSE_MAP = null;
+    };
+
+    /**
+     * Init the global mousetrap functions
+     *
+     * This method is needed to allow the global mousetrap functions to work
+     * now that mousetrap is a constructor function.
+     */
+    Mousetrap.init = function() {
+        var documentMousetrap = Mousetrap(document);
+        for (var method in documentMousetrap) {
+            if (method.charAt(0) !== '_') {
+                Mousetrap[method] = (function(method) {
+                    return function() {
+                        return documentMousetrap[method].apply(documentMousetrap, arguments);
+                    };
+                } (method));
+            }
+        }
+    };
+
+    Mousetrap.init();
+
+    // expose mousetrap to the global object
+    window.Mousetrap = Mousetrap;
+
+    // expose as a common js module
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = Mousetrap;
+    }
+
+    // expose mousetrap as an AMD module
+    if (typeof define === 'function' && define.amd) {
+        define(function() {
+            return Mousetrap;
+        });
+    }
+}) (typeof window !== 'undefined' ? window : null, typeof  window !== 'undefined' ? document : null);
+
 /* jshint forin:true, noarg:true, noempty:true, eqeqeq:true, boss:true, undef:true, curly:true, browser:true, jquery:true */
 /*
  * jQuery MultiSelect UI Widget 1.13
@@ -17863,6 +18809,7 @@ function StringBuilder(value) {
 
 var pgnReader = function (configuration) {
     var that = {};
+    that.configuration = configuration;
     var initialize_configuration = function(configuration) {
         if (typeof configuration.position == 'undefined') {
             configuration.position = 'start';
@@ -17877,7 +18824,7 @@ var pgnReader = function (configuration) {
     initialize_configuration(configuration);
     var parser = pgnParser;
     var game = new Chess();
-    that.PGN_KEYS = {
+    that.PGN_TAGS = {
         Event: "the name of the tournament or match event",
         Site: "the location of the event",
         Date: "the starting date of the game (format: YYYY.MM.TT)",
@@ -17899,7 +18846,9 @@ var pgnReader = function (configuration) {
         TimeControl: "40/7200:3600 (moves per seconds: sudden death seconds)",
         Time: 'Time the game started, in "HH:MM:SS" format, in local clock time.',
         Termination: 'Gives more details about the termination of the game. It may be "abandoned", "adjudication" (result determined by third-party adjudication), "death", "emergency", "normal", "rules infraction", "time forfeit", or "unterminated".',
-        Mode: '"OTB" (over-the-board) "ICS" (Internet Chess Server)'
+        Mode: '"OTB" (over-the-board) "ICS" (Internet Chess Server)',
+        SetUp: '"0": position is start position, "1": tag FEN defines the position',
+        FEN: 'Alternative start position, tag SetUp has to be set to "1"'
     };
     /**
      * Returns the NAGs as defined in http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm#c10
@@ -18016,6 +18965,7 @@ var pgnReader = function (configuration) {
     /**
      * Reads the headers from the pgn string given, returns what is not consumed
      * by the headers.
+     * Ensure that the headers are interpreted and even modify the configuration.
      * @returns {string} the remaining moves
      */
     var readHeaders = function () {
@@ -18032,14 +18982,32 @@ var pgnReader = function (configuration) {
                 var ret = list[i].match(/\[(\w+)\s+\"([^\"]+)\"/);
                 if (ret) {
                     var key = ret[1];
-                    if (that.PGN_KEYS[key]) {
+                    if (that.PGN_TAGS[key]) {
                         headers[key] = ret[2];
                     }
                 }
             }
             return headers;
         };
+        /**
+         * Implemment the logic to interpret the headers.
+         */
+        var interpretHeaders = function () {
+            if (that.headers['SetUp']) {
+                var setup = that.headers['SetUp'];
+                if (setup === '0') {
+                    configuration.position = 'start';
+                } else {
+                    var fen = that.headers['FEN'];
+                    configuration.position = fen;
+                }
+            }
+            if (that.headers['Result']) {
+                that.endGame = that.headers['Result'];
+            }
+        } 
         that.headers = splitHeaders(configuration.pgn);
+        interpretHeaders();
         var index = configuration.pgn.lastIndexOf("]");
         return configuration.pgn.substring(index + 1);
     };
@@ -18057,16 +19025,28 @@ var pgnReader = function (configuration) {
             }
             currentMove.index = current;
         };
-        var remindEndGame = function() {
-            if (typeof that.movesMainLine[that.movesMainLine.length - 1] == "string") {
-                that.endGame = that.movesMainLine.pop();
+        /**
+         * Originally variations are kept as array of moves. But after having linked prev and next,
+         * it is much easier to keep only the first move of the variation.
+         */
+        var correctVariations = function() {
+            $.each(that.moves, function(index, move) {
+                for (i = 0; i < move.variations.length; i++) {
+                    move.variations[i] = move.variations[i][0];
+                }
+            })
+        }
+        var remindEndGame = function(movesMainLine) {
+            if (typeof movesMainLine[movesMainLine.length - 1] == "string") {
+                that.endGame = movesMainLine.pop();
             }
         };
-        that.moves_string = movesString.trim();
+        movesString = movesString.trim();
         // Store moves in a separate object.
-        that.movesMainLine = parser.parse(that.moves_string)[0];
-        remindEndGame();
-        eachMove(wireMoves);
+        var movesMainLine = parser.parse(movesString)[0];
+        remindEndGame(movesMainLine);
+        eachMove(wireMoves, movesMainLine);
+        correctVariations();
     };
 
     /**
@@ -18079,7 +19059,7 @@ var pgnReader = function (configuration) {
     }
 
     /**
-     * Returns true, if the move with ID id is delelted.
+     * Returns true, if the move with ID id is deleted.
      * @param id the numerical index
      * @returns {boolean} true, if deleted
      */
@@ -18090,9 +19070,9 @@ var pgnReader = function (configuration) {
         if (current === null) {
             return true;
         }
-        if (id == 0 && (current))
+        if (id == 0 && (current)) // The first move is not deleted
             return false;
-        return (current.prev === null);
+        return (current.prev === null); // All moves without a previous move are deleted
     }
 
 
@@ -18108,6 +19088,29 @@ var pgnReader = function (configuration) {
         return that.moves[id];
     };
 
+
+    /**
+     * Updates the variation level for all moves. If no arguments are given,
+     * update the variation level for all moves.
+     */
+    var updateVariationLevel = function(move, varLevel) {
+        if (arguments.length === 0) {
+            // Workaround: we don't know which is the first move, so that that with index 0
+            var my_move = getMove(0);
+            updateVariationLevel(my_move, 0);
+        } else {
+            move.variationLevel = varLevel;
+            if (move.next !== undefined) {
+                updateVariationLevel(getMove(move.next), varLevel);
+            }
+            if (move.variations) {
+                for (var i = 0; i < move.variations.length; i++) {
+                    updateVariationLevel(move.variations[i], varLevel + 1);
+                }
+            }
+        }
+    };
+
     /**
      * Deletes the move that matches the id (including the move itself).
      * There are some cases to expect:
@@ -18119,6 +19122,15 @@ var pgnReader = function (configuration) {
      * </ul>
      */
     var deleteMove = function(id) {
+        /**
+         * Removes the object at index from the array, returns the object.
+         */
+        var removeFromArray = function(array, index) {
+            var ret = array[index];
+            array.splice(index, 1);
+            return ret;
+        }
+
         if (isDeleted(id)) {
             return;
         }
@@ -18128,15 +19140,105 @@ var pgnReader = function (configuration) {
             that.moves = [];
             return;
         }
-        // 2. Main line some other move, no variation
         var current = getMove(id);
-        if (current.variationLevel === 0 && (current.variations.length === 0)) { // Main line, no variations
-            if (current.next !== undefined) {
+        // 2. First move of variation
+        if (startVariation(current)) {
+            var vars = getMove(getMove(current.prev).next).variations;
+            for (var i = 0; vars.length; i++) {
+                if (vars[i] === current) {
+                    var my_var = removeFromArray(vars, i);
+                    if (current.next !== undefined) {
+                       deleteMove(current.next);
+                    }        
+                    that.moves[current.index] = null;
+                    return;
+                }
+            }
+        }
+        // 3. Some line some other move, no variation
+        if (current.variations.length === 0) { 
+            if (current.next !== undefined && (current.next !== null)) {
                 deleteMove(current.next);
             }
             that.moves[current.prev].next = null;
             that.moves[id] = null;
+            return;
         }
+        // 4. Some line some other move, with variation
+        if (current.variations.length > 0) { 
+            if (current.next !== undefined) {
+                deleteMove(current.next);
+            }
+            var variationMove = removeFromArray(current.variations, 0);
+            var varLevel = variationMove.variationLevel;
+            that.moves[current.prev].next = variationMove.index;
+            that.moves[id] = null;
+            updateVariationLevel(variationMove, varLevel - 1);
+        } 
+    };
+
+    /**
+     * Promotes the variation that is denoted by the move ID.
+     * These are the relevant cases:
+     * <ul>
+     * <li>Move is part of the main line: no promotion</li>
+     * <li>Move is part of the first variation: move the variation to the next level (or main line), make the previous promoted line the first variation.</li>
+     * <li>Move is part of second or higher variation: just switch index of variation arrays</li>
+     * </ul>
+     */
+    var promoteMove = function (id) {
+        /**
+         * Returns the index of the variation denoted by the move.
+         */
+        var indexOfVariationArray = function (move) {
+
+        };
+        /**
+         * Returns the first move of a variation.
+         */
+        var firstMoveOfVariation = function(move) {
+            if (startVariation(move)) {
+                return move;
+            }
+            return firstMoveOfVariation(getMove(move.prev));
+        }
+        var move = getMove(id);
+        // 1. Check that is variation
+        if ((typeof move.variationLevel == "undefined") || (move.variationLevel === 0)) {
+            return;
+        }
+
+        // 2. Get the first move of the variation
+        var myFirst = firstMoveOfVariation(move);
+
+        // 3. Get the index of that moves variation array
+        var higherVariationMove = getMove(getMove(myFirst.prev).next);
+        var indexVariation;
+        for (i = 0; i < higherVariationMove.variations.length; i++) {
+            if (higherVariationMove.variations[i] === myFirst) {
+                indexVariation = i;
+            }
+        }
+
+        // 4. If variation index is > 0 (not the first variation)
+        if (indexVariation > 0) {
+            // Just switch with the previous index
+            var tmpMove = higherVariationMove.variations[indexVariation-1];
+            higherVariationMove.variations[indexVariation-1] = higherVariationMove.variations[indexVariation];
+            higherVariationMove.variations[indexVariation] = tmpMove;
+        } else {
+            // 5. Now the most difficult case: create new array from line above, switch that with
+            // the variation
+            var tmpMove = higherVariationMove;
+            var tmpVariations = higherVariationMove.variations;
+            var prevMove = getMove(higherVariationMove.prev);
+            prevMove.next = myFirst.index;
+            tmpMove.variations = myFirst.variations;
+            myFirst.variations = tmpVariations;
+            myFirst.variations[0] = tmpMove;
+        }
+        // Update the variation level because there will be changes
+        updateVariationLevel();
     };
 
 
@@ -18217,10 +19319,10 @@ var pgnReader = function (configuration) {
             sb.append(nag_to_symbol(move.nag));
         };
 
-        var write_variation = function (variation, sb) {
+        var write_variation = function (move, sb) {
             prepend_space(sb);
             sb.append("(");
-            write_move(variation[0], sb);
+            write_move(move, sb);
             prepend_space(sb);
             sb.append(")");
         };
@@ -18258,9 +19360,17 @@ var pgnReader = function (configuration) {
             write_move(next, sb);
         };
 
+        var write_end_game = function(_sb) {
+            if (that.endGame) {
+                _sb.append(" ");
+                _sb.append(that.endGame);
+            }
+        }
+
         var write_pgn2 = function(move, _sb) {
 
             write_move(move, sb);
+            write_end_game(_sb);
             return sb.toString();
         };
         var sb = StringBuilder("");
@@ -18281,7 +19391,7 @@ var pgnReader = function (configuration) {
      * Final algorithm to read and map the moves. Seems to be tricky ...
      * @param called the function that will be called (here wireMoves in readMoves)
      */
-    var eachMove = function(called) {
+    var eachMove = function(called, movesMainLine) {
         that.moves = [];
         var current = -1;
         /**
@@ -18311,6 +19421,7 @@ var pgnReader = function (configuration) {
          */
         var eachMoveVariation = function(moveArray, level, prev) {
             var prevMove = (prev != null ? that.moves[prev] : null);
+            that.startMove = 0;
             $.each(moveArray, function(i, move) {
                 current++;
                 move.variationLevel = level;
@@ -18360,7 +19471,8 @@ var pgnReader = function (configuration) {
                 })
             })
         };
-        eachMoveVariation(that.movesMainLine, 0, null);
+        that.firstMove = movesMainLine[0];
+        eachMoveVariation(movesMainLine, 0, null);
     };
     load_pgn();
 
@@ -18401,8 +19513,8 @@ var pgnReader = function (configuration) {
                 var mainMove = getMove(prevMove.next);
                 for (i = 0; i < mainMove.variations.length; i++) {
                     var variation = mainMove.variations[i];
-                    if (variation[0].notation.notation == pgn_move.san) {
-                        return variation[0].index;
+                    if (variation.notation.notation == pgn_move.san) {
+                        return variation.index;
                     }
                 }
             }
@@ -18413,7 +19525,7 @@ var pgnReader = function (configuration) {
         function handle_variation(move, prev, next) {
             var prevMove = getMove(prev);
             if (prevMove.next) {    // has a next move set, so should be a variation
-                getMove(prevMove.next).variations.push([move]);
+                getMove(prevMove.next).variations.push(move);
                 move.variationLevel = (prevMove.variationLevel ? prevMove.variationLevel : 0) + 1;
                 if (move.turn == 'b') {
                     move.moveNumber = prevMove.moveNumber;
@@ -18498,20 +19610,58 @@ var pgnReader = function (configuration) {
         move.nag = [];
     };
 
+    /**
+     * Return all moves in the order they are displayed: move, variations of that move,
+     * next move, ...
+     */
+    var getOrderedMoves = function(current, returnedMoves) {
+        if (arguments.length === 0) {
+            current = getMove(that.startMove);
+            returnedMoves = [];
+        }
+        returnedMoves.push(current);
+        if (current.variations) {
+            for (var i = 0; i < current.variations.length; i++) {
+                getOrderedMoves(current.variations[i], returnedMoves);
+            }
+        }
+        if (current.next) {
+            return getOrderedMoves(getMove(current.next), returnedMoves);
+        } else {
+            return returnedMoves;
+        }
+    }
+
+    /**
+     * Return the moves of the main line.
+     */
+    var movesMainLine = function() {
+        var current = getMove(that.startMove);
+        var returnedMoves = [];
+        returnedMoves.push(current);
+        while (current.next) {
+            current = getMove(current.next);
+            returnedMoves.push(current);
+        }
+        return returnedMoves;
+    }
+
     // This defines the public API of the pgn function.
     return {
-        movesString: function () { return that.moves_string; },
+        configuration: configuration,
         readHeaders: readHeaders,
         deleteMove: deleteMove,
+        promoteMove: promoteMove,
         isDeleted: isDeleted,
         readMoves: function () { return readMoves; },
         getMoves: function () { return that.moves; },
-        movesMainLine: that.movesMainLine,
+        getOrderedMoves: getOrderedMoves,
         getMove: getMove,
         getHeaders: function() { return that.headers; },
 //        splitHeaders: splitHeaders,
         getParser: function() { return parser; },
-        eachMove: function() { return eachMove(); },
+//        eachMove: function() { return eachMove(); },
+        movesMainLine: movesMainLine,
         write_pgn: write_pgn,
         nag_to_symbol: nag_to_symbol,
         startVariation: startVariation,
@@ -20441,9 +21591,10 @@ var pgnParser =
 
 var pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
-    var VERSION = "0.9.3";
+    var VERSION = "0.9.4";
     var that = {};
     that.configuration = configuration;
+    that.mypgn = pgnReader( that.configuration );
     var theme = configuration.theme || 'default';
     configuration['markup'] = (typeof boardId) == "object";
     var hasMarkup = function() { return configuration['markup'] };
@@ -20666,26 +21817,27 @@ var pgnBase = function (boardId, configuration) {
      */
     var generateHTML = function() {
         // Utility function for generating buttons divs
-        function addButton(name, buttonDiv) {
+        function addButton(pair, buttonDiv) {
             var l_theme = (['green', 'blue'].indexOf(theme) >= 0) ? theme : 'default';
-            var button = createEle("span", buttonsId + name, "button " + name, l_theme, buttonDiv);
-            var title = i18n.t("buttons:" + name);
-            $("#" + buttonsId + name).attr("title", title);
+            var button = createEle("i", buttonsId + pair[0], "button fa " + pair[1], l_theme, buttonDiv);
+            var title = i18n.t("buttons:" + pair[0]);
+            $("#" + buttonsId + pair[0]).attr("title", title);
             return button;
         }
         // Generates the view buttons (only)
         var generateViewButtons = function(buttonDiv) {
-            ["flipper", "first", "prev", "next", "play", "last"].forEach(function(entry) {
+            [["flipper", "fa-adjust"], ["first", "fa-fast-backward"], ["prev", "fa-step-backward"],
+             ["next", "fa-step-forward"], ["play", "fa-play-circle"],  ["last", "fa-fast-forward"]].forEach(function(entry) {
                 addButton(entry, buttonDiv)});
         };
         // Generates the edit buttons (only)
         var generateEditButtons = function(buttonDiv) {
-            ["deleteVar", "promoteVar", "deleteMoves"].forEach(function(entry) {
+            [["promoteVar", "fa-hand-o-up"], ["deleteMoves", "fa-scissors"]].forEach(function(entry) {
                 var but = addButton(entry, buttonDiv);
                 //but.className = but.className + " gray"; // just a test, worked.
                 // only gray out if not usable, check that later.
             });
-            ["pgn"].forEach(function(entry) {
+            [["pgn", "fa-print"]].forEach(function(entry) {
                 var but = addButton(entry, buttonDiv);
             });
         };
@@ -20738,6 +21890,7 @@ var pgnBase = function (boardId, configuration) {
                 divBoard.style.width = configuration.size;
             }
             divBoard.setAttribute('class', theme + ' whole');
+            divBoard.setAttribute('tabindex', '0');
             createEle("div", headersId, "headers", theme, divBoard);
             var outerInnerBoardDiv = createEle("div", null, "outerBoard", null, divBoard);
             if (configuration.boardSize) {
@@ -20752,7 +21905,7 @@ var pgnBase = function (boardId, configuration) {
                 var editButtonsBoardDiv = createEle("div", "edit" + buttonsId, "edit", theme, outerInnerBoardDiv);
                 generateEditButtons(editButtonsBoardDiv);
                 var outerPgnDiv = createEle("div", "outerpgn" + buttonsId, "outerpgn", theme, outerInnerBoardDiv);
-                var pgnHideButton  = addButton("hidePGN", outerPgnDiv);
+                var pgnHideButton  = addButton(["hidePGN", "hidePGN"], outerPgnDiv);
                 var pgnDiv  = createEle("div", "pgn" + buttonsId, "pgn", theme, outerPgnDiv);
                 var commentBoardDiv = createEle("div", "comment" + buttonsId, "comment", theme, outerInnerBoardDiv);
                 generateCommentDiv(commentBoardDiv);
@@ -20780,9 +21933,6 @@ var pgnBase = function (boardId, configuration) {
         }
     };
 
-    var generateHTMLWithMarkup = function() {
-
-    }
     /**
      * Generate the board that uses the unique innerBoardId and the part of the configuration
      * that is for the board only. Returns the resulting object (as reference for others).
@@ -20850,6 +22000,10 @@ var pgnBase = function (boardId, configuration) {
                 varStack[varStack.length - 1].appendChild(span);
             }
         };
+        // Ignore null moves
+        if (move === null || (move === undefined)) {
+            return prevCounter;
+        }
         var clAttr = "move";
         if (move.variationLevel > 0) {
             clAttr = clAttr + " var var" + move.variationLevel;
@@ -20928,12 +22082,12 @@ var pgnBase = function (boardId, configuration) {
     var updateUI = function (next) {
         $("div.buttons .gray").removeClass('gray');
         var move = that.mypgn.getMove(next);
-        if (typeof move.prev != "number") {
+        if (next === null) {
             ["prev", "first"].forEach(function(name) {
                 $("div.buttons ." + name).addClass('gray');
             });
         }
-        if (typeof move.next != "number") {
+        if ((next !== null) && (typeof move.next != "number")) {
             ["next", "play", "last"].forEach(function(name) {
                 $("div.buttons ." + name).addClass('gray');
             });
@@ -20989,7 +22143,6 @@ var pgnBase = function (boardId, configuration) {
      * link to FEN (position after move)
      */
     var generateMoves = function(board) {
-        that.mypgn = pgnReader( that.configuration );
         var myMoves = that.mypgn.getMoves();
         if (that.configuration.position == 'start') {
             game.reset();
@@ -21043,14 +22196,17 @@ var pgnBase = function (boardId, configuration) {
                 } else {
                     key_ID = "#" + boardId + ",#" + boardId + "Moves";
                 }
-                jQuery(key_ID).bind('keydown', key,function (evt){
+//                jQuery(key_ID).bind('keydown', key,function (evt){
+                var form = document.querySelector(key_ID);
+                Mousetrap(form).bind(key, function(evt) {
+//                Mousetrap.bind(key, function(evt) {
                     to_call();
                     evt.stopPropagation();
                 });
             };
             var nextMove = function () {
                 var fen = null;
-                if (typeof that.currentMove == 'undefined') {
+                if ((typeof that.currentMove == 'undefined') || (that.currentMove === null)) {
                     fen = that.mypgn.getMove(0).fen;
                     makeMove(null, 0, fen);
                 } else {
@@ -21061,15 +22217,30 @@ var pgnBase = function (boardId, configuration) {
             };
             var prevMove = function () {
                 var fen = null;
-                if (typeof that.currentMove == 'undefined') {
+                if ((typeof that.currentMove == 'undefined') || (that.currentMove == null)) {
                     /*fen = that.mypgn.getMove(0).fen;
                      makeMove(null, 0, fen);*/
                 }
                 else {
                     var prev = that.mypgn.getMove(that.currentMove).prev;
-                    fen = that.mypgn.getMove(prev).fen;
-                    makeMove(that.currentMove, prev, fen);
+                    if (typeof prev === 'undefined') {
+                        firstMove();
+                    } else {
+                        fen = that.mypgn.getMove(prev).fen;
+                        makeMove(that.currentMove, prev, fen);
+                    }
                 }
+            };
+            var firstMove = function () {
+                if (that.configuration.position == 'start') {
+                    game.reset();
+                } else {
+                    game.load(that.configuration.position);
+                }
+                board.position(game.fen());
+                unmarkMark(null);
+                that.currentMove = null;
+                updateUI(null);
             };
             var timer = $.timer(function() {
                 nextMove();
@@ -21085,8 +22256,10 @@ var pgnBase = function (boardId, configuration) {
                 prevMove();
             });
             $('#' + buttonsId + 'first').on('click', function() {
-                var fen = that.mypgn.getMove(0).fen;
-                makeMove(that.currentMove, 0, fen);
+                // Goes to the position after the first move.
+                // var fen = that.mypgn.getMove(0).fen;
+                // makeMove(that.currentMove, 0, fen);
+                firstMove();
             });
             $('#' + buttonsId + 'last' ).on('click', function() {
                 var fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
@@ -21099,6 +22272,22 @@ var pgnBase = function (boardId, configuration) {
                     var str = computePgn();
                     showPgn(str);
                     $("#" + boardId + " .outerpgn").slideDown(700, "linear");
+                });
+                $('#' + buttonsId + "deleteMoves").on('click', function() {
+                    var prev = that.mypgn.getMove(that.currentMove).prev;
+                    var fen = that.mypgn.getMove(prev).fen;
+                    that.mypgn.deleteMove(that.currentMove);
+                    $("#" + movesId).html("");
+                    regenerateMoves(that.mypgn.getMoves());
+                    makeMove(null, prev, fen);
+                });
+                $('#' + buttonsId + "promoteVar").on('click', function() {
+                    var curr = that.currentMove;
+                    that.mypgn.promoteMove(that.currentMove);
+                    $("#" + movesId).html("");
+                    regenerateMoves(that.mypgn.getOrderedMoves());
+                    var fen = that.mypgn.getMove(curr).fen;
+                    makeMove(null, that.currentMove, fen);
                 });
                 $('#' + boardId + " .hidePGN").on("click", function () {
                     $( "#" + boardId + " .outerpgn").slideUp(400);//hide( "fold");
@@ -21163,16 +22352,22 @@ var pgnBase = function (boardId, configuration) {
             $('#pgn' + buttonsId).text(val).show(1000);
         };
 
-
-        // Start working with PGN, if available
-//        if (! configuration.pgn) { return; }
-        var movesDiv = document.getElementById(movesId);
-        var prev = null;
-        var varStack = [];
-        for (var i = 0; i < myMoves.length; i++) {
-            var move = myMoves[i];
-            prev = generateMove(i, game, move, prev, movesDiv, varStack);
+        /**
+         * Regenerate the moves div, may be used the first time (DIV is empty)
+         * or later (moves have changed).
+         */
+        var regenerateMoves = function (myMoves) {
+            var movesDiv = document.getElementById(movesId);
+            var prev = null;
+            var varStack = [];
+            for (var i = 0; i < myMoves.length; i++) {
+                if (! that.mypgn.isDeleted(i)) {
+                    var move = myMoves[i];
+                    prev = generateMove(move.index, game, move, prev, movesDiv, varStack);
+                }
+            }
         }
+        regenerateMoves(myMoves);
         bindFunctions();
         generateHeaders();
         if (hasMode('edit')) {

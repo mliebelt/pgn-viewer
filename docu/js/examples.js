@@ -429,7 +429,7 @@ examples["1207"] = {
     "As you can see, black has with move 4 two possibilities to capture back the bishop, and the chosen one " +
     "is clearly included in the pgn provided, but not displayed in the output of PGN.",
     html: "<div id='board' style='width: 360px'/>",
-    name: "#11: disabmbiguation in print format (unsolved)",
+    name: "#11: disabmbiguation in print format",
     jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Bxc6 dxc6"});',
     jsFn: function() {
         pgnView("board", {pgn: "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Bxc6 dxc6"});
@@ -464,7 +464,7 @@ examples["1210"] = {
     "Currently, the result of a game (as part of the notation, not the header) is parsed, but not " +
     "displayed as part of the notation.",
     html: "<div id='board' style='width: 360px'/>",
-    name: "#14: Parsing rules for result (unsolved)",
+    name: "#14: Parsing rules for result",
     jsStr: 'pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});',
     jsFn: function() {
         pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});
@@ -528,7 +528,7 @@ examples["1216"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/23'>ticket 23</a> at GitHub. " +
     "Use the pgn notation flag 'setup' and interpret it the right way as replacement for the fen parameter.",
     html: "<div id='board' style='width: 360px'/>",
-    name: "#23: Use the pgn notation flag 'setup' (unsolved)",
+    name: "#23: Use the pgn notation flag 'setup'",
     jsStr: 'pgnView("board", {pgn: "[SetUp "1"]\
         [FEN "rnbqkbnr/1ppppppp/p7/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2"]\
         2. Nc3 e5 3. Nf3 Qe7"});',
@@ -611,12 +611,47 @@ examples["1224"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/33'>ticket 33</a> at GitHub. " +
     "buttons:first should go to the start position. Jump to the ennd and back to beginning.",
     html: "<div id='board' style='width: 200px'/>",
-    name: "#33: buttons:first should go to the start position (unsolved)",
+    name: "#33: buttons:first should go to the start position",
     jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
     jsFn: function() {
         pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
     }
 };
+examples["1225"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/36'>ticket 36</a> at GitHub. " +
+    "Add a UI for FEN and PGN in edit mode (PGN already there, FEN missing) and view mode (should then be per default off).",
+    html: "<div id='board' style='width: 200px'/><div id='board1' style='width: 200px'/>",
+    name: "#36: Add UI for FEN and PGN in edit mode",
+    jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});\npgnEdit("board1", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
+    jsFn: function() {
+        pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
+        pgnEdit("board1", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})
+    }
+};
+examples["1226"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/37'>ticket 37</a> at GitHub. " +
+    "Add additional languages: take some locales with a lot of international speakers (like )",
+    html: "<div id='board1' style='width: 200px; float: left'/><div id='board2' style='width: 200px; float: left'/><div id='board3' style='width: 200px; float: left'/>",
+    name: "#37: Add additional languages",
+    jsStr: 'pgn = "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6";\npgnView("board1", {pgn: pgn});\npgnView("board1", {pgn: pgn, locale: "de"});\npgnView("board3", {pgn: pgn, locale: "es"});',
+    jsFn: function() {
+        pgn = "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6";
+        pgnView("board", {pgn: pgn});
+        pgnView("board1", {pgn: pgn, locale: "de"});
+        pgnView("board3", {pgn: pgn, locale: "es"});
+    }
+};
+examples["1227"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/39'>ticket 33</a> at GitHub. " +
+    "Allow opening of examples from the documentation in a separate tab. See if there is a separate link on that page that works.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#39: Allow opening of examples from the documentation in a separate tab",
+    jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
+    jsFn: function() {
+        pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
+    }
+};
+
 
 var htmlEscape = function(str) {
     return (str + '')

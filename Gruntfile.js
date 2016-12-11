@@ -15,7 +15,8 @@ module.exports = function(grunt) {
                     'chessboardjs/js/chessboard.js',
                     'chessboardjs/js/json3.min.js',
                     'js/i18next-1.11.2.js',
-                    'js/jquery.hotkeys.js',
+//                    'js/jquery.hotkeys.js',
+                    'js/mousetrap.js',
                     'js/jquery.multiselect.js',
                     'js/jquery.timer.js',
                     'js/pgn.js',
@@ -117,7 +118,7 @@ module.exports = function(grunt) {
         compress: {
             main: {
                 options: {
-                    archive: 'dist/PgnViewerJS-0.9.3.zip'
+                    archive: 'dist/PgnViewerJS-0.9.4.zip'
                 },
                 expand: true,
                 cwd: 'dist/',
@@ -149,8 +150,8 @@ module.exports = function(grunt) {
                 ],
                 dest: "dist-nojq/css/pgnvjs.css"
             }
-        },
-        ftp_push: {
+        }
+/*        ftp_push: {
             docu_all: {
                 options: {
                     authKey: "bplaced",
@@ -258,7 +259,7 @@ module.exports = function(grunt) {
                     }
                 ]
             }
-        }
+        } */
     });
 
     // Load the necessary tasks
@@ -267,8 +268,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-markdown');
-    grunt.loadNpmTasks('grunt-ftp-deploy');
-    grunt.loadNpmTasks('grunt-ftp-push');
+//    grunt.loadNpmTasks('grunt-ftp-deploy');
+//    grunt.loadNpmTasks('grunt-ftp-push');
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-concat-css');
 
@@ -276,7 +277,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['clean', 'concat:all', 'concat_css',  'uglify', 'copy:all']);
     grunt.registerTask('debug', ['clean', 'concat:all', 'copy:all']);
     grunt.registerTask('nojq', ['clean', 'concat:nojq', 'concat_css:nojq', 'copy:nojq', 'uglify:nojq' ]);
-    grunt.registerTask('deploy-all', ['ftp_push:dist_min', 'ftp_push:docu_min',
-        'ftp_push:dist_locales', 'ftp_push:dist_css', 'ftp_push:docu_js']);
+//    grunt.registerTask('deploy-all', ['ftp_push:dist_min', 'ftp_push:docu_min',
+//        'ftp_push:dist_locales', 'ftp_push:dist_css', 'ftp_push:docu_js']);
 
 };

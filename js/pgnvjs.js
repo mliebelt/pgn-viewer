@@ -10,7 +10,7 @@
 
 var pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
-    var VERSION = "0.9.3";
+    var VERSION = "0.9.4";
     var that = {};
     that.configuration = configuration;
     that.mypgn = pgnReader( that.configuration );
@@ -236,26 +236,27 @@ var pgnBase = function (boardId, configuration) {
      */
     var generateHTML = function() {
         // Utility function for generating buttons divs
-        function addButton(name, buttonDiv) {
+        function addButton(pair, buttonDiv) {
             var l_theme = (['green', 'blue'].indexOf(theme) >= 0) ? theme : 'default';
-            var button = createEle("span", buttonsId + name, "button " + name, l_theme, buttonDiv);
-            var title = i18n.t("buttons:" + name);
-            $("#" + buttonsId + name).attr("title", title);
+            var button = createEle("i", buttonsId + pair[0], "button fa " + pair[1], l_theme, buttonDiv);
+            var title = i18n.t("buttons:" + pair[0]);
+            $("#" + buttonsId + pair[0]).attr("title", title);
             return button;
         }
         // Generates the view buttons (only)
         var generateViewButtons = function(buttonDiv) {
-            ["flipper", "first", "prev", "next", "play", "last"].forEach(function(entry) {
+            [["flipper", "fa-adjust"], ["first", "fa-fast-backward"], ["prev", "fa-step-backward"],
+             ["next", "fa-step-forward"], ["play", "fa-play-circle"],  ["last", "fa-fast-forward"]].forEach(function(entry) {
                 addButton(entry, buttonDiv)});
         };
         // Generates the edit buttons (only)
         var generateEditButtons = function(buttonDiv) {
-            ["promoteVar", "deleteMoves"].forEach(function(entry) {
+            [["promoteVar", "fa-hand-o-up"], ["deleteMoves", "fa-scissors"]].forEach(function(entry) {
                 var but = addButton(entry, buttonDiv);
                 //but.className = but.className + " gray"; // just a test, worked.
                 // only gray out if not usable, check that later.
             });
-            ["pgn"].forEach(function(entry) {
+            [["pgn", "fa-print"]].forEach(function(entry) {
                 var but = addButton(entry, buttonDiv);
             });
         };
@@ -308,6 +309,7 @@ var pgnBase = function (boardId, configuration) {
                 divBoard.style.width = configuration.size;
             }
             divBoard.setAttribute('class', theme + ' whole');
+            divBoard.setAttribute('tabindex', '0');
             createEle("div", headersId, "headers", theme, divBoard);
             var outerInnerBoardDiv = createEle("div", null, "outerBoard", null, divBoard);
             if (configuration.boardSize) {
@@ -322,7 +324,7 @@ var pgnBase = function (boardId, configuration) {
                 var editButtonsBoardDiv = createEle("div", "edit" + buttonsId, "edit", theme, outerInnerBoardDiv);
                 generateEditButtons(editButtonsBoardDiv);
                 var outerPgnDiv = createEle("div", "outerpgn" + buttonsId, "outerpgn", theme, outerInnerBoardDiv);
-                var pgnHideButton  = addButton("hidePGN", outerPgnDiv);
+                var pgnHideButton  = addButton(["hidePGN", "hidePGN"], outerPgnDiv);
                 var pgnDiv  = createEle("div", "pgn" + buttonsId, "pgn", theme, outerPgnDiv);
                 var commentBoardDiv = createEle("div", "comment" + buttonsId, "comment", theme, outerInnerBoardDiv);
                 generateCommentDiv(commentBoardDiv);
@@ -613,7 +615,10 @@ var pgnBase = function (boardId, configuration) {
                 } else {
                     key_ID = "#" + boardId + ",#" + boardId + "Moves";
                 }
-                jQuery(key_ID).bind('keydown', key,function (evt){
+//                jQuery(key_ID).bind('keydown', key,function (evt){
+                var form = document.querySelector(key_ID);
+                Mousetrap(form).bind(key, function(evt) {
+//                Mousetrap.bind(key, function(evt) {
                     to_call();
                     evt.stopPropagation();
                 });

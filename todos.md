@@ -238,3 +238,47 @@ The following changes have to be done:
 * Implement the logic to set position depending on the setup.
 
 Currently, the logic is implemented, but the start position is not shown. I have to debug that :-(
+
+#### Cleanup examples
+
+Currently the example directory is a mess. I should cleanup that and structure it in some way. Here is a draft that may work (indentation is sub-directory). 
+
+examples/
+  base/
+    figures/    Show the different figures in the configuration, so that it is easy to see the difference. Mode should pgnBoard
+    themes/     Show the different themes, each one in a different example  
+    configuration/  Other topics that are directly shown, depending on the configuration the relevant mode that shows it.
+  modes/
+    board/    Show different examples for the board, combining some elements from base
+    view/     Show different examples for the viewer, combining some elements from base
+    print/    Show different examples for the print mode, combining some elements from base
+    edit/     Show different examples for the edit mode, combining some elements from base
+  tickets/    Show for each ticket on example that shows that the ticket is solved (or not solved). 
+              May be used (simplified) in the documentation. Try to find for each ticket an example in that folder.
+
+Clarify what the other directories are currently doing:
+
+* css: Deleted, not referenced any where
+* books: Examples from books, not really sure if I need that any more
+* img: Examples from web sites (I think). Those examples may be implemented, but it would be more nice to show the examples online by providing a link. 
+* pgn: Examples of games that may be used (if needed). Only for development, should be included into the player examples (or provided as source for the ticket below).
+
+All examples(most of them) have to be  modified after they have been moved to a new directory, because the paths won't work any more. Try to use only relative paths here, so moving on the same level is not a problem any more.
+
+Try to give the existing examples better names (filenames), so it is easier to find an example that may help to debug some code.
+
+
+###### Ticket XX: Allow loading of PGN from an external source
+
+If should be possible to read the whole pgn from an external source, so it is easier to modify the pgn without modifying the original source (HTML, CSS, JavaScript, ...). In the future, it may be even possible to integrate a source with more than one game, and to step through the games in the viewer (not so easy to transport that to edit, board and print).
+
+The external source should be given by:
+
+* a local path, that is relative to the source. So by giving '../pgn/match1.pgn' it will be searched in a parallel directory named 'pgn'
+* a network path given by an URL. It is the URL that has to work, so it will just read the content and include that instead
+
+The first case is a special case of the second, and should therefore work out of the box.  
+
+###### Use Mousetrap
+
+I had problems lately in using the old key binding mechanism, so I switched to mousetrap. Easy to use, have to find a way how to define when it should be used. Currently, it works only for the last board that was created. So if more than one board is on a page, I have to find a way to switch focus from here to there.

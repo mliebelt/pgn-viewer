@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Implemented deletion of moves (main line and variations) and upvoting of variations. Refactored whole variation handling to make the code a little bit easier to understand.
 * Finished the long outstanding "edit" mode, that should be now feature complete.
 * Ensured that pgnReader is known from the beginning inside the pgnBase, so changes to the configuration are shared.
+* Replaced former keyboard library by Mousetrap, works now again in all examples.
 
 ### Fixed
 

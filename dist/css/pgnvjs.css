@@ -3402,6 +3402,13 @@ body .ui-tooltip {
 .fa-percent:before {
   content: "\f295";
 }
+div.whole:focus {
+    /* The following suppresses the outline of the element that has the focus. Only when
+       that focus is set, the keyboard mappings work. You may of course enable the outline
+       for debugging purposes. */
+    outline: 0;
+}
+
 div.edit .gray, div.buttons .gray {
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
@@ -3412,15 +3419,24 @@ div.edit .gray, div.buttons .gray {
     Used only with the class default for the spans. */
 
 div.buttons, div.edit {
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
-div.buttons> span.button.default:before {
+div.buttons > i.button.default, div.edit > i.button.default {
+    font-size: 16px;
+    line-height: 1.4em;
+    color: #71a0df;
+     margin: 5px;
+    padding: 4px;
+    border: solid lightgrey 1px;
+    border-radius: 4px;
+}
+div.buttons> span.button.default:before, div.edit> span.button.default:before {
     display: inline-block;
-    line-height: 1;
+    line-height: 2em;
     font-weight: normal;
     font-variant: normal;
     font-style: normal;
-    font-size: 14px;
+    font-size: 18px;
     font-family: FontAwesome;
     color: #71a0df;
     text-rendering: auto;
@@ -3429,35 +3445,39 @@ div.buttons> span.button.default:before {
     -moz-osx-font-smoothing: grayscale;
 }
 
-div.buttons > span.button.default {
+div.buttons > span.button.default, div.edit > span.button.default, div.edit > button {
     margin: 5px;
     padding: 4px;
     border: solid lightgrey 1px;
     border-radius: 4px;
 }
 
-div.buttons > span.button:hover {
+div.buttons > i.button:hover,div.edit > i.button:hover  {
     cursor: pointer;
     border: solid dimgrey 1px;
 }
 
 /** The following are all font-awesome buttons.
   Where known, I have added their short names (to find them later again). **/
-div.buttons > .button.flipper.default:before {
+div.buttons > .button.flipper.default:before { /* fa-adjust */
     content: "\f042";
 }
-div.buttons > .button.first.default:before { /* fast-backward */
+div.buttons > .button.first.default:before { /* fa-fast-backward */
     content: "\f049";
-}div.buttons > .button.prev.default:before {    /* step-backward */
+}
+div.buttons > .button.prev.default:before {    /* fa-step-backward */
     content: "\f048";
-}div.buttons > .button.next.default:before {    /* step-forward */
+}
+div.buttons > .button.next.default:before {    /* fa-step-forward */
     content: "\f051";
-}div.buttons > .button.last.default:before {    /* fast-forward */
+}
+div.buttons > .button.last.default:before {    /* fa-fast-forward */
     content: "\f050";
-}div.buttons > .button.play.default:before {    /* play-circle */
+}
+div.buttons > .button.play.default:before {    /* fa-play-circle */
     content: "\f144";
 }
-div.buttons > .button.stop.default:before {     /* pause */
+div.buttons > .button.stop.default:before {     /* fa-pause */
     content: "\f04c";
 }
 
@@ -3498,20 +3518,20 @@ div.buttons > .button.stop.blue {
     background-image: url("../img/buttons/ff/control_pause_blue.png");
 }
 
-div.edit > .button.deleteVar {
-    background-image: url("../img/buttons/ff/edit-delete.png");
+div.edit > .button.promoteVar.default:before { /* hand-o-up */
+    content: "\f0a6";
+}
+div.edit > .button.deleteMoves.default:before { /* scissors  */ 
+    content: "\f0c4";
 }
 
-div.edit > .button.promoteVar {
-    background-image: url("../img/buttons/ff/go-up.png");
-}
-
-div.edit > .button.deleteMoves {
+/* div.edit > .button.deleteMoves {
     background-image: url("../img/buttons/ff/edit-cut.png");
-}
+} */
 
-div.edit > .button.pgn {
-    background-image: url("../img/buttons/ff/script_save.png");
+div.edit > .button.pgn.default:before {
+    /* background-image: url("../img/buttons/ff/script_save.png"); */
+    content: "\f02f";  /* fa-print */
 }
 
 span.button.hidePGN {
@@ -3567,11 +3587,6 @@ div.buttons > span.button.ff, div.edit > span.button {
     height: 20px;
     background: no-repeat 50%;
     display: inline-block;
-}
-
-div.edit > button.ui-multiselect {
-    height: 24px;
-    vertical-align: 50%;
 }
 
 .ui-widget {
