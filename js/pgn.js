@@ -76,11 +76,30 @@ var pgnReader = function (configuration) {
     var that = {};
     that.configuration = configuration;
     var initialize_configuration = function(configuration) {
+        var readPgnFromFile = function(url) {
+            var retPGN = '';
+            function callback(data) {
+                retPGN = data;
+            }
+            $.ajax( {
+                url: url,
+                success: callback,
+                error: function() {
+                    alert("Could not read PGN file from: " + url);
+                },
+                async: false 
+            });
+            return retPGN;
+        }
         if (typeof configuration.position == 'undefined') {
             configuration.position = 'start';
         }
         if (typeof configuration.pgn == 'undefined') {
-            configuration.pgn = '';
+            if (typeof configuration.pgnFile == 'undefined') {
+                configuration.pgn = '';
+            } else {
+                configuration.pgn = readPgnFromFile(configuration.pgnFile);
+            }
         }
         if (typeof configuration.locale == 'undefined') {
             configuration.locale = 'en';
