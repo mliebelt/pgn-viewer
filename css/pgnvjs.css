@@ -14,6 +14,9 @@ div.edit .gray, div.buttons .gray {
 /** Font Awesome buttons (see http://fontawesome.io/)
     Used only with the class default for the spans. */
 
+div.error {
+    color: red;
+}
 div.buttons, div.edit {
     /* margin-top: 10px; */
 }

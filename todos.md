@@ -245,9 +245,12 @@ Currently the example directory is a mess. I should cleanup that and structure i
 
 examples/
   base/
+    configuration/  Other topics that are directly shown, depending on the configuration the relevant mode that shows it.
+      config.chessboardjs: orientation, position, showNotation, (and a lot of others not made public)
+        scrollable, movesWidth, movesHeight, 
+        headers: if false, don't diplay the headers, default is true
     figures/    Show the different figures in the configuration, so that it is easy to see the difference. Mode should pgnBoard
     themes/     Show the different themes, each one in a different example  
-    configuration/  Other topics that are directly shown, depending on the configuration the relevant mode that shows it.
   modes/
     board/    Show different examples for the board, combining some elements from base
     view/     Show different examples for the viewer, combining some elements from base
@@ -268,7 +271,7 @@ All examples(most of them) have to be  modified after they have been moved to a 
 Try to give the existing examples better names (filenames), so it is easier to find an example that may help to debug some code.
 
 
-###### Ticket XX: Allow loading of PGN from an external source
+###### Ticket 42 (no joke): Allow loading of PGN from an external source
 
 If should be possible to read the whole pgn from an external source, so it is easier to modify the pgn without modifying the original source (HTML, CSS, JavaScript, ...). In the future, it may be even possible to integrate a source with more than one game, and to step through the games in the viewer (not so easy to transport that to edit, board and print).
 
@@ -282,3 +285,7 @@ The first case is a special case of the second, and should therefore work out of
 ###### Use Mousetrap
 
 I had problems lately in using the old key binding mechanism, so I switched to mousetrap. Easy to use, have to find a way how to define when it should be used. Currently, it works only for the last board that was created. So if more than one board is on a page, I have to find a way to switch focus from here to there.
+
+When using the Mousetrap, I have the problem that I cannot enter any comment in edit modus any more. The keyboard press (that results in the key entered) is not consumed, so the SPACE key triggers the start / stop of the play modus.
+
+I commented  out the start and stop by the SPACE key, but have to find a solution for the other things as well. There should be examples how to integrate Mousetrap without loosing the editing of editor and text fields.

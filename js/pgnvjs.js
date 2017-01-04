@@ -67,6 +67,15 @@ var pgnBase = function (boardId, configuration) {
         return jsFileLocation.substring(0, index - 3);   // the father of the js folder
     }
 
+    /**
+     * Allow logging of error to HTML.
+     */
+    function logError(str) {
+        var node = document.createElement("DIV");
+        var textnode = document.createTextNode(str);
+        node.appendChild(textnode);
+        that.errorDiv.appendChild(node);
+    }
 
     /**
      * Allow to hide HTML by calling this function. It will prepend
@@ -218,7 +227,7 @@ var pgnBase = function (boardId, configuration) {
     }
 
     function generateNAGMenu(buttonDiv) {
-// create the NAG menu here ...
+
         var sel = createEle("select", buttonsId + "nag", "nag", theme, buttonDiv);
         sel.setAttribute("multiple", "multiple");
         $.each(that.mypgn.NAGS, function (index, value) {
@@ -310,6 +319,8 @@ var pgnBase = function (boardId, configuration) {
             }
             divBoard.setAttribute('class', theme + ' whole');
             divBoard.setAttribute('tabindex', '0');
+            // Add an error div to show errors
+            that.errorDiv = createEle("div", boardId + "Error", 'error', null, divBoard);
             createEle("div", headersId, "headers", theme, divBoard);
             var outerInnerBoardDiv = createEle("div", null, "outerBoard", null, divBoard);
             if (configuration.boardSize) {
@@ -562,6 +573,15 @@ var pgnBase = function (boardId, configuration) {
      * link to FEN (position after move)
      */
     var generateMoves = function(board) {
+        try {
+           that.mypgn.load_pgn();
+        } catch(err) {
+            var sta = err.location.start.offset;
+            var pgnStr = that.configuration.pgn;
+            logError("Offset: " + sta);
+            logError("PGN: " + pgnStr);
+            logError(err.message);
+        } 
         var myMoves = that.mypgn.getMoves();
         if (that.configuration.position == 'start') {
             game.reset();
@@ -757,7 +777,7 @@ var pgnBase = function (boardId, configuration) {
             }
             bind_key("left", prevMove);
             bind_key("right", nextMove);
-            bind_key("space", togglePlay);
+            //bind_key("space", togglePlay);
             $('#' + buttonsId + 'play').on('click', function() {
                 togglePlay();
             })
@@ -939,5 +959,5 @@ var pgnPrint = function(boardId, configuration) {
     var base = pgnBase(boardId, configuration);
     base.generateHTML();
 //    var board = base.generateBoard();
-    base.generateMoves(board);
+    base.generateMoves(null);
 };

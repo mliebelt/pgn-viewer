@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>parameter pieceStyle</title>
+    <!-- Libraries used: chessboardjs and chess.js from GitHub -->
+    <script src="../../../chessboardjs/js/chessboard.js" type="text/javascript"></script>
+    <script src="../../../chessboardjs/js/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../../../chessboardjs/js/json3.min.js" type="text/javascript"></script>
+    <script src="../../../chess.js/chess.js" type="text/javascript"></script>
+	<script src="../../../js/i18next-1.11.2.js" type="text/javascript"></script>
+
+    <!-- CSS used: chessboardjs from GitHub -->
+    <link href="../../../chessboardjs/css/chessboard.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../../font-awesome/css/font-awesome.min.css">
+
+    <!-- My own library -->
+    <script src="../../../js/pgnvjs.js" type="text/javascript"></script>
+    <script src="../../../js/jquery.timer.js" type="text/javascript"></script>
+    <script src="../../../js/pgn.js" type="text/javascript"></script>
+    <script src="../../../js/pgn-parser.js" type="text/javascript"></script>
+    <script src="../../../js/mousetrap.js"  type="text/javascript"></script>
+    <script src="../../../js/jquery-ui.js" type="text/javascript"></script>
+    <script src="../../../js/jquery.multiselect.js" type="text/javascript"></script>
+    <link href="../../../css/jquery-ui.css" type="text/css" rel="stylesheet"/>
+    <link href="../../../css/jquery.multiselect.css" type="text/css" rel="stylesheet"/>
+    <link href="../../../css/pgnvjs.css" type="text/css" rel="stylesheet"/>
+
+
+</head>
+<body>
+<h3>parameter pieceStyle</h3>
+
+<div>By using the parameter pieceStyle, you will get different figures for the choosen theme
+    or the default theme. Each theme may define its own default figure set. So look at the
+    directory <a href="../themes">../themes</a> to see those.</div>
+    <ul>
+        <li>The first setup is with explicit pieceStyle "wikipedia".</li>
+        <li>The second is with the implicit pieceStyle "wikipedia" (as default value for the parameter)</li>
+        <li>The third setup is with explicit pieceStyle "alpha".</li>
+        <li>The fourth setup is with explicit pieceStyle "uscf".</li>
+        <li>The fifth setup is with explicit pieceStyle "case".</li>
+        <li>The sixth setup is with explicit pieceStyle "condal".</li>
+        <li>The seventh setup is with explicit pieceStyle "maya".</li>
+        <li>The eighth setup is with explicit pieceStyle "merida".</li>
+        <li>The nineth setup is with explicit pieceStyle "leipzig".</li>
+        <li>The tenth setup is with explicit pieceStyle "chesscom".</li>
+        <li>The eleventh setup is with explicit pieceStyle "beyer".</li>
+    </ul>
+<br/>
+<div id="board0" style="width: 450px; float: left; margin: 25px"></div>
+<div id="board1" style="width: 450px; float: left; margin: 25px"></div>
+<div id="board2" style="width: 450px; float: left; margin: 25px"></div>
+<div id="board3" style="width: 450px; float: left; margin: 25px"></div>
+<div id="board4" style="width: 450px; float: left; margin: 25px"></div>
+<div id="board5" style="width: 450px; float: left; margin: 25px"></div>
+<div id="board6" style="width: 450px; float: left; margin: 25px"></div>
+<div id="board7" style="width: 450px; float: left; margin: 25px"></div>
+<div id="board8" style="width: 450px; float: left; margin: 25px"></div>
+<div id="board9" style="width: 450px; float: left; margin: 25px"></div>
+<div id="board10" style="width: 450px; float: left; margin: 25px"></div>
+
+<script>
+    pgnv = pgnBoard("board0", {pieceStyle: 'wikipedia'});
+    pgnv = pgnBoard("board1", {});
+    pgnv = pgnBoard("board2", {pieceStyle: 'alpha'});
+    pgnv = pgnBoard("board3", {pieceStyle: 'uscf'});
+    pgnv = pgnBoard("board4", {pieceStyle: 'case'});
+    pgnv = pgnBoard("board5", {pieceStyle: 'condal'});
+    pgnv = pgnBoard("board6", {pieceStyle: 'maya'});
+    pgnv = pgnBoard("board7", {pieceStyle: 'merida'});
+    pgnv = pgnBoard("board8", {pieceStyle: 'leipzig'});
+    pgnv = pgnBoard("board9", {pieceStyle: 'chesscom'});
+    pgnv = pgnBoard("board10", {pieceStyle: 'beyer'});
+</script>
+
+
+</body>
+</html>

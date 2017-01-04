@@ -88,6 +88,7 @@ var pgnReader = function (configuration) {
     }
     initialize_configuration(configuration);
     var parser = pgnParser;
+    that.startMove = 0;
     var game = new Chess();
     that.PGN_TAGS = {
         Event: "the name of the tournament or match event",
@@ -295,7 +296,7 @@ var pgnReader = function (configuration) {
          * it is much easier to keep only the first move of the variation.
          */
         var correctVariations = function() {
-            $.each(that.moves, function(index, move) {
+            $.each(getMoves(), function(index, move) {
                 for (i = 0; i < move.variations.length; i++) {
                     move.variations[i] = move.variations[i][0];
                 }
@@ -320,7 +321,7 @@ var pgnReader = function (configuration) {
      * @returns {boolean} true, if there exists a move with that index, false else
      */
     var isMove = function(id) {
-        return that.moves.length > id;
+        return getMoves().length > id;
     }
 
     /**
@@ -331,7 +332,7 @@ var pgnReader = function (configuration) {
     var isDeleted = function(id) {
         if (! isMove(id))
             return true; // Every non-existing moves is "deleted"
-        var current = that.moves[id];
+        var current = getMoves()[id];
         if (current === null) {
             return true;
         }
@@ -350,7 +351,7 @@ var pgnReader = function (configuration) {
      * @param id the ID of the move
      */
     var getMove = function(id) {
-        return that.moves[id];
+        return getMoves()[id];
     };
 
 
@@ -415,7 +416,7 @@ var pgnReader = function (configuration) {
                     if (current.next !== undefined) {
                        deleteMove(current.next);
                     }        
-                    that.moves[current.index] = null;
+                    getMoves()[current.index] = null;
                     return;
                 }
             }
@@ -510,7 +511,7 @@ var pgnReader = function (configuration) {
     // Returns true, if the move is the start of a (new) variation
     var startVariation = function(move) {
         return  move.variationLevel > 0 &&
-            ( (move.prev === undefined) || (that.moves[move.prev].next != move.index));
+            ( (move.prev === undefined) || (getMoves()[move.prev].next != move.index));
     };
     // Returns true, if the move is the end of a variation
     var endVariation = function(move) {
@@ -686,7 +687,6 @@ var pgnReader = function (configuration) {
          */
         var eachMoveVariation = function(moveArray, level, prev) {
             var prevMove = (prev != null ? that.moves[prev] : null);
-            that.startMove = 0;
             $.each(moveArray, function(i, move) {
                 current++;
                 move.variationLevel = level;
@@ -739,7 +739,6 @@ var pgnReader = function (configuration) {
         that.firstMove = movesMainLine[0];
         eachMoveVariation(movesMainLine, 0, null);
     };
-    load_pgn();
 
     /**
      * Adds the move to the current state after moveNumber.
@@ -757,7 +756,6 @@ var pgnReader = function (configuration) {
      * @param moveNumber the number of the previous made move, null if it is the first one
      */
     var addMove = function (move, moveNumber) {
-//        window.alert("Move " + move + " after move with number " + moveNumber + " to do.");
         var get_turn = function (moveNumber) {
               return getMove(moveNumber).turn === "w" ? 'b' : "w";
         };
@@ -838,9 +836,9 @@ var pgnReader = function (configuration) {
         } else {
             real_move.notation.notation = pgn_move.san;
         }
-        that.moves.push(real_move);
+        getMoves().push(real_move);
         real_move.prev = moveNumber;
-        var next = that.moves.length - 1;
+        var next = getMoves().length - 1;
         real_move.index = next;
         if (moveNumber != null) {
             handle_variation(real_move, moveNumber, next);
@@ -911,6 +909,30 @@ var pgnReader = function (configuration) {
         return returnedMoves;
     }
 
+    /**
+     * Returns the moves, ensures that the pgn string is read.
+     */
+    function getMoves() {
+        if (typeof that.moves != 'undefined') {
+            return that.moves;
+        } else {
+            load_pgn();
+            return that.moves;
+        }
+    }
+
+    /**
+     * Returns the headers. Ensures that pgn is already read.
+     */
+    function getHeaders() {
+        if (typeof that.headers != 'undefined') {
+            return that.headers;
+        } else {
+            load_pgn();
+            return that.headers;
+        }
+    }
+
     // This defines the public API of the pgn function.
     return {
         configuration: configuration,
@@ -919,10 +941,10 @@ var pgnReader = function (configuration) {
         promoteMove: promoteMove,
         isDeleted: isDeleted,
         readMoves: function () { return readMoves; },
-        getMoves: function () { return that.moves; },
+        getMoves: getMoves,
         getOrderedMoves: getOrderedMoves,
         getMove: getMove,
-        getHeaders: function() { return that.headers; },
+        getHeaders: getHeaders,
 //        splitHeaders: splitHeaders,
         getParser: function() { return parser; },
 //        eachMove: function() { return eachMove(); },
@@ -939,7 +961,8 @@ var pgnReader = function (configuration) {
         NAGS: that.NAGs,
         san: san,
         sanWithNags: sanWithNags,
-        game: game
+        game: game,
+        load_pgn: load_pgn
     }
 };
 
