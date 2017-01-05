@@ -3,7 +3,23 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## Unreleased
+
+### Changed
+
+* Restructured some code, to allow catching all errors in the UI.
+* Added a lot of locales with their corresponding files for buttons and figures.
+
+### Fixed
+
+* [#16](https://github.com/mliebelt/PgnViewerJS/issues/16): 
+* [#31](https://github.com/mliebelt/PgnViewerJS/issues/31): Logs now the error to the UI, so that the PGN could be fixed more easily
+* [#36](https://github.com/mliebelt/PgnViewerJS/issues/36): 
+* [#37](https://github.com/mliebelt/PgnViewerJS/issues/37): Added the following locales: cs, da, es, et, fi, hu, is, it, nb, nl, pl, pt, ro, sv. Translated at least the button tooltips and the figures. If anyone could help, I could translate the NAGs as well.
+* [#39](https://github.com/mliebelt/PgnViewerJS/issues/39): 
+* [#42](https://github.com/mliebelt/PgnViewerJS/issues/42): Added the parameter pgnFile to the configuration, file has to come from the same site, though (due to CORS)
+
+## [0.9.4]
 
 ### Changed
 

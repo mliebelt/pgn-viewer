@@ -31,26 +31,68 @@
 <body>
 <h3>Parameter locale</h3>
 
-<div>The following game is shown on four different boards. It shows it in 3 different
-    languages:</div>
+<div>The following game is shown on some boards with all possible
+    languages. Hover over the buttons to see the translated tooltips as well:</div>
 <ul>
-    <li>The first one uses the default locale en (not set) == English.</li>
-    <li>The second one uses the locale en (explictly set) == English.</li>
-    <li>The third one uses the locale de (explictly set) == German.</li>
-    <li>The fourth one uses the locale fr (explictly set) == French.</li>
+    <li>the default locale en (not set) == English.</li>
+    <li>the locale cs (explictly set) == Czech.</li>
+    <li>the locale da (explictly set) == Danish.</li>
+    <li>the locale de (explictly set) == German.</li>
+    <li>the locale en (explictly set) == English.</li>
+    <li>the locale es (explictly set) == Spanish.</li>
+    <li>the locale et (explictly set) == Estonian.</li>
+    <li>the locale fi (explictly set) == Finnish.</li>
+    <li>the locale fr (explictly set) == French.</li>
+    <li>the locale hu (explictly set) == Hungarian.</li>
+    <li>the locale is (explictly set) == Icelandic.</li>
+    <li>the locale it (explictly set) == Italian.</li>
+    <li>the locale nb (explictly set) == Norvegian.</li>
+    <li>the locale nl (explictly set) == Dutch.</li>
+    <li>the locale pl (explictly set) == Polish.</li>
+    <li>the locale pt (explictly set) == Portuguese.</li>
+    <li>the locale ro (explictly set) == Romanian.</li>
+    <li>the locale sv (explictly set) == Swedish.</li>
 </ul>
 <br/>
 <div id="board0" style="width: 300px; float: left; margin-right: 25px"></div>
 <div id="board1" style="width: 300px; float: left; margin-right: 25px"></div>
 <div id="board2" style="width: 300px; float: left; margin-right: 25px"></div>
 <div id="board3" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board4" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board5" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board6" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board7" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board8" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board9" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board10" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board11" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board12" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board13" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board14" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board15" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board16" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board17" style="width: 300px; float: left; margin-right: 25px"></div>
 
 <script>
     var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0";
     pgnv = pgnView("board0", {pgn: pgn});
-    pgnv = pgnView("board1", {pgn: pgn, locale: 'en'});
-    pgnv = pgnView("board2", {pgn: pgn, locale: 'de'});
-    pgnv = pgnView("board3", {pgn: pgn, locale: 'fr'});
+    pgnv = pgnView("board1", {pgn: pgn, locale: 'cs'});
+    pgnv = pgnView("board2", {pgn: pgn, locale: 'da'});
+    pgnv = pgnView("board3", {pgn: pgn, locale: 'de'});
+    pgnv = pgnView("board4", {pgn: pgn, locale: 'en'});
+    pgnv = pgnView("board5", {pgn: pgn, locale: 'es'});
+    pgnv = pgnView("board6", {pgn: pgn, locale: 'et'});
+    pgnv = pgnView("board7", {pgn: pgn, locale: 'fi'});
+    pgnv = pgnView("board8", {pgn: pgn, locale: 'fr'});
+    pgnv = pgnView("board9", {pgn: pgn, locale: 'hu'});
+    pgnv = pgnView("board10", {pgn: pgn, locale: 'is'});
+    pgnv = pgnView("board11", {pgn: pgn, locale: 'it'});
+    pgnv = pgnView("board12", {pgn: pgn, locale: 'nb'});
+    pgnv = pgnView("board13", {pgn: pgn, locale: 'nl'});
+    pgnv = pgnView("board14", {pgn: pgn, locale: 'pl'});
+    pgnv = pgnView("board15", {pgn: pgn, locale: 'pt'});
+    pgnv = pgnView("board16", {pgn: pgn, locale: 'ro'});
+    pgnv = pgnView("board17", {pgn: pgn, locale: 'sv'});
 </script>
 
 
