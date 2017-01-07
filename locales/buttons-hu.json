@@ -9,5 +9,6 @@
     "promoteVar" : "Támogassák variáció",
     "deleteMoves" : "Törlés többi mozog itt",
     "nags" : "NAGs menu",
-    "pgn" : "Kijelző PGN aktuális játék"
+    "pgn" : "Kijelző PGN aktuális játék",
+    "hidePGN" : "Elrejtése a megjelenített PGN"
 }

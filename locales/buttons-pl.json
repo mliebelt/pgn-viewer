@@ -9,5 +9,6 @@
     "promoteVar" : "Promuj wariancji",
     "deleteMoves" : "Usuń ruchy odpocząć od tutaj",
     "nags" : "NAGs menu",
-    "pgn" : "Wyświetlacz PGN bieżącej grze"
+    "pgn" : "Wyświetlacz PGN bieżącej grze",
+    "hidePGN" : "Ukrywanie wyświetlanych PGN"
 }

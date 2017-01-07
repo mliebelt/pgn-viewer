@@ -9,5 +9,6 @@
     "promoteVar" : "Să promoveze variația",
     "deleteMoves" : "Șterge de aici se mută de odihnă",
     "nags" : "NAGs menu",
-    "pgn" : "Afișare PGN de joc curente"
+    "pgn" : "Afișare PGN de joc curente",
+    "hidePGN" : "Ascundeți PGN afișat"
 }

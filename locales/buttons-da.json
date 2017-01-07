@@ -9,5 +9,6 @@
     "promoteVar" : "Fremme variation",
     "deleteMoves" : "Slet resten bevæger sig fra her",
     "nags" : "NAGs menu",
-    "pgn" : "Visning PGN af aktuelle spil"
+    "pgn" : "Visning PGN af aktuelle spil",
+    "hidePGN" : "Skjul den viste PGN"
 }

@@ -9,5 +9,7 @@
     "promoteVar" : "podporovat změnu",
     "deleteMoves" : "Odstranit odpočinku pohyby odtud",
     "nags" : "NAGs menu",
-    "pgn" : "Zobrazení PGN z aktuální hry"
+    "pgn" : "Zobrazení PGN z aktuální hry",
+    "hidePGN" : "Skrýt zobrazené PGN"
+
 }

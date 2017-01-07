@@ -9,5 +9,6 @@
     "promoteVar" : "Edistää vaihtelu",
     "deleteMoves" : "Poista loput liikkuu täältä",
     "nags" : "NAGs menu",
-    "pgn" : "Näyttö PGN nykyisen pelin"
+    "pgn" : "Näyttö PGN nykyisen pelin",
+    "hidePGN" : "Piilota näytössä PGN"
 }

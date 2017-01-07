@@ -133,11 +133,12 @@ div.edit > .button.pgn.default:before {
     content: "\f02f";  /* fa-print */
 }
 
-span.button.hidePGN {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background: url("../img/buttons/ff/cancel.png") no-repeat 50%;
+.button.fa-times {
+   color: red;
+}
+
+.button.fa-times:hover {
+    border: red 2px solid;
 }
 
 div.outerpgn {

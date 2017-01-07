@@ -9,5 +9,6 @@
     "promoteVar" : "Valoriser variation",
     "deleteMoves" : "Radier reste les coups from ici",
     "nags" : "NAGs menu",
-    "pgn" : "Visualiser PGN de partie"
+    "pgn" : "Visualiser PGN de partie",
+    "hidePGN" : "Masquer le PGN affiché"
 }

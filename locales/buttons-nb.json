@@ -9,5 +9,6 @@
     "promoteVar" : "Fremme variasjon",
     "deleteMoves" : "Slett resten beveger seg fra her",
     "nags" : "NAGs menu",
-    "pgn" : "Visning PGN av dagens spill"
+    "pgn" : "Visning PGN av dagens spill",
+    "hidePGN" : "Skjul vises PGN"
 }

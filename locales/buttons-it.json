@@ -9,5 +9,6 @@
     "promoteVar" : "Promuovere variazione",
     "deleteMoves" : "Eliminare muove resto da qui",
     "nags" : "NAGs menu",
-    "pgn" : "Visualizzazione PGN di partita in corso"
+    "pgn" : "Visualizzazione PGN di partita in corso",
+    "hidePGN" : "Nascondere il PGN visualizzato"
 }

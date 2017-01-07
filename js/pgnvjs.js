@@ -335,7 +335,7 @@ var pgnBase = function (boardId, configuration) {
                 var editButtonsBoardDiv = createEle("div", "edit" + buttonsId, "edit", theme, outerInnerBoardDiv);
                 generateEditButtons(editButtonsBoardDiv);
                 var outerPgnDiv = createEle("div", "outerpgn" + buttonsId, "outerpgn", theme, outerInnerBoardDiv);
-                var pgnHideButton  = addButton(["hidePGN", "hidePGN"], outerPgnDiv);
+                var pgnHideButton  = addButton(["hidePGN", "fa-times"], outerPgnDiv);
                 var pgnDiv  = createEle("div", "pgn" + buttonsId, "pgn", theme, outerPgnDiv);
                 var commentBoardDiv = createEle("div", "comment" + buttonsId, "comment", theme, outerInnerBoardDiv);
                 generateCommentDiv(commentBoardDiv);
@@ -728,7 +728,7 @@ var pgnBase = function (boardId, configuration) {
                     var fen = that.mypgn.getMove(curr).fen;
                     makeMove(null, that.currentMove, fen);
                 });
-                $('#' + boardId + " .hidePGN").on("click", function () {
+                $('#' + boardId + " .fa-times").on("click", function () {
                     $( "#" + boardId + " .outerpgn").slideUp(400);//hide( "fold");
                 });
                 $("#" + boardId + ' .outerpgn').hide();

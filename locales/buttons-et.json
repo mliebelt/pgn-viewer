@@ -9,5 +9,6 @@
     "promoteVar" : "Edendada variatsioon",
     "deleteMoves" : "Kustuta ülejäänud käigud siit",
     "nags" : "NAGs menu",
-    "pgn" : "Näita PGN praeguse mängu"
+    "pgn" : "Näita PGN praeguse mängu",
+    "hidePGN" : "Peida kuvatakse PGN"
 }

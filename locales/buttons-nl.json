@@ -9,5 +9,6 @@
     "promoteVar" : "Bevorder variatie",
     "deleteMoves" : "Verwijder rust verhuist van hier",
     "nags" : "NAGs menu",
-    "pgn" : "Weergave PGN van het huidige spel"
+    "pgn" : "Weergave PGN van het huidige spel",
+    "hidePGN" : "Verberg de weergegeven PGN"
 }

@@ -9,5 +9,6 @@
     "promoteVar" : "Efla tilbrigði",
     "deleteMoves" : "Eyða hvíld færist frá hér",
     "nags" : "NAGs menu",
-    "pgn" : "Sýna PGN núverandi leik"
+    "pgn" : "Sýna PGN núverandi leik",
+    "hidePGN" : "Fela birtist PGN"
 }

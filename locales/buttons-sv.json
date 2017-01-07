@@ -9,5 +9,6 @@
     "promoteVar" : "Främja variation",
     "deleteMoves" : "Radera vila flyttar härifrån",
     "nags" : "NAGs menu",
-    "pgn" : "Visning PGN av aktuella spelet"
+    "pgn" : "Visning PGN av aktuella spelet",
+    "hidePGN" : "Dölja visas PGN"
 }

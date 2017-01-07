@@ -9,5 +9,6 @@
     "promoteVar" : "Promover a variação",
     "deleteMoves" : "Excluir rest move daqui",
     "nags" : "NAGs menu",
-    "pgn" : "Exibir PGN do jogo atual"
+    "pgn" : "Exibir PGN do jogo atual",
+    "hidePGN" : "Ocultar a PGN exibida"
 }
