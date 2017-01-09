@@ -525,6 +525,18 @@ var pgnBase = function (boardId, configuration) {
         // Update the drop-down for NAGs
         try {
             $("select#" + buttonsId + "nag").multiselect("uncheckAll");
+            var selectMenu = $("select#" + buttonsId + "nag")[0];
+            var nag = move.nag;
+            $.each(nag, function(index, value) {
+                var nagValue = value.substring(1);
+                $.each(selectMenu.options, function(optIndex, optValue) {
+                    if (optValue.value == nagValue) {
+                        optValue.selected = true;
+                    }
+                })
+            })
+            $("select#" + buttonsId + "nag").multiselect("refresh");
+
         } catch (err) {
 
         }
@@ -821,7 +833,7 @@ var pgnBase = function (boardId, configuration) {
                     noneSelectedText: "NAGs",
                     click: function(event, ui) {
                         /**
-                         * Add (or remote) a NAG from the current move. Ignore it, if there is
+                         * Add (or remove) a NAG from the current move. Ignore it, if there is
                          * no current move.
                          */
                         function changeNAG(value, checked) {

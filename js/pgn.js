@@ -878,7 +878,9 @@ var pgnReader = function (configuration) {
         }
         var nagSym = (nag[0] == "$") ? nag : symbol_to_nag(nag);
         if (added) {
-            move.nag.push(nagSym);
+            if (move.nag.indexOf(nagSym) == -1) {
+                move.nag.push(nagSym);
+            }
         } else {
             var index = move.nag.indexOf(nagSym);
             if (index > -1) {
