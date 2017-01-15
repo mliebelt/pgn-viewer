@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>Additional parameters</title>
+<link rel="stylesheet" href="../../dist/css/pgnvjs.css" />
+<link rel="stylesheet" href="../css/prettify.css" />
+<link rel="stylesheet" href="../css/layout.css" />
+<script src="../../dist/js/pgnvjs.js" type="text/javascript" ></script>
+<script src="../js/prettify.js" type="text/javascript" ></script>
+</head>
+<body>
+<h2>Additional parameters</h2>
+<h3>Javascript part</h3>
+<pre class="prettyprint lang-js">pgnBoard('b1', {orientation: 'black'});
+pgnBoard('b2', {showNotation: false});</pre>
+<h3>HTML part</h3>
+<pre class="prettyprint lang-html">&lt;div id=&quot;b1&quot; style=&quot;width: 300px; margin: 20px&quot;&gt;&lt;&#x2F;div&gt;
+&lt;div id=&quot;b2&quot; style=&quot;width: 300px; margin: 20px&quot;&gt;&lt;&#x2F;div&gt;</pre>
+<p>See the <a href="../examples2.html#1023">back link</a> to the original examples page.</p>
+<div>ChessBoard with different additional configuration parameters. Used are here orientation and showNotation.</div>
+<div id="b1" style="width: 300px; margin: 20px"></div>
+<div id="b2" style="width: 300px; margin: 20px"></div>
+<script>
+pgnBoard('b1', {orientation: 'black'});
+pgnBoard('b2', {showNotation: false});
+</script>
+<script>prettyPrint();</script>
+</body>
+</html>

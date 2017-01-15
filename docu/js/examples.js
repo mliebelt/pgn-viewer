@@ -1,4 +1,4 @@
-var examples = {};
+examples = {};
 
 examples["1000"] = {
     desc: "Use PgnViewerJS for only displaying a board. See the section \"Boards\" for details on that.",
@@ -64,10 +64,7 @@ examples["1021"] = {
     html: 'Merida <div id="board"></div> Case <div id="board2"></div> Wikipedia <div id="board3"></div> Alpha <div id="board4"></div>' + 
     ' USCF <div id="board5"></div>  Condal <div id="board7"></div> Maya <div id="board8"></div> Leipzig <div id="board9"></div>',
     name: "Piece Styles",
-    jsStr: "var board = pgnBoard('board', {pieceStyle: 'merida', theme: 'zeit', boardSize: '400px'});" +
-"\nvar board2 = pgnBoard('board2', {" +
-        "\n     pieceStyle: 'case', " +
-        "\n     theme: 'green'});",
+    jsStr: "var board = pgnBoard('board', {pieceStyle: 'merida', boardSize: '400px'});\nvar board2 = pgnBoard('board2', {pieceStyle: 'case', boardSize: '400px'});\nvar board3 = pgnBoard('board3', {pieceStyle: 'wikipedia', boardSize: '400px'});\nvar board4 = pgnBoard('board4', {pieceStyle: 'alpha',  boardSize: '400px'});\nvar board5 = pgnBoard('board5', {pieceStyle: 'uscf',  boardSize: '400px'});\nvar board7 = pgnBoard('board7', {pieceStyle: 'condal', boardSize: '400px'});\nvar board8 = pgnBoard('board8', {pieceStyle: 'maya',  boardSize: '400px'});\nvar board9 = pgnBoard('board9', {pieceStyle: 'leipzig', boardSize: '400px'});",
     jsFn: function() {
         var board = pgnBoard('board', {pieceStyle: 'merida', boardSize: '400px'});
         var board2 = pgnBoard('board2', {pieceStyle: 'case', boardSize: '400px'});
@@ -139,8 +136,8 @@ examples["1050"] = {
     desc: "This is the same theme again, with a typical example to show how the game is displayed. Have a look at the headers, board and the moves.",
     html: "<div id=\"b1\" style=\"width: 390px\"><\/div>",
     name: "Complete game in Chess.com style",
-    jsStr: "pgn = '1. e4 e5 2. Nf3 Nc6  ...'" +
-        "\npgnView('b1', {pgn: pgn, theme: 'chesscom', boardSize: '150px', scrollable: true};",
+    jsStr: "pgn = '[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"] 1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0';" +
+        "\npgnView('b1', {pgn: pgn, theme: 'chesscom', boardSize: '200px',  movesWidth: '180px', scrollable: true, movesHeight: '220px'});",
     jsFn: function() {
         pgn = '[White "Anderssen, Adolf"][Black "Dufresne, Jean"]' +
             ' 1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0';
@@ -149,13 +146,9 @@ examples["1050"] = {
 };
 examples["1051"] = {
     desc: "An example for a normal game, with the standard style. Try to use the buttons, and play the game forth and back. You may set any position in the game by just clicking on the move.",
-    html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
+    html: "<div id=\"b1\" style=\"width: 380px\"><\/div>",
     name: "Normal Game",
-    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]" +
-    "[Result \"1-0\"][ECO \"C52\"]" +
-    "[Site \"Berlin\"][Date \"1852\"]" +
-    "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 ...'\n" +
-    'pgnv = pgnView("b1", {pgn: pgn});',
+    jsStr: "var pgn = '[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"][Result \"1-0\"][ECO \"C52\"][Site \"Berlin\"][Date \"1852\"] 1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0';\n pgnv = pgnView('b1', {pgn: pgn});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
@@ -166,10 +159,9 @@ examples["1051"] = {
 };
 examples["1052"] = {
     desc: "The same game in a more traditional style",
-    html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
+    html: "<div id=\"b1\" style=\"width: 380px\"><\/div>",
     name: "Falken Style",
-    jsStr: "var pgn = '1. e4 ...'\n" +
-    'pgnv = pgnView("b1", {pgn: pgn, theme: "falken"});',
+    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = pgnView('b1', {pgn: pgn, theme: 'falken'});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
@@ -182,8 +174,7 @@ examples["1053"] = {
     desc: "The same game in green style",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Green Style",
-    jsStr: "var pgn = '1. e4 ...'\n" +
-    'pgnv = pgnView("b1", {pgn: pgn, theme: "green"});',
+    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = pgnView('b1', {pgn: pgn, theme: 'green'});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
@@ -196,8 +187,7 @@ examples["1054"] = {
     desc: "The same game in Zeit style",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Zeit Style",
-    jsStr: "var pgn = '1. e4 ...'\n" +
-    'pgnv = pgnView("b1", {pgn: pgn, theme: "zeit"});',
+    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = pgnView('b1', {pgn: pgn, theme: 'zeit'});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
@@ -210,8 +200,7 @@ examples["1055"] = {
     desc: "The same game in informator style",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Informator Style",
-    jsStr: "var pgn = '1. e4 ...'\n" +
-    'pgnv = pgnView("b1", {pgn: pgn, theme: "informator"});',
+    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = pgnView('b1', {pgn: pgn, theme: 'informator'});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
@@ -224,8 +213,7 @@ examples["1056"] = {
     desc: "The same game in sportverlag style",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Sportverlag Style",
-    jsStr: "var pgn = '1. e4 ...'\n" +
-    'pgnv = pgnView("b1", {pgn: pgn, theme: "sportverlag"});',
+    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = pgnView('b1', {pgn: pgn, theme: 'sportverlag'});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
@@ -238,8 +226,7 @@ examples["1057"] = {
     desc: "The same game in beyer style",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Beyer Style",
-    jsStr: "var pgn = '1. e4 ...'\n" +
-    'pgnv = pgnView("b1", {pgn: pgn, theme: "beyer"});',
+    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = pgnView('b1', {pgn: pgn, theme: 'beyer'});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
@@ -252,8 +239,7 @@ examples["1058"] = {
     desc: "The same game in a blue style",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Blue Style",
-    jsStr: "var pgn = '1. e4 ...'\n" +
-    'pgnv = pgnView("b1", {pgn: pgn, theme: "blue"});',
+    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = pgnView('b1', {pgn: pgn, theme: 'blue'});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
@@ -270,8 +256,7 @@ examples["1100"] = {
         "a comment.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Edit game",
-    jsStr: "pgn = '1. e4 ...';\n" +
-    "pgnv = pgnEdit(\"b1\", {pgn: pgn});",
+    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = pgnEdit('b1', {pgn: pgn});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
@@ -297,7 +282,7 @@ examples["1102"] = {
     desc: "Here a game with a lot of variations, sometimes two or more levels deep. This is part of my opening repertoire as white.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Variations in Moves",
-    jsStr: 'var pgn = \'2. e4 e5 (1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6) ...\';\npgnView(\'b1\', {pgn: pgn});',
+    jsStr: "var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'\npgnView('b1', {pgn: pgn});",
     jsFn: function() {
         var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'
         pgnView('b1', {pgn: pgn});
@@ -368,7 +353,7 @@ examples["1202"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/4'>ticket 4</a> at GitHub. Formerly, all " +
     "themes used real buttons for the buttons, but the play buttons are now mostly done with FontAwesome. See the three " +
     "games, the first two with real buttons, the third with font buttons from FontAwesome.",
-    html: '<div id="board1" style="width: 400px"/><div id="board2" style="width: 400px"/><div id="board3" style="width: 400px"/>',
+    html: '<div id="board1" style="width: 400px"></div><div id="board2" style="width: 400px"></div><div id="board3" style="width: 400px"></div>',
     name: "#4: Use FontAwesome for the UI",
     jsStr: "pgnView('board1', { pgn: '1. e4 e5 2. Nf3 Nc6', theme: 'green' });\npgnView('board2', { pgn: '1. e4 e5 2. Nf3 Nc6', theme: 'blue' });\npgnView('board3', { pgn: '1. e4 e5 2. Nf3 Nc6' });",
     jsFn: function() {
@@ -392,9 +377,9 @@ examples["1204"] = {
     "The boards above have the three locales fr, de, and en, and show the moves initially in the language " +
     "of choice. However, when you edit the games, you will see that the last locale (here english) is used " +
     "in all of them.",
-    html: '<div id="board" style="width: 200px;float: left;margin-right: 20px"/>\n<div id="board1" style="width: 200px;float: left;margin-right: 20px"/>\n<div id="board2" style="width: 200px;float: left;margin-right: 20px"/>',
+    html: '<div id="board" style="width: 200px;float: left;margin-right: 20px"></div>\n<div id="board1" style="width: 200px;float: left;margin-right: 20px"></div>\n<div id="board2" style="width: 200px;float: left;margin-right: 20px"></div>',
     name: "#6: locale in edit mode (unsolved)",
-    jsStr: "",
+    jsStr: "var pgn = '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5';\npgnEdit('board', {pgn: pgn, locale: 'fr'});\npgnEdit('board1', {pgn: pgn,locale: 'de'});\npgnEdit('board2', {pgn: pgn, locale: 'en'});",
     jsFn: function() {
         var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5";
         pgnEdit("board", {pgn: pgn, locale: 'fr'});
@@ -499,7 +484,7 @@ examples["1213"] = {
     "Clicking on variations in Firefox didn't worked at all.",
     html: "<div id='b1' style='width: 360px'/>",
     name: "#20: Clicking on variation in Firefox does not work",
-    jsStr: 'var pgn = \'2. e4 e5 (1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6) ...\';\npgnView(\'b1\', {pgn: pgn});',
+    jsStr: 'var pgn = \'1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4\';\npgnView(\'b1\', {pgn: pgn});',
     jsFn: function() {
         var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'
         pgnView('b1', {pgn: pgn});    }
@@ -529,9 +514,7 @@ examples["1216"] = {
     "Use the pgn notation flag 'setup' and interpret it the right way as replacement for the fen parameter.",
     html: "<div id='board' style='width: 360px'/>",
     name: "#23: Use the pgn notation flag 'setup'",
-    jsStr: 'pgnView("board", {pgn: "[SetUp "1"]\
-        [FEN "rnbqkbnr/1ppppppp/p7/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2"]\
-        2. Nc3 e5 3. Nf3 Qe7"});',
+    jsStr: "pgnView('board', {pgn: '[SetUp \"1\"][FEN \"rnbqkbnr/1ppppppp/p7/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2\"] 2. Nc3 e5 3. Nf3 Qe7'});",
     jsFn: function() {
         pgnView("board", {pgn: "[SetUp \"1\"]\
         [FEN \"rnbqkbnr/1ppppppp/p7/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2\"] 2. Nc3 e5 3. Nf3 Qe7"});
@@ -540,7 +523,7 @@ examples["1216"] = {
 examples["1217"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/25'>ticket 25</a> at GitHub. " +
     "Separate the generated DIVs, allow additional markup.",
-    html: "<div id='board' style='width: 200px'/><div id='moves'/><div id='button'/>",
+    html: "<div id='board' style='width: 200px'></div><div id='moves'></div><div id='button'></div>",
     name: "#25: Allow different markup",
     jsStr: 'pgnView({inner: "board", moves: "moves", button: "button"}, {pgn: "1. f4 e6 2. g4 Qh4#"})',
     jsFn: function() {
@@ -602,9 +585,9 @@ examples["1223"] = {
     "Internationalization of buttons does not work as expected. Hover over the buttons to see the result.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#32: Internationalization of buttons",
-    jsStr: 'pgnView("board", {locale: "fr", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
+    jsStr: 'pgnEdit("board", {locale: "fr", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
     jsFn: function() {
-        pgnView("board", {locale: "fr", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
+        pgnEdit("board", {locale: "fr", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
     }
 }; 
 examples["1224"] = {
@@ -651,78 +634,3 @@ examples["1227"] = {
         pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
     }
 };
-
-
-var htmlEscape = function(str) {
-    return (str + '')
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;')
-        .replace(/\//g, '&#x2F;')
-        .replace(/`/g, '&#x60;');
-};
-
-var highlightGroupHeader = function(groupIndex) {
-    $('div#examples_list_container h4').removeClass('active');
-    $('h4#group_header_' + groupIndex).addClass('active');
-};
-
-var highlightExample = function(id) {
-    $('div#examples_list_container li').removeClass('active');
-    $('li#example_' + id).addClass('active');
-};
-
-var showExample = function(number) {
-    var groupIndex = parseInt($('li#example_' + number)
-        .parent('ul').attr('id').replace('group_container_', ''), 10);
-
-    $('ul#group_container_' + groupIndex).css('display', '');
-    highlightGroupHeader(groupIndex);
-    highlightExample(number);
-
-    $('#example_name').html(examples[number].name);
-    $('#example_single_page_link').attr('href', 'examples/' + number);
-    $('#example_desc_container').html(examples[number].desc);
-    $('#example_html_container').html(examples[number].html);
-    $('#example_js_container').html('<pre class="prettyprint">' + examples[number].jsStr + '</pre>');
-    $('#example_show_html_container').html('<pre class="prettyprint">' + htmlEscape(examples[number].html) + '</pre>');
-    examples[number].jsFn();
-    prettyPrint();
-};
-
-var clickExample = function() {
-    var number = parseInt($(this).attr('id').replace('example_', ''), 10);
-    if (examples.hasOwnProperty(number) !== true) return;
-
-    window.location.hash = number;
-    loadExampleFromHash();
-};
-
-var loadExampleFromHash = function() {
-    var number = parseInt(window.location.hash.replace('#', ''), 10);
-    if (examples.hasOwnProperty(number) !== true) {
-        number = 1000;
-        window.location.hash = number;
-    }
-    showExample(number);
-};
-
-var clickGroupHeader = function() {
-    var groupIndex = parseInt($(this).attr('id').replace('group_header_', ''), 10);
-    var examplesEl = $('ul#group_container_' + groupIndex);
-    if (examplesEl.css('display') === 'none') {
-        examplesEl.slideDown('fast');
-    }
-    else {
-        examplesEl.slideUp('fast');
-    }
-};
-
-var init = function() {
-    $('#examples_list_container').on('click', 'li', clickExample);
-    $('#examples_list_container').on('click', 'h4', clickGroupHeader);
-    loadExampleFromHash();
-};
-$(document).ready(init);

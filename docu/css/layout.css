@@ -147,7 +147,7 @@ nav.primary ul ul li {
 
 /* Layout Prettyprint
 ================================================== */
-pre.prettyprint { display: block; background-color: #002A36 }
+pre.prettyprint { display: block; background-color: #002A36; overflow: auto; }
 pre .nocode { background-color: transparent; color: #000 }
 pre .str { color: #19cbbf
 } /* string  - pink */

@@ -151,115 +151,7 @@ module.exports = function(grunt) {
                 dest: "dist-nojq/css/pgnvjs.css"
             }
         }
-/*        ftp_push: {
-            docu_all: {
-                options: {
-                    authKey: "bplaced",
-                    host: "mliebelt.bplaced.net",
-                    dest: "/pgnvjs/",
-                    port: 21
-                },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'docu',
-                        src: [
-                            "**"
-                        ]
-                    }
-                ]
-            },
-            docu_min: {
-                options: {
-                    authKey: "bplaced",
-                    host: "mliebelt.bplaced.net",
-                    dest: "/pgnvjs/",
-                    port: 21
-                },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'docu',
-                        src: ["*.html"]
-                    }
-                ]
-            },
-            docu_js: {
-                options: {
-                    authKey: "bplaced",
-                    host: "mliebelt.bplaced.net",
-                    dest: "/pgnvjs/js",
-                    port: 21
-                },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'docu/js',
-                        src: ["*.js"]
-                    }
-                ]
-            },
-            dist_min: {
-                options: {
-                    authKey: "bplaced",
-                    host: "mliebelt.bplaced.net",
-                    dest: "/pgnvjs/dist/js",
-                    port: 21
-                },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'dist/js/min',
-                        src: ["pgnvjs.js"]
-                    }
-                ]
-            },
-            dist_debug: {
-                options: {
-                    authKey: "bplaced",
-                    host: "mliebelt.bplaced.net",
-                    dest: "/pgnvjs/dist/js",
-                    port: 21
-                },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'dist/js',
-                        src: ["pgnvjs.js"]
-                    }
-                ]
-            },
-            dist_locales: {
-                options: {
-                    authKey: "bplaced",
-                    host: "mliebelt.bplaced.net",
-                    dest: "/pgnvjs/dist/locales",
-                    port: 21
-                },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'dist/locales',
-                        src: ["*.json"]
-                    }
-                ]
-            },
-            dist_css: {
-                options: {
-                    authKey: "bplaced",
-                    host: "mliebelt.bplaced.net",
-                    dest: "/pgnvjs/dist/css",
-                    port: 21
-                },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'dist/css',
-                        src: ["*.css"]
-                    }
-                ]
-            }
-        } */
+
     });
 
     // Load the necessary tasks
@@ -268,16 +160,64 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-markdown');
-//    grunt.loadNpmTasks('grunt-ftp-deploy');
-//    grunt.loadNpmTasks('grunt-ftp-push');
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-concat-css');
 
     // Default task.
-    grunt.registerTask('default', ['clean', 'concat:all', 'concat_css',  'uglify', 'copy:all']);
+    grunt.registerTask('default', ['clean', 'concat:all', 'concat_css',  'uglify', 'copy:all', 'genExamples']);
     grunt.registerTask('debug', ['clean', 'concat:all', 'copy:all']);
     grunt.registerTask('nojq', ['clean', 'concat:nojq', 'concat_css:nojq', 'copy:nojq', 'uglify:nojq' ]);
-//    grunt.registerTask('deploy-all', ['ftp_push:dist_min', 'ftp_push:docu_min',
-//        'ftp_push:dist_locales', 'ftp_push:dist_css', 'ftp_push:docu_js']);
 
+    /* Define the function and register it to generate the HTML example files in the documentation.
+       This should be redone for each release then ...        */
+    grunt.registerTask('genExamples', function() {
+        var htmlEscape = function(str) {
+            return (str + '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;')
+                .replace(/\//g, '&#x2F;')
+                .replace(/`/g, '&#x60;');
+        };
+        console.log("Will generate examples in directory: " + __dirname + '\\docu\\examples');
+        var fs = require('fs');
+        require('./docu/js/examples.js');
+        console.log("Available keys: " + Object.keys(examples));
+        var exKeys = Object.keys(examples);
+        // Loop through all examples
+        for (var i=0; i < exKeys.length; i++) {
+            var ex = examples[exKeys[i]];
+            var buf = "";
+            buf += '<!DOCTYPE html>' + "\n";
+            buf += '<html>' + "\n";
+            buf += '<head>' + "\n";
+            buf += '<meta charset="utf-8" />' + "\n";
+            buf += '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />' + "\n";
+            buf += '<title>' + ex.name + '</title>' + "\n";
+            buf += '<link rel="stylesheet" href="../../dist/css/pgnvjs.css" />' + "\n";
+            buf += '<link rel="stylesheet" href="../css/prettify.css" />' + "\n";
+            buf += '<link rel="stylesheet" href="../css/layout.css" />' + "\n";
+            buf += '<script src="../../dist/js/pgnvjs.js" type="text/javascript" ></script>' + "\n";
+            buf += '<script src="../js/prettify.js" type="text/javascript" ></script>' + "\n";
+            buf += '</head>' + "\n";
+            buf += '<body>' + "\n";
+            buf += '<h2>' + ex.name + '</h2>' + "\n";
+            buf += '<h3>Javascript part</h3>' + "\n";
+            buf += '<pre class="prettyprint lang-js">' + ex.jsStr + '</pre>' + "\n";
+            buf += '<h3>HTML part</h3>' + "\n";
+            buf += '<pre class="prettyprint lang-html">' + htmlEscape(ex.html) + '</pre>' + "\n";
+            buf += '<p>See the <a href="../examples2.html#' + exKeys[i] + '">back link</a> to the original examples page.</p>' + "\n";
+            buf += '<div>' + ex.desc + '</div>' + "\n";
+            buf += ex.html + "\n";
+            buf += '<script>' + "\n";
+            buf += ex.jsStr + "\n";
+            buf += '</script>' + "\n";
+            buf += '<script>prettyPrint();</script>' + "\n";
+            buf += '</body>' + "\n";
+            buf += '</html>' + "\n";
+            fs.writeFileSync('docu/examples/' + exKeys[i] + ".html", buf);
+        }
+    })
 };
