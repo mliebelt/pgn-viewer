@@ -583,16 +583,18 @@ examples["1222"] = {
 examples["1223"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/32'>ticket 32</a> at GitHub. " +
     "Internationalization of buttons does not work as expected. Hover over the buttons to see the result.",
-    html: "<div id='board' style='width: 200px'/>",
+    html: "Locale fr <div id='board' style='width: 200px'></div> Locale nl <div id='board2' style='width: 200px'></div> Locale cs <div id='board3' style='width: 200px'></div>",
     name: "#32: Internationalization of buttons",
-    jsStr: 'pgnEdit("board", {locale: "fr", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
+    jsStr: 'pgnEdit("board", {locale: "fr", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})\npgnEdit("board2", {locale: "nl", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});\npgnEdit("board3", {locale: "cs", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});',
     jsFn: function() {
         pgnEdit("board", {locale: "fr", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
+        pgnEdit("board2", {locale: "nl", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
+        pgnEdit("board3", {locale: "cs", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
     }
 }; 
 examples["1224"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/33'>ticket 33</a> at GitHub. " +
-    "buttons:first should go to the start position. Jump to the ennd and back to beginning.",
+    "buttons:first should go to the start position. Jump to the ennd and back to beginning. Make some moves, and jump back to the beginning to see that.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#33: buttons:first should go to the start position",
     jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
@@ -603,7 +605,7 @@ examples["1224"] = {
 examples["1225"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/36'>ticket 36</a> at GitHub. " +
     "Add a UI for FEN and PGN in edit mode (PGN already there, FEN missing) and view mode (should then be per default off).",
-    html: "<div id='board' style='width: 200px'/><div id='board1' style='width: 200px'/>",
+    html: "<div id='board' style='width: 200px'></div><div id='board1' style='width: 200px'></div>",
     name: "#36: Add UI for FEN and PGN in edit mode",
     jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});\npgnEdit("board1", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
     jsFn: function() {
@@ -613,20 +615,20 @@ examples["1225"] = {
 };
 examples["1226"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/37'>ticket 37</a> at GitHub. " +
-    "Add additional languages: take some locales with a lot of international speakers (like )",
-    html: "<div id='board1' style='width: 200px; float: left'/><div id='board2' style='width: 200px; float: left'/><div id='board3' style='width: 200px; float: left'/>",
+    "Add additional languages: take some locales : cs, da, de, en, es, et, fi ,fr, hu, is, it nb, nl, pl, pt, ro, sv.",
+    html: "<div>Default language: en, Locale es and Locale fi</div>\n<div id='board1' style='width: 200px; float: left'></div>\n<div id='board2' style='width: 200px; float: left'></div>\n<div id='board3' style='width: 200px; float: left'></div>",
     name: "#37: Add additional languages",
-    jsStr: 'pgn = "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6";\npgnView("board1", {pgn: pgn});\npgnView("board1", {pgn: pgn, locale: "de"});\npgnView("board3", {pgn: pgn, locale: "es"});',
+    jsStr: 'pgn = "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6";\npgnView("board1", {pgn: pgn});\npgnView("board2", {pgn: pgn, locale: "es"});\npgnView("board3", {pgn: pgn, locale: "fi"});',
     jsFn: function() {
         pgn = "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6";
-        pgnView("board", {pgn: pgn});
-        pgnView("board1", {pgn: pgn, locale: "de"});
-        pgnView("board3", {pgn: pgn, locale: "es"});
+        pgnView("board1", {pgn: pgn});
+        pgnView("board2", {pgn: pgn, locale: "es"});
+        pgnView("board3", {pgn: pgn, locale: "fi"});
     }
 };
 examples["1227"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/39'>ticket 33</a> at GitHub. " +
-    "Allow opening of examples from the documentation in a separate tab. See if there is a separate link on that page that works.",
+    "Allow opening of examples from the documentation in a separate tab. Just click on the link 'View example in new window'.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#39: Allow opening of examples from the documentation in a separate tab",
     jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',

@@ -13,14 +13,18 @@
 <body>
 <h2>#32: Internationalization of buttons</h2>
 <h3>Javascript part</h3>
-<pre class="prettyprint lang-js">pgnEdit("board", {locale: "fr", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})</pre>
+<pre class="prettyprint lang-js">pgnEdit("board", {locale: "fr", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})
+pgnEdit("board2", {locale: "nl", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
+pgnEdit("board3", {locale: "cs", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});</pre>
 <h3>HTML part</h3>
-<pre class="prettyprint lang-html">&lt;div id=&#39;board&#39; style=&#39;width: 200px&#39;&#x2F;&gt;</pre>
+<pre class="prettyprint lang-html">Locale fr &lt;div id=&#39;board&#39; style=&#39;width: 200px&#39;&gt;&lt;&#x2F;div&gt; Locale nl &lt;div id=&#39;board2&#39; style=&#39;width: 200px&#39;&gt;&lt;&#x2F;div&gt; Locale cs &lt;div id=&#39;board3&#39; style=&#39;width: 200px&#39;&gt;&lt;&#x2F;div&gt;</pre>
 <p>See the <a href="../examples2.html#1223">back link</a> to the original examples page.</p>
 <div>See <a href='https://github.com/mliebelt/PgnViewerJS/issues/32'>ticket 32</a> at GitHub. Internationalization of buttons does not work as expected. Hover over the buttons to see the result.</div>
-<div id='board' style='width: 200px'/>
+Locale fr <div id='board' style='width: 200px'></div> Locale nl <div id='board2' style='width: 200px'></div> Locale cs <div id='board3' style='width: 200px'></div>
 <script>
 pgnEdit("board", {locale: "fr", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})
+pgnEdit("board2", {locale: "nl", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
+pgnEdit("board3", {locale: "cs", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
 </script>
 <script>prettyPrint();</script>
 </body>
