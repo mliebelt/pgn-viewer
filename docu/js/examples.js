@@ -618,21 +618,51 @@ examples["1226"] = {
     "Add additional languages: take some locales : cs, da, de, en, es, et, fi ,fr, hu, is, it nb, nl, pl, pt, ro, sv.",
     html: "<div>Default language: en, Locale es and Locale fi</div>\n<div id='board1' style='width: 200px; float: left'></div>\n<div id='board2' style='width: 200px; float: left'></div>\n<div id='board3' style='width: 200px; float: left'></div>",
     name: "#37: Add additional languages",
-    jsStr: 'pgn = "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6";\npgnView("board1", {pgn: pgn});\npgnView("board2", {pgn: pgn, locale: "es"});\npgnView("board3", {pgn: pgn, locale: "fi"});',
+    jsStr: 'pgn = "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6";\npgnEdit("board1", {pgn: pgn});\npgnEdit("board2", {pgn: pgn, locale: "es"});\npgnÊdit("board3", {pgn: pgn, locale: "fi"});',
     jsFn: function() {
         pgn = "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6";
-        pgnView("board1", {pgn: pgn});
-        pgnView("board2", {pgn: pgn, locale: "es"});
-        pgnView("board3", {pgn: pgn, locale: "fi"});
+        pgnEdit("board1", {pgn: pgn});
+        pgnEdit("board2", {pgn: pgn, locale: "es"});
+        pgnEdit("board3", {pgn: pgn, locale: "fi"});
     }
 };
 examples["1227"] = {
-    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/39'>ticket 33</a> at GitHub. " +
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/39'>ticket 39</a> at GitHub. " +
     "Allow opening of examples from the documentation in a separate tab. Just click on the link 'View example in new window'.",
-    html: "<div id='board' style='width: 200px'/>",
+    html: "<div id='board' style='width: 350px'/>",
     name: "#39: Allow opening of examples from the documentation in a separate tab",
     jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
     jsFn: function() {
         pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
+    }
+};
+examples["1228"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/42'>ticket 42</a> at GitHub. " +
+    "Allow using PGN from an external source.",
+    html: "<div id='board' style='width: 350px'/>",
+    name: "#42: Allow using PGN from an external source",
+    jsStr: 'pgnView("board", {pgnFile: "/docu/example/cori-vishnu.pgn"})',
+    jsFn: function() {
+        pgnView("board", {pgnFile: "/docu/example/cori-vishnu.pgn"});
+    }
+};
+examples["1229"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/43'>ticket 43</a> at GitHub. " +
+    "Ugly display of tags.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#43: Allow opening of examples from the documentation in a separate tab",
+    jsStr: 'pgnView("board", {pgnFile: "/docu/example/cori-vishnu.pgn"})',
+    jsFn: function() {
+        pgnView("board", {pgnFile: "/docu/example/cori-vishnu.pgn"});
+    }
+};
+examples["1230"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/44'>ticket 44</a> at GitHub. " +
+    "Add the NAGs from a move to the NAG menu. Edit the game, and add NAGs to a move which has already NAGs",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#44: Add the NAGs from a move to the NAG menu",
+    jsStr: 'pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
+    jsFn: function() {
+        pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"});
     }
 };
