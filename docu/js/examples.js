@@ -604,12 +604,12 @@ examples["1224"] = {
 };
 examples["1225"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/36'>ticket 36</a> at GitHub. " +
-    "Add a UI for FEN and PGN in edit mode (PGN already there, FEN missing) and view mode (should then be per default off).",
+    "Add a UI for FEN and PGN in edit mode (PGN already there, FEN missing) and view mode (should then be per default off, here switched on).",
     html: "<div id='board' style='width: 200px'></div><div id='board1' style='width: 200px'></div>",
     name: "#36: Add UI for FEN and PGN in edit mode",
-    jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});\npgnEdit("board1", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
+    jsStr: 'pgnView("board", {showFen: true, pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});\npgnEdit("board1", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
+        pgnView("board", {showFen: true, pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
         pgnEdit("board1", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})
     }
 };

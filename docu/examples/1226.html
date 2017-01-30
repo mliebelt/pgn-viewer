@@ -14,9 +14,9 @@
 <h2>#37: Add additional languages</h2>
 <h3>Javascript part</h3>
 <pre class="prettyprint lang-js">pgn = "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6";
-pgnView("board1", {pgn: pgn});
-pgnView("board2", {pgn: pgn, locale: "es"});
-pgnView("board3", {pgn: pgn, locale: "fi"});</pre>
+pgnEdit("board1", {pgn: pgn});
+pgnEdit("board2", {pgn: pgn, locale: "es"});
+pgnÊdit("board3", {pgn: pgn, locale: "fi"});</pre>
 <h3>HTML part</h3>
 <pre class="prettyprint lang-html">&lt;div&gt;Default language: en, Locale es and Locale fi&lt;&#x2F;div&gt;
 &lt;div id=&#39;board1&#39; style=&#39;width: 200px; float: left&#39;&gt;&lt;&#x2F;div&gt;
@@ -30,9 +30,9 @@ pgnView("board3", {pgn: pgn, locale: "fi"});</pre>
 <div id='board3' style='width: 200px; float: left'></div>
 <script>
 pgn = "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6";
-pgnView("board1", {pgn: pgn});
-pgnView("board2", {pgn: pgn, locale: "es"});
-pgnView("board3", {pgn: pgn, locale: "fi"});
+pgnEdit("board1", {pgn: pgn});
+pgnEdit("board2", {pgn: pgn, locale: "es"});
+pgnÊdit("board3", {pgn: pgn, locale: "fi"});
 </script>
 <script>prettyPrint();</script>
 </body>

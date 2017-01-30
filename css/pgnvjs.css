@@ -14,6 +14,10 @@ div.edit .gray, div.buttons .gray {
 /** Font Awesome buttons (see http://fontawesome.io/)
     Used only with the class default for the spans. */
 
+.fen {
+    width: 100%;
+}
+
 div.error {
     color: red;
 }

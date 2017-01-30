@@ -26,11 +26,13 @@ var pgnBase = function (boardId, configuration) {
         var innerBoardId = boardId + 'Inner';
         var movesId = boardId + 'Moves';
         var buttonsId = boardId + 'Button';
+        var fenId = boardId + "Fen";
     } else { // will be filled later
         var innerBoardId;
         var headersId;
         var movesId;
         var buttonsId;
+        var fenId;
     }
 
     // Anonymous function, has not to be visible from the outside
@@ -51,6 +53,10 @@ var pgnBase = function (boardId, configuration) {
         // Ensure that position is set.
         if (!configuration.position) {
             configuration.position = 'start';
+        }
+        // showFen
+        if (!configuration.hasOwnProperty('showFen')) {
+            configuration.showFen = hasMode('edit');
         }
     })();
 
@@ -331,6 +337,25 @@ var pgnBase = function (boardId, configuration) {
                 var buttonsBoardDiv = createEle("div", buttonsId, "buttons", theme, outerInnerBoardDiv);
                 generateViewButtons(buttonsBoardDiv);
             }
+            if ( (hasMode('edit') || hasMode('view')) && (that.configuration.showFen) ) {
+                var fenDiv = createEle("textarea", fenId, "fen", theme, outerInnerBoardDiv);
+                $('#' + fenId).on('mousedown', function(e) {
+	                e = e || window.event;
+                    e.preventDefault();
+                    $(this).select();
+                });
+                if ( hasMode('edit')) {
+                    $('#' + fenId).bind("paste", function(e){
+                        var pastedData = e.originalEvent.clipboardData.getData('text');
+                        // console.log(pastedData);
+                        that.configuration.position = pastedData;
+                        that.configuration.pgn = '';
+                        pgnEdit(boardId, that.configuration);
+                    } );
+                } else {
+                    $('#' + fenId).prop("readonly", true);
+                }
+            }
             if (hasMode('edit')) {
                 var editButtonsBoardDiv = createEle("div", "edit" + buttonsId, "edit", theme, outerInnerBoardDiv);
                 generateEditButtons(editButtonsBoardDiv);
@@ -577,6 +602,7 @@ var pgnBase = function (boardId, configuration) {
         if (hasMode('edit')) {
             fillComment(next);
         }
+        $('#' + fenId).val(fen);
         updateUI(next);
     };
 
@@ -600,6 +626,7 @@ var pgnBase = function (boardId, configuration) {
         } else {
             game.load(that.configuration.position);
         }
+        $('#' + fenId).val(game.fen());
 
         /**
          * Generate a useful notation for the headers, allow for styling. First a version
@@ -691,6 +718,7 @@ var pgnBase = function (boardId, configuration) {
                 board.position(game.fen());
                 unmarkMark(null);
                 that.currentMove = null;
+                $('#' + fenId).val(game.fen());
                 updateUI(null);
             };
             var timer = $.timer(function() {
