@@ -16,19 +16,20 @@ div.edit .gray, div.buttons .gray {
 
 .fen {
     width: 96%;
+    height: 30px;
+    min-height: 30px;
     padding: 2px;
 }
 
 div.error {
     color: red;
 }
-div.buttons, div.edit {
-    /* margin-top: 10px; */
-}
 div.buttons > i.button.default, div.edit > i.button.default {
     font-size: 16px;
     line-height: 1.4em;
     color: #71a0df;
+    background-color: white;
+    background-image: none;
      margin: 5px;
     padding: 4px;
     border: solid lightgrey 1px;
@@ -38,6 +39,20 @@ div.buttons > i.button.default, div.edit > i.button.default {
 div.buttons > i.button.selected, div.edit > i.button.selected {
     color: #fff;
     background-color: #71a0df;
+}
+
+/* Necessary fixes for examples  */
+button.ui-multiselect {
+    background-image: none;
+    background-color: white;
+}
+
+ul.ui-multiselect-checkboxes > li {
+    margin-bottom: 0px;
+}
+
+select.nag {
+    width: 80px;
 }
 
 div.buttons> span.button.default:before, div.edit> span.button.default:before {
