@@ -15,7 +15,8 @@ div.edit .gray, div.buttons .gray {
     Used only with the class default for the spans. */
 
 .fen {
-    width: 100%;
+    width: 96%;
+    padding: 2px;
 }
 
 div.error {
@@ -33,6 +34,12 @@ div.buttons > i.button.default, div.edit > i.button.default {
     border: solid lightgrey 1px;
     border-radius: 4px;
 }
+
+div.buttons > i.button.selected, div.edit > i.button.selected {
+    color: #fff;
+    background-color: #71a0df;
+}
+
 div.buttons> span.button.default:before, div.edit> span.button.default:before {
     display: inline-block;
     line-height: 2em;
@@ -137,6 +144,7 @@ div.edit > .button.pgn.default:before {
     content: "\f02f";  /* fa-print */
 }
 
+
 .button.fa-times {
    color: red;
 }
@@ -145,9 +153,11 @@ div.edit > .button.pgn.default:before {
     border: red 2px solid;
 }
 
-div.outerpgn {
-    padding: 6px;
+textarea.pgn {
+    padding: 2px;
     border: 1px solid grey;
+    width: 96%;
+    height: 100px;
 }
 
 /* Green buttons from the tango theme. */
@@ -201,8 +211,9 @@ div.commentRadio label {
     display: inline;
 }
 div.comment > textarea.comment {
-    width: 100%;
+    width: 96%;
     height: 50px;
+    padding: 2px;
 }
 div.green > span.button {
     margin: 5px;
@@ -286,11 +297,6 @@ div.green > span.button {
     display: inline-block;
 }
 
-div.pgn {
-    font-family: 'Droid Sans Mono', 'Courier New', monospace;
-    font-size: 16px;
-    /*border: dotted 2px #696969;*/
-}
 /* Pattern of the Zeit journal */
 /* board */
 .zeit .board-b72b1 {

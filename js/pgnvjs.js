@@ -359,11 +359,22 @@ var pgnBase = function (boardId, configuration) {
             if (hasMode('edit')) {
                 var editButtonsBoardDiv = createEle("div", "edit" + buttonsId, "edit", theme, outerInnerBoardDiv);
                 generateEditButtons(editButtonsBoardDiv);
-                var outerPgnDiv = createEle("div", "outerpgn" + buttonsId, "outerpgn", theme, outerInnerBoardDiv);
-                var pgnHideButton  = addButton(["hidePGN", "fa-times"], outerPgnDiv);
-                var pgnDiv  = createEle("div", "pgn" + buttonsId, "pgn", theme, outerPgnDiv);
+//                var outerPgnDiv = createEle("div", "outerpgn" + buttonsId, "outerpgn", theme, outerInnerBoardDiv);
+//                var pgnHideButton  = addButton(["hidePGN", "fa-times"], outerPgnDiv);
+                var pgnDiv  = createEle("textarea", "pgn" + buttonsId, "pgn", theme, outerInnerBoardDiv);
                 var commentBoardDiv = createEle("div", "comment" + buttonsId, "comment", theme, outerInnerBoardDiv);
                 generateCommentDiv(commentBoardDiv);
+                // Bind the paste key ...
+                $('#' + "pgn" + buttonsId).on('mousedown', function(e) {
+	                e = e || window.event;
+                    e.preventDefault();
+                    $(this).select();
+                });
+                $('#' + "pgn" + buttonsId).bind("paste", function(e) {
+                    var pastedData = e.originalEvent.clipboardData.getData('text');
+                    that.configuration.pgn = pastedData;
+                    pgnEdit(boardId, that.configuration);
+                })
             }
             if (hasMode('print') || hasMode('view') || hasMode('edit')) {
                 // Ensure that moves are scrollable (by styling CSS) when necessary
@@ -744,13 +755,21 @@ var pgnBase = function (boardId, configuration) {
                 var fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
                 makeMove(that.currentMove, that.mypgn.getMoves().length - 1, fen);
             });
-            if (hasMode('edit')) { // only relevant functions for edit mode
-                $('#' + buttonsId + "pgn").on('click', function() {
-                    //$('#pgn' + buttonsId).hide(200);
-                    //$('#pgn' + buttonsId).fadeOut(400, "linear");
+            var togglePgn = function() {
+                var pgnButton = $('#' + buttonsId + "pgn")[0];
+                var pgnText = $("#" + boardId + " .outerpgn")[0];
+                $('#' + buttonsId + "pgn").toggleClass('selected');
+                if ($('#' + buttonsId + "pgn").hasClass('selected')) {
                     var str = computePgn();
                     showPgn(str);
-                    $("#" + boardId + " .outerpgn").slideDown(700, "linear");
+                    $("#" + boardId + " .pgn").slideDown(700, "linear");
+                } else {
+                    $( "#" + boardId + " .pgn").slideUp(400);//hide( "fold");
+                }
+            }
+            if (hasMode('edit')) { // only relevant functions for edit mode
+                $('#' + buttonsId + "pgn").on('click', function() {
+                    togglePgn();
                 });
                 $('#' + buttonsId + "deleteMoves").on('click', function() {
                     var prev = that.mypgn.getMove(that.currentMove).prev;
@@ -768,10 +787,7 @@ var pgnBase = function (boardId, configuration) {
                     var fen = that.mypgn.getMove(curr).fen;
                     makeMove(null, that.currentMove, fen);
                 });
-                $('#' + boardId + " .fa-times").on("click", function () {
-                    $( "#" + boardId + " .outerpgn").slideUp(400);//hide( "fold");
-                });
-                $("#" + boardId + ' .outerpgn').hide();
+                $("#" + boardId + ' .pgn').hide();
                 $('#comment' + buttonsId + " textarea.comment").change(function() {
                     function commentText() {
                         return " " + $('#comment' + buttonsId + " textarea.comment").val() + " ";
