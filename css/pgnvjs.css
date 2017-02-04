@@ -19,6 +19,7 @@ div.edit .gray, div.buttons .gray {
     height: 30px;
     min-height: 30px;
     padding: 2px;
+    font-family: monospace;
 }
 
 div.error {
@@ -173,6 +174,7 @@ textarea.pgn {
     border: 1px solid grey;
     width: 96%;
     height: 100px;
+    font-family: monospace;
 }
 
 /* Green buttons from the tango theme. */
@@ -226,6 +228,7 @@ div.commentRadio label {
     display: inline;
 }
 div.comment > textarea.comment {
+    font-family: monospace;
     width: 96%;
     height: 50px;
     padding: 2px;
