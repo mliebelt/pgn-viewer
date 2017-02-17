@@ -637,6 +637,7 @@ var pgnBase = function (boardId, configuration) {
         } else {
             game.load(that.configuration.position);
         }
+        board.position(game.fen());
         $('#' + fenId).val(game.fen());
 
         /**

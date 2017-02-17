@@ -11,8 +11,7 @@ div.edit .gray, div.buttons .gray {
     filter: grayscale(100%);
 }
 
-/** Font Awesome buttons (see http://fontawesome.io/)
-    Used only with the class default for the spans. */
+/** Font Awesome buttons (see http://fontawesome.io/) */
 
 .fen {
     width: 96%;
