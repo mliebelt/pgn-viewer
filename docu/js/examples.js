@@ -412,7 +412,7 @@ examples["1206"] = {
 examples["1207"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/11'>ticket 11</a> at GitHub. " +
     "As you can see, black has with move 4 two possibilities to capture back the bishop, and the chosen one " +
-    "is clearly included in the pgn provided, but not displayed in the output of PGN.",
+    "was clearly included in the pgn provided, but was not displayed in the output of PGN.",
     html: "<div id='board' style='width: 360px'/>",
     name: "#11: disabmbiguation in print format",
     jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Bxc6 dxc6"});',
@@ -522,7 +522,8 @@ examples["1216"] = {
 };
 examples["1217"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/25'>ticket 25</a> at GitHub. " +
-    "Separate the generated DIVs, allow additional markup.",
+    "Separate the generated DIVs, allow additional markup. The order here is board, moves, then buttons" +
+    "not as usual board, buttons and then the moves",
     html: "<div id='board' style='width: 200px'></div><div id='moves'></div><div id='button'></div>",
     name: "#25: Allow different markup",
     jsStr: 'pgnView({inner: "board", moves: "moves", button: "button"}, {pgn: "1. f4 e6 2. g4 Qh4#"})',
@@ -664,5 +665,55 @@ examples["1230"] = {
     jsStr: 'pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
     jsFn: function() {
         pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"});
+    }
+};
+examples["1231"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/45'>ticket 45</a> at GitHub. " +
+    "Add the NAGs from a move to the NAG menu. Edit the game, and add NAGs to a move which has already NAGs",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#45: Provide a default configuration that may be changed programmatically (unsolved)",
+    jsStr: 'pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
+    jsFn: function() {
+        pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"});
+    }
+};
+examples["1232"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/46'>ticket 46</a> at GitHub. " +
+    "Add the NAGs from a move to the NAG menu. Edit the game, and add NAGs to a move which has already NAGs",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#46: Allow FEN string with PGN to define start position from analysis",
+    jsStr: 'pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
+    jsFn: function() {
+        pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"});
+    }
+};
+examples["1233"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/47'>ticket 47</a> at GitHub. " +
+    "Add the NAGs from a move to the NAG menu. Edit the game, and add NAGs to a move which has already NAGs",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#47: Ensure that move numbers are 'correct'",
+    jsStr: 'pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
+    jsFn: function() {
+        pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"});
+    }
+};
+examples["1234"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/48'>ticket 48</a> at GitHub. " +
+    "??",
+    html: "<div id='board' style='width: 200px'></div><div id='b1' style='width: 200px'></div>",
+    name: "#48: Fix broken green and blue themes",
+    jsStr: 'pgnEdit("board", {theme: "green"}); pgnView("b1", {theme: "blue"})',
+    jsFn: function() {
+        pgnEdit("board", {theme: "green"}); pgnView("b1", {theme: "blue"});
+    }
+};
+examples["1235"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/49'>ticket 49</a> at GitHub. " +
+    "Fixed differences in the examples only for PGN and FEN.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#49: Fix example style corresponding color of buttons",
+    jsStr: 'pgnView("board", {theme: "green", pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
+    jsFn: function() {
+        pgnEdit("board", {theme: "green", pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"});
     }
 };
