@@ -625,11 +625,17 @@ var pgnBase = function (boardId, configuration) {
         try {
            that.mypgn.load_pgn();
         } catch(err) {
-            var sta = err.location.start.offset;
-            var pgnStr = that.configuration.pgn;
-            logError("Offset: " + sta);
-            logError("PGN: " + pgnStr);
-            logError(err.message);
+            if (typeof err.location != "undefined") {
+                var sta = err.location.start.offset;
+                var pgnStr = that.configuration.pgn;
+                logError("Offset: " + sta);
+                logError("PGN: " + pgnStr);
+                logError(err.message);
+            } else {
+                var pgnStr = that.configuration.pgn;
+                logError("PGN: " + pgnStr);
+                logError(err);
+            }
         } 
         var myMoves = that.mypgn.getMoves();
         if (that.configuration.position == 'start') {

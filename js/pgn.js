@@ -734,7 +734,7 @@ var pgnReader = function (configuration) {
                 }
                 var pgn_move = game.move(move.notation.notation, {'sloppy' : true});
                 if (pgn_move == null) {
-                //    window.alert("No legal move: " + move.notation.notation);
+                    throw "No legal move: " + move.notation.notation;
                 }
                 var fen = game.fen();
                 move.fen = fen;
