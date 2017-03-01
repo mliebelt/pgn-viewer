@@ -28,10 +28,11 @@
 </head>
 <body>
 <p>Example that demontrates that the ticket 31 is fixed. See the wrong move:
-<a href="https://github.com/mliebelt/PgnViewerJS/issues/31">Ticket 31 at GitHub</a> </p>
+<a href="https://github.com/mliebelt/PgnViewerJS/issues/31">Ticket 31 at GitHub</a>. As you
+can see, the whole PGN is read, but after the wrong move, the computation is aborted.</p>
 <div id="board" style="width: 400px; float: left; margin-right: 10px"></div>
 <script>
-var pgn = "1. e4 e5 2. Ng3";
+var pgn = "1. e4 e5 2. Ng3 Nc6 3. Bb5 a6";
     var cfg = { pgn: pgn };
     var board = pgnView('board', cfg);
 </script>

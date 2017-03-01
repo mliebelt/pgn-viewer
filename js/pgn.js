@@ -196,7 +196,7 @@ var pgnReader = function (configuration) {
         if (fig == 'P') {
             return '';
         }
-        return i18n.isInitialized() ? i18n.t(fig) : fig;
+        return i18n.isInitialized() ? i18n.t(fig, {lng: that.configuration.locale}) : fig;
     }
 
     /**

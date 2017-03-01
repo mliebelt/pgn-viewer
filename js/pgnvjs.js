@@ -254,7 +254,7 @@ var pgnBase = function (boardId, configuration) {
         function addButton(pair, buttonDiv) {
             var l_theme = (['green', 'blue'].indexOf(theme) >= 0) ? theme : 'default';
             var button = createEle("i", buttonsId + pair[0], "button fa " + pair[1], l_theme, buttonDiv);
-            var title = i18n.t("buttons:" + pair[0]);
+            var title = i18n.t("buttons:" + pair[0], {lng: that.configuration.locale});
             $("#" + buttonsId + pair[0]).attr("title", title);
             return button;
         }

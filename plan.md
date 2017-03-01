@@ -362,7 +362,7 @@ Here is the meaning of the different files:
 
 * i18n*.js: internationalization, needed for different languages
 * jquery-ui.js: only for parts of the UI, here the multi-select of annotations. I could try to minimize that, so that only the needed widgets and features are integrated. Or we get it from another site, which is a standard (WordPress.org??)
-* jquery.hotkeys: Allows to bring event handler that react on keys. 
+* jquery.hotkeys: Allows to bring event handler that react on keys. Later replaced my mousetrap (with other difficulties)
 
 #### Structure distribution (working)
 

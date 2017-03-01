@@ -128,3 +128,10 @@ I had problems lately in using the old key binding mechanism, so I switched to m
 When using the Mousetrap, I have the problem that I cannot enter any comment in edit modus any more. The keyboard press (that results in the key entered) is not consumed, so the SPACE key triggers the start / stop of the play modus.
 
 I commented  out the start and stop by the SPACE key, but have to find a solution for the other things as well. There should be examples how to integrate Mousetrap without loosing the editing of editor and text fields.
+
+###### Allow central configuration
+
+Using a generic configuration could be useful, so that the code for defining new boards, ... would be minimal. After having studied the code of the used libraries, I have found the following
+
+* chess.js does not use a configuration at all. Everything is a parameter to the call. Example here is the sloppy parameter for parsing PGN.
+* chessboardjs uses a kind of default configuration, but only in code. The function `expandConfig` does that, it checks every parameter, and sets the default value, if it is not already set.

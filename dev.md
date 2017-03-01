@@ -107,19 +107,6 @@ sufficient.
 * Understand the library
 * Provide some test cases with different locales, on the same page. Check what that is translated to Jasemine.
 
-#### jquery.hotkeys
-
-* Allows to map keys to functions.
-* Does work well in the browser, when pressing first buttons.
-* Does not work well under all other circumstances, but may be the problem of my usage ...
-
-##### TODOs
-
-* Check if there is a better way to call it
-* Check if there is a better, simpler library to use
-* Understand the constraints in using it.
-* Understand why it does not work in my context (it worked at least, when first a button was pressed).
-
 #### jquery.multiselect
 
 * Allows to use the multiselectd widget of JQuery UI (if installed)
