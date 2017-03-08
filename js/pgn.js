@@ -211,6 +211,10 @@ var pgnReader = function (configuration) {
         var fig = notation.fig ? figI18n(notation.fig) : '';
         var disc = notation.disc ? notation.disc : '';
         var strike = notation.strike ? notation.strike : '';
+        // Pawn moves with capture need the col as "discriminator"
+        if ((fig === '') && (strike === 'x')) {
+            return notation.notation;
+        }
         var check = notation.check ? notation.check : '';
         var prom = notation.promotion ? notation.promotion : '';
         return fig + disc + strike + notation.col + notation.row + prom + check;
@@ -850,7 +854,7 @@ var pgnReader = function (configuration) {
                 real_move.notation.fig = pgn_move.piece.charAt(0).toUpperCase();
             }
             if (pgn_move.flags == game.FLAGS.CAPTURE) {
-                real_move.notation.disc = 'x';
+                real_move.notation.strike = 'x';
             }
         } else {
             real_move.notation.notation = pgn_move.san;

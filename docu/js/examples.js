@@ -378,7 +378,7 @@ examples["1204"] = {
     "of choice. However, when you edit the games, you will see that the last locale (here english) is used " +
     "in all of them.",
     html: '<div id="board" style="width: 200px;float: left;margin-right: 20px"></div>\n<div id="board1" style="width: 200px;float: left;margin-right: 20px"></div>\n<div id="board2" style="width: 200px;float: left;margin-right: 20px"></div>',
-    name: "#6: locale in edit mode (unsolved)",
+    name: "#6: locale in edit mode",
     jsStr: "var pgn = '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5';\npgnEdit('board', {pgn: pgn, locale: 'fr'});\npgnEdit('board1', {pgn: pgn,locale: 'de'});\npgnEdit('board2', {pgn: pgn, locale: 'en'});",
     jsFn: function() {
         var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5";
@@ -715,5 +715,16 @@ examples["1235"] = {
     jsStr: 'pgnView("board", {theme: "green", pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
     jsFn: function() {
         pgnEdit("board", {theme: "green", pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"});
+    }
+};
+
+examples["1236"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/50'>ticket 50</a> at GitHub. " +
+    "Missing column letter in pawn moves with captures. Play some moves with pawn captures to see it.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#49: Pawn Capture Bug",
+    jsStr: 'pgnView("board", {theme: "green"})',
+    jsFn: function() {
+        pgnEdit("board", {theme: "green"});
     }
 };
