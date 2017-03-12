@@ -9,5 +9,6 @@
     "promoteVar" : "Werte Variante auf",
     "deleteMoves" : "Lösche die restlichen Züge von hier",
     "nags" : "NAGs Menü",
-    "pgn" : "Zeige die PGN Notation an"
+    "pgn" : "Zeige die PGN Notation an",
+    "hidePGN" : "Ausblenden des angezeigten PGN"
 }

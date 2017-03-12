@@ -118,7 +118,7 @@ module.exports = function(grunt) {
         compress: {
             main: {
                 options: {
-                    archive: 'dist/PgnViewerJS-0.9.4.zip'
+                    archive: 'dist/PgnViewerJS-0.9.5.zip'
                 },
                 expand: true,
                 cwd: 'dist/',

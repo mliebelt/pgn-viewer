@@ -1,0 +1,14 @@
+{
+    "flipper" : "Flip de zijkanten van het bord",
+    "first" : "Ga naar eerste zet",
+    "prev" : "Ga naar vorige zet",
+    "next" : "Ga naar de volgende stap",
+    "play" : "Play / stop spelen van alle moves",
+    "last" : "Ga naar laatste zet",
+    "deleteVar" : "Verwijder variatie",
+    "promoteVar" : "Bevorder variatie",
+    "deleteMoves" : "Verwijder rust verhuist van hier",
+    "nags" : "NAGs menu",
+    "pgn" : "Weergave PGN van het huidige spel",
+    "hidePGN" : "Verberg de weergegeven PGN"
+}

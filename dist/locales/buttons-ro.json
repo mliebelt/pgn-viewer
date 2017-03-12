@@ -1,0 +1,14 @@
+{
+    "flipper" : "Flip părțile laterale ale plăcii",
+    "first" : "Du-te la prima mutare",
+    "prev" : "Du-te la mutarea anterioară",
+    "next" : "Du-te la următoarea mutare",
+    "play" : "Redare / opri redarea toate mișcările",
+    "last" : "Mergi la ultima mutare",
+    "deleteVar" : "Şterge variație",
+    "promoteVar" : "Să promoveze variația",
+    "deleteMoves" : "Șterge de aici se mută de odihnă",
+    "nags" : "NAGs menu",
+    "pgn" : "Afișare PGN de joc curente",
+    "hidePGN" : "Ascundeți PGN afișat"
+}

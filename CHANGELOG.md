@@ -7,17 +7,30 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
+### Fixed
+
+## [0.9.5]
+
+### Changed
+
 * Restructured some code, to allow catching all errors in the UI.
 * Added a lot of locales with their corresponding files for buttons and figures.
+* A lot of small bug fixes (see below).
+* Removed unnecessary documentation.
+* Moved distributions to S3, removed them from the repository.
 
 ### Fixed
 
-* [#16](https://github.com/mliebelt/PgnViewerJS/issues/16): 
+* [#16](https://github.com/mliebelt/PgnViewerJS/issues/16): Made import of PGN more robust
 * [#31](https://github.com/mliebelt/PgnViewerJS/issues/31): Logs now the error to the UI, so that the PGN could be fixed more easily
-* [#36](https://github.com/mliebelt/PgnViewerJS/issues/36): 
+* [#36](https://github.com/mliebelt/PgnViewerJS/issues/36): Added UI for FEN (optional in view mode) and PGN
 * [#37](https://github.com/mliebelt/PgnViewerJS/issues/37): Added the following locales: cs, da, es, et, fi, hu, is, it, nb, nl, pl, pt, ro, sv. Translated at least the button tooltips and the figures. If anyone could help, I could translate the NAGs as well.
-* [#39](https://github.com/mliebelt/PgnViewerJS/issues/39): 
+* [#39](https://github.com/mliebelt/PgnViewerJS/issues/39): Allow opening of the examples as separate pages.
 * [#42](https://github.com/mliebelt/PgnViewerJS/issues/42): Added the parameter pgnFile to the configuration, file has to come from the same site, though (due to CORS)
+* [#44](https://github.com/mliebelt/PgnViewerJS/issues/44): Ensure that NAGs from the current notation are reflected in the NAG drop-down
+* [#48](https://github.com/mliebelt/PgnViewerJS/issues/48): Fixed broken green and blue themes (no more separate icons, uses FontAwesome)
+* [#49](https://github.com/mliebelt/PgnViewerJS/issues/49): Ensure that the buttons look in the example section of documentation the same
+* [#50](https://github.com/mliebelt/PgnViewerJS/issues/50): Pawn captures (by pawns) are shown now in the edit mode
 
 ## [0.9.4]
 

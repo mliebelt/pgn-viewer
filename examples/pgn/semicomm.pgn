@@ -1,0 +1,2409 @@
+[Event "Benko Gambit Thematic (A)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Cella, Carmelo"]
+[Black "Malmstrom, Jan"]
+[Result "0-1"]
+[ECO "A57"]
+[Annotator "Malmstrom, J."]
+[PlyCount "66"]
+[EventDate "1997.??.??"]
+
+1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6 5. b6 d6 6. e4 Nbd7 (6... Qxb6) 7. Nc3
+g6 (7... Qxb6) 8. Nf3 Bg7 9. a4 Qxb6 10. a5 Qc7 11. Bc4 O-O 12. O-O Re8 (12...
+Rb8) (12... Bb7) 13. Re1 Ng4 14. Ng5 Nge5 15. Be2 h6 16. f4 hxg5 17. fxe5 Nxe5
+18. Bxg5 Rb8 19. Ra2 Rb4 (19... e6 20. Rf1 Qb7 21. Bf6 exd5) 20. Rf1 Qb7 21.
+Rf2 Nd7 22. Qd2 Bd4 23. Be3 Bxc3 (23... Bxe3 24. Qxe3 Ne5) (23... Nf6 24. Rf1)
+24. bxc3 (24. Qxc3 Rxe4) 24... Rxe4 25. Rb2 Qc7 26. Bd3 Ra4 (26... Re5 27. c4
+Rh5 28. Be2 Rh8) 27. Qc2 (27. Rxf7 Kxf7 28. Bxg6+ Kxg6 29. Qc2+ Kg7 30. Qxa4
+Nf6) 27... Ra1+ (27... Qxa5 28. Bxg6 $1) 28. Rf1 Rxf1+ 29. Bxf1 Qxa5 (29... Nf6
+30. Qb3 Bf5 31. Bxa6) 30. Ra2 Qb6 31. Rb2 31... Qc7 {0-1} (31... Qa7 32. Bd3
+Ne5 33. Qa4 Qd7) 32. Bd3 Ne5 33. Bf4 c4 0-1
+
+[Event "Benko Gambit Thematic (A)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Lattarulo, A.."]
+[Black "Malmstrom, Jan"]
+[Result "0-1"]
+[ECO "A57"]
+[Annotator "Malmstrom, J."]
+[PlyCount "70"]
+[EventDate "1997.??.??"]
+
+1. d4 Nf6 2. c4 c5 3. d5 b5 4. Bg5 Ne4 5. Bf4 Qa5+ 6. Nd2 e6 (6... g5 7. Be3
+bxc4 8. Qc2 Nf6 9. Bxg5 Nxd5 10. e4 Nb6) 7. Qc2 Nxd2 (7... exd5 8. cxd5) 8.
+Bxd2 b4 9. e4 Bb7 10. Nf3 Qc7 11. Bd3 g6 (11... d6 12. Qa4+ Nd7) 12. a3 a5 13.
+axb4 axb4 14. O-O (14. Rxa8 Bxa8) 14... Rxa1 (14... Bg7) 15. Rxa1 Bg7 16. Qc1
+O-O 17. Bh6 Qb6 (17... d6) 18. Bxg7 Kxg7 19. Qf4 f6 20. Qg3 e5 21. Nh4 d6 (
+21... Kh8 22. Nxg6+ hxg6 23. Qxg6) 22. Nf5+ Kh8 23. Ne3 Qc7 24. Bc2 Nd7 25. Qf3
+Bc8 (25... Kg7 26. Qg4 Ra8 27. Rxa8 Bxa8 28. Nf5+ Kf7 29. Nh6+ Kg7) (25... Rd8
+26. Ba4 Ra8 27. b3 Qd8) (25... Ra8 26. Rxa8+ Bxa8 27. Ba4 Kg7) (25... Rb8 26.
+Ng4 Qd8) 26. Qh3 (26. Ra8 Nb6) (26. Ba4 f5 27. exf5 gxf5 28. Bc2 f4 29. Nf1 Nf6
+30. h3 Rg8 31. Nd2 Qg7 32. Ne4 Bf5 33. Nxf6 Qxf6 34. Bxf5 Qxf5 35. Re1) 26...
+Nb6 27. Qh6 Rg8 (27... Re8) 28. h3 (28. Qh4 Qe7) 28... Qg7 29. Qh4 Bb7 30. Ra7
+Nc8 31. Ra5 Qe7 32. Bd1 Nb6 33. Ba4 Nxa4 34. Rxa4 Ra8 35. Qh6 $4 35... Rxa4 0-1
+
+[Event "Benko Gambit Thematic (A)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Malmstrom, Jan"]
+[Black "Zeromskis, E.."]
+[Result "1-0"]
+[ECO "A58"]
+[Annotator "Malmstrom, J."]
+[PlyCount "41"]
+[EventDate "1997.??.??"]
+
+1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6 5. bxa6 g6 6. Nc3 (6. e3 Bg7 7. Nc3 O-O
+8. g4 d6 9. g5 Nfd7 10. h4 Bxa6 11. Nh3 Qa5 12. Nf4 Ne5 13. Be2 Nbd7 14. Kf1
+Rfb8 15. Kg2 Nb6 16. Qc2 Na4 17. Nd1 Bxe2 18. Qxe2 Qa6 19. Re1 c4 20. e4 Nc5
+21. Qf1) 6... Bxa6 7. Nf3 (7. g3 d6 8. Bg2 Bg7 9. Nf3 Nbd7 10. O-O Nb6 11. Nd2
+O-O 12. Qc2 Ra7 13. Rd1 Qa8 14. Nf1 Bb7 15. e4 Na4 16. Nxa4 Rxa4 17. b3 Rxe4
+18. Bxe4 Nxe4 19. Bb2 Bxb2 20. Qxb2 Bxd5 21. h4 f5) 7... Bg7 8. e4 Bxf1 9. Kxf1
+d6 10. Bg5 (10. e5 dxe5 11. Nxe5 O-O) 10... Nbd7 (10... O-O) 11. Rc1 O-O 12.
+Nd2 h6 13. Bf4 Nh5 14. Be3 Ne5 15. Qe2 (15. g3) 15... e6 16. g4 Nf6 17. g5 Nfg4
+18. Rg1 (18. f4 Nxe3+ 19. Qxe3 Nd7 20. dxe6 (20. h4 exd5 21. exd5 Re8 22. Qd3
+Bxc3 23. Qxc3 Qe7) 20... fxe6 21. gxh6 Bxh6) (18. gxh6 Nxh6 19. Rg1 exd5 20.
+exd5 Nf5 21. Nde4 Nd4 22. Qd1 f5 23. Ng5) 18... Nxe3+ 19. Qxe3 hxg5 20. Rc2 (
+20. Qg3) (20. dxe6 fxe6 21. Rxg5 21... Nd3 $1) (20. Qxg5 $2 20... Qxg5 21. Rxg5
+Bh6) 20... g4 21. h3 {wd} 1-0
+
+[Event "Benko Gambit Thematic (A)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Malmstrom, Jan"]
+[Black "Lattarulo, A.."]
+[Result "1-0"]
+[ECO "A58"]
+[Annotator "Malmstrom, J."]
+[PlyCount "101"]
+[EventDate "1997.??.??"]
+
+1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6 5. bxa6 g6 6. g3 Bg7 7. Bg2 Bxa6 8. Nf3
+d6 9. O-O Nbd7 10. Nc3 Nb6 11. Re1 O-O 12. e4 Nfd7 13. Qc2 Nc4 14. Nd2 Nce5 15.
+Bf1 c4 16. h3 Nc5 17. Re3 Qd7 18. f4 Ned3 19. Nf3 e5 20. fxe5 dxe5 21. Re2 f5
+22. exf5 Rxf5 23. Bg2 Bb7 24. g4 Rxf3 25. Bxf3 Nb3 26. Be3 Nxa1 27. Qb1 Rf8 28.
+Be4 h5 29. Qxa1 hxg4 30. Rg2 (30. hxg4 Qxg4+ (30... Nf4 31. Bxf4 exf4 32. Bf3
+$14) 31. Rg2 Qh3 32. Bb6 (32. Bd2 Nf4 33. Bxf4 exf4 34. Rxg6 f3 35. Kf2 $17)
+32... Nf4 33. Rd2 (33. Rh2 Qg4+ 34. Kh1 Nxd5 35. Qg1 Qe6 36. Bc5 Nxc3 37. Bxb7
+Rf7 38. Qg2 (38. Qg5 Qd7) 38... e4 39. Ba8) 33... Rf6 (33... Kf7 34. Qf1) 34.
+Bc5) (30. h4 g3 31. Rg2 Qh3 32. Bxd3 cxd3 33. Qd1 (33. Qe1 Rf3 34. Qd2) 33...
+e4 34. Nxe4 Bxd5 35. Rxg3 Qxh4 36. Rg4 Qh5 37. Nf2 37... Bxa2 $17) 30... Nf4
+31. Bxf4 gxh3 32. Rxg6 Rxf4 (32... exf4 33. Qf1) 33. Qe1 Rg4+ 34. Rxg4 Qxg4+
+35. Kh1 (35. Kh2 Bh6 36. Qg1 Bf4+ 37. Kh1 Qxg1+ 38. Kxg1) 35... Bc8 36. d6 (36.
+Qf1 Qf4 37. Qxc4) (36. Qe2 Qf4 37. Qxc4) 36... Bf5 (36... Be6 37. a4 Kf7 38. a5
+Bc8 39. Qf2+) 37. Bd5+ Kh8 38. Qd1 (38. Qe2 Qxe2 39. Nxe2 Bg4 40. Nc3 e4 41.
+Nxe4 Bxb2 42. Nc5 c3 43. Be4 c2 44. Bxc2 Be5 45. Be4 Bxd6 46. Nb7 Ba3 47. Bd5
+$15) (38. a4 Qf4 39. a5 e4 40. Qe2 40... Be5 $19) 38... Qg5 39. Qf1 Qg6 40. Qf3
+Bh6 41. Be4 Bg4 42. Bxg6 (42. Qg3 Qg5 43. Bf3 Qc1+ 44. Nd1 Bxf3+ 45. Qxf3 Qd2
+46. Nf2 Qxd6 47. Qxh3 Kg7) 42... Bxf3+ 43. Kh2 Bg4 44. Nd5 Be6 45. Be4 (45. Nc7
+Bf4+ 46. Kh1 Bg4 47. Be4) 45... Kg7 46. Kg3 Kf7 (46... Bc1 47. b3 Ba3 48. bxc4
+Kf7 49. Ne3 Bc5 50. Ng4 Bxg4 51. Kxg4 h2 52. Kg3 Bg1 53. Bd5+ Kf6 54. a4) 47.
+Bf3 Bc1 48. b3 Ba3 (48... cxb3 49. axb3) 49. bxc4 (49. Bh5+ Kf8 50. d7 Bxd7 51.
+Nb6 cxb3 52. Nxd7+ Ke7 53. axb3 Kxd7 54. Kxh3) 49... Bxd6 50. Be4 Ba3 51. Bd3 {
+withdrawal} 1-0
+
+[Event "Benko Gambit Thematic (A)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Malmstrom, Jan"]
+[Black "Cella, Carmelo"]
+[Result "1-0"]
+[ECO "A58"]
+[Annotator "Malmstrom, J."]
+[PlyCount "83"]
+[EventDate "1997.??.??"]
+
+1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6 5. bxa6 g6 6. Nc3 Bxa6 7. Nf3 (7. f4 Bg7
+8. Nf3 Qa5 9. Kf2 O-O 10. h3 e6 11. e4) 7... d6 8. e4 Bxf1 9. Kxf1 Nbd7 10. Bg5
+Bg7 11. Nd2 O-O 12. f4 Qb6 13. Nc4 Qb4 14. Qe2 h6 15. Bh4 (15. Bxf6 Nxf6 16.
+Rc1 e6) 15... Ng4 (15... Nh5 16. g3 Bxc3 17. bxc3 Qxc3 18. Kg2 Nhf6) 16. Re1
+Ngf6 (16... Ndf6) 17. g4 17... Nb6 $2 18. Nxb6 Qxb6 19. Kg2 (19. e5 dxe5 20.
+fxe5 Nd7 21. Bxe7 Rfe8 22. d6 Bxe5) 19... Rfb8 20. Rb1 Qb7 21. Rhd1 Nh7 22. Qc2
+(22. Bg3 Bxc3 23. bxc3 Qxb1 24. Rxb1 Rxb1 25. e5 Ra1) (22. Be1 Bxc3 23. Bxc3
+Rxa2) 22... g5 (22... Bxc3 23. bxc3) 23. Bg3 Qd7 24. h3 gxf4 25. Bxf4 Ng5 26.
+a3 (26. Re1) (26. Rd2) 26... Ra6 27. Re1 Rab6 28. Nd1 (28. b3 Qb7) (28. Re3 Qb7
+29. Na4 Rb3 30. h4 Rxe3 31. Bxe3 Qb3 32. Qxb3 Rxb3) 28... Rb3 29. Re3 Qa4 30.
+Nc3 (30. Nf2 30... Nxh3 $1 31. Bg3 Ng5) (30. Rxb3 Rxb3 31. Nc3 Bxc3 32. bxc3
+Rxa3 33. Qxa4 Rxa4 34. Bxg5 (34. Rb7 Ra2+ 35. Kh1 Nxh3 36. Bxh6 Nf2+) 34...
+hxg5 35. Re1 f6 36. h4 gxh4 37. Kh3 Kf7 38. Kxh4 Ra3 39. Re3 Kg6 40. Kg3 Kg5
+41. Rf3 Ra4 42. Rf5+ Kg6 43. Kf4 Rc4 44. Rh5 Rxc3 45. Rh8 Rc1) 30... Bxc3 (
+30... Qc4 31. Bxg5 hxg5 32. Ree1 Be5 33. Re3 e6) 31. Rxc3 {1-0} (31. bxc3 Qxa3
+32. c4 Rb2 33. Rxb2 Rxb2 34. Rxa3 Rxc2+ 35. Kf1 Rxc4 36. h4 Nxe4 37. Bxh6 Nf6)
+31... Qxe4+ 32. Qxe4 Nxe4 33. Rxb3 Rxb3 34. Re1 Rxb2+ 35. Kf3 Ng5+ 36. Bxg5
+hxg5 37. Rxe7 Rd2 38. Rd7 Rxd5 39. Ke4 Re5+ 40. Kd3 Re1 41. Kc4 Rc1+ 42. Kb5
+1-0
+
+[Event "Benko Gambit Thematic (A)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Zeromskis, E.."]
+[Black "Malmstrom, Jan"]
+[Result "0-1"]
+[ECO "A57"]
+[Annotator "Malmstrom, J."]
+[PlyCount "42"]
+[EventDate "1997.??.??"]
+
+1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6 5. b6 d6 6. Nc3 Nbd7 7. a4 a5 8. e4 Qxb6
+9. f4 g6 10. Nf3 Bg7 11. Bb5 O-O 12. O-O Rd8 13. Kh1 Ba6 14. Nd2 (14. Bxa6 Qxa6
+) 14... Bxb5 15. axb5 Ne8 16. Nc4 Qc7 17. Qe2 Rdb8 18. Na3 Nb6 19. f5 Rb7 20.
+fxg6 20... hxg6 {wd} (20... fxg6) 21. Qf3 Nf6 0-1
+
+[Event "Chessfriends S004"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Gray, R.."]
+[Black "Bjorum, J.H.."]
+[Result "0-1"]
+[ECO "C44"]
+[Annotator "Ruggeri Laderchi, G."]
+[PlyCount "68"]
+[EventDate "1997.??.??"]
+
+1. e4 1... e5 2. Nf3 Nc6 3. g3 Nf6 4. Nc3 Be7 (4... Bc5) 5. Bg2 (5. d4 exd4 6.
+Nxd4 O-O 7. Bg2 Re8 8. O-O Bc5 9. Nb3 Bb6 10. a4 a6 11. Bg5 Nb4 12. a5 Ba7 13.
+Ra4 c5 14. Nd5 Nbxd5 15. exd5 d6 16. Rf4 Bd7 17. Bxf6 gxf6 18. Qh5 Re5 19. Qh6
+Bf5 20. Rxf5 Rxf5 21. Be4 Qc8 22. g4 Qf8 23. Qh3 Qg7 24. Bxf5 c4 25. Nd2 Re8
+26. Nxc4 Bc5 27. c3 {1-0 Vallejo Paco,F-Ganguly,S/WchJ-10 1991}) 5... O-O (5...
+d6 6. d3 (6. h3 O-O 7. O-O Be6 8. Re1 Qd7 9. Kh2 Ne8 10. d4 exd4 11. Nxd4 Nxd4
+12. Qxd4 Bf6 13. Qd3 g6 14. f4 c6 15. Be3 Nc7 16. Rad1 Rfd8 17. Bd4 Bxd4 18.
+Qxd4 d5 19. f5 gxf5 20. Qf6 Re8 21. exd5 Bxd5 22. Nxd5 cxd5 23. c4 Qc6 24. Qxf5
+Qxc4 25. Qg5+ Kh8 26. Rxe8+ Rxe8 27. Rc1 Qd4 28. Rxc7 Rg8 29. Qxd5 Qe3 30. Qf3
+{1-0 Reefschlaeger,H-Anderberg,P/Hamburg GER Wichern-op 1995}) 6... Bg4 7. h3
+Bh5 8. Be3 Qd7 9. Qd2 O-O-O 10. Nd5 Kb8 11. g4 Bg6 12. b4 Rhe8 13. O-O h5 14.
+g5 Nh7 15. Nh4 Nf8 16. b5 Nd4 17. c3 Nde6 18. Nf5 Nh7 19. Nfxe7 Rxe7 20. Nxe7
+Qxe7 21. h4 f6 22. f4 exf4 23. Bxf4 fxg5 24. hxg5 Nhxg5 25. Qe3 Nxf4 26. Rxf4
+Ne6 27. Rf2 Be8 28. a4 g5 29. e5 Nf4 30. Rxf4 gxf4 31. Qf3 c6 32. exd6 Qe3+ 33.
+Qxe3 fxe3 34. bxc6 Rxd6 35. cxb7 Rxd3 36. c4 Bxa4 37. Bf3 Bb3 38. Rc1 h4 39. c5
+Bd5 40. c6 Bxc6 41. Rxc6 {1-0 Nalepa Vladimir-Lamser Jan/Extra League 1995}) 6.
+O-O d6 7. d3 (7. h3 h6 8. Kh2 Be6 9. d4 exd4 10. Nxd4 Nxd4 11. Qxd4 Nd7 12. Nd5
+Bxd5 13. Qxd5 Bf6 14. c3 Re8 15. f4 Nb6 16. Qxb7 Qd7 17. Qa6 Rab8 18. a4 Qe6
+19. a5 Qc4 20. axb6 {1-0 Temprano,L-Sancho,M/Saragossa-ch ,TD 1992}) 7... Be6
+8. a3 a5 9. Nb5 Nb8 10. c4 c6 11. Nc3 Nbd7 12. Be3 Ng4 13. Qb3 $17 (13. b3 $1
+$11 $142) 13... Nxe3 14. fxe3 14... Nc5 $15 (14... b5 $5 $17 15. Qc2 bxc4 16.
+d4 (16. dxc4 $2 16... Bxc4 17. Rf2 (17. Rfd1 Qb6 18. Qf2 Nc5 19. Ne1 Rab8 20.
+Rab1 20... a4 $19) 17... Nc5 18. Bf1 Be6 19. Rc1 19... Qb6 $19) 16... Qb6) 15.
+Qd1 Qb6 16. b3 $2 $19 (16. Qe2 $15 $142) 16... Nxb3 (16... Qxb3 $6 17. Qd2 Na4
+18. Nxa4 Qxa4 19. c5 $17) 17. Re1 (17. Rb1 Qxe3+ 18. Kh1 $19) 17... Nxa1 18.
+Qxa1 a4 19. Kf2 Bg4 20. Rb1 Qc7 21. Rb2 f5 22. Qb1 Rab8 23. exf5 Rxf5 (23...
+Bxf5 $143 24. Nxa4 Qa5 25. Qc2 $19) 24. e4 Rf6 25. Nxa4 (25. Ne2 $19) 25...
+Bxf3 26. Bxf3 Rbf8 27. Ke2 (27. Qd1 $19) 27... Rxf3 28. Kd2 (28. Qe1 Bg5 29.
+Kd1 $19) 28... Rf2+ 29. Kc3 Qa5+ 30. Kb3 b5 31. Nc3 bxc4+ 32. dxc4 d5 33. h4
+Rb8+ (33... Qxa3#) 34. Ka2 Qxc3 0-1
+
+[Event "English Thematic"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Atienza, Hilario"]
+[Black "Enev, Zlatko"]
+[Result "0-1"]
+[ECO "A28"]
+[WhiteElo "1850"]
+[BlackElo "2420"]
+[Annotator "Enev, Z."]
+[PlyCount "46"]
+[EventDate "1997.??.??"]
+
+1. c4 Nf6 2. Nc3 e5 3. Nf3 Nc6 4. e3 Bb4 5. Qc2 O-O 6. Nd5 a5 7. a3 Bc5 8. Ng5
+{This attempt to refute the black opening strategy at once does not look
+particularly convincing. Much better is further quiet development, e.g.:} (8.
+b3 d6 9. Bb2 Re8 10. Be2 Ba7 11. Nxf6+ Qxf6 12. O-O Bf5 13. Bd3 Bxd3 14. Qxd3
+Rad8 15. b4 Bb6 16. Bc3 axb4 17. axb4 Ne7 18. Qb1 c6 19. b5 Rb8 20. Rd1 Nf5 21.
+bxc6 bxc6 22. Qe4 Ne7 23. Rdb1 {
++/= Robatsch,Karl-Lieb,Harald/Munich (1) 1979 (1-0 )}) 8... g6 9. Nxf6+ Qxf6
+10. Ne4 Qe7 11. b3 11... Ba7 {Not letting the bishop be exchanged. Although it
+did not do much of anything in the actual game, some variations later proved
+this decision has been right.} (11... b6 12. Nxc5 Qxc5 13. Bb2 d5 14. Bd3 d4
+15. Be4 Be6 (15... f5 {?} 16. Bd5+ Kg7 17. O-O {+/=}) 16. O-O Rad8 17. Rae1 f5
+18. Bxc6 Qxc6 19. exd4 exd4 20. d3 {
+with a slight advantage to black due to better space control}) (11... f5 {
+is prematured here} 12. Nxc5 Qxc5 13. Bb2 d5 14. f4 exf4 15. Qc3 d4 16. exd4
+Re8+ 17. Be2 Qe7 18. O-O Qxe2 19. d5 Ne5 20. Rae1 {with better game for white})
+12. Bb2 {still keeping the position equal} (12. Nc3 d6 13. Nd5 Qd8 14. Bb2 Ne7
+15. Bc3 Nxd5 16. cxd5 Bb6 (16... c6 17. dxc6 bxc6 18. Be2 Be6 19. O-O {-/+})
+17. Bd3 Qg5 18. O-O Bh3 19. Be4 f5 20. Kh1 fxe4 21. gxh3 Qh4 22. d4 Rf3 23.
+dxe5 Rxh3 24. f4 exf3 25. Rae1 {? A dubious decision and the germ of later
+difficulties for white. That knight has no future on the king side. 13.Nc3
+with idea Nd5 was preferable here.}) 12... d6 13. Ng3 {A pure waiting move.
+Black does not want to make any decisive moves before white has castled. Early
+pawn moves on the king side could prove verydangerous indeed, should white
+later decide to castle long.} 13... f5 14. Be2 14... Be6 {
+?! Is risky and prematured, although white has to play precisely.} (14... h5 {
+with unclear game for black} 15. O-O h4 16. Nh1 g5 17. Rfe1 g4 18. Qd1 h3 19.
+g3 {! The decisive moment in the game. At first glance the move looks bad
+since it lets the knight out of its cage. In this concrete case it is much
+more important, however, that the move prepares a dangerous black initiative
+on the king side. The knight will soon have to go back anyway. Incidentally,
+many continuations offer themselves here but, as often is the case, only one
+leads to clear advantage. Let us look at a few alternatives:}) 15. O-O 15... f4
+{white stays a little bit better, I think} (15... Rad8 16. Rae1 d5 17. cxd5
+Rxd5 18. Bc4 Rd6 19. d3 Qf7 20. e4 20... Bd4 {
+and the weak central pawns will make the endgame difficult for both sides}) (
+15... d5 16. cxd5 Bxd5 17. e4 Be6 18. exf5 gxf5 19. Bc4 Bxc4 20. Qxc4+ 20...
+Qf7 {What a glorious place for a proud knight!}) (15... h5 16. Bf3 e4 17. Be2
+h4 18. Nh1 {With advantage for black but a long struggle will follow before
+the game gets open.} 18... Ne5 19. b4 Qf7 20. Bxe5 dxe5 21. bxa5 Bc5 22. Qc3
+Rfd8 23. Rab1 23... c6 {
+with good perspectives but the position is far from clear}) (15... Bc5 16. Qd1
+Qh4 17. d3 d5 18. Bf3 Rad8 19. Qc2 d4 20. Bxc6 bxc6 21. e4 21... f4 {This move 
+is no good but the white position is far from easy already, as shown by the
+following variants:}) 16. Ne4 Bf5 17. Bd3 {with mating atack} (17. Bf3 g5 18.
+Rae1 g4 19. Be2 Qf7 20. Bd3 (20. exf4 Qg6 21. Bd1 exf4 22. Qd3 f3 23. g3 Be6
+24. Bc2 Ne5 25. Qc3 Qh5 26. Kh1 Qh3 27. Rg1 27... Rf5 {and black wins}) 20...
+f3 21. g3 Qh5 22. Kh1 Qh3 23. Rg1 Bxe4 24. Bxe4 Rf6 25. Bxf3 gxf3 26. Qe4 26...
+Rh6 {! Of course!}) 17... f3 {is no better either} 18. gxf3 (18. g3 {
+and the black atack rolls on} 18... g5 19. Nc3 Bxd3 20. Qxd3 Qg7 (20... g4 21.
+Qd5+ Kh8 22. d4 22... Rae8 {with the same mating atack as in the lines shown})
+21. Qd5+ Kh8 22. d4 Qh6 23. Kh1 Qh3 24. Rg1 24... Rf6 {
+? Is not correct. White gets the upper hand fast.}) 18... Bh3 19. Rfe1 Rxf3 20.
+Be2 Rf7 (20... Bg4 {!} 21. h3 {+/=} 21... Bh5 22. Bxf3 Bxf3 23. d3 Qh4 24. Kh2
+Bg4 25. Nf6+ Qxf6 26. hxg4 Qh4+ 27. Kg1 Qxg4+ 28. Kf1 28... Rf8 {?}) (20... Rf5
+{and the atack is bounced back} 21. Ng3 (21. Kh1 Raf8 22. d3 (22. Rg1 Qh4 23.
+Rg3 Rxf2) 22... Rxf2 23. Nxf2 Rxf2 24. Rf1 Qh4 25. Rxf2 25... Qxf2 {
+and black has gained an important tempo in comparison to the game}) 21... Rf7 {
+-/+}) 21. Bf1 (21. d3 Raf8 22. Qd2 Qh4 23. f3 Rf5 24. Kh1 Rh5 25. Rg1 Bg4 26.
+Rg2 Bxf3 27. Bxf3 27... Rxf3 {!}) 21... Bg4 {?} (21... Qh4 {? is incorrect} 22.
+Bxh3 (22. Ng3 Raf8 23. Qe4 Qh6 (23... Rf4 {+/-} 24. exf4 Rxf4 25. Qd5+ Kg7 26.
+Bxh3 Bxf2+ 27. Kg2 {and white can still hold it}) 24. Bxh3 Qxh3 25. Rf1) 22...
+Qxh3 23. d3 Qg4+ 24. Ng3 Raf8 25. Qe2 Qh3 26. Qf1 Qh4 27. Re2 Rf3 28. Qg2 {
+? loses fast}) 22. Ng3 {
+and black should go down on the many weaknesses (e3 especially is very weak)} (
+22. h3 Bf5 23. f3 Qh4 24. Bg2 Bxh3 25. d3 Bxg2 26. Qxg2 {is unclear}) (22. d3
+Qh4 23. Bg2 Raf8 24. Rf1 Bf3 25. Bxf3 Rxf3 26. Ng3 Ne7 (26... Kh8 27. Bc3 R8f5
+28. Nxf5 gxf5 29. Kh1 f4 30. exf4 Qxf4 31. Rad1 {
+at last some work for the dark squared bishop!}) 27. b4 Nf5 28. Qb3 (28. Qe2
+Nxe3 29. fxe3 29... Bxe3+ {-/+} 30. Kg2 {-/+}) 28... a4 {
+The end could have looked like:}) 22... Raf8 23. Nh1 23... Qg5 {- +} (23... Qg5
+24. h4 Qxh4 25. Bg2 Rxf2 26. Nxf2 Qxf2+ 27. Kh1 Rf5) 0-1
+
+[Event "English Thematic"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Enev, Zlatko"]
+[Black "Miraglia, Jorge"]
+[Result "1-0"]
+[ECO "A34"]
+[WhiteElo "2420"]
+[BlackElo "2435"]
+[Annotator "Enev, Z."]
+[PlyCount "123"]
+[EventDate "1997.??.??"]
+
+1. c4 {This game was the most difficult but also the most noteworthy one for
+me in the first part of the SEMI English thematic tournament. After having
+lost without a fight to the same oponent my black game I felt like winning
+here for a long time - before I truly recognized the strength of the endgame
+technique of Jorje Miraglia. The game is a very good example of what can be
+called "the turning points" in a chess game. There are three turning points
+here which I try to point out and comment thoroughly. The ability to recognize
+such points and change one's plans accordingly is, no doubt, one of the finest
+chess skills. I hope my annotations will make this difficult task a little bit
+more comprehensive - for me and for anyone who is curious enough to have a
+look at them.} 1... Nf6 2. Nc3 c5 3. Nf3 d5 4. cxd5 Nxd5 5. e4 Nb4 6. Bb5+ N8c6
+7. d4 cxd4 8. a3 dxc3 9. Qxd8+ Kxd8 10. axb4 10... Nxb4 {? This natural move
+is a serious mistake, as the sequel shows. A little better is the acceptance
+of the pawn sacrifice (10...cxb2) which, however, is also considered very
+promising for white. In any event black does have chances in that variant
+whereas here he is doomed to a difficult defence for the rest of the game.} (
+10... cxb2 11. Bxb2 e6 (11... f6 12. e5 Bg4 13. Bxc6 bxc6 14. Nd4 fxe5 15.
+Nxc6+ Ke8 16. O-O e6 17. Rfc1 Bd6 18. b5 Bc7 19. Nxe5 Bxe5 20. Bxe5 Kf7 21.
+Rc7+ Kg6 22. Rxg7+ Kf5 23. f4 Rhg8 24. Rxg8 Rxg8 25. Kf2 Rc8 26. Rxa7 Rc2+ 27.
+Kg3 h5 28. b6 h4+ 29. Kxh4 Rxg2 30. Rf7+ 30... Ke4 {
+1-0 Uhlmann,Wolfgang-Szymczak,Zbigniew/Warsaw (1) 1983}) 12. O-O f6 13. e5 f5
+14. Ng5 Ke7 15. Bxc6 bxc6 16. Bd4 Ke8 17. Bc5 Bxc5 18. bxc5 Ke7 19. Rfd1 a5 20.
+h4 Bd7 21. Ra3 a4 22. Rd4 Ra5 23. Rc4 h6 24. Nf3 Rha8 25. Nd4 g5 26. hxg5 hxg5
+27. f3 Kd8 28. Ne2 Rb5 29. Nc3 Raa5 30. Nxa4 Kc7 31. Rd3 Bc8 32. Rd6 Rb1+ 33.
+Kh2 Re1 34. f4 gxf4 35. Nb6 Rxe5 36. Nxc8 Raxc5 37. Rxe6 Rxc4 38. Rxe5 Kxc8 39.
+Rxf5 {Hubner,Robert - Timman,Jan/Koln 1985/0-1 (57)}) 11. Ke2 {! An idea of
+Garri Kasparov which I found in a book collection of his games. Other replies
+are much weaker, e. g.:} (11. bxc3 {?} 11... Nc2+ 12. Ke2 Nxa1 13. Rd1+ Kc7 14.
+Bf4+ e5 15. Bxe5+ Kb6 16. Rb1 Nc2 17. Ba4+ Nb4 18. Nd2 Be6 19. cxb4 Rd8 20. Ke3
+f6 21. Bd4+ Kc7 22. f4 Be7 23. f5 Bf7 24. Nf3 Kb8 25. e5 Bd5 26. Bc2 Rc8 27.
+Bd3 Rhd8 28. h4 Bxf3 29. gxf3 Rxd4 30. Kxd4 Rd8+ 31. Ke3 fxe5 32. Rg1 Bf6 33.
+h5 Rd4 34. h6 gxh6 35. Rg8+ 35... Kc7 {
+Hergott,Deen-London,Dimitri/New York (2) 1994/0-1 (52)}) (11. Ra4 {?} 11...
+cxb2 12. Bxb2 Nc6 13. O-O f6 14. e5 Bd7 15. Rd1 Ke8 16. exf6 gxf6 17. Bxf6 exf6
+18. Re4+ Be7 19. Rde1 Ne5 20. Nxe5 fxe5 21. Rxe5 Bxb5 22. Rxe7+ Kf8 23. Rxb7
+Be8 24. Ree7 a5 25. Re3 Ra6 26. Rxe8+ Kxe8 27. Rb8+ Kf7 28. Rxh8 a4 29. Rxh7+
+Kg6 30. Rh3 a3 31. Rg3+ Kf5 32. Rf3+ Ke4 33. Re3+ Kd4 34. Rxa3 Rxa3 35. g3 Ke4
+36. Kg2 Rb3 37. h4 Ra3 38. h5 Kf5 39. f3 Kg5 40. g4 Kf4 41. h6 Ra2+ 42. Kh3
+42... Ra6 {0-1 Borst,Johan-Barendse,Ted/Dieren (8) 1991}) 11... c2 {
+forced, as 11...cxb2 gives white a very strong atack:} (11... cxb2 {?} 12. Rd1+
+Kc7 13. Bxb2 f6 14. Rac1+ (14. e5 {?} 14... a6 15. Nd4 Kb8) 14... Nc6 15. Ne5
+fxe5 16. Bxe5+ Kb6 17. Bxc6 bxc6 18. Rb1+ Ka5 19. Bc3+ Ka6 20. Rb2 {with mate})
+12. Ra4 {Now, the first turning point of the game has been achieved. White
+came out of the opening with a serious advantage being two pawns down he is
+nevertheless solidly on top due to the insecure position of the black king and
+his lack of development (the only active black piece right now is the knight
+at b4). The best strategy for the weak side in such cases is to give back some
+or all material and try for fast development. Obviously my partner did not
+recognize the seriousness of his position since his next few moves show little
+concern. This allowed me to rapidly achieve a technically won game.} (12. Ne5 {
+I studied this continuation rather toroughly but was unable to find a winning
+plan} 12... Be6 13. Ra4 f6 14. Rxb4 fxe5 15. Bd3 Kc7 16. Be3 g6 17. Rc1 Bg7 18.
+Rxc2+ Kb8 19. Ba6 (19. Bc5 Bf6 20. Ba6 b6 21. Be3 Rd8 22. Bb5 Bd7 23. Ba6 {=})
+19... b6 20. Bxb6 Bg4+ 21. f3 axb6 22. Rxb6+ Ka7 23. Rcc6 Bc8 24. Bxc8 Raxc8
+25. Ra6+ 25... Kb7 {=}) (12. Bd2 12... e5 {!} 13. Nxe5 Be6 14. Rhc1 Rc8 15.
+Rxa7 Na2 16. Rxb7 Nxc1+ 17. Bxc1 Rc5 18. Nd3 Rc7 19. Rxc7 Kxc7 20. Ba4 20...
+Bc4 {looks also very unklear, so I chose the game continuation}) 12... a5 {
+? Black still does not see how dangerous his position is. Here 12...e5 was
+already obligatory. In that case white would have still kept his advantage but
+black's chances would have been much better.} (12... e5 13. Bd2 a6 (13... a5
+14. Nxe5 Be6 15. Bc4 (15. Nc4 Bxc4+ (15... Bc5 16. Rc1 Kc7 17. Bf4+ 17... Kc8 {
++/=}) 16. Bxc4 f6 17. Rc1 Rc8 18. Be6 Rc6 19. Bd5 Rc7 20. Rxa5 20... Kd7 {
++/= white is still a bit better since the c2 pawn is probably going to be lost}
+) 15... Bxc4+ 16. Nxc4 Rc8 17. Nxa5 b5 18. Ra3 Kd7 19. Rf3 f6 20. Rf5 Re8 21.
+Rxb5 Rxe4+ 22. Kf3 {with a complicated struggle ahead}) 14. Bxb4 Bxb4 15. Nxe5
+Ke7 16. Rxb4 axb5 17. Rc1 Ra4 18. Nd3 Bd7 19. f3 Rc8 20. Kd2 Rc4 21. Rb3 Ra6
+22. Ne5 Rd6+ 23. Rd3 Rcd4 24. Rxd4 Rxd4+ 25. Ke3 Rd1 26. Rxc2 26... Be6 {
+with a small advantage for white which, however, is hardly sufficient for a
+victory}) 13. Ne5 Be6 14. Bd2 Rc8 15. Rxa5 f6 (15... b6 16. Ra4 Rc5 17. Rxb4
+Rxe5 18. Rd4+ Kc8 19. Ba6+ Kb8 20. Bf4 {+/ -}) (15... Na2 16. Nd3 Kc7 17. Be3
+Rd8 18. f3 Rd6 19. Ra4 g6 20. Ra1 {+/ -}) 16. Rc1 (16. Bxb4 {?} 16... c1=R 17.
+Rxc1 Rxc1 18. Ra8+ Kc7 19. Nd3 Rc2+ 20. Ke3 Bc8 (20... g6 21. Ba5+ b6 22. Ra7+
+Kb8 23. Bxb6 Bh6+ 24. Kf3 Bd2 25. Nc5 {+ -}) 21. Ba4 (21. Nf4 b6 22. Nd5+ Kb7
+23. Ra2 {unkclear, but black is probably a bit better}) 21... Rc4 22. Bb5 Rc2
+23. Ba4 Rc4 24. Bb5 24... Rc2 {=}) 16... fxe5 17. Bxb4 17... Bb3 {?!} (17...
+Bc4+ {! looks like the best continuation here:} 18. Kd2 b6 19. Bxc4 (19. Rxc2
+e6 (19... g6 {!?}) 20. Ra4 Bxb5 21. Rxc8+ Kxc8 22. Ra8+ Kc7 23. Rxf8 Rxf8 24.
+Bxf8 24... g6 {looks very drawish}) 19... bxa5 (19... Rxc4 {?!} 20. Ra8+ Kd7
+21. Bc3 Rxe4 22. f3 Rc4 23. Bxe5 Rc5 24. f4 e6 25. Rxc2 Rxc2+ 26. Kxc2 26...
+Rg8 {+/=}) 20. Bxa5+ Ke8 21. Kd3 g6 22. b4 Bh6 23. Rxc2 Rf8 24. b5 Rf6 25. b6
+Rd6+ 26. Ke2 Rb8 27. Bd5 Rbxb6 28. Bxb6 28... Rxb6 {is probably also drawn}) (
+17... b6 {?!} 18. Kd2 g6 19. Ra7 Bh6+ 20. Kd3 Rc7 21. Rxc7 Bxc1 22. Rxc2 Bf4
+23. Rc6 {+/ -}) 18. Bc3 e6 (18... b6 19. Ra3 Bc4+ 20. Bxc4 Rxc4 21. Kd3 Rc5 22.
+b4 Rc8 23. Rxc2 23... e6 {+/ -}) 19. Bd3 b6 (19... g6 20. Bxe5 Rg8 21. Rb5 Bh6
+22. f4 {+/ -}) (19... Be7 20. Bxc2 Bc4+ 21. Bd3 Bxd3+ 22. Kxd3 Rf8 23. Rb5 Rxf2
+(23... Ke8 24. f3 Rd8+ 25. Ke2 Rd7 26. Rd1 26... Rc7 {+/=}) 24. Ba5+ b6 25.
+Bxb6+ Kd7 26. Rxc8 {+/=}) (19... Bd6 20. Rb5 Rxc3 21. bxc3 Ba3 22. Rxb3 Bxc1
+23. Bxc2 Kc7 24. Rb5 Rd8 25. Bd3 Rd6 26. Rxe5 Bf4 27. Rh5 {+/ -}) 20. Rb5 20...
+Rxc3 {!} 21. bxc3 Ba3 22. Kd2 Ba4 23. Rxb6 23... Kc7 {! Here a new turning
+point is achieved and this time it was me who failed to reach a proper
+evaluation of the position. The last move of Black introduces a beautiful
+defencive plan which almost saved the game. He sacrifices a second pawn for
+maximum activity of his pieces and a different coloured bishops ending. It
+lasted another ten or fifteen moves before I understood what is going on.} 24.
+Rxe6 Rd8 25. Rxc2 25... Bb3 {!} (25... Bxc2 26. Kxc2 Rf8 27. f3 Rb8 28. Ra6
+Rb2+ 29. Kc1 Rb3+ 30. Kd2 Bd6 31. Ra7+ Rb7 32. Ra5 {
+would have been less convincing}) 26. Ra6 {?! White should have probably taken
+on e5. Now, after the game, the following variant looks to me better than what
+actually hapened:} (26. Rxe5 Bc4 27. Rd5 Bxd5 28. exd5 Rxd5 29. c4 Rh5 30. h3
+Bc5 31. f4 Rh4 32. f5 32... Rf4 {+/ -}) 26... Bc5 27. Ke2 Bxc2 28. Bxc2 28...
+Rd6 {but, of course, not:} (28... Bxf2 {??, giving up Black's strongest trumpf:
+the different colored bishops. A rook ending is elementary won for White.} 29.
+Kxf2 Rd2+ 30. Kf1 Rxc2 31. Ra7+ Kd6 32. Rxg7 Rxc3 33. Rxh7 Re3 34. Rh4 Kc5 35.
+Rg4 Kd4) 29. Ra5 {I strongly considered exchanging the rooks but I am still
+unable to say if this would have given me a better game. Here is a winning
+continuation for white but, of course, it is far from obligatory for Black to
+follow those lines.} (29. Rxd6 Kxd6 30. Bb3 g5 31. Bd5 h5 32. Kf3 Ke7 33. g3
+Kf6 34. h4 g4+ 35. Ke2 Kg6 36. f3 gxf3+ 37. Kxf3 Be7 38. c4 Kh6 39. Bf7 Bd6 40.
+g4 hxg4+ 41. Kxg4 Kg7 42. Be8 Bc5 43. h5 Kh6 44. Kf5 Bd4 45. Ke6 Kg7 46. Kd5
+Kf8 47. Bg6 Kg7 48. c5 Kf6 49. c6 Bb6 50. Kd6 {+ -}) 29... Kb6 30. Ra2 Rh6 (
+30... g5 {? would have not allowed the atack at the white pawns that followed
+in the game and consequently would have considerably worsened black's chances}
+31. Bd3 h5 32. Bc4 Kc7 33. Ra5 Kb6 34. Ra8) 31. h3 Rg6 (31... Rf6 32. f3 Rg6
+33. Kf1 Rd6 34. Bb3 Rd3 35. Rc2 Rd1+ 36. Ke2 Rb1 37. Bg8 h5 38. Rd2 {
+would have lead to lines similar to the actual game}) 32. Kf1 Rd6 33. Bb3 Rd3
+34. Rc2 Rd1+ 35. Ke2 Rg1 36. Kf3 g5 37. Bd5 {? White already switched to "auto
+pilot" and went sleeping. White should have done something against the
+advancement of the black pawns on the king side. I have to admit I considered
+this position won "on itself" and did not put any serious work in it. Black,
+instead, played further according to plan (it will become clear in a few moves)
+and silently improved his position.} 37... Kc7 (37... h5 38. Bf7 h4 39. Bd5 (
+39. Rd2 39... Rc1 {?} 40. Kg4 Rg1 41. g3 Rg2 42. Kf3 Rg1 43. Be6) 39... Kc7 40.
+Rd2 Rc1 41. c4 41... Bb4 {?} 42. Rb2 Ba3 43. Rb7+ Kd6 44. Rg7 Rc3+ 45. Kg4 Bc1
+46. Kf5 Bf4 47. Rxg5 Bxg5 48. Kxg5 {+/- This is just to show what I expected
+and how "easy" everything looked to me. Unfortunately I was soon to be crudely
+awakened and brought down to reality.}) (37... h6 38. g3 Kc7 39. Kg4 Rg2 40.
+Kh5 Rxf2 41. Rxf2 Bxf2 42. Kxh6 Bxg3 43. Kxg5 Kd6 44. h4 Bf4+ 45. Kf6 {
++/- another beautiful line from the dreamland}) 38. Bg8 {?} (38. g3 {
+was already necessary} 38... Rh1 39. Kg4 h5+ 40. Kxh5 Rxh3+ 41. Kxg5 Rh2) 38...
+h5 39. Bf7 {again g3 was better} 39... h4 40. Rd2 {? A natural move and a
+further mistake. Bc4 when black's rook does not have the f1 square would have
+been a move with an idea. White keeps moving sand and this soon is to be felt.}
+40... Kb6 (40... Rc1 {Here a few more variant to show how difficult the task
+of black could have been.} 41. Be6 (41. c4 Rf1 42. Be6 Kb6 (42... Kc6 43. g3
+hxg3 44. Kxg3 Rg1+ 45. Kf3 45... Rf1 {?} 46. Kg4 Rxf2 47. Rxf2 Bxf2 48. Kxg5 {
++ -}) 43. g3 hxg3 44. Kxg3 Rg1+ 45. Kf3 Rf1 46. Bd5 Rg1) 41... Rxc3+ 42. Kg4
+Rc1 43. Kxg5 Rg1 44. f4 Be3 45. Rd7+ (45. Rc2+ Kd6 46. Bd5 exf4 (46... Bxf4+
+47. Kxh4 Kd7 48. Rb2 Kd6 49. g4 Rg3 50. Rb7 Kc5 51. Rg7) 47. Kxh4 Ke5 48. Kg4
+Rc1 (48... Rb1 49. h4 Rh1 50. h5 Rh2 51. Ra2 Bc5 52. Kg5 Be7+ 53. Kg6 Bf8 54.
+Ba8 Bb4 55. Rb2 Bc5 56. Rd2 Be3) 49. Rxc1 Bxc1 50. h4 (50. g3 {??} 50... fxg3
+51. Kxg3 Bf4+ 52. Kg4 Bd2 53. h4 Bf4 54. Kh5 54... Kf6 {=}) 50... Ba3 51. h5
+Bf8 52. Kg5 Be7+ 53. Kg6 Bh4) 45... Kc6 46. Kxh4 exf4) (40... Rf1 41. Bd5 Rc1
+42. Be6 Rxc3+ 43. Kg4) 41. Be6 Rf1 42. g3 (42. Kg4 Rxf2 43. Rxf2 Bxf2 44. Kxg5
+Be1 45. c4 Kc5 46. Kg4 Kd4 47. Kf3 Bg3 48. Bd5 {
+and I cannot see how white can strengthen his position}) 42... Rc1 {!! Bang! Th
+is was the awaikening strike. I was only expecting lines that would have given
+me easy wins and the pain of realizing I was going head down into a drawn
+position was almost physical. This lasted for almost 24 hours till I succeeded
+in finding a new plan. Shortly: this is the third and last turning point of
+the game.} (42... hxg3 43. Kxg3 Rg1+ 44. Kf3 Rf1 (44... Rc1 45. Kg4 Rg1+ 46.
+Kf5 {+/ -}) 45. Kg4 Rxf2 46. Rxf2 Bxf2 47. Kxg5 Kc5 48. h4 {+ -}) 43. gxh4 {
+!! A bit too many exclamation marks, no doubt, but this is really the only
+winning line I could discover. Everything else I tried draws:} (43. Kg4 hxg3
+44. fxg3 Rxc3 45. Rd5 (45. Ra2 Kc6 46. h4) 45... Bf2 46. Kxg5 Bxg3 47. h4 Rc4
+48. Kg4 Bf4 49. Kf5 Rc7 50. h5 Rh7 51. Kg4 Rg7+ 52. Kh4 52... Rg2 {=}) (43. c4
+{is the main line I analysed:} 43... Rf1 {!} 44. gxh4 (44. Kg2 Rc1 45. Rd7 Rc2
+46. Rf7 Kc6 47. Bd5+ Kd6 48. Rf6+ Kd7 49. Rf5 Rb2 (49... Rd2) 50. gxh4 50...
+gxh4 {=}) (44. Rc2 Kc6 45. Bg4 Kd6 46. Kg2 Rb1 47. Rd2+ 47... Bd4 {=}) 44...
+gxh4 45. Bd5 Kc7 46. Kg4 Rxf2 47. Rxf2 Bxf2 48. c5 Bxc5 49. Kxh4 {is a draw eve
+n without the e5 pawn black only needs to go near enough the h8 square with
+his king after which he can simply sacrifice his bishop for the white e-pawn.})
+43... Rxc3+ 44. Kg4 gxh4 45. Kxh4 45... Rf3 {What now? Black loses a pawn.} 46.
+Kg5 {! Not loses, sacrifices. The white king is now much more active than his
+black counterpart and this is decisive on the long run.} 46... Bxf2 47. Rd6+
+Kc7 48. Rd7+ Kc6 49. Rh7 (49. Rf7 {?} 49... Rxf7 {! draws immediately} (49...
+Rg3+ {?} 50. Kf6 Rf3+ 51. Bf5 Bg3 52. Rh7 Rf4 53. Rg7 Rf3 54. Rg4 (54. Rxg3 {?}
+54... Rxg3 55. Kxe5 Rg8 56. Kf6 Kc5 57. e5 Rf8+ 58. Kg6 Kd5 59. e6 Ke5 60. Bg4
+Rb8 61. e7 Kd6 62. Kf6 Re8 63. h4) 54... Bf4 55. h4 Rg3 56. Rxg3 Bxg3 57. h5
+Bh4+ 58. Kg7 {+/ -}) (49... Be3+ 50. Kg6 Rf2 51. Bf5 51... Rh2 {
+is similar to the actual game}) 50. Bxf7 Kd6 51. h4 Ke7 52. Bg6 52... Kf8 {=})
+49... Be3+ 50. Kg6 (50. Kh5 {?} 50... Rf8 51. h4 Kd6 52. Bf7 Rb8 53. Kg4 Rb1
+54. Bc4 Rc1 55. Bd5 Rg1+ 56. Kh5 Rf1 57. Rh8 Rh1 58. Rf8 Kc5 59. Be6 Kd6 60.
+Bb3 Kc5 61. Bd5) 50... Rf4 (50... Bd4 51. h4 Rf2) (50... Kd6 51. Bf5 Rg3+ 52.
+Bg4 Bd4 53. Rd7+ Kc6 54. Rd5 Rg1 55. Kf5 Rf1+ 56. Kg5 Rf8) 51. Bf5 Bf2 52. Kg5
+52... Bg3 {other continuations do not change much, e. g.:} (52... Be3 53. Kf6
+Kd6 54. h4 Rf2 55. h5 Rh2 56. Kg7 Rc2 57. h6 Rc7+ (57... Rc6 58. Rh8 Ke7 59.
+Bg6 Rc7 60. Bf7 Rc6 61. Re8+ Kd7 62. h7) 58. Kg6 Rxh7 59. Kxh7 Bf4 60. Kg7 {+ -
+}) (52... Bb6 53. Rh8 (53. Kf6 Rh4 54. Rf7 (54. Rxh4 Bd8+) 54... Bd4 55. Kg5 {
++/ -}) (53. h4 {??} 53... Bd8+) 53... Be3 54. Kf6 Kd6 (54... Bd4 55. h4 Kd6 56.
+h5 Rh4) 55. h4 Bf2 56. h5 Bh4+ 57. Kf7) (52... Be1 53. h4 Bd2 54. Kf6 Bc3 55.
+h5 Rh4) 53. h4 Rf1 54. h5 Bf4+ (54... Rg1 55. h6 Bf4+ 56. Kf6 Rh1 57. Kg7 Rg1+
+58. Bg6 58... Rd1 {+/ -}) (54... Rd1 55. h6 Rd6 56. Bd7+ Kc5 57. Rf7 Bf4+ 58.
+Rxf4 Rxd7 59. Rf1 59... Rd8 {+/ -}) 55. Kf6 Rh1 (55... Rd1 56. h6 Rd6+ 57. Be6
+Rd8 58. Kg6 Rd6 59. Re7 {+/ -}) 56. Kg7 Rg1+ 57. Bg6 Rd1 58. Rh8 58... Bg5 {
+! Again he finds a resource in an otherwise lost position.} (58... Rd7+ 59. Kf6
+Rd6+ 60. Kf5 {+ -}) 59. Rc8+ {
+! A small finesse which is important in some variants later} (59. Re8 {
+Is not so convincing since the black king remains too near to the corner and
+succeeds in helping the otherblackpieces} 59... Rd6 60. Bf5 Rh6 61. Bg6 61...
+Kd6 {and here white cannot play Rh8 since the black king is too near, e. g.:}
+62. Kf7 (62. Rh8 {??} 62... Rxh8 63. Kxh8 Ke7 64. Kh7 Kf6) 62... Bf4 {
+and it is not clear at all what white should do now}) (59. h6 {??} 59... Rd7+
+60. Bf7 Rd6 61. Bd5+ Kc7 62. Rh7 {=}) 59... Kb6 (59... Kd7 60. Bf5+ Ke7 61.
+Rc7+ Kd8 62. Rc6 {+ / -}) 60. Re8 Rd7+ (60... Rd6 61. Bf5 Kc7 (61... Rh6 62.
+Bg6 Bf4 63. Rh8 {here the finesse of 59.Rc8+ shows} 63... Rxh8 64. Kxh8 Bh6 65.
+Kh7 Bf8 66. h6 Kc5 67. Bf5 Kd4 68. Kg6 {+}) 62. Re6 Rd7+ 63. Kg6 {+/ -}) 61.
+Bf7 Bf4 (61... Rd6 62. Re6 Rxe6 63. Bxe6 Kc5 64. h6 {+ -}) 62. Re6+ (62. Re6+
+Kc5 63. h6 {+ -}) 1-0
+
+[Event "English Thematic"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Enev, Zlatko"]
+[Black "Lupini, S.."]
+[Result "1-0"]
+[ECO "A35"]
+[WhiteElo "2420"]
+[BlackElo "1750"]
+[Annotator "Enev, Z."]
+[PlyCount "83"]
+[EventDate "1997.??.??"]
+
+1. c4 c5 2. Nf3 Nf6 3. Nc3 Nc6 4. g3 d5 5. d4 cxd4 6. Nxd4 dxc4 7. Nxc6 Qxd1+
+8. Nxd1 {Straight out of the opening the game is heading into an endgame. A
+fashionable variation of the four knights symmetrical english is been played.}
+8... bxc6 9. Bg2 Nd5 10. Ne3 e6 (10... Ba6 {Is the other main line here. The
+difficulties, however, remian the same: black has the unpleasant task of
+playing an endgame with an isolani on the c-line. An example follows:} 11. Nxd5
+cxd5 12. Bxd5 Rc8 13. Bd2 e6 14. Bf3 Bc5 15. Bc3 O-O 16. O-O Bb5 17. Rfd1 Rfd8
+18. Rxd8+ Rxd8 19. e3 f6 20. Be2 Rb8 21. a4 Ba6 22. Rd1 Bb4 23. Bf3 Bb7 24.
+Bxb7 Rxb7 25. Rd8+ Kf7 26. Rc8 Bxc3 27. bxc3 Ke7 28. Rxc4 Kd6 29. Kf1 Rc7 30.
+Rd4+ Ke7 31. Rb4 Kd6 32. Rb3 Kd5 33. Ke2 Kc4 34. Rb1 Rd7 35. h4 Kxc3 36. Rb5
+Kc4 37. h5 h6 38. g4 38... Kc3 {
+Xu Jun-Alterman,B/32nd ol, Yerevan ARM (11) 1996/1-0 (72)}) 11. Nxc4 Ba6 12. b3
+Bb4+ 13. Bd2 Bxd2+ 14. Nxd2 (14. Kxd2 O-O-O 15. Kc2 15... Kc7 {
+is also often played}) 14... Nb4 15. Kd1 (15. Be4 {
+seemed to me less convincing because of the following game:} 15... Ke7 16. a3
+Nd5 17. Rc1 Rhc8 18. f4 c5 19. Kf2 Rab8 20. Rc2 Nf6 21. Bf3 Rd8 22. Rhc1 Bb7
+23. Ke3 Bxf3 24. exf3 Nd7 25. Rc3 Rb5 26. Ke2 h5 27. a4 Rb4 28. Nc4 h4 29. Na5
+Rc8 30. Rc4 Rxc4 31. Rxc4 hxg3 32. hxg3 a6 33. Rc1 33... Rh8 {
+- Gulko,B-Topalov,V/Novgorod (07) ;TUR95 1995}) 15... Ke7 {The first original
+move played in this game. Very typical for modern correspondence play:
+everybody has a big collection of games and it is nothing unusual to replay
+known games till late in the endgame.} (15... Rb8 {the following game shows a
+convincing plan for realizing the white advantage. I followed a similar plan
+for the next several moves.} 16. a3 Nd5 17. Rc1 Rb6 18. Bf3 Ke7 19. Rc5 Rc8 20.
+Kc1 Rb5 21. Rc2 c5 22. Kb2 Rb7 23. Rhc1 Rbc7 24. Ne4 c4 25. b4 Bb5 26. Nc3 Bc6
+27. Bxd5 exd5 28. Rd2 Rd7 29. Rcd1 Ke6 30. e4 dxe4 31. Rxd7 Bxd7 32. Nxe4 Bc6
+33. Nc5+ Ke5 34. Kc3 Bd5 35. f4+ Kd6 36. Ne4+ Ke6 37. Ng5+ Kd6 38. Nxf7+ Kc6
+39. Ne5+ Kd6 40. Rd4 {1-0 Gulko,B-Jelen,Ig/2nd op, Nova Gorica SLO (07) 1997})
+16. a3 {The plan looks like follows: White sequres his weak e2-pawn, then
+moves the king on the queen side where he is sure from enemy atacks. Next
+thing rooks are being doubled on the c-line and the pawns on the king side are
+being pushed in order to restrain the mobility of the black pieces. All of
+this time black is forced to think about defending the c-pawn and has little
+or no counterchances. I do not know if this variation is to be improved for
+black but I pretty sure would not like to try it.} 16... Nd5 17. Rc1 Rac8 18.
+Rc5 (18. Ne4 {And this game shows what white can make wrong here. In fact B.
+Gelfand could not find a winning plan against P. Leko.} 18... c5 19. Nxc5 Rhd8
+20. Ke1 Nb6 21. f4 Nd7 22. b4 Nxc5 23. bxc5 Rc7 24. c6 Bb5 25. Rc5 a6 26. Kf2
+Rdc8 27. Rb1 Bxc6 28. Bxc6 Rxc6 29. Rb7+ Kf8 30. Ra5 Rd6 31. Ra7 Rcc6 32. h4 h6
+33. Ra8+ Ke7 34. Ra7+ Kf8 35. a4 g6 36. h5 Kg7 37. hxg6 Kxg6 38. g4 Rb6 39. Ra8
+Kg7 40. Ra7 Kg6 41. e3 Rdc6 42. Kf3 Kg7 43. Ra8 Rd6 44. Rc5 Rbc6 45. Rxc6 Rxc6
+46. a5 Kg6 47. Ra7 Kf6 48. Ke2 Rd6 49. Ra8 Kg6 50. e4 h5 51. gxh5+ Kxh5 52. Ke3
+Rc6 53. Ra7 f5 54. e5 Rc3+ 55. Kd4 Ra3 56. Rxa6 Kg4 57. Kc5 Kxf4 58. Kd6 Rd3+
+59. Kxe6 59... Re3 {- Gelfand,B-Leko,P/It Vienna AUT (1) 1996}) 18... Rhd8 19.
+Bf3 {to defend the e2-pawn} 19... Bb5 20. Kc1 Rc7 21. Kb2 Nf6 (21... Ne3 {
+is very interesting but insufficient by correct play from white, e. g.:} 22.
+Ne4 (22. fxe3 Rxd2+) 22... Nd1+ 23. Kc1 Rcd7 24. a4 f5 25. e3 (25. axb5 {?}
+25... fxe4 26. Bxe4 Nxf2 27. bxc6 (27. Bxc6 27... Nxh1 {- +}) 27... Nxe4 28.
+Rc4 Rd4 29. Rxd4 Rxd4 30. Kb1 {- +}) 25... Bd3 (25... fxe4 26. Bxd1) 26. Rxd1
+fxe4 27. Bg4 {and white keeps his advantage}) 22. Rc2 c5 23. Rhc1 (23. a4 {
+I think white should not hurry to move the pawns on the kingside since this
+only gives black counterchances. White's plan is to fix the kingside pawns
+first.} 23... Bc6 24. Bxc6 Rxc6 25. b4 25... Rb8 {
+and black suddenly has gotten chances on the b-line}) (23. Ne4 {I cannot say
+exactly why but I did not like the idea of exchanging knights. Somehow I felt
+all of the time I should try to exchange bishops but keep the knights on the
+board. A better player could explain it; I remain by my intuition.} 23... Nxe4
+24. Bxe4 h6 (24... f5 25. Bf3 c4 26. Rhc1 Rdc8 27. e4 Kf6 28. exf5 Kxf5 29. Rc3
+29... Kg6 {+/=}) 25. a4 Rd4 26. Bf3 Ba6 27. Rhc1 27... Kd6 {
+and it still looks like thousand miles away from victory}) 23... Bc6 (23...
+Rcc8 24. Ne4 Nxe4 25. Bxe4 25... f5 {looks unklear}) 24. Bxc6 (24. Nc4 {?}
+24... Bxf3 25. exf3 Rd3 26. Ne5 Rd5 27. f4 Nd7 28. Nxd7 Kxd7 29. f3 {
+with at least equality for black}) 24... Rxc6 25. Nc4 {Now the plan starts
+looking more clear: white will try to push his e-pawn till e5, then establish
+the knight on that square from where he threatens pawns on both sides. Of
+course I did not see the complete way to victory but I liked the idea of
+having a strong point at d6.} 25... Rd5 (25... Rcc8 26. Ne5 Rd5 27. f4 Ne4 28.
+Rc4 Rd2+ 29. R1c2 Rxc2+ 30. Kxc2 Nd6 31. Ra4 31... Nb5 {+/-}) 26. f3 Nd7 27. e4
+27... Rd3 {Now for the rest of the white plan: another important goal is to
+exchange a pair of rooks (but only one since a knight endgame gives black
+additional changes). This means one of the white rooks has to be moved to the
+d-line when possible. Here a few variants:} (27... Rd4 28. Rd2 (28. e5 {
+looks prematured here; first a pair of rooks has to be exchanged} 28... Rc8 29.
+f4 h5 30. Ka2 30... Rb8 {with chances along the b-line}) 28... Rxd2+ (28... Nb6
+29. Rxd4 {! Looks stupid, doesn't it: white removes himself the main black
+weakness. Nevertheless the move is very strong:} 29... cxd4 30. Ne5 {!} 30...
+Rxc1 31. Kxc1 Kf6 32. Nc6 e5 33. Nxa7 (33. f4 {!} 33... Nd7 34. b4 {And with tw
+o weaknesses - at a7 and e5 - black has a lot of difficulties, e. g.:} 34... a6
+(34... exf4 35. gxf4 {and d4 is lost}) 35. Kc2 g5 36. fxe5+ Nxe5 37. Nxd4 {+/-}
+) 33... Nd7 34. Kd2 Ke6 35. b4 35... Nb6 {is also winning}) 29. Nxd2 Rd6 30.
+Nc4 Rd3 31. Rc3 Rd4 32. Rc2 Rd3 33. Rf2 {is probably a better solution} (33.
+Rd2 {? the second pair of rooks must be kept on the board. In this version of
+the endgame it looks very difficult to win:} 33... Rxd2+ (33... Rxf3 {??} 34.
+Rxd7+) 34. Nxd2 g6 (34... Ne5 {?!} 35. f4 35... Ng4 {?} 36. Nf3 Nf2 37. e5 Ne4
+38. Kc2 Nf2 39. Kc3 h6 40. Nd2 f5 41. Kc4 g5 42. fxg5 hxg5 43. Kxc5 Nd3+ 44.
+Kd4 {+/-}) 35. Nc4 f6 36. Kc3 e5 37. f4 exf4 38. gxf4 Nb6 39. Kd3 39... Ke6 {
+and I do not see a winning plan for white}) 33... Kf6 34. f4 Ke7 35. e5 35...
+h6 {+/=}) 28. Rc3 Rd4 (28... Rxc3 {was completely possible here} 29. Kxc3 e5
+30. Rd1 30... f6 {I do not see much of an advantage for white}) 29. e5 Rc8 30.
+f4 f6 31. exf6+ gxf6 32. R3c2 h6 33. Rd2 33... Nb6 {? The decisive mistake.
+White now has a straightforward win. Of course, it is not very obvious but,
+hey, this is correspondence chess.} (33... Rxd2+ 34. Nxd2 Nb6 35. Kc3 e5 36.
+Re1 Kd6 37. fxe5+ 37... fxe5 {+/-}) (33... e5 34. Re2 (34. Rxd4 {
+? this time it loses} 34... cxd4 35. fxe5 fxe5 36. Na5 Rxc1 37. Kxc1 Kd6 38.
+Kd2 38... e4 {-/+}) 34... Ke6 35. fxe5 fxe5 36. Rce1 Rd5 37. g4 {
+still with advantage but far from winning}) 34. Rxd4 cxd4 35. Nxb6 Rxc1 36.
+Kxc1 36... axb6 {it is easy to see that all this is absolutely forced} 37. Kd2
+37... Kd6 {Now, why is this position won for white? The answer is that the two
+pairs of pawns at the sides of the board are much stronger than the connected
+central pawns of black. This is the case because the white king is very well
+posted and the black pawns cannot queen without support from their king
+whereas the white ones can move on their own: one of the pairs is going to
+queen and there is no way to stop it. Let's look at the variants now:} (37...
+e5 38. fxe5 fxe5 39. Kd3 Ke6 40. Ke4 {+ -}) 38. g4 {!} (38. a4 {
+? would have been a mistake} 38... e5 39. fxe5+ fxe5 40. g4 e4 41. h4 Ke5 42.
+b4 e3+ 43. Ke1 d3 44. a5 bxa5 45. bxa5 Kf4 46. a6 Kf3 47. a7 d2+ 48. Kd1 e2+
+49. Kxd2 Kf2 50. a8=Q e1=Q+ 51. Kc2 51... Kg3 {
+it is very questionable if that endgame is to be won}) 38... e5 (38... Kd5 39.
+a4 (39. h4 Ke4 40. g5 fxg5 41. hxg5 hxg5 42. fxg5 Kf5 43. a4 e5 44. b4 44... e4
+{with a position similar to the actual game}) 39... Ke4 40. b4 {
+and the king has already to hurry back in order to stop the a-pawn} 40... Kd5)
+39. fxe5+ fxe5 (39... Kxe5 40. a4 Kd5 41. b4 Kc4 42. a5 bxa5 43. bxa5 Kb5 44.
+Kd3 {+ -}) 40. h4 {It is surprising how much precision this position requires.
+For example, 40. a4 would again have been wrong here:} (40. a4 {?} 40... e4 41.
+b4 Ke5 42. h4 Kf4 43. a5 e3+ 44. Ke2 bxa5 45. bxa5 d3+ 46. Kxd3 Kf3 47. a6 e2
+48. a7 e1=Q 49. a8=Q+ 49... Kxg4 {=}) 40... e4 (40... Kd5 41. a4 Ke4 42. g5
+hxg5 43. hxg5 Kf5 44. b4 Kxg5 45. a5) 41. g5 {
+! the fastest way to victory; other continuations are less precise:} (41. a4
+41... Ke5 {!} (41... e3+ {?} 42. Ke2 {! White must at any rate prevent the
+penetration of the black king on the seventh rank} (42. Kd3 {?} 42... Ke5 43.
+g5 hxg5 44. hxg5 Kf4 45. g6 Kf3 46. g7 e2 47. g8=Q e1=Q 48. Qd5+ Kg3 49. Qxd4
+49... Qa5 {+/ - White is still probably winning but the endgame requires a lot
+of further precision}) 42... Ke5 43. Kf3 Kd5 44. g5 hxg5 45. hxg5 45... Ke6 {
++ -}) 42. b4 e3+ 43. Ke1 d3 44. g5 Kf4 45. gxh6 Kf3 46. h7 d2+ 47. Kd1 Kf2 48.
+h8=Q e2+ 49. Kxd2 e1=Q+ 50. Kd3 Qd1+ 51. Ke4 51... Qxa4 {
+with a difficult queen endgame ahead}) 41... hxg5 (41... e3+ 42. Kd3 (42. Ke1
+hxg5 43. hxg5 d3 44. a4 e2 45. b4 Ke5 46. g6 Kf6 47. a5 bxa5 48. bxa5 48...
+Kxg6 {+}) 42... hxg5 43. hxg5 Ke5 44. g6 Kf6 (44... Kf4 45. g7 Kf3 46. g8=Q {+}
+) 45. a4 Kxg6 46. b4 46... Kf5 {+ -}) 42. hxg5 (42. hxg5 e3+ (42... Ke5 43. a4
+d3 44. g6 44... Kf6 {+ -}) 43. Ke1 Ke5 44. a4 d3 45. g6 Kf6 46. b4 Kxg6 47. a5
+bxa5 48. bxa5 {+ -}) 1-0
+
+[Event "English Thematic"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Enev, Zlatko"]
+[Black "Atienza, Hilario"]
+[Result "1-0"]
+[ECO "A29"]
+[WhiteElo "2420"]
+[BlackElo "1850"]
+[Annotator "Enev, Z."]
+[PlyCount "57"]
+[EventDate "1997.??.??"]
+
+1. c4 Nf6 2. Nc3 e5 3. Nf3 Nc6 4. g3 Bc5 5. Bg2 O-O 6. O-O d6 7. d3 h6 8. Na4
+Bb6 9. b3 9... Re8 {This position has been reached often in games at different
+levels and it is not easy for white to find a good plan. After studying a few
+examples I decided to stick to the following plan: 1. Secure the king side
+against atack. This is achieved by not allowing the exchange of the white
+squared bishop (pawn at h3 and King at h2). 2. Fiancheto the black squared
+bishop, push the a-pawn once so it is protected and the queens rook is free to
+move (the a-line will sooner or later be opened after the exchange of the
+b6-bishop). 3. Start active manoevers in the center (by preparing one of the
+pawn pushes - d2-d4 or f2-f4). Open at least one line in the center, try to
+take control over it and then prepare atack on either queens or kings side -
+acording to the circumstances. It is difficult to say in how far this plan
+would have been successful against a stronger oponent. In this game black
+played without a clear plan and soon got in trouble.} 10. Bb2 Bd7 (10... Bf5
+11. Nxb6 axb6 12. Nh4 Bh7 13. e4 Nd7 14. a3 Nc5 15. Nf5 Bxf5 16. exf5 Qg5 17.
+Be4 Nd4 18. b4 Nxe4 19. dxe4 c5 20. Kg2 Rac8 21. b5 Qe7 22. a4 Ra8 23. h4 Ra7
+24. Re1 f6 25. Re3 Qf7 26. Rc1 Rea8 27. Ra3 Kf8 28. h5 Ke8 29. g4 {
+- Speelman,Jonathan-Sadler,Matthew/London LB 1990}) 11. e3 11... Bg4 {
+? This only allows white to move the h-pawn with tempo. The purpose of the
+move is rather unclear.} 12. h3 Bd7 13. a3 Ne7 14. Nxb6 axb6 15. Kh2 15... Ra7
+{? This rook remains at a7 - just watching - till the end of the game. I can
+only imagine black wanted to double his rooks at the a-line but this is a
+rather time consuming and - even if successfully finished - a rather dubious
+idea. There are no good prospects for a play on the a-line for black.} 16. b4 {
+a waiting move which can be useful in certain circumstances (if one pair of
+knights are being exchanged and it becomes difficult for him to put a knight
+at c5 it might be good to push b5 in order to control the white squares at the
+queen side)} (16. d4 {would have been prematured here} 16... e4 17. Nd2 d5 18.
+b4 b5 19. cxd5 19... Nexd5 {and the center is well blocaded}) 16... Nf5 17. d4
+(17. g4 {?} 17... Ne7 18. b5 Ng6 19. a4 Qe7 20. Nd2 Nh4 21. Bh1 21... Rea8 {
+would have given black a much better game. He has good prospects on the queen
+side (after c7-c6) and the center is still closed.}) 17... exd4 {? Of all answe
+rs possible this one seems to me to be the worst. Black should have avoided
+the opening of the center with all forces. Instead, he jumps into an open game
+where the white pair of bishops soon brings him into serious trouble.} (17...
+Ba4 {
+is rather unpleasant for white although he still can keep an advantage, e. g.:}
+18. Qc1 (18. Qe2 {?!} 18... e4 19. Nd2 Bc2 20. Rfc1 Bd3 21. Qd1 b5 22. cxb5
+Bxb5 23. Qc2 (23. d5 {?} 23... Bd3 24. Bxf6 Qxf6 25. Rxc7 Ne7 26. Nxe4 Bxe4 27.
+Bxe4 Qxf2+ 28. Bg2 Nf5 29. Qf3 Qxf3 30. Bxf3 Rxe3 31. Kg2 {
+and white is in trouble}) 23... Bc6 {=}) 18... e4 19. Nd2 c6 (19... d5 {?} 20.
+cxd5 Bb5 21. Re1 Bd3 22. Nc4 Qxd5 23. Ne5 Qb3 24. Qc3 Qxc3 25. Bxc3 Nd6 26.
+Nxd3 exd3 27. Red1 {+/-}) 20. d5 cxd5 21. cxd5 Bb5 22. Bxf6 gxf6 (22... Qxf6 {?
+} 23. Nxe4) 23. Re1 Bd3 24. Qd1 Ng7 25. Qg4 {+/-}) (17... e4 18. Nd2 b5 19. Qc2
+bxc4 20. Nxe4 (20. Nxc4 {?!} 20... Ba4 21. Qd2 (21. Qe2 {?} 21... Bb5 {
+(threatens 22. ... d5)} 22. d5 22... Nxd5 {-/+}) 21... Nd5 {=/+}) 20... Nxe4 (
+20... b5 {?} 21. Nxf6+ Qxf6 22. a4 bxa4 23. d5 Qg6 24. e4 Ne7 25. Qxc4 Nc8 26.
+f4 {+/-}) 21. Bxe4 Qg5 22. b5 {+/=}) 18. Nxd4 (18. exd4 {?} 18... d5 19. c5
+bxc5 20. bxc5 Ne4 21. Qc2 Ba4 22. Qd3 22... Ra5 {=/+}) 18... Qe7 {?} (18...
+Nxd4 {was much stronger here, e. g.:} 19. Bxd4 Qe7 (19... c5 {?} 20. Bb2 Bc6
+21. Qd3 Be4 22. Bxe4 Nxe4 23. f3 Ng5 24. h4 Nh7 25. Rfd1 Re6 26. e4 Qc7 27. Kg2
+{+/=}) 20. Qd3 (20. Qf3 {?} 20... Ne4 {and it seems that white has nothing
+better than exchanging the queens and going into an equal endgame:} (20... Qe4
+{?} 21. Qxf6 {!}) 21. Qxe4 Qxe4 22. Bxe4 Rxe4 23. f3 23... Re8 {=}) 20... Bc6
+21. f3 Raa8 22. Rac1 {+/=}) 19. Re1 Ne4 20. Nxf5 (20. Qf3 {
+looked less clear to me:} 20... Ng5 21. Qf4 Nxd4 22. Qxd4 Ne6 23. Qd3 Bc6 24.
+f3 (24. f4 {?} 24... Bxg2 25. Kxg2 {and white loses most of his advantage})
+24... Rea8 {would only prove the emptiness of the plan started with 15. ... Ra7
+} (24... Ng5 25. e4 Raa8 26. f4 {!} 26... Ne6 (26... Nxe4 {?} 27. b5 {+/-}))
+25. e4 {and I do not see any good continuation for black}) 20... Bxf5 21. f3
+21... Ng5 {? Another serious mistake which brings the end nearer. White can
+now move his central pawns with tempos and soon get a complete control over
+the center. Obligatory was 21. ... Nf6, e. g.:} (21... Nf6 22. Qd4 Qe6 23. e4
+Bg6 24. Rad1 Qe5 25. Qxe5 dxe5 26. Rd2 Ra4 27. Red1 Kf8 28. h4 c5 29. g4 Re7
+30. Rd8+ Ne8 31. R1d5 cxb4 32. axb4 f6 33. Rb5 {
+With a better endgame for white but the end is far from near.}) 22. e4 Bd7 23.
+f4 Nh7 (23... Ne6 {does not help much:} 24. e5 dxe5 25. f5 Ng5 26. Rxe5 Qd8 27.
+Rd5 Re7 28. Qd4 f6 29. Rd1 {+/-}) 24. e5 dxe5 25. Rxe5 Qd8 26. Qd4 {! This far
+from obvious move is much stronger than the "natural" 26.Rd5, as is to be seen
+from the following possible continuations:} (26. Rd5 Nf8 27. Qd4 f6 28. Rd1 Re2
+29. Rd2 (29. Bc1 {?} 29... Rxg2+ 30. Kxg2 30... Bc6 {=/+}) 29... Rxd2 30. Qxd2
+Qe7 31. Rd3 31... Be6 {and white has lost most of the advantage}) 26... Rxe5 {
+? this lose s per force but there are already no good continuations for black,
+e. g.:} (26... Nf6 27. Rae1 Be6 (27... Rxe5 28. fxe5 c5 29. Qd3 Nh7 30. e6 fxe6
+31. Rxe6 {+/-}) 28. f5 Qxd4 29. Bxd4 Bd7 30. Rxe8+ Nxe8 31. Re7 {+ -}) 27. Qxe5
+Nf6 (27... Qf6 28. Rd1 Qxe5 29. Bxe5 Bc6 30. Bxc7 Bxg2 31. Rd8+ Nf8 32. Kxg2
+Rxa3 33. Bd6 {+ -}) 28. Rd1 Qc8 (28... Kf8 29. c5 Ne8 30. Qd4 Ke7 31. c6 bxc6
+32. Bxc6 Nf6 33. Qe5+ Kf8 34. Bxd7 {+ -}) 29. Qe7 (29. Qe7 Qe8 30. Bxf6 Qxe7
+31. Bxe7 {+ -}) 1-0
+
+[Event "English Thematic"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Lupini, S.."]
+[Black "Enev, Zlatko"]
+[Result "0-1"]
+[ECO "A29"]
+[WhiteElo "1750"]
+[BlackElo "2420"]
+[Annotator "Enev, Z."]
+[PlyCount "74"]
+[EventDate "1997.??.??"]
+
+1. c4 Nf6 2. Nc3 e5 3. Nf3 Nc6 4. g3 4... d5 {
+One of the main continuations of the four knights variation.} 5. cxd5 Nxd5 6.
+Bg2 Nb6 7. O-O Be7 8. a3 O-O 9. b4 Be6 10. Rb1 f6 11. d3 11... Qd7 {So far both
+players have followed strictly the main line of the variation. Black is the
+first to deviate in a less practised continuation. Here usually 11. ... Nd4 is
+played. I found the variants there too sharp and insecure to my taste so I
+chose the move in the game which seemed a bit "calmer".} (11... Nd4 12. Nxd4
+exd4 13. Ne4 Bd5 14. Bb2 f5 15. Nd2 Bf6 16. Bxd5+ Qxd5 17. Rc1 Rf7 18. Rc5 Qe6
+19. Re1 c6 20. Nf3 Nd7 21. Rc2 Qd5 22. Qa1 a5 23. Bxd4 axb4 24. Bxf6 Rxf6 25.
+Qb2 Rxa3 26. Qxb4 Rb3 27. Qf4 h6 28. Ra1 Kh7 29. Rca2 Nf8 30. Ra5 c5 31. Qe5
+Qxe5 32. Nxe5 b6 33. Ra7 Re6 34. f4 Ng6 35. Nd7 Rd6 36. Rb7 c4 37. dxc4 Re3 38.
+Kf2 Re7 39. Raa7 {1-0 Timman,J-Bareev,E/Tilburg (5) 1991}) 12. Ne4 Nd5 13. Qc2
+{threatening 14.Nc5} 13... b6 14. Bb2 14... a5 {! The strongest answer. Other
+responses have been tried here also but with less success:} (14... Rac8 15.
+Rbc1 Nd4 16. Bxd4 exd4 17. Qc6 Qxc6 18. Rxc6 Bd7 19. Nxd4 {!} 19... Bxc6 20.
+Nxc6 Rce8 21. Rc1 f5 22. Nd2 Nf6 23. Nxa7 Bd6 24. e3 c5 25. Nc4 Bb8 26. Nc6 b5
+27. N4a5 cxb4 28. axb4 Nd7 29. d4 g5 30. Nxb8 Rxb8 31. Rc7 Nf6 32. Nc6 Rb6 33.
+Ne7+ Kh8 34. Nxf5 Ra6 35. Rc1 Ra2 36. h3 Rb2 37. e4 Rxb4 38. g4 h5 39. e5 hxg4
+40. exf6 gxh3 41. Bxh3 Rxf6 42. Rc8+ Kh7 43. Rc7+ Kg6 44. Rg7+ Kh5 45. f3 {
+1-0 Karpov,Anatoly-Hjartarson,Johann/Seattle (2) 1989}) 15. b5 Na7 16. a4 {
+? The first move deviating from known examples and ... a serious mistake.
+White is obliged here to sharpen the game by means of 16.d4, although this is
+pretty risky too, e. g.:} (16. d4 Nxb5 17. dxe5 Bxa3 18. Rfd1 Be7 19. exf6 gxf6
+20. Bc1 c6 21. Qb2 a4 22. Bh6 Rf7 23. Qd2 a3 24. g4 Ra4 25. Qc2 Rxe4 26. Qxe4
+Nbc3 27. Qc2 Nxb1 28. Qxb1 Nc3 29. Rxd7 Nxb1 30. Ra7 a2 31. Nd4 Na3 32. Nxe6
+a1=Q+ 33. Bf1 Qe5 34. Ra8+ Rf8 35. Bxf8 Kf7 36. Ra7 Qxe6 37. Rxe7+ Qxe7 38.
+Bxe7 Kxe7 39. Bg2 c5 40. Kf1 b5 41. Ke1 c4 42. Kd2 {
+Birmingham,Eric-Miralles,Gilles/Epinal ch-FR 1989/0-1 (53)} (42. Kd2 b4 43. Bd5
+Kd6 44. Bg8 Kc5 45. Bxh7 b3 46. Kc3 Nb5+ 47. Kb2 Kb4 48. h4 c3+ 49. Kb1 Na3+
+50. Ka1 c2 51. Bxc2 Nxc2+ 52. Kb2 Na3 53. g5 53... Nc4+ {
+0-1 Chabanon,J-Huber,E/FRA-chJ ;TD 89\10 1989})) 16... c6 17. bxc6 Nxc6 18.
+Rbc1 (18. Ba1 Ncb4 19. Qd1 Rac8 20. d4 20... exd4 {=/+}) 18... Ndb4 {The plan s
+tarted with this move wasn't all clear to me at that very moment. I somehow
+felt I must be pushing on the queen side and in the center but did not yet see
+any exact goals. I was lucky to find a relatively straightforward way to win
+anyway. Now for the plan: black tries to occupy d4 with a piece (preferably
+knight) and to take the control over the opened c-file. At the same time the
+weak a4-pawn is constantly being threatened so white is kept busy. Black does
+not avoid exchanges since even with relatively few peaces the control of the
+opened line and the penetration with the rook on the seventh rank bring easily
+serious advantages.} 19. Qd2 Rfd8 20. Ba1 (20. Nc3 Rac8 21. Nb5 Bb3 22. Nc3 Nd4
+23. Qe3 Nbc2 24. Qe4 f5 25. Qxe5 Bf6 26. Qf4 Nxf3+ 27. Bxf3 27... Bxc3 {-/+})
+20... Rac8 21. Nc3 Bc5 22. Qd1 (22. Ne4 Ne7 23. Nxc5 bxc5 24. Qd1 Ned5 25. Rb1
+25... Nb6 {and white loses the a-pawn}) 22... Nd4 23. Nxd4 Bxd4 24. Nb5 {
+Now black seizes the control over the opened line though a series of forced
+changes. It is difficult, however, to see some better move for white at this
+point.} 24... Rxc1 25. Qxc1 Rc8 26. Qd1 Bxa1 27. Qxa1 Rc2 28. Bf3 g5 (28... Bd5
+{This move produces a rather drawish variation:} 29. Bxd5+ Qxd5 30. Rc1 Qb3 31.
+Rxc2 Qxc2 32. Kf1 Na2 33. Na3 Qb3 34. Nc4 Qxa4 35. Nxb6 Qc2 36. Nd5 a4 37. d4
+Nc1 38. Nc3 h6 39. dxe5 Nb3 40. Qxa4 Qxc3 41. exf6 Nd2+ 42. Kg2 gxf6 43. Qe8+
+Kg7 44. Qe7+ Kg6 45. Qe8+ 45... Kg7 {=}) 29. Nc3 g4 30. Bg2 30... Qd4 {
+! Now white is lost. Less convincing was the attempt to push further on the
+queen side:} (30... Na2 31. Ne4 Kg7 32. f4 Qd4+ 33. Qxd4 exd4 34. f5 Bb3 35.
+Rf4 h5 36. Nd6 Nc3 37. Bf1 Rc1 38. Kf2 Nd1+ 39. Kg1 39... Ne3 {
+black is much better off but a lot of struggle is to be expected}) 31. Ne4 (31.
+Nb5 Qxa1 32. Rxa1 32... Rxe2 {-/+}) (31. Rc1 {? meets a tactical refutaion:}
+31... Nxd3 {!} 32. Rxc2 Qxf2+ 33. Kh1 33... Ne1 {in order to prevent being
+mated white has to give his extra rook and remains two pawns down in the
+endgame - +}) 31... Qxa1 32. Rxa1 f5 33. Nf6+ {Now the white knight is being
+shut out of the game but 33.Nd6+ was no good either:} (33. Nd6 Rxe2 34. Nc4
+Bxc4 35. dxc4 Rc2 36. h3 36... h5 {-/+}) 33... Kg7 34. Ne8+ Kf8 (34... Kf7 {?}
+35. Nd6+ Ke7 36. Nb5 Rxe2 37. d4 Bc4 38. Na3 38... Bb3 {
+is a much less convincing line since the knight remains in the game}) 35. Nf6
+Ke7 (35... Kf7 36. Nxh7 Rxe2 37. Bf1 Rd2) 36. Nxh7 Rxe2 37. Bf1 Rd2 (37... Rd2
+38. Re1 Nxd3 39. Bxd3 Rxd3 40. f3 (40. h4 gxh3 41. Rxe5 Rd1+ 42. Kh2 Kd6 43.
+Re3 43... Bd7 {-/+}) (40. Rxe5 Rd1+ (40... Kd6 {is also posiible} 41. f4 gxf3
+42. Rb5 Rb3 43. Rxb3 43... Bxb3 {-/+}) 41. Kg2 Kd6 42. Rb5 {?} 42... Bc4 {- +})
+40... Rd5 41. fxg4 fxg4 42. Ng5 b5 43. axb5 Rxb5 44. Nxe6 44... Kxe6 {- +}) 0-1
+
+[Event "English Thematic"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Miraglia, Jorge"]
+[Black "Enev, Zlatko"]
+[Result "1-0"]
+[ECO "D32"]
+[WhiteElo "2435"]
+[BlackElo "2420"]
+[Annotator "Enev, Z."]
+[PlyCount "77"]
+[EventDate "1997.??.??"]
+
+1. c4 c5 2. Nf3 Nf6 3. Nc3 Nc6 4. e3 e6 5. Be2 d5 6. cxd5 exd5 7. d4 a6 8. O-O
+Bd6 9. dxc5 Bxc5 10. a3 O-O 11. b4 Ba7 12. Bb2 (12. b5 {
+An attempt for early activity would be punished fast here, e. g.:} 12... d4 13.
+bxc6 dxc3 14. Qb3 14... Qc7 {-/+}) 12... Bg4 13. Rc1 Re8 14. b5 axb5 15. Nxb5
+15... Bb8 {?!} 16. Bxf6 Qxf6 (16... gxf6 17. Qb3 Be5 18. Rfd1 Qb8 19. g3 (19.
+Rxd5 {??} 19... Be6) 19... Be6 20. Nfd4 Nxd4 21. Nxd4 {
+looks now much more promising than the pawn sacrifice but it is too late}) 17.
+Qxd5 17... Ra6 {? Instead of thinking about starting some serious defensive
+plan black plays on cheap catches. The punishment is, of course, not delayed
+too much.} (17... Ra5 18. Rfd1 Na7 (18... Rc8 19. Bc4 Bc7 20. Qe4 Bf5 21. Qh4
+Qxh4 22. Nxh4 Bg4 23. f3 {+/-}) 19. Rb1 Nxb5 20. Rxb5 Rxa3 21. Rxb7 {
+would probably have given black the best chances}) (17... Ne5 18. Qxb7 Nxf3+
+19. Bxf3 Bxh2+ 20. Kxh2 Qe5+ 21. Kg1 Bxf3 22. Qxf3 (22. gxf3 {??} 22... Qg5+
+23. Kh2 23... Qh4+ {=}) 22... Qxb5 23. Rc3 {+/}) (17... Rd8 18. Qe4 Bf5 19. Qc4
+Be6 20. Qc2 {+/=}) 18. Rfd1 {!} (18. Nfd4 Rd8 19. Qe4 Bxe2 20. Nxe2 Ra5 21. Rb1
+{with unclear play}) (18. Nd6 {??} 18... Bxf3 19. gxf3 Ra5 20. Nb5 Bxh2+ 21.
+Kg2 Re5 22. Qd7 Rg5+ 23. Kh1 Bd6 24. Qc8+ Bf8 25. Qh3 25... Rg6 {
+and black wins that was the catch I put my hopes into}) 18... Ra5 (18... Rd8
+19. Qe4 Rxd1+ 20. Rxd1 Be6 21. Nbd4 Rxa3 22. Nxe6 fxe6 23. Ng5 Qf5 24. Qxe6+
+Qxe6 25. Nxe6 Ra7 26. Bc4 {would have been preferable black could find some
+saving chances due to the different color bishops}) 19. h3 Be6 20. Qc5 {?!}
+20... Ba7 {?} (20... h6 {was necessary here}) 21. Qg5 h6 (21... Qxg5 22. Nxg5
+Bb3 (22... h6 23. Nd6 Re7 24. Nxe6 Rxe6 25. Bc4 Re7 26. Nxf7 Rxf7 27. Rd7 {+})
+23. Rd7 Rb8 24. Nxa7 Nxa7 25. Rcc7 {with decisive advantage for white}) 22.
+Qxf6 gxf6 23. Nxa7 Rxa7 (23... Nxa7 24. Rc7 Rc8 25. Rxb7 Rxa3 26. Nd4 Nc6 27.
+Nxe6 fxe6 28. Rdd7 Ra1+ 29. Kh2 Nd8 30. Rg7+ Kf8 31. Rbd7 Ra2 32. Rh7 {+}) 24.
+Rc3 {?!} (24. Bb5 {!} 24... Rc8 25. Nd4 Nxd4 26. Rxc8+ Bxc8 27. Rxd4 27... Be6
+{+/}) 24... Rea8 25. Ra1 Bd5 26. Nd2 Ne5 27. f4 Ng6 28. Bd3 Ra5 29. Ne4 Kg7 30.
+Ng3 b5 31. Rd1 (31. Nh5+ {?} 31... Kf8 32. Nxf6 b4 33. Rcc1 33... bxa3 {
+and black suddenly becomes chances}) 31... Bc4 32. Bxc4 (32. Nh5+ {?} 32... Kf8
+33. Be4 33... Rxa3 {would again have given black chances}) 32... bxc4 33. Rxc4
+Rxa3 34. Nf5+ (34. Nh5+ {?} 34... Kf8 35. Nxf6 Rxe3 36. Rdc1 (36. Ng4 Re2 (
+36... Re2 37. f5 Nh4 38. Kf1 {=/+})) 36... Re2 37. Rc8+ Rxc8 38. Rxc8+ Kg7 39.
+Nh5+ Kh7 40. Rc7 Re7 41. Rxe7 Nxe7 42. g4 {+/= is probably winning but not easy
+}) 34... Kf8 35. Rd7 (35. Rc7 h5 36. Rd6 Nh8 37. Rxf6 R3a7 38. Rh6 {+/}) (35.
+Nxh6 {?} 35... Rxe3 36. Nf5 Re2 37. h4 Ne7 (37... Kg8 38. h5 Raa2 39. Rc8+ Nf8
+40. Kh1 Rac2 41. Rxc2 Rxc2) 38. Kf1 Rb2 39. Nxe7 Kxe7 40. Re1+ Kf8 41. Re2 Rb1+
+42. Kf2 Kg7 43. Rce4 f5 44. Re8 Ra3) 35... h5 36. Rc6 Ke8 37. Rcc7 Nh8 38. Nd6+
+(38. Ng7+ Kf8 39. Nxh5 Rxe3 40. Nxf6 40... Kg7 {is also hopeless}) 38... Kf8
+39. Nxf7 1-0
+
+[Event "King's Gambit Thematic (A)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Farina, Manuel"]
+[Black "Malmstrom, Jan"]
+[Result "0-1"]
+[ECO "C32"]
+[Annotator "Malmstrom, J."]
+[PlyCount "22"]
+[EventDate "1997.??.??"]
+
+1. e4 1... e5 2. f4 d5 3. exd5 e4 4. d3 Nf6 5. Nd2 exd3 6. Bxd3 Nxd5 7. Ne2 $4
+(7. Qf3 Nc6 8. a3 Nd4 9. Qe4+ Qe7 10. Ngf3 Nxf3+ 11. Nxf3 Qxe4+ 12. Bxe4 Nf6
+13. Bd3 Bd6 14. Bd2 O-O 15. O-O-O Be6 16. h3 Rad8 17. Rhe1 Bd5 18. Re2 Nh5 19.
+f5 Rfe8 20. Rde1 Rxe2 21. Rxe2 Kf8 22. Bg5 Bf4+ 23. Kb1 f6 24. Bh4 Bd6 25. Ne1
+Nf4 26. Rd2 Nxd3 27. Nxd3 Re8 28. Kc1 Be4 29. g4 h5 30. Re2 Bf3 31. Rxe8+ Kxe8
+32. gxh5 Ke7 33. Kd2 Be4 34. Bf2 Bxf5 35. Bxa7 b6 36. c4 Kd7 37. c5 Bxd3 38.
+cxb6 cxb6 39. Kxd3 Kc7 40. Ke4 Kb7 41. Bxb6 Kxb6 42. a4 Kc5 43. a5 43... Kb5 {
+-  Naftalin-Morozov,I/corr 1985}) (7. Qe2+ Be7 (7... Qe7 8. Ne4 Nb4 9. Bb5+ c6
+10. Ba4 Be6 11. Bd2 g6 12. Bc3 f5 13. Bf6 Qd7 14. Ng5 Bg7 15. Bxg7 Qxg7 16.
+Qxe6+ {1-0 Baroin,B-Zupe,M/CS-ch 1990}) 8. Ne4 Nc6 (8... O-O 9. Nf3 Nc6 10. O-O
+Re8 11. Ne5 Nxe5 12. fxe5 f5 13. exf6 Nxf6 14. Nxf6+ Bxf6 15. Qh5 g6 16. Bxg6
+hxg6 17. Qxg6+ Bg7 18. Qf7+ Kh7 19. Qh5+ Kg8 20. Qf7+ Kh7 21. Qh5+ Kg8 22. Qf7+
+{ -  Kowalewski,K-Broeder,I/DDR-chW Nordhausen (9) 1986}) 9. Bd2 Ncb4 10. Bb5+
+c6 11. Ba4 Qc7 12. g3 O-O 13. a3 Na6 14. O-O-O Bf5 15. c4 Nf6 16. Nxf6+ Bxf6
+17. Bc2 Qb6 18. Bc3 Rfe8 19. Qg2 Bxc3 20. Bxf5 Bf6 21. Qc2 g6 22. Bg4 Qe3+ 23.
+Kb1 h5 24. Be2 Rad8 25. Rxd8 Rxd8 26. Nf3 Nc5 27. Rd1 Rxd1+ 28. Bxd1 Nd3 29. b3
+Nf2 30. Be2 Ne4 31. Bd3 Nc3+ 32. Kb2 Qxf3 33. Bxg6 Ne4+ 34. Ka2 34... fxg6 {
+0-1 Starck,I-Westland,A/DDR-chW Nordhausen (3) 1986}) 7... Ne3 8. Ne4 Nxd1 9.
+Kxd1 Na6 10. h3 Nb4 11. Bd2 Nxd3 0-1
+
+[Event "King's Gambit Thematic (A)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Malmstrom, Jan"]
+[Black "Ippolito, M.."]
+[Result "1-0"]
+[ECO "C30"]
+[Annotator "Malmstrom, J."]
+[PlyCount "49"]
+[EventDate "1997.??.??"]
+
+1. e4 1... e5 2. f4 Bc5 3. Nf3 d6 4. Nc3 Nf6 5. Bc4 Nc6 6. d3 Bg4 7. Na4 O-O (
+7... Nh5 $145 8. Nxc5 dxc5 9. f5 Nf6 (9... Nf4 10. Bxf4 exf4 11. Bb5 Qf6 12.
+Bxc6+ bxc6 13. c3 g6 14. O-O O-O 15. Qd2 g5 16. h3 Bxf3 17. Rxf3 Rfd8 18. g3
+fxg3 19. Rxg3 h6 20. h4 Qe5 21. Qe3 f6 22. hxg5 hxg5 23. Rd1 Re8 24. Re1 Rad8
+25. Kg2 Rb8 26. Re2 Re7 27. Rh3 Rbe8 28. Qf3 Rg7 29. Qg3 Qxg3+ 30. Kxg3 Rd7 31.
+Kf2 Red8 32. Rd2 Kg7 33. Ke3 c4 34. d4 c5 35. Rdh2 Kf8 36. Rh8+ Ke7 37. R2h7+
+Kd6 38. Rxd8 Rxd8 39. Rf7 cxd4+ 40. cxd4 c5 41. Rxf6+ Ke7 42. Re6+ Kf7 43. dxc5
+Rd3+ 44. Ke2 Rd4 45. c6 Rd8 46. c7 Rc8 47. Rc6 {
+1-0 Winterfeld,D-Damm,F/BL2-O 1995/}) (9... O-O 10. Be3 Nf4 11. Qd2 Bxf3 12.
+gxf3 Qh4+ 13. Qf2 Ng2+ 14. Kd2 Qxf2+ 15. Bxf2 Nd4 16. c3 Nxf3+ 17. Ke2 Nfh4 18.
+Bxh4 Nxh4 19. Rhg1 b5 20. Bd5 Rad8 21. Raf1 Rd6 22. Rg4 c6 23. Bb3 Rh6 24. Kf2
+Rd8 25. Rd1 Nxf5 26. exf5 Rxh2+ 27. Ke3 c4 28. dxc4 Rxd1 29. Bxd1 Rxb2 30. cxb5
+cxb5 31. f6 g6 32. Rb4 Rxa2 33. Rxb5 h5 34. Rb8+ Kh7 35. Rf8 h4 36. Rxf7+ Kh6
+37. Rf8 g5 38. Rg8 {1-0 Palkovi,J-Sziraki,T/HUN-chT1 1995}) 10. Be3 Qd6 11. h3
+Bxf3 12. Qxf3 Na5 13. Bb5+ c6 14. Ba4 b5 15. Bd2 Nb7 16. Bb3 a5 17. a4 O-O 18.
+c4 b4 19. O-O-O Rad8 20. Be3 Kh8 21. g4 Ng8 22. Rd2 f6 23. h4 Qe7 24. g5 Rd7
+25. Bc2 Rfd8 26. b3 Qf8 27. Rg1 Rc7 28. Bd1 Rdd7 29. Kc2 Re7 30. Qg3 Red7 31.
+Bh5 Re7 32. Qg4 Red7 33. Bg6 Nd8 34. Bxh7 Kxh7 35. Qh5+ Nh6 36. gxh6 gxh6 37.
+Bxc5 Qxc5 38. Qg6+ Kh8 39. Qg8# {1-0 Kristiansen,J-Nielsen,P/DEN-ch 1992}) (
+7... Bb6 8. c3 exf4 9. Bxf4 Nh5 10. Bg5 Qxg5 11. Nxg5 Bxd1 12. Bxf7+ Ke7 13.
+Rxd1 Nf4 14. Nxb6 axb6 15. O-O h6 16. Rxf4 hxg5 17. Rff1 Raf8 18. Bd5 Rf6 19.
+h3 Nd8 20. Rxf6 gxf6 21. Kf2 c6 22. Bb3 Ne6 23. Bxe6 Kxe6 24. Kf3 b5 25. a3 c5
+26. Rh1 Rh4 27. Kf2 d5 28. Re1 Rf4+ 29. Kg3 c4 30. exd5+ Kxd5 31. d4 b6 32. Re3
+Rf1 33. Rf3 Rb1 34. Rf5+ 34... Ke6 {
+1-0 Jonkman,H-Ellenbroek,T/Leeuwarden op (4) 1995}) (7... exf4 $145 8. Bxf4 Nh5
+9. Nxc5 dxc5 10. Be3 Ne5 11. Nxe5 Bxd1 12. Bxf7+ Ke7 13. Bxc5+ Kf6 14. O-O+
+Kxe5 15. Rf5# {1-0 Alekhine Alexander-Tenner Oscar/Cologne 1911}) 8. c3 (8.
+Nxc5 $145 8... dxc5 9. a3 (9. O-O Nh5 10. h3 Bxf3 11. Qxf3 Nxf4 12. Bxf4 exf4
+13. Qxf4 Qd4+ 14. Qf2 Qxf2+ 15. Kxf2 Ne5 16. Bb3 Rad8 17. Rad1 b5 18. Ke3 a5
+19. c3 a4 20. Bc2 Rd6 21. b3 Rfd8 22. d4 cxd4+ 23. cxd4 Nc6 24. d5 Nb4 25. Bb1
+a3 26. Rd4 c5 27. Rxb4 cxb4 28. Rc1 Rg6 29. g4 Rb6 30. Kd4 f6 31. Rc7 Kf8 32.
+Kc5 Rbb8 33. Bd3 Re8 34. Kc6 Rbd8 35. d6 Re5 36. Bxb5 Re6 37. Kc5 Rexd6 38.
+Kxb4 Rb8 39. Kc5 Re6 40. Bc6 Re7 41. Rxe7 Kxe7 42. b4 Kd8 43. b5 Kc7 44. g5 Rd8
+45. b6+ Kb8 46. Bd5 Rc8+ 47. Bc6 { -  Pablo,A-Marin,M/Roses 1992}) 9... Nh5 10.
+f5 Nd4 11. Be3 Bxf3 12. gxf3 Qh4+ 13. Bf2 Qh3 14. Kd2 Nf4 15. c3 b5 16. Ba2
+Nxf3+ 17. Kc2 c4 18. dxc4 Rfd8 19. Qf1 Rd2+ 20. Kb3 Nd3 21. cxb5 Qg4 22. a4
+Qxe4 23. Be1 Rxb2+ 24. Ka3 {0-1 Morvay,M-Petran,P/Budapest Statisztika 1991})
+8... Na5 9. Nxc5 dxc5 10. Bb5 a6 11. Ba4 b5 12. Bc2 Nc6 13. h3 Bxf3 14. Qxf3
+Qd6 15. O-O Rad8 16. Be3 (16. f5) 16... Rfe8 (16... Nd7 $145 17. f5 f6 18. g4
+a5 19. h4 a4 20. g5 Rfe8 21. Rad1 Kh8 22. Kh1 Ne7 23. Qh5 Ng8 24. Rg1 Re7 25.
+Qf3 Rde8 26. Rg2 Nb6 27. h5 fxg5 28. Rxg5 Rf7 29. a3 Nd7 30. Rg2 Qc6 31. Rdg1
+Nh6 32. Qh3 Nf8 33. Bg5 Nd7 34. Bb1 Ng8 35. Qe3 h6 36. Bh4 Ndf6 37. Qe2 Rd7 38.
+Ba2 c4 39. dxc4 b4 40. axb4 Qxe4 41. Qxe4 Nxe4 42. c5 Rd3 43. Bb1 Rh3+ 44. Rh2
+Rxh2+ 45. Kxh2 Nd2 46. Kh3 e4 47. Ba2 e3 48. Be6 e2 49. Kg2 a3 50. bxa3 Ne4 51.
+Kf3 Nxc3 52. a4 Nf6 53. Rc1 Nfe4 54. Ke3 Ra8 55. a5 Rb8 56. Kd3 Rxb4 57. Be1
+Rb5 58. a6 Rxc5 59. a7 Ra5 60. Bxc3 Nxc3 61. Kxc3 Rxa7 62. Kd3 Ra8 63. Kxe2 Kh7
+64. Rxc7 Rf8 65. Ke3 Kh8 66. Kf4 Kh7 67. Ke5 Kh8 68. Kd6 {
+1-0 Tartakower,S-Opocensky,K/Baden 1914}) 17. Qf2 Nd7 18. fxe5 (18. a4 exf4 19.
+Bxf4 Nde5 20. axb5 axb5 21. Ra6 Qe7) (18. Bb3 Re7 (18... Qf6 19. Qg3 Rf8 20.
+fxe5 Qxe5 21. Bf4 Qh5 22. Bxc7 Rde8 23. Bd6 $18) (18... Qxd3 19. Bd5 $18) 19.
+fxe5 (19. Bd5 Kh8) 19... Ncxe5 20. d4 cxd4 21. cxd4 Nc4) 18... Ncxe5 (18... Qg6
+19. d4) 19. d4 (19. b3 Nxd3 20. Qxf7+ Kh8 21. Rad1 N7e5 22. Qh5 $14) 19... cxd4
+20. cxd4 Nc4 21. Qxf7+ Kh8 22. e5 (22. Qf2 Nxe3 23. Qxe3 Nb6 24. Rad1 Nc4 25.
+Qc3 $16) 22... Qc6 $6 (22... Qb6 23. Bf2 Nxb2 24. Rae1 (24. Bf5) 24... Nc4 25.
+Bxh7 $16) 23. Bg5 Ne3 24. Bxe3 Qxc2 25. Bg5 1-0
+
+[Event "King's Gambit Thematic (A)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Malmstrom, Jan"]
+[Black "Porro, L."]
+[Result "1-0"]
+[ECO "C38"]
+[Annotator "Malmstrom, J."]
+[PlyCount "68"]
+[EventDate "1997.??.??"]
+
+1. e4 1... e5 2. f4 exf4 3. Nf3 d6 4. Bc4 h6 5. d4 g5 6. O-O (6. g3 $145 6...
+Nc6 7. gxf4 $6 (7. O-O $1 7... Bg7 8. c3 $13) 7... g4 $1 8. Ng1 Qh4+ 9. Kf1 Nf6
+10. Nc3 10... g3 $1 11. Kg2 gxh2 12. Rxh2 Rg8+ 13. Kh1 13... Qxh2+ $6 (13...
+Qg3 $1 $17) 14. Kxh2 Ng4+ 15. Qxg4 Bxg4 16. Nd5 O-O-O 17. c3 Be7 18. Ne3 Rdf8
+19. Bd2 Nd8 20. Nxg4 20... Rxg4 $15 21. Bf1 Kb8 22. Bh3 Rg7 23. d5 Bh4 24. Rf1
+Re8 25. Bf5 Reg8 26. Bh3 26... f5 $6 (26... f6 27. Nf3 Bg3+ 28. Kh1 Nf7 29. Nd4
+$13) 27. exf5 $1 27... Re8 28. Rf3 c6 29. dxc6 Nxc6 30. Be3 Kc7 31. Bf2 31...
+Bf6 $6 32. Rd3 h5 33. Rd2 $1 33... Re4 34. Ne2 h4 35. Bg2 Re8 36. Bd5 $14 36...
+a6 37. Kh3 Ne7 38. Be6 Ng8 39. c4 Be7 40. Nc3 $16 40... Nf6 41. Rd3 Rf8 42. Bd4
+Kb8 43. b4 Bd8 44. a4 b6 45. Ne4 $18 45... Nxe4 46. Bxg7 Nf2+ 47. Kg2 Nxd3 48.
+Bxf8 Kc7 49. Bh6 Nxb4 50. Bg5 Nd3 51. Kh3 Nc5 52. Kxh4 Nxa4 53. f6 Nc5 54. Bf5
+Nd7 55. f7 Nf8 56. Kh5 {1-0 Spassky,B-Portisch,L/Budapest (HUN-RSFSR) 1967})
+6... Bg7 7. Qd3 (7. c3 $145 7... Nc6 (7... Ne7 8. h4 (8. g3 Ng6 9. Qb3 O-O 10.
+gxf4 gxf4 11. Kh1 Nc6 12. Qc2 Nce7 13. Nbd2 Be6 14. Rg1 Bxc4 15. Nxc4 d5 16.
+Nce5 dxe4 17. Qxe4 Qd5 18. Qxd5 Nxd5 19. Nxg6 fxg6 20. Rxg6 Kh7 21. Rg2 Rae8
+22. Bd2 Ne3 23. Re2 Nc4 24. Rae1 Rxe2 25. Rxe2 Nxd2 26. Nxd2 Rf6 27. Nf3 Bf8
+28. Re8 a5 29. b3 Bd6 30. c4 b6 31. Kg2 Kg6 32. Kf2 Kf5 33. h3 Rf8 34. Nh4+ Kg5
+35. Rxf8 Bxf8 36. Ng2 Bg7 37. d5 Be5 38. Kf3 Kf5 39. Ne1 Bc3 40. Nd3 Be5 41. a3
+Bd6 42. b4 axb4 43. axb4 Be7 44. c5 bxc5 45. bxc5 Bg5 46. Nb4 Be7 47. Na6 Ke5
+48. d6 cxd6 49. c6 Bd8 50. c7 Bxc7 51. Nxc7 d5 52. Na6 Kf5 53. Nb4 d4 54. Nd3
+Kg5 55. Nxf4 Kh4 56. Kg2 h5 57. Kh2 {
+1-0 Fischer,R-Mott_Smith,K/Chicago sim 1964}) 8... Ng6 9. h5 Ne7 10. g4 O-O 11.
+Nh2 d5 12. exd5 Nxd5 13. Qf3 c6 14. Bd3 Be6 15. Na3 c5 16. dxc5 Nd7 17. Bc2 Qc7
+18. Bd2 Qxc5+ 19. Qf2 Qc6 20. Be4 Nc5 21. Bc2 Nf6 22. Rae1 Rad8 23. Bc1 Nd3 24.
+Qxa7 Nxe1 25. Rxe1 Nxg4 26. Be4 Qc7 27. Qxb7 27... Qc5+ {
+0-1 Marentek,H-Tunasly,K/2nd Pools, Singapore SIN 1997}) 8. g3 Bh3 9. Rf2 Nf6
+10. Qc2 Qd7 11. gxf4 gxf4 12. Kh1 O-O-O 13. Bd3 d5 14. e5 Ne4 15. Bxe4 dxe4 16.
+Qxe4 Bxe5 17. Bxf4 Qg4 18. Ng1 Bxf4 19. Nxh3 Qd1+ 20. Ng1 Rhg8 21. Rg2 Rxg2 22.
+Qxg2 Ne7 23. Qe2 Qc1 24. Nd2 Qxd2 25. Qxd2 Bxd2 26. Rf1 f5 27. Nf3 Be3 28. Re1
+28... f4 {1-0 Tringov,G-Vukevic,B/Leningrad 1980}) (7. g3 $145 7... Bh3 8. Re1
+(8. Rf2 Nc6 9. Bb5 Nge7 10. gxf4 gxf4 11. Bxf4 a6 12. Bxc6+ Nxc6 13. Nc3 Qd7
+14. Be3 O-O-O 15. Nh4 Rhg8 16. Kh1 Ne7 17. Rxf7 Rdf8 18. Rxf8+ Rxf8 19. Qd2 Qg4
+20. Ng2 Qf3 21. Rg1 Nc6 22. Nd1 Qxe4 23. Nf2 Qf3 24. Nxh3 Qxh3 25. Ne1 Rf1 26.
+c3 Ne7 27. Qg2 Rxg1+ 28. Bxg1 Qxg2+ 29. Kxg2 Kd7 30. Kf3 Ke6 31. Ng2 b5 32. Kg4
+Nd5 33. Ne3 Nf6+ 34. Kf4 c5 35. dxc5 dxc5 36. Bf2 Bf8 37. Nf5 Nd5+ 38. Ke4
+38... Nf6+ { -  Korchnoi,V-Malich,B/Amsterdam IBM 1972}) 8... Nc6 9. d5 Ne5 10.
+Bb5+ c6 11. Nxe5 Qb6+ 12. Be3 fxe3 13. Nc4 e2+ 14. Nxb6 exd1=Q 15. Rxd1 axb6
+16. dxc6 O-O-O 17. Nc3 bxc6 18. Bxc6 Ne7 19. Bb5 Bxc3 20. Ba6+ 20... Kc7 {
+0-1 Weidemann,C-Slobodjan,R/Muenster op (4) 1996}) (7. h4 $145 7... Nc6 8. c3
+Qe7 9. b4 Bg4 10. b5 Nd8 11. Ba3 Be6 12. Nbd2 g4 13. Nh2 Qxh4 14. Bxe6 fxe6 15.
+Nxg4 h5 16. Nf2 e5 17. Nf3 Qf6 18. Qa4 Ne7 19. b6+ c6 20. dxe5 dxe5 21. Qxa7
+Rxa7 22. bxa7 {1-0 Malaniuk,V-Ivanov,I/Sverdlovsk 1989}) 7... Nc6 8. c3 Nge7 9.
+Re1 Ng6 10. Bb5 Bd7 11. Kh1 g4 12. Ng1 Qh4 13. Qf1 f3 14. gxf3 g3 15. Re2 Rg8
+16. Rg2 gxh2 17. Rxh2 Qf6 18. Qf2 a6 19. Ba4 O-O-O 20. Be3 Nf4 21. Nd2 Nd3 22.
+Qh4 Nxb2 23. Qxf6 Bxf6 24. Bb3 24... Rdf8 $2 25. Rb1 Nd3 26. Ne2 (26. Bc4 Nde5
+27. dxe5 Bxe5) 26... Bg5 (26... Bg5 27. f4) 27. f4 Bg4 (27... Bg4 28. fxg5 hxg5
+29. Nc1 $16) (27... Nxf4 28. Nxf4 $16) (27... Na5 28. fxg5 Nxb3 29. Rxb3) 28.
+fxg5 hxg5 29. Rg1 (29. Bc4 Bxe2 30. Rxe2 Nf4 (30... Rh8+ 31. Rh2 Nf4) 31. Rh2)
+29... Bxe2 30. Rxe2 Rh8+ 31. Kg2 f6 32. Kg3 Rh4 33. Rf1 Rfh8 34. Be6+ Kb8 1-0
+
+[Event "King's Gambit Thematic (A)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Rufo, Daniele"]
+[Black "Malmstrom, Jan"]
+[Result "0-1"]
+[ECO "C34"]
+[Annotator "Malmstrom, J."]
+[PlyCount "96"]
+[EventDate "1997.??.??"]
+
+1. e4 1... e5 2. f4 exf4 3. Nf3 d6 4. Nc3 (4. d3 $145 4... g5 5. h4 g4 6. Ng1
+Bh6 7. Bd2 Nf6 (7... Nc6 8. Nc3 Be6 9. Qc1 (9. Nce2 f3 10. gxf3 gxf3 11. Nxf3
+Qf6 12. Bg2 Bxd2+ 13. Qxd2 O-O-O 14. O-O-O Qe7 15. d4 Bd7 16. Nf4 Re8 17. e5
+Bg4 18. Rde1 Qd7 19. exd6 Rxe1+ 20. Rxe1 cxd6 21. d5 Bxf3 22. Bh3 f5 23. Qc3
+Bxd5 24. Nxd5 Qf7 25. Rd1 {1-0 Nelson,J-Burgnies,S/Cappelle op (5) 1995}) 9...
+Qf6 10. Nge2 f3 11. Nf4 O-O-O 12. gxf3 Nd4 13. Kd1 Nxf3 14. Be3 Ne7 15. Be2
+Bxf4 16. Bxf4 Ng6 17. Bg5 Nxg5 18. Qxg5 Qxg5 19. hxg5 Nf4 20. Rh4 Nxe2 21. Kxe2
+Rdg8 22. Rah1 Rxg5 23. Rxh7 Rxh7 24. Rxh7 b5 25. a3 a5 26. b4 Kb7 27. Nd1 d5
+28. exd5 Bxd5 29. Ne3 Be6 30. Kf2 g3+ 31. Kg2 axb4 32. axb4 f5 33. Rh6 Bd7 34.
+Rf6 Bc6+ 35. Kf1 Rh5 36. Rxf5 Rh1+ 37. Ke2 g2 38. Nxg2 Rh2 39. Kf1 Rxg2 40.
+Rxb5+ Bxb5 41. Kxg2 Ba4 42. c3 42... Bc2 {
+0-1 Cramling,D-Kaiszauri,K/Oslo Viking (2) 1981}) 8. Ne2 Nh5 9. g3 Bg7 10. Bxf4
+Bxb2 11. Nd2 Bxa1 12. Qxa1 Qf6 13. e5 Qg7 14. Bg2 Nc6 15. d4 O-O 16. O-O dxe5
+17. dxe5 Bd7 18. Ne4 Rae8 19. Nc5 Nxe5 20. Bxe5 Qxe5 21. Qxe5 Rxe5 22. Nxd7
+Rxe2 23. Bd5 c6 24. Bc4 Rxc2 25. Bb3 Rc3 26. Nxf8 Nxg3 27. Rf2 Ne4 28. Rf4 Nc5
+29. h5 Rf3 30. Nd7 Nxd7 31. Rxg4+ Kf8 32. h6 Rf6 33. Rh4 Ne5 34. Kg2 Rg6+ 35.
+Kf1 Nf3 36. Rb4 Nd2+ 37. Ke1 Nxb3 38. Rxb7 Nd4 39. Rxa7 Rxh6 40. a4 {
+0-1 Van Riemsdijk,D-Castro,O/Sao Paulo 1978}) 4... h6 (4... g5 $145 5. h4 g4 6.
+Ng5 h6 7. Nxf7 Kxf7 8. Bc4+ (8. d4 Nf6 9. Bxf4 Be7 10. Bc4+ Kg7 11. O-O Nc6 12.
+Qd2 Rh7 13. Rae1 Kh8 14. Nd5 Ng8 15. h5 Bg5 16. Ne3 Bd7 17. Bd3 Rg7 18. c3 Bxf4
+19. Rxf4 Qg5 20. Ref1 Qxh5 21. Nf5 Bxf5 22. Rxf5 Qh4 23. Qf4 Nce7 24. g3 Qh3
+25. Rb5 Rf8 26. Qe3 26... Rf3 {
+0-1 Bosboom Manuel-Dautov Rustem/08, Lippstadt 1991}) 8... Kg7 9. d4 Nf6 (9...
+Be7 10. Bxf4 Bxh4+ 11. g3 Bg5 12. Rf1 Bxf4 13. Rxf4 Nf6 14. Qe2 c6 15. e5 Nd5
+16. Bxd5 cxd5 17. O-O-O Qg5 18. Kb1 dxe5 19. dxe5 Be6 20. Nxd5 Na6 21. Qb5 Rad8
+22. Qxb7+ Rd7 23. Qxa6 Qxe5 24. Nc3 Rhd8 25. Rff1 Rxd1+ 26. Nxd1 Rd7 27. Qa3
+Qd6 28. Qxd6 Rxd6 29. Kc1 Bxa2 30. b3 Bxb3 31. cxb3 Rd3 32. Kc2 Rxg3 33. Nc3 h5
+34. Rh1 Kg6 35. b4 Re3 36. Kd2 Re5 37. Kd3 Re8 38. b5 Kg5 39. Ne4+ Kg6 40. Ra1
+Re7 41. Ra6+ Kf5 42. Rf6+ Ke5 43. Ke3 Kd5 44. Rf5+ Re5 45. Rxe5+ Kxe5 46. Nc3
+h4 47. Ne2 h3 48. Kf2 Kd5 49. Kg3 Kc4 50. Kxg4 h2 51. Ng3 Kxb5 52. Kh3 a5 53.
+Kxh2 a4 54. Ne2 Kc4 55. Nc1 Kc3 56. Na2+ Kb3 57. Nc1+ Kc2 58. Na2 a3 59. Kg2
+Kb2 60. Nb4 Kb3 61. Nd3 {1/2-1/2 Pulkkinen,K-Lehikoinen,P/FIN-chT 1989}) 10.
+Bxf4 Nh5 11. Qd2 c6 12. O-O-O b5 13. Nxb5 a6 14. Nc3 Nd7 15. Rdf1 Nb6 16. Bb3
+Ra7 17. d5 c5 18. e5 Kg8 19. e6 Bg7 20. Qd3 c4 21. Bxc4 Nxc4 22. Qxc4 Rc7 23.
+Qb4 Nxf4 24. Rxf4 Rb7 25. Qa3 h5 26. Rb4 Be5 27. Ne4 Rhh7 28. Ng5 Rxb4 29. Qxb4
+Rb7 30. Qe4 Bxb2+ 31. Kd1 Qf6 32. Qc4 Qd4+ 33. Qxd4 Bxd4 34. Kd2 Bf6 35. Ne4
+Be5 36. Rf1 Kg7 37. Rf5 Re7 38. c4 Kg6 39. Rg5+ Kh6 40. Rg8 Bb7 41. Kd3 {
+1-0 Brautsch,S-Soby,F/Aarhus-A (5) 1987}) 5. Bc4 g5 6. d3 (6. O-O Bg7 7. d4 Nc6
+8. Nd5 Nce7 9. g3 Nxd5 10. Bxd5 Nf6 11. gxf4 Nxd5 12. exd5 g4 13. Ne1 Bf5 14.
+Ng2 h5 15. Ne3 Qf6 16. Nxf5 Qxf5 17. Re1+ Kf8 18. c4 h4 19. Be3 Re8 20. Qd2 g3
+21. Re2 Bf6 22. Rae1 Rg8 23. Rg2 Qe4 24. Rge2 Qf3 25. h3 Kg7 26. f5 Kh7 27. Rf1
+Qh5 28. Qd3 Re7 29. Rf4 Rge8 30. Re1 Rxe3 31. Rxe3 Rxe3 32. Qxe3 Qd1+ 33. Kg2
+Bg5 34. f6 34... Qc2+ {
+0-1 Hernandez,G-Schlosser,P/Capablanca Elite, Havana CUB 1997}) 6... Bg7 7. h3
+Nc6 8. Bd2 Na5 9. Qe2 Nxc4 10. dxc4 Ne7 11. O-O-O Nc6 12. c5 O-O 13. cxd6 Qxd6
+14. Nb5 Qe7 15. Bc3 f5 16. Rhe1 Re8 17. Bxg7 Kxg7 18. Nc3 fxe4 19. Nxe4 Bf5 20.
+Nfd2 Rad8 21. Qb5 Qe5 22. Qxe5+ Rxe5 23. Nc3 Kg6 24. Nf3 Rxe1 25. Rxe1 a6 26.
+a3 h5 27. b4 Kf6 28. h4 g4 29. Ng5 Nd4 30. Rd1 Rd7 31. Rd2 Ke5 32. Rf2 Bg6 33.
+Kb2 Nf5 34. Re2+ Ne3 35. Kb3 b6 (35... Re7) 36. Kb2 (36. Na4 Kf6 37. Rf2 Bf5)
+36... Bf5 37. Kb3 c5 38. bxc5 bxc5 39. Kb2 Re7 40. Nd1 Kd6 (40... Kd4 41. Kc1
+c4) (40... Kd5) 41. Rd2+ Kc6 (41... Nd5 $4 42. c4) 42. Nxe3 fxe3 43. Re2 Kd5 (
+43... g3 44. Kc3 Kd5 45. Nf3 Bg4 46. Kd3 c4+ 47. Kc3 Bxf3 48. gxf3 Rf7) 44. Kc3
+(44. g3 Kd4 45. Kc1 c4 46. Kb2 c3+ 47. Kc1 47... Rb7 $19) 44... g3 (44... Bd7
+45. Re1 Bb5 46. Rd1+ Ke5 47. g3 e2 48. Re1 Rd7 49. a4 49... Rd1 $19) (44... a5)
+45. Re1 Bg4 46. a4 e2 47. a5 (47. Kd3 c4+ 48. Kd2 a5 49. c3 Kc6 50. Kc2 50...
+Rd7 $19) 47... Ke5 48. Kc4 Kf4 0-1
+
+[Event "King's Gambit Thematic (D)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Enev, Zlatko"]
+[Black "Albrecht, F.."]
+[Result "1-0"]
+[ECO "C30"]
+[Annotator "Enev, Z."]
+[PlyCount "61"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. f4 2... Bc5 {Let's cite Savely Tartakover here: "old nad bad" is
+his short comment in the classic "Die hypermoderne Schachpartie" (1925)} 3. Nf3
+d6 4. c3 4... f5 {A rare continuation. The usual moves order here is:} (4...
+Nf6 5. fxe5 dxe5 6. d4 exd4 7. cxd4 Bb6 8. Nc3 Bg4 9. Be3 9... O-O {=}) 5. fxe5
+dxe5 6. d4 exd4 7. Bc4 7... fxe4 {7... Nc6 is the more usual continuation here
+but it does not equalize the black game at all as the following gem of a game
+demonstrates:} (7... Nc6 8. b4 Bb6 9. Qb3 Nh6 10. Bg5 Qd6 11. e5 {!!} 11...
+Nxe5 12. Nxe5 Qxe5+ 13. Kd2 Ng4 14. Re1 Ne3 15. Bg8 Kd7 16. cxd4 {!} 16...
+Qxd4+ 17. Kc1 Rxg8 18. Bxe3 Qe5 19. Rd1+ {
+1-0 Grabics,Monika-Forgo,Eva/Hungary 1993}) 8. Ne5 {The critical point of the
+game. White has two continuations here: 8.Ng5 or 8. Ne5. Ng5 looks stronger at
+first glance since in it the knight covers the important h4-d8 diagonal but
+black can get acceptable play in it, e.g.:} (8. Ng5 Nf6 9. Nf7 Qe7 10. Nxh8 Nc6
+11. Bg5 Ne5 12. Bxf6 gxf6 13. Qh5+ Kf8 14. Qh6+ Qg7 15. Qxg7+ Kxg7 16. Bd5 e3
+17. cxd4 Bxd4 18. Nc3 Bxc3+ 19. bxc3 Nd3+ 20. Ke2 Nf4+ 21. Kxe3 Nxd5+ 22. Kd4
+Ne7 23. Rae1 Nc6+ 24. Kd5 Bd7 25. Rhf1 Rxh8 26. Rf2 Rd8 27. Re3 Be8+ 28. Kc5
+Ne5 29. Rg3+ {0-1 Zoister,Stefan-Costa,Jean/Suhr 1992 On the other hand, the
+move in text is connected with a hidden positional catch: the queen check at
+h4, looking so tempting, is actually a heavy positional mistake. The black
+queen gets out of place, loses a tempo and its bad psoitioning finally allows
+white to get a strong atack by means of quite simple developing moves.}) 8...
+Qh4+ {?} 9. g3 Qf6 (9... Qh3 {
+This queen retreat is no better, as shown by the following development:} 10.
+cxd4 Bd6 11. Qb3 Bxe5 12. dxe5 Ne7 13. Bf7+ Kd8 14. e6 Qf5 15. Nc3 Nbc6 16.
+Qd1+ {1-0 Jacobson,Ernst-Olland,Adolf/Goteborg (4) 1920}) 10. cxd4 (10. Qh5+ {
+looks strong here but I did not choose it because of the following:} 10... g6
+11. Nxg6 hxg6 12. Qxc5 d3 13. Qxc7 Nd7 14. Rf1 Qe5 15. Bf4 Qxc7 16. Bxc7 {
+with equality}) 10... Bb4+ 11. Nc3 (11. Bd2 {
+would have allowed black to equalize} 11... Bxd2+ 12. Nxd2 e3 13. Ne4 Qf5 14.
+Qd3 Nf6 15. Bb5+ Nc6 16. Nxf6+ gxf6 17. Qxf5 Bxf5 18. Nxc6 18... Be4 {=}) 11...
+Ne7 12. Rf1 {
+The moves order has to be precise or else black can get counterchances:} (12.
+Qb3 {?!} 12... Qb6 {!} 13. Bf4 Bf5 14. O-O-O Bxc3 15. bxc3 Qxb3 16. axb3 Rf8
+17. d5 Nd7 18. d6 cxd6 19. Rxd6 Bh3 20. Rhd1 Nxe5 21. Bxe5 Rf2 22. Bxg7 Rxh2
+23. Bb5+ Kf7 24. Be5 Ng6 25. Bc4+ 25... Kf8 {with a very double edged endgame})
+(12. Bd2 Bxc3 13. bxc3 Bf5 14. Qb3 b6 15. Bf7+ Kf8 16. O-O {
+and black's position looks much more solid than in the game}) 12... Bf5 13. Qb3
+13... Nec6 {to make place at e7 for a king retreat} 14. Bf7+ 14... Ke7 {
+all other king retreats lose immediately:} (14... Kd8 {?} 15. Qd5+ 15... Qd6 {
++/-}) (14... Kf8 15. Bh5 g6 16. Bg5 {! + -}) 15. Bd5 {
+! now black's game is lost} 15... a5 16. Be3 a4 (16... Nxe5 17. dxe5 Qxe5 18.
+Bxb7 Be6 19. Qc2 Bxc3+ 20. bxc3 Bd5 21. Bf4 21... Qh5 {+/-}) 17. Qc4 17... g6 {
+? This loses per force. Better chances offered 17...Bxc3:} (17... Bxc3+ 18.
+Qxc3 Ke8 19. Bxe4 g6 20. O-O-O Qe6 21. Bxf5 gxf5 22. Nxc6 Qxc6 23. Rxf5 {
+where white still has a long way to victory}) (17... Rf8 18. Bxe4 g6 19. O-O-O
+Bxc3 20. Qxc3 {looks also better than the continuation chosen}) 18. O-O-O {
+! Probably it was this move that black did not expect. The pawn win at e4 is
+weaker:} (18. Bxe4 Bxc3+ (18... a3 19. Ke2 Bxc3 (19... Be6 20. Nd5+ Bxd5 21.
+Qxd5) 20. bxc3 Nxe5 21. dxe5 Qxe5 22. Bxb7 Ra5 23. Kf2 Rf8 24. Qb4+ Kf7 25. Bd4
+Qb5 26. Kg1 {and the struggle goes on}) 19. bxc3 Rf8 20. Nxc6+ bxc6 21. Bxf5
+21... gxf5 {which is also much less clear than the actual game}) 18... Bxc3 19.
+Qxc3 19... Qd6 {
+? the best chance here was 19...a3, as shown by the following continuation:} (
+19... a3 20. Nf7 Kd7 21. Bg5 Qg7 22. Nxh8 22... Qxh8 {with a lot of struggle})
+20. Bg5+ Ke8 21. Bf7+ Kf8 22. g4 22... Nd7 {? I do not understand that move.
+Black had much better continuations here, e.g.:} (22... h6 {looks best} 23.
+gxf5 hxg5 24. Nxg6+ Kxf7 25. Nxh8+ Kg8) (22... Nxe5 23. dxe5 Qc6 24. Bc4) 23.
+gxf5 Ndxe5 24. dxe5 Qxe5 25. Qxe5 25... Nxe5 {
+after the queens are exchanged there is even not a vague hope for black} 26.
+fxg6 Nf3 27. Rd7 {!} (27. Bh6+ {
+is also sufficient but the move in text is more elegant and fast} 27... Ke7 28.
+g7 Kxf7 29. gxh8=Q Rxh8 30. Rd7+) 27... Nxg5 (27... hxg6 28. Bxg6 Kg8 29. Bxe4
+Nxg5 30. Bd5+ {with mate}) 28. Be6+ Ke8 29. g7 Rg8 30. Bxg8 Kxd7 31. Rf8 1-0
+
+[Event "King's Gambit Thematic (D)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Enev, Zlatko"]
+[Black "Goudreau, Alec"]
+[Result "1-0"]
+[ECO "C36"]
+[Annotator "Enev, Z."]
+[PlyCount "49"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. f4 exf4 3. Nf3 d5 4. exd5 Nf6 5. Bc4 Bd6 6. Qe2+ 6... Kf8 {
+A strange loo king move which I was not able to find in any of the games in my
+database. It is not clear at all what black intends to do with his h8 rook.
+Perhaps an atack on the king side? He should better have thought ofdevelopment
+first. In any event black already has difficulties as is to be seen from the
+follwing variants:} (6... Be7 7. d4 Nxd5 8. Bxd5 Qxd5 9. Bxf4 c6 10. O-O Be6
+11. Nc3 Qa5 12. Ne4 O-O 13. Neg5 Bxg5 14. Nxg5 Re8 15. Qd3 Bf5 16. Qb3 Re7 17.
+Bd6 Be6 18. Nxe6 Rxe6 19. Qxe6 {
+1-0 Gallagher,Joseph-Chud inovskih,Alexander/Lenk (2) 1991}) (6... Qe7 7. Qxe7+
+(7. Nc3 a6 8. Qxe7+ Kxe7 9. O-O Re8 10. d4 b5 11. Bb3 Nbd7 12. a4 b4 13. Ne2
+Nh5 14. Bd2 Kf8 15. Rae1 a5 16. c4 bxc3 17. Nxc3 Ba6 18. Rxe8+ Rxe8 19. Nb5
+Bxb5 20. axb5 Rb8 21. Ra1 Nhf6 22. Rxa5 h6 23. Bc3 Nb6 24. Ne5 Re8 25. Ra7
+Nfxd5 26. Nd7+ Ke7 27. Nxb6 {- Hebden,Mark-Lein,Anatoly/New York 1983}) 7...
+Kxe7 8. d4 Re8 9. O-O h6 10. Nc3 a6 11. Bd2 Bf5 12. Bb3 g5 13. Rae1+ Kf8 14.
+Rxe8+ Kxe8 15. h4 Nh7 16. hxg5 hxg5 17. g3 Bh3 18. Re1+ Kf8 19. Ne4 g4 20. Nxd6
+gxf3 21. Bxf4 Nd7 22. Nxb7 Nhf6 23. Nc5 Nb6 24. d6 Ng4 25. Nd3 cxd6 26. Bxd6+
+Kg7 27. Nf2 f5 28. Nxh3 {1-0 Gallagher,Joseph-Glueck,Michael/Oberwart (1) 1993}
+) 7. O-O Nbd7 8. d4 Nb6 9. Bb3 {? Of course this sounds stupid but I cannot
+say exactly why I have played this move. I was not able to find any serious
+refutation of the simple 9.Nc3. I must have been trying to keep the bisho pair
+at any rate - but the price is too high and it is only the weak play of the
+oponent that allowed me to come out as a winner. I think the black position is
+rather acceptable after he gets rid of the d5 pawn.} (9. Ne5 {
+?! atacking the f4 pawn} 9... g5 10. Bd3 Nfxd5 11. Qh5 Be6 12. Qh6+ Kg8 13. Nf3
+Be7 14. Bd2 {and it seems to me that despite the unfortunate h8 rook black has
+a very stable position, e. g.:} 14... Ne3 15. Bxe3 {
+otherwise the knight goes with tempo to f5} 15... fxe3 16. h3 Qf8 17. Qh5 17...
+Qg7 {and black stays splendidly}) (9. Nc3 {
+is the line I consider best for white - now, after the game} 9... Bb4 (9...
+Nxc4 10. Qxc4 Bf5 11. Ne2 {+/=}) 10. Bxf4 Bxc3 11. bxc3 11... Nxc4 {?!} (11...
+Nfxd5 {is better} 12. Bxd5 Nxd5 13. Bd2 13... Qe7 {+/=}) 12. Qxc4 Nxd5 13. Bxc7
+{!} 13... Qxc7 (13... Nxc7 {?} 14. Ne5 {! +/-}) 14. Qxc7 Nxc7) 9... Nbxd5 10.
+c4 Ne3 11. Bxe3 fxe3 12. Qxe3 12... c5 {!? of course this looks very good but
+it might have been even better to prepare the move by first playing 12...Ng4,
+e. g.:} (12... Ng4 13. Qd2 13... c5 {! and suddenly white has serious trouble:}
+(13... Bd7 {? allows white to stay on top:} 14. c5 {!} 14... Be7 15. Qf4 {+/=})
+14. Nc3 cxd4 15. Nd5 (15. Qxd4 {??} 15... Bxh2+ {-/+}) 15... Bc5 16. Qd3 (16.
+h3 {?} 16... d3+ 17. Kh1 17... h5 {with a promising atack}) 16... Be6 17. Rfe1
+(17. Rad1 {?} 17... Bxd5 18. cxd5 18... Ne3 {=/+}) 17... Qd6 18. Rad1 18... b5
+{with strong pressure on d5 (=/+)}) 13. Nc3 {
+I did not like 13.d5 because of the following line:} (13. d5 Ng4 14. Qe2 Bf5
+15. Nc3 Qc7 16. g3 Re8 17. Qd2 Bxg3 18. hxg3 18... Qxg3+ {Although it seems
+that after 19.Kh1 white is out of danger. In any event I was not sure if I had
+seen everything, so I played the other line.} 19. Kh1 Ne3 20. Rf2 Ng4 21. Rff1
+Ne3 22. Rf2 {=}) 13... Ng4 14. Qd2 14... Bf5 {? Black loses the thread here.
+He could still have fought for advantage in the following line:} (14... cxd4
+15. Nd5 d3 16. g3 Bc5+ 17. Kg2 Bf5 18. Rae1 {But I cannot see any clear plan
+for him after this developmennt. White should have come atop after 19.Nh4}) 15.
+g3 {!} 15... Nf6 16. Ng5 g6 (16... Qd7 17. Ba4 Qc8 18. Nb5 {+/=}) (16... cxd4
+17. Qxd4 Bg6 18. Rad1 Be7 19. Nd5 {+/=}) 17. Rae1 (17. d5 h6 18. Nf3 Kg7 19.
+Bc2 19... Bg4 {Line Riley,Scott-Enev,Zlatko/Match (1) 1997}) 17... Be7 {
+? Black continues with purely defensive, passive play which in this position
+equals slow death. He should have in any event tried something more activelike:
+} (17... cxd4 18. Qxd4 Bb4 19. Qe3 (19. Qe5 {?} 19... Qb6+ 20. Kg2 Re8 21. Qb5
+21... Bxc3 {=/+}) 19... h6 20. Nf3 Ng4 21. Qd4 Qxd4+ 22. Nxd4 {with equality})
+18. d5 h6 (18... Nxd5 {?} 19. Nxf7 Kxf7 20. Qxd5+ Qxd5 21. Nxd5 {
+and black loses one of the bishops}) 19. Nf3 Bh3 (19... Kg7 20. Bc2 Bh3 21. Rf2
+Bd6 22. Nb5 Bg4 23. Nxd6 Qxd6 24. Ne5 {+/=}) 20. Rf2 20... Kg8 {?? This move
+is so incomprehesible to me that I consider it the weakest in the whole game.
+Why does he not play the natural Kg7 here? That could have allowed him to keep
+the position since the rook finally comes into play, e. g.:} (20... Kg7 21. Ne4
+(21. Ne5 Bd6 22. Rfe2 Qb6 23. Nb5 Bxe5 24. Rxe5 {+/=}) 21... Nxe4 22. Rxe4 Bf5
+23. Rf4 23... Bd6 {with a very good position for black}) 21. Rfe2 (21. Ne5 Kg7
+22. Bc2 Bd6 23. Rfe2 Nd7 24. Nxd7 24... Qxd7 {+/= I still would prefer the
+white position because of the control over the e-line but it is questionable
+if thet small advantage can be kept long}) (21. Nb5 {? is bad:} 21... a6 22. d6
+Bf8 23. Nc7 Rb8 24. Ne5 Bxd6 25. Nd5 Bxe5 26. Rxe5 {=/+}) 21... Bf8 {? Holding 
+on to that passive style. He might have been afraid of the lines following 21..
+.Bd6 22.Nb5 but that row of pieces on the eight rank does not look good at all}
+22. Ne5 h5 (22... Bg7 23. Qf4 Qf8 24. g4 h5 25. g5 Nd7 26. Qf3 Bf5 27. Nxd7
+Bd4+ 28. Kg2 Bxd7 29. Re7 {+/-}) 23. Qf4 Rh7 (23... Bf5 24. Bc2 Bxc2 25. Rxc2
+Bh6 26. Qf2 b6 27. Rce2 {+/-}) (23... Bh6 24. Qf2 h4 (24... b6 {??} 25. Nc6 Qd6
+26. Nb5 Ng4 27. Nxd6 Nxf2 28. Rxf2) 25. Qxc5 {+/-}) 24. Bc2 (24. Rf2 {?} 24...
+Bf5 25. Bc2 Bh6 26. Qf3 Ng4 27. Bxf5 Nxf2 28. Qxf2 gxf5 29. Qxf5 Qg5 30. Qf2 f5
+31. Qxc5 h4 32. Qf2 Rg7 33. Kg2 33... f4 {and black suddenly emerges on top}) (
+24. Qh4 {is another weak line} 24... Bg4 25. Nxg4 hxg4 26. Qg5 Rh5 27. Qd2 Bd6
+28. Bc2 Qb6 29. b3 29... Rd8 {=/+}) 24... Nd7 {
+? This loses per force. Black had here the good move 24...Bh6, e. g.:} (24...
+Bh6 25. Qf2 (25. Qh4 {? Risky and finally weak. White should lose, I think.}
+25... Bg4 26. Rf2 g5 27. Bxh7+ Kg7 28. Qxg4 hxg4 29. Bf5 (29. Nxf7 Kxf7 30. Ne4
+Qa5 31. Nd6+ (31. Rxf6+ {?} 31... Kg7) 31... Kg7 32. Re7+ Kh8 33. Rxf6 Bf8 34.
+Nxb7 (34. Rxb7 Bxd6 35. Rxd6 Qe1+ 36. Kg2 Qe2+ 37. Kg1 Qd1+ 38. Kg2 38... Rf8 {
+- +}) 34... Qxa2 35. Rd7 Bg7 36. Rff7 36... Bd4+ {and white gets mated}) 29...
+Kg8 30. Nxg4 Nxg4 31. Bxg4 Bg7 32. Kg2 Bd4 33. Rf5 {
+with a very unclear position}) 25... Rc8 26. Ne4 Nxe4 27. Rxe4 Bg5 28. Nd3 Bf5
+29. Re5 Bf6 30. Re8+ Qxe8 31. Rxe8+ Rxe8 32. Nxc5 32... Bg5 {
+with at least equality for black}) (24... Bd6 25. Qg5 Bg4 26. Rf2 Ne8 27. Ne4
+Be7 28. Qe3 {+/=}) 25. Ne4 {Here black resigned. I think this was a prematured
+decision given the following lines:} (25. Ne4 25... Bh6 {
+! is still rather strong:} (25... Be7 {?} 26. Nxd7 Qxd7 27. d6 Bd8 28. Nf6+ (
+28. Nxc5 {is not so convincing} 28... Bb6 29. b4 Qc6 30. Qd4 Rc8 31. Rd2 Bxc5
+32. Qxc5 Qxc5+ 33. bxc5 Bd7 34. Rd5 {+/-}) 28... Bxf6 29. Qxf6 Rf8 30. Re7 {+ -
+}) 26. Nxf7 Bxf4 27. Nxd8 Rxd8 28. gxf4 Bg4 29. Re3 {
+and he could have still struggled}) 1-0
+
+[Event "King's Gambit Final"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Enev, Zlatko"]
+[Black "Malmstrom, Jan"]
+[Result "1/2-1/2"]
+[ECO "C39"]
+[Annotator "Malmstrom, J."]
+[PlyCount "55"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. f4 exf4 3. Nf3 g5 4. h4 g4 5. Ne5 Nf6 6. d4 d6 7. Nd3 Nxe4 8. Bxf4
+Bg7 9. c3 O-O 10. Nd2 Qe7 (10... f5 11. Qb3+ d5 12. O-O-O c6) 11. Nxe4 (11. Qe2
+Re8 (11... f5 12. O-O-O Re8 13. Re1 Qf7 14. Nf2) 12. O-O-O Nxc3 13. Qxe7 Nxa2+
+14. Kb1 Rxe7 15. Kxa2 Be6+) 11... Qxe4+ 12. Qe2 Re8 13. Qxe4 Rxe4+ 14. Kd2 Nd7
+(14... Bf5 15. g3 Nc6 16. Bg2 Re7 17. Rae1 Rae8 18. Rxe7 Rxe7) 15. g3 Nf6 16.
+Bg2 Re6 17. Rae1 Kf8 (17... Nh5) (17... a5) 18. b3 (18. Rhf1 Rb8 19. c4 Nh5)
+18... Rb8 19. Rhf1 a5 20. Bg5 Rxe1 (20... Nh5 21. Bd5 Nxg3 22. Rf2) 21. Rxe1 (
+21. Kxe1 Ne8 22. Bd5 f6 23. Kd2 b5) 21... b5 (21... b6) (21... h6) 22. Nf4 Bb7
+23. Bxf6 Bxf6 24. Bxb7 Rxb7 25. Nd5 Bd8 26. Ne3 h5 27. Nd5 b4 28. c4 1/2-1/2
+
+[Event "King's Gambit Final"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Koudelka, Ivan"]
+[Black "Malmstrom, Jan"]
+[Result "0-1"]
+[ECO "C30"]
+[WhiteElo "2060"]
+[BlackElo "2510"]
+[Annotator "Malmstrom, J."]
+[PlyCount "54"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. f4 Bc5 3. Nf3 d6 4. Nc3 (4. c3) 4... Nf6 5. Bc4 Nc6 6. d3 6... Ng4
+$5 (6... Bg4) 7. Ng5 exf4 8. Bxf4 (8. Bxf7+) 8... Bf2+ 9. Kd2 (9. Kf1 Nce5 10.
+Nd5 Nxc4 (10... Bh4 11. Bxe5 Nxe5 12. Nf3 Nxc4) 11. dxc4 Bh4) 9... Nce5 10. Bb3
+O-O 11. Nf3 h6 (11... Bb6) (11... Qf6 12. Nd5) (11... c6 12. d4 c5 (12... Ng6
+13. Bg5 Qb6 14. h3) 13. dxe5 dxe5+ 14. Ke2 exf4 15. h3) 12. Qe2 Ng6 13. Bg3
+Be3+ (13... Bb6 14. h3 Nf6 15. Kc1) 14. Ke1 c6 15. Nd1 (15. d4 Re8 16. Rf1 d5)
+15... Nf4 (15... Bf4 16. d4 Re8 17. c4 Bf5 18. Bc2 Qe7 19. Nc3 Ne3 20. Bd3 Qf6)
+(15... Qa5+) 16. Qf1 Nh5 17. Bh4 g5 (17... Qa5+ 18. c3 g5 19. Bg3) 18. Bf2 (18.
+Bg3 Bb6 19. Nd2 Kh7 20. Qf3 f5 21. Rf1 Nxg3 22. Qxg3 f4) 18... Nxf2 (18... Qa5+
+19. c3 Bxf2+ 20. Nxf2 Ne3 21. Qg1 Nf4 22. g3) (18... Bxf2+ 19. Nxf2 Ne3 20. Qg1
+Nf4 21. g3) 19. Nxf2 Kh8 (19... Qb6 20. Nd2 Be6 21. Nd1 Bxd2+ 22. Kxd2 Nf4) 20.
+Nd1 Bb6 21. g3 f5 22. Qg2 fxe4 23. dxe4 Bg4 24. Rf1 Qe7 25. Nd2 Rxf1+ 26. Qxf1
+Rf8 27. Qd3 Qf6 0-1
+
+[Event "King's Gambit Final"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Malmstrom, Jan"]
+[Black "Ruggeri Laderchi, Giorgio"]
+[Result "0-1"]
+[ECO "C39"]
+[Annotator "Malmstrom, J."]
+[PlyCount "48"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. f4 exf4 3. Nf3 g5 4. h4 (4. Nc3 g4 5. Ne5 Qh4+ 6. g3 fxg3 7. Qxg4
+Qxg4 8. Nxg4) 4... g4 5. Ne5 Nf6 6. Bc4 (6. d4 d6 7. Nd3 Nxe4 8. Bxf4) (6. Nxg4
+Nxe4 7. Qe2 7... d5 $15) (6. Nc3) 6... d5 7. exd5 Bd6 8. d4 O-O (8... Nh5 9.
+O-O (9. Bb5+ c6 10. dxc6 bxc6 11. Nxc6 Nxc6 12. Bxc6+ Kf8 13. Bxa8 (13. Nc3) (
+13. O-O Rb8 14. Nc3 Qxh4 15. Re1 15... Kg7 $13)) 9... Qxh4 10. Qe1 Qxe1 11.
+Rxe1 O-O 12. Bd3 Re8 13. Bd2 f6 14. Nc4 Rxe1+ 15. Bxe1 Bf8 16. Nc3) 9. Bxf4 (9.
+O-O Nh5) 9... Nh5 10. Be3 (10. Bg5 f6 11. Nxg4) (10. O-O Qxh4) 10... Ng3 (10...
+Re8 $1 11. Nc3 (11. Nxg4 Ng3 12. Rh3 12... Re4 $17) 11... Bxe5 12. dxe5 Ng3)
+11. Rh2 Re8 (11... Qe7 12. Nc3 Bxe5 13. dxe5 Qxe5 14. Qd4 Qxd4 15. Bxd4) (11...
+f5 12. Bf4 Nh5 13. Bg5) 12. Bb5 Bxe5 13. Bxe8 Bd6 14. Bxf7+ Kxf7 15. Qd3 Bf5
+16. Qb3 Na6 17. Nd2 Nb4 18. Rc1 Qf6 19. a3 Nxc2+ 20. Rxc2 Bxc2 21. Qxc2 21...
+Nf5 {0-1} 22. Ne4 Nxe3 23. Nxd6+ Kg8 24. Qd3 24... g3 $19 0-1
+
+[Event "King's Gambit Final"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Malmstrom, Jan"]
+[Black "Enev, Zlatko"]
+[Result "0-1"]
+[ECO "C36"]
+[Annotator "Malmstrom, J."]
+[PlyCount "50"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. f4 exf4 3. Nf3 d5 4. exd5 Nf6 5. Bb5+ (5. c4) (5. Nc3 Nxd5) (5. Bc4
+Nxd5 6. O-O Be6) 5... c6 6. dxc6 Nxc6 7. Qe2+ (7. Ne5) (7. d4) 7... Be7 8. Ne5
+(8. d4 O-O 9. c3) 8... Qb6 9. Qc4 O-O 10. Nxc6 (10. Bxc6 bxc6 11. Qxc6 (11.
+Qxf4 Bd6 12. d4 Ng4 13. Nc3 $19) 11... Qxc6 12. Nxc6 Bc5 13. d4 Re8+ 14. Kf2
+Bb6 15. c3 Bb7 16. Nb4 16... Ng4+ $17) 10... bxc6 11. Qxc6 Qb8 12. Qc4 12...
+Ng4 $1 13. d3 (13. O-O f3 14. g3 14... Ne5 $17) (13. Nc3 Bh4+ 14. Kf1 f3 15.
+Ne4 Bb7 16. gxf3 Bxe4) (13. d4 Bh4+ 14. Kd2 (14. Ke2 Bb7 15. Rf1 Rc8 16. Qb3
+f3+ 17. Rxf3 Bxf3+ 18. Kxf3 Nxh2+) 14... Rd8 15. c3 a6 16. Ba4 (16. Bc6 Ne5 17.
+Qa4 Bb7 18. Bf3 Nxf3+ 19. gxf3 Bxf3 20. Rf1 Bg2 21. Rd1 Qe5) 16... Ne3) (13.
+Bc6 Bh4+) (13. h3 13... f3 $19) (13. Rf1 Bh4+ 14. Kd1 Be6 15. Qa4 Nf2+ 16. Rxf2
+Bxf2 17. Nc3 f3 18. g3 18... Qe5 $19) (13. a3 Bh4+ 14. Kf1 f3 15. gxf3 Nxh2+)
+13... Be6 (13... Bh4+ 14. Kd2 Bb7) 14. Qxf4 (14. Qa4 Qe5+ 15. Kf1 Bh4 16. Qe4
+Qxb5) 14... Qb7 (14... Qxb5 15. h3 Qe5+ 16. Qxe5 Nxe5 17. O-O (17. Nc3 Rac8 18.
+Be3 a5 19. O-O-O Bb4 20. Bd2 Rfd8 21. Rde1 f6 22. a3 Bc5)) 15. O-O (15. Ba4
+Qxg2) (15. Bc4 Qxg2) (15. h3 Qxg2 16. Rf1 Bh4+ 17. Kd1 Nf2+ 18. Rxf2 Bxf2 19.
+c3 Bxh3 20. Nd2) 15... Qxb5 16. h3 Qb6+ (16... Nf6 17. d4 Rfd8 18. c3 Bd6 19.
+Qf2 Rac8 20. Nd2 Qa6 21. Nf3) 17. Kh1 (17. d4 Bd6 18. Qd2 Nf6 19. c3 Rfe8)
+17... Bd6 18. Qd2 Nh2 (18... Ne5 19. c3 (19. Nc3 Rfd8 20. Ne4 Rac8 21. Nxd6
+Qxd6 22. Qe2) 19... Rab8) 19. Rf2 Bg3 20. Re2 Bc7 21. Qe1 Qb7 22. Re3 Rae8 23.
+Qf2 23... Bd7 {0-1} 24. c3 (24. Re4 Bxh3) (24. Nc3 Rxe3 25. Qxe3 Re8 26. Qf2
+Bxh3) 24... Rxe3 25. Bxe3 Bxh3 0-1
+
+[Event "King's Gambit Final"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Malmstrom, Jan"]
+[Black "Koudelka, Ivan"]
+[Result "1-0"]
+[ECO "C34"]
+[Annotator "Malmstrom, J."]
+[PlyCount "53"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. f4 exf4 3. Nf3 Nf6 4. e5 Nh5 5. d4 (5. Be2 g6 6. d4 Bg7 7. O-O d6
+8. Nc3 O-O 9. Nd5 dxe5 10. dxe5 Nc6 11. Nxf4 Qxd1 12. Rxd1 Nxf4 13. Bxf4 Be6) (
+5. Qe2) (5. Nc3 d5 6. d4 c6 7. Be2 g5 8. O-O (8. Nxg5 Qxg5 9. Bxh5 Qxg2 10. Rf1
+Qxh2 11. Rxf4)) (5. Bc4) 5... d5 6. Be2 g5 7. Nxg5 (7. O-O Rg8) 7... Qxg5 8.
+Bxh5 Qh4+ (8... Qxg2 9. Bf3 (9. Qf3 Qxf3 (9... Qxc2 10. Nc3 Bb4 11. O-O Rg8+
+12. Kh1 Bxc3 13. Bxf7+) 10. Bxf3 c6 11. Bxf4 Bf5) 9... Qg5 10. Qd2 Qh4+ 11. Qf2
+Qxf2+ 12. Kxf2 Bh6 13. Nc3 c6 14. Ne2 Bf5 15. c3 $14) 9. Kf1 b6 10. Nc3 Ba6+
+11. Kg1 11... Nc6 $6 (11... c6 12. e6 Bg7 13. Bxf7+ Kd8 14. Ne2 Qg4 15. Kf2
+Qxe2+ 16. Qxe2 Bxd4+ 17. Ke1 Bxe2 18. Kxe2 $16) 12. Bxf4 (12. Nxd5 O-O-O) 12...
+Nxd4 13. Nxd5 (13. g3 Rg8 14. Nxd5 O-O-O 15. Bxf7 Ne2+ 16. Kf2 Bc5+ 17. Ne3 Qe7
+) 13... Ne6 (13... O-O-O 14. Bg4+ Ne6 15. g3 Rxd5 16. Bxe6+ fxe6 17. Qxd5 exd5
+18. gxh4) 14. g3 (14. Be3 O-O-O 15. Bxf7 Ng5 16. Bh5 Kb8) 14... Bc5+ 15. Kg2
+Rg8 (15... Nxf4+ 16. Nxf4 Qe7 17. Bf3 $16) 16. Qf3 (16. Nf6+ Qxf6 17. exf6
+Nxf4+ 18. Kf3 Be2+ 19. Kxf4 (19. Qxe2+ Nxe2 20. Rhe1 O-O-O 21. Kxe2) 19... Bxd1
+20. Raxd1 Bd6+ 21. Rxd6 cxd6 22. Re1+ Kd8 23. Re7 Rc8) (16. Be3 Bxe3 17. Nf6+
+Kf8 18. Nxg8 Qg5 19. h4 Nf4+) 16... O-O-O 17. Bxf7 Nxf4+ 18. Qxf4 Qxf4 19. Nxf4
+Rd2+ 20. Kh3 Rg5 21. e6 (21. Rhd1 Rxd1 22. Rxd1 Rxe5 23. Be6+ Kb7 24. Bg4) (21.
+Rhe1 Bf2 22. Be6+ Kb7 23. Red1 Rd4 24. c3 Rxd1 25. Rxd1 Rxe5 26. Rd8 $16) 21...
+Rxc2 22. Rhe1 Bc4 23. b3 Bb5 24. Rad1 (24. Rac1 Rxc1 25. Rxc1 Kb7 26. Bh5 Bc6
+27. Rf1 Be7 28. Bf3 Bxf3 29. Rxf3) 24... Bf2 (24... Bb4 25. Re4 Be7 26. Nd5
+Rxd5 27. Rxd5 Bc6 28. Red4 Bxd5 29. Rxd5) 25. Re4 Rf5 (25... Rg7 26. Nh5) 26.
+Bh5 Rcc5 27. Be2 1-0
+
+[Event "King's Gambit Final"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Ruggeri Laderchi, Giorgio"]
+[Black "Malmstrom, Jan"]
+[Result "1-0"]
+[ECO "C34"]
+[Annotator "Malmstrom, J."]
+[PlyCount "45"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. f4 exf4 3. Nf3 d6 4. d4 (4. Bc4 Be6 5. Bxe6 fxe6 6. d4 Qf6 7. Qd2)
+4... g5 5. h4 g4 6. Ng1 Qf6 (6... Bh6 7. Nc3 c6 (7... Nc6 8. Nge2 f3 9. Nf4) 8.
+Nge2 Qf6) (6... Nf6 7. Bxf4 Nxe4 8. Nd2 Qe7 9. Qe2 Nxd2 10. Kxd2 Qxe2+) (6...
+f3 7. gxf3 Be7 8. Be3 Bxh4+ 9. Kd2 Nc6 10. Nc3 Bf6 11. Kc1 11... h5 $13) 7. Nc3
+(7. Be2) 7... c6 8. Nge2 f3 (8... Bh6) 9. Ng3 h5 (9... f2+ 10. Ke2 Bh6 11. Bxh6
+Nxh6 12. Qd2 $14) (9... Bg7 10. Be3 (10. Nh5 f2+ 11. Ke2 Qxd4 12. Nxg7+ Qxg7
+13. Qxd6 g3 14. Bf4 Bg4+ 15. Ke3) 10... h5 11. gxf3 Qxf3 12. Qxf3 gxf3 13. Bh3
+Bg4 14. Bxg4 hxg4 15. Nf5 Bf8 16. Bf4) (9... Bh6 10. Nh5) (9... fxg2 10. Bxg2)
+10. Bg5 f2+ 11. Ke2 Qg6 (11... Qg7 12. Kxf2 Be7 13. Bf4 Be6 14. Qd2) 12. Kxf2
+Bg7 13. Bc4 (13. Qd3 Nh6 14. Re1 O-O) 13... Be6 14. d5 Bd7 15. dxc6 bxc6 (15...
+Nxc6 16. Nb5 Kf8 17. Qxd6+) 16. Bf4 Be5 17. Bxe5 dxe5 18. Qd2 (18. Qd3) 18...
+a5 (18... Rh7 19. Rad1 Ne7) (18... a6) (18... Qf6+ 19. Kg1 Qe7) (18... Ne7 19.
+Rad1 Qf6+ 20. Kg1) 19. Rhf1 Ne7 20. Kg1 O-O 21. Rf2 {1-0} 21... Kg7 (21... Kh7
+22. Raf1 f5 23. exf5) (21... Be6 22. Bxe6 Qxe6 23. Qg5+) 22. Raf1 f6 (22... f5
+23. exf5 Bxf5 24. Nxf5+) 23. Qd6 1-0
+
+[Event "Latvian Invitaional Trio"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Malmstrom, Jan"]
+[Black "Miraglia, Jorge"]
+[Result "1-0"]
+[ECO "C40"]
+[WhiteElo "2510"]
+[BlackElo "2380"]
+[Annotator "Malmstrom, J."]
+[PlyCount "97"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. Nf3 f5 3. Nxe5 Qf6 4. Nc4 fxe4 5. Nc3 Qf7 6. Ne3 c6 7. d3 exd3 8.
+Bxd3 8... Bb4 $6 9. O-O d5 (9... Bxc3 10. bxc3 Ne7 11. Ba3 d5 12. Re1 O-O 13.
+Bxe7 $16) (9... Nf6 10. Ng4 O-O 11. Nxf6+ Qxf6 12. Ne4 Qe5 13. c3 Be7 (13... d5
+) 14. Re1 Qf5 15. Qc2 15... Qe5 $16) 10. Ncxd5 $1 (10. Nexd5 cxd5 11. Bb5+ (11.
+Nb5 Be6 12. c3 Bc5 13. b4 Bf8 14. Re1 Kd8 15. Qa4 Nc6 16. Be3 Kc8) 11... Bd7)
+10... cxd5 11. Nxd5 11... Bc5 $1 (11... Bd6 12. Re1+ Kf8 13. Bc4 Bc5 14. Be3
+$16) (11... Ba5 12. b4 Bd8 13. Re1+ Kf8 14. Bc4 Qd7 15. b5 $16) (11... Qxd5 12.
+Bg6+ hxg6 13. Qxd5 Nc6 14. Bd2 $16) (11... Nc6 $5 12. Nxb4 $1 (12. Qe2+ Kf8 13.
+Nxb4 Nxb4 14. Bc4 Nd5 15. Bxd5 Qxd5 16. Rd1 Qa5 17. Bd2 Qb6 18. Bb4+ Qxb4 19.
+Rd8+ Kf7 20. Qe8+ Kf6 21. Rad1 Bd7) 12... Nxb4 13. Re1+ Ne7 (13... Kf8 14. Bg6
+$1 $18) 14. Bg5 O-O 15. Rxe7 Qxf2+ 16. Kh1 $16) 12. Bf4 $1 (12. Re1+ Kf8 13.
+Be3 Bxe3 14. Nxe3 14... Nf6 $44) (12. Bb5+ Nc6 13. Bf4 Kf8 (13... Be7 14. Re1
+Bd7 15. Nc7+ Kd8 16. Bg3 $16) 14. Bxc6 bxc6 15. Nc7 Be7 16. Bd6 Rb8 17. Re1 Bf5
+18. Ne6+ Bxe6 19. Bxb8) (12. Qe2+ Kf8 (12... Kd8 13. Bc4 Qf5 14. Bf4 Nc6 15.
+Bc7+ Kd7 16. Rad1 Bd4 17. Rfe1 $18) (12... Kd7 13. Bc4 Qf8 14. Bf4 Nc6 15. Rad1
+$18) 13. Bc4 Be6 (13... b5 14. Bb3 Qb7 15. Re1 Bd7 16. Qf3+ $18) 14. Re1 Nc6 (
+14... b5 $1 15. Bb3 Nc6 16. Qxe6 Bxf2+ 17. Kh1 Bxe1 18. Qxf7+ Kxf7 19. Nc7+ Kg6
+20. Nxa8 Nge7 21. Nc7 21... Rf8 $16) 15. Qxe6 Qxf2+ 16. Kh1 Nd4 17. Qe5 $18) (
+12. Bc4 Be6) 12... Kf8 13. Bc4 Nc6 (13... Nd7 14. Bb3 (14. Be3 Qe6 15. Qh5 Qg6
+16. Qxg6 hxg6 17. Nf4 Ke8 18. Rae1 $18) 14... a5 15. Nc7 Qf6 16. Qe2 Ne7 17.
+Bg5 Qe5 18. Bxe7+ Kxe7 19. Rae1 Kd8 20. Ne6+ $18) 14. Be3 Bd6 15. Nb6 Bxh2+ 16.
+Kh1 16... Qf6 $1 (16... Qe7 17. Qf3+ Nf6 18. Nxc8 Rxc8 19. Qh3) 17. Nxc8 $1 (
+17. Bc5+ Ke8 18. Nxa8 (18. Re1+ Be5 19. Nxa8 Qh4+ 20. Kg1 Qh2+ 21. Kf1 Qh1+ 22.
+Ke2 Bg4+) 18... Qh4 19. Re1+ Be5+ 20. Kg1 Qh2+ 21. Kf1 Qh1+ 22. Ke2 Bg4+ 23. f3
+Qxg2+ 24. Ke3 Bf5 25. Bb5 a6 26. Bxc6+ 26... bxc6 $13) 17... Qh4 (17... Rxc8
+18. Bxg8 Be5 19. Qg4 $16) 18. Qf3+ Nf6 19. Be6 Be5+ 20. Qh3 (20. Bh3 Rxc8)
+20... Qxh3+ 21. gxh3 Bxb2 22. Bc5+ (22. Rab1 Bd4 23. Rfd1 Bxe3 24. fxe3 Ne4 25.
+Rxb7 Rxc8 26. Rf1+ Ke8 27. Bxc8 Ng3+ 28. Kg2 Nxf1 29. Bd7+ Kd8 30. Bxc6 Nxe3+
+31. Kf2 Nf5 32. Rd7+ Kc8 33. Rxa7 33... Rd8 $16) 22... Ke8 23. Nd6+ (23. Rae1
+Be5 24. f4 Bc7 25. Rg1 g6 26. f5 Nh5) 23... Ke7 24. Rae1 Ne5 (24... Be5 25. Bf5
+Nh5 26. Nxb7+ Kf6 27. Bd7 $16) 25. Bb3 Nfd7 26. Nxb7+ Nxc5 27. Nxc5 Kd6 28. Ne6
+$16 (28. Ne4+ Kc6 29. f4 Nd7 30. Rb1 Bf6 31. Ba4+ Kc7 32. Rfd1 Nb6) 28... Rab8
+(28... Rac8 29. Nxg7 Rhf8 30. Rd1+ Ke7 31. f4) 29. Nxg7 29... Nf3 $1 30. Re6+ (
+30. Rd1+ Ke7 31. Nf5+ Kf6) (30. Nf5+ Kc5) 30... Kc5 31. Re7 (31. Re3 Bxg7 32.
+Rxf3 Rhf8 33. Rxf8 Rxf8 34. Kg2 $16) 31... Bxg7 (31... Bxg7 32. Rxg7 a5 33. Rd1
+Rhd8 34. Rxd8 Rxd8 35. Rxh7 a4 36. Rh5+ Kb4 37. Bd5 Ne1 38. Rh4+ (38. c4 Nd3)
+38... Kc3 39. Be6 Rd6 40. Rc4+ Kb2 41. Re4 Nxc2 42. f4 Kc3 43. f5 a3 44. f6 Kd3
+45. Rf4 $18) (31... a5 32. Ne6+ (32. Rd1 Nd4 33. Re4 Nxb3 34. Ne6+ Kb5 35. cxb3
+Rhc8) 32... Kb4 33. Bd5 Nd2 34. Rd1 Bc3 35. Nf4 Ka3 36. Re3 $18) 32. Rxg7 a6
+33. Rd1 Rbe8 34. Kg2 Nh4+ 35. Kf1 Re5 (35... Nf3 36. Rc7+ Kb6 37. Rc3) 36. Rgd7
+(36. Rc7+ Kb6 37. Rf7 Kc5) 36... Ng6 (36... Nf3 37. Rc7+ Kb4 38. Bd5 Rf8 39.
+Rxh7 Ref5 40. Kg2 Ng5 41. Rh5 Rd8 42. c4) 37. R1d6 a5 38. Rf6 Kb4 (38... Rhe8
+39. Rxh7 Re1+ 40. Kg2) 39. Rf3 (39. Rb6+) (39. Rb7+) 39... Rf8 40. Rb7+ Kc5 41.
+Rc3+ Kd6 42. Rb6+ (42. Rxh7 Ref5 43. Rd3+ Ke5 44. Rd5+ Ke4 45. Rxf5) 42... Kd7
+43. Ba4+ Kd8 44. Rd3+ Kc7 45. Rc6+ Kb8 46. Rb3+ Ka7 47. Rc7+ Ka6 48. c4 Re7 49.
+Bd7 1-0
+
+[Event "Latvian Invitaional Trio"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Ruggeri Laderchi, Giorgio"]
+[Black "Malmstrom, Jan"]
+[Result "1-0"]
+[ECO "C40"]
+[WhiteElo "2095"]
+[BlackElo "2510"]
+[Annotator "Malmstrom, J."]
+[PlyCount "69"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. Nf3 f5 3. Nxe5 Qf6 4. d4 d6 5. Nc4 fxe4 6. Nc3 Qg6 7. f3 exf3 8.
+Qxf3 Nc6 9. d5 Nb4 10. Ne3 Nf6 11. a3 Na6 (11... Nxc2+ $2 12. Nxc2 Qxc2 13. Bd3
+Qb3 14. Ne4 $1 14... Ke7 (14... Qa4 15. Nxf6+ gxf6 16. Qxf6 Qa5+ 17. Kf2 $16)
+15. Nxf6 gxf6 16. O-O Qb6+ 17. Rf2 Qd4 18. Be3 Qe5 19. Bf4 $16) 12. Bd3 Qh5 (
+12... Qf7) 13. Qxh5+ Nxh5 14. O-O Be7 (14... Nf6 15. b4 Be7 16. Bb5+ Bd7 17.
+Bb2 Bxb5 18. Nxb5 O-O 19. Rae1 Nd7 (19... Ne8) (19... Nh5 20. g4 Rxf1+ 21. Rxf1
+Nf6 22. h4 Nd7 (22... Re8) 23. g5 Bf8 24. Kf2 c6)) (14... Bd7) (14... Nc5 15.
+Be2 (15. Nb5 Kd8) 15... Nf6 16. b4 Nce4 (16... Ncd7 17. Nb5 17... Kd8 $16) 17.
+Bb5+ Bd7 18. Bxd7+ Kxd7 19. Nxe4 Nxe4 20. Bb2 Re8 21. Rae1 Rg8 22. c4 a6 23.
+Ng4 Ng5 24. Rxe8 24... Kxe8 $14) 15. b4 (15. Nf5 Bf6 16. Bb5+ Bd7 17. Bxd7+
+Kxd7) 15... Bf6 (15... Bd7) (15... Nf6) 16. Bd2 (16. Bb2 O-O 17. g4 Re8 18. Nf5
+) (16. Bb5+) 16... O-O 17. g4 Re8 18. gxh5 (18. Rae1 Rxe3 (18... Bxc3 19. Bxc3
+Nf6 20. h3 Nb8 21. Bxf6 gxf6 22. Rxf6) 19. Rxe3 Bxg4 20. Re4 Bh3) 18... Rxe3 (
+18... Bxc3 19. Bxc3 Rxe3 20. Rae1 Rxe1 21. Rxe1 Bg4 (21... Kf8 22. Bxh7 Bg4 23.
+Rf1+ Ke7 24. Bg6) 22. Re7 Bxh5 23. Rxg7+ Kf8 24. Rxh7 Bf7 25. Rh8+ Bg8 26. h4
+Re8 27. h5 $18) 19. Bxe3 Bxc3 20. Rab1 Bg4 (20... Bh3 21. Bxa6) 21. h6 (21. Rb3
+Be5 22. h6 g6) 21... Re8 22. Bxa7 gxh6 23. Rf4 h5 24. Bxa6 Ra8 (24... bxa6 25.
+Rc4 Bf6 26. Rxc7 $18) 25. Rc4 $1 (25. Bd3 Rxa7 26. Rc4 Rxa3 27. Rxc7 Bf3) 25...
+Be5 (25... Rxa7 26. Rxc3 bxa6 27. Rg3 Kh8 28. c4) 26. Rxc7 bxa6 27. Be3 Re8 28.
+Rf1 (28. Rb3 Kh8) 28... Bxh2+ 29. Kxh2 Rxe3 30. Rf6 h4 31. Rxd6 {1-0} 31...
+Rh3+ 32. Kg2 Rg3+ 33. Kf2 Rf3+ 34. Ke1 h3 35. Rxa6 1-0
+
+[Event "Latvian Gambit Thematic (A)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Bottino, A.."]
+[Black "Malmstrom, Jan"]
+[Result "0-1"]
+[ECO "C40"]
+[Annotator "Malmstrom, J."]
+[PlyCount "26"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. Nf3 f5 3. Nxe5 Qf6 4. d4 d6 5. Nc4 fxe4 6. Be2 d5 (6... Qd8) 7. Ne3
+Be6 (7... Qf7 8. c4 Nf6 9. cxd5 Bd6 10. O-O O-O 11. Nc3) (7... Ne7) (7... c6 8.
+c4 Bb4+ (8... dxc4) (8... Ne7) 9. Bd2 Bxd2+ 10. Qxd2 Qf7 11. O-O Nf6 12. Qb4
+Na6) 8. O-O Nc6 (8... Bd6) 9. c3 (9. c4 O-O-O) 9... O-O-O (9... Bd6) 10. f3 Qh4
+11. fxe4 dxe4 12. Qe1 Qxe1 13. Rxe1 Nf6 0-1
+
+[Event "Latvian Gambit Thematic (A)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Calvani, Vito"]
+[Black "Malmstrom, Jan"]
+[Result "0-1"]
+[ECO "C40"]
+[Annotator "Malmstrom, J."]
+[PlyCount "78"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. Nf3 f5 3. Nxe5 Qf6 4. Nc4 fxe4 5. Nc3 Qf7 6. d4 $6 6... Nf6 7. Bg5
+Bb4 8. Ne5 Qe6 9. Bc4 d5 10. Bxf6 Bxc3+ 11. bxc3 gxf6 12. Qh5+ Ke7 13. Bxd5 (
+13. Ng6+ hxg6 14. Qxh8 dxc4) 13... Qxd5 14. Ng6+ Kd6 15. Qxd5+ Kxd5 16. Nxh8
+Be6 17. Rb1 Kc6 18. c4 Bxc4 19. Rb4 Bxa2 (19... b5 20. a4) 20. Ra4 Bg8 (20...
+Be6 21. c4 b5 22. d5+ Kc5 23. Ra5 Nc6 24. dxc6 Bxc4 25. Kd2 Rxh8 26. Rxa7 Kxc6
+27. Kc3 $15) 21. f3 (21. c4 Nd7) (21. Ra3 Be6 22. c4 Bxc4 23. Rh3 Na6 24. Rxh7
+Rg8 25. g3 Rd8 26. Kd2 Rxd4+ 27. Ke3 Rd3+ 28. Kxe4 Nc5+ 29. Kf4 Bd5) (21. Kd2
+Nd7 22. Rha1 a6 23. Ra5 Bd5) 21... exf3 22. gxf3 b5 23. Ra3 Bd5 (23... Nd7 24.
+Kd2 Bd5 25. Ra6+ Nb6 26. Ke3 Rxh8 27. Rxa7 Re8+ 28. Kf2 h5) (23... a5 24. Rg1
+Nd7 25. Rg7) (23... Bc4 24. Rc3 Kd6 25. Rxc4 bxc4) 24. Rg1 (24. O-O Kd6 25. Rb1
+Nc6 26. Rxb5 Rxh8 27. Ra6 Re8) (24. Kf2 a5 25. Rha1 Kb6) 24... b4 (24... Nd7
+25. Rg7 Rxh8 26. Ra6+ Kb7 27. Rxd7 Kxa6 28. Rxd5 Kb6 29. Rd7 h5 30. Rf7 Rh6 31.
+Rf8) 25. Ra5 Kd6 26. Rg7 Nc6 27. Rxd5+ Kxd5 28. Rxh7 Nxd4 29. Rd7+ Kc5 30. Nf7
+(30. Rxc7+ Kb6 31. Rh7 a5 32. Rh6 Re8+ 33. Kd1 Re6 34. f4 a4 35. Kc1 Rc6 36.
+Kb1 Nxc2 37. Rg6 b3 38. Rg8 Na3+ 39. Kb2 Nc4+ 40. Kc3 40... Nd6+ $19) 30...
+Nxc2+ 31. Kd2 Kc6 32. Re7 Nd4 33. Kd3 (33. f4 Rf8 34. Nh6 Nf3+ 35. Kd3 Rd8+ 36.
+Ke4 Nxh2) 33... Nxf3 34. Kc4 a5 35. Re6+ Kb7 36. Rxf6 Nxh2 37. Kb5 b3 38. Rf2
+Ng4 39. Rd2 a4 0-1
+
+[Event "Latvian Gambit Thematic (A)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Malmstrom, Jan"]
+[Black "Giancotti, Eraldo"]
+[Result "1-0"]
+[ECO "C40"]
+[Annotator "Malmstrom, J."]
+[PlyCount "19"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. Nf3 f5 3. Nxe5 Qf6 4. Nc4 fxe4 5. Nc3 5... Qg6 $5 (5... Qf7) 6. Nd5
+$1 (6. d3 $5 6... Bb4 7. Bd2 (7. dxe4 Qxe4+ 8. Ne3 Bxc3+ 9. bxc3 Ne7 10. Bd3)
+7... exd3 $5 8. Bxd3 Qxg2 9. Qh5+ (9. Be4 Qh3 10. Nd5 Bxd2+ 11. Qxd2 Na6 12.
+O-O-O Qh6 13. Rhe1 Qxd2+ 14. Rxd2 14... Kd8 $13) 9... Kd8 10. Be4 (10. O-O-O
+Nf6 11. Qh4 Qg4 12. Qxg4 Nxg4 13. Bg5+ (13. Rhg1 Nxf2 14. Rde1 Nxd3+ 15. cxd3
+$13) 13... Be7 14. Bxe7+ 14... Kxe7 $13) 10... Nf6) 6... Na6 7. d4 $1 (7. Nce3
+c6 (7... Bd6 8. Be2 Nf6 9. Nxf6+ Qxf6 10. Bc4 $14) 8. Bxa6 cxd5 9. Be2 $14)
+7... Nf6 $5 (7... exd3 8. Bxd3 Qxg2 9. Qh5+ Kd8 10. Bg5+ Be7 11. Nxe7 Nxe7 12.
+O-O-O $16) (7... d6 8. Nce3 Qf7 9. Bxa6 bxa6 10. c4 $14) (7... Qf7 8. Nce3 c6
+9. Bxa6 cxd5 10. Be2 $14) 8. Ne5 Qf5 9. g4 (9. Ne3 Qe6 10. c3) (9. Bc4) 9...
+Qxg4 $4 (9... Qe6 10. Nf4 Qg8 11. g5 Nd5 12. Nxd5 Qxd5 13. Qh5+ g6 14. Nxg6 Qf7
+15. Nf4 Qxh5 16. Nxh5 $16) 10. Nxf6+ 1-0
+
+[Event "Latvian Gambit Thematic (A)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Malmstrom, Jan"]
+[Black "Mc Allister, K.."]
+[Result "1-0"]
+[ECO "C40"]
+[Annotator "Malmstrom, J."]
+[PlyCount "47"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. Nf3 f5 3. Nxe5 Qf6 4. Nc4 fxe4 5. Nc3 Qg6 6. Nd5 (6. d4 exd3 (6...
+Bb4 7. Ne5) 7. Bxd3 Qe6+ 8. Ne3) (6. f3 exf3 (6... Be7 $1) 7. Qxf3 Bc5 8. Bd3
+Qe6+ 9. Ne3 Nf6 10. O-O) (6. Ne3 Nf6 7. Bc4 (7. d3 Bb4 8. Bd2 8... d5 $2 (8...
+Bxc3 9. Bxc3 O-O 10. Be2 c6 11. Bb4 Re8 12. dxe4 Qxe4))) (6. d3 Bb4 7. Bd2 (7.
+dxe4 Qxe4+ 8. Ne3 Bxc3+ 9. bxc3 Ne7 10. Bd3 Qh4) 7... exd3 8. Bxd3 Qxg2 9. Qh5+
+Kd8 10. O-O-O Nf6 11. Qh4 Qg4 12. Qxg4 Nxg4 13. Rhg1 Nxf2 14. Rde1 (14. Bg5+
+Be7 15. Bxe7+ Kxe7 16. Rde1+ Kd8 17. Ne5) 14... Nxd3+ 15. cxd3 d6 16. Rxg7 Bd7
+17. Bg5+ Kc8 18. Nd5 Nc6 19. Rf1) 6... Bd6 $6 (6... Na6 7. Nce3 7... c6 $1 (
+7... Bd6 8. d4 Ne7 9. Nxe7 Bxe7 10. Be2 $14)) 7. Nxd6+ (7. d4 Ne7 8. Nxd6+ Qxd6
+9. Bc4 Nxd5 10. Qh5+ g6 11. Qxd5 Qxd5 12. Bxd5 c6 13. Bxe4 d5 14. Bf3 $16) 7...
+Qxd6 8. Qg4 Kf8 (8... Nf6 9. Qxg7 Rf8 10. Nxf6+ Qxf6 11. Qxf6 Rxf6 12. b3) 9.
+Qxe4 Nf6 10. Nxf6 Qxf6 11. d4 Qf7 12. Bd3 (12. c4) 12... d5 13. Qf4 (13. Qe2)
+13... Nc6 14. c3 Nd8 15. O-O Ne6 16. Qg3 c6 17. b3 (17. f4 Nc7 18. f5 Ne8 19.
+Bg5 h6 20. Bh4 Qc7 21. Qe5 b6 22. Rae1 Qxe5 23. dxe5 Bb7 24. f6 gxf6 25. exf6)
+17... Kg8 (17... Bd7 18. f4 h6 19. Ba3+ Kg8 20. Rae1 Be8 21. f5 Ng5 22. f6 gxf6
+23. Be7 Rh7 24. Rxf6 Qxe7 25. Rxe7 Rxe7 26. h4) 18. f4 Qc7 19. Ba3 (19. Re1) (
+19. Bd2) (19. Qe3) 19... g6 (19... Qa5 20. Bd6) 20. Rae1 Kg7 21. Qh4 Re8 22. f5
+gxf5 23. Rxf5 Bd7 24. Rf7+ 1-0
+
+[Event "Latvian Gambit Thematic (A)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Malmstrom, Jan"]
+[Black "Triantafillopoulos, D.."]
+[Result "1-0"]
+[ECO "C40"]
+[Annotator "Malmstrom, J."]
+[PlyCount "31"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. Nf3 f5 3. Nxe5 Qf6 4. Nc4 fxe4 5. Nc3 Nc6 (5... Qf7) 6. Qg4 (6. Nd5
+Qd8 7. Qh5+ g6 8. Qg4) (6. Nxe4 $2 6... Qe6 7. Qe2 d5 8. Ng5 Qxe2+ 9. Bxe2 9...
+dxc4 $17) 6... d5 (6... d6 7. Qxe4+ 7... Qe6 $16) 7. Qh5+ g6 8. Qxd5 Be6 9. Qb5
+(9. Qxe4 O-O-O 10. d3) 9... O-O-O 10. Na5 (10. Nxe4 Qd4 11. d3 Bxc4 12. Qxc4
+Qxc4 13. dxc4 Nb4 14. Rb1 Nxc2+ 15. Ke2 Nd4+) (10. Ne3 a6 11. Qa4 Rd4) (10. Be2
+Nd4 11. Qa4 Nxe2 12. Nxe2 Bc5 13. Ne3 Qe5 14. O-O $14) 10... Nxa5 11. Qxa5 e3 (
+11... a6 12. Nxe4 (12. Bxa6 bxa6 13. Qxa6+ Kb8 14. Qb5+ Kc8 15. Nxe4 Bd7 16.
+Qe2 Qb6 17. O-O) 12... Qd4 13. f3 Bb4 14. Qg5 Rd5 15. Qh4 (15. Qe3) 15... g5
+16. Qf2 Qxf2+ 17. Kxf2) 12. dxe3 12... Kb8 $2 (12... a6 $16) 13. Nb5 13... Bc5
+$4 14. Qxc7+ {1-0} 14... Ka8 15. Qxc5 Kb8 16. Bd2 1-0
+
+[Event "Latvian Gambit Thematic (A)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Riva, Roberto"]
+[Black "Malmstrom, Jan"]
+[Result "1/2-1/2"]
+[ECO "C40"]
+[Annotator "Malmstrom, J."]
+[PlyCount "49"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. Nf3 f5 3. exf5 Nc6 (3... e4) 4. d4 exd4 5. Nxd4 5... Qe7+ $6 (5...
+Nxd4 6. Qxd4 d5) 6. Be3 (6. Be2 Nxd4 7. Qxd4 d6) 6... Nf6 (6... Qf7) (6... Qb4+
+$2 7. c3 Qxb2 8. Nb3 $16) (6... Qe5) 7. Nc3 Qe5 8. Be2 (8. Ncb5 Nd5 9. Qh5+ g6
+10. Qe2) 8... Bb4 9. O-O Bxc3 (9... Bd6 10. Nf3 Qxf5 11. Nb5 $16) (9... a6) (
+9... d5 10. Ncb5 O-O 11. Nxc6 bxc6 12. Qd4 Bd6 13. Qxe5 Bxe5 14. Nxa7 Bxb2 15.
+Rab1 Be5 16. g4 d4) 10. bxc3 O-O 11. Re1 Nxd4 (11... Ne4 12. Bc4+ Kh8 13. Qg4
+d5 14. Bd3 Nxd4 15. Bxd4 Bxf5 16. Qh4 $16) (11... d5 12. Bd3 Ne4 13. Nxc6 bxc6
+14. Bd4 Qf4 15. Bxe4 15... dxe4 $16) 12. cxd4 Qxf5 13. Bd3 Qa5 (13... Qg4 14.
+Qxg4 Nxg4 15. Rab1 c6 16. h3 Nxe3 17. Rxe3 d5 18. Re7 b5 19. Rc7 Bf5 20. Rxc6
+Bxd3 21. cxd3 a6 22. Re1 Rf4) 14. Bd2 Qb6 15. Rb1 Qxd4 16. Rb4 Qc5 (16... Qd6
+17. Bc3 Qc6 18. Rc4 Qb6 19. Bd4 Qa5 20. Rc5 Qb6 21. Rh5 $16) 17. Rc4 Qb6 18.
+Be3 Qa5 19. Rc5 Qb6 20. Re5 Qc6 21. Bb5 Qd6 22. Bd4 (22. Qxd6 cxd6 23. Re7
+23... Rf7 $14) 22... Kh8 (22... a6 23. Bc4+ Kh8 24. Re7 b5 25. Bd5 c6 26. Bf3
+Qf4 27. Be5 Qf5 28. Qd6 Bb7 29. Bxf6 Qxf6 30. Qxf6 gxf6 31. R1e4 Rg8 32. Rxd7
+Bc8 33. Rf7 Bf5 34. Ree7 Rae8) (22... b6 23. Re7 a6 24. Bc4+ Kh8 25. Qd2 Bb7
+26. Qg5 Rg8 27. Bxg8 Rxg8 28. Bb2 h6 29. Qg6 $18) (22... c6 23. Bd3 Nd5 24. Bc4
+24... Qg6 $16) 23. R5e3 {draw} (23. Re7 c6 24. Bc4 Qf4) 23... a6 24. Be2 Nd5
+25. Rd3 1/2-1/2
+
+[Event "Petrov Thematic (B)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Arata, M.."]
+[Black "Malmstrom, Jan"]
+[Result "0-1"]
+[ECO "C42"]
+[Annotator "Malmstrom, J."]
+[PlyCount "56"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nf3 Nxe4 5. d4 d5 6. Bd3 Nc6 7. O-O Be7 8. c3
+O-O 9. Qc2 f5 10. Re1 Qd6 11. Be3 Be6 12. Nbd2 Rae8 13. Re2 Bf7 14. Ne1 Bh5 15.
+f3 Nd8 (15... Bh4 16. Nb3 f4 17. Bd2 Nxd2 18. Qxd2 Nd8) 16. fxe4 fxe4 17. Bb5
+c6 18. g4 (18. Bc4) 18... Bxg4 19. Rg2 Qe6 (19... Bf3 20. Nexf3 exf3 21. Rg3
+Bh4 (21... cxb5 22. Rf1 Qe6 23. Rgxf3) 22. Rh3 Rxe3) 20. Be2 Bh3 (20... Bf3 21.
+Rf2 Bh4 22. Bxf3 exf3 23. Ndxf3 Bxf2+ 24. Bxf2 Qg4+ 25. Bg3 Rxf3 26. Nxf3 Qxf3)
+21. Qd1 (21. Bh5 Bxg2 22. Nxg2 g6 23. Be2 Qh3 (23... Bd6 24. Nf1 Qf5 25. Re1
+Ne6 26. c4) 24. Nf1 Ne6 25. Re1 Ng5 (25... Rf7 26. Qd1 Ng5 27. Bxg5 Bxg5 28.
+Bg4 Qh6 29. Nge3 Qh4) 26. Bxg5 Bxg5 27. Qd1 Qf5 28. Ng3 Qf7 29. Rf1) 21... Bxg2
+22. Nxg2 Bd6 (22... Rf6) 23. Bg4 Qf7 (23... Qe7) (23... Qg6 $2 24. Bh5) 24. Qa4
+(24. Bh5 g6 25. Bg4 Qc7 26. h3) 24... b5 (24... Qg6 25. Qd1) 25. Qa5 Qg6 (25...
+Nb7 26. Qa6 Qc7 27. h3 Nd8 28. Rf1 Rxf1+ 29. Nxf1) 26. h3 $2 (26. Be2 Rf7 27.
+Rf1 Bc7 28. Qa6 Ref8 29. Rxf7 Rxf7 30. a4 bxa4 31. Qxa4 Ne6 32. Nf1 Nf4 33.
+Bxf4 Bxf4 34. b4) 26... h5 27. Bd7 (27. Be2 Qg3 28. Nf1 Rxf1+ 29. Kxf1 Rf8+)
+27... Qg3 28. Nf1 Rxf1+ 0-1
+
+[Event "Petrov Thematic (B)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Atienza, Hilario"]
+[Black "Malmstrom, Jan"]
+[Result "0-1"]
+[ECO "C42"]
+[Annotator "Malmstrom, J."]
+[PlyCount "104"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nf3 Nxe4 5. d4 d5 6. Bd3 Bd6 7. O-O O-O 8. c4
+c6 9. cxd5 cxd5 10. Nc3 Nxc3 11. bxc3 Bg4 12. Rb1 Qd7 13. Re1 h6 14. h3 Be6 15.
+Ne5 Qc7 16. Qh5 Bxe5 17. Rxe5 Qxc3 18. Re3 Rc8 19. Bh7+ Kxh7 20. Rxc3 Rxc3 21.
+Bd2 Rc7 22. Bf4 Rd7 23. Bxb8 Rxb8 24. Qe5 Re8 25. Rc1 Kg8 (25... a6) (25... f6
+26. Qf4 Ree7 27. Rc8 b5 28. Rb8 a6 29. Rb6) (25... Rde7 26. Rc7 Bd7 27. Qd6
+Re1+ 28. Kh2 28... Be6 $16) 26. Rc3 (26. Rc7 f6 27. Qf4) 26... f6 27. Qe2 Rde7
+28. Re3 Kf7 29. Qb5 h5 (29... g5) (29... f5) (29... Bd7 $2 30. Rxe7+) 30. f4 g6
+31. Kf2 Rc8 32. Kg3 (32. f5 gxf5) 32... Rc4 33. Qb2 Rec7 34. Qd2 Bf5 (34... b6)
+(34... Rc2) 35. Qa5 Be4 36. Rxe4 (36. Qxa7 Rc2) 36... dxe4 37. Qd5+ Kg7 38.
+Qxe4 Rd7 39. Qe6 Rcxd4 40. f5 h4+ 41. Kh2 g5 (41... gxf5 42. Qxf5 R7d6) (41...
+R4d6 42. Qe4 g5) 42. Qe8 Rf7 (42... R4d6) 43. Qe2 Rd5 44. Qf2 b5 45. Qf3 Rfd7 (
+45... Re5) 46. Kh1 (46. Qe4 Re5) 46... b4 {0-1} 47. Kh2 a5 48. Qe4 Re5 49. Qc6
+Rde7 50. Qc8 a4 51. Qc2 Re1 52. Qc5 52... Rd7 $17 0-1
+
+[Event "Petrov Thematic (B)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Malmstrom, Jan"]
+[Black "Atienza, Hilario"]
+[Result "1-0"]
+[ECO "C42"]
+[Annotator "Malmstrom, J."]
+[PlyCount "79"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nf3 Nxe4 5. d4 d5 6. Bd3 Be7 7. O-O Nc6 8.
+Re1 Bg4 9. c3 f5 10. Qb3 O-O 11. Bf4 Na5 12. Qa4 c5 13. Ne5 Bh5 14. f3 Be8 15.
+Bb5 Nf6 16. Nd2 Nh5 17. Bxe8 Rxe8 18. Be3 Qc7 19. b4 Nc6 20. bxc5 $5 (20. Nxc6
+bxc6 21. bxc5 Bh4 22. Bf2 Bxf2+ 23. Kxf2 Nf4) 20... Nxe5 (20... Bh4 21. Bf2
+Bxf2+ 22. Kxf2 Nf4 23. Re3 Nxe5 24. dxe5 Ng6 25. f4 Qxc5 26. Nf3 $15) 21. dxe5
+Bxc5 22. Bd4 (22. Bxc5 Qxc5+ 23. Qd4 Rac8) (22. f4 22... b5 $15) 22... Nf4 23.
+Nb3 Bf8 24. Rad1 b6 25. Qb5 (25. g3) (25. Kh1) (25. Nc1 Ne6 26. Ne2 g6) 25...
+Rad8 26. Re3 (26. Nc1) (26. g3 Ne6 27. Qd3 g6 28. f4) 26... Re6 27. g3 Nh3+ 28.
+Kg2 Ng5 29. Nc1 (29. Nd2) (29. a4) 29... Rh6 30. Rde1 (30. Qd3 Qf7) (30. Ne2
+Ne6 31. f4) 30... Qf7 31. Nd3 (31. Qe2 f4 32. gxf4 Qxf4) 31... Ne6 (31... Qh5
+32. h4 Ne6 33. f4 Qg4 34. Nf2 Qg6 35. Kh2 Be7 36. Nh3) 32. f4 Qh5 33. Rh1 (33.
+h4 Rg6 34. Kh2 Nxd4 35. cxd4 Re6) 33... Qf7 (33... Qh3+ 34. Kg1 g5 35. fxg5 Rg6
+) 34. h3 Nc7 35. Qb3 Rc6 36. Nf2 (36. Qd1 Nb5 37. Nf2 Nxd4 38. cxd4 Rdc8 39.
+Rhe1) (36. Nb4 Re6) (36. a4) 36... Ne6 37. Rhe1 Rdc8 38. Qd1 (38. Rd1) (38.
+R1e2) 38... Rc4 39. Rd3 (39. Qf3 Ra4 40. R3e2) 39... Qb7 40. Qf3 $13 1-0
+
+[Event "Petrov Thematic (B)"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Malmstrom, Jan"]
+[Black "Arata, M.."]
+[Result "1-0"]
+[ECO "C42"]
+[Annotator "Malmstrom, J."]
+[PlyCount "67"]
+[EventDate "1997.??.??"]
+
+1. e4 e5 2. Nf3 Nf6 3. Nxe5 d6 4. Nxf7 Kxf7 5. d4 Qe7 6. Nc3 Ke8 7. Bg5 h6 8.
+Bxf6 Qxf6 9. Nd5 Qf7 10. Bc4 Kd8 11. Nb6 Qg6 12. Nxa8 Qxg2 13. Rf1 Qxe4+ 14.
+Qe2 Qxd4 15. c3 (15. Bf7 Bd7 (15... Be7 16. c3 Qf4 17. Qc4)) 15... Qf4 16. Bd5
+Nd7 17. Qe3 Qxh2 18. O-O-O Qe5 19. Qxa7 Nc5 20. Qa5 Qe7 21. b4 (21. Rd2) (21.
+c4 Qd7 22. f4 Be7) (21. Rfe1 $2 21... Nd3+) (21. Rg1) 21... Na6 22. Bc4 (22. b5
+Nc5 (22... b6) 23. Bc4 b6 24. Qa7 g6 25. Rfe1 Qd7 26. Bd5) 22... g6 23. Rxd6+ (
+23. f4) 23... Qxd6 24. Rd1 Qxd1+ 25. Kxd1 Bd6 26. Qd5 Nb8 (26... Rf8 27. Nb6
+Bg4+ 28. Be2 Bxe2+ 29. Kxe2 Rf6 30. Nc4 $16) 27. Nb6 Bf5 (27... Bg4+ 28. f3 Bh5
+29. Be2) 28. Bd3 (28. Bb5) 28... Rf8 29. Bxf5 gxf5 (29... Rxf5 30. Qg8+ Rf8 31.
+Qxg6) 30. Qe6 $18 (30. Nc4 Kc8 31. Qe6+ Nd7 32. Qxh6 Be7) 30... cxb6 (30... Re8
+31. Qc8+ Ke7 32. Nd5+ Kf7 33. Qxf5+ Kg7) 31. Qxd6+ Nd7 32. Qxh6 Rf6 33. Qh1 (
+33. Qh8+ Kc7 34. a4) 33... Rd6+ 34. Kc2 1-0
+
+[Event "Sicilian Thematic"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Albrecht, F.."]
+[Black "Stolin, D.."]
+[Result "1-0"]
+[ECO "B97"]
+[Annotator "Ruggeri Laderchi, G."]
+[PlyCount "35"]
+[EventDate "1997.??.??"]
+
+1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Bg5 e6 7. f4 Qb6 8. Qd2
+Qxb2 9. Rb1 Qa3 10. f5 e5 11. Bxf6 gxf6 12. Nd5 $1 (12. Nb3 b5 (12... Nd7 13.
+Nd5 Qxa2 14. Ra1 Qb2 15. Nc7+ Ke7 16. Bc4 Nb6 17. Nd5+ Nxd5 18. Qxd5 Qc3+ 19.
+Kd1 b5 20. Qxf7+ Kd8 21. Bd5 Rb8 22. Qxf6+ Kd7 23. Qxh8 Be7 24. f6 {
+1-0 Bjerring,K-Sandahl,J/Copenhagen 1977}) 13. Nd5 Ra7 14. Nxf6+ Kd8 15. Nd5
+Qxa2 16. Ra1 Qb2 17. Nc3 Rc7 18. Nd5 Rxc2 19. Qg5+ Kd7 20. Bxb5+ axb5 21. Ra7+
+Ke8 22. Re7+ Kd8 23. Rxf7+ Ke8 24. Rxf8+ {
+1-0 Morgan,M-Frank,J/Dearborn US-op 1992}) 12... Qxa2 (12... exd4 13. Nc7+ Kd8
+14. Nxa8 Qxa2 15. Rb3 {  15.Qb4! b5 16.Bd3 Bb7 17.0-0 d5 18.Qd4 } 15... Qa1+
+16. Kf2 Nd7 17. Bb5 $1 17... Qxh1 18. Qa5+ Ke7 19. Nc7 19... Bh6 $2 {
+19... ab5 20.Nd5 Ke8 21.Qc7 Be7 22.Qc8 Bd8 23.Nc7 Ke7 24.Nd5 =} 20. Nd5+ Ke8
+21. Nxf6+ Ke7 22. Nd5+ Ke8 23. Qc7 Be3+ 24. Kf3 (24. Rxe3 dxe3+ 25. Nxe3 Kf8
+26. Bxd7 Qa1 27. Qd8+ {1-0 Levchenkov,V-Zilberstein,D/Nikolaev 1981}) 24... Kf8
+25. Qxc8+ Kg7 26. Qxd7 axb5 27. f6+ Kg6 28. Rxe3 Qf1+ 29. Kg3 h5 30. Nf4+ Kh6
+31. Qxf7 h4+ 32. Kg4 {1-0 Aleksikov-Fedorov,V/Kaluga 1981}) (12... Kd8 13. Nb3
+Nd7 14. h4 Nc5 15. Nxc5 Qxc5 16. Rh3 Be7 17. Rc3 Qd4 18. Qxd4 exd4 19. Rc7 Re8
+20. Be2 b5 21. Bh5 Bf8 22. Rxf7 Rxe4+ 23. Kf1 Be7 24. Bf3 Rxh4 25. g3 Rh2 26.
+Nxe7 Ke8 27. Bxa8 Kxf7 28. Nxc8 Rxc2 29. Nxd6+ Ke7 30. Ne4 Rxa2 31. Rd1 b4 32.
+Bd5 Rb2 33. Rxd4 a5 34. Be6 {1-0 Nevostruev,V-Kozlov,V/Vladivostok 1990}) (
+12... Qc5 13. Nxf6+ Ke7 14. Nf3 Nd7 15. Nd5+ Ke8 16. Bd3 b5 17. Qa5 Ra7 18. Rb3
+Qc6 19. Rc3 Nc5 20. O-O Be7 21. Rb1 Bd8 22. Qa3 Bb6 23. Kh1 Qb7 24. Nxb6 Qxb6
+25. Nxe5 dxe5 26. Rxc5 Rc7 27. Bxb5+ axb5 28. Rbxb5 Qd6 29. Rxe5+ Kd7 30. Rbd5
+{1-0 Noblesse-Crucifix/cr FR cup 1985}) 13. Rd1 (13. Nxf6+ $143 13... Kd8 14.
+Qb4 14... b5 $17 (14... exd4 $6 15. Qb6+ Ke7 16. Nd5+ Ke8 17. Nf6+ Ke7 18. Nd5+
+Ke8 19. Nf6+ 19... Ke7 $11)) 13... Ra7 $16 (13... exd4 $5 14. Nc7+ Kd8 15. Nxa8
+15... Nd7 $13) 14. Qc3 (14. Nxf6+ $143 14... Kd8 15. Nd5 b6 (15... exd4 $143
+16. Qxd4 Nd7 17. Qxa7 $14) 16. Nxb6 Rc7 (16... exd4 $143 17. Nxc8 Kxc8 18. Qxd4
+$16) 17. Qg5+ 17... Be7 $15) 14... Bd7 15. Qc7 (15. Nxf6+ $6 15... Kd8 16. Nf3
+16... b5 $11) 15... Ra8 16. Nxf6+ Ke7 17. Nc6+ $3 (17. Qxb7 $2 17... Kxf6 18.
+Qxa8 Qa5+ 19. Kf2 Qb6 20. Qd5 Bc6 21. Qb3 Qa7 22. Qe3 22... exd4 $15) (17. Nxd7
+Nxd7 18. Nc6+ (18. Qxb7 exd4 19. f6+ Kxf6 20. Qxa8 Qa5+ 21. Kf2 21... Ne5 $18)
+18... Ke8 19. Qxb7 Rd8 20. Nxd8 Qa5+ 21. Kf2 Qc5+ 22. Kf3 Kxd8 23. Bxa6 Qc3+
+24. Bd3 24... Bg7 $18) 17... bxc6 18. Nxd7 1-0
+
+[Event "T.I.C. USA2-ITA2"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Feagin, Joe"]
+[Black "Ruggeri Laderchi, Giorgio"]
+[Result "0-1"]
+[ECO "C80"]
+[WhiteElo "2415"]
+[BlackElo "2010"]
+[Annotator "Ruggeri Laderchi, G."]
+[PlyCount "114"]
+[EventDate "1997.??.??"]
+
+1. e4 1... e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Nxe4 6. d4 b5 7. Bb3 d5 8.
+dxe5 Be6 9. Nbd2 Nc5 10. c3 Bg4 11. Bc2 Qd7 12. Re1 Rd8 13. Nb3 Ne6 14. a4 Be7
+15. axb5 axb5 16. Qd3 Bh5 17. Qxb5 (17. Nfd4 Ncxd4 18. cxd4 Bg6 19. Qe2 O-O 20.
+f4 Bxc2 21. Qxc2 f5 22. Ra6 $1 22... Rc8 $14) 17... Bxf3 18. gxf3 Nxe5 19.
+Qxd7+ 19... Nxd7 $14 20. f4 g6 (20... h6 21. f5 Ng5 22. Nd4 $16) 21. f5 21...
+gxf5 $8 22. Bxf5 c5 23. Bxe6 fxe6 24. Rxe6 Rg8+ 25. Kf1 Rg6 (25... Rb8 26. Bf4
+Rxb3 27. Bd6 Rg7 28. Rae1 Kd8 29. Bxe7+ Kc7 30. Rd1 $16) (25... Kf7 26. Rh6 Nf6
+27. Ra7 Ra8 28. Rxa8 Rxa8 29. Bg5 Kg7 30. Bxf6+ Bxf6 31. Rh5 c4 32. Nc5 d4 33.
+Ne4 Ra1+ 34. Kg2 dxc3 35. bxc3 Ra3 36. Rc5 (36. Nxf6 Kxf6 37. Rxh7 Rxc3 38. h4
+Kg6 39. Rh8 Rd3) 36... Bxc3 37. Rxc4) 26. Re1 (26. Re2 Kf7 27. f4 Rf6 28. Be3
+c4 29. Nd4 Bc5 30. Ra5 Re8 31. Ke1) 26... Rb8 27. Nd2 Rf6 (27... Rb7 28. Nf3 (
+28. f4 Kf7 29. Nf3 h6 30. Ra8 Bd6 31. Ne5+ Nxe5 32. fxe5 $16) 28... h6 29. Rd1
+Rf6 30. Nh4 Nb6 31. Be3 $16) 28. c4 $6 28... d4 $8 29. Ne4 Re6 30. Bf4 Rbb6 31.
+Ra8+ Kf7 32. Ra7 Ke8 33. f3 Rbc6 34. Bg3 Ne5 35. Bxe5 (35. Ng5 Bxg5 36. Bxe5 (
+36. Rxe5 Rxe5 37. Bxe5 37... Be7 $14) 36... Re7 37. Bg3 $14 (37. Rxe7+ Bxe7 38.
+f4 38... Kf7 $11)) (35. Nd2 Nd3 36. Rxe6 36... Rxe6 $14) 35... Rxe5 36. Rea1 $6
+(36. f4 Ree6 (36... Rf5 $2 $18 37. Nxc5 Rxf4+ 38. Kg2 Rg4+ 39. Kh1 Rg7 40. Ne6
+Rf7 41. Nxd4 Rcf6)) 36... Rb6 (36... Rh6 37. Kg1 Rg6+ 38. Kh1 Rb6 39. Re1 39...
+Kf8 $11) (36... Rf5 37. Kg2 Rb6 38. R1a2 Rg6+ 39. Ng3 Re5 40. Kf2 h6 41. f4
+41... Rf6 $11) 37. R1a2 Rh5 (37... Kf7 38. h3 Rb4 39. Rd7 39... Rb3 $11) (37...
+Rf5 38. Kg2 Rg6+ 39. Ng3 Re5 40. Kf2 Rf6 41. R2a6 Rf4 42. Ra3 $14 (42. Rh6 Re3
+43. Rxh7 Rfxf3+ 44. Kg2 44... Rf4 $11)) (37... Rb3 38. Ra8+ (38. R7a3 Rb4 (
+38... Rb6) 39. b3 Rb6 40. Rf2 Kf7 41. Ke2 Ke6 42. Kd3 (42. Rg2 Rf5 (42... Kf5
+43. Rg7 h6 44. Ra7 $14) 43. h3 (43. Rg3 43... Bd6 $14) 43... Kf7 $14) 42... Kf5
+$11) 38... Kf7 39. R8a3 39... Rb6 $11) (37... Rh6 38. b3 38... Rb6 $11) 38. Rc7
+(38. Kg1 38... Re5 $5 (38... Rh3 $6 39. Rc7 Rg6+ (39... Rxf3 40. Ra8+ Bd8 41.
+Rxc5 $16) 40. Ng3 Re6 41. Raa7 d3 42. Rd7 Bd6 43. Ne4 43... Bb8 $14 (43... Rhh6
+$2 44. Rdb7 Bxh2+ 45. Kf2 45... Ra6 $18)) 39. Kg2 (39. R7a6 Rg6+ (39... Rb4 $2
+40. Rh6 Rxc4 41. Rxh7 $18) 40. Kf1 (40. Rxg6 hxg6 41. Ra7 41... Kf7 $11) (40.
+Kh1 40... Rh5 $11) 40... Rh5 $11) 39... Rg6+ 40. Kh1 (40. Ng3 $2 40... Re2+ 41.
+Kf1 Rxh2 42. Nf5 Bd8 (42... Bh4) 43. b4 Rxa2 44. Rxa2 44... Rf6 $15) 40... Rb6
+41. R7a3 41... Kf7 $11) 38... Re5 (38... Rxh2 $4 39. Raa7 $18 (39. Ra8+ $18)
+39... Bd8 40. Rg7 Kf8 41. Rgd7 Ke8 42. Nd6+ Rxd6 43. Rxd6) 39. Kg2 (39. Kf2 Kd8
+40. Raa7 Rxb2+ 41. Kg3 Rb6 42. h4 Rg6+ 43. Kf4 43... Rh5 $11) (39. Raa7 Rxb2
+40. Nd6+ Kf8 41. Nc8 (41. Rc8+ Kg7 42. Rxe7+ Rxe7 43. Nf5+ Kf6 44. Nxe7 Kxe7
+45. Rxc5 Rxh2) 41... Ree2 $11) 39... Kd8 40. Rca7 Ke8 41. R7a6 Ree6 (41... Rg6+
+42. Kh1 (42. Rxg6 hxg6 43. Ra5 Rh5 44. Ng3 $14) 42... Rh5 43. Ra8+ Kf7 44. R8a7
+Rgh6 45. b3 45... Re6 $14) (41... Rb4 42. b3 Kf7 (42... Rxb3 43. Rh6 Kf7 44.
+Rxh7+ Kg6 45. Rh3 45... Rb4 $14)) 42. R6a5 Rb4 (42... Rg6+ 43. Kh1 43... Rgc6
+$11) 43. Nxc5 Re2+ 44. Kg3 (44. Kf1 44... Rxh2 $15) 44... Bd6+ $5 (44... Rxc4
+45. Ne4 Rc6 (45... Rcc2 46. h3 (46. Rd5 Rxh2 47. Rxd4 Rxb2 48. Rxb2 48... Rxb2
+$11) 46... Rxb2 47. Rxb2 Rxb2 48. Rh5 $16) 46. Rd5 Rg6+ 47. Kf4 Rxh2 48. Rxd4
+Rb6 49. Rd2 $16) (44... h5 $2 45. Ne4 h4+ 46. Kf4 Rbxb2 47. Ra8+ Kf7 48. R2a7
+$18) 45. f4 $8 45... Rxc4 (45... Be7 $6 46. Kg4 Rxh2 47. Ra8+ Kf7 48. Nd3 $18)
+46. Ra8+ (46. Nb7 Be7 47. Rd5 (47. Rh5 Rb4 48. Na5 48... d3 $17) 47... Rb4 48.
+Nd6+ Bxd6 49. Rxd6) 46... Kf7 47. R8a7+ Be7 48. Nd7 (48. b4 Rxa2 49. Rxa2 49...
+Rxb4 $15) 48... Re3+ 49. Kg4 (49. Kg2 $2 49... Rc2+ 50. Kf1 50... Bb4 $19)
+49... d3 50. Ra1 $6 (50. b3 Rd4 (50... Rc2 51. Rxc2 (51. Ne5+ $4 51... Rxe5 52.
+fxe5 d2 53. Ra1 Rc1 54. Rd7 Rxa1 55. Rxd2 $19) 51... dxc2 52. Rc7 Ke6 (52...
+Re2 53. h4 Ba3 54. Kf3 Rh2 55. Nc5+ Ke8 56. Nd3 Rh3+ 57. Ke4 Rxd3 58. Kxd3 c1=Q
+59. Rxc1 59... Bxc1 $11) 53. Nc5+ Kd6 54. Na6 Re2 55. h4 (55. Rc4 Ke6) 55...
+h5+ 56. Kf3 $8 (56. Kxh5 Bf6 57. Kg4 57... Bb2 $19)) 51. R2a4 Rxa4 52. Rxa4 d2
+53. Rd4 Bb4 54. Ne5+ Kf6 55. Nc4 55... Re2 $11) (50. R2a5 d2 51. Rd5 Re2 52.
+Rxd2 (52. Kf5 Rc1 53. Ne5+ Rxe5+ 54. Rxe5 d1=Q 55. Rexe7+ 55... Kf8 $19) 52...
+Rxf4+ 53. Kxf4 53... Rxd2 $11) 50... d2 $1 51. Rd1 $8 51... Ke6 52. Nb6 $2 (52.
+Rxd2 h5+ 53. Kxh5 53... Rxf4 $13 54. Nf8+ (54. Ra6+ $4 {# 5}) (54. Rg2 $4 54...
+Kf7 55. Nf6 $8 55... Kxf6 56. Rg6+ Kf7 57. Rxe7+ Rxe7 58. Kh6) 54... Bxf8 55.
+Kg5 Ree4 56. Rg2 Rf5+ 57. Kg6 Rf6+ 58. Kh7 Rh4+ 59. Kg8 Bd6) (52. Ra6+ $5 52...
+Kxd7 53. Rxd2+ 53... Ke8 $15) 52... h5+ $3 53. Kxh5 Kf5 54. h4 (54. Ra5+ $2
+54... Rc5 55. Ra3 Re2 56. Rh3 56... Rc1 $19) (54. Ra3 $4 {# 7}) (54. Kh6 Rc1 (
+54... Rc6+ 55. Kg7 Rxb6 (55... Bf6+ 56. Kf8 Rxb6 57. Rxd2 57... Bxb2 $19) 56.
+Rxd2 Bf6+ 57. Kf8 57... Bxb2 $19) 55. Ra5+ (55. Rxd2 Rh3+ 56. Kg7 Bf6+ (56...
+Rg1+ 57. Kf7 Rh7+ 58. Ke8 Rg8+ 59. Kd7 Bb4+ 60. Kc6 60... Rh6+ $19) 57. Kf8
+Rh8+ 58. Kf7 Rh7+ 59. Ke8 $19) 55... Bc5 56. h4 Re6+ 57. Kh5 Rxd1 58. Rxc5+
+Kxf4 59. Rc4+ Kf3 60. Rc3+ Ke2 61. Nc4 Rh1 62. Nxd2 (62. Rc2 Rxh4+ 63. Kxh4
+Re4+ 64. Kg3 Rxc4 65. Rxc4 d1=Q 66. Rc3 Qd4) 62... Kxd2 63. Rc4 Rb6 64. b4 Kd3
+65. Rg4 Kc3) 54... Rxf4 $19 55. Ra4 (55. Ra5+ $4 55... Ke6 56. Rg5 Bxg5 57.
+Kxg5) 55... Rxa4 (55... Ree4 $2 56. Rxe4 Rxe4 57. Kh6 Bf6 58. h5 Bg5+ (58...
+Re1 59. Rxd2 Bg5+ 60. Kg7 Bxd2 61. Nc4) 59. Kg7 Re7+ 60. Kg8 Re1) 56. Nxa4 Re4
+57. Rf1+ (57. Kh6 Bf6 58. h5 (58. Rf1+ Rf4 59. Rxf4+ Kxf4 60. Kg6 Be5 61. Nc3
+Bxc3 62. bxc3 62... d1=Q {# 6}) 58... Bg5+ (58... Rxa4 59. Rf1+ Ke6 (59... Rf4
+60. Rg1 Ke6) 60. Rd1 (60. Kg6 Rg4+ 61. Kh6 61... Kf7 {# 6}) 60... Rd4 {# 8})
+59. Kg7 Rxa4 60. Rf1+ Rf4 61. Rd1 Rc4 62. b4 Rc1 63. Rxd2 63... Bxd2 {# 5}) (
+57. Rh1 {# 5}) 57... Rf4 (57... Rf4 58. Rxf4+ Kxf4 59. Nc3 Bf6 60. Nd1 Kf3 61.
+Kg6 Bd4 62. Kf5 Ke2 63. Ke4 Kxd1 64. Kxd4) 0-1
+
+[Event "T.I.C. ITA2-NL"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Ruggeri Laderchi, Giorgio"]
+[Black "Pijl, Richard"]
+[Result "1-0"]
+[ECO "C18"]
+[WhiteElo "2010"]
+[BlackElo "1700"]
+[Annotator "Ruggeri Laderchi, G."]
+[PlyCount "105"]
+[EventDate "1997.??.??"]
+
+1. e4 1... e6 2. d4 d5 3. Nc3 Bb4 4. e5 c5 5. a3 Bxc3+ 6. bxc3 Ne7 7. Qg4 Qc7
+8. Qxg7 Rg8 9. Qxh7 cxd4 10. Ne2 Nbc6 11. f4 Bd7 12. Qd3 dxc3 13. Rb1 Nf5 14.
+h3 d4 15. g4 Nh4 16. Qh7 Nf3+ 17. Kf2 O-O-O 18. Kxf3 Nxe5+ 19. fxe5 Bc6+ 20.
+Kf2 Bxh1 21. Rb4 d3 (21... Rg6 22. Bf4 Qc5 23. Ke1 a5 24. Qxf7 axb4 25. axb4
+Qd5 26. Qxg6 Be4 27. Qh6 Bxc2 28. Bg5 Rd7 29. Qf8+ Kc7 30. Qc5+ Qxc5 31. bxc5
+Kc6 32. Be7 Rxe7 33. Nxd4+ Kxc5 34. Nxc2 b5 35. Na1 Kb4 36. Kd1 Rd7+ 37. Kc1
+Rf7 38. Bd3 Rf3 39. Nc2+ Kc5 40. Bxb5 Rxh3 41. Be2 Kd5 42. Na3 {
+1/2-1/2  Neumarker-Berndt/corres DDR 1989}) (21... Qxe5 22. Bf4 Qf6 (22... Qc5
+23. Qd3 Bc6 24. Rxd4 e5 25. Qf5+ $18) 23. Rc4+ Bc6 24. Bg2 e5 25. Bxc6 bxc6 (
+25... exf4 26. Bf3+ $1 (26. Be8+ $2 26... Kb8 27. Qxg8 27... Qe5 $13) 26... Kb8
+27. Rb4 $1 (27. Qe4 Rd7) 27... Qg6 $8 (27... b6 28. Qe4 $18) 28. Rxb7+ Kc8 29.
+Qxf7 Qxf7 30. Rxf7 d3 31. cxd3 Rxd3 32. Rxf4 (32. Rxa7) 32... c2 33. Rc4+ Kd7
+34. Nf4 $1 (34. Rxc2 Rf8) 34... Rxa3 35. Rxc2 Rf8 36. Kg3 Rc8 37. Rxc8 Kxc8 38.
+g5 Kd7 39. Kg4 a5 40. g6 Ke7 41. Bd5 Ra1 42. Kf5 Rg1 43. h4 Kf8 44. Kf6 Rg4 45.
+g7+ {1-0 Horvath,T-Uhlmann,W/Szirak 1985}) 26. Qe4 $1 (26. Qf5+ Qxf5 27. gxf5
+exf4 28. Rxc6+ {0-1 Vennix-Ale/corres NL 1987}) 26... Kb7 27. Qxe5 Qxe5 28.
+Bxe5 d3) 22. cxd3 Rh8 23. Qg7 Rhg8 24. Qf6 Rxd3 25. Nd4 (25. Be3 $2 25... Rxe3
+$1 26. Kxe3 26... c2 $19 {Dohrn-Heidsiek, cr 1990}) 25... Rd1 (25... Rd2+ 26.
+Ke1) 26. Qf4 26... Bd5 $5 (26... Qd8 27. Nf3 Rxf1+ 28. Kxf1 Qd3+ 29. Kf2 Qc2+
+30. Bd2 Bxf3 31. Rc4+ Bc6 32. Rxc3 Qa2 33. Rd3 Rd8 34. Rxd8+ Kxd8 35. Qd4+ Ke8
+36. Qd6 Qc2 37. Kg3 Qb3+ 38. Kh4 Qd5 39. Qb8+ Qd8+ 40. Qxd8+ Kxd8 41. Kg5 Ke8
+42. Bb4 a5 43. Bc5 Bf3 44. h4 f6+ 45. exf6 Kf7 46. Bb6 a4 47. Bd4 {
+1-0 Jonas,B-Kuntzig,W/Kreuzberg 1989}) 27. Nb5 (27. Be2 c2 28. Rb2 Kb8 29. Nxc2
+Rh1 30. Bf1 $13) 27... Qe7 (27... Qd8 28. Kg3 a5 29. Rd4 c2 30. Nd6+ $1 30...
+Kb8 31. Rxd5 Rxd5 (31... exd5 32. Qxf7 Qc8 33. Nxc8 Rxc8 34. e6) 32. Qxf7 Rxd6
+33. exd6 Rf8) 28. Kg3 (28. Nxc3 $2 28... Qh4+ $19 29. Kg1 Rxf1+ 30. Kxf1 Qxh3+
+31. Kf2 Qxc3) (28. g5 $6 28... a5 (28... c2 29. Be3 Rb1 30. Bd3 Rxb4 31. axb4
+Rh8 32. h4 $18) 29. Nd6+ Kb8 30. Rb5 Qc7 31. Qe3 f6 32. gxf6 32... Qh7 $19 33.
+Qxc3 Qh4+ 34. Ke2 Qh5+ 35. Kf2 Rxf1+ 36. Kxf1 Qd1+ 37. Kf2 Rg2+ 38. Ke3 Rg3+)
+28... c2 (28... a5 29. Rd4 c2 (29... Rxd4 $2 30. Qxd4 c2 31. Qc3+ Kb8 32. Be3
+Rh8 33. Qxc2 $18) (29... Re1 $2 30. Rd3 c2 31. Rc3+ Bc6 32. Rxc2 $18) 30. Rd3
+Rxd3+ (30... Kd7 31. Nc3 Rxd3+ 32. Bxd3 $18) (30... Kb8 31. Qf2 Rxd3+ (31...
+Qd8 32. Rc3 b6 33. Rc7 Qxc7 34. Nxc7 Bb7 35. Nb5 Rgd8 (35... Rxc1 $4 36. Bg2
+Rd1 37. Qxb6 Rd3+ 38. Kh2 Rd7 39. Qa7+ Kc8 40. Nd6+ 40... Kd8 $18)) (31... Rxc1
+$4 32. Qa7+ Kc8 33. Rc3+ Bc6 34. Rxc6+ {# 5}) 32. Bxd3) 31. Bxd3) (28... Rh8
+29. g5 (29. Kh2 c2 30. Nxa7+ Kb8 31. Nb5 31... Qc5 $17) 29... c2 30. Be3 Rh5 (
+30... a6 31. Nd6+ Kb8 32. Bxa6 c1=Q 33. Bxc1 Rg1+ 34. Kf2 Rg2+ 35. Ke1 Qc7 36.
+Bd2 Rxh3 37. Bf1 Rf3 38. Bxg2 Rxf4 39. Rxf4 Bxg2 40. g6 $18) 31. h4) 29. Be3 $8
+(29. Rb2 $2 29... Qc5 $19) (29. Nxa7+ $2 29... Kb8 30. Nb5 30... Qc5 $1 31. Nd4
+31... Qc3+ $19) 29... Rh8 30. g5 a6 (30... Rb1 31. Nc3 (31. Nd6+ Kb8 32. Bd3
+Rh1 33. Bf1 $13) (31. Nxa7+ $2 31... Kb8 32. Nb5 Rc8 33. Ba7+ Ka8 34. Ra4 34...
+b6 $8 35. Bxb6+ Kb8 36. Be3) 31... Ra1 32. Rb2 Rxa3 33. Rxc2 Qc7 34. Qd4) 31.
+Nd6+ Kb8 32. Bc4 (32. Bxa6 $13 32... c1=Q 33. Bxc1 Rg1+ 34. Kf2 Rg2+ 35. Ke1
+Qc7 (35... Rxh3 36. Be3 $8 (36. Bf1 Rg1 37. Be3 Rxf1+ 38. Kxf1 Rf3+ 39. Qxf3
+Bxf3 40. Rf4 Qxg5 (40... Bh5 $4 41. Rh4 $18 41... f6 (41... Bg6 42. Rh8+ Kc7
+43. Rc8+ Kd7 44. Bb6 Qxd6 45. Rd8+ Kc6 46. Rxd6+) 42. Rxh5 fxe5 43. Bb6) 41.
+Rxf3 Qxe5 42. Nxf7 Qb2) 36... Ra2 37. Bd2 Rh1+ 38. Ke2 Rg1 39. Bxb7 Bxb7 (39...
+Rg2+ 40. Kf1 Ra1+ 41. Be1 $18) 40. Rxb7+ Qxb7 41. Nxb7 Rg2+ 42. Kd1 Raxd2+ 43.
+Qxd2 Rxd2+ 44. Kxd2 44... Kxb7 $18) 36. Bd2 $8 (36. Bb2 Rxh3 37. Bf1 Rf3 38.
+Bxg2 Rxf4 39. Rxf4 Qc2 40. Bxd5 Qb1+ 41. Kf2 41... Qxb2+ $19) 36... Rg1+ 37.
+Ke2 (37. Kf2 Qc5+ 38. Qe3 Rg2+ 39. Ke1 Qxe3+ 40. Bxe3 Rxh3 41. Bf2 Rh1+ 42. Bf1
+Rxg5 43. Ne4 Rf5 44. Rd4 $15) 37... Rxh3 38. Bc4 Rg2+ 39. Kd1 Rxa3 40. Qd4 Bf3+
+41. Kc2 Ra2+ 42. Rb2 Rxb2+ 43. Kxb2 Qa5 44. Kc1 Qa4 45. Kb2 Bd5 46. Qd3 Rxd2+
+47. Qxd2 Bxc4 48. Nxf7 $17) (32. h4 $6 32... Qc7 33. Bc4 Rb1 34. Bxd5 exd5)
+32... Rh1 (32... c1=Q 33. Bxc1 Rg1+ 34. Kf2 Rg2+ 35. Kf1 Bc6 36. h4 $18) (32...
+a5 33. Rb5 (33. Rb2 $2 33... c1=Q 34. Bxc1 Rg1+ 35. Kf2 Rg2+ 36. Ke1 Rxb2 37.
+Bxb2 Bxc4 38. Nxc4 Rxh3 39. Bd4 Rh5 40. Be3) 33... c1=Q 34. Bxc1 Rg1+ 35. Kf2
+Rg2+ 36. Kf1 Bc6 37. Rb3) (32... b5 33. Bxb5 c1=Q (33... axb5 34. Rxb5+ Kc7 35.
+Rc5+ Kb8 (35... Bc6 36. Rxc6+ 36... Kd7 $18) 36. Qb4+ Bb7 37. Nxb7 Rb1 38. Rc8+
+Rxc8 39. Qxe7 Rc7 40. Qd6 $18) 34. Bxc1 Rg1+ 35. Kf2 Rg2+ 36. Ke1 axb5 37.
+Rxb5+ Kc7 38. Rc5+ Kb8 39. Qb4+ Bb7 40. Rb5 $18) (32... Rb1 33. Bxd5 exd5 34.
+Qd4 $18) 33. Bf1 (33. h4 $2 33... R8xh4 34. Qxh4 Rxh4 35. Kxh4 b5 36. Bxb5 axb5
+37. Rxb5+ Kc7 38. Ra5 Qf8) 33... Qc7 34. Qd4 b5 (34... Qc6 $2 35. Qa7+ Kc7 36.
+Rxb7+ Qxb7 37. Nxb7 Bxb7 38. Bg2) 35. Nxb5 axb5 36. Rxb5+ Kc8 (36... Bb7 $1 37.
+Bg2 $8 (37. Qa7+ $6 37... Kc8 38. Rc5 Rxf1 39. Rxc7+ Kxc7 40. Qc5+ Kb8 41. Qd6+
+Ka8 (41... Kc8 42. Qc5+ Kd8 43. Qd4+ Ke8 44. Qa4+ Kf8 45. Qb4+ Kg7 46. Qxb7
+Rg1+ 47. Kh2 c1=Q 48. Bxc1 Rxc1 49. Qf3) 42. Qb6 Rf3+ 43. Kg4 43... Rxe3 $5 (
+43... Kb8) 44. Qxe3 Rc8 45. Qc1 Be4 46. a4 Bf5+ 47. Kg3 Rc3+ 48. Kf2 Rxh3 49.
+a5 Rd3 50. Qf1) 37... Rg1 (37... c1=Q 38. Bxc1 R8xh3+ 39. Bxh3 Rxc1 40. Bg2
+Rc3+ (40... Qc3+ $4 41. Qxc3 Rxc3+ 42. Kg4 Rc7 43. Rxb7+ $18) 41. Kh2 Rc2 42.
+Qe4 Kc8 43. Qxb7+ Qxb7 44. Rxb7 $18) (37... R8xh3+ 38. Bxh3 Rg1+ 39. Kh4 c1=Q
+40. Bxc1 Qxc1 41. Qd8+ Qc8 42. Qd6+ 42... Qc7 $16) 38. Rxb7+ (38. Bxg1 c1=Q 39.
+Rxb7+ Qxb7 40. Bxb7) 38... Qxb7 39. Bxg1 c1=Q 40. Bxb7 Kxb7 (40... Qxg5+ 41.
+Kh2 Kxb7 (41... Rxh3+ 42. Kxh3) 42. Qd7+ Kb8 43. Qa7+ Kc8 44. Qa8+ Kd7 45. Qxh8
+$11) 41. Qd7+ (41. Qa7+ Kc6 42. Qb6+ 42... Kd7 $8 (42... Kd5 $4 43. Qd6+ Ke4
+44. Qd4+ Kf5 45. Qd3+ Kxg5 (45... Kxe5 46. Bd4+ Kd6 47. Bb2+) 46. Be3+) 43.
+Qa7+ Kc6 (43... Qc7 44. Qd4+) 44. Qb6+ Kd7 45. Qb7+ Qc7 46. Qb5+ Qc6 47. Qb4
+Qh1 48. Qd4+ Ke8 49. h4 Rxh4 50. Qxh4 Qxg1+ 51. Kf4 Qd4+ 52. Kg3 Qxe5+ 53. Qf4
+Qc3+ 54. Qf3 54... Qa5 $11) 41... Qc7 42. Qb5+ Kc8 43. Bd4 (43. Qa6+ Kd7 44.
+Qb5+ Qc6 45. Qb4)) 37. Rc5 c1=Q (37... Bc6 38. Bg2 c1=Q 39. Bxc1 Bxg2 (39...
+Rxc1 $2 40. Rxc1) 40. Rxc7+ Kxc7 41. Qd6+ Kb7 42. Qd7+ Kb8 43. Kxg2 Rxc1) (
+37... Rg1+ 38. Kf2 Rxf1+ 39. Kxf1 Bc6 40. h4) 38. Rxc1 (38. Bxc1 Rxf1 39. Rxc7+
+Kxc7 40. Qc5+ Bc6 41. h4 $16) 38... R8xh3+ (38... Rg1+ 39. Kf2 Rxf1+ 40. Kxf1
+Bc6 41. h4) (38... Qxc1 $2 39. Bxc1 Rxf1 40. Qc5+ Kd8 41. Qd6+ Ke8 42. Qb8+ Ke7
+43. Qxh8 $18) 39. Bxh3 Rxc1 40. Bxc1 Qxc1 41. Qxd5 Qxg5+ 42. Bg4 (42. Kh2 Qf4+
+43. Kg2 Qg5+ 44. Kf1 Qf4+ 45. Ke2 Qh2+ 46. Qg2 46... Qxe5+ $11) 42... Qe3+ (
+42... Qxg4+ $4 43. Kxg4 exd5 44. Kf4 $18) 43. Kg2 Qxa3 44. Qc6+ 44... Kd8 $8 (
+44... Kb8 $4 45. Qe8+ Kc7 46. Qxf7+ Kb8 47. Qxe6 $18) 45. Be2 Qb2 46. Qd6+
+46... Ke8 $8 47. Kf3 Qb1 (47... Qb7+ 48. Kg3 (48. Kf4 Qb1 49. Bf3 Qc1+ 50. Kg4
+Qg1+ 51. Kf4 Qc1+ 52. Ke4 Qe1+ 53. Kf4 Qh4+ 54. Ke3 Qe1+) 48... Qe7 49. Qb8+
+Qd8 50. Bb5+ Ke7 51. Qxd8+ Kxd8 52. Kf4 Ke7 53. Kg5 $18) 48. Bd3 Qd1+ 49. Ke3
+Qe1+ 50. Kd4 Qg1+ 51. Kc4 Qf2 52. Kb4 Qb2+ (52... Qh4+ 53. Kc5 Qf2+ 54. Kc6 Qa2
+55. Qb8+ (55. Kc7 Qa7+ (55... Qa5+ 56. Kb7 $18) 56. Kc6 Qf2 (56... Qa8+ 57. Kc7
+Qa7+ (57... Qa5+ 58. Kb7 $18) 58. Kc6 Qa8+ 59. Kb6 Qd8+ 60. Kc5 Qc8+ 61. Kb4 f5
+62. Ba6 Qc2 63. Qxe6+ Kf8 64. Qf6+ Kg8 65. Bc4+ 65... Kh7 $18) 57. Kb7 Qb2+ 58.
+Kc7 Qc1+ 59. Kb6 Qg1+ 60. Kb7 Qh1+ 61. Kb8 $18) 55... Ke7 56. Qb4+ Ke8 57. Bb5
+Qa7 (57... f5 58. exf6 Kf7 (58... Qa8+ 59. Kc7+ Kf7 60. Qe7+ Kg6 61. Bd3+ Kh5
+62. f7 Qa7+ 63. Kd8 Qa8+ 64. Kd7 Qa4+ 65. Kxe6 Qg4+ 66. Kd5 Qf3+ 67. Be4 Qb3+
+68. Ke5 Qg3+ 69. Ke6 Qh3+ 70. Kd6 Qa3+ 71. Kd7 Qa7+ 72. Ke6 Qa2+ 73. Kf6 Qf2+
+74. Kg7 Qg3+ 75. Kh7 $18) 59. Qe7+ Kg6 60. Bd3+ Kh6 (60... Kh5 61. Qc5+ Kh6 62.
+f7 Qa8+ 63. Kd7 Qb7+ 64. Ke8 Qb8+ 65. Ke7 Qb7+ 66. Kf6 Qb2+ (66... Qf3+ 67. Bf5
+$18) 67. Qe5 Qf2+ 68. Bf5 Qh4+ 69. Kxe6 Qc4+ 70. Ke7 Qb4+ 71. Qd6+ $18) 61. f7
+Qa4+) 58. Qd6 Qe7 59. Qb8+ Qd8 60. Qxd8+ Kxd8 61. Kd6 $8) 53. Kc5 (53. Kc5 Qf2+
+(53... Qa3+ 54. Kb6 54... Qxd6+ $18) 54. Kc6 Qg1 (54... Qa2 55. Kc7 Qa7+ (55...
+Qa5+ 56. Kb7 $18) 56. Kc6 Qa8+ 57. Kb6 Qd8+ 58. Kc5 Qc8+ 59. Kb4 f5 60. Ba6 Qc2
+61. Qxe6+ Kf8 62. Qf6+ Kg8 63. Bc4+ Kh7 64. Kc5 $18) (54... Qg2+ 55. Kc7 $18)
+55. Qb8+ Ke7 56. Qb4+ Ke8 57. Kb7 $18) 1-0
+
+[Event "WCH1/A3 SEMI"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Trani, Francesco"]
+[Black "Quigley, D.J.."]
+[Result "1/2-1/2"]
+[ECO "B04"]
+[WhiteElo "1920"]
+[BlackElo "2115"]
+[Annotator "Quigley, D.J."]
+[PlyCount "25"]
+[EventDate "1997.??.??"]
+
+1. e4 Nf6 2. e5 Nd5 3. d4 d6 4. Nf3 {This is called the Modern Variation.} 4...
+dxe5 {4...Bg4, 4...g6, and 4...Nc6 are all more coomonly chosen, but this lane
+leads to an interesting sacrifice of White's material I wished to examine.
+This move was introduced into GM play by Larsen against Tal in the Candidates'
+Semi-final, 4th game, 1965.} 5. Nxe5 5... Nd7 {Larsen chose 5...e6 for the
+sixth match game because after the fourth, he was of the opinion that Black
+should not allow White the following sacrifice. Another common option is 5...
+g6.} 6. Nxf7 {Many American GM's, including Joel Benjamin and Patrick Wolff,
+have examined this line in quite some detail.} 6... Kxf7 7. Qh5+ Ke6 8. g3 {
+ECO considers 8 c4 to be the stronger main line. I think they are mistaken and
+was hoping to get the opportunity to show why.} (8. c4 $145 8... N5f6 9. d5+
+Kd6 10. Qf7 (10. c5+ Nxc5 11. Bf4+ Kd7 12. Bb5+ c6 13. dxc6+ bxc6 14. Qxc5 Qb6
+15. Qxb6 axb6 16. Bc4 Nd5 (16... e6 17. O-O Bd6 18. Bxd6 Kxd6 19. Re1 Bd7 20.
+Nc3 20... Rhf8 {- Plomp-Etmans/cr ch-NL 1992}) 17. Be5 e6 18. O-O Rg8 19. Nc3
+Bd6 20. Rfe1 Bxe5 21. Rxe5 Kd6 22. Rh5 h6 23. Ne4+ Kc7 24. Rh3 Rf8 25. Rg3 {
+- Maliangkay-Etmans/cr ch-NL 1991}) 10... Ne5 11. Bf4 c5 12. Nc3 (12. Nd2 g5
+13. Bg3 g4 14. O-O-O Bh6 15. Re1 Rf8 16. Bxe5+ Kd7 17. Qe6+ Ke8 18. Qd6 exd6
+19. Bxf6+ Kd7 20. Bxd8 Kxd8 21. Bd3 Rxf2 22. Re2 Rxe2 23. Bxe2 Bd7 24. Bd3 {
+- Kallai,G-Horvath,C/Budapest Noviki-A 1990}) 12... a6 13. O-O-O (13. b4 Qb6
+14. bxc5+ Qxc5 15. Rd1 Qa3 16. Rd3 Qc1+ 17. Bxc1 Nxf7 18. c5+ Kc7 19. Bf4+ Kd8
+20. Na4 Bf5 21. Rd4 Ke8 22. Bc4 Rd8 23. O-O Bc2 24. Nb6 e5 25. d6 25... Bxd6 {
+0-1 Wydrowski,L-Krzyzanowski,A/4th Poznan Open CC Championship 1993}) 13... g6
+14. Bxe5+ Kxe5 15. d6 Bh6+ 16. Kc2 Qe8 17. Rd5+ Nxd5 18. Qxd5+ Kf6 19. Ne4+ (
+19. Bd3 exd6 20. Qxd6+ Kf7 21. Ne4 Qc6 22. Qe5 22... Rd8 {
+0-1 Rozentalis,E-Sokolov,A/Bern op 1992}) 19... Kg7 20. Qe5+ Kf7 21. Bd3 Bf5 (
+21... Bg7 22. Qf4+ Kg8 23. Re1 Qf8 24. Qg5 exd6 25. Qd5+ Qf7 26. Nxd6 Qxd5 27.
+Re8+ Bf8 28. cxd5 c4 29. Bxc4 b5 30. Bb3 Kg7 31. Nxc8 Bc5 32. Re7+ 32... Kh6 {
+0-1 Rublevsky,S-Hauchard,A/Oakham 1992}) 22. g4 Bxe4 23. Bxe4 e6 24. Re1 Qa4+
+25. Kd3 Rhe8 26. h4 {0-1 De Firmian,N-Rohde,M/USA-ch 1989}) (8. Qg4+ $145 8...
+Kf7 9. Qh5+ 9... Ke6 {- Golubev,M-Savchenko,S/Nikolaev zt 1993}) 8... b5 {
+With the same idea Kasparov attempted in his famous debacle against Deep Blue,
+making an escape hatch for Black's King. Other moves gives White an advantage.}
+(8... g6 9. Bh3+ Kd6 10. Qe2 e5 11. c4 $14) (8... N7f6 9. Bh3+ Kd6 10. Qe5+ Kc6
+11. Bg2 b5 (11... e6 $145 12. c4 Bd6 13. Qe2 13... Re8 $1 14. Nc3 Kd7 15. cxd5
+exd5 16. Be3 c6 17. O-O 17... Ke7 $1 $11) 12. a4 b4 13. c4 bxc3 14. bxc3 $14)
+9. a4 9... b4 {N A new move as far as I know. Todorovic-Bodiroga Palic Junior
+1988 continued 9...c6 when White oplayed 10 Bh3+ and Black was okay, but White
+could have played 10 axb5 which is evaluated unclear, but the opening of the
+position looks very dangerous for Black im my opinion. I selected 9...b4 to
+try to keep the lines closed around my King's upcoming home on the Queenside.}
+(9... c6 $145 10. Bh3+ (10. axb5 g6 11. Qe2+ Kf7 12. bxc6 N7b6 13. Bg2 (13. c4
+$14) 13... Nf6 14. c3 Bg7 15. Nd2 Re8 16. Nf3 Kg8 17. O-O Bg4 18. h3 Bxf3 19.
+Qxf3 e6 20. Bg5 Qd5 21. Qf4 Qf5 22. Qxf5 gxf5 23. c7 Nfd5 24. Bd8 a5 25. Rfe1
+Rc8 26. Rxa5 Nxc7 27. Bxc7 Rxc7 28. Rxf5 exf5 29. Rxe8+ Kf7 30. Rb8 Nc8 31. Kf1
+Nd6 32. Bd5+ Ke7 33. Ke2 Ra7 34. Ra8 Rxa8 35. Bxa8 Nc4 36. b3 Nb6 37. Bb7 Kd6
+38. Kd3 Kc7 39. Bf3 Nd7 40. b4 Nf8 41. Bd5 Ng6 42. Bg8 h6 43. Bf7 Ne7 44. b5
+Nc8 45. c4 Nd6 46. Bd5 f4 47. g4 Bf6 48. b6+ Kxb6 49. c5+ Kc7 50. cxd6+ Kxd6
+51. Ke4 Bd8 52. Bb3 Bb6 53. f3 Ke7 54. d5 Kf6 55. d6 Kg5 56. h4+ Kxh4 57. Kxf4
+Bd8 58. d7 h5 59. Kf5 hxg4 60. fxg4 60... Be7 {
+1-0 Ernst,T-Komarov,D/Dortmund op-A 1992}) 10... Kd6 11. axb5 cxb5 12. b3 (12.
+Nd2 N7f6 13. Qe5+ Kc6 14. Bg2 e6 15. O-O Bd6 16. Qe2 a6 17. c4 $5 17... bxc4
+18. Nxc4 Kd7 19. Ne5+ Bxe5 (19... Ke8 $1) 20. dxe5 Ne8 21. Qg4 $44 {
+Todorovic-Bodiroga, Yugoslavia 1988}) 12... b4 13. Nd2 e6 14. Nc4+ Ke7 15. Bg5+
+N7f6 16. Ne5 Qe8 17. Qf3 Kd8 18. O-O Be7 19. Ra5 h6 20. Bxf6 gxf6 21. c4 bxc3
+22. Rxd5+ exd5 23. Qxd5+ Kc7 24. Qxa8 Bxh3 25. Qxa7+ Kd6 26. Qb6+ Kd5 27. Re1
+Bc8 28. Qa5+ {1-0 Polee-Etmans/cr ch-NL 1992}) 10. Nd2 $1 {A nasty surprise.
+White alertly notices that c4 is now available for this Knight.} 10... N7f6 {
+Forced. Any other move loses the Knight on d5 for nothing, or worse. For
+example, 10 Ncf6 allows White mate in three.} 11. Bh3+ Kd6 12. Nc4+ Kc6 13.
+Na5+ {Clearly, Black has no choice but to repeat moves. It's in White's best
+interest to take the perpetual check as well because Black is very close to
+finding safe haven for his King, after which he should be able to consolidate
+his piece up. Conclusion: if White intends to play for a win with the Modern
+Variation, 4 Nf3, this game poses an important challange. White must then
+continue with 8 c4 instead, when I believe Black can triumph. 8 g3 in turn
+poses a challange for Black to avoid a draw if he wishes to. Then, Black must
+play the dangerus looking 9...c6 since 9...b4 results in a draw.} 1/2-1/2
+
+[Event "WCH1/A4 SEMI"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Catapano, Gianfranco"]
+[Black "Ottosen, David"]
+[Result "1-0"]
+[ECO "A06"]
+[WhiteElo "1900"]
+[BlackElo "2050"]
+[Annotator "Ottosen, D."]
+[PlyCount "71"]
+[EventDate "1997.??.??"]
+
+1. Nf3 d5 2. d3 c6 3. e4 e6 4. Be2 Nd7 5. Bf4 dxe4 6. dxe4 Ngf6 7. Nbd2 Nc5 8.
+O-O Nfxe4 9. Nxe4 Qxd1 10. Raxd1 Nxe4 11. Rfe1 Bc5 12. Nd4 O-O 13. Bf3 Nf6 14.
+Nb3 (14. Nxc6 bxc6 15. Bxc6 Ba6 16. Bxa8 Rxa8) 14... Be7 15. c4 Rd8 16. Rxd8+
+Bxd8 17. Rd1 Be7 18. Na5 a6 (18... e5 19. Bxe5 Be6 20. Nxb7 Bxc4) 19. Rd3 (19.
+Nxc6 bxc6 20. Bxc6 Ra7 21. Bb8 Bb7 22. Bxa7 Bxc6) 19... Ne8 (19... Ra7 20. Be3
+c5 21. Bxc5 Bxc5 22. Rd8+ Bf8 23. Rxc8 b5) (19... Bb4) 20. Nxb7 (20. Rb3 Bd6
+21. Be3 Rb8 22. Ba7 Ra8 23. Re3) (20. Nxc6 bxc6 21. Bxc6 e5 22. Bxa8 exf4)
+20... Bxb7 (20... Ra7 21. Bxc6 Bxb7 (21... Rxb7 22. Bxb7 Bxb7 23. Rd7) 22. Bxe8
+(22. Bxb7 Rxb7) 22... Be4 23. Rd4 Bb1 24. a3 Bf6 25. Rd2 Rb7 26. b4) 21. Rd7
+Bf6 22. Rxb7 e5 (22... Rd8) 23. Bc1 e4 24. Be2 (24. Bxe4 Nd6 25. Bxc6 Nxb7 26.
+Bxb7 Rb8) 24... Nd6 25. Rc7 Nf5 26. c5 Ne7 (26... Nd4) 27. Kf1 Kf8 28. Bf4 Bxb2
+(28... Ke8 29. Bd6 Rc8) 29. Bd6 Bf6 30. Rxc6 Ke8 (30... a5 31. Rc7 Rb8 (31...
+Ke8 32. Bb5+ Kd8) 32. Rxe7 (32. Bd1)) 31. Rxa6 Rxa6 32. Bxa6 Nf5 (32... Nd5)
+33. Bf4 Nd4 (33... e3) (33... Bd4 34. c6 Ne7 35. Bb5 (35. c7 Kd7 36. Bb5+ Ke6 (
+36... Kc8 37. Bd6) 37. a4 Bb6 38. Ke2 (38. h4 Nc8 39. Ke2 h6 (39... Ne7 40. g4
+Ba5) 40. h5 g5 41. hxg6 fxg6 42. Bg3 Kd5) 38... g5 39. Bxg5 Bxc7 40. Bxe7 Kxe7)
+35... Nc8 36. a4 Bb6 37. Be5 (37. c7+ Ke7 38. Ke2 h6 39. h4 f5 40. h5 Ke6 41.
+Bc6 Ne7 42. Bb5 Nc8 43. Bg3 Ne7 44. Kd2 Nc8 (44... f4 45. Bxf4 Bxf2 46. a5 Bc5)
+45. Kc3 f4 46. Bxf4 Bxf2 47. Be2 Kf5 48. Bh2 (48. Ba6) 48... Be1+ 49. Kc2)
+37... f6 38. c7+ Ke7 39. Bg3 g5 40. h3 (40. Be2 f5 41. h4 f4 42. Bh2 Bxc7 43.
+hxg5 Na7) 40... f5 41. Be5 Ke6 42. Bh2 f4 43. Bc6 e3 44. fxe3 Bxe3 45. a5 Kd6
+46. Bf3 Kxc7 47. Bg1 Nd6 48. Bxe3 fxe3 49. Ke2 Nc4 50. a6 Kb6 51. Bb7 h5 52. g4
+hxg4 53. hxg4 Ne5 54. Bc8 Nxg4 55. Bxg4 Kxa6 56. Kxe3 $11) (33... Kd7 34. Bb7
+Nd4 35. Bxe4 Be7 36. Bxh7 Bxc5 37. Be3) 34. Bb7 Kd7 (34... Ne6 35. Be3 Be7 36.
+c6) 35. Bxe4 Be7 36. Be5 1-0
+
+[Event "WCH1/A4 SEMI"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Fredriksen, Arild"]
+[Black "Ottosen, David"]
+[Result "1/2-1/2"]
+[ECO "D31"]
+[WhiteElo "2190"]
+[BlackElo "2050"]
+[Annotator "Ottosen, D."]
+[PlyCount "54"]
+[EventDate "1997.??.??"]
+
+1. d4 d5 2. c4 c6 3. Nf3 e6 4. Nc3 dxc4 5. a4 Bb4 6. e3 b5 7. Bd2 a5 8. axb5
+Bxc3 9. Bxc3 cxb5 10. b3 Bb7 11. d5 (11. bxc4 b4 12. Bb2 Nf6 13. Bd3 Nbd7 14.
+Qc2 O-O 15. e4 e5 16. O-O Qc7 17. Rfe1 Rfe8 18. c5 exd4 19. Bxd4 Ng4 20. Bc4
+Nde5 21. Nxe5 Nxe5 22. Bd5 Bc6 23. Qb3 Ng4 24. Qh3 Bxd5 25. Qxg4 f5 26. Qxf5
+Be6 27. Qg5 a4) 11... Nf6 12. bxc4 b4 13. Bxf6 Qxf6 14. Qa4+ Nd7 15. Nd4 e5 16.
+Nb3 Ke7 17. Be2 (17. Qb5 Ba6 18. Qxa5 Rhb8 19. Qc7 Rc8) 17... Qb6 (17... Rhc8
+18. Rd1 Nc5 19. Nxc5 Rxc5 20. O-O Ra6 21. Qc2 a4 22. f4 b3 23. Qe4 Kd6 24. Qxh7
+e4 25. Qxe4 a3 26. Qd3 b2 27. Qb3 Bc8 28. Qb8+ Kd7 29. Bg4+ Kd8 30. d6 a2 31.
+d7 {1-0 Gelfand,B - Piket,Je/VSB, Amsterdam NED  (7) 1996}) 18. Bg4 Nf6 19. Bh3
+(19. c5 Qa7 20. d6+ Kf8 21. Bf3 e4 22. Be2 Bd5 23. c6 Bxb3 24. Qxb3 Qc5 25. Qc4
+Qxd6 26. c7 Rc8 27. Rc1 Ne8 28. Qxe4 Rxc7 29. O-O g6 30. Rcd1 Qe7 31. Qa8 Ra7
+32. Qb8 Kg7 33. Rd8 Rb7 34. Qa8 Ra7 35. Qb8 a4 36. Rc1 a3 37. Rcc8 a2 38. Rxe8
+a1=Q+ 39. Bf1 Rxe8 40. Rxe8 40... Qxe8 {
+0-1 Maurer,F - Mukhametov,E/Bern Open, Bern SWI  (2) 1995}) 19... Rhd8 (19...
+g5 20. c5 Qa7 21. d6+ Kf8 22. c6 Ba6 23. Qxa5 g4) (19... Ne4) 20. O-O (20. c5
+Qa7 21. d6+ Kf8 22. c6 Ba6 23. d7 (23. c7 Rxd6) 23... Qb6 (23... Nd5) 24. Nxa5
+Nd5 25. Qb3 Qc5) 20... Ne4 21. Qa2 (21. Nxa5 Nc3 22. Nc6+ Bxc6 23. Qxc6 Qxc6
+24. dxc6 Kd6 25. Bd7) 21... a4 22. Nd2 Nxd2 (22... Nc3 23. Qc2) 23. Qxd2 Qc5
+24. Qd3 (24. Rfb1 b3 25. Qd3 Bc8 (25... g6 26. Qe4 f6) 26. Bxc8 Rdxc8 27. Qxh7
+Qxc4 28. d6+ Kxd6 29. Qxg7 Qe6 (29... b2 30. Qf6+ Kc7) 30. Qh7 Rc4) 24... b3
+25. Qxh7 (25. Rfb1 Bc8 26. Bxc8 Rdxc8 27. Qxh7 Qxc4 28. d6+ Kxd6 29. Qxg7 Qe6
+30. Qh7 Rc4) 25... Qxc4 (25... a3 26. Qxg7 b2) 26. Rac1 (26. Qxg7 Qxd5) 26...
+Qxd5 (26... Qb4 27. Rc7+ Kd6 28. Rxf7 Bxd5 29. Qg6+ Kc5) 27. Qxg7 (27. Qh4+ Kf8
+(27... f6 28. Qb4+) 28. Qh8+ Ke7 29. Rc7+ Kd6 30. Rfc1 Bc6 31. R1xc6+ (31.
+R7xc6+ Qxc6 32. Rxc6+ Kxc6) 31... Qxc6 32. Rxc6+ Kxc6) (27. Rc7+ Kd6 28. Qxg7)
+27... Bc6 1/2-1/2
+
+[Event "WCH1/A4 SEMI"]
+[Site "?"]
+[Date "1997.??.??"]
+[Round "?"]
+[White "Ottosen, David"]
+[Black "Hucks, Lew"]
+[Result "1/2-1/2"]
+[ECO "B96"]
+[WhiteElo "2050"]
+[BlackElo "2020"]
+[Annotator "Ottosen, D."]
+[PlyCount "106"]
+[EventDate "1997.??.??"]
+
+1. Nf3 Nf6 2. Nc3 c5 3. e4 d6 4. d4 cxd4 5. Nxd4 a6 6. Bg5 e6 7. f4 b5 8. e5
+dxe5 9. fxe5 Qc7 10. Qe2 Nfd7 11. O-O-O Nc6 12. Nxc6 Qxc6 13. g3 Qxh1 14. Bg2
+Qxh2 15. Bh4 Ra7 (15... Rb8 16. Rh1 Qxh1+ 17. Bxh1) (15... Bb7 16. Bc6) 16. Rh1
+Qxh1+ (16... Qxg2 17. Qxg2 Bb7 18. Ne4 Nc5 19. Qd2) 17. Bxh1 Bb4 (17... Rc7 18.
+Ne4 Nxe5 19. Nf6+ gxf6 20. Bxf6 Rg8 21. Qxe5 Rc5 22. Qd4 Bd7 23. Be5 a5 24. Bf3
+) 18. Ne4 Nxe5 (18... Bb7 19. Qf2 Ra8 20. Qd4 Bf8 21. Nd6+ Bxd6 22. Qxd6) (
+18... O-O 19. Qh5 Bb7 (19... Rc7 20. Nf6+ Nxf6 21. Bxf6 Rd7 (21... gxf6 22.
+exf6 Rd8 23. Qg4+ Kf8 24. Qxb4+ Kg8 25. Qf4) (21... Re8 22. Bxg7 (22. Be4)
+22... Kxg7 23. Qg4+ Kh8 24. Qxb4) 22. c3 gxf6 (22... Bxc3 23. bxc3 gxf6 24.
+exf6) 23. exf6 Rfd8 24. cxb4 Rd1+ 25. Qxd1 Rxd1+ 26. Kxd1 e5 27. Kd2) 20. Nf6+
+Nxf6 21. exf6 Rd8 (21... gxf6 22. Qg4+ Kh8 23. Bxf6#) (21... Bxh1 22. Qg5)) 19.
+Bf6 gxf6 (19... Nd7 20. Bxg7 Rg8 21. Qe3 (21. Bd4 Rc7 22. Qh5) 21... Rc7 22.
+Qh6 Bf8 23. Bxf8 Rxf8 24. Qh4 f6 25. Qxh7 Kd8 26. Nd6) 20. Nxf6+ Ke7 (20... Kf8
+21. Qxe5 Be7 22. Qc3 Bb7 23. Bxb7 Rxb7 24. Qc8+ Kg7 25. Nh5+ Kh6 26. Qxb7 Bg5+
+27. Nf4 e5 28. Qxa6+ f6 29. Kd1) (20... Kd8 21. Qxe5 Rf8 22. Qd4+ Ke7 23. Qxb4+
+Kxf6 24. Qxf8) 21. Qxe5 Rd8 22. c3 (22. Nd5+ Rxd5 23. Bxd5 Rd7 24. Qe4 Bc5 25.
+Bb3 Bb7 26. Qh4+ Ke8 27. Qg5) 22... Bd6 23. Nd5+ Ke8 (23... Kd7 24. Nb6+ Ke7 (
+24... Kc7 25. Qd4 {transposes to the other line}) 25. Qg5+ Ke8 26. Qg8+ Bf8 27.
+Bc6+ Bd7 (27... Ke7 28. Qg5+ f6 29. Nxc8+ Rxc8 30. Qc5+) 28. Nxd7 Rdxd7 29.
+Qxh7) 24. Qh8+ Kd7 (24... Bf8 25. Nf6+ Ke7 26. Ng8+ Ke8 27. Bc6+ Bd7 28. Qd4
+Bxc6 (28... Rc7 29. Nf6+ Ke7 30. Nd5+ exd5 31. Qe5+ Be6 32. Qxc7+ Bd7 33. Bxd5)
+29. Qxa7 Ra8) 25. Nb6+ Kc7 (25... Ke7 26. Nxc8+ Rxc8 27. Qxc8) 26. Qd4 Rb7 (
+26... Be7 27. Qe3) (26... Bb7 27. Nc4 bxc4 28. Qxa7 Rb8 29. Bxb7 Rxb7 30. Qxa6
+Bxg3 31. Qxc4+) 27. Nxc8 Kxc8 28. Bxb7+ Kxb7 29. Qe4+ Kc7 30. Qxh7 Rd7 31. Qg7
+Bc5 32. Kc2 Re7 33. Qe5+ Bd6 34. Qe3 Kb7 35. g4 Rc7 36. Kd3 Bc5 37. Qe4+ Ka7
+38. a4 Bb6 39. axb5 axb5 40. Qb4 Ka6 41. Qd6 Kb7 42. b3 Bc5 43. Qd8 Ba7 44. Qe8
+Ka6 45. g5 (45. c4 bxc4+ 46. bxc4 Kb7 47. g5 Bb6 48. g6 fxg6 49. Qxe6 Rc6 50.
+Qf7+ Kc8 51. Ke4 Rd6 52. Qe8+ Kc7 53. Ke5) 45... Bb6 46. g6 (46. b4 Ra7 47. g6
+(47. Qc8+ Rb7 48. Ke4 Ka7) 47... fxg6 48. Qxe6 Rg7 (48... g5 49. Qa2+ Kb7 50.
+Qd5+) 49. Qc6 Rg8 50. c4 Rd8+ 51. Kc3 bxc4) 46... fxg6 47. Qxe6 g5 48. Qf6 Rc5
+49. b4 Rc4 (49... Rd5+) 50. Qxg5 Rc7 51. Qf5 Rc4 52. Qf1 Bc7 53. Qa1+ Kb7
+1/2-1/2
+
+[Event "The Climb W/2/"]
+[Site "?"]
+[Date "1998.??.??"]
+[Round "?"]
+[White "Malmstrom, Jan"]
+[Black "Allford, Z.."]
+[Result "1-0"]
+[ECO "C06"]
+[Annotator "Malmstrom, J."]
+[PlyCount "131"]
+[EventDate "1998.??.??"]
+
+1. e4 e5 2. f4 Nc6 3. Nf3 f5 4. exf5 (4. Bb5 exf4 5. Nc3 fxe4 6. Nxe4) (4. Nc3)
+(4. d3 d6 5. Nc3 fxe4 6. dxe4 exf4 7. Bxf4 Nge7) (4. d4) 4... e4 $6 (4... exf4
+5. d4 d5 6. Bxf4 Bxf5 7. Be2 Nf6 8. O-O) 5. Ng5 Nf6 6. Be2 (6. Bb5 h6 7. Bxc6
+dxc6 8. Ne6) (6. Nc3 d5) (6. d4 exd3 7. Bxd3 Qe7+ 8. Qe2 Qxe2+ 9. Bxe2 Nd4 10.
+Bd3 d6 11. O-O Nxf5 12. Re1+ Be7 13. Nc3) 6... Bc5 7. c3 (7. Nc3 Qe7 8. Bc4 e3
+9. dxe3 Bxe3 10. Bxe3 Qxe3+ 11. Qe2 Qxe2+ 12. Bxe2 Nd4 13. O-O-O Nxe2+ 14. Nxe2
+O-O 15. Rhe1 b6 16. Nd4 Bb7 17. g3 Rae8) (7. Bh5+ Kf8 8. c3 (8. Nf7 Qe8 9. Nxh8
+Nxh5 10. Qe2 Nxf4 11. Qg4 Ne5 12. Qxf4 12... Nd3+ $17) (8. b4 Nxb4 9. Nf7 Qe8
+10. Nxh8 Qxh5 11. a3 Qxd1+ 12. Kxd1 Nbd5) (8. Nc3 Qe7 9. Be2 d5 10. g4 d4 11.
+Na4 Bd6 12. O-O h5) 8... Qe7 9. b4 Bb6 10. b5 Nd8 11. Be2 d6 12. d4 Bxf5 13.
+O-O h6 14. Nh3 $13) 7... O-O 8. d4 exd3 9. Qxd3 Bb6 (9... Qe7 10. b4 Bb6 11. h3
+Re8 12. g4 d6 13. Na3) 10. g4 (10. Nd2 Re8 11. Nde4 (11. Nc4 Qe7 12. Nxb6 axb6
+13. h3 Na5 14. Rb1 (14. a3 Nb3 15. Rb1 Nc5) 14... d5 15. g4 Nc4 16. a3 b5)
+11... h6 12. Nxf6+ Qxf6 13. Qd5+ Kh8 14. Ne4 Qe7 15. Bf3 d6 16. g4 Qh4+ 17. Kd1
+Qh3 18. Ng3 Bd7 19. a3) 10... Re8 (10... h5 11. h3 hxg4 12. hxg4) 11. h3 d5 (
+11... d6 12. Na3 Qe7 13. Nc2 a6 14. Bd2 Bc5 15. Rh2 b5 16. O-O-O) 12. Nd2 (12.
+Na3 d4 13. Nc4) (12. Rh2 d4 13. Bd2 Nd5 14. c4 Ndb4) 12... h6 (12... Re3 13.
+Qc2 Re8 14. Rh2 Qd6 15. Nb3 d4 16. Kf1) 13. Ngf3 Re3 14. Qc2 Qe7 15. Rh2 Bd7
+16. Kf1 (16. Rg2 Re8 17. Ng1 Qd6 18. Ndf3 R3e4 19. g5 Nh5 20. f6 gxf6 21. gxf6+
+Kf8) (16. Nh4 Nxg4 17. Ng6 Nxh2 18. Nxe7+ 18... Nxe7 $15) (16. g5 hxg5 17. fxg5
+Nh7 18. f6 gxf6 19. g6 Nf8) 16... Re8 17. Qd1 Qc5 (17... Qd6 18. Nb3 R3e7 19.
+Rg2 Nd8 20. Bd3 c5) 18. Rg2 Na5 19. a4 (19. c4) 19... a6 (19... Bc6) 20. Ra3 (
+20. Nb1 20... Rxe2 $1 21. Rxe2 Nb3 (21... Rxe2) 22. Qxb3 Rxe2 23. Nd4 Rh2 24.
+Nd2 Rxh3) 20... Qd6 21. b4 (21. Nb1 R3e7 22. Bd3 Nc4 23. Bxc4 dxc4 24. Qxd6
+cxd6) 21... Nc6 (21... Qxf4 22. bxa5 Bc5 23. Ra1 Rxc3 24. Nb3 Qb4 25. Nxc5 Qxc5
+26. Bd2 $16) 22. Nb1 (22. a5 Ba7 23. Nb1 (23. g5 hxg5 24. fxg5 Nh5 25. Nc4 dxc4
+26. Qxd6 cxd6 27. Bxe3 Rxe3 28. Bxc4+ 28... Kh7 $17) 23... R3e7 24. Bd3 Ne4 25.
+Nh4) 22... R3e7 23. Ra2 (23. Nh4 d4 24. Ng6 Re4 25. Bc4+ Kh7) 23... Ne4 24. Nh4
+(24. Bd3 d4 25. b5 Na5 26. c4) 24... a5 (24... Rf7 25. Ng6 Rf6 26. Bf3) 25. Ng6
+(25. b5 Qc5 26. Qe1 Nd8 27. Ng6 Rf7 28. Ne5) 25... Rf7 26. b5 Ne7 (26... Qc5)
+27. Ne5 (27. Ba3 Bc5) 27... Rff8 28. Bf3 Nf6 (28... Nc5 29. Ba3 Bc8 30. Rge2)
+29. Rae2 (29. Ba3 Bc5 30. Bxc5 Qxc5 31. g5) (29. Nd2 Bc8 30. Nb3 c5 31. Nc4 Qc7
+32. Nxb6 Qxb6 33. Ba3 Qd6 34. Bxc5 Qxf4 35. Kg1 $16) (29. g5) 29... Bc5 (29...
+Bc8 30. Nd2 c5 31. Ndc4) 30. Nd2 (30. Nd3 b6 31. g5 Ne4 32. Nxc5 bxc5 33. f6
+Nf5 34. Bxe4 dxe4 35. Qxd6 cxd6) 30... Bc8 (30... c6 31. Nb3 Bb6 32. Nc4 Qc7
+33. Nxb6 Qxb6 34. Ba3 Rf7 35. g5 hxg5 36. fxg5 Nxf5 37. Bc5 Qc7 38. gxf6 Ng3+)
+31. Nb3 Bb6 32. Re1 Rd8 33. Ra2 c5 34. Ba3 Qc7 35. Rae2 g6 36. Nd3 (36. fxg6
+Ne4 37. Re3 (37. Bxe4 dxe4 38. Qc1 Qxe5 39. Rxe4 Qd5) 37... Rxf4 38. Nf7 Rf8
+39. Kg1 39... Kg7 $1 (39... Nxg6 40. Qxd5 R4xf7 41. Qxe4 Nf4 42. Be2 $16)) (36.
+Nxg6 Nxg6 37. fxg6 Qxf4) (36. Qc1 gxf5 37. Qe3 d4) 36... Ne4 (36... Nxf5 37.
+gxf5 Bxf5 38. Re7 (38. Kg2 Ne4 39. Qc2 (39. Ndxc5 Qxf4) 39... c4 40. Bxf8 cxd3
+41. Qxd3 Qxf4) (38. Bxc5 Ne4 39. Bxb6 Qxb6 40. Re3 Nxc3 41. Qd2 Nxa4) (38.
+Nbxc5 Bxh3+ 39. Kg1 Ne4 40. Bxe4 dxe4 41. Rxe4) 38... Bxh3+ 39. Kg1 c4+ 40. Nd4
+Bxd4+ 41. cxd4 Qb8 42. Ne5 Bf5 43. Qe2) 37. Bxe4 (37. Kg2 gxf5 38. Bxc5 Bxc5
+39. Nbxc5) 37... dxe4 38. Rxe4 Nxf5 39. Qf3 (39. gxf5 Bxf5 40. Nbxc5 Bxe4 41.
+Rxe4 Rxf4+ 42. Rxf4 Qxf4+ 43. Nxf4 Rxd1+ 44. Ke2 Ra1 45. Bb2 Rh1 46. Ncd3 (46.
+Nxb7 Rh2+ 47. Kd3 Rxb2 48. Nxg6) 46... g5 47. Nd5 Bg1 48. c4 Rxh3 49. c5 Rh4
+50. c6 bxc6 51. bxc6 Bh2 52. c7 Bxc7 53. Nxc7 Rxa4) 39... Nh4 (39... c4 40. Ne5
+cxb3 41. Bxf8 Rxf8 42. Nxg6) 40. Qg3 g5 41. Ne5 Rde8 42. Nd2 (42. Bc1) (42. Qf2
+) 42... Be6 (42... Rxf4+) 43. c4 (43. Nd3) 43... Qd8 44. Qc3 (44. Ndf3) (44.
+Qf2) (44. Qd3 Rxf4+ 45. Rxf4 gxf4 46. Qxd8 Rxd8 47. Ne4 Rd4 48. Kf2 Bxc4 49.
+Bb2 Bb3 50. Nd7 Rd3 51. Nef6+ Kf7 52. Ne5+ $16) 44... Rxf4+ (44... Qf6 45. Bb2
+(45. f5 Nxf5 46. gxf5 Bxf5) 45... Bc7 46. Kg1 Rd8 47. Rf1 (47. Ndf3 Nxf3+ 48.
+Qxf3 Bxe5 49. Bxe5) (47. Kh1) 47... gxf4 48. Rexf4) 45. Rxf4 gxf4 46. Ne4 (46.
+Nd3) (46. Ndf3 Nxf3 47. Nxf3) 46... Rf8 47. Nxc5 (47. Bxc5 Bxc5 48. Nxc5 Bc8
+49. Ne4 Be6 50. c5 Qd5 51. c6 Qa2 52. Re2 Qb1+ 53. Qe1 Qxe1+ 54. Rxe1 bxc6 55.
+Nxc6 $16) (47. Bb2 Qd4 48. Qc2 (48. Qxd4 cxd4 49. c5 Bc7 50. Nd6 Bxd6 51. cxd6
+Rd8 52. Bxd4 Bb3 53. Bf2 Bxa4 54. Rb1 Rxd6 55. Bxh4 $16) 48... Qd8 49. Nf2 Re8
+(49... Qe8 50. Qe4 Bc7 51. Ned3 Bf7 52. Qxb7) 50. Qe4 Bc7 51. Nfd3) 47... Bxc5
+48. Bxc5 Re8 (48... Rf6 49. Bf2 Ng6 50. Nf3 Bd7 51. Rd1) 49. Bf2 f3 50. Kg1 (
+50. c5 Rf8 (50... Ng2 51. Rc1 Qd5 52. Nxf3 Nf4) (50... Qf6 51. Re3 Ng6 52. Nxf3
+Qxc3 53. Rxc3 Nf4) 51. Qc2) (50. Qc2 Qf6 51. Re3 Qf4) 50... Ng2 (50... Rf8 51.
+Nc6) 51. Re4 (51. Ng6 Kh7 52. Rxe6 Rxe6 53. Qxf3 Qf6 54. Nf8+ Kg8 55. Qxb7) (
+51. Rc1 Rf8 52. Nxf3 Nf4 53. Nd4 Bf7 (53... Qf6)) 51... Qd1+ (51... Rf8 52.
+Nxf3 Nf4 53. Kh2 Qc7 54. Bg3 Bd5 55. b6) 52. Kh2 Qf1 (52... Bf7 53. Kg3 Bg6 54.
+Rd4 Qc2 55. Qxc2 Bxc2) 53. Kg3 (53. Qxf3 Rf8 54. Qe2 Qxf2 55. Qxf2 Rxf2) 53...
+Nf4 54. Rxf4 (54. Kxf4 Qxf2 55. Re3 Qh2+ 56. Ke4 56... f2 $19) (54. Qe1 Ne2+
+55. Kxf3 Ng1+ 56. Ke3 Qxh3+ 57. Bg3 Qg2 58. Qf2 Qxf2+ 59. Kxf2 Nh3+ 60. Kg2 Ng5
+61. Rd4 Rc8 62. Bf2 Kg7 63. Rf4 Rf8 64. Rxf8 Kxf8 65. Be1 Nf7 66. Ng6+ Kg7 67.
+Nf4 Bxg4 68. Bxa5 Bd1 69. Bc3+ Kg8 70. a5 Nd6 71. a6 bxa6 72. bxa6 Nxc4 73. a7
+Nb6 74. Nd5 Na8 75. Ne3 Be2) (54. Qc2 Nh5+ 55. Kh4 Qg2 56. Re3 Ng7 57. Rxf3
+Bxg4 58. hxg4 Qh2+ 59. Rh3 Qxe5 60. c5) 54... Qg2+ 55. Kh4 Qxf2+ 56. Kh5 Qc5
+57. Kxh6 (57. Rxf3 Bxg4+ 58. Kxg4 Rxe5 59. Kf4) 57... Qe7 (57... Qc7 58. Ng6 (
+58. Rxf3 Qg7+ 59. Kh5 Rc8 60. Qe3) 58... Qh7+ 59. Kg5 Bf7 60. Rxf7 Kxf7 61.
+Qxf3+ Kg8 62. Qf5 Qf7 63. c5 Rd8) 58. Nxf3 Qh7+ 59. Kg5 Re7 60. Rd4 (60. Qxa5
+Rg7+ 61. Kf6 Rc7) 60... Bd7 (60... Re8 61. c5) 61. Rd6 (61. Qxa5) 61... Be8 62.
+Nd2 Rg7+ 63. Kf4 Qh4 64. Ne4 Rf7+ 65. Rf6 Re7 66. c5 1-0
+
+[Event "WCH2/A2 SEMI"]
+[Site "?"]
+[Date "1998.??.??"]
+[Round "?"]
+[White "Castillo, G.."]
+[Black "Rozzoni, D.."]
+[Result "0-1"]
+[ECO "B00"]
+[WhiteElo "2055"]
+[BlackElo "2095"]
+[Annotator "Hiarcs 6.0 240s"]
+[PlyCount "60"]
+[EventDate "1998.??.??"]
+
+1. e4 Nh6 2. d4 g6 3. Nf3 f6 4. Bd3 Nf7 5. O-O Bg7 6. Nc3 e6 7. Qe2 O-O 8. Re1
+d6 9. d5 e5 10. Bd2 f5 11. b4 f4 12. Reb1 g5 13. Ne1 Nd7 14. Nd1 Nf6 15. f3 g4
+16. Qf2 Ng5 17. Qe2 Qe8 (17... gxf3 18. Nxf3 Bg4 19. Nf2 $11) 18. Nf2 h5 (18...
+Qh5 19. fxg4 Nxg4 20. h3 $11) 19. c4 Qg6 20. Kh1 g3 21. Nd1 gxh2 22. Nb2 $15 (
+22. Qf2 22... Bd7 $11) 22... h4 23. c5 h3 24. cxd6 cxd6 25. Nc4 $19 (25. Qf2 $5
+$17) 25... Nh5 $1 26. Kxh2 26... Ng3 $1 27. Qf2 hxg2 28. Qxg2 28... Bh3 $1 29.
+Qf2 29... Bf1 $1 30. Bxf1 (30. Qxf1 Nxf1+ 31. Bxf1 Nxf3+ 32. Nxf3 Qg3+ 33. Kh1
+Qxf3+ 34. Bg2 Qh5+ 35. Kg1 $19) 30... Qh5+ (30... Qh5+ 31. Kg2 Qh1#) 0-1
+

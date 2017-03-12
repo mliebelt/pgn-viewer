@@ -1,0 +1,14 @@
+{
+    "flipper" : "Flip pool pardal",
+    "first" : "Mine esimese sammu",
+    "prev" : "Mine eelmise käigu",
+    "next" : "Mine järgmise käigu",
+    "play" : "Play / lõpetada mängimine kõik käigud",
+    "last" : "Mine viimase käigu",
+    "deleteVar" : "Kustuta variatsioon",
+    "promoteVar" : "Edendada variatsioon",
+    "deleteMoves" : "Kustuta ülejäänud käigud siit",
+    "nags" : "NAGs menu",
+    "pgn" : "Näita PGN praeguse mängu",
+    "hidePGN" : "Peida kuvatakse PGN"
+}

@@ -177,7 +177,7 @@ things users should know to use the viewer in the best way possible.
     
 ## Public site
     
-See the documentation on the public site [PgnViewerJS](http://mliebelt.github.io/PgnViewerJS/docu/index2.html)
+See the documentation on the public site [PgnViewerJS](http://mliebelt.github.io/PgnViewerJS/docu/index.html)
 for the current state, some working examples, and a little bit as background. This
 site is growing, and allows me to show the early alpha implementation to others.
 
@@ -186,12 +186,13 @@ site is growing, and allows me to show the early alpha implementation to others.
 I will provide downloads of the versions, that should be easy to install. Just unpack
 locally, and copy one of the examples and play with them.
 
-* [Version 0.9.4](dist/PgnViewerJS-0.9.4.zip): Finished edit mode, cleanup, some more fixes.
-* [Version 0.9.3](dist/PgnViewerJS-0.9.3.zip): Allows special markup, some more bug fixes.
-* [Version 0.9.2](dist/PgnViewerJS-0.9.2.zip): Some more bug fixes, examples to all issues at [GitHub](https://github.com/mliebelt/PgnViewerJS/issues), added Changelog.md, started restructuring the sources.
-* [Version 0.9.1](dist/PgnViewerJS-0.9.1.zip): Some bug fixes, examples to all issues at [GitHub](https://github.com/mliebelt/PgnViewerJS/issues),
+* [Version 0.9.5](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.5.zip): Some more fixes, stability.
+* [Version 0.9.4](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.4.zip): Finished edit mode, cleanup, some more fixes.
+* [Version 0.9.3](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.3.zip): Allows special markup, some more bug fixes.
+* [Version 0.9.2](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.2.zip): Some more bug fixes, examples to all issues at [GitHub](https://github.com/mliebelt/PgnViewerJS/issues), added Changelog.md, started restructuring the sources.
+* [Version 0.9.1](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.1.zip): Some bug fixes, examples to all issues at [GitHub](https://github.com/mliebelt/PgnViewerJS/issues),
   some additional examples and a lot of fixes in the documentation.
-* [Version 0.9.0](dist/PgnViewerJS-0.9.0.zip): Nearly feature complete, roughly documented, stable enough to play with it.
+* [Version 0.9.0](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.0.zip): Nearly feature complete, roughly documented, stable enough to play with it.
 
 ## References
 

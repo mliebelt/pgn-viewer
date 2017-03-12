@@ -13,14 +13,14 @@
 <body>
 <h2>#9: spaces after a half move before a NAG</h2>
 <h3>Javascript part</h3>
-<pre class="prettyprint lang-js">pgnView("board", {pgn: "1. e4 $1 e5 $2 2. Nf3 $3 Nc6 $4 3. Bc4$13 Bc5$14 4. c3$15 Nxc4$16"});</pre>
+<pre class="prettyprint lang-js">pgnView("board", {pgn: "1. e4 $1 e5 $2 2. Nf3 $3 Nc6 $4 3. Bc4$13 Bc5$14 4. c3$15 Nf6$16"});</pre>
 <h3>HTML part</h3>
 <pre class="prettyprint lang-html">&lt;div id=&quot;board&quot; style=&quot;width: 300px&quot;&#x2F;&gt;</pre>
 <p>See the <a href="../examples2.html#1205">back link</a> to the original examples page.</p>
 <div>See <a href='https://github.com/mliebelt/PgnViewerJS/issues/9'>ticket 9</a> at GitHub. The example shows different nags ('$' followed by a number) with variations in white space directly before it. </div>
 <div id="board" style="width: 300px"/>
 <script>
-pgnView("board", {pgn: "1. e4 $1 e5 $2 2. Nf3 $3 Nc6 $4 3. Bc4$13 Bc5$14 4. c3$15 Nxc4$16"});
+pgnView("board", {pgn: "1. e4 $1 e5 $2 2. Nf3 $3 Nc6 $4 3. Bc4$13 Bc5$14 4. c3$15 Nf6$16"});
 </script>
 <script>prettyPrint();</script>
 </body>

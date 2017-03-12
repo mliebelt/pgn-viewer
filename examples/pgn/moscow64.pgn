@@ -1,0 +1,1137 @@
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "1"]
+[White "Korchnoi, Viktor"]
+[Black "Kholmov, Ratmir"]
+[Result "0-1"]
+[ECO "A30"]
+[Annotator "JvR"]
+[PlyCount "82"]
+[EventDate "1964.??.??"]
+
+{Moscow 1964 was a zonal tournament for three places in the interzonal,
+Amsterdam 1964. The best six players of the Soviet championship, Leningrad
+1963, and Korchnoi participated. Moscow 1964 took place from February 18 to
+March 10.} 1. c4 c5 2. Nf3 Nf6 3. Nc3 e6 4. g3 b6 5. Bg2 Bb7 6. O-O Be7 7. d4
+cxd4 8. Qxd4 O-O 9. e4 Nc6 10. Qe3 d6 11. Rd1 Qc7 12. Qe2 Ne5 13. b3 Nxf3+ 14.
+Bxf3 a6 15. Bb2 Rfd8 16. Rac1 Rab8 {
+Black remains passive. The rook can go to c8 in one move.} 17. Rc2 Rbc8 18. Bg2
+Bc6 19. Rcd2 Rb8 20. Rc1 Qb7 21. a4 a5 $6 {
+This commitment weakens the queenside.} 22. Ba3 Nd7 $5 {
+A temporary sacrifice eliminates the weakness d6.} 23. Bxd6 Bxd6 24. Rxd6 Nc5
+25. Rcd1 Qc7 ({Avoids} 25... Rxd6 26. Rxd6 Nxb3 $4 27. Qd1 {(Suetin).}) 26. e5
+$1 Bxg2 27. Nb5 Qe7 28. Kxg2 Nxb3 29. Qf3 Nc5 30. Nd4 $1 Rxd6 31. exd6 Qf6 32.
+Qc6 ({A better rook ending brings} 32. Nc6 Qxf3+ 33. Kxf3 Rb7 34. Ne5 Rb8 35.
+Rb1 $1 f6 36. Nc6 Rb7 37. Rb5 $1 Nxa4 38. Nxa5 Rd7 39. Rb4 bxa5 40. Rxa4 Rxd6
+41. Rxa5 Rd3+ 42. Ke4 Rd2 43. Ke3 Rc2) 32... e5 33. Qc7 $4 {
+Suddenly Korchnoi makes a terrible blunder.} (33. Ne2 $1 Qe6 34. Qc7 Nd7 35.
+Nc3 {keeps a positional advantage.}) 33... Na6 34. Qa7 exd4 35. c5 bxc5 36.
+Qxa6 Rd8 37. Rb1 h5 38. Rb6 Qe6 39. Qxa5 Qd5+ 40. Kg1 d3 41. Rb1 Qxd6 0-1
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "1"]
+[White "Spassky, Boris"]
+[Black "Bronstein, David"]
+[Result "1/2-1/2"]
+[ECO "E40"]
+[Annotator "JvR"]
+[PlyCount "61"]
+[EventDate "1964.??.??"]
+
+1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Nf3 d6 5. e3 Nbd7 6. Bd2 b6 7. Bd3 Bb7 8. Qc2
+e5 9. e4 O-O 10. O-O Re8 11. Rae1 Nf8 (11... exd4 12. Nxd4 Ne5 {is more active.
+}) 12. a3 Bxc3 13. Bxc3 Ng6 14. Nd2 ({When the position is closed with} 14. d5
+Nf4 15. Bd2 N6h5 {White has a plus.}) 14... Nf4 15. g3 exd4 16. Bxd4 Nxd3 17.
+Qxd3 Nd7 18. Re3 Ne5 19. Qe2 Qd7 20. f3 a5 21. b3 Rad8 22. Re1 f6 23. Qf1 a4
+24. b4 c5 25. Ba1 cxb4 26. axb4 Rc8 27. b5 Qe6 28. Rc1 f5 29. exf5 Qxf5 30. Bd4
+Rf8 31. Rec3 (31. Rec3 Nxf3+ 32. Nxf3 Bxf3 33. Bxb6 Qh5 {
+leads to a slight advantage for Black, but the players are happy with a draw.})
+1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "1"]
+[White "Suetin, Alexei"]
+[Black "Geller, Efim"]
+[Result "1-0"]
+[ECO "B75"]
+[Annotator "JvR"]
+[PlyCount "76"]
+[EventDate "1964.??.??"]
+
+1. e4 c5 2. Nf3 Nc6 3. d4 cxd4 4. Nxd4 g6 5. Nc3 Bg7 6. Be3 Nf6 7. Bc4 d6 8. f3
+Qb6 9. Bb5 Qc7 10. g4 $5 (10. Nd5 Nxd5 11. exd5 a6 {is 'theory'.}) 10... a6 $5
+11. Ba4 e6 12. Qd2 O-O 13. Bb3 ({Little advantage gains} 13. Nxc6 bxc6 14.
+O-O-O d5) 13... b5 14. Nxc6 Qxc6 15. O-O-O a5 16. a4 b4 17. Ne2 Ba6 18. Nd4 Qc7
+19. Bh6 $1 Bc4 $1 {The threat 20.Bxg7 Kxg7 21.Bxc6 is countered (Mikenas).} 20.
+Bxg7 Kxg7 21. Kb1 {Black has to fight back.} 21... Rad8 {This loses a tempo.} (
+{Correct is} 21... Bxb3 $1 22. cxb3 d5 $1 23. g5 Nh5 24. exd5 exd5 25. Nb5 Qf4
+26. Qxf4 Nxf4 27. Rd4 Ne6 28. Rxd5 Rh8) 22. h4 h5 $5 ({It is too late for} 
+22... Bxb3 23. cxb3 d5 {due to} 24. h5 $1) 23. gxh5 Nxh5 24. Rhg1 Rh8 25. Qg5
+Rc8 26. f4 $6 (26. Bxc4 Qxc4 27. Rd2 {keeps an advantage.}) 26... Qd8 27. f5 $1
+Qxg5 28. hxg5 gxf5 $6 ({Better is} 28... Nf4 $1 29. Bxc4 Rxc4 30. f6+ Kg8 31.
+Nb3 Rh2) 29. exf5 Nf4 30. fxe6 fxe6 31. Bxc4 Rxc4 32. Rgf1 e5 33. Nf5+ Kg6 34.
+Nxd6 Rc6 35. b3 {Geller misses an elementary fork.} 35... Kxg5 $4 (35... Rh2 $1
+36. Nc4 Rc5 37. Nxe5+ Rxe5 38. Rxf4 {only loses a pawn.}) 36. Nf7+ Kg6 37.
+Nxh8+ Kg7 38. Rd8 Rc7 1-0
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "2"]
+[White "Geller, Efim"]
+[Black "Korchnoi, Viktor"]
+[Result "0-1"]
+[ECO "D27"]
+[Annotator "JvR"]
+[PlyCount "70"]
+[EventDate "1964.??.??"]
+
+1. d4 d5 2. c4 dxc4 3. Nf3 Nf6 4. e3 e6 5. Bxc4 c5 6. O-O a6 7. a4 Nc6 8. Qe2
+cxd4 9. Rd1 Be7 10. exd4 Nd5 11. Nc3 Ncb4 $6 ({Antoshin prefers} 11... O-O) 12.
+Ne5 $1 O-O 13. Ne4 Nb6 14. Ra3 $5 f6 15. a5 $1 Nxc4 $6 (15... fxe5 16. axb6
+exd4 17. Rh3 {is more consistent.}) 16. Nxc4 Nd5 17. Rb3 ({Even better is} 17.
+Rg3 $1 Qc7 18. Bh6 Rf7 19. Rc1 {(Antoshin).}) 17... Qc7 18. Nc3 Bd7 $5 ({
+A pawn saves} 18... Rb8 19. Nxd5 exd5 20. Nb6 Bd6 21. Rc3 (21. Nxd5 $2 Qf7)
+21... Qf7) 19. Nxd5 exd5 20. Nb6 Rae8 21. Nxd5 Bd6 $3 {
+The turning point of the game has been reached.} 22. Qf3 $2 ({Exchanges with} 
+22. Qxe8 $1 Qc2 23. Qh5 $1 Qxb3 24. Bf4 g6 25. Qf3 Qxf3 26. gxf3 Bxf4 27. Nxf4
+{lead to a better endgame for White.}) 22... Qxa5 23. Ne3 Ba4 24. Bd2 $2 (24.
+Rxb7 Bxd1 25. Qxd1 {is better.}) 24... Bxh2+ $1 25. Kh1 ({The point is} 25.
+Kxh2 Qc7+) 25... Qd8 26. Nf5 Bc7 27. Bh6 $5 Rf7 28. Rc1 Bxb3 29. Qxb3 g6 $1 30.
+Ne3 f5 31. Kg1 Qd7 32. Nd5 Qe6 $1 {Black threatens 33...Qe1+.} 33. g3 f4 34.
+Qxb7 fxg3 35. fxg3 Bf4 $1 {All whiter pieces are under attack.} 0-1
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "2"]
+[White "Kholmov, Ratmir"]
+[Black "Spassky, Boris"]
+[Result "1-0"]
+[ECO "B84"]
+[Annotator "JvR"]
+[PlyCount "113"]
+[EventDate "1964.??.??"]
+
+1. e4 c5 2. Nf3 e6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 d6 6. Be2 a6 7. O-O Be7 8. Be3
+Qc7 9. f4 O-O 10. g4 $1 Nc6 $2 ({
+White has to counterattack in the centre immediately with} 10... d5 $1 11. exd5
+Nxd5 12. Nxd5 exd5 13. Bf3 Nc6 {(Hort-Pachman, Champ. Czechoslovakia 1959).})
+11. g5 Nd7 12. f5 $1 {Black meets great problems.} 12... Nde5 $6 ({The retreat
+} 12... Qd8 {prevents f5-f6. Black has decent chances in:} 13. fxe6 (13. g6
+Nxd4 14. gxh7+ Kh8 15. Qxd4 Ne5) 13... Bxg5 14. Bxg5 Qxg5+ 15. Kh1 Nde5) 13. f6
+$1 Bd8 14. fxg7 $6 (14. Bd3 Nxd4 15. Bxd4 {
+is stronger (Sutovskij-J. Polgar, Tilburg 1996).}) 14... Re8 $2 ({Correct is} 
+14... Kxg7 $1 15. Qd2 b5 {(Sax-Stean, Moscow 1977)} 16. a3 $1) 15. Qd2 b5 16.
+Bh5 Ne7 17. b3 ({Kholmov does not like} 17. Ndxb5 $1 axb5 18. Nxb5 Qc6 19. Nxd6
+Bb7 {but} 20. Rxf7 $1 Nxf7 21. Bxf7+ Kxg7 22. Qd4+ {crushes the defence.})
+17... N7g6 18. a4 bxa4 19. Rxa4 Bb7 20. Nf3 Qe7 21. Nxe5 dxe5 22. Rc4 Kxg7 23.
+Na4 Kg8 24. Bxg6 hxg6 25. Qc3 $1 Bd5 $5 ({Black avoids} 25... Qd6 26. Bc5 Qb8
+27. Qf3 Qc7 28. Bd6 $1) 26. exd5 exd5 27. Rc6 $1 Qd7 ({The pointe is} 27... d4
+28. Qc4 dxe3 29. Rxg6+ $1 Kf8 30. Qh4) 28. Bf2 $1 Ba5 29. Rxg6+ $2 ({This time
+} 29. Nb6 $1 {wins at once.}) 29... fxg6 30. Qxa5 Rf8 31. Nc3 Qg4+ 32. Bg3 Qd4+
+33. Rf2 Rac8 34. Qxd5+ Qxd5 35. Nxd5 Rxf2 36. Kxf2 Rxc2+ 37. Ke3 Kf7 38. Kd3
+Rc5 39. Ne3 $2 (39. Ke4 Ke6 40. Nb4 $1 a5 41. Nd3 {wins the e-pawn.}) 39... Ke6
+40. h4 Rb5 41. Kc4 Ra5 42. Kc3 Rc5+ 43. Nc4 e4 44. Bf2 ({Antoshin warns for} 
+44. Kd4 Rb5 45. Nd2 $4 Rd5+) 44... Rd5 45. Bd4 Rf5 46. Ne3 Rf7 $6 ({
+More resistance offers} 46... Rf4 $1 47. Bf6 Rxh4 48. Kd4 $1 Kf7 49. Kd5 {
+but Black loses too much terrain.}) 47. Kb4 Rb7+ 48. Ka4 Rd7 49. Bc5 Rd2 50.
+Ka5 Ra2+ 51. Kb6 Ke5 52. b4 Kf4 53. Nd5+ $1 Kf3 ({The points are} 53... Kg4 54.
+Nc3 $1) ({and} 53... Ke5 54. Ne7 $1) 54. Ka7 Rd2 55. Ne3 Ra2 56. h5 $1 {
+A breakthrough decides the game.} 56... a5 ({Kholmov analyses} 56... gxh5 57.
+g6 Rd2 58. Nf5 Rd8 59. g7 Rg8 60. Bf8 e3 61. Nh6 e2 62. Nxg8 e1=Q 63. Nf6 Qg1+
+64. Kb7 $18) 57. b5 $1 {Kholmov has scored two wins and Geller lost twice.} 1-0
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "2"]
+[White "Stein, Leonid"]
+[Black "Suetin, Alexei"]
+[Result "1/2-1/2"]
+[ECO "B47"]
+[PlyCount "60"]
+[EventDate "1964.??.??"]
+
+1. e4 c5 2. Nf3 Nc6 3. d4 cxd4 4. Nxd4 e6 5. Nc3 Qc7 6. Be2 Nf6 7. O-O a6 8. a3
+Bd6 9. Kh1 Nxd4 10. Qxd4 Be5 11. Qd3 O-O 12. f4 Bxc3 13. bxc3 d5 14. e5 Ne4 15.
+c4 Qxc4 16. Qxc4 dxc4 17. Bxc4 Bd7 18. Bd3 Bc6 19. Be3 Rac8 20. Rfe1 Nc3 21.
+Bd4 Bb5 22. Bxc3 Rxc3 23. Bxb5 axb5 24. Reb1 Rxc2 25. Rxb5 Rfc8 26. h3 R8c7 27.
+Rab1 Rc1+ 28. Rxc1 Rxc1+ 29. Kh2 Rc7 30. a4 Kf8 {Stein began quietly.} 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "3"]
+[White "Bronstein, David"]
+[Black "Kholmov, Ratmir"]
+[Result "1/2-1/2"]
+[ECO "E19"]
+[Annotator "JvR"]
+[PlyCount "53"]
+[EventDate "1964.??.??"]
+
+1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Bb7 5. Bg2 Be7 6. O-O O-O 7. Nc3 Ne4 8. Qc2
+Nxc3 9. Qxc3 f5 10. d5 Bf6 11. Qc2 Na6 12. Be3 c6 13. dxe6 dxe6 14. a3 c5 15.
+Ne1 Qe7 16. Bxb7 Qxb7 17. Rb1 Nb8 $1 18. b4 cxb4 19. axb4 Nc6 20. Nd3 Rac8 21.
+Qa2 Qf7 22. c5 $1 b5 23. Qa6 e5 $1 24. Qxb5 f4 $1 {Bronstein has taken the
+initiative. Kholmov defends well and delivers a perpetual check.} 25. gxf4 Qg6+
+26. Kh1 Qe4+ 27. Kg1 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "3"]
+[White "Korchnoi, Viktor"]
+[Black "Stein, Leonid"]
+[Result "1/2-1/2"]
+[ECO "D93"]
+[Annotator "JvR"]
+[PlyCount "63"]
+[EventDate "1964.??.??"]
+
+1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. Nf3 Bg7 5. Bf4 O-O 6. e3 c5 7. dxc5 Qa5 8. Rc1
+Rd8 $6 ({The exchanges} 8... dxc4 9. Bxc4 Qxc5 {
+lead to an equal position (Kan-Tal, Riga 1954).}) 9. Qa4 Qxc5 10. b4 Qc6 11.
+Qxc6 bxc6 12. Bc7 Rd7 13. Ba5 Ne4 $5 14. Nxe4 dxe4 15. Ng5 c5 $1 16. Nxe4 cxb4
+{Black offers a pawn for counteraction.} 17. Bxb4 (17. Nc5 {is answered with}
+17... Nc6 $1 18. Nxd7 Bxd7 19. Bc7 Rc8 20. Bf4 Bc3+) 17... Na6 18. Bc3 Bb7 19.
+Bxg7 Kxg7 20. Nc3 Rad8 21. f3 Rd2 22. Be2 Nb4 23. Nd5 Rb2 24. Nxb4 Rxb4 25. Kf2
+Rd2 26. Rb1 Rxb1 27. Rxb1 Ba6 28. Rc1 Rxa2 29. f4 Bb7 30. Kf1 a5 ({
+Stein avoids the trap} 30... Bxg2+ $2 31. Kxg2 Rxe2+ 32. Kf3 Rxh2 33. c5 Rd2
+34. c6 Rd8 35. c7 Rc8 36. Ke4 $18) 31. c5 Bc6 32. h4 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "3"]
+[White "Spassky, Boris"]
+[Black "Geller, Efim"]
+[Result "0-1"]
+[ECO "C85"]
+[Annotator "JvR"]
+[PlyCount "148"]
+[EventDate "1964.??.??"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Bxc6 dxc6 7. d3 Nd7 8.
+Nbd2 O-O 9. Nc4 Bf6 $6 (9... f6 {is more solid.}) 10. Bd2 Re8 11. a4 $5 Nf8 12.
+a5 b5 13. Ne3 $6 (13. axb6 cxb6 14. b4 {keeps some pressure (Geller).}) 13...
+c5 14. b3 Be6 15. Bc3 Ng6 16. Nd2 Qd7 17. g3 $6 {
+A slight weakening helps Black.} 17... Bh3 18. Ng2 Be7 19. Re1 Rad8 20. Ne3 Bg5
+21. Qf3 f6 22. Qe2 Nf8 23. f3 Ne6 24. Qf2 Nd4 25. Ndf1 Qf7 26. f4 Bh6 27. Bxd4
+cxd4 28. Nf5 Qg6 ({No advantage brings} 28... Bxf5 29. exf5 exf4 30. Rxe8+ Rxe8
+31. g4 $1) 29. Nxh6+ Qxh6 30. Nd2 c5 31. Rac1 Rd7 32. Qf3 Qg6 33. f5 Qg5 34.
+Qf2 Rc8 {Both playersd wish to open the queenside.} 35. Kh1 Rdc7 36. c3 dxc3
+37. Rxc3 Rd8 38. Nf3 Qg4 39. Ng1 h5 40. Nxh3 Qxh3 41. Qe2 $1 {
+The adjourned position is resumed after one hour. White stays passive.} (41.
+Rxc5 $2 Rcd7 $19 {(Geller).}) (41. b4 $2 c4 $1 42. dxc4 Rxc4 43. Rxc4 bxc4 44.
+Qe2 Rd4 $19) 41... Rd4 42. Kg1 Kh7 {
+White has to apply the principles correctly.} 43. Rec1 $2 (43. Rd1 $1 {
+overprotects d3, and} 43... Qg4 44. Kf2 $1 {protects the queen.}) 43... Rcd7
+44. Rd1 Qg4 45. Qxg4 ({The point is} 45. Kf2 Rxe4 $1 {(Panov).}) 45... hxg4 46.
+Rxc5 Rxe4 $1 47. Kf2 ({No relief brings} 47. dxe4 Rxd1+ 48. Kf2 Rh1 $1 {
+(Panov), or}) (47. Rc6 Rb4 48. Rxa6 Rxb3 49. Rb6 Kh6) 47... Rb4 48. Rc3 Kh6 49.
+Ke3 Kg5 50. Rc6 $5 ({The alternative} 50. Rf1 Rbd4 51. Ke2 b4 {
+also loses a pawn.}) 50... Rxb3 51. Rxa6 Kxf5 52. Rb6 Ra7 53. Rf1+ Kg6 54. Ra1
+Rd7 55. Rd1 Rd4 56. a6 Ra4 57. Rd2 Rba3 58. Rxb5 Rxa6 {
+The game is adjourned for the second time.} 59. Rb4 R6a4 60. Rbb2 Kg5 61. Ke2
+g6 62. Ke3 Ra1 63. d4 $5 R4a3+ 64. Ke4 Re1+ 65. Kd5 e4 $1 66. Re2 Rxe2 67. Rxe2
+Kf5 68. Rf2+ Rf3 69. Re2 e3 70. Re1 g5 71. Re2 Kg6 $1 72. Ke6 f5 {
+The critical position of the rook ending has arisen.} 73. Ra2 ({
+Longer resistance offers} 73. d5 $1 f4 74. d6 Rf1 75. d7 Rd1 {
+(Geller). A nice finish is} 76. Ke7 f3 $1 77. Rxe3 f2 78. Re6+ Kg7 79. Rd6 f1=Q
+80. Rxd1 Qf6+ 81. Ke8 Qf8#) 73... f4 74. d5 e2 $1 (74... e2 75. Rxe2 Re3+ {
+is clear. Spassky had a throat infection and started poorly.}) 0-1
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "4"]
+[White "Geller, Efim"]
+[Black "Bronstein, David"]
+[Result "1/2-1/2"]
+[ECO "A13"]
+[Annotator "JvR"]
+[PlyCount "192"]
+[EventDate "1964.??.??"]
+
+1. c4 e6 2. g3 d5 3. Bg2 c6 4. Nf3 Nf6 5. b3 a5 $5 6. O-O a4 7. bxa4 $5 dxc4 8.
+Qc2 Qa5 9. Qxc4 Qxa4 10. Qd3 $5 Nbd7 11. Nc3 Qa5 12. Bb2 Be7 13. Ne4 O-O 14.
+Nxf6+ Bxf6 15. Bxf6 Nxf6 16. Rfb1 $6 (16. Qe3 Rd8 17. Rfb1 Ng4 18. Qb6 {
+ends the provocation.}) 16... e5 $1 17. Qc2 e4 18. Ne1 Re8 19. d3 e3 $1 {
+Black has gained a plus, but White will defend well.} 20. f4 $5 Ra7 21. Nf3 Be6
+22. Rb2 Bd5 23. Rab1 Re7 24. a4 Ne8 25. Rb4 Nd6 26. Ne5 Bxg2 27. Kxg2 Qd5+ 28.
+Kg1 c5 29. Rb6 f6 30. Nf3 Ra5 31. Qc3 $1 Ra8 ({Lilienthal mentions} 31... Rxa4
+$2 32. Rxd6 $1 Qxd6 33. Qb3+) 32. a5 Rc7 33. Qb3 c4 $6 ({
+Black keeps a plus with} 33... Qxb3 34. R1xb3 Rd7 {(Lilienthal).}) 34. dxc4
+Nxc4 35. Rxb7 Rxb7 36. Qxb7 Qxb7 37. Rxb7 Rxa5 38. Rc7 Nd6 39. Rc3 Ra1+ 40. Kg2
+Ra2 41. Rxe3 Nc4 42. Re4 Nd2 43. Re7 Nxf3 44. Kxf3 h5 $1 {
+A theoretical draw has been reached.} 45. h3 Ra3+ 46. Re3 Ra1 47. Rd3 Rf1+ 48.
+Kg2 Re1 49. Rd8+ Kf7 50. Kf2 Ra1 51. Rh8 Ra5 52. Kf3 Rb5 53. Rd8 g5 54. Rd3 Kg6
+55. e4 gxf4 56. gxf4 Rb1 57. Re3 Rb4 58. Rc3 Ra4 59. Ke3 Kg7 60. Rc7+ Kh6 61.
+f5 Ra3+ 62. Kf4 Ra4 63. Rc6 Kg7 64. Rc7+ Kg8 65. Rc3 Kg7 66. Rg3+ Kf7 67. Rd3
+Kg7 68. Rd7+ Kg8 69. Ke3 Ra3+ 70. Rd3 Ra4 71. Rc3 Kg7 72. Rc7+ Kg8 73. h4 Kf8
+$5 74. Kd3 ({No use has} 74. Rh7 Kg8 75. Rxh5 Kg7) 74... Ra1 75. Kd4 Rd1+ 76.
+Kc5 Rd2 77. Ra7 Rd1 78. Kc4 Rd2 79. Kc5 Rd1 80. Rb7 Rd2 81. Rb4 Ke7 82. Rd4
+Rc2+ 83. Kd5 Ra2 84. Rd1 Ra5+ 85. Kd4 Ra4+ 86. Ke3 Ra3+ 87. Rd3 Ra1 88. Rb3 Rh1
+89. Kd4 Rd1+ 90. Rd3 Ra1 91. Kc5 Ra5+ 92. Kb4 Ra1 93. Rd4 Rc1 94. Rc4 Rb1+ 95.
+Kc5 Ra1 96. Rb4 Rc1+ 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "4"]
+[White "Stein, Leonid"]
+[Black "Spassky, Boris"]
+[Result "1/2-1/2"]
+[ECO "C89"]
+[Annotator "JvR"]
+[PlyCount "63"]
+[EventDate "1964.??.??"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 O-O 8. c3
+d5 9. exd5 Nxd5 10. Nxe5 Nxe5 11. Rxe5 c6 12. d4 Bd6 13. Re1 Qh4 14. g3 Qh3 15.
+Be3 Bg4 16. Qd3 Rae8 17. Nd2 Re6 18. a4 bxa4 $6 19. Rxa4 f5 {
+Stein has prepared a novelty in this risky variation of the Marshall.} 20. Qf1
+$1 ({Boris had a great success in} 20. f4 $2 Bxf4 $3 21. Bf2 $2 (21. Bxd5 cxd5
+22. gxf4 Rg6 23. Rxa6 Be2+) 21... Rxe1+ 22. Bxe1 Re8 {
+(Novopashin-Spassky, Leningrad 1963).}) 20... f4 $1 21. Qxh3 Bxh3 22. Rxa6 fxe3
+23. Rxe3 Rxe3 $1 24. fxe3 Be7 {
+Spassky will experience a prepared move in this position later.} 25. Rxc6 $6 ({
+Stronger is} 25. e4 $1 Bg5 26. exd5 Bxd2 27. dxc6+ Kh8 28. Ra1 g6 {
+and Boris barely survived in Parma-Spassky, Banja Vrnjacka 1965.}) 25... Bg5 $1
+26. Bxd5+ Kh8 27. Bg2 Bxe3+ 28. Kh1 Bxg2+ 29. Kxg2 Bxd2 30. b4 g5 31. g4 Be1
+32. d5 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "4"]
+[White "Suetin, Alexei"]
+[Black "Korchnoi, Viktor"]
+[Result "1/2-1/2"]
+[ECO "B41"]
+[Annotator "JvR"]
+[PlyCount "74"]
+[EventDate "1964.??.??"]
+
+1. e4 c5 2. Nf3 e6 3. d4 cxd4 4. Nxd4 a6 5. Be3 Nf6 6. Bd3 e5 $1 {
+Black continues his development in a natural way.} 7. Nb3 d5 $1 8. N1d2 Nc6 9.
+O-O Be7 10. exd5 Nxd5 11. Bc5 Be6 12. Re1 Qc7 13. Bxe7 Qxe7 14. Nc4 f6 15. Be4
+Rd8 16. Qh5+ Bf7 17. Qf3 O-O 18. Ne3 Nxe3 19. Rxe3 Rd6 20. Rd3 Rfd8 21. Rad1 g6
+22. h3 Rxd3 23. Rxd3 Rxd3 24. Qxd3 Nb4 25. Qc3 Nxa2 26. Qc8+ Kg7 27. Nc5 b6 28.
+Nxa6 Nb4 29. c3 Nxa6 30. Qxa6 f5 31. Bc6 Qd8 32. Qe2 Qd6 33. Ba4 e4 34. Qe3 Bc4
+35. h4 b5 36. Bc2 Bd3 37. Bb3 Bc4 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "5"]
+[White "Bronstein, David"]
+[Black "Stein, Leonid"]
+[Result "1/2-1/2"]
+[ECO "D79"]
+[Annotator "JvR"]
+[PlyCount "61"]
+[EventDate "1964.??.??"]
+
+1. d4 Nf6 2. Nf3 g6 3. g3 Bg7 4. Bg2 O-O 5. O-O d5 6. c4 c6 7. cxd5 cxd5 8. Ne5
+e6 9. Nc3 Nfd7 10. Nf3 {
+Bronstein has no aspiration. Stein tries to keep the game going.} 10... Nc6 11.
+a3 Nb6 12. Bg5 f6 13. Be3 g5 14. h3 h6 15. Bc1 f5 16. e3 Bd7 17. b3 Be8 18. Bb2
+Rc8 19. Rc1 Bh5 20. Ne2 Nd7 21. Qd3 Bg6 22. Qd1 Bh5 23. Qd3 Bg6 24. Qd1 Qe7 25.
+Ne1 Bh5 26. Nf3 Qd6 27. Qd3 a6 28. Rfe1 Ne7 29. Qd2 Bf6 30. Rxc8 Rxc8 31. Rc1
+1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "5"]
+[White "Kholmov, Ratmir"]
+[Black "Geller, Efim"]
+[Result "1/2-1/2"]
+[ECO "C96"]
+[Annotator "JvR"]
+[PlyCount "84"]
+[EventDate "1964.??.??"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 d6 8. c3
+O-O 9. h3 Na5 10. Bc2 c5 11. d4 Nd7 {Keres made this move popular. Black
+prepares an opening of the Closed Ruy Lopez.} 12. Nbd2 cxd4 13. cxd4 Nc6 14.
+Nf1 exd4 15. Nxd4 Nxd4 16. Qxd4 Ne5 17. f4 $5 ({Less ambitious is the previous
+} 17. Qd1 {(Kholmov-Novopashin, Leningrad 1963).}) 17... Nc6 18. Qf2 Bh4 $1 {
+Black gains potential counter-play on the long diagonal a8-h1.} 19. g3 Bf6 20.
+Rd1 $1 Qc7 21. Kh2 Bb7 22. Bb1 Rfe8 23. Be3 Rac8 24. Bb6 Qb8 25. Ne3 Ba8 26.
+Nd5 Bd8 27. Bxd8 Rcxd8 28. a4 {Most pieces operate from a long distance.} 28...
+Ne7 {An attack on the blockader has a high priority.} 29. Ne3 $6 ({
+A positional plus keeps} 29. Nb4 $1 Qc8 30. axb5 axb5 31. Bd3) 29... d5 $1 {
+A freeing move liberates.} 30. e5 d4 31. Ng2 Qb6 32. axb5 axb5 33. Ra3 g6 $6 ({
+Pressure remains with} 33... b4 34. Rad3 Be4 35. R3d2 Bxb1 36. Rxb1 Rd5 37.
+Rbd1 Red8) 34. Nh4 b4 35. Rad3 Rd7 36. R3d2 Qc5 37. Ba2 Nc6 38. Nf3 h6 39. Kg1
+Qa7 40. Bb1 Qb7 41. Kh2 Na5 42. Nxd4 {
+Black has ruined his kingside and lost a pawn.} 42... Qb6 ({
+Boleslavsky analyses} 42... Nc4 $1 43. Re2 ({His main variation is} 43. Rc2 $2
+Red8 $1 44. Rxc4 Rxd4 $1 45. Rcxd4 Rxd4 {and Black survives}) 43... Qb6 44. b3
+Na3 45. f5 $1 Nxb1 46. e6 $1 fxe6 47. Rxe6 Qd8 48. Qf4 Rxe6 49. fxe6 g5 50.
+exd7 $1 gxf4 51. Ne6 fxg3+ 52. Kxg3 Qb8+ 53. Kh4 {is far stronger.}) (42... Qb6
+{Kholmov should have resumed the game. A great attack starts} 43. Qe2 $1 {
+(threatens 44.Nb5)} 43... Red8 44. e6 $1 fxe6 45. Bxg6) 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "5"]
+[White "Spassky, Boris"]
+[Black "Suetin, Alexei"]
+[Result "1-0"]
+[ECO "B48"]
+[Annotator "JvR"]
+[PlyCount "81"]
+[EventDate "1964.??.??"]
+
+1. e4 c5 2. Nf3 e6 3. d4 cxd4 4. Nxd4 Nc6 5. Nc3 Qc7 6. Be3 a6 7. f4 b5 8. Nxc6
+Qxc6 9. Be2 b4 $6 ({An excellent move is} 9... Ba3 {A solid answer gives} 10.
+Nxb5 axb5 11. bxa3 Qxe4 12. Qd4 Nf6 13. Qxe4 Nxe4 14. Bxb5 {
+(Malmdin-Bjuhr, Swedish corr. 1969).}) 10. Bf3 $1 bxc3 11. e5 cxb2 12. Rb1 $1
+Bb4+ $1 ({Black improves on} 12... Qc3+ $6 13. Bd2 Qa3 14. Bxa8 {
+(Ivkov-Szabo, Sarajevo 1963).}) 13. Kf2 Qc3 14. Bxa8 f6 15. Be4 $1 {
+Overprotection of pawn c2 frees the queen for other tasks.} 15... Nh6 ({
+Boleslavsky analyses the forced line} 15... fxe5 $6 16. Qh5+ g6 17. Bxg6+ $1
+hxg6 18. Qxh8 Qxc2+ 19. Kg3 exf4+ 20. Bxf4 Qd3+ 21. Kh4 Be7+ 22. Bg5 Bxg5+ 23.
+Kxg5 Qf5+ 24. Kh4 g5+ 25. Kh5 Kf7 (25... Qf7+ 26. Kxg5) 26. Rhf1 Nf6+ 27. Qxf6+
+$1 $18) 16. exf6 Qxf6 17. Qh5+ Nf7 18. c4 $1 {White prevents d7-d5.} 18... g6
+19. Qe2 Bc3 20. Bf3 O-O 21. Rhd1 g5 $1 22. Qd3 $1 {
+Boris brings new life to the game.} 22... gxf4 23. Bd4 Bxd4+ 24. Qxd4 Ne5 25.
+Rxb2 Nxc4 $1 26. Qxf6 Rxf6 27. Rb8 Rf8 28. Rc1 d5 29. Be2 Nd6 30. Rc6 Ne4+ 31.
+Ke1 Bd7 32. Rxf8+ Kxf8 33. Rxa6 Ke7 34. Ra8 Kd6 35. a4 Bc6 36. Ra7 Nc5 37. a5 {
+Black has chances in the centre.} 37... d4 $6 (37... Nd7 $1 {
+restricts the rook.} 38. g3 fxg3 39. hxg3 d4) 38. Bf3 e5 $6 ({
+More resistance offers} 38... Bb5 39. Rxh7 e5 40. Rh6+ Kc7 41. Rh5 Kd6 42. g3
+fxg3 43. hxg3) 39. Bxc6 Kxc6 40. Rxh7 e4 41. a6 $1 (41. a6 {
+The simple pointe is} 41... Nxa6 42. Rh6+ Kb5 43. Rxa6 Kxa6 44. h4) 1-0
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "6"]
+[White "Korchnoi, Viktor"]
+[Black "Spassky, Boris"]
+[Result "1/2-1/2"]
+[ECO "A54"]
+[Annotator "JvR"]
+[PlyCount "81"]
+[EventDate "1964.??.??"]
+
+1. c4 e5 2. Nc3 Nc6 3. Nf3 Nf6 4. g3 d6 5. Bg2 Be7 6. d4 O-O 7. d5 Nb8 8. e4
+Bg4 9. h3 Bxf3 (9... Bh5 {is less passive.}) 10. Qxf3 c6 11. h4 a5 12. Qe2 Nfd7
+$5 13. Bh3 Na6 14. Kf1 $5 Nc7 (14... Nac5 15. Kg2 a4 {
+gives an active alternative.}) 15. Kg2 Rb8 16. Be3 cxd5 17. cxd5 Nc5 18. Rab1
+Qe8 $6 ({Consistency shows} 18... b5 19. b4 axb4 20. Rxb4 N5a6 21. Rb3 b4) 19.
+Rhd1 Rd8 20. b4 axb4 21. Rxb4 N7a6 22. Rb2 Ra8 23. Qc4 Kh8 24. a4 g6 25. Bh6
+Rg8 26. a5 Bd8 27. Ra1 Qe7 28. Be3 Rf8 29. Nb5 f5 $1 {
+At last Spassky becomes active.} 30. exf5 $6 (30. f3 $1 {
+keeps the centre intact.}) 30... gxf5 31. Bg5 Qd7 32. f4 Qg7 33. Nxd6 exf4 34.
+Rab1 Bxg5 35. hxg5 f3+ 36. Kxf3 Qe5 37. Nb5 ({Tal warns for} 37. Nxb7 $4 Ne4 $1
+) 37... Rad8 38. Qc3 Rxd5 39. Qxe5+ Rxe5 40. Nd6 Rd5 41. Nxb7 (41. Nxb7 Rd3+
+42. Kg2 Ne4 $11) 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "6"]
+[White "Stein, Leonid"]
+[Black "Kholmov, Ratmir"]
+[Result "1/2-1/2"]
+[ECO "C43"]
+[Annotator "JvR"]
+[PlyCount "59"]
+[EventDate "1964.??.??"]
+
+1. e4 e5 2. Nf3 Nf6 3. d4 exd4 $5 4. e5 Ne4 5. Qxd4 d5 6. exd6 Nxd6 7. Nc3 Nc6
+8. Qf4 Bf5 9. Bb5 $1 Qe7+ 10. Be3 Nxb5 11. Nxb5 Qb4+ 12. Qxb4 Bxb4+ 13. c3 Ba5
+$2 ({Correct is} 13... Bd6 14. Nxd6+ cxd6 15. O-O-O Be6 16. Rxd6 Bxa2 {
+(Matulovic-Kholmov, Sochi 1968).}) 14. b4 Bd3 $1 15. a4 a6 16. O-O-O $2 ({
+White wins a pawn by} 16. Nbd4 $1 Bb6 17. Nxc6 bxc6 18. Bxb6 $1 cxb6 19. O-O-O
+O-O-O 20. Ne5 Be4 21. Nxf7 Bxg2 22. Rxd8+ $1 Rxd8 23. Nxd8 Bxh1 24. Ne6 {
+(Kholmov).}) 16... Be2 $1 {
+The highlight of a theoretical duel has been reached.} 17. bxa5 ({Easily draws
+} 17. Rde1 $1 Bxf3 18. gxf3 axb5 19. axb5 Nd8 20. bxa5 Ne6) 17... axb5 18. Rde1
+Bxf3 19. axb5 Bd5 ({Black can play for a win with} 19... Nxa5 $1 {(Tal)} 20.
+gxf3 O-O) 20. bxc6 Bxc6 21. Bg5+ Kf8 22. Be7+ Kg8 23. Bb4 b6 (23... Bxg2 $2 24.
+Rhg1 {and White starts an attack.}) 24. axb6 cxb6 25. Kb2 h5 26. f3 h4 27. Re3
+h3 28. g4 Kh7 29. c4 Ra4 30. Kb3 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "6"]
+[White "Suetin, Alexei"]
+[Black "Bronstein, David"]
+[Result "0-1"]
+[ECO "B18"]
+[Annotator "JvR"]
+[PlyCount "166"]
+[EventDate "1964.??.??"]
+
+1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. N1e2 Nf6 7. Nf4 Nd5 $5
+{The players leave the theory fast.} 8. Nxg6 hxg6 9. Be2 Nf6 10. Qd3 e6 11. Bd2
+Nbd7 12. O-O-O Qc7 13. Bf3 O-O-O 14. Qb3 Bd6 15. Kb1 Bf4 16. Be1 $5 {
+White avoids exchange.} 16... g5 17. Nf1 g4 18. Be2 Bh6 19. f3 gxf3 20. Bxf3
+Bf4 21. g3 Bd6 22. Ne3 Nd5 23. Nc4 Be7 24. Ba5 N5b6 25. Ne3 Bg5 26. Ng4 Rhe8
+27. Nf2 c5 28. Bg2 cxd4 29. Rxd4 Nc5 30. Rxd8+ Rxd8 31. Qf3 Bf6 32. Nd1 Rd7 33.
+Nc3 Qe5 34. Bxb6 axb6 35. Rd1 Rxd1+ 36. Nxd1 Qe1 37. a3 Kd8 38. h4 Ke8 39. h5
+Be5 40. g4 Qd2 41. Bf1 Bf4 $1 42. Nc3 $1 Ke7 43. Be2 $2 ({Correct is} 43. Qe2 {
+(Tal).}) 43... Qc1+ 44. Ka2 Be5 $1 45. Nd1 $5 {
+White sacrifices a pawn in despair.} ({Horrible passivity brings} 45. Bd3 Bxc3
+46. bxc3 Nxd3 47. Qxd3 Qf4 48. Qd1 Qc4+ 49. Kb2 e5) 45... Qxc2 46. Bb5 Qd2 47.
+Kb1 Bf4 48. Nc3 Qc1+ 49. Ka2 Be5 50. Nd1 f6 51. Qe2 Bd4 52. Nf2 Bxf2 53. Qxf2
+Qg5 54. Be2 Qd5+ 55. Kb1 Qe4+ 56. Ka2 Kd6 57. Bf3 Qc4+ 58. Kb1 Qd3+ 59. Ka2 e5
+60. g5 $5 fxg5 61. Bxb7 $5 Qc4+ 62. Kb1 Qf4 {Bronstein plays it safe.} 63. Qg1
+Qf5+ 64. Ka1 g4 65. b4 Nb3+ 66. Kb2 Nd4 67. Qd1 Qf2+ 68. Kb1 g3 69. Qd3 Qe1+
+70. Kb2 Qe2+ 71. Kc3 Kc7 72. Qe4 Qc2+ 73. Qxc2 Nxc2 74. Be4 Ne3 75. Kd3 g2 76.
+Bxg2 Nxg2 77. Ke4 Kd6 78. a4 Nf4 79. a5 bxa5 80. bxa5 Nxh5 81. a6 Nf6+ 82. Kf5
+Nd5 83. a7 Nb6 0-1
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "7"]
+[White "Bronstein, David"]
+[Black "Korchnoi, Viktor"]
+[Result "1-0"]
+[ECO "D24"]
+[Annotator "JvR"]
+[PlyCount "71"]
+[EventDate "1964.??.??"]
+
+1. d4 d5 2. c4 dxc4 3. Nf3 Nf6 4. Nc3 a6 5. e4 b5 6. e5 Nd5 7. a4 Nxc3 8. bxc3
+Qd5 9. g3 Bb7 10. Bg2 Qd7 11. Ba3 $1 e6 $6 12. Bxf8 Kxf8 13. O-O g6 14. Nh4 c6
+$2 {Simagin advices the exchange of bishops.} 15. f4 Qe7 $6 (15... Kg7 16. Qg4
+c5 {is better.}) 16. Qd2 Kg7 17. f5 exf5 18. Rxf5 $1 Bc8 19. Rf6 Ra7 20. Raf1
+Be6 21. Qg5 Qe8 {The next three moves by White win against any defence.} 22.
+Be4 Rg8 23. Ng2 $1 Kh8 24. Nf4 Re7 25. axb5 axb5 26. Qh6 Nd7 27. Bxc6 b4 28. d5
+Bg4 29. e6 $1 {Black has been overwhelmed.} 29... Qf8 ({Clearly ends} 29...
+fxe6 30. Nxg6+ $1 Rxg6 31. Rf8+) 30. Qxf8 Nxf8 31. h3 g5 32. d6 Rxe6 33. Nxe6
+Bxe6 34. cxb4 Kg7 35. Be8 c3 36. Bxf7 1-0
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "7"]
+[White "Geller, Efim"]
+[Black "Stein, Leonid"]
+[Result "1-0"]
+[ECO "D87"]
+[Annotator "JvR"]
+[PlyCount "77"]
+[EventDate "1964.??.??"]
+
+1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. cxd5 Nxd5 5. e4 Nxc3 6. bxc3 Bg7 7. Bc4 O-O 8.
+Ne2 Nc6 9. O-O Na5 10. Bd3 c5 11. Be3 b6 12. Qd2 Nc6 $5 13. d5 $1 Ne5 14. Rad1
+e6 15. Nf4 Qe8 $6 (15... Nxd3 $1 16. Qxd3 exd5 17. Nxd5 Be6 {
+avoids difficulties.}) 16. Rfe1 Nxd3 17. Nxd3 exd5 18. exd5 Qd8 {
+Black has wasted valuable time.} 19. c4 Ba6 20. Bh6 $1 Bxh6 21. Qxh6 Bxc4 22.
+Ne5 Bb5 $1 (22... Bxa2 $2 23. Rd2 $1 Bb3 24. Re3 Bc2 25. Rh3 {ends quickly.})
+23. Re3 Qf6 24. h4 $1 {White has a great attack for only one pawn.} 24... Rae8
+$2 ({A proper defence gives} 24... Rad8 $1 25. h5 Ba4 {
+Black seems to survive in} 26. Rd2 Rfe8 27. hxg6 hxg6 28. f4 Qg7) 25. Rde1 Qg7
+26. Qf4 f6 27. Nc6 Bxc6 28. dxc6 Re5 ({Black ;oses in} 28... Rxe3 29. Rxe3 f5
+30. Rd3 Qa1+ 31. Kh2 Qf6 32. c7 Rc8 33. Rd7) 29. Rd1 Qc7 30. Rxe5 fxe5 31. Qe4
+Rd8 (31... Qf7 32. f3 Re8 33. h5 $18) 32. Rxd8+ Qxd8 33. Qxe5 Kf7 34. c7 Qd1+
+35. Kh2 Qd7 36. f4 Qg4 37. f5 Qxh4+ 38. Kg1 Qh6 39. Qe6+ 1-0
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "7"]
+[White "Kholmov, Ratmir"]
+[Black "Suetin, Alexei"]
+[Result "0-1"]
+[ECO "B99"]
+[Annotator "JvR"]
+[PlyCount "81"]
+[EventDate "1964.??.??"]
+
+1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Bg5 e6 7. f4 Nbd7 $5 8.
+Qf3 Be7 9. O-O-O Qc7 10. g4 b5 11. Bxf6 gxf6 $6 12. h4 $6 ({
+Theory proceeds with} 12. f5 Ne5 13. Qh3 O-O {(Gligoric-Fischer, Bled 1959).})
+12... b4 $1 13. Nce2 Bb7 14. Ng3 d5 15. Bg2 dxe4 16. Nxe4 O-O-O $1 17. Rhe1 $2
+({Equality keeps} 17. f5 Ne5 18. Qe2 Qb6 19. Nb3) 17... h5 $1 18. f5 Ne5 19.
+Qb3 Qb6 20. c3 Bd5 21. Qc2 hxg4 22. cxb4+ Kb8 23. a3 Rxh4 24. Re2 g3 25. Kb1
+Rc8 26. Qd2 Bc4 27. Re3 Bd5 28. b3 Rh2 29. Qe2 Nc6 30. Nc2 Na7 31. Rxg3 Nb5 {
+White has regained a pawn at the cost of terrible pins.} 32. a4 $5 (32. Kb2 Qc7
+{Black threatens 33...Qxg3 and 33...Qxc2+ 34.Qxc2 Rxc2+ 35.Kxc2 Bxe4+.}) 32...
+Rxc2 $1 33. Kxc2 Nd4+ 34. Rxd4 Qxd4 35. Nc3 Bxg2 36. Rxg2 Rh3 37. Qe1 $2 ({
+No piece loses} 37. Rg8+ Ka7 38. Ra8+ Kxa8 39. Qg2+ Ka7 40. Qxh3 Bxb4 {
+but Black wins anyway.}) 37... Rxc3+ $1 38. Qxc3 Qe4+ 39. Kc1 Qxg2 40. Qd3 Qc6+
+41. Kb2 {Standings after one turn: Bronstein 4, Kholmov 3 1/2, Geller and
+Suetin 3, Korchnoi, Stein and Spassky 2 1/2. Bronstein leads. Stein and
+Spassky are trailing.} 0-1
+
+
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "8"]
+[White "Bronstein, David"]
+[Black "Spassky, Boris"]
+[Result "1/2-1/2"]
+[ECO "D27"]
+[Annotator "JvR"]
+[PlyCount "60"]
+[EventDate "1964.??.??"]
+
+1. Nf3 Nf6 2. d4 d5 3. c4 dxc4 4. e3 e6 5. Bxc4 c5 6. O-O a6 7. dxc5 Qxd1 8.
+Rxd1 Bxc5 9. Nbd2 b5 10. Be2 Bb7 11. Nb3 Be7 12. Na5 Bd5 13. Bd2 Nc6 14. Nxc6
+Bxc6 15. Nd4 Bd5 16. f3 Bc5 17. Nc2 Ke7 {The players take no risks.} 18. Kf1
+Nd7 19. e4 Bb7 20. a4 bxa4 21. Rxa4 Rhc8 22. Bc3 f6 23. h4 Nb6 24. Ra5 Bd6 25.
+Ne3 Bf4 26. Bd4 Nd7 27. Nc4 Bc6 28. Na3 Bb7 29. Nc4 Bc6 30. Na3 Bb7 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "8"]
+[White "Geller, Efim"]
+[Black "Suetin, Alexei"]
+[Result "1/2-1/2"]
+[ECO "A39"]
+[Annotator "JvR"]
+[PlyCount "180"]
+[EventDate "1964.??.??"]
+
+1. Nf3 Nf6 2. c4 c5 3. Nc3 Nc6 4. g3 g6 5. Bg2 Bg7 6. O-O O-O 7. d4 cxd4 8.
+Nxd4 Nxd4 9. Qxd4 d6 10. Qh4 $5 Rb8 $6 {
+White is allowed to take the initiative.} ({The theory will be improved with} 
+10... Be6 $1 11. Bxb7 Rb8 12. Bd5 Bxd5 13. Nxd5 Nxd5 14. cxd5 Bxb2 {
+(Smyslov-Geller, Santiago 1965).}) 11. Bh6 Qa5 12. Bxg7 Kxg7 13. Nd5 Nxd5 14.
+Bxd5 f6 15. Rfd1 Bf5 16. Qf4 Qb4 17. Qe3 Rfe8 18. b3 a5 19. h4 Qc5 20. Qf4 Bd7
+21. Rac1 a4 22. Qd2 axb3 23. axb3 Qb6 24. b4 Rbc8 25. Ra1 Red8 26. Ra3 Bc6 27.
+Re3 Bxd5 28. cxd5 Rd7 29. Re4 Qa7 30. Kg2 Qa4 31. Rc1 Rxc1 32. Qxc1 Qb5 $1 33.
+Qc4 Qxc4 34. Rxc4 f5 35. f4 Kf6 $6 (35... e6 $1 36. dxe6 Re7 37. Rd4 Rxe6 {
+equalises.}) 36. Kf3 e6 37. e4 Ke7 38. b5 exd5 39. exd5 b6 40. Rc6 Rb7 41. g4
+h5 42. g5 Kd7 43. Ke3 Rb8 44. Kd2 Rb7 45. Kc2 Rb8 46. Kd3 Rb7 47. Kc3 Rb8 48.
+Kb3 Rb7 49. Rc1 Rb8 50. Ra1 Re8 $2 ({White makes no progress in} 50... Kc7 $1
+51. Re1 Kd7 52. Re6 Rg8 53. Rf6 Ke7 54. Kb4 Rg7 $1) 51. Ra7+ Kc8 52. Ra8+ Kd7
+53. Ra7+ Kc8 54. Rg7 Re3+ 55. Kc2 Re4 56. Rxg6 Rxf4 {
+White has to strike immediately.} 57. Rg8+ $2 ({Better is} 57. Rxd6 Rxh4 58.
+Rxb6 Rg4 59. Rc6+ Kb7 {(Konstantinopolsky)} {Now} 60. Rg6 $1 h4 61. Kc3 $1 h3
+62. d6 h2 63. Rh6 Rxg5 64. Rxh2 f4 65. Kc4 {brings a great advantage.}) 57...
+Kd7 58. Rb8 Kc7 59. Ra8 Rg4 $1 (59... Rxh4 $4 60. g6 Rg4 61. g7 $1) 60. Kd3
+Rg3+ 61. Ke2 Rg4 62. Kf3 Kd7 63. Rb8 Kc7 64. Ra8 Kd7 65. Rb8 Kc7 66. Rf8 Kd7
+67. g6 $5 {At last White makes a choice.} (67. Rf7+ Ke8 68. Rb7 Rxh4 69. Rxb6
+Kd7 70. Rb7+ Kc8 71. Rh7 Rg4 72. Rxh5 Kc7 {does not win either.}) 67... Rxg6
+68. Rxf5 Rg4 69. Rxh5 Rb4 70. Rh7+ Ke8 71. h5 Rxb5 72. Ke4 Rb1 73. Kf5 Kf8 74.
+h6 Kg8 75. Rd7 b5 76. Rxd6 b4 77. Ke4 b3 78. Kd3 Rc1 79. Rb6 Rd1+ 80. Kc4 Rc1+
+81. Kd4 Rd1+ 82. Kc5 Rc1+ 83. Kd6 Rb1 84. Rb7 Kh8 85. Ke6 Kg8 {
+Finally the critical position has been reached.} 86. d6 (86. h7+ Kh8 87. Ke5
+Re1+ $1 (87... b2 $4 88. Kd6 {and zugzwang}) 88. Kd6 Rb1 $11) 86... b2 $1 87.
+d7 Re1+ 88. Kf6 Rf1+ 89. Ke7 Re1+ 90. Kd8 b1=Q 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "8"]
+[White "Kholmov, Ratmir"]
+[Black "Korchnoi, Viktor"]
+[Result "1/2-1/2"]
+[ECO "B83"]
+[Annotator "JvR"]
+[PlyCount "83"]
+[EventDate "1964.??.??"]
+
+1. e4 c5 2. Nf3 e6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 d6 6. Be2 Be7 7. O-O O-O 8.
+Be3 Nc6 9. f4 Bd7 10. Qe1 Nxd4 11. Bxd4 Bc6 12. Qg3 g6 13. Qe3 Qa5 14. e5 $1 {
+Kholmov pressures in the centre.} 14... dxe5 15. fxe5 Nd7 16. Rad1 Bc5 17. Bxc5
+Qxc5 18. Qxc5 Nxc5 {White has a minimal advantage in the endgame.} 19. Bf3 (19.
+Bb5 $1 Rfd8 20. Bxc6 bxc6 21. a3 {keeps a plus.}) 19... Rac8 $6 {
+Black should exchange.} 20. Rd4 ({Better is} 20. Bxc6 Rxc6 21. a3) 20... Rfd8
+21. Rf4 Be8 22. Rf2 Kg7 23. h4 b6 24. Kh2 Nd7 25. Re2 Rc5 26. Rfe4 Rdc8 27. Kg3
+b5 28. Kf4 Nb6 29. Rd4 Rc4 30. Rxc4 Nxc4 31. Nd1 Rd8 32. Re1 Rd4+ 33. Kg3 Rd2
+34. b3 Na3 35. c3 Kf8 ({The effort} 35... Rxa2 36. Nf2 $1 Rb2 37. Ng4 Rxb3 38.
+Nf6 Kf8 39. Rd1 Nc4 40. Rd8 Nxe5 41. Rxe8+ Kg7 42. Ne4 {steers toward equality.
+}) 36. Nf2 $1 Rxa2 37. Ng4 a5 38. Rd1 Ke7 39. Nf6 Rc2 40. Ng8+ Kf8 41. Nf6 Ke7
+42. Ng8+ 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "9"]
+[White "Korchnoi, Viktor"]
+[Black "Geller, Efim"]
+[Result "1-0"]
+[ECO "D55"]
+[Annotator "JvR"]
+[PlyCount "107"]
+[EventDate "1964.??.??"]
+
+1. d4 Nf6 2. c4 e6 3. Nc3 d5 4. Bg5 Be7 5. Nf3 O-O 6. e3 h6 7. Bxf6 Bxf6 8. Rc1
+c6 9. Qc2 Nd7 10. cxd5 cxd5 ({The defence reorganises} 10... exd5 $1 11. Bd3
+Be7) 11. Bd3 Nb6 12. O-O Bd7 13. e4 $1 Rc8 (13... dxe4 $6 14. Bxe4 Rb8 {
+is ugly.}) 14. e5 Be7 15. Qe2 Nc4 $1 16. g3 Qb6 17. Rc2 Rc7 18. Rfc1 Rfc8 19.
+Nb1 a6 20. h4 Qa5 21. a3 Qb6 22. Kh2 Na5 23. Rxc7 Rxc7 24. Rxc7 Qxc7 25. Qd1
+Nc4 26. Qb3 Bb5 27. Nc3 {The next move costs a pawn.} 27... Nd2 $2 (27... Nxa3
+28. Nxb5 Nxb5 29. Bxb5 axb5 30. Qxb5 $11) 28. Nxd2 Bxd3 29. Nxd5 exd5 30. Qxd3
+Qc1 31. b4 a5 32. bxa5 Qxa3 33. Qxa3 Bxa3 {
+Black sets his hopes on the strength of the bishop.} 34. f4 Bb4 35. Nb3 h5 36.
+f5 g6 37. f6 Kf8 38. Kg2 Ke8 39. Kf3 Bc3 40. g4 Be1 41. gxh5 gxh5 42. Nc5 Bxa5
+43. Nxb7 Bb4 44. Nd6+ $1 Kf8 {Even exchange loses.} 45. Nf5 Be1 46. Ng7 Bxh4
+47. Nxh5 Ke8 48. Nf4 Kd7 49. Nxd5 Be1 50. Ke4 Bd2 51. Ne3 Bc1 52. Nf5 Ba3 53.
+d5 Bb4 54. Ng7 1-0
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "9"]
+[White "Spassky, Boris"]
+[Black "Kholmov, Ratmir"]
+[Result "1-0"]
+[ECO "A26"]
+[Annotator "JvR"]
+[PlyCount "87"]
+[EventDate "1964.??.??"]
+
+1. c4 e5 2. Nc3 d6 3. g3 Nc6 4. Bg2 g6 5. Nf3 Bg7 6. O-O Nge7 7. Rb1 O-O 8. d3
+h6 $5 9. b4 f5 {Both players have their strategic aims. White charges on the
+queenside and Black on the other flank.} 10. b5 Nb8 11. Nd2 Nd7 12. a4 Nf6 13.
+e3 c6 14. bxc6 bxc6 15. Ba3 Ne8 $5 (15... Be6 {continues the development.}) 16.
+Rb3 (16. Ne2 {prevents the next advance.}) 16... f4 17. Nde4 g5 18. Re1 Rf7 (
+18... g4 {goes on with the march.}) 19. Bf3 Rf8 20. Bg2 Be6 21. Rb7 Bc8 22. Rb3
+{This position occurs for the third time. Could Black have claimed a draw?}
+22... Be6 23. Qe2 Kh8 24. Reb1 Nf5 25. Rb7 Bc8 26. R7b3 g4 $1 27. Qd2 fxg3 $6 (
+27... Rf7 {is a useful move.}) 28. fxg3 h5 29. Nd1 Bh6 30. Qe1 Be6 31. Rb7 Neg7
+$6 ({Yudovich advices} 31... Bc8) 32. Nec3 Ne7 {
+Kholmov has underestimated the power of Rb7.} 33. d4 $1 exd4 34. exd4 Nef5 35.
+d5 $1 cxd5 $5 ({Insufficient is} 35... Bc8 {due to} 36. dxc6 $1 Bxb7 37. cxb7 {
+(Yudovich).}) 36. Nxd5 Bxd5 37. Bxd5 Nd4 38. Qe7 $1 Qa5 $2 (38... Qxe7 $1 39.
+Rxe7 Ngf5 40. Bxa8 Nxe7 41. Bxd6 Rxa8 42. Bxe7 Re8 43. Bf6+ Bg7 {
+Black has survival chances in the endgame.}) 39. Bb4 Qxa4 40. Qxd6 Ndf5 41. Qg6
+$1 Qe8 42. Qxe8 Rfxe8 43. Bc3 h4 $2 44. Rf7 $1 {Finally Boris is back on 50%.}
+1-0
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "9"]
+[White "Suetin, Alexei"]
+[Black "Stein, Leonid"]
+[Result "0-1"]
+[ECO "C96"]
+[Annotator "JvR"]
+[PlyCount "118"]
+[EventDate "1964.??.??"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O b5 6. Bb3 d6 7. Re1 Be7 8. c3
+O-O 9. h3 Na5 10. Bc2 c5 11. d4 Nd7 12. Nbd2 cxd4 13. cxd4 Nc6 14. Nb3 ({
+The usual} 14. Nf1 {was played in Kholmov-Geller (round four).}) 14... a5 15.
+Bd3 Rb8 16. Be3 a4 17. d5 $2 {Pawn d5 becomes weak.} ({Correct is} 17. Nc1 {
+(Kursunsky-Zakharian, Riga 1975).}) 17... Nb4 $1 18. Nc1 f5 $1 19. exf5 Nxd5
+20. Ba7 Rb7 21. Be4 Rxa7 22. Bxd5+ Kh8 23. Nd3 Nf6 24. Nb4 Nxd5 25. Qxd5 Bb7
+26. Qd3 (26. Qxb5 Bxf3 27. gxf3 Qc8 {brings a positional horror.}) 26... a3 27.
+bxa3 Qa8 28. Re3 Bxf3 29. gxf3 Bg5 30. Re4 Rxa3 31. Qxd6 Rxf3 32. Rae1 R3xf5
+33. R1e2 Qa7 $2 (33... Bf4 $1 {keeps the advantage.}) 34. Nd3 Be7 35. Qd5 Bf6
+36. Qxb5 Qf7 37. Qb4 Be7 38. Qb3 Rg5+ 39. Kh2 Qg6 40. f4 $1 {
+White has defended well in the last phase.} 40... exf4 41. Ne5 $2 ({
+Yudovich gives the spectacular escape} 41. Rxe7 f3 42. Nf4 $1 Qd6 43. Qxf3 Rxf4
+44. R7e6) 41... Rxe5 $1 42. Rxe5 Bd6 43. Qf3 Bxe5 44. Rxe5 h6 45. Re2 Qb1 46.
+Rf2 Rf6 47. Qa8+ Kh7 48. Qf3 Qf5 49. a4 Rf7 50. Rd2 Ra7 51. Qd1 Rc7 52. Qb3 Qe4
+53. Rf2 Rc4 54. a5 Ra4 55. Qb6 $6 (55. Qc3 {is better.}) 55... Ra1 $1 56. Rg2
+Qe5 $1 57. Qg6+ Kh8 58. h4 f3+ 59. Rg3 f2 0-1
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "10"]
+[White "Geller, Efim"]
+[Black "Spassky, Boris"]
+[Result "0-1"]
+[ECO "C72"]
+[Annotator "JvR"]
+[PlyCount "60"]
+[EventDate "1964.??.??"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 d6 5. O-O Bg4 6. h3 Bh5 7. c3 Nf6 8. d4 b5
+9. Bb3 Be7 10. Be3 O-O 11. Nbd2 d5 $5 {Boris plays his favourite move in the
+Ruy Lopez. The opening of the centre sharpens the game.} 12. g4 Bg6 13. dxe5 ({
+Bondarevsky prefers} 13. Nxe5 $1 Nxe5 14. dxe5 Nxe4 15. Nxe4 dxe4 16. Bd5)
+13... Nxe4 14. Nb1 Qc8 $6 ({Stronger is} 14... Qe8 $1 15. Bxd5 Rd8 16. Bxc6
+Qxc6 17. Nd4 Qd7) 15. Nd4 $6 ({Relatively best is} 15. Qxd5 Na5 16. Qd1 h5 17.
+Nh2) ({No future has} 15. Bxd5 $2 Rd8 16. a4 Na5 $1) 15... Nxe5 16. f4 c5 17.
+fxe5 cxd4 18. cxd4 Qd7 19. Nd2 f6 20. Rc1 Kh8 21. Bf4 $2 ({White has to try} 
+21. Nxe4 Bxe4) 21... fxe5 22. Bxe5 Bg5 $1 23. Rc7 {
+Spassky has prepared a wonderful surprise.} 23... Qxc7 $3 24. Bxc7 Be3+ 25. Kg2
+Nxd2 26. Rxf8+ Rxf8 27. Bxd5 Rf2+ 28. Kg3 Nf1+ 29. Kh4 h6 30. Bd8 Rf8 0-1
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "10"]
+[White "Kholmov, Ratmir"]
+[Black "Bronstein, David"]
+[Result "1/2-1/2"]
+[ECO "D32"]
+[Annotator "JvR"]
+[PlyCount "83"]
+[EventDate "1964.??.??"]
+
+1. c4 Nf6 2. Nc3 c5 3. Nf3 e6 4. e3 Nc6 5. d4 d5 6. cxd5 exd5 7. Be2 cxd4 8.
+Nxd4 {White will beleaguer the isolated pawn with little success.} 8... Bd6 9.
+O-O O-O 10. Nf3 Bg4 11. b3 Bxf3 12. Bxf3 Be5 13. Bb2 Qa5 14. a3 Rac8 15. b4 Qd8
+16. Qb3 Qd6 17. h3 Qe6 18. Rfe1 Rfd8 19. Rad1 Ne7 20. Ne2 Bxb2 21. Qxb2 Ng6 22.
+Nd4 Qe5 23. Rc1 Ne7 24. Rxc8 Rxc8 25. Rc1 Rxc1+ 26. Qxc1 g6 27. Qc5 b6 28. Qc1
+Kg7 29. Nb5 a6 30. Nd4 Ne4 31. Be2 a5 32. Bd3 axb4 33. axb4 Nf6 34. f4 Qd6 35.
+Qc3 h5 36. g4 hxg4 37. hxg4 Kg8 38. g5 Ne4 39. Bxe4 dxe4 40. Qc2 Qxb4 41. Qxe4
+Qd6 42. Kf2 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "10"]
+[White "Stein, Leonid"]
+[Black "Korchnoi, Viktor"]
+[Result "1-0"]
+[ECO "B84"]
+[Annotator "JvR"]
+[PlyCount "93"]
+[EventDate "1964.??.??"]
+
+1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Be2 e6 7. O-O Be7 8. f4
+Qc7 9. Qe1 O-O 10. Qg3 $5 Qb6 $5 {
+A furious fight for a place at the interzonal tournament has started.} 11. Be3
+$1 Qxb2 12. Bf2 Qb4 13. e5 dxe5 14. fxe5 Ne8 ({Bondarevsky mentions} 14... Nfd7
+$2 15. Nd5 $1 exd5 16. Nf5 g6 17. a3) 15. Bd3 Qa5 16. Ne4 Nd7 17. Nf3 g6 $6 ({
+Better is} 17... f5 18. exf6 Ndxf6) 18. Bd4 Ng7 19. Nf6+ Bxf6 20. exf6 Nh5 21.
+Qh4 Qd8 $2 (21... e5 {halts the attack.}) 22. Rae1 Ndxf6 23. Ng5 e5 ({
+No escape brings} 23... h6 24. Bxf6 hxg5 25. Qxg5 Nxf6 26. Rxf6 {(Bondarevsky).
+}) 24. Bxe5 h6 25. Bxf6 hxg5 26. Qxg5 Nxf6 27. Rxf6 Qd4+ 28. Kh1 Qg4 29. Qh6
+Bf5 30. h3 ({A pawn wins} 30. Bxf5 gxf5 31. Rf1 {but Stein wants the king.})
+30... Qd4 ({Keene tries to save the day with} 30... Qb4 {but} 31. Re5 Bxd3 32.
+cxd3 Qb1+ 33. Kh2 Qxd3 34. Rg5 Rac8 35. Rgxg6+ $1 {wins.}) 31. Rxf5 $1 {
+A sacrifice of the exchange opens the kingside.} 31... gxf5 32. Re3 Qg7 33. Qh4
+Qa1+ 34. Kh2 Rfe8 35. Rg3+ Kf8 36. Qh6+ Ke7 {
+The king is hunted in the open field.} 37. Re3+ Kd7 38. Bxf5+ Kc7 39. Qf4+ Kc6
+40. Qc4+ Kd6 41. Qb4+ Kd5 42. Rd3+ Ke5 43. Qd6+ $1 {The humiliation goes on.}
+43... Kxf5 44. Rf3+ Kg5 45. Qf4+ Kh5 46. g4+ Kg6 47. Qxf7+ {
+Black will be mated quickly.} 1-0
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "11"]
+[White "Bronstein, David"]
+[Black "Geller, Efim"]
+[Result "1/2-1/2"]
+[ECO "A33"]
+[Annotator "JvR"]
+[PlyCount "135"]
+[EventDate "1964.??.??"]
+
+1. d4 Nf6 2. c4 c5 3. Nf3 cxd4 4. Nxd4 Nc6 5. Nc3 e6 6. Ndb5 d5 7. cxd5 Nxd5 8.
+Nxd5 exd5 9. e3 Be6 10. Be2 Be7 11. Bd2 a6 12. Nd4 Nxd4 13. exd4 O-O 14. Qb3
+Re8 15. O-O Bd6 {Geller has set a trap in an equal position.} 16. Bb4 ({
+Bronstein avoids} 16. Qxb7 $2 Bxh2+ $1 17. Kxh2 Qd6+ 18. g3 $1 Reb8 19. Bf4
+Qxf4 20. gxf4 Rxb7) 16... Bc7 17. Bf3 Qg5 18. Rad1 Rad8 19. Bd2 Qe7 20. Rfe1
+Rd7 21. Rc1 Qf6 22. Qd3 Bd6 23. a3 h6 24. Bb4 Bf4 25. Bd2 Bb8 26. Bb4 h5 27.
+Bd2 g6 28. Qe3 Ba7 29. Bc3 Bb8 30. Bd2 Rdd8 31. Ba5 Rc8 32. Rxc8 Rxc8 33. Bc3
+h4 34. h3 Bf4 35. Qe2 Bd6 36. Qe3 Bf4 37. Qe2 Qg5 38. Bg4 Bxg4 39. Qxg4 Qxg4
+40. hxg4 Bd6 {Black has a plus in the endgame.} 41. Re3 Kg7 42. Kf1 b5 43. Ke2
+a5 44. Kd3 b4 45. axb4 axb4 46. Bd2 Bf4 47. Re1 Bxd2 48. Kxd2 b3 49. Re5 $5 ({
+More quickly draws} 49. Rc1 Re8 50. Re1) 49... Rc2+ 50. Ke3 Rxb2 51. Rxd5 Rc2
+52. g5 b2 53. Rb5 Kf8 54. Rb7 Ke8 55. d5 Kd8 56. d6 Kc8 57. Rb5 Kd7 58. Rb6 Ke6
+59. Kf3 Rd2 60. Ke3 Rc2 61. Kf3 Kd7 62. Ke3 Rc5 63. Rxb2 Rxg5 64. Rb7+ Ke6 65.
+Re7+ Kxd6 66. Rxf7 Rxg2 67. Rh7 g5 68. f4 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "11"]
+[White "Korchnoi, Viktor"]
+[Black "Suetin, Alexei"]
+[Result "1/2-1/2"]
+[ECO "D32"]
+[Annotator "JvR"]
+[PlyCount "128"]
+[EventDate "1964.??.??"]
+
+1. c4 c5 2. Nf3 Nf6 3. Nc3 Nc6 4. e3 e6 5. d4 d5 6. cxd5 exd5 7. Be2 Bd6 8.
+dxc5 Bxc5 9. O-O O-O 10. b3 Be6 11. Bb2 Qe7 12. a3 Rfd8 13. Na4 Bd6 14. b4 Ng4
+$5 {The players fight for their last chance.} 15. Rc1 Nce5 16. Nxe5 Nxe5 17.
+Qd4 f6 18. Nc3 Nc6 19. Qh4 Be5 ({The simplification} 19... d4 20. exd4 Nxd4 {
+is avoided.}) 20. Bd3 f5 21. Qxe7 Nxe7 22. Na4 Bxb2 23. Nxb2 Rac8 24. Na4 Rxc1
+25. Rxc1 d4 $2 ({Correct is} 25... b6 26. Rc7 Rd7) 26. exd4 $2 {
+White misses a combination.} (26. Rc7 $1 dxe3 27. Nc5 $1 b6 28. Nxe6 Rxd3 29.
+fxe3 Kf7 30. Nxg7 Kxg7 31. Rxe7+ Kg8 32. Rxa7 Rxe3 {White has won a pawn.})
+26... Rxd4 27. Bf1 Kf7 28. g3 f4 29. Nc5 Bd5 30. Nd3 g5 31. b5 Be4 32. Nb4 $6 {
+Hereafter White gets a passive position.} ({Better is} 32. Nc5) 32... Ke6 33.
+gxf4 gxf4 34. Nc2 Rd8 35. Bh3+ Kf6 36. Ne1 Rd4 37. Bg2 Nf5 38. Bxe4 Rxe4 39.
+Nf3 Ra4 40. Rc7 Rxa3 41. Kg2 Ra2 42. Rxh7 $6 (42. Ne1 {is prudent.}) 42... Ne3+
+$1 43. Kh3 Rxf2 44. Nh4 b6 45. Rxa7 Rb2 46. Ra8 Nd5 47. Rf8+ Ke5 48. Ng6+ Ke4
+49. Re8+ Kd4 50. Rd8 Kc5 51. Rf8 Rf2 52. Rf5 Kd4 53. Rf8 Rf1 54. Nh4 Kc4 55.
+Kg4 Rg1+ $6 (55... Kxb5 56. Nf3 Kb4 57. h4 b5 58. h5 Rh1 {continues the battle.
+}) 56. Kf5 Kxb5 57. Nf3 Rd1 58. h4 Rh1 59. Ke4 Nc3+ 60. Kxf4 Kc4 61. Kg5 Ne4+
+62. Kg6 b5 63. h5 b4 64. Rc8+ Kd3 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "11"]
+[White "Spassky, Boris"]
+[Black "Stein, Leonid"]
+[Result "1/2-1/2"]
+[ECO "D87"]
+[Annotator "JvR"]
+[PlyCount "60"]
+[EventDate "1964.??.??"]
+
+1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. cxd5 Nxd5 5. e4 Nxc3 6. bxc3 Bg7 7. Bc4 O-O 8.
+Ne2 Nc6 9. O-O b6 10. Be3 Na5 11. Bd3 c5 12. Rc1 Nc6 13. Bb5 Bb7 14. Bxc6 ({
+White has to play} 14. dxc5 {if he wants to win.}) 14... Bxc6 15. d5 Bb7 16. c4
+e6 17. Re1 Re8 18. Qd2 exd5 19. exd5 Qd7 20. Nc3 Re7 21. Bg5 Rxe1+ 22. Rxe1 Re8
+23. Ne4 Ba6 24. Nf6+ Bxf6 25. Bxf6 Rxe1+ 26. Qxe1 Bxc4 27. Qe5 Bb5 28. Qb8+ Qe8
+29. Be5 Qxb8 30. Bxb8 Bc4 {A draw is useful for both players.} 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "12"]
+[White "Geller, Efim"]
+[Black "Kholmov, Ratmir"]
+[Result "1/2-1/2"]
+[ECO "A25"]
+[Annotator "JvR"]
+[PlyCount "66"]
+[EventDate "1964.??.??"]
+
+1. c4 e5 2. Nc3 d6 3. g3 Nc6 4. Bg2 g6 5. e3 Bg7 6. Nge2 h5 7. d4 exd4 8. Nxd4
+Nge7 9. h3 Nxd4 10. exd4 Nf5 11. Ne4 $1 {Geller charges.} 11... O-O $1 {
+Black reacts quietly.} (11... Nxd4 $2 12. Bg5 Qd7 13. Bf6 $18) (11... Bxd4 $6
+12. g4 hxg4 13. hxg4 Nh4 14. Rxh4 $1 $16) 12. O-O Nxd4 13. Bg5 f6 14. Qxd4 fxg5
+15. Qd5+ Kh8 16. Nxg5 Qf6 17. h4 c6 18. Qd2 Bf5 ({Some problems gives} 18...
+Qxb2 19. Qxd6) 19. b3 Rad8 20. Rad1 Qc3 21. Be4 Qxd2 22. Rxd2 Bc3 23. Rd3 Bb4
+24. f3 Rde8 25. Rfd1 Bxe4 26. Nxe4 d5 27. cxd5 cxd5 28. Rxd5 Rxf3 29. R1d4 a5
+30. Rd8 Rxd8 31. Rxd8+ Kg7 32. Kg2 Rf7 33. Ng5 Re7 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "12"]
+[White "Stein, Leonid"]
+[Black "Bronstein, David"]
+[Result "1/2-1/2"]
+[ECO "C16"]
+[Annotator "JvR"]
+[PlyCount "87"]
+[EventDate "1964.??.??"]
+
+1. e4 e6 2. d4 d5 3. Nc3 Bb4 4. e5 Ne7 5. Bd3 c5 6. dxc5 Qc7 7. Nf3 Nd7 8. O-O
+{Bronstein has been lured into a sharp opening.} 8... Bxc3 9. bxc3 Nxc5 10. Ba3
+$5 Bd7 11. Rb1 $5 b6 12. Re1 Rc8 $1 13. Bf1 $5 Na4 $5 ({Polugaevsky mentions} 
+13... O-O $1 14. c4 Rfd8) 14. Qc1 Qxc3 $2 ({Correct is} 14... Nxc3 $1 15. Bxe7
+Kxe7 16. Rb3) 15. Ba6 $1 Rc5 $5 (15... Qxc2 16. Bxc8 Qxc8 17. Qg5 {
+is horrible for Black.}) 16. Bd3 $1 {This subtlety has great strength.} (16.
+Bxc5 Nxc5) 16... Nc6 17. Rb3 Qa5 18. Qg5 {
+Black has been outplayed all over the board.} 18... Kf8 $1 (18... O-O 19. Bxh7+
+Kxh7 20. Bb4 $1 Nxb4 21. Qh5+ Kg8 22. Ng5 {
+ends fatally for Black, because ..Qxe1# has been prevented (Polugaevsky).}) 19.
+c3 (19. Bb5 $1 {wins quickly.}) 19... h6 20. Qd2 d4 21. cxd4 $6 (21. Nxd4 $1
+Nxd4 22. Bb4 Nxb3 23. axb3 {gains a queen.}) 21... Qxd2 22. Nxd2 Nxd4 23. Rb4
+Nf5 24. Ne4 $6 (24. Bc2 $1 Rxc2 25. Rc4+ $18) 24... Rd5 $1 25. Bc2 (25. Rxb6+
+$1 Kg8 26. Rb8+ Kh7 27. Rb3 Rd8 28. g4 {is better.}) 25... Kg8 $1 26. Rc4 Bb5
+$2 ({A disaster avoids} 26... b5 27. Rc7 Nb6 28. Bb3) 27. Rc7 $2 ({
+The game finishes} 27. Rc8+ $1 Kh7 28. Rc7 Rd7 $2 29. Rxd7 Bxd7 30. g4 Nd4 31.
+Nf6#) 27... Rd7 $1 28. Rxd7 Bxd7 29. Rd1 Bc6 30. Nd6 g6 31. Nxf5 gxf5 32. Rd6
+Bb5 33. g4 $6 fxg4 34. Rd4 Nc5 35. Rxg4+ Kf8 36. Bc1 Ke7 $2 37. h4 Bd3 38. Bxd3
+Nxd3 39. Ba3+ Ke8 40. Rc4 Rg8+ 41. Kf1 Nc5 $5 {
+Bronstein takes the draw happily.} 42. Bxc5 bxc5 43. Rxc5 Rg4 44. Ra5 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "12"]
+[White "Suetin, Alexei"]
+[Black "Spassky, Boris"]
+[Result "1/2-1/2"]
+[ECO "C95"]
+[Annotator "JvR"]
+[PlyCount "177"]
+[EventDate "1964.??.??"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 d6 8. c3
+O-O 9. h3 h6 10. d4 Re8 11. Nbd2 Bf8 12. a3 Bb7 13. Bc2 Nb8 14. b4 Nbd7 15. Bb2
+Nb6 16. Re3 $5 a5 17. Qe2 Na4 $5 18. Qxb5 ({Polugaevsky prefers} 18. Bxa4 $1
+bxa4 19. b5) 18... Nxb2 19. bxa5 (19. Qxb7 Qd7 20. b5 Rab8 21. Qa6 Qxb5 {
+brings equality.}) 19... Rb8 20. Qxb2 Bxe4 21. Qc1 Bxf3 22. Rxf3 e4 23. Rxf6 $5
+{Suetin has great ambitions.} 23... Qxf6 24. Bxe4 d5 $1 {
+Spassky gives a pawns temporarily for defensive reasons.} 25. Bxd5 Rb5 26. Bf3
+Rxa5 27. a4 Qa6 28. Qc2 c5 29. dxc5 Bxc5 30. Qb3 Qa7 31. Ne4 Bf8 32. Qc4 Kh8
+33. Bd1 Rae5 34. Bc2 Qb7 35. Ng3 Qb2 36. Ra2 Qc1+ 37. Kh2 Re1 38. Qd3 g6 39.
+Bb3 Bg7 40. Re2 $2 ({Correct is} 40. Rc2) 40... R8xe2 41. Nxe2 {
+All black pieces should attack the king.} 41... Rh1+ $2 (41... Be5+ 42. g3 Rh1+
+43. Kg2 Qf1+ 44. Kf3 Rh2 {(Polugaevsky).}) 42. Kg3 Qg5+ 43. Kf3 Qh5+ 44. g4 $6
+Qxh3+ 45. Ng3 Rh2 (45... Rc1 $1 46. Bc2 Qh4 {offers better chances.}) 46. Qe3
+Qg2+ 47. Ke2 Qa8 48. Bxf7 Qxa4 49. Qe8+ Qxe8+ 50. Bxe8 Be5 51. Kf3 Kg7 52. c4
+Bd4 53. Ne4 Rh1 54. c5 Re1 55. c6 Be5 56. Nc5 Bd6 57. Bd7 Kf7 58. Nd3 Ra1 59.
+Nc5 Ke7 60. Ne4 Ra3+ 61. Kg2 Bc7 62. Bc8 Ra8 63. Bd7 Rf8 64. Kf1 Bb6 65. Kg2
+Rf4 66. f3 Rf8 67. g5 hxg5 68. Nxg5 Be3 69. Bg4 Bb6 70. Ne4 Ra8 71. Bd7 Bc7 72.
+Nc3 Ra5 73. Ne4 Ra2+ 74. Kf1 Bf4 75. Ke1 Ra5 76. Kd1 Kd8 77. Ke2 Kc7 78. Nc3
+Be5 79. Ne4 Ra2+ 80. Kd3 Ra3+ 81. Kc4 Bf4 $6 (81... Rxf3 $1 82. Be8 Rf8 83.
+Bxg6 Kxc6 {wins theoretically, if the fifty moves rule is not applied.}) 82.
+Nc3 Kd8 83. Bg4 g5 84. Nd5 Bd6 85. Kd4 Ra4+ 86. Kd3 Ra1 87. Ke4 Re1+ 88. Kd4
+Be5+ 89. Kd3 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "13"]
+[White "Bronstein, David"]
+[Black "Suetin, Alexei"]
+[Result "1/2-1/2"]
+[ECO "A48"]
+[Annotator "JvR"]
+[PlyCount "75"]
+[EventDate "1964.??.??"]
+
+1. d4 Nf6 2. Nf3 g6 3. c3 b6 4. Bg5 Bg7 5. Nbd2 Bb7 6. Bxf6 Bxf6 7. e3 c5 8.
+Bd3 Bg7 9. O-O O-O 10. b4 cxd4 11. cxd4 Nc6 12. a3 f5 13. Qb3+ e6 14. Rac1 Kh8
+15. Nc4 d6 16. b5 Ne7 17. Ng5 Bd5 18. f4 Qd7 19. Qb4 Rad8 20. Be2 Bf6 21. Nf3
+h6 22. a4 g5 $1 23. Qd2 Rg8 24. Nb2 Rg6 25. Nd3 Rdg8 26. Nfe1 Be4 27. Nf2 Ba8
+28. Nfd3 Nd5 29. Bh5 $5 {The confrontation has started at last.} 29... R6g7 ({
+Black can play for a win with} 29... gxf4 $1 30. Nxf4 $1 (30. Bxg6 $2 fxe3 31.
+Qe2 Rxg6) 30... Nxf4 31. Rxf4 Rxg2+ $1 32. Nxg2 Rxg2+ 33. Qxg2 Bxg2 34. Kxg2 e5
+) 30. Bf3 Qe8 31. Nb4 Nxb4 32. Qxb4 gxf4 33. exf4 Bh4 34. Rc2 Bxe1 35. Qxe1
+Bxf3 36. Rxf3 Qa8 37. Qxe6 Qxf3 38. Qxh6+ 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "13"]
+[White "Kholmov, Ratmir"]
+[Black "Stein, Leonid"]
+[Result "1/2-1/2"]
+[ECO "E75"]
+[Annotator "JvR"]
+[PlyCount "92"]
+[EventDate "1964.??.??"]
+
+1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Be2 O-O 6. Bg5 c5 7. d5 e6 8. Nf3 h6
+9. Be3 exd5 10. exd5 Bf5 11. O-O Ne4 12. Nxe4 Bxe4 13. Bd3 Bxf3 14. Qxf3 Nd7
+15. Qh3 Ne5 16. Rad1 ({Play continues with} 16. Be2 $1 Qd7 17. Qh4 {
+because the black queen cannot go to g4.}) 16... Qd7 {Draw is a useful result
+for Stein. Exchange of the queens brings him toward his goal.} 17. Qxd7 Nxd7
+18. Rfe1 Rfe8 19. Bc1 Kf8 20. h3 h5 21. Kf1 Bd4 22. g3 Ne5 23. Be2 Nd7 24. Kg2
+Re7 25. Bf1 Rae8 26. Bh6+ Bg7 27. Rxe7 Rxe7 28. Bf4 Be5 29. Be3 Bf6 30. b3 b6
+31. Re1 Kg7 32. Bd2 Rxe1 33. Bxe1 Bd4 34. Bd3 Ne5 35. Be2 Nd7 36. Bd2 Bb2 37.
+Bg5 Bf6 38. Bc1 Bd4 39. Bf4 Be5 40. Be3 Bc3 41. Bf4 Be5 42. Bd2 Bd4 43. g4 hxg4
+44. hxg4 f5 45. g5 Kf7 46. Kf1 a5 1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "13"]
+[White "Spassky, Boris"]
+[Black "Korchnoi, Viktor"]
+[Result "1-0"]
+[ECO "E18"]
+[Annotator "JvR"]
+[PlyCount "47"]
+[EventDate "1964.??.??"]
+
+1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Bb7 5. Bg2 Be7 6. O-O O-O 7. Nc3 d5 8. cxd5
+exd5 9. Ne5 $5 Qc8 10. Bg5 Qe6 {
+This position stems from Eliskases-Najdorf, Buenos Aires 1947.} 11. Rc1 c5 $2 (
+{The prudent answer} 11... c6 {
+was played in Van Scheltinga-Donner, Beverwijk 1964.}) 12. Nd3 $1 cxd4 ({
+A centre pawn costs} 12... Nbd7 13. Nf4 Qf5 14. Bxf6 Nxf6 15. dxc5 Bxc5 16.
+Ncxd5) 13. Bxf6 {Korchnoi collapses completely.} 13... Bxf6 $2 ({
+Black can fight after} 13... dxc3 $1 14. Bxc3 $1 Rd8 {(Moiseev).}) 14. Nxd5
+Bxd5 15. Nf4 Qd6 16. Nxd5 Bg5 17. f4 Bd8 18. Nc3 Na6 19. Bxa8 Qb8 20. Nd5 Qxa8
+21. Qxd4 Nc5 22. b4 Ne6 23. Qd3 Re8 24. e4 {
+Spassky has qualified for the interzonal tournament.} 1-0
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "14"]
+[White "Korchnoi, Viktor"]
+[Black "Bronstein, David"]
+[Result "1-0"]
+[ECO "E06"]
+[Annotator "JvR"]
+[PlyCount "97"]
+[EventDate "1964.??.??"]
+
+1. c4 e6 2. g3 d5 3. Bg2 Nf6 4. Nf3 Be7 5. O-O O-O 6. d4 c6 7. Qc2 b6 8. b3 Bb7
+9. Bb2 Na6 $5 10. Rd1 Qc8 $5 11. e3 c5 12. Qe2 dxc4 $5 {
+Black brings life to a dull game.} 13. bxc4 Rd8 14. Nc3 Ne4 15. Nxe4 Bxe4 16.
+Ne5 Bxg2 17. Kxg2 f6 18. Nf3 Nc7 19. a4 Bf8 20. h4 Qb7 21. Kg1 Qe4 22. Nd2 Qc2
+23. Ra2 cxd4 24. Rc1 ({The instant} 24. exd4 $2 {is punished by} 24... Rxd4 $1)
+24... Qf5 25. exd4 Bb4 26. Nf3 Rac8 27. Kg2 h5 $6 {An unnecessary weakening.}
+28. Bc3 Bf8 29. Rd2 Qg4 30. Rd3 Rd7 31. Re3 Qf5 32. Re4 Rd6 33. Rd1 Rc6 34. Rf4
+$5 {White wants to charge.} 34... Qg6 35. Nd2 Qc2 $5 {Black counterattacks.}
+36. Qxh5 $5 Qxc3 37. Ne4 Qc2 (37... Qxc4 $1 38. Ng5 $1 Qd5+ $1 39. Kh2 fxg5 40.
+Qf7+ Kh8 41. Qh5+ {results in perpetual check.}) 38. d5 $1 ({
+White avoids the repetition.} 38. Qg6 Kh8 39. Qh5+) 38... exd5 39. cxd5 Rd6 $1
+{White has a strong attack for a piece.} 40. Rd2 Qc1 $1 ({The blunder} 40...
+Qb1 $2 {makes} 41. Qf5 $1 {decisive.}) 41. Qg6 $1 Re8 $5 ({
+F6 and g7 are protected by} 41... Ne8 $2 {but} 42. Ng5 fxg5 43. Qf7+ Kh7 44.
+hxg5 Rc4 45. Rd3 $3 Qc2 46. Rdd4 {wins.}) 42. Nxd6 Bxd6 43. Rc2 $1 Qb1 $2 (
+43... Qxc2 $1 44. Qxc2 Bxf4 45. gxf4 Nxd5 {
+leads to a defendable endgame (Baranov).}) 44. Rxf6 Be5 45. d6 Bxf6 46. dxc7
+Rc8 47. Qf5 Rxc7 48. Qd5+ Rf7 49. Rc8+ {
+The players made an exhibition of the last game.} 1-0
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "14"]
+[White "Stein, Leonid"]
+[Black "Geller, Efim"]
+[Result "1/2-1/2"]
+[ECO "C48"]
+[PlyCount "60"]
+[EventDate "1964.??.??"]
+
+1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Bb5 Nd4 5. Nxd4 exd4 6. e5 dxc3 7. exf6 Qxf6
+8. dxc3 Qe5+ 9. Qe2 {Stein needs a draw.} 9... Qxe2+ 10. Bxe2 d5 11. Be3 Bd6
+12. O-O O-O 13. Rfe1 Bf5 14. Bd3 Bxd3 15. cxd3 Rfe8 16. Bd2 f6 17. Kf1 Kf7 18.
+h3 h5 19. Rxe8 Rxe8 20. Re1 Rxe1+ 21. Kxe1 Ke6 22. Ke2 b5 23. b3 a6 24. Kf3 c6
+25. g4 hxg4+ 26. hxg4 Be5 27. Ke3 f5 28. f3 Bf6 29. Be1 Ke5 30. Bg3+ Ke6
+1/2-1/2
+
+[Event "Moscow zt"]
+[Site "?"]
+[Date "1964.??.??"]
+[Round "14"]
+[White "Suetin, Alexei"]
+[Black "Kholmov, Ratmir"]
+[Result "1/2-1/2"]
+[ECO "C43"]
+[Annotator "JvR"]
+[PlyCount "49"]
+[EventDate "1964.??.??"]
+
+1. e4 e5 2. Nf3 Nf6 3. d4 exd4 4. e5 Ne4 5. Qxd4 d5 6. exd6 Nxd6 7. Nc3 Nc6 8.
+Qf4 Bf5 9. Bb5 Qe7+ 10. Kf1 $5 Be4 11. Bxc6+ ({The alternative} 11. Ba4 O-O-O
+12. Nxe4 Nxe4 {was played in Zakharov-Krutikhin, Novosibirsk 1962.}) 11... Bxc6
+12. Ne5 $1 O-O-O $5 (12... Qe6 13. Nxc6 bxc6 14. Qf3 {
+is mentioned by Karpov. Black may continue with the risky} 14... Nc4 15. Bf4
+O-O-O) 13. Nxc6 bxc6 14. Qa4 $1 Nb5 15. Be3 Qb4 {
+Poor Kholmov has to win but suffers in a dangerous position.} 16. Qa6+ $1 (16.
+Qxb4 Bxb4 17. Nxb5 cxb5 18. c3 {draws easily.}) 16... Kb8 17. Qxc6 {
+Suetin wants to win.} ({The exchanges} 17. Nxb5 Qxb5+ 18. Qxb5+ cxb5 {
+lead to an equal endgame (Baranov).}) 17... Nd4 18. Bxd4 ({
+A favourable endgame brings} 18. Qa6 $1 Bc5 19. a3 Qb7 20. Qxb7+ Kxb7 21. Rc1
+Bb6 22. g3 {(Klovans-Harman, corr. USSR 1985).}) 18... Qxd4 {
+Suetin finishes the game with perpetual check.} 19. Rd1 $5 (19. Qb5+ Qb6 {
+brings little advantage.}) 19... Qxd1+ 20. Nxd1 Rxd1+ 21. Ke2 Rxh1 22. g4 Rxh2
+23. Qe8+ Kb7 24. Qb5+ Kc8 25. Qe8+ {Final standings: Spassky 7, Bronstein and
+Stein 6 1/2, Kholmov 6, Suetin and Korchnoi 5 1/2, Geller 5. Spassky,
+Bronstein and Stein have qualified for the interzonal tournament. Seven of the
+twelve best players of the world played in a zonal tournament. It showed Boris
+as a comeback kid.  Jan van Reek  } 1/2-1/2
+

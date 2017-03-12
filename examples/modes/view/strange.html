@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Some Games to Edit</title>
+    <!-- Libraries used: chessboardjs and chess.js from GitHub -->
+    <script src="../../../chessboardjs/js/chessboard.js" type="text/javascript"></script>
+    <script src="../../../chessboardjs/js/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../../../chessboardjs/js/json3.min.js" type="text/javascript"></script>
+    <script src="../../../chess.js/chess.js" type="text/javascript"></script>
+	<script src="../../../js/i18next-1.11.2.js" type="text/javascript"></script>
+
+    <!-- CSS used: chessboardjs from GitHub -->
+    <link href="../../../chessboardjs/css/chessboard.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../../font-awesome/css/font-awesome.min.css">
+
+    <!-- My own library -->
+    <script src="../../../js/pgnvjs.js" type="text/javascript"></script>
+    <script src="../../../js/jquery.timer.js" type="text/javascript"></script>
+    <script src="../../../js/pgn.js" type="text/javascript"></script>
+    <script src="../../../js/pgn-parser.js" type="text/javascript"></script>
+    <script src="../../../js/mousetrap.js"  type="text/javascript"></script>
+    <script src="../../../js/jquery-ui.js" type="text/javascript"></script>
+    <script src="../../../js/jquery.multiselect.js" type="text/javascript"></script>
+    <link href="../../../css/jquery-ui.css" type="text/css" rel="stylesheet"/>
+    <link href="../../../css/jquery.multiselect.css" type="text/css" rel="stylesheet"/>
+    <link href="../../../css/pgnvjs.css" type="text/css" rel="stylesheet"/>
+
+</head>
+<body>
+<div id="board" style="width: 300px"></div>
+<script>
+    cfg = {pgn: "4. dxe5 fxe4", position: "rnbqkbnr/ppp3pp/8/3ppp2/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 0 4"};
+    pgnView("board",cfg);
+</script>
+
+
+</body>

@@ -18811,11 +18811,30 @@ var pgnReader = function (configuration) {
     var that = {};
     that.configuration = configuration;
     var initialize_configuration = function(configuration) {
+        var readPgnFromFile = function(url) {
+            var retPGN = '';
+            function callback(data) {
+                retPGN = data;
+            }
+            $.ajax( {
+                url: url,
+                success: callback,
+                error: function() {
+                    alert("Could not read PGN file from: " + url);
+                },
+                async: false 
+            });
+            return retPGN;
+        }
         if (typeof configuration.position == 'undefined') {
             configuration.position = 'start';
         }
         if (typeof configuration.pgn == 'undefined') {
-            configuration.pgn = '';
+            if (typeof configuration.pgnFile == 'undefined') {
+                configuration.pgn = '';
+            } else {
+                configuration.pgn = readPgnFromFile(configuration.pgnFile);
+            }
         }
         if (typeof configuration.locale == 'undefined') {
             configuration.locale = 'en';
@@ -18823,6 +18842,7 @@ var pgnReader = function (configuration) {
     }
     initialize_configuration(configuration);
     var parser = pgnParser;
+    that.startMove = 0;
     var game = new Chess();
     that.PGN_TAGS = {
         Event: "the name of the tournament or match event",
@@ -18911,7 +18931,7 @@ var pgnReader = function (configuration) {
         if (fig == 'P') {
             return '';
         }
-        return i18n.isInitialized() ? i18n.t(fig) : fig;
+        return i18n.isInitialized() ? i18n.t(fig, {lng: that.configuration.locale}) : fig;
     }
 
     /**
@@ -18926,9 +18946,14 @@ var pgnReader = function (configuration) {
         var fig = notation.fig ? figI18n(notation.fig) : '';
         var disc = notation.disc ? notation.disc : '';
         var strike = notation.strike ? notation.strike : '';
+        // Pawn moves with capture need the col as "discriminator"
+        if ((fig === '') && (strike === 'x')) {
+            return notation.notation;
+        }
         var check = notation.check ? notation.check : '';
+        var mate = notation.mate ? notation.mate : '';
         var prom = notation.promotion ? notation.promotion : '';
-        return fig + disc + strike + notation.col + notation.row + prom + check;
+        return fig + disc + strike + notation.col + notation.row + prom + check + mate;
     };
 
     var sanWithNags = function (move) {
@@ -19030,7 +19055,7 @@ var pgnReader = function (configuration) {
          * it is much easier to keep only the first move of the variation.
          */
         var correctVariations = function() {
-            $.each(that.moves, function(index, move) {
+            $.each(getMoves(), function(index, move) {
                 for (i = 0; i < move.variations.length; i++) {
                     move.variations[i] = move.variations[i][0];
                 }
@@ -19055,7 +19080,7 @@ var pgnReader = function (configuration) {
      * @returns {boolean} true, if there exists a move with that index, false else
      */
     var isMove = function(id) {
-        return that.moves.length > id;
+        return getMoves().length > id;
     }
 
     /**
@@ -19066,7 +19091,7 @@ var pgnReader = function (configuration) {
     var isDeleted = function(id) {
         if (! isMove(id))
             return true; // Every non-existing moves is "deleted"
-        var current = that.moves[id];
+        var current = getMoves()[id];
         if (current === null) {
             return true;
         }
@@ -19085,7 +19110,7 @@ var pgnReader = function (configuration) {
      * @param id the ID of the move
      */
     var getMove = function(id) {
-        return that.moves[id];
+        return getMoves()[id];
     };
 
 
@@ -19150,7 +19175,7 @@ var pgnReader = function (configuration) {
                     if (current.next !== undefined) {
                        deleteMove(current.next);
                     }        
-                    that.moves[current.index] = null;
+                    getMoves()[current.index] = null;
                     return;
                 }
             }
@@ -19245,7 +19270,7 @@ var pgnReader = function (configuration) {
     // Returns true, if the move is the start of a (new) variation
     var startVariation = function(move) {
         return  move.variationLevel > 0 &&
-            ( (move.prev === undefined) || (that.moves[move.prev].next != move.index));
+            ( (move.prev === undefined) || (getMoves()[move.prev].next != move.index));
     };
     // Returns true, if the move is the end of a variation
     var endVariation = function(move) {
@@ -19421,7 +19446,6 @@ var pgnReader = function (configuration) {
          */
         var eachMoveVariation = function(moveArray, level, prev) {
             var prevMove = (prev != null ? that.moves[prev] : null);
-            that.startMove = 0;
             $.each(moveArray, function(i, move) {
                 current++;
                 move.variationLevel = level;
@@ -19450,7 +19474,7 @@ var pgnReader = function (configuration) {
                 }
                 var pgn_move = game.move(move.notation.notation, {'sloppy' : true});
                 if (pgn_move == null) {
-                //    window.alert("No legal move: " + move.notation.notation);
+                    throw "No legal move: " + move.notation.notation;
                 }
                 var fen = game.fen();
                 move.fen = fen;
@@ -19474,7 +19498,6 @@ var pgnReader = function (configuration) {
         that.firstMove = movesMainLine[0];
         eachMoveVariation(movesMainLine, 0, null);
     };
-    load_pgn();
 
     /**
      * Adds the move to the current state after moveNumber.
@@ -19492,7 +19515,6 @@ var pgnReader = function (configuration) {
      * @param moveNumber the number of the previous made move, null if it is the first one
      */
     var addMove = function (move, moveNumber) {
-//        window.alert("Move " + move + " after move with number " + moveNumber + " to do.");
         var get_turn = function (moveNumber) {
               return getMove(moveNumber).turn === "w" ? 'b' : "w";
         };
@@ -19568,14 +19590,21 @@ var pgnReader = function (configuration) {
                 real_move.notation.fig = pgn_move.piece.charAt(0).toUpperCase();
             }
             if (pgn_move.flags == game.FLAGS.CAPTURE) {
-                real_move.notation.disc = 'x';
+                real_move.notation.strike = 'x';
+            }
+            if (game.in_check()) {
+                if (game.in_checkmate()) {
+                    real_move.notation.mate = '#';
+                } else {
+                    real_move.notation.check = '+';
+                }
             }
         } else {
             real_move.notation.notation = pgn_move.san;
         }
-        that.moves.push(real_move);
+        getMoves().push(real_move);
         real_move.prev = moveNumber;
-        var next = that.moves.length - 1;
+        var next = getMoves().length - 1;
         real_move.index = next;
         if (moveNumber != null) {
             handle_variation(real_move, moveNumber, next);
@@ -19596,7 +19625,9 @@ var pgnReader = function (configuration) {
         }
         var nagSym = (nag[0] == "$") ? nag : symbol_to_nag(nag);
         if (added) {
-            move.nag.push(nagSym);
+            if (move.nag.indexOf(nagSym) == -1) {
+                move.nag.push(nagSym);
+            }
         } else {
             var index = move.nag.indexOf(nagSym);
             if (index > -1) {
@@ -19646,6 +19677,30 @@ var pgnReader = function (configuration) {
         return returnedMoves;
     }
 
+    /**
+     * Returns the moves, ensures that the pgn string is read.
+     */
+    function getMoves() {
+        if (typeof that.moves != 'undefined') {
+            return that.moves;
+        } else {
+            load_pgn();
+            return that.moves;
+        }
+    }
+
+    /**
+     * Returns the headers. Ensures that pgn is already read.
+     */
+    function getHeaders() {
+        if (typeof that.headers != 'undefined') {
+            return that.headers;
+        } else {
+            load_pgn();
+            return that.headers;
+        }
+    }
+
     // This defines the public API of the pgn function.
     return {
         configuration: configuration,
@@ -19654,10 +19709,10 @@ var pgnReader = function (configuration) {
         promoteMove: promoteMove,
         isDeleted: isDeleted,
         readMoves: function () { return readMoves; },
-        getMoves: function () { return that.moves; },
+        getMoves: getMoves,
         getOrderedMoves: getOrderedMoves,
         getMove: getMove,
-        getHeaders: function() { return that.headers; },
+        getHeaders: getHeaders,
 //        splitHeaders: splitHeaders,
         getParser: function() { return parser; },
 //        eachMove: function() { return eachMove(); },
@@ -19674,7 +19729,8 @@ var pgnReader = function (configuration) {
         NAGS: that.NAGs,
         san: san,
         sanWithNags: sanWithNags,
-        game: game
+        game: game,
+        load_pgn: load_pgn
     }
 };
 
@@ -21591,7 +21647,7 @@ var pgnParser =
 
 var pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
-    var VERSION = "0.9.4";
+    var VERSION = "0.9.5";
     var that = {};
     that.configuration = configuration;
     that.mypgn = pgnReader( that.configuration );
@@ -21607,11 +21663,13 @@ var pgnBase = function (boardId, configuration) {
         var innerBoardId = boardId + 'Inner';
         var movesId = boardId + 'Moves';
         var buttonsId = boardId + 'Button';
+        var fenId = boardId + "Fen";
     } else { // will be filled later
         var innerBoardId;
         var headersId;
         var movesId;
         var buttonsId;
+        var fenId;
     }
 
     // Anonymous function, has not to be visible from the outside
@@ -21633,6 +21691,10 @@ var pgnBase = function (boardId, configuration) {
         if (!configuration.position) {
             configuration.position = 'start';
         }
+        // showFen
+        if (!configuration.hasOwnProperty('showFen')) {
+            configuration.showFen = hasMode('edit');
+        }
     })();
 
     // Some Utility functions without context
@@ -21648,6 +21710,15 @@ var pgnBase = function (boardId, configuration) {
         return jsFileLocation.substring(0, index - 3);   // the father of the js folder
     }
 
+    /**
+     * Allow logging of error to HTML.
+     */
+    function logError(str) {
+        var node = document.createElement("DIV");
+        var textnode = document.createTextNode(str);
+        node.appendChild(textnode);
+        that.errorDiv.appendChild(node);
+    }
 
     /**
      * Allow to hide HTML by calling this function. It will prepend
@@ -21799,7 +21870,7 @@ var pgnBase = function (boardId, configuration) {
     }
 
     function generateNAGMenu(buttonDiv) {
-// create the NAG menu here ...
+
         var sel = createEle("select", buttonsId + "nag", "nag", theme, buttonDiv);
         sel.setAttribute("multiple", "multiple");
         $.each(that.mypgn.NAGS, function (index, value) {
@@ -21820,7 +21891,7 @@ var pgnBase = function (boardId, configuration) {
         function addButton(pair, buttonDiv) {
             var l_theme = (['green', 'blue'].indexOf(theme) >= 0) ? theme : 'default';
             var button = createEle("i", buttonsId + pair[0], "button fa " + pair[1], l_theme, buttonDiv);
-            var title = i18n.t("buttons:" + pair[0]);
+            var title = i18n.t("buttons:" + pair[0], {lng: that.configuration.locale});
             $("#" + buttonsId + pair[0]).attr("title", title);
             return button;
         }
@@ -21891,6 +21962,8 @@ var pgnBase = function (boardId, configuration) {
             }
             divBoard.setAttribute('class', theme + ' whole');
             divBoard.setAttribute('tabindex', '0');
+            // Add an error div to show errors
+            that.errorDiv = createEle("div", boardId + "Error", 'error', null, divBoard);
             createEle("div", headersId, "headers", theme, divBoard);
             var outerInnerBoardDiv = createEle("div", null, "outerBoard", null, divBoard);
             if (configuration.boardSize) {
@@ -21901,14 +21974,44 @@ var pgnBase = function (boardId, configuration) {
                 var buttonsBoardDiv = createEle("div", buttonsId, "buttons", theme, outerInnerBoardDiv);
                 generateViewButtons(buttonsBoardDiv);
             }
+            if ( (hasMode('edit') || hasMode('view')) && (that.configuration.showFen) ) {
+                var fenDiv = createEle("textarea", fenId, "fen", theme, outerInnerBoardDiv);
+                $('#' + fenId).on('mousedown', function(e) {
+	                e = e || window.event;
+                    e.preventDefault();
+                    $(this).select();
+                });
+                if ( hasMode('edit')) {
+                    $('#' + fenId).bind("paste", function(e){
+                        var pastedData = e.originalEvent.clipboardData.getData('text');
+                        // console.log(pastedData);
+                        that.configuration.position = pastedData;
+                        that.configuration.pgn = '';
+                        pgnEdit(boardId, that.configuration);
+                    } );
+                } else {
+                    $('#' + fenId).prop("readonly", true);
+                }
+            }
             if (hasMode('edit')) {
                 var editButtonsBoardDiv = createEle("div", "edit" + buttonsId, "edit", theme, outerInnerBoardDiv);
                 generateEditButtons(editButtonsBoardDiv);
-                var outerPgnDiv = createEle("div", "outerpgn" + buttonsId, "outerpgn", theme, outerInnerBoardDiv);
-                var pgnHideButton  = addButton(["hidePGN", "hidePGN"], outerPgnDiv);
-                var pgnDiv  = createEle("div", "pgn" + buttonsId, "pgn", theme, outerPgnDiv);
+//                var outerPgnDiv = createEle("div", "outerpgn" + buttonsId, "outerpgn", theme, outerInnerBoardDiv);
+//                var pgnHideButton  = addButton(["hidePGN", "fa-times"], outerPgnDiv);
+                var pgnDiv  = createEle("textarea", "pgn" + buttonsId, "pgn", theme, outerInnerBoardDiv);
                 var commentBoardDiv = createEle("div", "comment" + buttonsId, "comment", theme, outerInnerBoardDiv);
                 generateCommentDiv(commentBoardDiv);
+                // Bind the paste key ...
+                $('#' + "pgn" + buttonsId).on('mousedown', function(e) {
+	                e = e || window.event;
+                    e.preventDefault();
+                    $(this).select();
+                });
+                $('#' + "pgn" + buttonsId).bind("paste", function(e) {
+                    var pastedData = e.originalEvent.clipboardData.getData('text');
+                    that.configuration.pgn = pastedData;
+                    pgnEdit(boardId, that.configuration);
+                })
             }
             if (hasMode('print') || hasMode('view') || hasMode('edit')) {
                 // Ensure that moves are scrollable (by styling CSS) when necessary
@@ -22095,6 +22198,18 @@ var pgnBase = function (boardId, configuration) {
         // Update the drop-down for NAGs
         try {
             $("select#" + buttonsId + "nag").multiselect("uncheckAll");
+            var selectMenu = $("select#" + buttonsId + "nag")[0];
+            var nag = move.nag;
+            $.each(nag, function(index, value) {
+                var nagValue = value.substring(1);
+                $.each(selectMenu.options, function(optIndex, optValue) {
+                    if (optValue.value == nagValue) {
+                        optValue.selected = true;
+                    }
+                })
+            })
+            $("select#" + buttonsId + "nag").multiselect("refresh");
+
         } catch (err) {
 
         }
@@ -22135,6 +22250,7 @@ var pgnBase = function (boardId, configuration) {
         if (hasMode('edit')) {
             fillComment(next);
         }
+        $('#' + fenId).val(fen);
         updateUI(next);
     };
 
@@ -22143,12 +22259,31 @@ var pgnBase = function (boardId, configuration) {
      * link to FEN (position after move)
      */
     var generateMoves = function(board) {
+        try {
+           that.mypgn.load_pgn();
+        } catch(err) {
+            if (typeof err.location != "undefined") {
+                var sta = err.location.start.offset;
+                var pgnStr = that.configuration.pgn;
+                logError("Offset: " + sta);
+                logError("PGN: " + pgnStr);
+                logError(err.message);
+            } else {
+                var pgnStr = that.configuration.pgn;
+                logError("PGN: " + pgnStr);
+                logError(err);
+            }
+        } 
         var myMoves = that.mypgn.getMoves();
         if (that.configuration.position == 'start') {
             game.reset();
         } else {
             game.load(that.configuration.position);
         }
+        if (board !== null) {
+            board.position(game.fen());
+        }
+        $('#' + fenId).val(game.fen());
 
         /**
          * Generate a useful notation for the headers, allow for styling. First a version
@@ -22240,6 +22375,7 @@ var pgnBase = function (boardId, configuration) {
                 board.position(game.fen());
                 unmarkMark(null);
                 that.currentMove = null;
+                $('#' + fenId).val(game.fen());
                 updateUI(null);
             };
             var timer = $.timer(function() {
@@ -22265,13 +22401,21 @@ var pgnBase = function (boardId, configuration) {
                 var fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
                 makeMove(that.currentMove, that.mypgn.getMoves().length - 1, fen);
             });
-            if (hasMode('edit')) { // only relevant functions for edit mode
-                $('#' + buttonsId + "pgn").on('click', function() {
-                    //$('#pgn' + buttonsId).hide(200);
-                    //$('#pgn' + buttonsId).fadeOut(400, "linear");
+            var togglePgn = function() {
+                var pgnButton = $('#' + buttonsId + "pgn")[0];
+                var pgnText = $("#" + boardId + " .outerpgn")[0];
+                $('#' + buttonsId + "pgn").toggleClass('selected');
+                if ($('#' + buttonsId + "pgn").hasClass('selected')) {
                     var str = computePgn();
                     showPgn(str);
-                    $("#" + boardId + " .outerpgn").slideDown(700, "linear");
+                    $("#" + boardId + " .pgn").slideDown(700, "linear");
+                } else {
+                    $( "#" + boardId + " .pgn").slideUp(400);//hide( "fold");
+                }
+            }
+            if (hasMode('edit')) { // only relevant functions for edit mode
+                $('#' + buttonsId + "pgn").on('click', function() {
+                    togglePgn();
                 });
                 $('#' + buttonsId + "deleteMoves").on('click', function() {
                     var prev = that.mypgn.getMove(that.currentMove).prev;
@@ -22289,10 +22433,7 @@ var pgnBase = function (boardId, configuration) {
                     var fen = that.mypgn.getMove(curr).fen;
                     makeMove(null, that.currentMove, fen);
                 });
-                $('#' + boardId + " .hidePGN").on("click", function () {
-                    $( "#" + boardId + " .outerpgn").slideUp(400);//hide( "fold");
-                });
-                $("#" + boardId + ' .outerpgn').hide();
+                $("#" + boardId + ' .pgn').hide();
                 $('#comment' + buttonsId + " textarea.comment").change(function() {
                     function commentText() {
                         return " " + $('#comment' + buttonsId + " textarea.comment").val() + " ";
@@ -22338,7 +22479,7 @@ var pgnBase = function (boardId, configuration) {
             }
             bind_key("left", prevMove);
             bind_key("right", nextMove);
-            bind_key("space", togglePlay);
+            //bind_key("space", togglePlay);
             $('#' + buttonsId + 'play').on('click', function() {
                 togglePlay();
             })
@@ -22382,7 +22523,7 @@ var pgnBase = function (boardId, configuration) {
                     noneSelectedText: "NAGs",
                     click: function(event, ui) {
                         /**
-                         * Add (or remote) a NAG from the current move. Ignore it, if there is
+                         * Add (or remove) a NAG from the current move. Ignore it, if there is
                          * no current move.
                          */
                         function changeNAG(value, checked) {
@@ -22520,5 +22661,5 @@ var pgnPrint = function(boardId, configuration) {
     var base = pgnBase(boardId, configuration);
     base.generateHTML();
 //    var board = base.generateBoard();
-    base.generateMoves(board);
+    base.generateMoves(null);
 };

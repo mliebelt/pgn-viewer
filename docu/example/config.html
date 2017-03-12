@@ -18,9 +18,12 @@
     <style>
         #config {
             float: left;
+            margin-right: 100px;
+            width: 600px;
         }
         #outer {
             float: right;
+            margin-right: 100px;
         }
         #nofloat {
             clear: both;
@@ -29,14 +32,14 @@
             width: 60px;
         }
         #pgn {
-            width: 90%;
+            width: 400px;
             height: 100px;
         }
         #fen {
-            width: 90%;
+            width: 400px;
         }
         #config_out {
-            width: 90%;
+            width: 500px;
             height: 100px;
         }
     </style>
@@ -46,10 +49,11 @@
 
 <h1>Configuration Builder</h1>
 
-The following forms allow to "construct" a configuration for the PgnViewerJS. It demonstrates all possibilities,
-and helps to define a new configuration.
 
 <div id="config">
+    <div>The following forms allow to "construct" a configuration for the PgnViewerJS. It demonstrates all possibilities,
+and helps to define a new configuration.
+    </div>
     <form id="config_form">
         <!-- PGN Input-->
         <label for="pgn">PGN</label>

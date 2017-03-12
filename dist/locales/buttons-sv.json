@@ -1,0 +1,14 @@
+{
+    "flipper" : "Vänd sidorna av styrelsen",
+    "first" : "Gå till första steget",
+    "prev" : "Gå till föregående drag",
+    "next" : "Gå till nästa steg",
+    "play" : "Play / sluta spela alla drag",
+    "last" : "Gå till det senaste drag",
+    "deleteVar" : "Radera variation",
+    "promoteVar" : "Främja variation",
+    "deleteMoves" : "Radera vila flyttar härifrån",
+    "nags" : "NAGs menu",
+    "pgn" : "Visning PGN av aktuella spelet",
+    "hidePGN" : "Dölja visas PGN"
+}

@@ -1,0 +1,14 @@
+{
+    "flipper" : "Flip puolin hallituksen",
+    "first" : "Mene ensimmäinen siirto",
+    "prev" : "Mene edellisen siirron",
+    "next" : "Mene seuraavaa siirtoa",
+    "play" : "Toista / lopettaa pelaamisen kaikki liikkuu",
+    "last" : "Siirry viimeiseen liikkua",
+    "deleteVar" : "Poista vaihtelu",
+    "promoteVar" : "Edistää vaihtelu",
+    "deleteMoves" : "Poista loput liikkuu täältä",
+    "nags" : "NAGs menu",
+    "pgn" : "Näyttö PGN nykyisen pelin",
+    "hidePGN" : "Piilota näytössä PGN"
+}

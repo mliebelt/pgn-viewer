@@ -393,9 +393,9 @@ examples["1205"] = {
     "directly before it. ",
     html: '<div id="board" style="width: 300px"/>',
     name: "#9: spaces after a half move before a NAG",
-    jsStr: 'pgnView("board", {pgn: "1. e4 $1 e5 $2 2. Nf3 $3 Nc6 $4 3. Bc4$13 Bc5$14 4. c3$15 Nxc4$16"});',
+    jsStr: 'pgnView("board", {pgn: "1. e4 $1 e5 $2 2. Nf3 $3 Nc6 $4 3. Bc4$13 Bc5$14 4. c3$15 Nf6$16"});',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 $1 e5 $2 2. Nf3 $3 Nc6 $4 3. Bc4$13 Bc5$14 4. c3$15 Nxc4$16"});
+        pgnView("board", {pgn: "1. e4 $1 e5 $2 2. Nf3 $3 Nc6 $4 3. Bc4$13 Bc5$14 4. c3$15 Nf6$16"});
     }
 };
 examples["1206"] = {
@@ -460,10 +460,10 @@ examples["1211"] = {
     "The parser is not as robust as it could be so I have to add some flexibility here. The " +
     "following is only one of many examples that the rules for reading are more strict that they should be.",
     html: "<div id='board' style='width: 360px'/>",
-    name: "#16: Make import more robust (unsolved)",
-    jsStr: 'pgnView("board", {pgn: "f4 e6 g4 Qd8-h4#"});',
+    name: "#16: Make import more robust",
+    jsStr: 'pgnView("board", {pgn: "1. f4 e6 2. g4 Qd8-h4#"});',
     jsFn: function() {
-        pgnView("board", {pgn: "f4 e6 g4 Qd8-h4#"});
+        pgnView("board", {pgn: "1. f4 e6 2. g4 Qd8-h4#"});
     }
 };
 examples["1212"] = {
@@ -566,7 +566,7 @@ examples["1221"] = {
     "Underpromotion in edit mode possible.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#30: Underpromotion in edit mode possible (unsolved)",
-    jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
+    jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5#43 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
     jsFn: function() {
         pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
     }
@@ -575,7 +575,7 @@ examples["1222"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/31'>ticket 31</a> at GitHub. " +
     "Show meaningful error message when PGN is wrong.",
     html: "<div id='board' style='width: 200px'/>",
-    name: "#31: Show meaningful error message when PGN is wrong (unsolved)",
+    name: "#31: Show meaningful error message when PGN is wrong",
     jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd4"})',
     jsFn: function() {
         pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd4"});
@@ -651,7 +651,7 @@ examples["1229"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/43'>ticket 43</a> at GitHub. " +
     "Ugly display of tags.",
     html: "<div id='board' style='width: 200px'/>",
-    name: "#43: Allow opening of examples from the documentation in a separate tab",
+    name: "#43: Ugly display of tags (unsolved)",
     jsStr: 'pgnView("board", {pgnFile: "/docu/example/cori-vishnu.pgn"})',
     jsFn: function() {
         pgnView("board", {pgnFile: "/docu/example/cori-vishnu.pgn"});
@@ -662,16 +662,6 @@ examples["1230"] = {
     "Add the NAGs from a move to the NAG menu. Edit the game, and add NAGs to a move which has already NAGs",
     html: "<div id='board' style='width: 200px'/>",
     name: "#44: Add the NAGs from a move to the NAG menu",
-    jsStr: 'pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
-    jsFn: function() {
-        pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"});
-    }
-};
-examples["1231"] = {
-    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/45'>ticket 45</a> at GitHub. " +
-    "Add the NAGs from a move to the NAG menu. Edit the game, and add NAGs to a move which has already NAGs",
-    html: "<div id='board' style='width: 200px'/>",
-    name: "#45: Provide a default configuration that may be changed programmatically (unsolved)",
     jsStr: 'pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
     jsFn: function() {
         pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"});
@@ -688,13 +678,14 @@ examples["1232"] = {
     }
 };
 examples["1233"] = {
-    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/47'>ticket 47</a> at GitHub. " +
-    "Add the NAGs from a move to the NAG menu. Edit the game, and add NAGs to a move which has already NAGs",
-    html: "<div id='board' style='width: 200px'/>",
-    name: "#47: Ensure that move numbers are 'correct'",
-    jsStr: 'pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/47'>ticket 47</a> at GitHub (unsolved). " +
+    "2 cases: start with move 3 from FEN, but shows 1; start with a black move, but move number is wrong.",
+    html: "<div id='board1' style='width: 200px'></div><div id='board2' style='width: 200px'></div>",
+    name: "#47: Ensure that move numbers are 'correct' (unsolved)",
+    jsStr: 'pgnEdit("board1", {pgn: "1. Bc4 Bc5", position: "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3"});\npgnEdit("board2", {pgn: "1... e5", position: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"});',
     jsFn: function() {
-        pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"});
+        pgnEdit("board1", {pgn: "1. Bc4 Bc5", position: "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3"});
+        pgnEdit("board2", {pgn: "1... e5", position: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"});
     }
 };
 examples["1234"] = {

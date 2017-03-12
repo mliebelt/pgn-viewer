@@ -1,0 +1,14 @@
+{
+    "flipper" : "Capovolgere i lati del bordo",
+    "first" : "Vai alla prima mossa",
+    "prev" : "Vai alla precedente mossa",
+    "next" : "Vai alla prossima mossa",
+    "play" : "PLAY / STOP giocare tutte le mosse",
+    "last" : "Vai ultima mossa",
+    "deleteVar" : "Eliminare variazione",
+    "promoteVar" : "Promuovere variazione",
+    "deleteMoves" : "Eliminare muove resto da qui",
+    "nags" : "NAGs menu",
+    "pgn" : "Visualizzazione PGN di partita in corso",
+    "hidePGN" : "Nascondere il PGN visualizzato"
+}

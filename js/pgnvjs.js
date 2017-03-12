@@ -10,7 +10,7 @@
 
 var pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
-    var VERSION = "0.9.4";
+    var VERSION = "0.9.5";
     var that = {};
     that.configuration = configuration;
     that.mypgn = pgnReader( that.configuration );
@@ -643,7 +643,9 @@ var pgnBase = function (boardId, configuration) {
         } else {
             game.load(that.configuration.position);
         }
-        board.position(game.fen());
+        if (board !== null) {
+            board.position(game.fen());
+        }
         $('#' + fenId).val(game.fen());
 
         /**

@@ -1,0 +1,941 @@
+[Event "?"]
+[Site "Baltimore"]
+[Date "1885.??.??"]
+[Round "?"]
+[White "Steinitz, W"]
+[Black "Sellman, A.G."]
+[Result "1-0"]
+[Annotator "Dhanesh Shrikhande"]
+
+{
+French Defence
+Wilhelm Steinitz, the great German Chess Master was officially recognized as the first World Chess Champion after he defeated Johannes Zukertort in 1886 in a 20 games match. Steinitz laid the basis for the scientific theory of chess. He paid much attention to weak and strong points and the accumulation of small positional advantages. He clearly revealed the flaws of premature attack and made the most of the slightest weakening of a position. He is the author of numerous studies dealing with chess theory. His Modern Chess Instructor (1889) greatly influenced the further development of chess theory.
+}
+1. e4 e6 2. d4 d5 3. Nc3 Nf6 4. e5 Nfd7 5. f4 c5 6. dxc5 Bxc5 7. Nf3 a6 8. Bd3 Nc6 9. Qe2 Nb4 10. Bd2 b5 11. Nd1 Nxd3+ 12. cxd3 Qb6
+13. b4 $1 Be7
+{
+If 13. ... Bd4, 14. Rb1 Qa7 (To provide a flight-square for the Bishop.) 15. Nxd4 Qxd4 16. Be3 and black loses his Queen.
+}
+14. a3 f5 $2  
+{
+Now the Black Pawn on e6 is backward. A black piece will be always tied down to the defence of this Pawn. After this move the activity of Black Bishop on c8 is greatly diminished. 
+}
+15. Rc1 Bb7 16. Be3 $1 Qd8 17. Nd4 Nf8 18. 0-0 h5 
+{
+To prevent 19. g4. But this move weakens Black's Pawn structure. 
+}
+19. Nc3 Kf7 20. Nb1 g6 
+{
+Black wants to move his knight from the passive position. But if 20. ...Nd7, Nxf5 exf5 e6+!. But after Black's move all his Pawns are on white squares. So Black has very weak black squares, defended by his Bishop.
+}
+21. Nd2 Nd7 22. N2b3 Rc8 23. Na5 $1 
+{
+A remarkable Knight tour. The Knight is headed for c6, to remove Black's only defender of his weak dark squares. 
+}
+23. ...Ba8 
+{
+Now Steinitz gives a valuable lesson in exploiting square weaknesses, effective use of open file and Rook on the 7th rank.
+}
+24. Rxc8 Qxc8 25. Rc1 Qb8 26. Qc2 $1 Bd8 
+{
+To prevent penetration to the 7th rank.
+}
+27. Nac6 
+{
+Steinitz wants to eliminate Black's only defender of dark squares-the Bishop on d8.  For that he allows a chance to exchange his bad Bishop on a8.  Now if 27. ...Bxc6 28. Qxc6 Nf8 29. Nxe6! Nxe6 30. Qd7+ Be7 31. Rc6! Nf8 32. Rf6+ and White wins.
+}
+27. ...Qb7 28. Nxd8+ Rxd8 29. Qc7 $1 Qb8 30. Bf2 $1 Qb6 
+{
+To prevent 31. Bh4.
+}
+31. Nf3 Qxc7 32. Rxc7 
+{
+White controls the 7th rank which is Rook, his Knight is headed for g5, and his Bishop controls all the Black squares. Black cannot move his Knight because of the Pin, his Rook is tied down to the defence of the Knight and his Bishop has no safe square.  Black must meet the threat of 33. Bh4.
+}
+32. ...Ke8 33. Ng5 Nf8 34. Bc5 Nd7 
+{
+To prevent 35. Re7#
+}
+35. Bd6 $1 
+{
+Black is in zugzwang since all legal moves result in drastic material losses. 
+(a) The King may not move.
+(b) The Bishop may move only at the risk of being captured.
+(c) The Rook may move to b8, when 36. Rxd7 Kxd7 37. Bxb8 wins a piece for White.
+(d) The Knight may move to b6 when 36. Re7+ Kf8 37. Nh7+ Kg8 38. Nf6+ Kf8 39. Rd7#.  
+}
+1-0
+
+[Event "?"]
+[Site "?"]
+[Date "1909.??.??"]
+[Round "?"]
+[White "Lasker"]
+[Black "Janowski"]
+[Result "1-0"]
+[Annotator "Dhanesh Shrikhande"]
+
+{
+Emannuel Lasker became the second World Champion by defeating Steinitz in 1894. He held the crown longer than anyone else (26years and 337 days) defending it in a number of matches. Lasker, a man with doctorates in Mathematics and Philosophy, was a subtle psychologist and possessed exceptional competitive traits and will power. He retained his playing strength until old age. At the age of 67, he took part in an international tournament at Moscow, where he was placed third, ahead of many leading players of that time. His books 'Common Sense in Chess' and 'Chess Manual' were published in many languages. 
+}
+1 e4 e5 2 Nf3 Nc6 3 Bb5 a6 4 Bc6 dxc6 5 d4 exd4 6 Qd4 Bg4 $6
+{
+Black plays this move to exchange his Bishop for White Knight, breaking up White's King-side Pawns. However, after this exchange White will have an effective Pawn majority on the King-side against Black's ineffective one on the Queen-side. White can produce a passed Pawn in the resulting ending, while Black cannot force a passed Pawn with his Pawn majority on the other side. Black has a Bishop pair as a compensation for his Pawn weakness, which he can put to good use in open position.
+}
+7 Nc3 Qd4 8 Nd4 0-0-0 9 Be3 Bb4 10 Ne2 $1
+{
+After 10 f3 Bc3+ 11 bc Bd7 12 Kf2 White would also have the better game, but, as opposite colored Bishops would be left after a possible exchange of Knights, Black would have drawing chances.
+}
+10 ... Be2 $6    
+{
+Black gives up his only trump-the two Bishops-in order to saddle White with double Pawns; but his prospects on the Queen-side are in no way improved.
+}
+11 Ke2 Bc3 12 bc3 Nf6 13 f3 Nd7 14 Rad1 Ne5 15 Rd4 b6 16 f4 Nd7 17 Rhd1 c5 18 R4d3 Nb8 19 Kf3 Rde8 
+{
+Black avoids exchange of Rooks with the hope of being able to meet the opposing Pawn advance in a better way but, his King is cut off for a long time from the King-side. Better was 19 ... Rd3 20 Rd3 Rd8 or 20 cd Kd7.
+}
+20 f5 f6 21 g4 Re7 22 Bf4 Rhe8 23 Re3 Nc6 24 g5 Na5 
+{
+If 24 ... fg 25 Bg5 Ne5+ 26 Kf4 Rd7 27 Rd5! and White can force the advance of his e-Pawn as 27 ... Rxd5? 28 ed wins a piece for White.
+}
+25 h4 Nc4 26 Re2 Rf7 27 Rg1 Kd7 28 h5 Nd6 $2 29 h6 $1 fxg5 30 Rg5 g6 31 fxg6 hxg6 32 Rg6 Ref8 33 Rg7 Rg7 34 hxg7 Rg8 35 Rg2 Ne8 36 Be5 Ke6 37 Kf4 Kf7 38 Kf5 
+1-0 
+
+[Event "?"]
+[Site "Margate"]
+[Date "1939.??.??"]
+[Round "?"]
+[White "Capablanca"]
+[Black "Golombek, H"]
+[Result "1-0"]
+[Annotator "Rashmin Pulekar"]
+
+{
+Nimzo - Indian Defence
+Capablanca was the World Chess Champion from 1921 to 1927. The Greatest compliment one can pay a master is to compare his play to Capablanca. He was a genius, the greatest ever produced by chess. See what other World Champions say about him :- 
+"You cannot play chess unless you have studied his games." - Mikhail Botvinnik. 
+"Capablanca was possibly the greatest player in the entire history of chess." - Bobby Fischer.
+"Capablanca invariably chose the right option, no matter how intricate the position." Garry Kasparov.
+The following is an impeccably played game by the Former World Champion, typical of his seemingly effortless simplicity.
+}
+1 d4 Nf6 2 c4 e6 3 Nc3 Bb4 4 Qc2 d5 5 cxd5 exd5 6 Bg5 c6 7 e3 Nbd7 8 Bd3 h6 9 Bh4 0-0 10 Nf3 Re8 11 0-0 Be7 12 Bg3
+{
+Preventing Black's Ne4, liquidating. 
+}
+12... Nf8
+{
+Now Black forms a plan to exchange his light squared Bishop for White's active piece on d3.
+}
+13 h3 Be6 14 Rab1
+{
+Now commences the famous and formidable minority attack on the Queen side.
+}
+14...Nh5 15 Bh2 g6 16 Ne5 Ng7 17 b4 Bf5 18 Na4 Bxd3 19 Qxd3 Nd7 20 Rfc1 Nxe5 21 Bxe5 Bd6 22 Bxd6 Qxd6
+{
+It seems as though Black, by his numerous exchanges has eased his position. But...
+}
+23 b5 $1 cxb5 24 Qxb5 Ne6
+{
+If 24... Re7, 25 Rc5 Rd8 26 Nc3 and the 'd' Pawn falls.
+If 24... b6, 25 Rc6 Qd7 26 Rxb6 and if 25... Qd8, 26 Nc3
+}
+25 Nc3 $1
+{
+Better than 25 Qb7 which gives Black chances by 25... Reb8 26 Qc6 Qxc6 27 Rxb8+ Rxb8 28 Rxc6 Rb1+ etc.
+}
+25... Red8 26 Qxb7 Qa3 $6 27 Nxd5 Qxa2 28 Nb4 Qa4 29 Nc6 $1 
+{
+White not only threatens to capture the Rook but also to win the Queen by 30. Ra1!
+}
+1-0
+
+[Event "?"]
+[Site "Baden - Baden"]
+[Date "1925.??.??"]
+[Round "?"]
+[White "Reti"]
+[Black "Alekhine"]
+[Result "0-1"]
+[Annotator "Ashish Thatte"]
+
+{
+Irregular Opening
+Alekhine's games can be described in one word - Wonderful!. His inexhaustible imagination enabled him to carry out the most unexpected, far calculated combinations.  He was the first Russian to become the World Chess Champion (1927). He made many valuable contributions to chess theory. There is an opening, Alekhine Defence, named after him. 
+}
+1 g3 e5 2 Nf3
+{
+Alekhine's defence with reversed colours against Alekhine! Reti never repeated this experiment.
+}
+2... e4 3 Nd4 d5 4 d3 ed3 5 Qxd3 Nf6 6 Bg2 Bb4+ 7 Bd2 Bxd2 8 Nxd2 0-0 9 c4 $1 Na6
+{
+(9....c5 10. N4b3 is good for White because of Nxc5 and cxd5 threats.)
+}
+10 cd5 Nb4 11 Qc4 Nbd5 12 N2b3 c6 13 0-0 Re8 14 Rfd1 Bg4 15 Rd2 Qc8 16 Nc5 Bh3 $1
+17 Bf3
+{
+Taking the pawn is always bad because 17. Bxh3 Qxh3 18. Nxb72 Ng4 19. Nf3 Nde3 $3 20. Fxe3 Nxe3 21. Qxf7+ Kh8! 22. Nh4 Rf8 and threat on 'f1' is deadly.
+}
+17... Bg4 18 Bg2 Bh3
+{
+Giving option of a draw or exchange fianchetto bishop. But Reti chose an inferior option.
+}
+19 Bf3 Bg4 20 Bh1 h5 $1 21 b4 a6 22 Rc1 h4 23 a4 hxg3 24 hxg3 Qc7 $1
+{
+Keeping an eye on the 'g3' Pawn.
+}
+25 b5 ab5 26 ab5 Re3 $1
+{
+This spectacular move not only stops White's attack but puts him into deep trouble. Of course the Rook can't be taken because of ...Qxg3+ and ...Nxe3. Now serious threat is 27...Rxg3+.
+}
+27 Nf3
+{
+(27. kh2?? Raa3! 28.Ncb3-+ 28 fe3? Ne3 29 Qb4 Nf1+! 28... Qe5! 29 bxc6 bxc6 black is clearly better.)
+}
+27...cxb5 28 Qxb5 Nc3 $1 29 Qxb7 Qxb7 30 Nxb7 Nxe2+ 31 Kh2
+{
+(31. Kf1 Nxg3+ 32. fg Bf3 33. Bxf3 Rxf3+ 34. Kg2 Raa3 35. Rd8+ Kh7 36. Rh1+ Kg6-+)
+}
+31... Ne4 $1
+{
+The beginning of a new combination aiming at the 'b7' Knight after a series of 12 forced moves.
+}
+32 Rc4 $1
+{
+The best defence. If 32. fxe3 Nxd2! Winning an exchange.
+}
+32... Nf2 33 Bg2 Be6 $1
+{
+Now Black Knight will occupy 'g4'.
+}
+34 Rcc2 Ng4+ 35 Kh3 Ne5+ 36 Kh2 Rf3 37 Rxe2 Ng4+ 38 Kh3 Ne3+ 39 Kh2 Nxc2 40 Bxf3 Nd4 41 Rf2 Nxf3 42 Rxf3 Bd5 
+{
+Winning a piece. 
+}
+0-1
+
+[Event "?"]
+[Site "New York"]
+[Date "1927.??.??"]
+[Round "?"]
+[White "Alekhine"]
+[Black "Marshall, F.J."]
+[Result "1-0"]
+[Annotator "Ashish Thatte"] 
+
+{
+Brilliancy Prize
+}
+1 d4 Nf6 2 c4 e6 3 Nf3 Ne4 4 Nfd2 Bb4 5 Qc2 
+{
+(5. a3? Qf6 -+ typical Marshall trap.)
+}
+5...d5 6 Nc3 f5 7 Nde4 fe4 8 Bf4 0-0 9 e3 c6
+{
+White was threatening 10. a3 Bd6 11. Bxd6 Qxd6 12. cd5 ed5 13. Nxd5!
+}
+10 Be2 Nd7 11 a3 Be7 12 0-0 Bg5
+{
+There is hardly anything better for Black.
+}
+13 f3 $1 Bxf4 14 exf4 Rxf4 15 fxe4 Rxf1+ 16 Rxf1 e5
+{
+(16....dxc4 17. Bxc4 Nb6 18. Qf2! + =)
+}
+17 Qd2 c5 18 dxe5 $1 d4 19 Qf4 $3 dxc3 20 Qf7+ Kh8 21 bxc3 $1 Qg8 22 Qe7 h6 23 Bh5 $1
+{
+Not 23. e6 Nf6 24 e5 Nh7!
+}
+23... a5 24 e6 g6 25 ed7 Bxd7 26 Rf7
+1-0
+
+[Event "?"]
+[Site "Zandvoort"]
+[Date "1936.??.??"]
+[Round "?"]
+[White "Euwe"]
+[Black "Maroczy"]
+[Result "1-0"]
+[Annotator "Ramkrishna Kashelkar"] 
+
+{
+Queen's Gambit Declined
+"The man who never missed a combination." That was how Alekhine described the Dutch Grandmaster Dr. Max Euwe. In 1935, Euwe became the World Champion after he defeated Alekhine in their match. Dr. Euwe was the President of the World Chess Federation (F I D E) from 1970 to 1978. Though he lost his title to Alekhine in 1937, he became famous for his writings. His well-known book 'Judgment and Planning in Chess' is regarded as on of the standard manuals for developing players.
+}
+1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. Bg5 Be7 5. e3 O-O 6. Nf3 Nbd7 7. Rc1 c6 8. a3
+{
+The well-known "struggle for the tempo." After 8. Bd3 dc4, Black gains a tempo, and hence white delays the development of his Bishop on f1. 
+}
+8... h6 9. Bf4 a6 10. h3 
+{
+the struggle for the tempo continues.
+}
+10... dxc4 
+{
+Black could have continued the struggle with 10...Re8 when 11 Qc2 is best.
+}
+11. Bxc4 b5 12. Ba2 Bb7 
+{
+(12... c5 is less good because of 13. d5)
+}
+13. O-O 
+{
+(13. b4 allows counterplay with 13... a5)
+}
+13... c5 14. Ne5 c4 
+{
+This releases the tension in the centre. A dubious idea in this position. This gives Black a queenside majority, which in the event of an ending might decide the game in his favour. But white gets a free hand in the centre which will prove dangerous in the middlegame.
+}
+15. Bb1 Re8 16. Qe2 Nxe5 $2 
+{
+Probably the decisive mistake, since white's attack becomes more powerful than ever. This move allows white to put a pawn on e5, a very important pre-requisite for an attack, without much grave a weakness. Had white been forced to push e4-e5, his pawn at d4 becomes a terrible weakness.
+}
+17. dxe5 
+{
+Now a central file is opened up which, white is better placed to benefit from.
+}
+17... Nh7 
+{
+Forced. Bad would be (17... Nd5 18. Qc2) (17... Nd7 18. Qg4 Kh8 19. Qh5 when Qf7 and Bh6 are both threatened.)
+}
+18. Qh5 
+{
+threatening to win a pawn by Bh7+ and Qf7. Also possible was (18. Qg4 Bg5 19.Rcd1 {And then Bg3 and f4.)
+}
+18... Nf8 19. Rcd1 Qc7 20. Bxh6 $3 
+{
+This sacrifice is based on positional considerations. White obtains only two pawns for the piece but Black's king is exposed and white enjoys a long term initiative.
+}
+20... gxh6 
+{
+forced. Declining the piece with (20... g6 21. Qg4 Qxe5 22. e4!leaves white with a powerful attack.)
+}
+21. Rd4 $1 
+{
+The correct way. Wrong would be (21. Qxh6 Rad8 when black is out of danger.)
+}
+21... f5 
+{
+If (21... Bg5 22. h4 Qxe5 23. hxg5 hxg5 24. Rg4 {the attack still continues.)
+}
+22. exf6 Bxf6 23. Rg4+ Bg7 24. Qxh6 
+{
+this is the position Euwe had in his mind when he sacrificed the bishop. The evaluation of the position depends on the comparative mobility of the pieces. Black's Knight on e8 and Bishop on g7 can not move and he'll require some time to mobilize both his rooks.
+}
+24... Rad8 25. Ne2 $1 
+{
+beautiful! The knight is heading for h5.
+}
+25...e5 
+{
+In order to drive the white queen with ...Rd6 or ...Re6
+}
+26. Ng3 Re6 
+{
+(26...Rd6?? 27. Rxg7+ Qxg7 28. Qxg7+ Kxg7 29. Nf5+)
+}
+27. Qh4 
+{
+Now black's position appears well secured. He has effectively mobilized his rooks and apparently fend off the attack. But Euwe has something up his sleeve. 
+}
+27... Rd3 
+{A difficult situation.} (27... Qe7 $4 28. Rxg7+ Kxg7 29. Nf5+) (27...Rdd6 28. Nf5 Ng6 29. Qg3 Rb6 30. h4 $1 {and the threat of h5 is decisive.})
+(27... e4 28. Nxe4 Bxe4 29. Bxe4 Rxe4 30. Rxe4 Bxb2 31. f4 c3 (31... Rd7 32. Rf3 Rh7 33. Rg3+ Bg7 34. Re7 $1 Qb6 35. Qg5 Ne6 36. Qg6 $18) 32. Qg5+ Kf7 33. f5 c2 34. f6 Ne6 35. Qh5+ Kf8 36. Rxe6 c1=Q 37. Qh8+ Kf7 38. Re7+ Qxe7 39. Qg7+ Ke6 40. Qxe7+ Kd5 41. Qxd8+ $18)
+28. Nf5 Ng6 29. Qh5 
+(29. Rxg6 $2 Rxg6 30. Ne7+ Qxe7 $1 31. Qxe7 Rxg2+ 32. Kh1 Rxf2+ 33. Qxb7 Rxf1+ $19)
+29... Qf7 30. h4 $1 
+{
+Decisive! Euwe must have seen this many moves earlier. When the attack with only pieces comes to a standstill, White manages to stimulate the attack with the help of the h-pawn. The threat being Qg5 and h5 winning a piece, which is very difficult to parry. 
+}
+30... Bf8 31. Nh6+ Bxh6 32.Qxh6 Qh7 33. Qg5 Kf7 34. Bxd3 cxd3 35. Qf5+
+{
+Here Black resigned as Black's position is hopeless after 35... Ke7 36. h5 Nf8 37. Qxh7+ Nxh7 38. Rg7+ Or 35... Rf6 36. Qd7+ Kg8 37. Qe8+ Kg7 38. Qe7+ Rf7 39. Qxe5+ Kf8 40. Qd6+ Kg7 41. Qxd3 
+Dr. Euwe justly received Brilliancy Prize for this game.
+}
+1-0
+
+[Event "?"]
+[Site "Groningen"]
+[Date "1946.??.??"]
+[Round "?"]
+[White "Smyslov, V"]
+[Black "Kottnauer, C"]
+[Result "1-0"]
+[Annotator "Ravishankar, D"]
+ 
+{
+Sicilian Defense - Najdorf variation.
+Vasili Smyslov, the 7th World Champion, played three World Championship Matches against Botvinnik during the period 1954 to 1958. He won the second match and lost the other two. The characteristic features of Smyslov are a rare comprehension of position and excellent end-game technique. A number of Smyslov's games and endings have been included in chess manuals.
+Smyslov's miniature defeat of Kottnauer at Groningen presents an example of the inexorable, searching blows he inflicted one after another on the opponent's weaknesses.
+}
+1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Be2 e6 7. O-O b5 $6
+{
+Though a typical move in the Sicilian Defense, it proves to be very premature at this stage. This is because Black is expanding on the Queenside at the cost of the development of his pieces.
+}
+8. Bf3 $1 
+{
+With the threat of e4-e5.
+}
+8...  Ra7
+{
+Only move. If 8... Bb7,then 9. e5
+9... Bf3 10. Qf3 dxe5 11. Nxe6 fxe6 12. Qxa8+- 
+9... dxe5 10. Bxb7 exd4 11. Nxb5 axb5 12. Bxa8 +- 
+}
+9. Qe2 $1
+{
+Better than 9. Be3 as in that case Black could have played first...Rd7 followed by...Bb7. After the text move 9... Rd7 would be met by 10. e5 dxe5 11. Nc6 ! Qc7 12. Nxb8 Qxb8 13. Bc6 Qc7 14. Bxd7 Nxd7 with a clear advantage for White.
+}
+9...Rc7 10. Rd1 $1 Nbd7 
+{
+Practically forced.
+}
+11. a4 $1 
+{
+A common move in such positions.
+}
+11...bxa4 
+{
+Only move. If 11... b4 12. Na2! a5 13. Nb5 with an almost winning position.
+}
+12. Nxa4 Bb7
+{
+If 12... Be7 13. Bd2 e5 14. Nf5 g6 15. Nxe7 Qxe7 16. Bb4 Rc6 17. Qd2 Nc5 18. Nxc5 dxc5 19. Ba5 O-O 20. Ra3! Bb7 21. Rd3 Rcc8 22. Bd8! Rcxd8 only move when 23. Rxd8 Rxd8 24. Qxd8 Qxd8 25. Rxd8 + Kg7 26. Rd6!+- is a sample variation.
+}
+13. e5 $1
+{
+This guarantees White a great positional superiority. 13... dxe5 14. Bxb7 exd4 (14... Rxb7 15. Qxa6 clear plus for White.. Bxa6 Black faces great difficulties.
+}
+13...Nxe5 14. Bxb7 Rxb7 15. Qxa6 Qb8 16. Nc6 Nxc6 17. Qxc6+ Nd7 18. Nc5 $3
+{
+The culmination of a beautifully exploited position into a combination.White opens all the lines of attack. If now 18... Rc7 19. Nxd7 Rxd7 (19... Rxc6 20. Nxb8 +-. 20. Ra8 +- )
+}
+18...  dxc5 19. Bf4 $1
+{
+The point of the whole combination. If 19... Qf4 20. Qc8+ Ke7 21. Qb7 Kf6 22. Rd7 +- . 
+}
+19...Bd6 20. Bxd6 Rb6 21. Qxd7+
+{
+Not a wee of a chance did Smyslov give to his opponent after 7)...b5 ?! . The most difficult thing in chess is to win a won position. Smyslov had a knack of finishing off his opponents at the hint of even a slight mistake. It is precisely this quality that made him a " champion of champions".
+}
+1-0
+
+[Event "?"]
+[Site "Groningen"]
+[Date "1946.??.??"]
+[Round "?"]
+[White "Smyslov, V"]
+[Black "Uhlmann"]
+[Result "1-0"]
+[Annotator "Ravishankar, D"]
+
+{
+The Queen's Indian Defense.
+Smyslov - who is a known disciple of the great master Tchigorin - in the following game (Black Pieces) makes mincemeat of the resistance put forward by the brilliant Grandmaster Uhlmann. The processes of the game of chess are transformed into a great art and Smyslov, like an artist, invests in this art his innermost thoughts, deep emotions and genuine creative pathos.
+}
+1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Ba6
+{
+One of Nimzovich's original ideas, which, has now been widely analyzed.
+}
+5. b3
+{
+Also possible is 5)Qa4 when Black can play 5)...Be7 6. Bg2 O-O 7. O-O c6 8)Nc3 d5 9. Ne5 Qe8! 10. cxd5 exd5 11. Bg5 h6 12. Bxf6 Bxf6 13. Ng4 Bd8 14)Rfe1 with interesting play.
+}
+5...d5 6. Bg2 Bb4+ 7. Nfd2 $6
+{
+(7. Bd2 Be7!(A common idea in such positions. The Bishop on d2 is misplaced.. 8. Nc3 O-O 9. cxd5 exd5 10. Ne5 Bb7 =.)
+}
+7...c5 $1
+{
+Energetic play by Smyslov casts doubts on White's previous extravagant move. Otherwise White would have played a3 followed by e4.
+}
+8. dxc5 Bxc5 9. Bb2 O-O 10. O-O Nc6 11. Nc3 Rc8 12. cxd5 $6
+{
+A careless exchange. The resultant isolated pawn position is not much important since it allows too much leeway to the Black pieces. Better is 12. Na4 and only after 12)...Bb4 13. cxd5 when 13)... exd5 14. a3 Re8! 15. axb4 Bxe2 16. Qb1 Bf1 17. Nf1 Nxb4 18)Bc3 Nc6 19. Qf5 d4 20. Bb2 Nb4 21. Rd1 d3 with a very unclear position not certainly recommendable to the faint hearted.
+}
+12...exd5 13. Na4 
+{
+A move too late.
+}
+13...Nd4 $1 14. Nc3 
+{
+What else ? If 14. Re1 Nc2 15. Qxc2 Bxf2+ 16. Kxf2 Rxc2 -+){
+}
+14...Qe7 $1
+{
+(14...Bb4, with the idea of destroying the main defender of the e2-pawn, doesn't serve the purpose because of the cool 15. Ndb1! . Black has a combination in store against White's next move which is probably the only move in the position.)
+}
+15. Re1 
+{
+Natural, but not good.
+}
+15...Nc2 $3
+{
+"The straw that breaks the camel's back."
+}
+16. Rf1
+{
+Not allowing combinational beauty since it is a nightmare to be at the receiving end. If 16. Qxc2 then 16...Bxf2+ 17. Kh1 Be1 18. Re1 d4 -+ 17. Kf2 Ng4 
+(B1. 18. Kg1 Qe3+ 19. Kh1 Nf2+ 20. Kg1 Nh3+ 21. Kh1 Qg1+ 22. Rg1 Nf2 mate.)
+(B2. 18. Kf1 Qe3 19. Nd1 Nh2 mate.)
+(B3. 18. Kf3 Qe3+ 19. Kg4 Rc4+  $3 20. bxc4 Bc8+ 21. Kh4 Qh6 mate.)
+}
+16...Nxa1 17. Qxa1 Rfd8 18. Bf3 Ba3
+{
+Smyslov's all time favourite setup was the Queen's Indian Defense setup in which he had such mastery that nobody could dispute .The above game amply drives home the point.
+}
+0-1
+
+[Event "25th U.S.S.R. CHAMPIONSHIP"]
+[Site "Riga"]
+[Date "1958.??.??"]
+[Round "?"]
+[White "Averbakh, Y"]
+[Black "Tal, M"]
+[Result "1-0"]
+[Annotator "Sushant Banerji"]
+
+{
+The legendary Mikhail Tal was the finest ever exponent of attacking chess. His all-out sacrificial style took him all the way to the World Championship title in 1960, when he defeated Botvinnik in the World title match. Though the eighth World Champion Tal lost the return match, his keenly combinational and uncompromising style won him a big number of fans in the chess world.
+}
+1.d4 Nf6 2. c4 e6 3. Nc3 c5 4. d5 exd5 5. cxd5 d6
+{
+This is the Modern Benoni Defence. Here Black develops his Bishop on g7 by playing... g6 and the move... c5 gives Black control of the dark squares in the centre.
+}
+6. e4 g6 7. Be2
+{
+Not the best square for the Bishop. Better would have been 7. Nf3, 8.h3 and then placing the Bishop to d3 as per the latest theory.
+}
+7...Bg7 8. Nf3 0-0 9. 0-0 Re8
+{
+Black puts pressure on the e - Pawn and also prevents its advance. Later Black plays on the Queenside for... b5,... b4 etc.
+}
+10. Qc2
+{
+White plans to develop his Bishop to f4 before playing Nd2. As will be seen, Tal brilliantly refutes this idea. It looks better to play 10. Nd2 as recommended by theory.
+}
+10...Na6
+{
+Black's idea is to play... Nc7,... Rb8 followed by... b5. Also the Knight can be used for other purpose as demonstrated in the game.
+}
+11. Bf4
+{
+Better was 11. Re1 Nc7 12. Bf4 Rb8 13. a4 a6 14. a5 b5 15. axb5 Rb6 with chances for both the sides.
+}
+11...Nb4 12. Qb1 Ne4 $3
+{
+It was not possible to play 12...Nfd5 due to 13. exd Bc3 14. bxc Re2 15. cxb
+}
+13. Ne4 Bf5 14. Nfd2
+{
+Forced. Since after 14. Bd3 Nd3 15 Qd3 Be4 Black remains a Pawn up.
+Black has compensation since he will get another Pawn on d5 with a tempo and also White pieces are in a cramped position. Practically it is difficult for White to find the best path.
+}
+14. ... Nd5 15. Bd6
+({Many alternatives were available at this stage.}
+15. Be3 Ne3 16. fxe3 d5 17. Rf5 dxe4 18. Rc5 Qd2 $1 {and the Pawn on e3 is lost with a winning position for Black.}) 
+(15. Bg5 Qd7 $1 (15...f6 16. Bc4) 16. Bf3 (17. f3 h6 18. Bh4 Nf4 19. -- d5) 16...h6 17. Bh4 Nb4 18. a3 Nc6 {with many threats -... g5 - g4,... d5 and... Nd4. })
+(15. Bg3 $1 {Looks to be the best move.} 15...Qe7 16. Bf3 
+(16. Bb5 $1 Be4 17. Ne4 Qe4 18. Be8 Qe8 19. Bd6 Qc6 20. Bg3 {White can achieve equality since Black seems to have good attacking prospects on the Queenside.} ) 16...Rad8 {Black has fully developed and centralised pieces, in addition to two Pawns for a piece. })
+15...Nf6 $1 16. Bf3
+(16. Nf6+ Qf6 17. Bd3 (17. Qd1 Qd6 18. Ne4 Qd1 ) 17...Qd6 18. Bf5 Qd2 19.-- Bb2 $19)
+(16. Bc5 Ne4 17. Ne4 Be4 { when 18. Qd1 and 18. Qc1 can be met by 18...Qg5 and 18...Re8 respectively.})
+16...Ne4 17. Ne4 Be4 18. Be4 Qd6 19. Qc2
+{
+Instead 19. Bb7? is met by 19...Rab8.
+Now White is having some hope in the opposite coloured Bishop endgame/middlegame.
+}
+19...Re7 20. Bf3 Rae8 21. Rad1 Bd4
+{
+Black is a Pawn up but the most important factor is that it provides a fine outpost for the Bishop in the centre.
+}
+22. a4 b6 23. b3 Re5 24. Rd2
+{
+White has placed all his Pawns on the light squares and avoids giving Black any target of attack. Now White is planning to exchange a pair of Rooks which will ease the pressure. Even after that the material on the board is enough for Tal to build up the decisive attack.
+}
+24...h5 $1
+{
+Here 24...Qe6 would have been met by 25. Qc4 and 24...Qe7 with 25. Bc6.
+}
+25. Re2 Re2 26. Be2 h4 27. Kh1
+{
+White puts his King on a White square and plans to play g3 as a counter to Blacks... Qf4 and... Be5.
+}
+27...Qf4 28. g3
+{
+(28. Bc4?, Be5 28. Qg6+ (29. g3, Qf3+ with the idea of 30...h3) 29...Kf8 wins for Black.)
+}
+28...Qf6 29. Qd1
+{
+Intending Bf3.
+}
+29...Rd8 $1 30. Bg4
+{
+Better would have been 30. Kg2, since 30...Bf2 is met by 31. Qc2. So Black may continue 30...Bc3 31. Bd3 (Else 31...Rd2) 31...Qc6+ 32. Kg1 Qd5 33. Be2 Qg5 34. Qc1 Qf6 35. Rd1 Bd4 36. Rf1 hxg 37. hxg Qe5! winning a second Pawn.
+}
+30...Bf2 $1 31. Qe2 
+{
+(31. Qf3, Qf3+ and 32...hxg is hopeless for White.)
+}
+31...Rd2 $1 32. Qe8+ Kg7 33. gxh4 Qd4 34. Bh3 Qd3 35. Bg2
+{
+Last try would have been 35. Qe5+ Kh7 36. Qf6! When 36...Qh3 leads to a draw after 37. Qf7+ Kh6 38. Qf8+ Kh5 39. Qh8+ Kg4 40. Qc8+ Kh4 41. Qh8+ etc. However after 36...Qd5+ 37. Bg2 Qg2+ 38. Kg2 Bd4+ Black wins.
+}
+35...Rd1
+{
+After 36. Qb5 Rf1+ 37. Bf1 Qe4+ 38. Bg2 Qh4 Black wins.
+}
+0-1
+
+[Event "?"]
+[Site "Leipzig"]
+[Date "1894.??.??"]
+[Round "?"]
+[White "Tarrasch, S"]
+[Black "Von Scheve, T"]
+[Result "1-0"]
+[Annotator "Dhanesh Shrikhande"]
+
+{
+Queen's Gambit Declined
+"Chess like music and love has the power to make men happy." 
+- Dr. Siegbert Tarrasch.
+Tarrasch was born club-footed on March 5, 1862 in Breslau. However, his physical deformity did not affect his play. His games are marvellous examples of strategy in the classical tradition, and the combinations that he played as a result of his careful planning are not flashy, but precise, economical and sound to the core. Thousands of experts owe their understanding of chess to Tarrasch.
+Against von Scheve Tarrasch plans a course of play leading practically to mate, from so early a stage of the eighth move of the game! He forces an exchange of pawns leading to open 'g' file. After doubling of Rooks on this file, he moves his Queen to the Kingside. The way these heavy pieces attack the opponent's King is a good lesson in the Art of Attack.
+}
+1 d4 d5 2 c4 e6 3 Nc3 Nf6 4 Nf3 Be7 5 Bf4 c6
+{
+A passive move. 5...c5 was better.
+}
+6 e3 Nbd7 7 h3 
+{
+Preparing a flight square for the Bishop in the event of 7...Nh5.
+}
+7... Ne4 $2
+{
+A serious mistake. After the exchange of Knights, Black's recapturing Pawn on e4 becomes weak and needs protection by...f5. White attacks it with f3 forcing Black to exchange and open the 'g' file.
+}
+8 Nxe4 dxe4 9 Nd2 Bb4 
+{
+Black should have retained this Bishop for the protection of his pawn on g7.
+}
+10 a3 Bxd2+ 11 Qd2 
+{
+Now White has the advantage of the two Bishops.
+}
+11... 0-0
+{
+Better was 11...Qe7 followed by 12...e5 to get some counterplay.
+}
+12 Qc2 f5
+{
+If 12...Nf6, then 13 Be5 followed by Bxf6 wins the Pawn on e4.
+}
+13 Bd6 $1
+{
+Gets a grip on the black squares and prevents...Qe7 and...e5.
+}
+13... Re8 $2 14 0-0-0 Nf6 15 Be5 Bd7 16 f3 $1
+{
+Threatens to win a pawn after 17 Bxf6, forcing Black to exchange pawns, opening the 'g' file.
+}
+16... exf3 17 gxf3 b5 18 Rg1 Rf8 19 Rd2 $1 Rf7 20 Rdg2 a5 21 Qf2 $1 Ne8
+{
+Defends g7 and prevents 22 Qh4.
+}
+22 Rg5 $1 Qe7
+{
+If 22...g6, White attacks with 23 h4 and 24 h5 or if 22...h6 23 Rg6 Kh7 24 Qg3 Qe7 25 Rxh6 +! Gxh6 26 Qg6#
+}
+23 Qh4 Nf6 24 Qh6 Ra7
+{
+Other moves lose quickly e.g.,
+A-24...g6 25 Rxg6+ hxg6 26 Rxg6+ Rg7 27 Bxf6 +-
+B-24...Kh8 25 Rxg7 and 26 Bxf6 +-
+C-24...Be8 25 Bxf6 Qxf6 26 Qxf6 Rxf6 27 Rxg7+ Kf8 28 Rxh7+-
+}
+25 Bd6 $1 Qxd6 26 Rxg7+ Kf8 
+{
+If 26...Kh8, 27 Qxh7+ Nxh7 28 Rg8#
+}
+27 Rxh7+ Ke7 28 Rxf7+ Kxf7 29 Rg7+ Ke8 30 Qxf6
+{
+Threatening 31 Rg8+ and mate next move. If Black plays 30...Qf8, 31 Qg6+ Kd8 32 Rg8 and White win the Queen.
+}
+1-0
+
+[Event "?"]
+[Site "Nuremberg"]
+[Date "1910.??.??"]
+[Round "?"]
+[White "Tarrasch, S"]
+[Black "Vogel, S"]
+[Result "1-0"]
+[Annotator "Dhanesh Shrikhande"]
+
+{
+Ruy Lopez
+Tarrasch gives a valuable lesson in the Art of Exploiting Small Advantages.
+}
+1 e4 e5 2 Nf3 Nc6 3 Bb5 d6 4 d4 Bd7 5 Nc3 Nf6 6 0-0 Be7 7 Re1 exd4
+{
+Black must give up the centre. Delay may lead him in the following trap, discovered by Tarrasch
+7...0-0? 8 Bxc6 Bxc6 9 dxe5 dxe5 10 Qxd8 Raxd8 11 Nxe5 Bxe4 12 Nxe4 Nxe4 13 Nd3 f5 14 f3 Bc5+ 15 Nxc5 Nxc5 16 Bg5 Rd5 17 c4 Rd7 18 Be7- White wins the exchange.)
+}
+8 Nxd4 Nxd4 9 Qxd4 Bxb5 10 Nxb5 0-0 11 Bg5 Ng4
+{
+Black tries to simflify the position.
+}
+12 Bxe7 Qxe7 13 c4 a6 14 Nc3 Qe5 15 Qxe5 dxe5
+{
+If 15... Nxe5 16 b3 and 17 f4.
+}
+16 Nd5 $1
+{
+Simple and strong. The main threat is not 17 Nxc7 as after 17... Rac8 Black regains the Pawn, but 17 h3 after which, 17... Nh6 is obviously bad and17... Nf6 allows 18 Nxf6 breaking up Black's Pawn position.
+}
+16... c6 $2
+{
+After this natural move Black's d6 is seriously weakened. Better was 16... Nf6, after which 17 Nxf6 gives White only a slight advantage.
+}
+17 Ne7+ Kh8 18 Nf5 Rad8 19 Rad1 g6 20 Nd6 $1
+{
+This Knight is very strongly placed on d6. The immediate threat is 21 Nxf7+ winning the exchange, while the Pawn on b7 is also under attack.
+}
+20... Rd7 21 c5 $1
+{
+Supports the outpost, provides c4 as a useful square for the Knight and fixes Black's Pawns on the Q side.
+}
+21... Kg8 22 Nc4 $1 Rfd8 23 Rxd7 Rxd7 24 f3 Nh6
+{
+Black gives up a Pawn for which, his Rook will seize the seventh rank. If 24...Nf6, 25 Re2 Re7 26 Rd2 Rd7 27 Rxd7 Nxd7 28 b4 and 29 Na5.
+}
+25 Nxe5 Rd2 26 Nc4 Rc2 27 b3 Rxa2 28 Rd1 $1 a5
+{
+Hoping to undermine White's Queen side position by 29...a4.
+}
+29 Rd8+ Kg7 30 Ra8 a4 31 Rxa4 Rxa4 32 bxa4 Ng8 33 Nd6 Kf6 34 Nxb7 Ke5 35 a5 Ne7
+{
+Prepares to meet 36 a6 with Nc8 to stop the Pawn for the time being.
+}
+36 Nd6 $1  
+36...Kd4 37 a6
+{
+One piece wins the game practically single-handed! Tarrasch's Knight makes 13 of the 37 moves in the game, controls important squares, holds the enemy Rooks at the bay, captures Pawns here and there, and as a final touch, clears the way for a passed Pawn to become a Queen.
+}
+1-0 
+
+[Event "International tournament"]
+[Site "Karlsbad"]
+[Date "1907.??.??"]
+[Round "?"]
+[White "Janowsky, D"]
+[Black "Rubinstein, A"]
+[Result "1-0"]
+[Annotator "Ramkrishna Kashelkar"]
+
+{
+"In the endgame Rubinstein is the supreme." - Fine.
+"Rubinstein is a Rook ending of a game begun by the Gods thousands of years ago." Tartakover.
+}
+1. e4 e5 2. Nf3 Nc6 3. Nc3 Nf6 4. Bb5 Bb4
+{
+(4... Nd4 used to be Rubinstein's pet line afterwards. )
+}
+5. O-O O-O 6. d3 Bxc3 7. bxc3 d6 8. Bg5 Qe7 9. Qd2 
+{
+(9. Re1 Nd8 10. d4 c6 11. Bf1 Ne6 12. Bc1 is also played. )
+}
+9... Nd8 10. Bc4 Be6 11. Bb3 Bxb3 12. axb3 Ne6 
+{
+The mobility of this knight, which always aims to occupy f4, is the greatest obstacle for white. 
+}
+13. Bh4 h6  
+{
+(13... Nf4? 14. Nd4! exd4 15. Qxf4 dxc3 16. Rae1 intending Qe3 and f4 with a powerful attack is good for white. )
+}
+14. Rfe1 a6  
+{
+(14...Nf4 is still bad because of 15. Nd4 exd4 (Black cannot allow the White knight to occupy f5) 16. Qxf4 dxc3 ( or if 16... g5 17.Bxg5 hxg5 18. Qxg5+ Kh8 19. cxd4 Rfe8 20. Ra5 with attack.) 17. d4 is better for white. )
+}
+15. Bg3 $2  
+{
+(15. d4 was essential 15... Nf4 (Bad for black is 15... g5 16. Bg3 Nf4 17.Bxf4 gxf4 (17... exf4 18. e5!) 18. g3 Nh5 19. Qe2 with advantage to white.)16. dxe5 dxe5 17. Nd4 Rad8 18.Qe3 exd4 19. Qxf4 g5 20. Bxg5 white obtains advantageous attack.) )
+}
+15... Nh5 16. d4 Nef4 17. Bxf4
+{
+(17.Qe3 with the idea of Rad1, Rd2, Red1 might be better. )
+}
+17... Nxf4 18. g3 Ng6 
+{
+The White's King side has been weakened and an attack with ...f5 is threatened.
+}
+19. Qd3 
+{
+intending to reply...f5 with ef and then Nf3-d2-e4 defending f2. 
+}
+19... Qe6 20. Nd2 f5 21. d5 Qd7 22.exf5 Rxf5 23. Ne4 
+{
+The Knight has a good central outpost compensating Black's possession of the f-file but the weakness caused by g3 cramps White considerably.   
+}
+23...Raf8 24. Re3 Ne7 
+{
+intending...Kh8, Ng8-f6 dislodging the powerful white knight.
+}
+25. Rd1 
+{
+Increasing the mobility of the queen. But 25. c4? would be a decisive mistake 25...Rh5 intending ...Nf5-d4-f3 when Qh3 is threatened.
+}
+25... Kh8 
+{
+(25... Rh5 26. Qf1 )
+}
+26. c4 Ng8 
+{
+if now 26... Rh5 white can stop the entry of black's knight by 27. Qf1! Nf5 28. Rf3! and 29. c3 prevents the Black's knight from entering d4.
+}
+27. f3
+(27. c5)
+27... Nf6 28. Rf1 
+{
+if 28. Nc3 then 28... g5 intending...g4)
+}
+28... Nxe4 29. Qxe4  
+{
+it seems that White has overcome his problems of middlegame and has consolidated the position. But Rubinstein's next two moves create fresh problems for White. 29. Rxe4 and 30 Qe3 might be equal.
+}
+29... Qd8 $1 30. Qg4  
+{
+White tries to prevent ...Qg5. But 30. Ree1 Qb8 (30 ...Qg5!? intending Rf4-d4) 31. Qe3 holds the position. 
+}
+30...Qb8 $1 
+{
+Quite overwhelming ! The Queen now takes up a strong position on the Q-wing.
+}
+31. Kg2 Qa7 32. Rfe1 Qc5 33. Qe4 Qb4 34. R1e2 
+{
+It would have been better to maintain the rook on the 1st rank.
+}
+34... R5f6 35. Qd3 Kg8 36. Qc3 a5 37. Qxb4 axb4 38. c3 bxc3 39.Rxc3 Ra8
+40. Kh3 $2 
+{
+(40. b4 Ra1 41. Rb2 (41. c5 Rd1!) 41... Rd1) 40. c5 was the only chance of counterplay. 40... Ra5 (If 40... Ra3 41. cxd6 cxd6 42. f4 exf4 43. gxf4 Rxf4 44. Re7 Ra2+ 45. Kg3 Rff2 46. Rcc7 Rg2+ 47. Kf3 Raf2+ 48. Ke3 Re2+ 49. Kd3 Rxe7 50. Rxe7 Rxh2 51. Rxb7 threatening ...Rd7with a probable draw.) 41. b4 Ra4 42. b5! threatening 43. b6 cb6 44. c6! )
+}
+40... b6 $1 41. Kg4 $2 
+{
+The king is vulnerable here. It will be better to retreat the king to g2. 
+}
+41... Ra1 42. Rb2  
+{
+(42. h4 Rh1 43. h5 Kh7 44. Ra2 g6 45. hxg6+ Rxg6+ 46. Kf5 Rh5+ 47. Ke4 Rxg3 winning )
+}
+42... Kh7 43. b4 Kg6 44. Rbb3
+{
+If 44. Kh3 then Rg1 or if 44. c5 Rd1 45. cxb6 cxb6 46. Rc6 b5 and then Rxd5
+}
+44... Rf5 45. Rc2 Rh1 46. f4  
+{
+There is no adequate defence. Either the King is mated or a pawn is lost. (46.h4 h5#) If 46. Kh3 Rh5+ 47. Kg4 R5xh2 48. Rxh2 Rxh2 49. f4 (49. c5? h5#) 49... e4 50. f5+ Kf6 51. Kf4 Rc2 52. Kxe4 Rxc4+ 53. Kd3 53... b5 with a winning position. And if 46. c5 dxc5 (46...Rg5+ 47. Kh3 Rh5+) 47. bxc5 bxc5 48. Rxc5 Rxh2 49. Rc6+ Rf6 50. Rxf6+ gxf6 51. f4 f5+ 52. Kf3 e4+ 53. Ke3 Rg2 is winning.)
+}
+46... exf4 47. gxf4 h5+ 48. Kg3 Rg1+ 49. Kf2 Rg4 50. Rf3 Rgxf4 51.Rxf4 Rxf4+ 52. Ke3 Kf5 53. Kd3 Rf3+ 54. Kd4 Rb3 
+{
+Blocking the white pawns.
+}
+55. Rf2+ Kg6 56. Rg2+ Kh6 57. b5
+{
+If 57. Ra2 then 57... b5! (but not 57... Rxb4 58. Kc3 Rb1 59. Ra7) 58. Ra7 Rxb4 wins. 
+}
+57... Rf3 
+{
+The white pawns have lost their mobility and the black rook can now devote itself to exploitation of the extra pawn on the K-side.
+}
+58. Ke4 Rf6 59. Ra2 g5 60. Ra7 Rf4 $1
+{
+A very subtle move. 
+}
+61. Kd3 Rf7 62. c5 
+{
+Sheer desperation. 
+}
+62... dxc5 63. d6 Rd7 $1 
+{
+The idea of Black's 60th move forcing the white king to d-file becomes clear. 
+}
+64. Rxc7 Rxd6+ 65. Ke4 Rd4+ 
+{
+Much better than 65... Rg6 66. Kf5 (66. Rc6 Kh7 67. Kf5 Rg7 68. Rxb6) 66... Rg7 (66... g4? 67. Rc6! wins for white!) 67. Rc6+ Kh7 68. Rxb6)
+}
+66. Kf5 h4 67. Rc6+
+(67. Rc8 Rf4+ 68. Ke5 c4 69. Rh8+ Kg7 70. Rc8 Kg6 71. Rg8+ Kh5 72. h3 c3 73. Rh8+ Kg6 74. Rg8+ Kh6 75. Rh8+ Kg7 76.Rc8 Rf3 77. Rc6 Rxh3 78. Rxb6 Rf3)        
+67...Kh5 68.Rxb6 Rf4+ 69. Ke5 Rf2 $1 
+{
+winning. A truly magnificent endgame.
+}
+0-1 
+
+[Event "International tournament"]
+[Site "Copenhangen"]
+[Date "1923.??.??"]
+[Round "?"]
+[White "Saemisch"]
+[Black "Nimzowitsch"]
+[Result "1-0"]
+[Annotator "Pankaj Joshi"]
+
+{
+"The Immortal Zugzwang Game."
+Queen's Indian Defence
+Nimzowitsch was the most original chess player that ever lived. In the years 1925 - 1931 Nimzowitsch was considered to belong to the company of the world's Greatest Chess Players. Besides being a powerful player, Nimzowitsch became even more famous for his writings, especially for his revolutionary book 'My System'.  
+}
+1. d4 Nf6 2. c4 e6 3. Nf3 b6 4. g3 Bb7
+{
+Nimzowitsch developed this whole system.
+}
+5. Bg2 Be7 6. Nc3 O-O 7. O-O d5
+{
+This is old classical method of occupying the centre with a Pawn. 7...Ne4 is also possible.
+}
+8. Ne5 c6 9. cxd5
+{
+Much more vigorous is 9.e4.
+}
+9... cxd5 10. Bf4 a6 11. Rc1 b5 12. Qb3 Nc6 13. Nxc6
+{
+If 13. Rfd1, then comes...Na5 -...Nc4 with a good game.
+}
+13... Bxc6 14. h3 Qd7 $1 
+{
+Prevents 15.Na4   
+}
+15. Kh2 Nh5 16. Bd2 f5 $1
+{
+Operating on both the wings.
+}
+17. Qd1 b4 18. Nb1 Bb5 $1 
+{
+Improving Bishop's position and preventing White's 19.e4.
+}
+19. Rg1 Bd6 $3 
+{
+Allowing 20.e4 and beginning of a wonderful combination.
+}
+20. e4 fxe4 21. Qxh5 Rxf2  
+{
+For one Piece, Black has two Pawns, Rook on the 7th rank, control of the 'f' file and two important diagonals.
+}
+22. Qg5 
+{
+If Qd1, Raf8 with the threats of...R8f3,...Bxg3+,...Qe7 - h4.
+}
+22... Raf8 23. Kh1 R8f5 24. Qe3 Bd3 
+{
+Idea -...Re2
+}
+25. Rce1 h6
+({With so many pieces on the board, White finds himself in Zugzwang! e.g. -}
+25...h6 26 Bc1 Bxb1 {winning a Piece.})
+(25...h6 26 Rd1 Re2 {winning the Queen.})
+(25...h6 26 Bf1 R5f3 {winning the Queen.})
+(25...h6 26 Kh2 R5f3 $1)
+(25...h6 26 g4 R5f3 $1 27 Bxf3 Rh2#)
+0-1
+

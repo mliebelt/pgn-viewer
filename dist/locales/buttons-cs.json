@@ -1,0 +1,15 @@
+{
+    "flipper" : "Flip po stranách desky",
+    "first" : "Jít na první tah",
+    "prev" : "Přejít na předchozí tah",
+    "next" : "Přejít na další tah",
+    "play" : "Přehrát / zastavit přehrávání všech tahů",
+    "last" : "Přejít na poslední tah",
+    "deleteVar" : "smazat variaci",
+    "promoteVar" : "podporovat změnu",
+    "deleteMoves" : "Odstranit odpočinku pohyby odtud",
+    "nags" : "NAGs menu",
+    "pgn" : "Zobrazení PGN z aktuální hry",
+    "hidePGN" : "Skrýt zobrazené PGN"
+
+}

@@ -3415,42 +3415,50 @@ div.edit .gray, div.buttons .gray {
     filter: grayscale(100%);
 }
 
-/** Font Awesome buttons (see http://fontawesome.io/)
-    Used only with the class default for the spans. */
+/** Font Awesome buttons (see http://fontawesome.io/) */
 
-div.buttons, div.edit {
-    /* margin-top: 10px; */
+.fen {
+    width: 96%;
+    height: 30px;
+    min-height: 30px;
+    padding: 2px;
+    font-family: monospace;
 }
-div.buttons > i.button.default, div.edit > i.button.default {
+
+div.error {
+    color: red;
+}
+div.buttons > i.button, div.edit > i.button {
     font-size: 16px;
     line-height: 1.4em;
     color: #71a0df;
+    background-color: white;
+    background-image: none;
      margin: 5px;
     padding: 4px;
     border: solid lightgrey 1px;
     border-radius: 4px;
 }
-div.buttons> span.button.default:before, div.edit> span.button.default:before {
-    display: inline-block;
-    line-height: 2em;
-    font-weight: normal;
-    font-variant: normal;
-    font-style: normal;
-    font-size: 18px;
-    font-family: FontAwesome;
-    color: #71a0df;
-    text-rendering: auto;
-    /*vertical-align: 50%;*/
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+
+div.buttons > i.button.selected, div.edit > i.button.selected {
+    color: #fff;
+    background-color: #71a0df;
 }
 
-div.buttons > span.button.default, div.edit > span.button.default, div.edit > button {
-    margin: 5px;
-    padding: 4px;
-    border: solid lightgrey 1px;
-    border-radius: 4px;
+/* Necessary fixes for examples  */
+button.ui-multiselect {
+    background-image: none;
+    background-color: white;
 }
+
+ul.ui-multiselect-checkboxes > li {
+    margin-bottom: 0px;
+}
+
+select.nag {
+    width: 80px;
+}
+
 
 div.buttons > i.button:hover,div.edit > i.button:hover  {
     cursor: pointer;
@@ -3481,43 +3489,6 @@ div.buttons > .button.stop.default:before {     /* fa-pause */
     content: "\f04c";
 }
 
-/** ff buttons as images, built different. */
-div.buttons.blue > .button, div.edit.blue > .button {
-    margin: 5px;
-    width: 20px;
-    height: 20px;
-    background: no-repeat 50%;
-    display: inline-block;
-    border: solid lightgrey 1px;
-    border-radius: 4px;
-}
-div.buttons > .button.flipper.blue {
-    background-image: url("../img/blackwhite-flipper.vers1.png");
-}
-
-div.buttons > .button.prev.blue {
-    background-image: url("../img/buttons/ff/resultset_previous.png");
-}
-div.buttons > .button.next.blue {
-    background-image: url("../img/buttons/ff/resultset_next.png");
-}
-
-div.buttons > .button.first.blue {
-    background-image: url("../img/buttons/ff/resultset_first.png");
-}
-
-div.buttons > .button.last.blue {
-    background-image: url("../img/buttons/ff/resultset_last.png");
-}
-
-div.buttons > .button.play.blue {
-    background-image: url("../img/buttons/ff/control_play_blue.png");
-}
-
-div.buttons > .button.stop.blue {
-    background-image: url("../img/buttons/ff/control_pause_blue.png");
-}
-
 div.edit > .button.promoteVar.default:before { /* hand-o-up */
     content: "\f0a6";
 }
@@ -3534,59 +3505,34 @@ div.edit > .button.pgn.default:before {
     content: "\f02f";  /* fa-print */
 }
 
-span.button.hidePGN {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background: url("../img/buttons/ff/cancel.png") no-repeat 50%;
+
+.button.fa-times {
+   color: red;
 }
 
-div.outerpgn {
-    padding: 6px;
+.button.fa-times:hover {
+    border: red 2px solid;
+}
+
+textarea.pgn {
+    padding: 2px;
     border: 1px solid grey;
+    width: 96%;
+    height: 100px;
+    font-family: monospace;
 }
 
-/* Green buttons from the tango theme. */
+/* Green buttons. */
 div.buttons.green > .button, div.edit.green > .button {
-    margin: 5px;
-    width: 30px;
-    height: 30px;
-    background: no-repeat 50%;
-    display: inline-block;
+    color: green;
     border: solid lightgrey 1px;
     border-radius: 4px;
 }
-div.green > .green.flipper {
-    background-image: url("../img/blackwhite-flipper.vers1.png");
-}
-div.green > .green.prev {
-    background-image: url("../img/buttons/tango/go-previous.png");
-}
-div.green > .green.next {
-    background-image: url("../img/buttons/tango/go-next.png");
-}
-
-div.green > .green.first {
-    background-image: url("../img/buttons/tango/go-first.png");
-}
-
-div.green > .green.last {
-    background-image: url("../img/buttons/tango/go-last.png");
-}
-div.green > .green.play {
-    background-image: url("../img/buttons/tango/media-playback-start.png");
-}
-
-div.green > .green.stop {
-    background-image: url("../img/buttons/tango/media-playback-pause.png");
-}
-
-div.buttons > span.button.ff, div.edit > span.button {
-    margin: 5px;
-    width: 20px;
-    height: 20px;
-    background: no-repeat 50%;
-    display: inline-block;
+/* Blue buttons. */
+div.buttons.blue > .button, div.edit.blue > .button {
+    color: blue;
+    border: solid lightgrey 1px;
+    border-radius: 4px;
 }
 
 .ui-widget {
@@ -3597,13 +3543,10 @@ div.commentRadio label {
     display: inline;
 }
 div.comment > textarea.comment {
-    width: 100%;
+    font-family: monospace;
+    width: 96%;
     height: 50px;
-}
-div.green > span.button {
-    margin: 5px;
-    width: 36px;
-    height: 36px;
+    padding: 2px;
 }
 
 .moves a {
@@ -3682,11 +3625,6 @@ div.green > span.button {
     display: inline-block;
 }
 
-div.pgn {
-    font-family: 'Droid Sans Mono', 'Courier New', monospace;
-    font-size: 16px;
-    /*border: dotted 2px #696969;*/
-}
 /* Pattern of the Zeit journal */
 /* board */
 .zeit .board-b72b1 {
