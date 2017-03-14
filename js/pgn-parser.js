@@ -1384,6 +1384,7 @@ var pgnParser =
                             if (input.substr(peg$currPos, 5) === peg$c51) {
                                 s1 = peg$c51;
                                 peg$currPos += 5;
+                                peg$parsecheck();
                             } else {
                                 s1 = peg$FAILED;
                                 if (peg$silentFails === 0) { peg$fail(peg$c52); }
@@ -1398,6 +1399,7 @@ var pgnParser =
                                 if (input.substr(peg$currPos, 3) === peg$c54) {
                                     s1 = peg$c54;
                                     peg$currPos += 3;
+                                    peg$parsecheck();
                                 } else {
                                     s1 = peg$FAILED;
                                     if (peg$silentFails === 0) { peg$fail(peg$c55); }
