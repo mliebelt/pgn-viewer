@@ -450,7 +450,7 @@ describe("Default a new read algorithm for PGN", function() {
     });
 
     it ("should read one variation for white with move after", function() {
-        my_pgn = pgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6) 2... e#xf4 3. Nf3"});
+        my_pgn = pgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6) 2... exf4 3. Nf3"});
         
         var moves = my_pgn.getMoves();
         expect(moves.length).toEqual(7);

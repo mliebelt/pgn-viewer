@@ -208,7 +208,7 @@ module.exports = function(grunt) {
             buf += '<pre class="prettyprint lang-js">' + ex.jsStr + '</pre>' + "\n";
             buf += '<h3>HTML part</h3>' + "\n";
             buf += '<pre class="prettyprint lang-html">' + htmlEscape(ex.html) + '</pre>' + "\n";
-            buf += '<p>See the <a href="../examples2.html#' + exKeys[i] + '">back link</a> to the original examples page.</p>' + "\n";
+            buf += '<p>See the <a href="../examples.html#' + exKeys[i] + '">back link</a> to the original examples page.</p>' + "\n";
             buf += '<div>' + ex.desc + '</div>' + "\n";
             buf += ex.html + "\n";
             buf += '<script>' + "\n";
