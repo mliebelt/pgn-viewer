@@ -789,11 +789,15 @@ var pgnReader = function (configuration) {
 
         // Special case: first move, so there is no previous move
         function existing_first_move(move) {
+            function first_move_notation() {
+                if (typeof getMove(0) == 'undefined') return null;
+                return getMove(0).notation.notation;
+            }
             set_to_start();
             var pgn_move = game.move(move);
             if (typeof pgn_move == "undefined") {
                 return null;
-             } else if (getMove(0).notation.notation == move) {
+             } else if (first_move_notation() == move) {
                 return 0;
              } else {   // TODO: Could be a variation of the first move ...
                 return null;
