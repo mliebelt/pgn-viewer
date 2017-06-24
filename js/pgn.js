@@ -109,6 +109,13 @@ var pgnReader = function (configuration) {
     var parser = pgnParser;
     that.startMove = 0;
     var game = new Chess();
+    var set_to_start = function() {
+        if (configuration.position == 'start') {
+                game.reset();
+            } else {
+                game.load(configuration.position)
+            }
+    }
     that.PGN_TAGS = {
         Event: "the name of the tournament or match event",
         Site: "the location of the event",
@@ -731,11 +738,7 @@ var pgnReader = function (configuration) {
                 if (typeof move.prev == "number") {
                     game.load(getMove(move.prev).fen);
                 } else {
-                    if (configuration.position == 'start') {
-                        game.reset();
-                    } else {
-                        game.load(configuration.position);
-                    }
+                    set_to_start();
                 }
                 var pgn_move = game.move(move.notation.notation, {'sloppy' : true});
                 if (pgn_move == null) {
@@ -784,10 +787,23 @@ var pgnReader = function (configuration) {
               return getMove(moveNumber).turn === "w" ? 'b' : "w";
         };
 
+        // Special case: first move, so there is no previous move
+        function existing_first_move(move) {
+            set_to_start();
+            var pgn_move = game.move(move);
+            if (typeof pgn_move == "undefined") {
+                return null;
+             } else if (getMove(0).notation.notation == move) {
+                return 0;
+             } else {   // TODO: Could be a variation of the first move ...
+                return null;
+             }
+        }
+
         // Returns the existing move number or null
         // Should include all variations as well
         function existing_move(move, moveNumber) {
-            if (moveNumber == null) return null;
+            if (moveNumber == null) return existing_first_move(move);
             var prevMove = getMove(moveNumber);
             if (typeof prevMove == "undefined") return null;
             game.load(prevMove.fen);
@@ -824,16 +840,12 @@ var pgnReader = function (configuration) {
         }
 
         var curr = existing_move(move, moveNumber);
-        if (curr) return curr;
+        if (typeof curr == 'number') return curr;
         var real_move = {};
         real_move.notation = {};
         real_move.variations = [];
         if (moveNumber == null) {
-            if (configuration.position == 'start') {
-                game.reset();
-            } else {
-                game.load(configuration.position)
-            }
+            set_to_start();
             real_move.turn = "w";
             real_move.moveNumber = 1;
         } else {
