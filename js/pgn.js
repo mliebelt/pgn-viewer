@@ -800,8 +800,20 @@ var pgnReader = function (configuration) {
              } else if (first_move_notation() == move) {
                 return 0;
              } else {   // TODO: Could be a variation of the first move ...
-                return null;
+                return existing_variation_first_move(move);
              }
+        }
+
+        // Handles the first move that may be a variation of the first move, returns that.
+        // If not, returns null
+        function existing_variation_first_move(move) {
+            if (typeof getMove(0) == 'undefined') return null;
+            var variations = getMove(0).variations;
+            var vari;
+            for (vari in variations) {
+                if (variations[vari].notation.notation == move) return variations[vari].moveNumber;
+            }
+            return null; // no variation found
         }
 
         // Returns the existing move number or null
