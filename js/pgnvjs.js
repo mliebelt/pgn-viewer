@@ -323,8 +323,13 @@ var pgnBase = function (boardId, configuration) {
             if (configuration.size) {
                 divBoard.style.width = configuration.size;
             }
-            divBoard.setAttribute('class', theme + ' whole');
+            divBoard.classList.add(theme);
+            divBoard.classList.add('whole');
             divBoard.setAttribute('tabindex', '0');
+            // Add layout for class if configured
+            if (configuration.layout) {
+                divBoard.classList.add('layout-' + configuration.layout);
+            }
             // Add an error div to show errors
             that.errorDiv = createEle("div", boardId + "Error", 'error', null, divBoard);
             createEle("div", headersId, "headers", theme, divBoard);
@@ -356,13 +361,27 @@ var pgnBase = function (boardId, configuration) {
                     $('#' + fenId).prop("readonly", true);
                 }
             }
+            if (hasMode('print') || hasMode('view') || hasMode('edit')) {
+                // Ensure that moves are scrollable (by styling CSS) when necessary
+                // To be scrollable, the height of the element has to be set
+                // TODO: Find a way to set the height, if all other parameters denote that it had to be set:
+                // scrollable == true; layout == left|right
+                var movesDiv = createEle("div", movesId, "moves", null, divBoard);
+                
+                if (configuration.movesWidth) {
+                    movesDiv.style.width = configuration.movesWidth;
+                }
+                if (configuration.movesHeight) {
+                    movesDiv.style.height = configuration.movesHeight;
+                }
+            }
             if (hasMode('edit')) {
-                var editButtonsBoardDiv = createEle("div", "edit" + buttonsId, "edit", theme, outerInnerBoardDiv);
+                var editButtonsBoardDiv = createEle("div", "edit" + buttonsId, "edit", theme, divBoard);
                 generateEditButtons(editButtonsBoardDiv);
 //                var outerPgnDiv = createEle("div", "outerpgn" + buttonsId, "outerpgn", theme, outerInnerBoardDiv);
 //                var pgnHideButton  = addButton(["hidePGN", "fa-times"], outerPgnDiv);
-                var pgnDiv  = createEle("textarea", "pgn" + buttonsId, "pgn", theme, outerInnerBoardDiv);
-                var commentBoardDiv = createEle("div", "comment" + buttonsId, "comment", theme, outerInnerBoardDiv);
+                var pgnDiv  = createEle("textarea", "pgn" + buttonsId, "pgn", theme, divBoard);
+                var commentBoardDiv = createEle("div", "comment" + buttonsId, "comment", theme, divBoard);
                 generateCommentDiv(commentBoardDiv);
                 // Bind the paste key ...
                 $('#' + "pgn" + buttonsId).on('mousedown', function(e) {
@@ -375,25 +394,6 @@ var pgnBase = function (boardId, configuration) {
                     that.configuration.pgn = pastedData;
                     pgnEdit(boardId, that.configuration);
                 })
-            }
-            if (hasMode('print') || hasMode('view') || hasMode('edit')) {
-                // Ensure that moves are scrollable (by styling CSS) when necessary
-                var movesDiv;
-                if (configuration.scrollable) {
-                    movesDiv = createEle("div", null, "movesOuterScroller", null, divBoard);
-                    var movesInnerDiv = createEle("div", null, "movesScroller", null, movesDiv);
-                    createEle("div", movesId, "moves", null, movesInnerDiv);
-                } else {
-                    movesDiv = createEle("div", movesId, "moves", null, divBoard);
-                }
-
-                if (configuration.movesWidth) {
-                    movesDiv.style.width = configuration.movesWidth;
-                }
-                if (configuration.movesHeight) {
-                    movesDiv.style.height = configuration.movesHeight;
-                    movesDiv.firstChild.style.height = configuration.movesHeight;
-                }
             }
             var endDiv = createEle("div", null, "endBoard", null, divBoard);
         }
@@ -656,7 +656,6 @@ var pgnBase = function (boardId, configuration) {
             if (configuration.headers == false) { return; }
             var div_h = $('#' + headersId)[0];
             var headers = that.mypgn.getHeaders();
-            var allowed = ['White', 'Black', 'ECO', 'Result'];
             var white = createEle('span', null, "whiteHeader", theme, div_h);
             if (headers.White) {
                 white.appendChild(document.createTextNode(headers.White + " "));

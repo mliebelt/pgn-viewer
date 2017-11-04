@@ -5,6 +5,73 @@ div.whole:focus {
     outline: 0;
 }
 
+div.layout-left.whole, div.layout-right.whole {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+div.layout-left > .headers, div.layout-right > headers {
+    flex: 1 100%;
+}
+
+div.moves {
+    /* overflow-y: auto; */
+    padding: 10px;
+}
+div.layout-left > .moves, div.layout-right > .moves {
+    position: relative;
+    flex: 1 40%;
+}
+
+div.layout-left > .moves, div.layout-right > .moves, div.layout-top > .moves, div.layout-bottom > .moves {
+    overflow-y: auto;
+}
+
+div.layout-right > .moves {
+    order: 1;
+}
+
+div.layout-right > .outerBoard {
+    order: 2;
+    /* flex: 1 1 auto; */
+}
+
+div.layout-bottom.whole {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+div.layout-bottom > .outerBoard {
+    order: 2;
+}
+
+div.layout-top-left > .outerBoard {
+    float: left;
+    margin-right: 10px;
+}
+
+div.layout-bottom-left > .outerBoard {
+    float: left;
+    margin-right: 10px;
+    /* display: table-cell;
+    vertical-align: bottom; */
+}
+
+div.layout-top-right > .outerBoard {
+    float: right;
+    margin-left: 10px;
+}
+
+/* Not found any trick that allows to use baseline, bottom, ... with float: left|right */
+div.layout-bottom-right > .outerBoard {
+    float: right;
+    margin-left: 10px;
+}
+
+div.layout-left > .outerBoard {
+    /* flex: 0 0 400px; */
+}
+
 div.edit .gray, div.buttons .gray {
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
@@ -247,6 +314,8 @@ div.comment > textarea.comment {
     /*    border: 2px solid #404040; */
     border: 2px gray solid;
     width: 800px;
+    display: flex;
+    flex-flow: row wrap;
 }
 
 .chesscom .headers {
@@ -255,6 +324,7 @@ div.comment > textarea.comment {
 /*    padding: 15px;*/
     background-color: #f3f3f3;
     font-weight: bold;
+    flex: 1 100%;
 }
 
 /*.chesscom .headers > .whiteHeader:before {
@@ -295,17 +365,11 @@ div.comment > textarea.comment {
 }
 
 .chesscom .outerBoard {
-    float: left;
+    /* float: left; */
     width: 388px;
 }
 
-.movesOuterScroller {
-    position: relative;
-    float: right;
-    width: 388px;
-}
-
-.chesscom .movesScroller {
+/* .chesscom .movesScroller {
     padding: 3px 3px;
     font-size: 13px;
     font-family: "Trebuchet MS", Arial, sans-serif;
@@ -315,14 +379,13 @@ div.comment > textarea.comment {
     vertical-align: baseline;
     text-align: left;
     overflow: auto;
-}
+} */
 
-.movesScroller {
-}
 
-.movesScroller .moves {
-    position: relative;
-    overflow: auto;
+.moves {
+    /*  position: relative;
+    overflow-y: auto;*/
+    padding: 10px;
 }
 
 .chesscom .endBoard {
