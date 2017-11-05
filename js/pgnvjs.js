@@ -15,6 +15,9 @@ var pgnBase = function (boardId, configuration) {
     that.configuration = configuration;
     that.mypgn = pgnReader( that.configuration );
     var theme = configuration.theme || 'default';
+    if (configuration.locale) {
+        configuration.locale = configuration.locale.replace(/_/g, "-");
+    }
     configuration['markup'] = (typeof boardId) == "object";
     var hasMarkup = function() { return configuration['markup'] };
     var hasMode = function(mode) { return configuration['mode'] === mode; }
@@ -48,7 +51,7 @@ var pgnBase = function (boardId, configuration) {
         };
         $.i18n.init(i18n_option, function (err, t) {});
         if (configuration.locale) {
-            $.i18n.setLng(configuration.locale);
+            $.i18n.setLng(configuration.locale); 
         }
         // Ensure that position is set.
         if (!configuration.position) {
