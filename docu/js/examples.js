@@ -642,9 +642,9 @@ examples["1228"] = {
     "Allow using PGN from an external source.",
     html: "<div id='board' style='width: 350px'/>",
     name: "#42: Allow using PGN from an external source",
-    jsStr: 'pgnView("board", {pgnFile: "/docu/example/cori-vishnu.pgn"})',
+    jsStr: 'pgnView("board", {pgnFile: "example/cori-vishnu.pgn"})',
     jsFn: function() {
-        pgnView("board", {pgnFile: "/docu/example/cori-vishnu.pgn"});
+        pgnView("board", {pgnFile: "example/cori-vishnu.pgn"});
     }
 };
 examples["1229"] = {
