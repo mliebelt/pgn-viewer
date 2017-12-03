@@ -5,16 +5,16 @@ div.whole:focus {
     outline: 0;
 }
 
-span.default.whiteHeader:before {
+span.whiteHeader:before {
     content: " White: ";
 }
 
-span.default.blackHeader:before {
+span.blackHeader:before {
     content: " Black: ";
 }
 
-span.default.restHeader:before { content: " ("}
-span.default.restHeader:after { content: ")"}
+span.restHeader:before { content: " ("}
+span.restHeader:after { content: ")"}
 
 div.layout-left.whole, div.layout-right.whole {
     display: flex;
@@ -338,21 +338,15 @@ div.comment > textarea.comment {
     flex: 1 100%;
 }
 
-/*.chesscom .headers > .whiteHeader:before {
-    content: " White: ";
-}*/
+.chesscom .headers > .whiteHeader:before {
+    content: "";
+}
 
 .chesscom .headers > .whiteHeader {
     display: inline-block;
     padding-top: 10px;
     padding-left: 10px;
 }
-/*
-.chesscom .headers > .whiteHeader:after {
-    display: block;
-    content: " ";
-}
-*/
 
 .chesscom .headers > .blackHeader:before {
     content: "  vs. ";
