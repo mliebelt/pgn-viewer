@@ -338,9 +338,12 @@ var pgnReader = function (configuration) {
                 that.endGame = movesMainLine.pop();
             }
         };
-        movesString = movesString.trim();
-        // Store moves in a separate object.
-        var movesMainLine = parser.parse(movesString)[0];
+
+        // Ensure that PGN string is just one line, with no tab or line break in it.
+        var movesStringTrimmed = movesString.trim();
+        movesStringTrimmed = movesStringTrimmed.replace(/(\r\n|\n|\r)/gm," ");
+        movesStringTrimmed = movesStringTrimmed.replace(/\t/gm, " ");
+        var movesMainLine = parser.parse(movesStringTrimmed)[0];
         remindEndGame(movesMainLine);
         eachMove(wireMoves, movesMainLine);
         correctVariations();
