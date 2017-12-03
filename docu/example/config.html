@@ -76,9 +76,10 @@ and helps to define a new configuration.
         <select id="game">
             <option value="start">No Game</option>
             <option value="evergreen">Evergreen</option>
+            <option value="evergreenNoBoards">Evergreen (no boards)</option>
             <option value="r1bqk2r/pppp1Np1/2n2n1p/2b1p3/2B1P3/8/PPPP1PPP/RNBQ1RK1 b kq - 0 6">Black at move</option>
             <option value="r1bqk2r/pppp1Npp/2n2n2/4p3/2B1P3/8/PPPP1bPP/RNBQK2R w KQkq - 0 6">White at move</option>>
-        </0select>
+        </select>
         <!-- Show Notation -->
         <label for="notation">Show Notation</label>
         <input type="checkbox" id="notation">
@@ -116,9 +117,23 @@ and helps to define a new configuration.
         <!-- locale -->
         <label for="locale">Locale</label>
         <select id="locale">
-            <option value="en">en</option>
+            <option value="cs">cs</option>
+            <option value="da">da</option>
             <option value="de">de</option>
+            <option value="en">en</option>
+            <option value="es">es</option>
+            <option value="et">et</option>
+            <option value="fi">fi</option>
             <option value="fr">fr</option>
+            <option value="hu">hu</option>
+            <option value="is">is</option>
+            <option value="it">it</option>
+            <option value="nb">nb</option>
+            <option value="nl">nl</option>
+            <option value="pl">pl</option>
+            <option value="pt">pt</option>
+            <option value="ro">ro</option>
+            <option value="sv">sv</option>
         </select>
         <br/>
         <!-- timerTime -->
@@ -156,7 +171,26 @@ and helps to define a new configuration.
         }
     }
     var changedGame = function() {
-        var evergreenPgn = '[Date "1852"] [Result "1-0"] [White "Adolf Anderssen"] [Black "Dufresne"]  1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 { This is the Evan\'s Gambit in the Giuco Piano, a violent opening leading to attacks that was popular in Anderssen\'s time. } 4...Bxb4 { Accepting gambits was a manly thing to do } 5.c3 Ba5 6.d4 { Gaining more time } 6...exd4 7.O-O d3D { Wasting time } 8.Qb3 { Threatening Bxf7 } 8...Qf6 9.e5 Qg6 { Black does not capture because he would open the e-file } 10.Re1!D Nge7 11.Ba3 b5 { Trying to counterattack?! } 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 { Note that the king is still stuck in the center } 16.Bxd3 { Threatening a discovery with Nd6+, winning the queen } 16...Qh5 17.Nf6+ { Forces a capture of the knight. After gxf6 exf6, white rooks will be able to attack down the e-file at blacks exposed king. That is why you have to castle early! } 17...gxf6 18.exf6 Rg8 19.Rad1!D { Getting another rook in the fight. } 19...Qxf3 { Oh no! Black threatens mate by Qxg2 and the g pawn is pinned. } 20.Rxe7+ Nxe7 { Forced checkmate for white now } 21.Qxd7+!!D { White has to keep on checking since black is threatening mate. } 21...Kxd7 ( 21...Kf8 22.Qxe7# ) 22.Bf5+ { The king has to move because of double check } 22...Ke8 { Now can you see it? } ( 22...Kc6 { allows an immediate } 23.Bd7# ) 23.Bd7+ Kf8 ( { or } 23...Kd8 ) 24.Bxe7#D { Mate!! }  1-0';
+        var evergreenPgn = `[Date "1852"] [Result "1-0"] [White "Adolf Anderssen"] [Black "Dufresne"]  
+        1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 { This is the Evan\'s Gambit in the Giuco Piano, a violent opening leading to attacks that was popular in Anderssen\'s time. } 
+        4...Bxb4 { Accepting gambits was a manly thing to do } 5.c3 Ba5 6.d4 { Gaining more time } 6...exd4 7.O-O d3D { Wasting time } 8.Qb3 { Threatening Bxf7 } 
+        8...Qf6 9.e5 Qg6 { Black does not capture because he would open the e-file } 10.Re1!D Nge7 11.Ba3 b5 { Trying to counterattack?! } 12.Qxb5 Rb8 13.Qa4 Bb6 
+        14.Nbd2 Bb7 15.Ne4 Qf5 { Note that the king is still stuck in the center } 16.Bxd3 { Threatening a discovery with Nd6+, winning the queen } 16...Qh5 
+        17.Nf6+ { Forces a capture of the knight. After gxf6 exf6, white rooks will be able to attack down the e-file at blacks exposed king. That is why you have to castle early! } 
+        17...gxf6 18.exf6 Rg8 19.Rad1!D { Getting another rook in the fight. } 19...Qxf3 { Oh no! Black threatens mate by Qxg2 and the g pawn is pinned. } 
+        20.Rxe7+ Nxe7 { Forced checkmate for white now } 21.Qxd7+!!D { White has to keep on checking since black is threatening mate. } 21...Kxd7 ( 21...Kf8 22.Qxe7# ) 
+        22.Bf5+ { The king has to move because of double check } 22...Ke8 { Now can you see it? } ( 22...Kc6 { allows an immediate } 23.Bd7# ) 23.Bd7+ Kf8 ( { or } 23...Kd8 ) 
+        24.Bxe7#D { Mate!! }  1-0`;
+        var evergreenPgnNoBoards = `[Date "1852"] [Result "1-0"] [White "Adolf Anderssen"] [Black "Dufresne"]  
+        1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 { This is the Evan\'s Gambit in the Giuco Piano, a violent opening leading to attacks that was popular in Anderssen\'s time. } 
+        4...Bxb4 { Accepting gambits was a manly thing to do } 5.c3 Ba5 6.d4 { Gaining more time } 6...exd4 7.O-O d3 { Wasting time } 8.Qb3 { Threatening Bxf7 } 
+        8...Qf6 9.e5 Qg6 { Black does not capture because he would open the e-file } 10.Re1! Nge7 11.Ba3 b5 { Trying to counterattack?! } 12.Qxb5 Rb8 13.Qa4 Bb6 
+        14.Nbd2 Bb7 15.Ne4 Qf5 { Note that the king is still stuck in the center } 16.Bxd3 { Threatening a discovery with Nd6+, winning the queen } 16...Qh5 
+        17.Nf6+ { Forces a capture of the knight. After gxf6 exf6, white rooks will be able to attack down the e-file at blacks exposed king. That is why you have to castle early! } 
+        17...gxf6 18.exf6 Rg8 19.Rad1! { Getting another rook in the fight. } 19...Qxf3 { Oh no! Black threatens mate by Qxg2 and the g pawn is pinned. } 
+        20.Rxe7+ Nxe7 { Forced checkmate for white now } 21.Qxd7+!! { White has to keep on checking since black is threatening mate. } 21...Kxd7 ( 21...Kf8 22.Qxe7# ) 
+        22.Bf5+ { The king has to move because of double check } 22...Ke8 { Now can you see it? } ( 22...Kc6 { allows an immediate } 23.Bd7# ) 23.Bd7+ Kf8 ( { or } 23...Kd8 ) 
+        24.Bxe7# { Mate!! }  1-0`;
         if (! doingRefreshAlready) {
             var game = document.getElementById('game').value;
             if (game === 'start') {
@@ -164,6 +198,9 @@ and helps to define a new configuration.
                 document.getElementById('pgn').value = '';
             } else if (game === 'evergreen') {
                 document.getElementById('pgn').value = evergreenPgn;
+                document.getElementById('fen').value = '';
+            } else if (game === 'evergreenNoBoards') {
+                document.getElementById('pgn').value = evergreenPgnNoBoards;
                 document.getElementById('fen').value = '';
             } else {
                 document.getElementById('pgn').value = '';
