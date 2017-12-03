@@ -5,6 +5,17 @@ div.whole:focus {
     outline: 0;
 }
 
+span.default.whiteHeader:before {
+    content: " White: ";
+}
+
+span.default.blackHeader:before {
+    content: " Black: ";
+}
+
+span.default.restHeader:before { content: " ("}
+span.default.restHeader:after { content: ")"}
+
 div.layout-left.whole, div.layout-right.whole {
     display: flex;
     flex-flow: row wrap;

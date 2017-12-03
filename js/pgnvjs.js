@@ -656,9 +656,11 @@ var pgnBase = function (boardId, configuration) {
          * that just works.
          */
         var generateHeaders = function() {
-            if (configuration.headers == false) { return; }
-            var div_h = $('#' + headersId)[0];
             var headers = that.mypgn.getHeaders();
+            if (configuration.headers == false || ($.isEmptyObject(headers))) {
+                $('#' + headersId).remove();
+                return; }
+            var div_h = $('#' + headersId)[0];
             var white = createEle('span', null, "whiteHeader", theme, div_h);
             if (headers.White) {
                 white.appendChild(document.createTextNode(headers.White + " "));
