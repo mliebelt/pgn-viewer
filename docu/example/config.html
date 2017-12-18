@@ -42,6 +42,12 @@
             width: 500px;
             height: 100px;
         }
+        @media print {
+            #outer {
+                page-break-before: always;
+                float: none;
+            }
+        }
     </style>
 
 </head>
