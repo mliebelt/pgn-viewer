@@ -495,6 +495,9 @@ var pgnParser =
           }
           if (s3 !== peg$FAILED) {
             s4 = peg$parsemoveNumber();
+            if (s4 === peg$FAILED) {
+              s4 = null;
+            }
             if (s4 !== peg$FAILED) {
               s5 = peg$parsewhiteSpace();
               if (s5 === peg$FAILED) {
