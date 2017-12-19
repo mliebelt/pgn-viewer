@@ -21,7 +21,7 @@ See the working examples on my new GitHub Pages site [PgnViewerJS](http://mliebe
 
 The following are example screenshots with the configuration set below, to show the rich possibilities of PgnViewerJS.
 
-<img src="img/screenshots/falken.png" width="400px" style="text-align: top;"> <img src="img/screenshots/view-with-fen.png" width="290px" style="text-align: top"> <img src="img/screenshots/edit-variation.png" width="200px">
+<img src="img/screenshots/falken.png" width="320px" style="text-align: top;"> <img src="img/screenshots/view-with-fen.png" width="250px" style="text-align: top"> <img src="img/screenshots/edit-variation.png" width="200px">
 
 The screenshots show from left to right:
 
