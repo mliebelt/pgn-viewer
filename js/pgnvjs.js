@@ -564,9 +564,12 @@ var pgnBase = function (boardId, configuration) {
         }
         // Update the drop-down for NAGs
         try {
+            if (move === undefined) {
+                return;
+            }
             $("select#" + buttonsId + "nag").multiselect("uncheckAll");
             var selectMenu = $("select#" + buttonsId + "nag")[0];
-            var nag = move.nag;
+            var nag = move.nag ? move.nag : [];
             $.each(nag, function(index, value) {
                 var nagValue = value.substring(1);
                 $.each(selectMenu.options, function(optIndex, optValue) {

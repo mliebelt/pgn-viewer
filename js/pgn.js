@@ -545,7 +545,7 @@ var pgnReader = function (configuration) {
     // Returns true, if the move is the start of a (new) variation
     var startVariation = function(move) {
         return  move.variationLevel > 0 &&
-            ( (move.prev === undefined) || (getMoves()[move.prev].next != move.index));
+            ( (typeof move.prev != "number") || (getMoves()[move.prev].next != move.index));
     };
     // Returns true, if the move is the end of a variation
     var endVariation = function(move) {
@@ -845,7 +845,17 @@ var pgnReader = function (configuration) {
 
         // Handle possible variation
         function handle_variation(move, prev, next) {
+            console.log("handle variation: prev == " + prev + " next == " + next);
             var prevMove = getMove(prev);
+            if (prevMove === undefined) { // special case: variation on first move
+                if (next === 0) return; // First move
+                getMove(0).variations.push(move);
+                move.variationLevel = 1;
+                if (move.turn == 'b') {
+                    move.moveNumber = prevMove.moveNumber;
+                }
+                return;
+            }
             if (prevMove.next) {    // has a next move set, so should be a variation
                 getMove(prevMove.next).variations.push(move);
                 move.variationLevel = (prevMove.variationLevel ? prevMove.variationLevel : 0) + 1;
@@ -902,9 +912,7 @@ var pgnReader = function (configuration) {
         real_move.prev = moveNumber;
         var next = getMoves().length - 1;
         real_move.index = next;
-        if (moveNumber != null) {
-            handle_variation(real_move, moveNumber, next);
-        }
+        handle_variation(real_move, moveNumber, next);
         return next;
     };
 
