@@ -216,6 +216,7 @@ var pgnBase = function (boardId, configuration) {
         }
         unmarkMark(that.currentMove);
         updateUI(that.currentMove);
+        makeMove(null, that.currentMove, game.fen());
     };
 
     // Utility function for generating general HTML elements with id, class (with theme)
