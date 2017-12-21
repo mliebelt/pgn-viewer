@@ -309,19 +309,21 @@ var pgnReader = function (configuration) {
         return configuration.pgn.substring(index + 1);
     };
 
+    var wireMoves = function(current, prev, currentMove, prevMove) {
+        if (prevMove != null) {
+            currentMove.prev = prev;
+            if (! prevMove.next) { // only set, if not set already
+                prevMove.next = current;
+            }
+        }
+        currentMove.index = current;
+    };
+
     /**
      * Read moves read the moves that are not part of the headers.
      */
     var readMoves = function(movesString) {
-        var wireMoves = function(current, prev, currentMove, prevMove) {
-            if (prevMove != null) {
-                currentMove.prev = prev;
-                if (! prevMove.next) { // only set, if not set already
-                    prevMove.next = current;
-                }
-            }
-            currentMove.index = current;
-        };
+        
         /**
          * Originally variations are kept as array of moves. But after having linked prev and next,
          * it is much easier to keep only the first move of the variation.
@@ -345,7 +347,7 @@ var pgnReader = function (configuration) {
         movesStringTrimmed = movesStringTrimmed.replace(/\t/gm, " ");
         var movesMainLine = parser.parse(movesStringTrimmed)[0];
         remindEndGame(movesMainLine);
-        eachMove(wireMoves, movesMainLine);
+        eachMove(movesMainLine);
         correctVariations();
     };
 
@@ -689,9 +691,9 @@ var pgnReader = function (configuration) {
 
     /**
      * Final algorithm to read and map the moves. Seems to be tricky ...
-     * @param called the function that will be called (here wireMoves in readMoves)
+     * @param movesMainLine all the moves of the game
      */
-    var eachMove = function(called, movesMainLine) {
+    var eachMove = function(movesMainLine) {
         that.moves = [];
         var current = -1;
         /**
@@ -720,6 +722,12 @@ var pgnReader = function (configuration) {
          *          * overwritten by current - 1 if iterating and not the first move
          */
         var eachMoveVariation = function(moveArray, level, prev) {
+            // Computes the correct move numer from the position
+            var getMoveNumberFromPosition = function(fen) {
+                var tokens = fen.split(/\s+/)
+                var move_number = parseInt(tokens[5], 10)
+                return (tokens[1] === 'b') ? move_number : move_number - 1
+            }
             var prevMove = (prev != null ? that.moves[prev] : null);
             $.each(moveArray, function(i, move) {
                 current++;
@@ -734,7 +742,7 @@ var pgnReader = function (configuration) {
                         prevMove = that.moves[prev];
                     }
                 }
-                called(current, prev, move, prevMove);
+                wireMoves(current, prev, move, prevMove);
                 // Checks the move on a real board, and hold the fen
                 // TODO: Use the position from the configuration, to ensure, that games
                 // could be played not starting at the start position.
@@ -760,6 +768,7 @@ var pgnReader = function (configuration) {
                 } else if (pgn_move != null && game.in_check()) {
                     move.notation.check = '+';
                 }
+                move.moveNumber = getMoveNumberFromPosition(fen);
 
                 $.each(move.variations, function(v, variation) {
                     eachMoveVariation(variation, level + 1, prev);
