@@ -145,30 +145,37 @@ var pgnReader = function (configuration) {
     /**
      * Returns the NAGs as defined in http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm#c10
      * The index is the index number after the '$' sign like in $3 == 'very good move'.
+     * For a complete index, see https://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs
      * @type {Array} the array with the (english) explanations.
      */
-    that.NAGs = [
-        null,   // Just to fill, index 0
-        "!",    // 1
-        "?",    // 2
-        "!!",   // 3
-        "??",   // 4
-        "!?",   // 5
-        "?!",   // 6
-        "□",    // 7
-        null,   // 8
-        null,   // 9
-        "=",    // 10
-        null,   // 11
-        null,   // 12
-        "∞",    // 13
-        "⩲",    // 14
-        "⩱",    // 15
-        "±",    // 16
-        "∓",    // 17
-        "+−",   // 18
-        "-+"    // 19
-    ];
+    that.NAGs = new Array(220);
+    that.NAGs[1]=    "!";    // 1
+    that.NAGs[2]=    "?";    // 2
+    that.NAGs[3]=    "‼";   // 3
+    that.NAGs[4]=    "⁇";   // 4
+    that.NAGs[5]=    "⁉";   // 5
+    that.NAGs[6]=    "⁈";   // 6
+    that.NAGs[7]=    "□";    // 7
+    that.NAGs[10]=    "=";    // 10
+    that.NAGs[13]=    "∞";    // 13
+    that.NAGs[14]=    "⩲";    // 14
+    that.NAGs[15]=    "⩱";    // 15
+    that.NAGs[16]=    "±";    // 16
+    that.NAGs[17]=    "∓";    // 17
+    that.NAGs[18]=    "+−";   // 18
+    that.NAGs[19]=    "-+"    // 19
+    that.NAGs[22]=    "⨀";
+    that.NAGs[23]=    "⨀";
+    that.NAGs[32]=    "⟳";
+    that.NAGs[33]=    "⟳";
+    that.NAGs[36]=    "→";
+    that.NAGs[37]=    "→";
+    that.NAGs[40]=    "↑";
+    that.NAGs[41]=    "↑";
+    that.NAGs[132]=    "⇆";
+    that.NAGs[133]=    "⇆";
+    that.NAGs[220]=    "D";
+    that.NAGs[221]=    "D";
 
     that.PGN_NAGS = {};
 
@@ -182,7 +189,7 @@ var pgnReader = function (configuration) {
      * @param array the NAG symbols like $1, $3, ...
      * @returns {string} the result string like !, !!
      */
-    var nag_to_symbol = function(array) {
+    var nag_to_symbol = function (array) {
         var ret_string = "";
         if (array === null || array === undefined) {
             return ret_string;
@@ -190,7 +197,7 @@ var pgnReader = function (configuration) {
         for (var i = 0; i < array.length; i++) {
             var number = parseInt(array[i].substring(1));
             var ret = that.NAGs[number];
-            ret_string += (typeof ret != 'undefined') ? ret : "";
+            ret_string += (typeof ret != 'undefined') ? ret : "$"+number;
         }
         return ret_string;
     };
@@ -618,7 +625,9 @@ var pgnReader = function (configuration) {
         };
 
         var write_NAGs = function(move, sb) {
-            sb.append(nag_to_symbol(move.nag));
+            sb.append(move.nag);    // Perhaps better not to export the symbols, gut the $-notation?
+                                    // lichess exports from $7 on only the value, not the symbol
+            //sb.append(nag_to_symbol(move.nag));
         };
 
         var write_variation = function (move, sb) {
@@ -1046,34 +1055,3 @@ var pgnReader = function (configuration) {
         load_pgn: load_pgn
     }
 };
-
-/*
- What could be a good API for using the PGN object after having read the moves?
- The following are the things that happen when someone is playing on the board (changing
- the PGN implicitly):
- * Adding a move at the end, rewiring that move with others
-   * Adding it as a first variation
-   * Adding it as another variation
-   * Adding it at the end of the main line or the end of a variation
- * Removing a move (with all moves following, no other option, removing all references as well (prev move))
- * Changing the NAGs of a move
- * Adding or removing comments to a move (before or after the move)
-
- APIs could be:
- * addMove(move, moveBefore):
-        depending on the kind of moveBefore, it will be added as
-         next move main line,
-         first move first variation
-         first move next variation
-         last move current variation (similar t onext move main line)
-         first move next variation / new variation
- * deleteMove(move):
-        ensures that nothing is left, all references are deleted, the moves array is set to null, there are no references left (prev / next) in other moves
- * addNag(nag,move):
-        add the nag of the given move
- * clearNags(move): Clear the nags of the move with number <move>
- * changeCommentMove(comment, move)
- * changeCommentBefore(comment, move)
- * changeCommentAfter(comment, move)
- * getMove(index): exists,
- */
