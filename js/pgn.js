@@ -183,6 +183,11 @@ var pgnReader = function (configuration) {
     for (var i = 0; i < that.NAGs.length; i++) {
         that.PGN_NAGS[that.NAGs[i]] = i;
     }
+    // Special case for duplicate NAGs
+    that.PGN_NAGS['!!'] = 3;
+    that.PGN_NAGS['??'] = 4;
+    that.PGN_NAGS['!?'] = 5;
+    that.PGN_NAGS['?!'] = 6;
 
     /**
      * Returns the NAG notation from the array of symbols
@@ -196,8 +201,10 @@ var pgnReader = function (configuration) {
         }
         for (var i = 0; i < array.length; i++) {
             var number = parseInt(array[i].substring(1));
-            var ret = that.NAGs[number];
-            ret_string += (typeof ret != 'undefined') ? ret : "$"+number;
+            if (number != 220) { // Don't add diagrams to notation
+                var ret = that.NAGs[number];
+                ret_string += (typeof ret != 'undefined') ? ret : "$"+number;    
+            }
         }
         return ret_string;
     };
