@@ -70,7 +70,13 @@ var pgnBase = function (boardId, configuration) {
      * @returns {XML|string|void}
      */
     function localPath() {
-        var jsFileLocation = $('script[src*=pgnvjs]').attr('src');  // the js file path
+        var jsFileLocation;
+        if (mw.config) {
+            // Detected MediaWiki. Assuming called from PgnJS extension.
+            jsFileLocation= mw.config.get('wgExtensionAssetsPath') + "/PgnJS/PgnViewerJS/dist/js/pgnvjs.js"
+        } else {
+            jsFileLocation= $('script[src*=pgnvjs]').attr('src');  // the js file path
+        }
         var index = jsFileLocation.indexOf('pgnvjs');
         console.log("Local path: " + jsFileLocation.substring(0, index - 3));
         return jsFileLocation.substring(0, index - 3);   // the father of the js folder
