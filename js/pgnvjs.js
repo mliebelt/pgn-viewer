@@ -10,7 +10,7 @@
 
 var pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
-    var VERSION = "0.9.5";
+    var VERSION = "0.9.6";
     var that = {};
     that.configuration = configuration;
     that.mypgn = pgnReader( that.configuration );
@@ -103,16 +103,19 @@ var pgnBase = function (boardId, configuration) {
      * @returns {boolean}
      */
     function scrollToView(element){
+        element[0].scrollIntoView(false);
+    }
+    function scrollToView2(element){
         var eleRect = element[0].getBoundingClientRect();
         var eleParent = $("#" + element[0].id).parent();
-        var scrollerRect = eleParent.parent()[0].getBoundingClientRect();
+        var scrollerRect = eleParent[0].getBoundingClientRect();
         var movesRect = eleParent[0].getBoundingClientRect();
         var offsetTop = eleRect.top - movesRect.top;
         var offsetBottom = eleRect.bottom - movesRect.top;
-        var visible_area_start = eleParent.parent().scrollTop();
-        var visible_area_end = visible_area_start + eleParent.parent().innerHeight();
+        var visible_area_start = eleParent.scrollTop();
+        var visible_area_end = visible_area_start + eleParent.innerHeight();
         if(offsetTop < visible_area_start || offsetBottom > visible_area_end){
-            $("#" + element[0].id).parent().parent().animate(
+            $("#" + element[0].id).parent().animate(
                 {scrollTop: visible_area_start + (eleRect.top - (scrollerRect.top + visible_area_end - visible_area_start)) + 30}, configuration.timerTime - 200);
             return false;
         }
