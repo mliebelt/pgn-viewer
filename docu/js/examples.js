@@ -652,9 +652,9 @@ examples["1229"] = {
     "Ugly display of tags.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#43: Ugly display of tags",
-    jsStr: 'pgnView("board", {pgnFile: "/docu/example/cori-vishnu.pgn"})',
+    jsStr: 'pgnView("board", {pgnFile: "example/cori-vishnu.pgn"})',
     jsFn: function() {
-        pgnView("board", {pgnFile: "/docu/example/cori-vishnu.pgn"});
+        pgnView("board", {pgnFile: "example/cori-vishnu.pgn"});
     }
 };
 examples["1230"] = {
