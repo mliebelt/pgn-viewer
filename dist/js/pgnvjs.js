@@ -19100,6 +19100,7 @@ var pgnReader = function (configuration) {
             }
             // 
             if ((getTurn(configuration.position) === 'b') &&
+                    (isMove(0)) &&
                     (that.moves[0].turn === 'w')) {
                 $.each(getMoves(), function(index, move) {
                     move.turn = (move.turn === 'w') ? 'b' : 'w'
