@@ -72,17 +72,17 @@ and helps to define a new configuration.
          <!--Mode for the display-->
         <label for="modus">Modus</label>
         <select id="modus">
-            <option value="pgnBoard">pgnBoard</option>
             <option value="pgnView">pgnView</option>
             <option value="pgnEdit">pgnEdit</option>
             <option value="pgnPrint">pgnPrint</option>
+            <option value="pgnBoard">pgnBoard</option>
         </select>
         <!-- Position -->
         <label for="game">Game</label>
         <select id="game">
             <option value="start">No Game</option>
-            <option value="evergreen">Evergreen</option>
             <option value="evergreenNoBoards">Evergreen (no boards)</option>
+            <option value="evergreen">Evergreen</option>
             <option value="r1bqk2r/pppp1Np1/2n2n1p/2b1p3/2B1P3/8/PPPP1PPP/RNBQ1RK1 b kq - 0 6">Black at move</option>
             <option value="r1bqk2r/pppp1Npp/2n2n2/4p3/2B1P3/8/PPPP1bPP/RNBQK2R w KQkq - 0 6">White at move</option>>
         </select>
@@ -92,6 +92,9 @@ and helps to define a new configuration.
         <!-- Orientation: white or black -->
         <label for="orientation">Orientation</label>
         <input type="checkbox" id="orientation" value="true">
+        <!-- showFen: true or false-->
+        <label for="showFen">showFen</label>
+        <input type="checkbox" id="showFen" value="false">
         <br/>
         <!-- Theme: zeit, blue, green, default -->
         <label for="theme">Theme</label>
@@ -141,6 +144,17 @@ and helps to define a new configuration.
             <option value="ro">ro</option>
             <option value="sv">sv</option>
         </select>
+        <label for="layout">Layout</label>
+        <select id="layout">
+            <option value="top">top</option>
+            <option value="left">left</option>
+            <option value="right">right</option>
+            <option value="bottom">bottom</option>
+            <option value="top-left">top-left</option>
+            <option value="top-right">top-right</option>
+            <option value="bottom-left">bottom-left</option>
+            <option value="bottom-right">bottom-right</option>
+        </select>
         <br/>
         <!-- timerTime -->
         <label for="timerTime">timerTime</label>
@@ -153,7 +167,11 @@ and helps to define a new configuration.
         <input type="number" id="boardSize" class="number">
         <!-- scrollable -->
         <!-- movesWidth -->
+        <label for="movesWidth">movesWidth</label>
+        <input type="number" id="movesWidth" class="number">
         <!-- movesHeight -->
+        <label for="movesHeight">movesHeight</label>
+        <input type="number" id="movesHeight" class="number">
         <br/>
 
         <h2>Configuration output</h2>
@@ -230,6 +248,10 @@ and helps to define a new configuration.
         var boardSize = document.getElementById('boardSize').value;
         var pgn = document.getElementById('pgn').value;
         var fen = document.getElementById('fen').value;
+        var layout = document.getElementById('layout').value;
+        var movesWidth = document.getElementById('movesWidth').value;
+        var movesHeight = document.getElementById('movesHeight').value;
+        var showFen = document.getElementById('showFen').checked;
 
         configuration['position']= 'start';
         if (fen != '') {
@@ -247,11 +269,19 @@ and helps to define a new configuration.
         if (size !== "") {
             configuration['size']= size + 'px';
         }
+        if (movesHeight!== "") {
+            configuration['movesHeight']= movesHeight + 'px';
+        }
+        if (movesWidth!== "") {
+            configuration['movesWidth']= movesWidth + 'px';
+        }
         if (boardSize != '') {
             configuration['boardSize']= boardSize + 'px';
         }
         configuration['pgn']= pgn;
         configuration['fen']= fen;
+        configuration['layout']= layout;
+        configuration.showFen = showFen;
         document.getElementById('config_out').value = printConfig(configuration);
         var fun = window[modus];
         if (typeof fun === 'function') {
@@ -264,7 +294,8 @@ and helps to define a new configuration.
                 "<script>\n" +
                 "config = {";
         var props = ['pgn','position', 'showNotation', 'orientation', 'theme',
-                    'pieceStyle', 'locale', 'timerTime', 'size', 'boardSize'];
+                    'pieceStyle', 'locale', 'timerTime', 'size', 'boardSize', 'layout',
+                    'movesWidth', 'movesHeight', 'showFen'];
         for (property of props) {
             var val = config[property];
             if (val != '' && (val != undefined)) {
@@ -294,6 +325,9 @@ and helps to define a new configuration.
         document.getElementById('boardSize').oninput = changedSomething;
         document.getElementById('pgn').onchange = changedSomething;
         document.getElementById('fen').onchange = changedSomething;
+        document.getElementById('layout').onchange = changedSomething;
+        document.getElementById('movesWidth').onchange = changedSomething;
+        document.getElementById('movesHeight').onchange = changedSomething;
         changedGame();
     }
     window.onload = initPgn();

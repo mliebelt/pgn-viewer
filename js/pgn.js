@@ -354,6 +354,24 @@ var pgnReader = function (configuration) {
                 that.endGame = movesMainLine.pop();
             }
         };
+        /**
+         * If black started with a move, FEN must be set to a black start position.
+         * Then turn should be switched for all moves, if first moves is falsly white.
+         */
+        var correctTurn = function() {
+            var getTurn = function(fen) {
+                var tokens = fen.split(/\s+/)
+                return tokens[1]
+            }
+            // 
+            if ((getTurn(configuration.position) === 'b') &&
+                    (isMove(0)) &&
+                    (that.moves[0].turn === 'w')) {
+                $.each(getMoves(), function(index, move) {
+                    move.turn = (move.turn === 'w') ? 'b' : 'w'
+                })
+            }
+        }
 
         // Ensure that PGN string is just one line, with no tab or line break in it.
         var movesStringTrimmed = movesString.trim();
@@ -362,6 +380,7 @@ var pgnReader = function (configuration) {
         var movesMainLine = parser.parse(movesStringTrimmed)[0];
         remindEndGame(movesMainLine);
         eachMove(movesMainLine);
+        correctTurn();
         correctVariations();
     };
 

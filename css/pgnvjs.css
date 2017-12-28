@@ -170,16 +170,6 @@ div.edit > .button.deleteMoves.default:before { /* scissors  */
     content: "\f0c4";
 }
 
-/* div.edit > .button.deleteMoves {
-    background-image: url("../img/buttons/ff/edit-cut.png");
-} */
-
-div.edit > .button.pgn.default:before {
-    /* background-image: url("../img/buttons/ff/script_save.png"); */
-    content: "\f02f";  /* fa-print */
-}
-
-
 .button.fa-times {
    color: red;
 }

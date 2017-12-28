@@ -10,7 +10,7 @@
 
 var pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
-    var VERSION = "0.9.5";
+    var VERSION = "0.9.6";
     var that = {};
     that.configuration = configuration;
     that.mypgn = pgnReader( that.configuration );
@@ -106,23 +106,17 @@ var pgnBase = function (boardId, configuration) {
     /**
      * Scroll if element is not visible
      * @param element the element to show by scrolling
-     * @returns {boolean}
      */
     function scrollToView(element){
-        var eleRect = element[0].getBoundingClientRect();
-        var eleParent = $("#" + element[0].id).parent();
-        var scrollerRect = eleParent.parent()[0].getBoundingClientRect();
-        var movesRect = eleParent[0].getBoundingClientRect();
-        var offsetTop = eleRect.top - movesRect.top;
-        var offsetBottom = eleRect.bottom - movesRect.top;
-        var visible_area_start = eleParent.parent().scrollTop();
-        var visible_area_end = visible_area_start + eleParent.parent().innerHeight();
-        if(offsetTop < visible_area_start || offsetBottom > visible_area_end){
-            $("#" + element[0].id).parent().parent().animate(
-                {scrollTop: visible_area_start + (eleRect.top - (scrollerRect.top + visible_area_end - visible_area_start)) + 30}, configuration.timerTime - 200);
-            return false;
+        var node = element[0];
+        var movesNode = node.offsetParent;
+        var nodeRect = node.getBoundingClientRect();
+        var movesRect = movesNode.getBoundingClientRect();
+        if (movesRect.bottom < nodeRect.bottom) {
+            node.scrollIntoView(false);
+        } else if (movesRect.top > nodeRect.top) {
+            node.scrollIntoView(true);
         }
-        return true;
     }
 
     /**
