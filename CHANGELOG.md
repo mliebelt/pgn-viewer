@@ -9,6 +9,33 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [0.9.6]
+
+### Changed
+
+* Added parameter layout (top, left, bottom, right, top-left, top-right, bottom-left, bottom-right) to define relation of board to moves.
+* #53: Added all NAGs with symbols, changed display and print of NAGs
+* #66: Allow pgn with line breaks in it
+* #67: Restructured the README to follow the conventions
+* #68: Added @media print to config, to allow easier print out
+
+### Fixed
+
+* [#42](https://github.com/mliebelt/PgnViewerJS/issues/42) Fixed (again) reading from file
+* [#43](https://github.com/mliebelt/PgnViewerJS/issues/43) Fixed ugly display to tags
+* [#47](https://github.com/mliebelt/PgnViewerJS/issues/47) Fixed various problems with move numbers
+* [#54](https://github.com/mliebelt/PgnViewerJS/issues/54) Corrected FEN when playing first moves in edit mode
+* [#55](https://github.com/mliebelt/PgnViewerJS/issues/55) Fixed documentation error
+* [#56](https://github.com/mliebelt/PgnViewerJS/issues/56) Added example game to configuration builder
+* [#58](https://github.com/mliebelt/PgnViewerJS/issues/58) Playing first move in edit mode
+* [#59](https://github.com/mliebelt/PgnViewerJS/issues/59) Playing first move as variant of first move in edit mode
+* [#60](https://github.com/mliebelt/PgnViewerJS/issues/60) Parsing variations on first move
+* [#61](https://github.com/mliebelt/PgnViewerJS/issues/61) Playing variations on the first move
+* [#71](https://github.com/mliebelt/PgnViewerJS/issues/71) Ensure that display symbol (D) is not written in PGN output
+* [#72](https://github.com/mliebelt/PgnViewerJS/issues/72) Fixed scrolling of moves (again)
+* [#73](https://github.com/mliebelt/PgnViewerJS/issues/73) Added missing NPM dependencies
+
+
 ## [0.9.5]
 
 ### Changed

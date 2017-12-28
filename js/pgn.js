@@ -356,14 +356,16 @@ var pgnReader = function (configuration) {
         };
         /**
          * If black started with a move, FEN must be set to a black start position.
-         * Then turn should be switched for all moves.
+         * Then turn should be switched for all moves, if first moves is falsly white.
          */
         var correctTurn = function() {
             var getTurn = function(fen) {
                 var tokens = fen.split(/\s+/)
                 return tokens[1]
             }
-            if (getTurn(configuration.position) === 'b') {
+            // 
+            if ((getTurn(configuration.position) === 'b') &&
+                    (that.moves[0].turn === 'w')) {
                 $.each(getMoves(), function(index, move) {
                     move.turn = (move.turn === 'w') ? 'b' : 'w'
                 })

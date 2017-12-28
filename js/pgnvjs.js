@@ -100,26 +100,17 @@ var pgnBase = function (boardId, configuration) {
     /**
      * Scroll if element is not visible
      * @param element the element to show by scrolling
-     * @returns {boolean}
      */
     function scrollToView(element){
-        element[0].scrollIntoView(false);
-    }
-    function scrollToView2(element){
-        var eleRect = element[0].getBoundingClientRect();
-        var eleParent = $("#" + element[0].id).parent();
-        var scrollerRect = eleParent[0].getBoundingClientRect();
-        var movesRect = eleParent[0].getBoundingClientRect();
-        var offsetTop = eleRect.top - movesRect.top;
-        var offsetBottom = eleRect.bottom - movesRect.top;
-        var visible_area_start = eleParent.scrollTop();
-        var visible_area_end = visible_area_start + eleParent.innerHeight();
-        if(offsetTop < visible_area_start || offsetBottom > visible_area_end){
-            $("#" + element[0].id).parent().animate(
-                {scrollTop: visible_area_start + (eleRect.top - (scrollerRect.top + visible_area_end - visible_area_start)) + 30}, configuration.timerTime - 200);
-            return false;
+        var node = element[0];
+        var movesNode = node.offsetParent;
+        var nodeRect = node.getBoundingClientRect();
+        var movesRect = movesNode.getBoundingClientRect();
+        if (movesRect.bottom < nodeRect.bottom) {
+            node.scrollIntoView(false);
+        } else if (movesRect.top > nodeRect.top) {
+            node.scrollIntoView(true);
         }
-        return true;
     }
 
     /**

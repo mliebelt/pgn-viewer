@@ -50,7 +50,6 @@ module.exports = function(grunt) {
                     {
                         src: [
                             'locales/**',
-                            'img/buttons/**',
                             'img/chesspieces/**',
                             'img/pattern/**',
                             'img/*.png',
@@ -71,7 +70,6 @@ module.exports = function(grunt) {
                     {
                         src: [
                             'locales/**',
-                            'img/buttons/**',
                             'img/chesspieces/**',
                             'img/pattern/**',
                             'img/*.png',
@@ -118,7 +116,7 @@ module.exports = function(grunt) {
         compress: {
             main: {
                 options: {
-                    archive: 'dist/PgnViewerJS-0.9.5.zip'
+                    archive: 'dist/PgnViewerJS-0.9.6.zip'
                 },
                 expand: true,
                 cwd: 'dist/',

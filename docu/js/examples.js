@@ -137,11 +137,11 @@ examples["1050"] = {
     html: "<div id=\"b1\" style=\"width: 390px\"><\/div>",
     name: "Complete game in Chess.com style",
     jsStr: "pgn = '[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"] 1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0';" +
-        "\npgnView('b1', {pgn: pgn, theme: 'chesscom', boardSize: '200px',  movesWidth: '180px', scrollable: true, movesHeight: '220px'});",
+        "\npgnView('b1', {pgn: pgn, theme: 'chesscom', layout: 'left', boardSize: '200px',  movesWidth: '180px', scrollable: true, movesHeight: '220px'});",
     jsFn: function() {
         pgn = '[White "Anderssen, Adolf"][Black "Dufresne, Jean"]' +
             ' 1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0';
-        pgnView('b1', {pgn: pgn, theme: 'chesscom', boardSize: '200px', movesWidth: '180px', scrollable: true, movesHeight: "220px"});
+        pgnView('b1', {pgn: pgn, theme: 'chesscom', layout: 'left', boardSize: '200px', movesWidth: '180px', scrollable: true, movesHeight: "220px"});
     }
 };
 examples["1051"] = {
@@ -651,7 +651,7 @@ examples["1229"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/43'>ticket 43</a> at GitHub. " +
     "Ugly display of tags.",
     html: "<div id='board' style='width: 200px'/>",
-    name: "#43: Ugly display of tags (unsolved)",
+    name: "#43: Ugly display of tags",
     jsStr: 'pgnView("board", {pgnFile: "/docu/example/cori-vishnu.pgn"})',
     jsFn: function() {
         pgnView("board", {pgnFile: "/docu/example/cori-vishnu.pgn"});
@@ -717,5 +717,138 @@ examples["1236"] = {
     jsStr: 'pgnView("board", {theme: "green"})',
     jsFn: function() {
         pgnEdit("board", {theme: "green"});
+    }
+};
+
+examples["1240"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/52'>ticket 52</a> at GitHub. " +
+    "Fixed errors in parsing O-O and O-O-O.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#52: Pawn Capture Bug",
+    jsStr: 'pgnView("board", {position: "R7/8/8/8/3N4/1BB5/pr6/kb2K2R w K - 0 1", pgn: "1. Bxa2 Bxa2 2. O-O#"})',
+    jsFn: function() {
+        pgnView("board", {position: "R7/8/8/8/3N4/1BB5/pr6/kb2K2R w K - 0 1", pgn: "1. Bxa2 Bxa2 2. O-O#"});
+    }
+};
+
+examples["1241"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/53'>ticket 53</a> at GitHub. " +
+    "Allows to use all NAG symbols in PGN notation.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#53: Use all NAG symbols",
+    jsStr: 'pgnEdit("board", {pgn: "1. e4! e5? 2. Nf3‼ Nc6⁇ 3. Bc4⁉ Nf6⁈ 4. Ng5□ Bc5= 5. Nxf7∞ Bxf2+⩲ 6. Kxf2⩱ Nxe4+± 7. Kg1∓ Qh4+- 8. g3-+";',
+    jsFn: function() {
+        pgnEdit("board", {pgn: "1. e4! e5? 2. Nf3‼ Nc6⁇ 3. Bc4⁉ Nf6⁈ 4. Ng5□ Bc5= 5. Nxf7∞ Bxf2+⩲ 6. Kxf2⩱ Nxe4+± 7. Kg1∓ Qh4+- 8. g3-+"});
+    }
+};
+
+examples["1242"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/54'>ticket 54</a> at GitHub. " +
+    "Start playing moves, and see that the FEN string changes.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#54: FEN string is changed when playing moves",
+    jsStr: 'pgnView("board", {theme: "zeit"})',
+    jsFn: function() {
+        pgnEdit("board", {theme: "zeit"});
+    }
+};
+
+examples["1243"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/57'>ticket 57</a> at GitHub. " +
+    "Allow to play and record chess variant 'Horde'.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#57: Chess variant 'Horde' (unsolved)",
+    jsStr: 'pgnView("board", {theme: "green"})',
+    jsFn: function() {
+        pgnEdit("board", {theme: "green"});
+    }
+};
+
+examples["1244"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/58'>ticket 58</a> at GitHub. " +
+    "Play  the first (same) move with the mouse, and see that it is found in the notation.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#58: Replaying already existing moves",
+    jsStr: 'pgnEdit("board", {pgn: "1. e4 e5 2. Nf3 Nc6"})',
+    jsFn: function() {
+        pgnEdit("board", {pgn: "1. e4 e5 2. Nf3 Nc6"});
+    }
+};
+
+examples["1245"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/59'>ticket 59</a> at GitHub. " +
+    "Playing variant to first move adds that variant to the first move.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#59: Play variant to first move",
+    jsStr: 'pgnEdit("board", {pgn: "1. e4 e5 2. Nf3 Nc6"})',
+    jsFn: function() {
+        pgnEdit("board", {pgn: "1. e4 e5 2. Nf3 Nc6"});
+    }
+};
+
+examples["1246"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/60'>ticket 60</a> at GitHub. " +
+    "Parsing variations of first move now works with or without move numbers.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#49: Pawn Capture Bug",
+    jsStr: 'pgnView("board", {pgn: "1. e4 ( d4 d5 ) e5"})',
+    jsFn: function() {
+        pgnEdit("board", {pgn: "1. e4 ( d4 d5 ) e5"});
+    }
+};
+
+examples["1250"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/61'>ticket 61</a> at GitHub. " +
+    "Playing a move of the first variation highlights that move and does not add it.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#61: Playing variant of first move",
+    jsStr: 'pgnEdit("board", {pgn: "1. e4 ( d4 d5 ) e5"})',
+    jsFn: function() {
+        pgnEdit("board", {pgn: "1. e4 ( d4 d5 ) e5"});
+    }
+};
+
+examples["1251"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/64'>ticket 64</a> at GitHub. " +
+    "Adding parameter layout with some variations possible.",
+    html: "<div id='board' style='width: 200px'/> <div id='board2' style='width: 400px'/>",
+    name: "#64: Variations of parameter layout",
+    jsStr: "pgnView('board', {layout: 'bottom', pgn: '1. e4 e5 2. Nf3 Nc6'})\npgnView('board', {layout: 'left', boardSize: '200px', pgn: '1. e4 e5 2. Nf3 Nc6 ...'})",
+    jsFn: function() {
+        pgnView("board", {layout: "bottom", pgn: "1. e4 e5 2. Nf3 Nc6"});
+        pgnView("board2", {layout: "left", boardSize: "200px", pgn: "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 Bc5 5. Nxf7 Bxf2 6. Kxf2 Nxe4+"});
+    }
+};
+
+examples["1252"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/65'>ticket 65</a> at GitHub. " +
+    "Using locales like de_DE should work.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#65: Using locales like de_DE",
+    jsStr: 'pgnView("board", {locale: "de_DE", pgn: "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6"})',
+    jsFn: function() {
+        pgnView("board", {locale: "de_DE", pgn: "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6"});
+    }
+};
+
+examples["1253"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/66'>ticket 66</a> at GitHub. " +
+    "Viewer should allow to read pgn input with line breaks in it.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#66: Allow line breaks in input string",
+    jsStr: 'pgnView("board", {pgn: "1. e4 e5\n2. Nf3 Nc6 \n3. Bb5 a6\n 4. Ba4 Nf6"})',
+    jsFn: function() {
+        pgnView("board", {pgn: "1. e4 e5\n2. Nf3 Nc6 \n3. Bb5 a6\n 4. Ba4 Nf6"});
+    }
+};
+
+examples["1254"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/69'>ticket 69</a> at GitHub. " +
+    "Piece move glitch when clicking 'next move' rapidly.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#69: Piece move glitch",
+    jsStr: 'pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
+    jsFn: function() {
+        pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
     }
 };

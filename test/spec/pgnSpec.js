@@ -513,7 +513,7 @@ describe("Writing PGN like", function() {
     it("should write all NAGs in their known parts", function () {
         var my_pgn = pgnReader({pgn: "1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?"});
         var res = my_pgn.write_pgn();
-        expect(res).toEqual("1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?");
+        expect(res).toEqual("1. e4$1 e5$2 2. Nf3$3 Nc6$4 3. Bb5$6 a6$5");
     });
 
     it("should write the notation for a main line with one variation", function () {
