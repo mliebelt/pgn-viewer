@@ -1,0 +1,81 @@
+/*
+ * Board
+ */
+.blue .cg-board-wrap {
+  background-image: url(images/board/blue.svg);
+}
+
+.merida .cg-board piece.pawn.white {
+  background-image: url('images/pieces/merida/wP.svg');
+}
+.merida .cg-board piece.bishop.white {
+  background-image: url('images/pieces/merida/wB.svg');
+}
+.merida .cg-board piece.knight.white {
+  background-image: url('images/pieces/merida/wN.svg');
+}
+.merida .cg-board piece.rook.white {
+  background-image: url('images/pieces/merida/wR.svg');
+}
+.merida .cg-board piece.queen.white {
+  background-image: url('images/pieces/merida/wQ.svg');
+}
+.merida .cg-board piece.king.white {
+  background-image: url('images/pieces/merida/wK.svg');
+}
+.merida .cg-board piece.pawn.black {
+  background-image: url('images/pieces/merida/bP.svg');
+}
+.merida .cg-board piece.bishop.black {
+  background-image: url('images/pieces/merida/bB.svg');
+}
+.merida .cg-board piece.knight.black {
+  background-image: url('images/pieces/merida/bN.svg');
+}
+.merida .cg-board piece.rook.black {
+  background-image: url('images/pieces/merida/bR.svg');
+}
+.merida .cg-board piece.queen.black {
+  background-image: url('images/pieces/merida/bQ.svg');
+}
+.merida .cg-board piece.king.black {
+  background-image: url('images/pieces/merida/bK.svg');
+}
+
+/* Wikipedia */
+.wikipedia .cg-board piece.pawn.white {
+  background-image: url('../img/chesspieces/wikipedia/wP.png');
+}
+.wikipedia .cg-board piece.bishop.white {
+  background-image: url('../img/chesspieces/wikipedia/wB.png');
+}
+.wikipedia .cg-board piece.knight.white {
+  background-image: url('../img/chesspieces/wikipedia/wN.png');
+}
+.wikipedia .cg-board piece.rook.white {
+  background-image: url('../img/chesspieces/wikipedia/wR.png');
+}
+.wikipedia .cg-board piece.queen.white {
+  background-image: url('../img/chesspieces/wikipedia/wQ.png');
+}
+.wikipedia .cg-board piece.king.white {
+  background-image: url('../img/chesspieces/wikipedia/wK.png');
+}
+.wikipedia .cg-board piece.pawn.black {
+  background-image: url('../img/chesspieces/wikipedia/bP.png');
+}
+.wikipedia .cg-board piece.bishop.black {
+  background-image: url('../img/chesspieces/wikipedia/bB.png');
+}
+.wikipedia .cg-board piece.knight.black {
+  background-image: url('../img/chesspieces/wikipedia/bN.png');
+}
+.wikipedia .cg-board piece.rook.black {
+  background-image: url('../img/chesspieces/wikipedia/bR.png');
+}
+.wikipedia .cg-board piece.queen.black {
+  background-image: url('../img/chesspieces/wikipedia/bQ.png');
+}
+.wikipedia .cg-board piece.king.black {
+  background-image: url('../img/chesspieces/wikipedia/bK.png');
+}

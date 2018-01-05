@@ -417,8 +417,16 @@ var pgnBase = function (boardId, configuration) {
         var boardConfiguration = {};
         copyBoardConfiguration(configuration, boardConfiguration,
             ['position', 'orientation', 'showNotation', 'pieceTheme', 'draggable',
-            'onDragStart', 'onDrop', 'onMouseoutSquare', 'onMouseoverSquare', 'onSnapEnd']);
-        board = new ChessBoard(innerBoardId, boardConfiguration);
+            'onDragStart', 'onDrop', 'onMouseoutSquare', 'onMouseoverSquare', 'onSnapEnd', 'width']);
+        // board = new ChessBoard(innerBoardId, boardConfiguration);
+        boardConfiguration.fen = boardConfiguration.position;
+        var el = document.getElementById(innerBoardId);
+        board = Chessground(el, boardConfiguration);
+        if (boardConfiguration.width) {
+            el.style.width = boardConfiguration.width;
+            el.style.height = boardConfiguration.width;
+            document.body.dispatchEvent(new Event('chessground.resize'));
+        }
         return board;
     };
 
@@ -606,7 +614,7 @@ var pgnBase = function (boardId, configuration) {
             }
         }
 
-        board.position(fen);
+        board.set({fen: fen});
         game.load(fen);
         unmarkMark(next);
         that.currentMove = next;
@@ -645,7 +653,7 @@ var pgnBase = function (boardId, configuration) {
             game.load(that.configuration.position);
         }
         if (board !== null) {
-            board.position(game.fen());
+            board.set({fen: game.fen()});
         }
         $('#' + fenId).val(game.fen());
 
@@ -737,7 +745,7 @@ var pgnBase = function (boardId, configuration) {
                 } else {
                     game.load(that.configuration.position);
                 }
-                board.position(game.fen());
+                board.set({fen: game.fen()});
                 unmarkMark(null);
                 that.currentMove = null;
                 $('#' + fenId).val(game.fen());
@@ -748,7 +756,7 @@ var pgnBase = function (boardId, configuration) {
             });
             timer.set({ time : (configuration.timerTime ? configuration.timerTime : 700)});
             $('#' + buttonsId + 'flipper').on('click', function() {
-                board.flip();
+                board.toggleOrientation();
             });
             $('#' + buttonsId + 'next').on('click', function() {
                 nextMove();
