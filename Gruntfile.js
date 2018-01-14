@@ -25,6 +25,20 @@ module.exports = function(grunt) {
                 ],
                 dest: 'dist/js/pgnvjs.js'
             },
+            dev: {
+                src: [
+                    'chessboardjs/js/jquery-1.11.1.js',
+                    'chess.js/chess.js',
+                    'js/chessground.js',
+                    'js/i18next-1.11.2.js',
+                    'js/jquery.timer.js',
+                    'js/mousetrap.js',
+                    'js/jquery-ui.js',
+                    'js/jquery.multiselect.js',
+                    'js/pgn-parser.js'
+                ],
+                dest: 'dist/js/third.js'
+            },
             nojq: {
                 src: [
                     'chess.js/chess.js',
@@ -138,6 +152,15 @@ module.exports = function(grunt) {
                 ],
                 dest: "dist/css/pgnvjs.css"
             },
+            dev: {
+                src: [
+                    'font-awesome/css/font-awesome.css',
+                    'css/jquery-ui.css',
+                    'css/jquery.multiselect.css',
+                    'css/chessground.css'
+                ],
+                dest: 'dist/css/third.css'
+            },
             nojq: {
                 src: [
                     "chessboardjs/css/chessboard.css",
@@ -165,6 +188,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['clean', 'concat:all', 'concat_css',  'uglify', 'copy:all', 'genExamples']);
     grunt.registerTask('debug', ['clean', 'concat:all', 'copy:all']);
     grunt.registerTask('nojq', ['clean', 'concat:nojq', 'concat_css:nojq', 'copy:nojq', 'uglify:nojq' ]);
+    grunt.registerTask('dev', ['concat:dev', 'concat_css:dev']);
 
     /* Define the function and register it to generate the HTML example files in the documentation.
        This should be redone for each release then ...        */

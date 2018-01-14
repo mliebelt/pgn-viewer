@@ -217,3 +217,188 @@
 .case .cg-board piece.king.black {
   background-image: url('../img/chesspieces/case/bK.png');
 }
+/* Chesscom */
+.chesscom .cg-board piece.pawn.white {
+  background-image: url('../img/chesspieces/chesscom/wp.png');
+}
+.chesscom .cg-board piece.bishop.white {
+  background-image: url('../img/chesspieces/chesscom/wb.png');
+}
+.chesscom .cg-board piece.knight.white {
+  background-image: url('../img/chesspieces/chesscom/wn.png');
+}
+.chesscom .cg-board piece.rook.white {
+  background-image: url('../img/chesspieces/chesscom/wr.png');
+}
+.chesscom .cg-board piece.queen.white {
+  background-image: url('../img/chesspieces/chesscom/wq.png');
+}
+.chesscom .cg-board piece.king.white {
+  background-image: url('../img/chesspieces/chesscom/wk.png');
+}
+.chesscom .cg-board piece.pawn.black {
+  background-image: url('../img/chesspieces/chesscom/bp.png');
+}
+.chesscom .cg-board piece.bishop.black {
+  background-image: url('../img/chesspieces/chesscom/bb.png');
+}
+.chesscom .cg-board piece.knight.black {
+  background-image: url('../img/chesspieces/chesscom/bn.png');
+}
+.chesscom .cg-board piece.rook.black {
+  background-image: url('../img/chesspieces/chesscom/br.png');
+}
+.chesscom .cg-board piece.queen.black {
+  background-image: url('../img/chesspieces/chesscom/bq.png');
+}
+.chesscom .cg-board piece.king.black {
+  background-image: url('../img/chesspieces/chesscom/bk.png');
+}
+/* Condal */
+.condal .cg-board piece.pawn.white {
+  background-image: url('../img/chesspieces/condal/wP.png');
+}
+.condal .cg-board piece.bishop.white {
+  background-image: url('../img/chesspieces/condal/wB.png');
+}
+.condal .cg-board piece.knight.white {
+  background-image: url('../img/chesspieces/condal/wN.png');
+}
+.condal .cg-board piece.rook.white {
+  background-image: url('../img/chesspieces/condal/wR.png');
+}
+.condal .cg-board piece.queen.white {
+  background-image: url('../img/chesspieces/condal/wQ.png');
+}
+.condal .cg-board piece.king.white {
+  background-image: url('../img/chesspieces/condal/wK.png');
+}
+.condal .cg-board piece.pawn.black {
+  background-image: url('../img/chesspieces/condal/bP.png');
+}
+.condal .cg-board piece.bishop.black {
+  background-image: url('../img/chesspieces/condal/bB.png');
+}
+.condal .cg-board piece.knight.black {
+  background-image: url('../img/chesspieces/condal/bN.png');
+}
+.condal .cg-board piece.rook.black {
+  background-image: url('../img/chesspieces/condal/bR.png');
+}
+.condal .cg-board piece.queen.black {
+  background-image: url('../img/chesspieces/condal/bQ.png');
+}
+.condal .cg-board piece.king.black {
+  background-image: url('../img/chesspieces/condal/bK.png');
+}
+/* Leipzig */
+.leipzig .cg-board piece.pawn.white {
+  background-image: url('../img/chesspieces/leipzig/wP.png');
+}
+.leipzig .cg-board piece.bishop.white {
+  background-image: url('../img/chesspieces/leipzig/wB.png');
+}
+.leipzig .cg-board piece.knight.white {
+  background-image: url('../img/chesspieces/leipzig/wN.png');
+}
+.leipzig .cg-board piece.rook.white {
+  background-image: url('../img/chesspieces/leipzig/wR.png');
+}
+.leipzig .cg-board piece.queen.white {
+  background-image: url('../img/chesspieces/leipzig/wQ.png');
+}
+.leipzig .cg-board piece.king.white {
+  background-image: url('../img/chesspieces/leipzig/wK.png');
+}
+.leipzig .cg-board piece.pawn.black {
+  background-image: url('../img/chesspieces/leipzig/bP.png');
+}
+.leipzig .cg-board piece.bishop.black {
+  background-image: url('../img/chesspieces/leipzig/bB.png');
+}
+.leipzig .cg-board piece.knight.black {
+  background-image: url('../img/chesspieces/leipzig/bN.png');
+}
+.leipzig .cg-board piece.rook.black {
+  background-image: url('../img/chesspieces/leipzig/bR.png');
+}
+.leipzig .cg-board piece.queen.black {
+  background-image: url('../img/chesspieces/leipzig/bQ.png');
+}
+.leipzig .cg-board piece.king.black {
+  background-image: url('../img/chesspieces/leipzig/bK.png');
+}
+/* Maya */
+.maya .cg-board piece.pawn.white {
+  background-image: url('../img/chesspieces/maya/wP.png');
+}
+.maya .cg-board piece.bishop.white {
+  background-image: url('../img/chesspieces/maya/wB.png');
+}
+.maya .cg-board piece.knight.white {
+  background-image: url('../img/chesspieces/maya/wN.png');
+}
+.maya .cg-board piece.rook.white {
+  background-image: url('../img/chesspieces/maya/wR.png');
+}
+.maya .cg-board piece.queen.white {
+  background-image: url('../img/chesspieces/maya/wQ.png');
+}
+.maya .cg-board piece.king.white {
+  background-image: url('../img/chesspieces/maya/wK.png');
+}
+.maya .cg-board piece.pawn.black {
+  background-image: url('../img/chesspieces/maya/bP.png');
+}
+.maya .cg-board piece.bishop.black {
+  background-image: url('../img/chesspieces/maya/bB.png');
+}
+.maya .cg-board piece.knight.black {
+  background-image: url('../img/chesspieces/maya/bN.png');
+}
+.maya .cg-board piece.rook.black {
+  background-image: url('../img/chesspieces/maya/bR.png');
+}
+.maya .cg-board piece.queen.black {
+  background-image: url('../img/chesspieces/maya/bQ.png');
+}
+.maya .cg-board piece.king.black {
+  background-image: url('../img/chesspieces/maya/bK.png');
+}
+/* USCF */
+.uscf .cg-board piece.pawn.white {
+  background-image: url('../img/chesspieces/uscf/wP.png');
+}
+.uscf .cg-board piece.bishop.white {
+  background-image: url('../img/chesspieces/uscf/wB.png');
+}
+.uscf .cg-board piece.knight.white {
+  background-image: url('../img/chesspieces/uscf/wN.png');
+}
+.uscf .cg-board piece.rook.white {
+  background-image: url('../img/chesspieces/uscf/wR.png');
+}
+.uscf .cg-board piece.queen.white {
+  background-image: url('../img/chesspieces/uscf/wQ.png');
+}
+.uscf .cg-board piece.king.white {
+  background-image: url('../img/chesspieces/uscf/wK.png');
+}
+.uscf .cg-board piece.pawn.black {
+  background-image: url('../img/chesspieces/uscf/bP.png');
+}
+.uscf .cg-board piece.bishop.black {
+  background-image: url('../img/chesspieces/uscf/bB.png');
+}
+.uscf .cg-board piece.knight.black {
+  background-image: url('../img/chesspieces/uscf/bN.png');
+}
+.uscf .cg-board piece.rook.black {
+  background-image: url('../img/chesspieces/uscf/bR.png');
+}
+.uscf .cg-board piece.queen.black {
+  background-image: url('../img/chesspieces/uscf/bQ.png');
+}
+.uscf .cg-board piece.king.black {
+  background-image: url('../img/chesspieces/uscf/bK.png');
+}
