@@ -320,6 +320,9 @@ var pgnBase = function (boardId, configuration) {
             }
             if (configuration.size) {
                 divBoard.style.width = configuration.size;
+                if (! configuration.width) {
+                    configuration.width = configuration.size;
+                }
             }
             divBoard.classList.add(theme);
             divBoard.classList.add('whole');
@@ -419,8 +422,14 @@ var pgnBase = function (boardId, configuration) {
             ['position', 'orientation', 'showNotation', 'pieceTheme', 'draggable',
             'onDragStart', 'onDrop', 'onMouseoutSquare', 'onMouseoverSquare', 'onSnapEnd', 'width']);
         // board = new ChessBoard(innerBoardId, boardConfiguration);
+        if (typeof boardConfiguration.showNotation != 'undefined') {
+            boardConfiguration.coordinates = boardConfiguration.showNotation;
+        }
         boardConfiguration.fen = boardConfiguration.position;
         var el = document.getElementById(innerBoardId);
+        if (typeof configuration.pieceStyle != 'undefined') {
+            el.className += " " + configuration.pieceStyle;
+        }
         board = Chessground(el, boardConfiguration);
         if (boardConfiguration.width) {
             el.style.width = boardConfiguration.width;
