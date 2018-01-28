@@ -434,6 +434,9 @@ var pgnBase = function (boardId, configuration) {
         if (boardConfiguration.width) {
             el.style.width = boardConfiguration.width;
             el.style.height = boardConfiguration.width;
+            // Set the font size related to the board (factor 28), ensure at least 8px font
+            let w = Math.max(8, Math.round(parseInt(boardConfiguration.width.slice(0, -2)) / 28));
+            el.style.fontSize = `${w}px`;
             document.body.dispatchEvent(new Event('chessground.resize'));
         }
         if (boardConfiguration.coordsInner) {
