@@ -17,12 +17,12 @@
 
 <div>The following boards (and moves) set the parameter boardSize:</div>
 <ul>
-    <li>Implicit by using the size of the div</li>
-    <li>Implicit by using the parameter size.</li>
-    <li>Explicit to set the board size (there is no default)</li>
-    <li>Explicit to set the board size big (just to show the difference)</li>
-    <li>Explicit to set the board size smaller (for pgnPrint usage).</li>
-    <li>Explicit to set the board size smaller (for the viewer or editor).</li>
+    <li><s>Implicit by using the size of the div</s> Uses the default of Chessground, not the div.</li>
+    <li><s>Implicit by using the parameter size.</s> Uses the parameter width all the time.</li>
+    <li>Explicit to set the board width</li>
+    <li>Explicit to set the board width big (just to show the difference)</li>
+    <li>Explicit to set the board width small (for pgnPrint usage).</li>
+    <li>Explicit to set the board width medium (for the viewer or editor).</li>
 </ul>
 <div id="board0" style="float: left; margin: 25px"></div>
 <div id="board1" style="float: left; margin: 25px"></div>
@@ -34,8 +34,9 @@
 
 <div style="float: none"/>
 
-<div id="board5" style="width: 300px; float: left; margin: 25px"></div>
-<div id="board6" style="width: 300px; float: left; margin: 25px"></div>
+<div id="board5" style="float: left; margin: 25px"></div>
+<div id="board6" style="float: left; margin: 25px"></div>
+<div id="board7" style="float: left; margin: 25px"></div>
 
 <script>
     var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4D 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6D 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8D 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0";
@@ -43,9 +44,10 @@
     pgnv = pgnBoard("board0", {pgn: pgn});
     pgnv = pgnBoard("board1", {pgn: pgn, width: '450px'});
     pgnv = pgnBoard("board2", {pgn: pgn, width: '450px'});
-    pgnv = pgnBoard("board4", {pgn: pgn, width: '450px'});
+    pgnv = pgnBoard("board4", {pgn: pgn, width: '450px', coordsInner: true});
     pgnv = pgnPrint("board5", {pgn: pgn, width: '200px'});
-    pgnv = pgnView("board6", {pgn: pgn2, width: '200px'});
+    pgnv = pgnView("board6", {pgn: pgn2, width: '300px'});
+    pgnv = pgnView("board7", {pgn: pgn2, width: '400px', boardSize: '300px'});
 </script>
 
 

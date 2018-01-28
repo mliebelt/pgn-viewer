@@ -419,7 +419,7 @@ var pgnBase = function (boardId, configuration) {
         }
         var boardConfiguration = {};
         copyBoardConfiguration(configuration, boardConfiguration,
-            ['position', 'orientation', 'showNotation', 'pieceTheme', 'draggable',
+            ['position', 'orientation', 'showNotation', 'pieceTheme', 'draggable', 'coordsInner',
             'onDragStart', 'onDrop', 'onMouseoutSquare', 'onMouseoverSquare', 'onSnapEnd', 'width']);
         // board = new ChessBoard(innerBoardId, boardConfiguration);
         if (typeof boardConfiguration.showNotation != 'undefined') {
@@ -435,6 +435,9 @@ var pgnBase = function (boardId, configuration) {
             el.style.width = boardConfiguration.width;
             el.style.height = boardConfiguration.width;
             document.body.dispatchEvent(new Event('chessground.resize'));
+        }
+        if (boardConfiguration.coordsInner) {
+            el.classList.add('coords-inner');
         }
         return board;
     };
