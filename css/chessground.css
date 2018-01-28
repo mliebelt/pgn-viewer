@@ -119,6 +119,9 @@
   height: 100%;
   width: 12px;
 }
+.cg-board-wrap.coords-inner coords.ranks {
+  right: -5px;
+}
 .cg-board-wrap coords.ranks.black {
   flex-flow: column;
 }
@@ -130,6 +133,9 @@
   height: 16px;
   text-transform: uppercase;
   text-align: center;
+}
+.cg-board-wrap.coords-inner coords.files {
+  bottom: -6px;
 }
 .cg-board-wrap coords.files.black {
   flex-flow: row-reverse;
