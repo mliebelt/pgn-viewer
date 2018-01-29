@@ -417,7 +417,7 @@ var pgnBase = function (boardId, configuration) {
                 target.pieceTheme = localPath() + 'img/chesspieces/' + pieceStyle + '/{piece}.png';
             }
         }
-        var boardConfiguration = {};
+        var boardConfiguration = { coordsInner: true };
         copyBoardConfiguration(configuration, boardConfiguration,
             ['position', 'orientation', 'showNotation', 'pieceTheme', 'draggable', 'coordsInner',
             'onDragStart', 'onDrop', 'onMouseoutSquare', 'onMouseoverSquare', 'onSnapEnd', 'width']);
