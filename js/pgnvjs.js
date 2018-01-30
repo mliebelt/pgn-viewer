@@ -417,10 +417,11 @@ var pgnBase = function (boardId, configuration) {
                 target.pieceTheme = localPath() + 'img/chesspieces/' + pieceStyle + '/{piece}.png';
             }
         }
-        var boardConfiguration = { coordsInner: true };
+        // Default values of the board, if not overwritten by the given configuration
+        var boardConfiguration = { coordsInner: true, coordsFactor: 1.0, width: '320px' };
         copyBoardConfiguration(configuration, boardConfiguration,
-            ['position', 'orientation', 'showNotation', 'pieceTheme', 'draggable', 'coordsInner',
-            'onDragStart', 'onDrop', 'onMouseoutSquare', 'onMouseoverSquare', 'onSnapEnd', 'width']);
+            ['position', 'orientation', 'showNotation', 'pieceTheme', 'draggable', 
+            'coordsInner', 'coordsFactor', 'width']);
         // board = new ChessBoard(innerBoardId, boardConfiguration);
         if (typeof boardConfiguration.showNotation != 'undefined') {
             boardConfiguration.coordinates = boardConfiguration.showNotation;
@@ -431,11 +432,12 @@ var pgnBase = function (boardId, configuration) {
             el.className += " " + configuration.pieceStyle;
         }
         board = Chessground(el, boardConfiguration);
+        console.log("Board width: " + board.width);
         if (boardConfiguration.width) {
             el.style.width = boardConfiguration.width;
             el.style.height = boardConfiguration.width;
             // Set the font size related to the board (factor 28), ensure at least 8px font
-            let w = Math.max(8, Math.round(parseInt(boardConfiguration.width.slice(0, -2)) / 28));
+            let w = Math.max(8, Math.round(parseInt(boardConfiguration.width.slice(0, -2)) / 28 * boardConfiguration.coordsFactor));
             el.style.fontSize = `${w}px`;
             document.body.dispatchEvent(new Event('chessground.resize'));
         }
