@@ -8,16 +8,30 @@
  * of all the configurations of the other functions.
  */
 
+ /**
+ * Adds a default configuration parameter if not already there.
+ */
+var addAsDefault = function(key, value, configurationMap) {
+    if (configurationMap[key] === undefined) {
+        configurationMap[key] = value;
+    }
+}
+
 var pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
     var VERSION = "0.9.6";
     var that = {};
+    // Sets the default parameters for all modes. See individual functions for individual overwrites
+    addAsDefault('width', '320px', configuration);
+    addAsDefault('showNotation', true, configuration);
+    addAsDefault('position', 'start', configuration);
+    addAsDefault('showFen', false, configuration);
+    addAsDefault('layout', 'top', configuration);
+    addAsDefault('headers', true, configuration);
+    addAsDefault('timerTime', 700, configuration);
     that.configuration = configuration;
     that.mypgn = pgnReader( that.configuration );
     var theme = configuration.theme || 'default';
-    if (configuration.locale) {
-        configuration.locale = configuration.locale.replace(/_/g, "-");
-    }
     configuration['markup'] = (typeof boardId) == "object";
     var hasMarkup = function() { return configuration['markup'] };
     var hasMode = function(mode) { return configuration['mode'] === mode; }
@@ -51,15 +65,8 @@ var pgnBase = function (boardId, configuration) {
         };
         $.i18n.init(i18n_option, function (err, t) {});
         if (configuration.locale) {
+            configuration.locale = configuration.locale.replace(/_/g, "-");
             $.i18n.setLng(configuration.locale); 
-        }
-        // Ensure that position is set.
-        if (!configuration.position) {
-            configuration.position = 'start';
-        }
-        // showFen
-        if (!configuration.hasOwnProperty('showFen')) {
-            configuration.showFen = hasMode('edit');
         }
     })();
 
@@ -72,7 +79,6 @@ var pgnBase = function (boardId, configuration) {
     function localPath() {
         var jsFileLocation = $('script[src*=pgnvjs]').attr('src');  // the js file path
         var index = jsFileLocation.indexOf('pgnvjs');
-        console.log("Local path: " + jsFileLocation.substring(0, index - 3));
         return jsFileLocation.substring(0, index - 3);   // the father of the js folder
     }
 
@@ -371,7 +377,10 @@ var pgnBase = function (boardId, configuration) {
                 
                 if (configuration.movesWidth) {
                     movesDiv.style.width = configuration.movesWidth;
-                }
+                } 
+                else if (configuration.width) {
+                    movesDiv.style.width = configuration.width;
+                };
                 if (configuration.movesHeight) {
                     movesDiv.style.height = configuration.movesHeight;
                 }
@@ -437,8 +446,8 @@ var pgnBase = function (boardId, configuration) {
             el.style.width = boardConfiguration.width;
             el.style.height = boardConfiguration.width;
             // Set the font size related to the board (factor 28), ensure at least 8px font
-            let w = Math.max(8, Math.round(parseInt(boardConfiguration.width.slice(0, -2)) / 28 * boardConfiguration.coordsFactor));
-            el.style.fontSize = `${w}px`;
+            var fontSize = Math.max(8, Math.round(parseInt(boardConfiguration.width.slice(0, -2)) / 28 * boardConfiguration.coordsFactor));
+            el.style.fontSize = `${fontSize}px`;
             document.body.dispatchEvent(new Event('chessground.resize'));
         }
         if (boardConfiguration.coordsInner) {
@@ -771,7 +780,7 @@ var pgnBase = function (boardId, configuration) {
             var timer = $.timer(function() {
                 nextMove();
             });
-            timer.set({ time : (configuration.timerTime ? configuration.timerTime : 700)});
+            timer.set({ time : configuration.timerTime});
             $('#' + buttonsId + 'flipper').on('click', function() {
                 board.toggleOrientation();
             });
@@ -979,8 +988,6 @@ var pgnView = function(boardId, configuration) {
     return {
         chess: base.chess,
         getPgn: base.getPgn,
-        onDrop: base.onDrop,
-        onSnapEnd: base.onSnapEnd,
         version: base.VERSION
     }
 };
@@ -1026,13 +1033,8 @@ var pgnBoard = function(boardId, configuration) {
  */
 var pgnEdit = function(boardId, configuration) {
     configuration['mode'] = 'edit';
+    addAsDefault('showFen', true, configuration);
     var base = pgnBase(boardId, configuration);
-    configuration.draggable = true;
-    configuration.onDragStart = base.onDragStart;
-    configuration.onDrop = base.onDrop;
-    configuration.onMouseoutSquare = base.onMouseoutSquare;
-    configuration.onMouseoverSquare = base.onMouseoverSquare;
-    configuration.onSnapEnd = base.onSnapEnd;
     base.generateHTML();
     var board = base.generateBoard();
     base.generateMoves(board);
@@ -1047,6 +1049,7 @@ var pgnEdit = function(boardId, configuration) {
  * Rest will be ignored.
  */
 var pgnPrint = function(boardId, configuration) {
+    addAsDefault('showNotation', false, configuration);
     configuration['mode'] = 'print';
     var base = pgnBase(boardId, configuration);
     base.generateHTML();
