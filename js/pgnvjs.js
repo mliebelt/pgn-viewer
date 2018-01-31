@@ -24,11 +24,13 @@ var pgnBase = function (boardId, configuration) {
     // Sets the default parameters for all modes. See individual functions for individual overwrites
     addAsDefault('width', '320px', configuration);
     addAsDefault('showNotation', true, configuration);
+    addAsDefault('orientation', 'white', configuration);
     addAsDefault('position', 'start', configuration);
     addAsDefault('showFen', false, configuration);
     addAsDefault('layout', 'top', configuration);
     addAsDefault('headers', true, configuration);
     addAsDefault('timerTime', 700, configuration);
+    addAsDefault('locale', 'en', configuration);
     that.configuration = configuration;
     that.mypgn = pgnReader( that.configuration );
     var theme = configuration.theme || 'default';
@@ -1009,6 +1011,7 @@ var pgnView = function(boardId, configuration) {
  */
 var pgnBoard = function(boardId, configuration) {
     configuration['mode'] = 'board';
+    addAsDefault('headers', false, configuration);
     var base = pgnBase(boardId, configuration);
     base.generateHTML();
     var b = base.generateBoard();

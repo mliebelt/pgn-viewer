@@ -134,14 +134,14 @@ examples["1024"] = {
 
 examples["1050"] = {
     desc: "This is the same theme again, with a typical example to show how the game is displayed. Have a look at the headers, board and the moves.",
-    html: "<div id=\"b1\" style=\"width: 390px\"><\/div>",
+    html: "<div id=\"b1\"><\/div>",
     name: "Complete game in Chess.com style",
     jsStr: "pgn = '[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"] 1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0';" +
-        "\npgnView('b1', {pgn: pgn, theme: 'chesscom', layout: 'left', boardSize: '200px',  movesWidth: '180px', scrollable: true, movesHeight: '220px'});",
+        "\npgnView('b1', {pgn: pgn, theme: 'chesscom', layout: 'left', width: '390px', boardSize: '200px',  movesWidth: '180px', scrollable: true, movesHeight: '220px'});",
     jsFn: function() {
         pgn = '[White "Anderssen, Adolf"][Black "Dufresne, Jean"]' +
             ' 1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0';
-        pgnView('b1', {pgn: pgn, theme: 'chesscom', layout: 'left', boardSize: '200px', movesWidth: '180px', scrollable: true, movesHeight: "220px"});
+        pgnView('b1', {pgn: pgn, theme: 'chesscom', layout: 'left', width: '390px', boardSize: '200px', movesWidth: '180px', scrollable: true, movesHeight: "220px"});
     }
 };
 examples["1051"] = {

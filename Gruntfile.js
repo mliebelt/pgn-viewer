@@ -10,15 +10,13 @@ module.exports = function(grunt) {
             all: {
                 src: [
                     'chessboardjs/js/jquery-1.11.1.js',
-                    'js/jquery-ui.js',
                     'chess.js/chess.js',
-                    'chessboardjs/js/chessboard.js',
-                    'chessboardjs/js/json3.min.js',
+                    'js/chessground.js',
                     'js/i18next-1.11.2.js',
-//                    'js/jquery.hotkeys.js',
-                    'js/mousetrap.js',
-                    'js/jquery.multiselect.js',
                     'js/jquery.timer.js',
+                    'js/mousetrap.js',
+                    'js/jquery-ui.js',
+                    'js/jquery.multiselect.js',
                     'js/pgn.js',
                     'js/pgn-parser.js',
                     'js/pgnvjs.js'
@@ -144,10 +142,11 @@ module.exports = function(grunt) {
             },
             all: {
                 src: [
-                    "chessboardjs/css/chessboard.css",
+                    "font-awesome/css/font-awesome.css",
                     "css/jquery-ui.css",
                     "css/jquery.multiselect.css",
-                    "font-awesome/css/font-awesome.css",
+                    "css/chessground.css",
+                    'css/theme.css',
                     "css/pgnvjs.css"
                 ],
                 dest: "dist/css/pgnvjs.css"
@@ -185,7 +184,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-concat-css');
 
     // Default task.
-    grunt.registerTask('default', ['clean', 'concat:all', 'concat_css',  'uglify', 'copy:all', 'genExamples']);
+    // uglify does not work with ES6
+    //grunt.registerTask('default', ['clean', 'concat:all', 'concat_css',  'uglify', 'copy:all', 'genExamples']);
+    grunt.registerTask('default', ['clean', 'concat:all', 'concat_css',  'copy:all', 'genExamples']);
     grunt.registerTask('debug', ['clean', 'concat:all', 'copy:all']);
     grunt.registerTask('nojq', ['clean', 'concat:nojq', 'concat_css:nojq', 'copy:nojq', 'uglify:nojq' ]);
     grunt.registerTask('dev', ['concat:dev', 'concat_css:dev']);
@@ -224,7 +225,7 @@ module.exports = function(grunt) {
             buf += '<script src="../../dist/js/pgnvjs.js" type="text/javascript" ></script>' + "\n";
             buf += '<script src="../js/prettify.js" type="text/javascript" ></script>' + "\n";
             buf += '</head>' + "\n";
-            buf += '<body>' + "\n";
+            buf += '<body class="merida zeit">' + "\n";
             buf += '<h2>' + ex.name + '</h2>' + "\n";
             buf += '<h3>Javascript part</h3>' + "\n";
             buf += '<pre class="prettyprint lang-js">' + ex.jsStr + '</pre>' + "\n";
