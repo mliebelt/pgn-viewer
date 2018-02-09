@@ -19,26 +19,30 @@ var addAsDefault = function(key, value, configurationMap) {
 
 var pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
-    var VERSION = "0.9.6";
-    var that = {};
+    const VERSION = "0.9.6";
+    let that = {};
     // Sets the default parameters for all modes. See individual functions for individual overwrites
-    addAsDefault('width', '320px', configuration);
-    addAsDefault('showNotation', true, configuration);
-    addAsDefault('orientation', 'white', configuration);
-    addAsDefault('position', 'start', configuration);
-    addAsDefault('showFen', false, configuration);
-    addAsDefault('layout', 'top', configuration);
-    addAsDefault('headers', true, configuration);
-    addAsDefault('timerTime', 700, configuration);
-    addAsDefault('locale', 'en', configuration);
-    that.configuration = configuration;
+    let defaults = {
+        width: '320px',
+        showNotation: true,
+        orientation: 'white',
+        position: 'start',
+        showFen: false,
+        layout: 'top',
+        headers: true,
+        timerTime: 700,
+        locale: 'en',
+        movable: { free: false }, 
+        viewOnly: true
+    }
+    that.configuration = Object.assign(defaults, configuration);
     that.mypgn = pgnReader( that.configuration );
-    var theme = configuration.theme || 'default';
-    configuration['markup'] = (typeof boardId) == "object";
-    var hasMarkup = function() { return configuration['markup'] };
-    var hasMode = function(mode) { return configuration['mode'] === mode; }
-    var game = new Chess();
-    var board;              // Will be set later, but has to be a known variable
+    let theme = that.configuration.theme || 'default';
+    that.configuration['markup'] = (typeof boardId) == "object";
+    let hasMarkup = function() { return that.configuration['markup'] };
+    let hasMode = function(mode) { return that.configuration['mode'] === mode; }
+    let game = new Chess();
+    let board;              // Will be set later, but has to be a known variable
     // IDs needed for styling and adressing the HTML elements, only used if no markup is done by the user
     if (! hasMarkup()) {
         var headersId = boardId + 'Headers';
@@ -66,9 +70,9 @@ var pgnBase = function (boardId, configuration) {
             }
         };
         $.i18n.init(i18n_option, function (err, t) {});
-        if (configuration.locale) {
-            configuration.locale = configuration.locale.replace(/_/g, "-");
-            $.i18n.setLng(configuration.locale); 
+        if (that.configuration.locale) {
+            that.configuration.locale = that.configuration.locale.replace(/_/g, "-");
+            $.i18n.setLng(that.configuration.locale); 
         }
     })();
 
@@ -326,25 +330,25 @@ var pgnBase = function (boardId, configuration) {
                 // ensure that the board is empty before filling it
                 $('#'+boardId).find('div').remove();
             }
-            if (configuration.size) {
-                divBoard.style.width = configuration.size;
-                if (! configuration.width) {
-                    configuration.width = configuration.size;
+            if (that.configuration.size) {
+                divBoard.style.width = that.configuration.size;
+                if (! that.configuration.width) {
+                    that.configuration.width = that.configuration.size;
                 }
             }
             divBoard.classList.add(theme);
             divBoard.classList.add('whole');
             divBoard.setAttribute('tabindex', '0');
             // Add layout for class if configured
-            if (configuration.layout) {
-                divBoard.classList.add('layout-' + configuration.layout);
+            if (that.configuration.layout) {
+                divBoard.classList.add('layout-' + that.configuration.layout);
             }
             // Add an error div to show errors
             that.errorDiv = createEle("div", boardId + "Error", 'error', null, divBoard);
             createEle("div", headersId, "headers", theme, divBoard);
             var outerInnerBoardDiv = createEle("div", null, "outerBoard", null, divBoard);
-            if (configuration.boardSize) {
-                outerInnerBoardDiv.style.width = configuration.boardSize;
+            if (that.configuration.boardSize) {
+                outerInnerBoardDiv.style.width = that.configuration.boardSize;
             }
             var innerBoardDiv = createEle("div", innerBoardId, "board", theme, outerInnerBoardDiv);
             if (hasMode('view') || hasMode('edit') ) {
@@ -377,14 +381,14 @@ var pgnBase = function (boardId, configuration) {
                 // scrollable == true; layout == left|right
                 var movesDiv = createEle("div", movesId, "moves", null, divBoard);
                 
-                if (configuration.movesWidth) {
-                    movesDiv.style.width = configuration.movesWidth;
+                if (that.configuration.movesWidth) {
+                    movesDiv.style.width = that.configuration.movesWidth;
                 } 
-                else if (configuration.width) {
-                    movesDiv.style.width = configuration.width;
+                else if (that.configuration.width) {
+                    movesDiv.style.width = that.configuration.width;
                 };
-                if (configuration.movesHeight) {
-                    movesDiv.style.height = configuration.movesHeight;
+                if (that.configuration.movesHeight) {
+                    movesDiv.style.height = that.configuration.movesHeight;
                 }
             }
             if (hasMode('edit')) {
@@ -424,23 +428,20 @@ var pgnBase = function (boardId, configuration) {
                     target[key] = source[key];
                 }
             });
-            if (! target.pieceTheme) {
-                target.pieceTheme = localPath() + 'img/chesspieces/' + pieceStyle + '/{piece}.png';
-            }
         }
         // Default values of the board, if not overwritten by the given configuration
-        var boardConfiguration = { coordsInner: true, coordsFactor: 1.0, width: '320px' };
-        copyBoardConfiguration(configuration, boardConfiguration,
+        let boardConfiguration = { coordsInner: true, coordsFactor: 1.0, width: '320px' };
+        copyBoardConfiguration(that.configuration, boardConfiguration,
             ['position', 'orientation', 'showNotation', 'pieceTheme', 'draggable', 
-            'coordsInner', 'coordsFactor', 'width']);
+            'coordsInner', 'coordsFactor', 'width', 'movable', 'viewOnly']);
         // board = new ChessBoard(innerBoardId, boardConfiguration);
         if (typeof boardConfiguration.showNotation != 'undefined') {
             boardConfiguration.coordinates = boardConfiguration.showNotation;
         }
         boardConfiguration.fen = boardConfiguration.position;
         var el = document.getElementById(innerBoardId);
-        if (typeof configuration.pieceStyle != 'undefined') {
-            el.className += " " + configuration.pieceStyle;
+        if (typeof that.configuration.pieceStyle != 'undefined') {
+            el.className += " " + that.configuration.pieceStyle;
         }
         board = Chessground(el, boardConfiguration);
         console.log("Board width: " + board.width);
@@ -557,8 +558,8 @@ var pgnBase = function (boardId, configuration) {
             var diaID = boardId + "dia" + currentCounter;
             var diaDiv = createEle('div', diaID);
             span.appendChild(diaDiv);
-            configuration.position = move.fen;
-            pgnBoard(diaID, configuration);
+            that.configuration.position = move.fen;
+            pgnBoard(diaID, that.configuration);
         }
         return currentCounter;
     };
@@ -691,7 +692,7 @@ var pgnBase = function (boardId, configuration) {
          */
         var generateHeaders = function() {
             var headers = that.mypgn.getHeaders();
-            if (configuration.headers == false || ($.isEmptyObject(headers))) {
+            if (that.configuration.headers == false || ($.isEmptyObject(headers))) {
                 $('#' + headersId).remove();
                 return; }
             var div_h = $('#' + headersId)[0];
@@ -782,7 +783,7 @@ var pgnBase = function (boardId, configuration) {
             var timer = $.timer(function() {
                 nextMove();
             });
-            timer.set({ time : configuration.timerTime});
+            timer.set({ time : that.configuration.timerTime});
             $('#' + buttonsId + 'flipper').on('click', function() {
                 board.toggleOrientation();
             });
@@ -982,8 +983,7 @@ var pgnBase = function (boardId, configuration) {
  * @returns {{chess: chess, getPgn: getPgn}} all utility functions available
  */
 var pgnView = function(boardId, configuration) {
-    configuration['mode'] = 'view';
-    var base = pgnBase(boardId, configuration);
+    var base = pgnBase(boardId, Object.assign({mode: 'view', movable: { free: false }, viewOnly: true}, configuration));
     base.generateHTML();
     var b = base.generateBoard();
     base.generateMoves(b);
@@ -1010,11 +1010,9 @@ var pgnView = function(boardId, configuration) {
  *  theme: (only CSS related) some of zeit, blue, chesscom, ... (as string)
  */
 var pgnBoard = function(boardId, configuration) {
-    configuration['mode'] = 'board';
-    addAsDefault('headers', false, configuration);
-    var base = pgnBase(boardId, configuration);
+    let base = pgnBase(boardId, Object.assign({headers: false, mode: 'board', movable: { free: false }, viewOnly: true}, configuration));
     base.generateHTML();
-    var b = base.generateBoard();
+    let b = base.generateBoard();
     return {
         chess: base.chess,
         board: b
@@ -1035,11 +1033,9 @@ var pgnBoard = function(boardId, configuration) {
  *    allowAnnotations: false or true (default)
  */
 var pgnEdit = function(boardId, configuration) {
-    configuration['mode'] = 'edit';
-    addAsDefault('showFen', true, configuration);
-    var base = pgnBase(boardId, configuration);
+    let base = pgnBase(boardId, Object.assign({showFen: true, mode: 'edit', movable: { free: true }, viewOnly: false}, configuration));
     base.generateHTML();
-    var board = base.generateBoard();
+    let board = base.generateBoard();
     base.generateMoves(board);
 };
 
@@ -1052,10 +1048,7 @@ var pgnEdit = function(boardId, configuration) {
  * Rest will be ignored.
  */
 var pgnPrint = function(boardId, configuration) {
-    addAsDefault('showNotation', false, configuration);
-    configuration['mode'] = 'print';
-    var base = pgnBase(boardId, configuration);
+    let base = pgnBase(boardId, Object.assign( {showNotation: false, mode: 'print', movable: { free: false }, viewOnly: true}, configuration ));
     base.generateHTML();
-//    var board = base.generateBoard();
     base.generateMoves(null);
 };
