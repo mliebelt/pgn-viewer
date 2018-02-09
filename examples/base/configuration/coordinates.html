@@ -41,7 +41,7 @@ coordsFactor == 1.0
 no coordsFactor set (== default) 
 <div id="board4" style="width: 350px; margin-right: 25px"></div>
 
-coordsFactor == 1.3
+coordsFactor == 1.5 (which is too big)
 <div id="board5" style="width: 350px; margin-right: 25px"></div>
 
 <script>
@@ -51,7 +51,7 @@ coordsFactor == 1.3
     pgnv = pgnView("board2", {pgn: pgn, coordsInner: false});
     pgnv = pgnView("board3", {pgn: pgn, coordsFactor: 1.0});
     pgnv = pgnView("board4", {pgn: pgn});
-    pgnv = pgnView("board5", {pgn: pgn, coordsFactor: 1.3});
+    pgnv = pgnView("board5", {pgn: pgn, coordsFactor: 1.5});
 </script>
 
 

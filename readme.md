@@ -3,8 +3,8 @@
 PgnViewerJS is a simple JavaScript implementation to show PGN files (Portable Game Notation == Chess)
 in a web page. PgnViewerJS does not write everything anew, but it uses the following libraries:
 
-
 See the working examples on my new GitHub Pages site [PgnViewerJS](http://mliebelt.github.io/PgnViewerJS/), especially the [Configuration Builder](http://mliebelt.github.io/PgnViewerJS/docu/example/config.html) that demonstrates all parameters in a running example.
+
 ## Getting Started
 
 The easiest way to use it is to download a release, unpack that release, copy one of the examples HTLM files in `examples` (depending which mode you want to use), and modify them to your liking.
@@ -13,7 +13,9 @@ The easiest way to use it is to download a release, unpack that release, copy on
 
 The following are example screenshots with the configuration set below, to show the rich possibilities of PgnViewerJS.
 
-<img src="img/screenshots/sportverlag.png" style="text-align: top;"> <img src="img/screenshots/view-with-fen.png" width="250px" style="text-align: top"> <img src="img/screenshots/edit-variation.png" width="200px">
+![Theme Sportverlag](img/screenshots/sportverlag.png)
+![Viewer](img/screenshots/view-with-fen.png)
+![Edit with variations](img/screenshots/edit-variation.png)
 
 The screenshots show from left to right:
 
@@ -22,7 +24,6 @@ The screenshots show from left to right:
 * `mode: edit; orientation: black; locale: de` with comments
 
 Go to the [github.io pages](http://mliebelt.github.io/PgnViewerJS/) (documentation), where the current (and former) versions will be available.
-
 
 ### Features
 
@@ -36,17 +37,15 @@ This implementation has the following features:
   * clicking on next and previous button
   * clicking on play button
   * using cursor left and right on the keyboard
-* Allows to add moves to a game, when in the right 'mode'.  
-* Knows all PGN notation elements, and knows how to render them.  
+* Allows to add moves to a game, when in the right 'mode'.
+* Knows all PGN notation elements, and knows how to render them.
 
 ### UI modes
 
 There are four different kind of usages:
 
 * pgnView renders the whole game, and allows to play it through, jump to any position.
-* pgnEdit is a superset of pgnView, that allows to additional add variations,
-change the order of main line and variations, and allows all other kind of
-interactions that are possible: adding comments, PGN notation elements, whatever.
+* pgnEdit is a superset of pgnView, that allows to additional add variations, change the order of main line and variations, and allows all other kind of interactions that are possible: adding comments, PGN notation elements, whatever.
 * pgnBoard will just show a position without any interaction possible.
 * pgnPrint will just show a whole chess game, without any interaction possible.
 
@@ -80,10 +79,10 @@ To use the viewer in an HTML page, you have to do the following steps:
 
 * Include the necessary libraries.
 * Include the necessary CSS files.
-* Include the necessary div container for rendering of the 
+* Include the necessary div container for rendering of the
    board and the moves.
 * Include JavaScript code inside your HTML page to call the viewer.
-   
+
 So a rough template will look like:
 
     <!DOCTYPE html>
@@ -95,7 +94,7 @@ So a rough template will look like:
             <div id="board"></div>
             <script>
                 pgnView('board',{ pgn: '1. e4 e5 2. Nf3 Nc6 3. Bb5', pieceStyle: 'merida' });
-            </script>   
+            </script>
         </body>
     </html>
 
@@ -147,9 +146,9 @@ We use the following libraries in the implementation:
 * [Mousetrap](https://craig.is/killing/mice) Binds keys to actions in the UI
 * [i18next](https://www.i18next.com/) Internationalization (== i18n) library to translate chess into current 18 languages.
 * [jQuery Timer](http://jchavannes.com/jquery-timer) Allows the automatic play of games
-* http://fontawesome.io/: Nice icon font used for some buttons
-* http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm PGN (Portable Game Notation) specification
-* http://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs Definition of the NAGs (partly used)
+* [FontAwesome](http://fontawesome.io/): Nice icon font used for some buttons
+* [PGN Specification](http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm): PGN (Portable Game Notation) specification
+* [NAG Specification](http://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs) Definition of the NAGs (Numeric Annotation Glyphs)
 
 Thank you a lot to all contributors of issues.
 
