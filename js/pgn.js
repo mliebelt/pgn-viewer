@@ -792,6 +792,8 @@ var pgnReader = function (configuration) {
                 }
                 var fen = game.fen();
                 move.fen = fen;
+                move.from = pgn_move.from;
+                move.to = pgn_move.to;
                 if (pgn_move != null) {
                     move.notation.notation = pgn_move.san;
                 }
