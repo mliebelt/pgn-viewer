@@ -32,7 +32,7 @@ var pgnBase = function (boardId, configuration) {
         headers: true,
         timerTime: 700,
         locale: 'en',
-        movable: { free: false }, 
+        movable: { free: false },  
         viewOnly: true
     }
     that.configuration = Object.assign(defaults, configuration);
@@ -643,7 +643,18 @@ var pgnBase = function (boardId, configuration) {
             }
         }
 
-        board.set({fen: fen});
+        //console.log("Marke move: Curr " + curr + " Next " + next + " FEN " + fen);
+        //board.set({fen: fen});
+        if ( (curr === null) || (next > curr) ) {
+            let myMove = that.mypgn.getMove(next);
+            let prevMove = that.mypgn.getMove(myMove.prev);
+            board.set({fen: (prevMove === undefined) ? that.configuration.fen : prevMove.fen});
+            board.move(myMove.from, myMove.to);    
+        } else {
+            let myMove = that.mypgn.getMove(next);
+            let prevMove = that.mypgn.getMove(myMove.prev);
+            makeMove(myMove.prev, myMove.index, myMove.fen); 
+        }
         game.load(fen);
         unmarkMark(next);
         that.currentMove = next;
@@ -983,7 +994,7 @@ var pgnBase = function (boardId, configuration) {
  * @returns {{chess: chess, getPgn: getPgn}} all utility functions available
  */
 var pgnView = function(boardId, configuration) {
-    var base = pgnBase(boardId, Object.assign({mode: 'view', movable: { free: false }, viewOnly: true}, configuration));
+    var base = pgnBase(boardId, Object.assign({mode: 'view'}, configuration));
     base.generateHTML();
     var b = base.generateBoard();
     base.generateMoves(b);
@@ -1010,7 +1021,7 @@ var pgnView = function(boardId, configuration) {
  *  theme: (only CSS related) some of zeit, blue, chesscom, ... (as string)
  */
 var pgnBoard = function(boardId, configuration) {
-    let base = pgnBase(boardId, Object.assign({headers: false, mode: 'board', movable: { free: false }, viewOnly: true}, configuration));
+    let base = pgnBase(boardId, Object.assign({headers: false, mode: 'board'}, configuration));
     base.generateHTML();
     let b = base.generateBoard();
     return {
@@ -1048,7 +1059,7 @@ var pgnEdit = function(boardId, configuration) {
  * Rest will be ignored.
  */
 var pgnPrint = function(boardId, configuration) {
-    let base = pgnBase(boardId, Object.assign( {showNotation: false, mode: 'print', movable: { free: false }, viewOnly: true}, configuration ));
+    let base = pgnBase(boardId, Object.assign( {showNotation: false, mode: 'print'}, configuration ));
     base.generateHTML();
     base.generateMoves(null);
 };
