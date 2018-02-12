@@ -792,10 +792,10 @@ var pgnBase = function (boardId, configuration) {
                 $('#' + fenId).val(game.fen());
                 updateUI(null);
             };
-            var timer = $.timer(function() {
+            var timer = new Timer(10);
+            timer.bind(that.configuration.timerTime, function() {
                 nextMove();
             });
-            timer.set({ time : that.configuration.timerTime});
             $('#' + buttonsId + 'flipper').on('click', function() {
                 board.toggleOrientation();
             });
@@ -881,7 +881,7 @@ var pgnBase = function (boardId, configuration) {
                 }
             }
             function togglePlay() {
-                timer.toggle();
+                timer.running() ? timer.stop() : timer.start();
                 var playButton = $('#' + buttonsId + 'play')[0];
                 var clString = playButton.getAttribute('class');
                 if (clString.indexOf('play') < 0) { // has the stop button
