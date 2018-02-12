@@ -653,7 +653,8 @@ var pgnBase = function (boardId, configuration) {
         } else {
             let myMove = that.mypgn.getMove(next);
             let prevMove = that.mypgn.getMove(myMove.prev);
-            makeMove(myMove.prev, myMove.index, myMove.fen); 
+            //makeMove(myMove.prev, myMove.index, myMove.fen); 
+            board.set({fen: myMove.fen, lastMove: [myMove.from, myMove.to]});
         }
         game.load(fen);
         unmarkMark(next);
