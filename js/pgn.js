@@ -81,14 +81,24 @@ var pgnReader = function (configuration) {
             function callback(data) {
                 retPGN = data;
             }
-            $.ajax( {
-                url: url,
-                success: callback,
-                error: function() {
-                    alert("Could not read PGN file from: " + url);
-                },
-                async: false 
-            });
+            var request = new XMLHttpRequest();
+            request.open('GET', url, true);
+            
+            request.onload = function() {
+              if (request.status >= 200 && request.status < 400) {
+                // Success!
+                retPGN = request.responseText;
+              } else {
+                // We reached our target server, but it returned an error
+            
+              }
+            };
+            
+            request.onerror = function() {
+                alert("Could not read PGN file from: " + url);
+            },
+            
+            request.send();
             return retPGN;
         }
         if (typeof configuration.position == 'undefined') {
@@ -343,7 +353,7 @@ var pgnReader = function (configuration) {
          * it is much easier to keep only the first move of the variation.
          */
         var correctVariations = function() {
-            $.each(getMoves(), function(index, move) {
+            _.each(getMoves(), function(move) {
                 for (i = 0; i < move.variations.length; i++) {
                     move.variations[i] = move.variations[i][0];
                 }
@@ -367,7 +377,7 @@ var pgnReader = function (configuration) {
             if ((getTurn(configuration.position) === 'b') &&
                     (isMove(0)) &&
                     (that.moves[0].turn === 'w')) {
-                $.each(getMoves(), function(index, move) {
+                _.each(getMoves(), function(move) {
                     move.turn = (move.turn === 'w') ? 'b' : 'w'
                 })
             }
@@ -764,7 +774,7 @@ var pgnReader = function (configuration) {
                 return (tokens[1] === 'b') ? move_number : move_number - 1
             }
             var prevMove = (prev != null ? that.moves[prev] : null);
-            $.each(moveArray, function(i, move) {
+            _.each(moveArray, function(move, i) {
                 current++;
                 move.variationLevel = level;
                 that.moves.push(move);
@@ -807,7 +817,7 @@ var pgnReader = function (configuration) {
                 }
                 move.moveNumber = getMoveNumberFromPosition(fen);
 
-                $.each(move.variations, function(v, variation) {
+                _.each(move.variations, function(variation) {
                     eachMoveVariation(variation, level + 1, prev);
                 })
             })

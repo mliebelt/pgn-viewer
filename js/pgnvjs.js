@@ -63,30 +63,20 @@ var pgnBase = function (boardId, configuration) {
     (function(){
         var i18n_option = {
             getAsync: false,
-            resGetPath: localPath() + 'locales/__ns__-__lng__.json',
+            resGetPath: '/locales/__ns__-__lng__.json',
             ns: {
                 namespaces: ['chess', 'nag', 'buttons'],
                 defaultNs: 'chess'
             }
         };
-        $.i18n.init(i18n_option, function (err, t) {});
+        i18n.init(i18n_option, function (err, t) {});
         if (that.configuration.locale) {
             that.configuration.locale = that.configuration.locale.replace(/_/g, "-");
-            $.i18n.setLng(that.configuration.locale); 
+            i18n.setLng(that.configuration.locale); 
         }
     })();
 
     // Some Utility functions without context
-
-    /**
-     * Returns the local path (needed for addressing piece image files).
-     * @returns {XML|string|void}
-     */
-    function localPath() {
-        var jsFileLocation = $('script[src*=pgnvjs]').attr('src');  // the js file path
-        var index = jsFileLocation.indexOf('pgnvjs');
-        return jsFileLocation.substring(0, index - 3);   // the father of the js folder
-    }
 
     /**
      * Allow logging of error to HTML.
@@ -99,14 +89,63 @@ var pgnBase = function (boardId, configuration) {
     }
 
     /**
+     * Adds a class to an element.
+     */
+    function addClass(elementOrId, className) {
+        let ele = _.isElement(elementOrId) ? elementOrId : document.getElementById(elementOrId);
+        if (! ele) return;
+        if (ele.classList) {
+            ele.classList.add(className);
+        } else {
+            ele.className += ' ' + className;
+        }
+    }
+
+    /**
+     * Remove a class from an element.
+     */
+    function removeClass(elementOrId, className) {
+        let ele = _.isElement(elementOrId) ? elementOrId : document.getElementById(elementOrId);
+        if (ele === null) return;
+        if (ele.classList) {
+            ele.classList.remove(className);
+        } else {
+            ele.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+        }
+    }
+
+    /**
+     * Inserts an element after targetElement
+     * @param {*} newElement the element to insert
+     * @param {*} targetElement the element after to insert
+     */
+    function insertAfter(newElement,targetElement) {
+        var parent = targetElement.parentNode;
+        if (parent.lastChild == targetElement) {
+            parent.appendChild(newElement);
+        } else {
+            parent.insertBefore(newElement, targetElement.nextSibling);
+        }
+    }
+
+    /**
+     * Adds an event listener to the DOM element.
+     */
+    function addEventListener(elementOrId, event, func) {
+        let ele = _.isElement(elementOrId) ? elementOrId : document.getElementById(elementOrId);
+        if (ele === null) return;
+        ele.addEventListener(event, func);
+    }
+    
+    /**
      * Allow to hide HTML by calling this function. It will prepend
      * the boardId, and search for an ID in the DOM.
      * @param eleName the element name added to the boardId
      * @param prefix the prefix used for the unique Id
      */
     var hideHTML = function(eleName, prefix) {
-        var ele = "#" + (prefix ? prefix : "") + boardId + eleName;
-        $(ele)[0].style.display = "none";
+        var ele = (prefix ? prefix : "") + boardId + eleName;
+        document.getElementById(ele).style.display = "none";
     };
 
     /**
@@ -114,7 +153,7 @@ var pgnBase = function (boardId, configuration) {
      * @param element the element to show by scrolling
      */
     function scrollToView(element){
-        var node = element[0];
+        var node = element;
         var movesNode = node.offsetParent;
         var nodeRect = node.getBoundingClientRect();
         var movesRect = movesNode.getBoundingClientRect();
@@ -129,7 +168,7 @@ var pgnBase = function (boardId, configuration) {
      * The function removes the background of the marked fields for moves.
      */
     var removePossibleSquares = function() {
-        $('#' + boardId + ' .square-55d63').removeClass('possible');
+        removeClass(boardId + ' .square-55d63', 'possible');
     };
 
     /**
@@ -137,7 +176,7 @@ var pgnBase = function (boardId, configuration) {
      * @param square the ID of the square
      */
     var possibleSquare = function(square) {
-        $('#' + boardId + ' .square-' + square).addClass('possible');
+        addClass(boardId + ' .square-' + square, 'possible');
     };
 
     /**
@@ -245,14 +284,20 @@ var pgnBase = function (boardId, configuration) {
     function generateNAGMenu(buttonDiv) {
 
         var sel = createEle("select", buttonsId + "nag", "nag", theme, buttonDiv);
+        sel.multiple = true;
         sel.setAttribute("multiple", "multiple");
-        $.each(that.mypgn.NAGS, function (index, value) {
+        var choices = [];
+        _.each(that.mypgn.NAGS, function (index, value) {
             if (value != null) {
-                var opt = createEle("option", null, null, theme, sel);
-                opt.setAttribute("value", index);
-                opt.text = value;
+                choices.push( { value: index, label: value } );
             }
         });
+        var choicesSelect = new Choices('#' + buttonsId + 'nag', {
+            //removeItemButton: true,
+            choices: choices,
+            removeItemButton: true,
+            shouldSort: false
+          });
     }
 
     /**
@@ -265,7 +310,7 @@ var pgnBase = function (boardId, configuration) {
             var l_theme = (['green', 'blue'].indexOf(theme) >= 0) ? theme : 'default';
             var button = createEle("i", buttonsId + pair[0], "button fa " + pair[1], l_theme, buttonDiv);
             var title = i18n.t("buttons:" + pair[0], {lng: that.configuration.locale});
-            $("#" + buttonsId + pair[0]).attr("title", title);
+            document.getElementById(buttonsId + pair[0]).setAttribute("title", title);
             return button;
         }
         // Generates the view buttons (only)
@@ -302,21 +347,21 @@ var pgnBase = function (boardId, configuration) {
         if (hasMarkup()) {
             if (boardId['header']) {
                 headersId = boardId['header']; // Real header will be built later
-                $("#" + headersId).addClass('headers');
+                addClass(headersId, 'headers');
             }
             if (boardId['inner']) {
                 innerBoardId = boardId['inner'];
-                $("#" + innerBoardId).addClass('board');
+                addClass(innerBoardId, 'board');
             }
             if (boardId['button']) {
                 buttonsId = boardId['button'];
-                $("#" + buttonsId).addClass('buttons');
+                addClass(buttonsId, 'buttons');
                 var buttonsDiv = document.getElementById(buttonsId);
                 generateViewButtons(buttonsDiv);
             }
             if (boardId['moves']) {
                 movesId = boardId['moves'];
-                $("#" + movesId).addClass('moves');
+                addClass(movesId, 'moves');
             }
             if (boardId['editButton']) {
                 var editButtonsBoardDiv = document.getElementById(boardId['editButton']);
@@ -328,7 +373,7 @@ var pgnBase = function (boardId, configuration) {
                 return;
             } else {
                 // ensure that the board is empty before filling it
-                $('#'+boardId).find('div').remove();
+                //divBoard.find('div').remove();
             }
             if (that.configuration.size) {
                 divBoard.style.width = that.configuration.size;
@@ -357,21 +402,21 @@ var pgnBase = function (boardId, configuration) {
             }
             if ( (hasMode('edit') || hasMode('view')) && (that.configuration.showFen) ) {
                 var fenDiv = createEle("textarea", fenId, "fen", theme, outerInnerBoardDiv);
-                $('#' + fenId).on('mousedown', function(e) {
+                addEventListener(fenId, 'mousedown', function(e) {
 	                e = e || window.event;
                     e.preventDefault();
-                    $(this).select();
+                    this.select();
                 });
                 if ( hasMode('edit')) {
-                    $('#' + fenId).bind("paste", function(e){
+                    document.getElementById(fenId).onpaste = function(e){
                         var pastedData = e.originalEvent.clipboardData.getData('text');
                         // console.log(pastedData);
                         that.configuration.position = pastedData;
                         that.configuration.pgn = '';
                         pgnEdit(boardId, that.configuration);
-                    } );
+                    };
                 } else {
-                    $('#' + fenId).prop("readonly", true);
+                    document.getElementById(fenId).readonly = true;
                 }
             }
             if (hasMode('print') || hasMode('view') || hasMode('edit')) {
@@ -400,16 +445,16 @@ var pgnBase = function (boardId, configuration) {
                 var commentBoardDiv = createEle("div", "comment" + buttonsId, "comment", theme, divBoard);
                 generateCommentDiv(commentBoardDiv);
                 // Bind the paste key ...
-                $('#' + "pgn" + buttonsId).on('mousedown', function(e) {
+                addEventListener("pgn" + buttonsId, 'mousedown', function(e) {
 	                e = e || window.event;
                     e.preventDefault();
-                    $(this).select();
+                    e.fromElement.select();
                 });
-                $('#' + "pgn" + buttonsId).bind("paste", function(e) {
+                document.getElementById("pgn" + buttonsId).onpaste = function(e) {
                     var pastedData = e.originalEvent.clipboardData.getData('text');
                     that.configuration.pgn = pastedData;
                     pgnEdit(boardId, that.configuration);
-                })
+                }
             }
             var endDiv = createEle("div", null, "endBoard", null, divBoard);
         }
@@ -422,8 +467,8 @@ var pgnBase = function (boardId, configuration) {
      */
     var generateBoard = function() {
         function copyBoardConfiguration(source, target, keys) {
-            var pieceStyle = source.pieceStyle || 'wikipedia';
-            $.each(keys, function(i, key) {
+            //var pieceStyle = source.pieceStyle || 'wikipedia';
+            _.each(keys, function(key) {
                 if (typeof source[key] != "undefined") {
                     target[key] = source[key];
                 }
@@ -460,7 +505,7 @@ var pgnBase = function (boardId, configuration) {
     };
 
     var moveSpan = function(i) {
-        return $('#' + movesId + i);
+        return document.getElementById(movesId + i);
     };
 
     /**
@@ -493,7 +538,7 @@ var pgnBase = function (boardId, configuration) {
         var append_to_current_div = function(index, span, movesDiv, varStack) {
             if (varStack.length == 0) {
                 if (typeof index == "number") {
-                    $(span).insertAfter(moveSpan(index));
+                    insertAfter(span, moveSpan(index));
                 } else {
                     movesDiv.appendChild(span);
                 }
@@ -523,7 +568,7 @@ var pgnBase = function (boardId, configuration) {
                 } else {
                     varHead = 0;
                 }
-                moveSpan(varHead)[0].appendChild(varDiv);
+                moveSpan(varHead).appendChild(varDiv);
                 // movesDiv.appendChild(varDiv);
             } else {
                 varStack[varStack.length - 1].appendChild(varDiv);
@@ -550,7 +595,7 @@ var pgnBase = function (boardId, configuration) {
             //span.appendChild(document.createTextNode(" ) "));
             varStack.pop();
         }
-        moveSpan(currentCounter).on('click', function(event) {
+        addEventListener(moveSpan(currentCounter), 'click', function(event) {
             makeMove(that.currentMove, currentCounter, move.fen);
             event.stopPropagation();
         });
@@ -570,27 +615,30 @@ var pgnBase = function (boardId, configuration) {
      */
     function unmarkMark(next) {
         var moveASpan = function(i) {
-            return $('#' + movesId + i + "> a");
+            return document.querySelector('#' + movesId + i + '> a');
         };
 
-        $("div#" + movesId + " a.yellow").removeClass('yellow');
-        moveASpan(next).addClass('yellow');
+        removeClass(document.querySelector('#' + movesId + " a.yellow"), 'yellow');
+        addClass(moveASpan(next), 'yellow');
     }
 
     /**
      * Check which buttons should be grayed out
      */
     var updateUI = function (next) {
-        $("div.buttons .gray").removeClass('gray');
+        let elements = document.querySelectorAll("div.buttons .gray");
+        _.each(elements, function(ele) {
+            removeClass(ele, 'gray');
+        })
         var move = that.mypgn.getMove(next);
         if (next === null) {
             ["prev", "first"].forEach(function(name) {
-                $("div.buttons ." + name).addClass('gray');
+                addClass(document.querySelector("div.buttons ." + name), 'gray');
             });
         }
         if ((next !== null) && (typeof move.next != "number")) {
             ["next", "play", "last"].forEach(function(name) {
-                $("div.buttons ." + name).addClass('gray');
+                addClass(document.querySelector("div.buttons ." + name), 'gray');
             });
         }
         // Update the drop-down for NAGs
@@ -598,7 +646,7 @@ var pgnBase = function (boardId, configuration) {
             if (move === undefined) {
                 return;
             }
-            $("select#" + buttonsId + "nag").multiselect("uncheckAll");
+            /* $("select#" + buttonsId + "nag").multiselect("uncheckAll");
             var selectMenu = $("select#" + buttonsId + "nag")[0];
             var nag = move.nag ? move.nag : [];
             $.each(nag, function(index, value) {
@@ -610,7 +658,7 @@ var pgnBase = function (boardId, configuration) {
                 })
             })
             $("select#" + buttonsId + "nag").multiselect("refresh");
-
+ */
         } catch (err) {
 
         }
@@ -630,16 +678,16 @@ var pgnBase = function (boardId, configuration) {
         function fillComment(moveNumber) {
             var myMove = that.mypgn.getMove(moveNumber);
             if (myMove.commentAfter) {
-                $("#" + boardId + " input.afterComment").prop('checked', true);
-                $("#" + boardId + " textarea.comment").val(myMove.commentAfter);
+                document.getElementById(boardId + " input.afterComment").checked = true;
+                document.getElementById(boardId + " textarea.comment").value = myMove.commentAfter;
             } else if (myMove.commentBefore) {
-                $("#" + boardId + " input.beforeComment").prop('checked', true);
-                $("#" + boardId + " textarea.comment").val(myMove.commentBefore);
+                document.getElementById(boardId + " input.beforeComment").checked = true;
+                document.getElementById(boardId + " textarea.comment").value = myMove.commentBefore;
             } else if (myMove.commentMove) {
-                $("#" + boardId + " input.moveComment").prop('checked', true);
-                $("#" + boardId + " textarea.comment").val(myMove.commentMove);
+                document.getElementById(boardId + " input.moveComment").checked = true;
+                document.getElementById(boardId + " textarea.comment").value = myMove.commentMove;
             } else {
-                $("#" + boardId + " textarea.comment").val("");
+                document.getElementById(boardId + " textarea.comment").value = "";
             }
         }
 
@@ -663,7 +711,10 @@ var pgnBase = function (boardId, configuration) {
         if (hasMode('edit')) {
             fillComment(next);
         }
-        $('#' + fenId).val(fen);
+        let fenView = document.getElementById(fenId);
+        if (fenView) {
+            fenView.value = fen;
+        }
         updateUI(next);
     };
 
@@ -696,7 +747,10 @@ var pgnBase = function (boardId, configuration) {
         if (board !== null) {
             board.set({fen: game.fen()});
         }
-        $('#' + fenId).val(game.fen());
+        let fenField = document.getElementById(fenId);
+        if (_.isElement(fenField)) {
+            fenField.value = game.fen();
+        }
 
         /**
          * Generate a useful notation for the headers, allow for styling. First a version
@@ -704,10 +758,11 @@ var pgnBase = function (boardId, configuration) {
          */
         var generateHeaders = function() {
             var headers = that.mypgn.getHeaders();
-            if (that.configuration.headers == false || ($.isEmptyObject(headers))) {
-                $('#' + headersId).remove();
+            if (that.configuration.headers == false || (_.isEmpty(headers))) {
+                let hd = document.getElementById(headersId);
+                hd.parentNode.removeChild(hd);
                 return; }
-            var div_h = $('#' + headersId)[0];
+            var div_h = document.getElementById(headersId);
             var white = createEle('span', null, "whiteHeader", theme, div_h);
             if (headers.White) {
                 white.appendChild(document.createTextNode(headers.White + " "));
@@ -789,36 +844,36 @@ var pgnBase = function (boardId, configuration) {
                 board.set({fen: game.fen()});
                 unmarkMark(null);
                 that.currentMove = null;
-                $('#' + fenId).val(game.fen());
+                document.getElementById(fenId).value = game.fen();
                 updateUI(null);
             };
             var timer = new Timer(10);
             timer.bind(that.configuration.timerTime, function() {
                 nextMove();
             });
-            $('#' + buttonsId + 'flipper').on('click', function() {
+            addEventListener(buttonsId + 'flipper', 'click', function() {
                 board.toggleOrientation();
             });
-            $('#' + buttonsId + 'next').on('click', function() {
+            addEventListener(buttonsId + 'next', 'click', function() {
                 nextMove();
             });
-            $('#' + buttonsId + 'prev').on('click', function() {
+            addEventListener(buttonsId + 'prev', 'click', function() {
                 prevMove();
             });
-            $('#' + buttonsId + 'first').on('click', function() {
+            addEventListener(buttonsId + 'first', 'click', function() {
                 // Goes to the position after the first move.
                 // var fen = that.mypgn.getMove(0).fen;
                 // makeMove(that.currentMove, 0, fen);
                 firstMove();
             });
-            $('#' + buttonsId + 'last' ).on('click', function() {
+            addEventListener(buttonsId + 'last', 'click', function() {
                 var fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
                 makeMove(that.currentMove, that.mypgn.getMoves().length - 1, fen);
             });
             var togglePgn = function() {
-                var pgnButton = $('#' + buttonsId + "pgn")[0];
-                var pgnText = $("#" + boardId + " .outerpgn")[0];
-                $('#' + buttonsId + "pgn").toggleClass('selected');
+                var pgnButton = document.getElementById(buttonsId + "pgn");
+                var pgnText = document.getElementById(boardId + " .outerpgn");
+                document.getElementById(buttonsId + "pgn").toggleClass('selected');
                 if ($('#' + buttonsId + "pgn").hasClass('selected')) {
                     var str = computePgn();
                     showPgn(str);
@@ -828,32 +883,32 @@ var pgnBase = function (boardId, configuration) {
                 }
             }
             if (hasMode('edit')) { // only relevant functions for edit mode
-                $('#' + buttonsId + "pgn").on('click', function() {
+                addEventListener(buttonsId + "pgn", 'click', function() {
                     togglePgn();
                 });
-                $('#' + buttonsId + "deleteMoves").on('click', function() {
+                addEventListener(buttonsId + "deleteMoves", 'click', function() {
                     var prev = that.mypgn.getMove(that.currentMove).prev;
                     var fen = that.mypgn.getMove(prev).fen;
                     that.mypgn.deleteMove(that.currentMove);
-                    $("#" + movesId).html("");
+                    document.getElementById(movesId).html("");
                     regenerateMoves(that.mypgn.getMoves());
                     makeMove(null, prev, fen);
                 });
-                $('#' + buttonsId + "promoteVar").on('click', function() {
-                    var curr = that.currentMove;
+                addEventListener(buttonsId + "promoteVar", 'click', function() {
+                    let curr = that.currentMove;
                     that.mypgn.promoteMove(that.currentMove);
-                    $("#" + movesId).html("");
+                    document.getElementById(movesId).html("");
                     regenerateMoves(that.mypgn.getOrderedMoves());
-                    var fen = that.mypgn.getMove(curr).fen;
+                    let fen = that.mypgn.getMove(curr).fen;
                     makeMove(null, that.currentMove, fen);
                 });
-                $("#" + boardId + ' .pgn').hide();
-                $('#comment' + buttonsId + " textarea.comment").change(function() {
+                document.getElementById(boardId + ' .pgn').style.display = 'none';
+                document.getElementById('comment' + buttonsId + " textarea.comment").change(function() {
                     function commentText() {
-                        return " " + $('#comment' + buttonsId + " textarea.comment").val() + " ";
+                        return " " + document.getElementById('comment' + buttonsId + " textarea.comment").val() + " ";
                     }
                     var text = commentText();
-                    var checked = $("#comment" + buttonsId + " :checked").val() || "after";
+                    var checked = document.getElementById("comment" + buttonsId + " :checked").value || "after";
                     moveSpan(that.currentMove).find("." + checked + "Comment").text(text);
                     if (checked === "after") {
                         that.mypgn.getMove(that.currentMove).commentAfter = text;
@@ -866,7 +921,7 @@ var pgnBase = function (boardId, configuration) {
                 var rad = ["moveComment", "beforeComment", "afterComment"];
                 var prevComment = null;
                 for (var i = 0;i < rad.length; i++) {
-                    $('#comment' + buttonsId + " ." + rad[i]).click(function() {
+                    document.getElementById('comment' + buttonsId + " ." + rad[i]).click(function() {
                         var checked = this.value;
                         var text;
                         if (checked === "after") {
@@ -876,13 +931,13 @@ var pgnBase = function (boardId, configuration) {
                         } else if (checked === "move") {
                             text = that.mypgn.getMove(that.currentMove).commentMove;
                         }
-                        $("#" + boardId + " textarea.comment").val(text);
+                        document.getElementById(boardId + " textarea.comment").value = text;
                     });
                 }
             }
             function togglePlay() {
                 timer.running() ? timer.stop() : timer.start();
-                var playButton = $('#' + buttonsId + 'play')[0];
+                var playButton = document.getElementById(buttonsId + 'play');
                 var clString = playButton.getAttribute('class');
                 if (clString.indexOf('play') < 0) { // has the stop button
                     clString = clString.replace('stop', 'play');
@@ -894,7 +949,7 @@ var pgnBase = function (boardId, configuration) {
             bind_key("left", prevMove);
             bind_key("right", nextMove);
             //bind_key("space", togglePlay);
-            $('#' + buttonsId + 'play').on('click', function() {
+            addEventListener(buttonsId + 'play', 'click', function() {
                 togglePlay();
             })
         };
@@ -904,7 +959,7 @@ var pgnBase = function (boardId, configuration) {
         };
 
         var showPgn = function (val) {
-            $('#pgn' + buttonsId).text(val).show(1000);
+            document.getElementById('pgn' + buttonsId).text(val).show(1000);
         };
 
         /**
@@ -926,44 +981,44 @@ var pgnBase = function (boardId, configuration) {
         bindFunctions();
         generateHeaders();
         if (hasMode('edit')) {
-            generateNAGMenu($("#edit" + boardId + "Button")[0]);
-            $(function(){
-                $("select#" + buttonsId + "nag").multiselect({
-                    header: false,
-                    selectedList: 4,
-                    minWidth: 80,
-                    checkAllText: "",
-                    uncheckAllText: "Clean",
-                    noneSelectedText: "NAGs",
-                    click: function(event, ui) {
-                        /**
-                         * Add (or remove) a NAG from the current move. Ignore it, if there is
-                         * no current move.
-                         */
-                        function changeNAG(value, checked) {
-                            /**
-                             * Updates the visual display of the move (only the notation, not the comments).
-                             * @param moveIndex the index of the move to update
-                             */
-                            function updateMoveSAN(moveIndex) {
-                                var move = that.mypgn.getMove(moveIndex);
-                                $("#" + movesId + moveIndex + " > a").text(that.mypgn.sanWithNags(move));
-                            }
+            generateNAGMenu(getElementById("edit" + boardId + "Button"));
+    //         $(function(){
+    //             $("select#" + buttonsId + "nag").multiselect({
+    //                 header: false,
+    //                 selectedList: 4,
+    //                 minWidth: 80,
+    //                 checkAllText: "",
+    //                 uncheckAllText: "Clean",
+    //                 noneSelectedText: "NAGs",
+    //                 click: function(event, ui) {
+    //                     /**
+    //                      * Add (or remove) a NAG from the current move. Ignore it, if there is
+    //                      * no current move.
+    //                      */
+    //                     function changeNAG(value, checked) {
+    //                         /**
+    //                          * Updates the visual display of the move (only the notation, not the comments).
+    //                          * @param moveIndex the index of the move to update
+    //                          */
+    //                         function updateMoveSAN(moveIndex) {
+    //                             var move = that.mypgn.getMove(moveIndex);
+    //                             $("#" + movesId + moveIndex + " > a").text(that.mypgn.sanWithNags(move));
+    //                         }
 
-                            console.log("clicked: " + value + " Checked? " + checked);
-                            that.mypgn.changeNag("$" + value, that.currentMove, checked);
-                            updateMoveSAN(that.currentMove);
-                        }
+    //                         console.log("clicked: " + value + " Checked? " + checked);
+    //                         that.mypgn.changeNag("$" + value, that.currentMove, checked);
+    //                         updateMoveSAN(that.currentMove);
+    //                     }
 
-                        //  event: the original event object
-    //                    ui.value: value of the checkbox
-    //                    ui.text: text of the checkbox
-    //                    ui.checked: whether or not the input was checked or unchecked (boolean)
+    //                     //  event: the original event object
+    // //                    ui.value: value of the checkbox
+    // //                    ui.text: text of the checkbox
+    // //                    ui.checked: whether or not the input was checked or unchecked (boolean)
 
-                        changeNAG(ui.value, ui.checked);
-                    }
-                });
-            });
+    //                     changeNAG(ui.value, ui.checked);
+    //                 }
+    //             });
+    //         });
         }
     };
 
