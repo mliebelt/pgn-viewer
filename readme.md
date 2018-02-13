@@ -137,15 +137,13 @@ PgnViewerJS is licensed under the Apache license 2.0, see the [LICENSE.md](LICEN
 We use the following libraries in the implementation:
 
 * [chess.js](https://github.com/jhlywa/chess.js) Base library to model chess in JavaScript
-* [chessboardjs](https://github.com/oakmac/chessboardjs) Chess board that has
- all functionality to display chess positions, move pieces, ...
+* [Chessground](https://github.com/ornicar/chessground) The chessboard used by lichess.org
 * [pegjs](https://github.com/pegjs/pegjs) Parser Generator implemented in Javascript.
-  Used to translate the grammer file `pgn-rules.peg` into a Javascript representation.
-* [jQuery](https://jquery.com/) Used by chessboardjs
-* [jQuery Multiselect](http://www.erichynds.com/jquery/jquery-ui-multiselect-widget/) Widget used to show the NAGs
+* [Choices.js](https://github.com/jshjohnson/Choices) A multiselect widget
 * [Mousetrap](https://craig.is/killing/mice) Binds keys to actions in the UI
 * [i18next](https://www.i18next.com/) Internationalization (== i18n) library to translate chess into current 18 languages.
-* [jQuery Timer](http://jchavannes.com/jquery-timer) Allows the automatic play of games
+* [Timer.js](https://github.com/fschaefer/Timer.js) Small timer for automatic moves
+* [Underscore](http://underscorejs.org/) Tool belt for utility functions
 * [FontAwesome](http://fontawesome.io/): Nice icon font used for some buttons
 * [PGN Specification](http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm): PGN (Portable Game Notation) specification
 * [NAG Specification](http://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs) Definition of the NAGs (Numeric Annotation Glyphs)

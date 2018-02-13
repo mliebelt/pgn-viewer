@@ -5,18 +5,17 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         clean: ["dist/css", 'dist/js', 'dist/img', 'dist/locales', 'dist/doc', "docu/dist/css",
             'docu/dist/js', 'docu/dist/img', 'docu/dist/locales', 'docu/dist/doc',
-            'dist-nojq/css', 'dist-nojq/js', 'dist-nojq/img', 'dist-nojq/locales', 'PgnViewerJS.zip'],
+            'PgnViewerJS.zip'],
         concat: {
             all: {
                 src: [
-                    'chessboardjs/js/jquery-1.11.1.js',
+                    'js/underscore.js',
                     'chess.js/chess.js',
                     'js/chessground.js',
                     'js/i18next-1.11.2.js',
-                    'js/jquery.timer.js',
+                    'js/Timer.js',
                     'js/mousetrap.js',
-                    'js/jquery-ui.js',
-                    'js/jquery.multiselect.js',
+                    'js/choices.js',
                     'js/pgn.js',
                     'js/pgn-parser.js',
                     'js/pgnvjs.js'
@@ -25,35 +24,22 @@ module.exports = function(grunt) {
             },
             dev: {
                 src: [
-                    'chessboardjs/js/jquery-1.11.1.js',
+                    'js/underscore.js',
                     'chess.js/chess.js',
                     'js/chessground.js',
                     'js/i18next-1.11.2.js',
-                    'js/jquery.timer.js',
+                    'js/Timer.js',
                     'js/mousetrap.js',
-                    'js/jquery-ui.js',
-                    'js/jquery.multiselect.js',
+                    'js/choices.js',
                     'js/pgn-parser.js'
                 ],
                 dest: 'dist/js/third.js'
-            },
-            nojq: {
-                src: [
-                    'chess.js/chess.js',
-                    'chessboardjs/js/chessboard.js',
-                    //'chessboardjs/js/json3.min.js',
-                    'js/*.js'],
-                dest: 'dist-nojq/js/pgnvjs.js'
             }
         },
         uglify: {
             js: {
                 src: ['dist/js/pgnvjs.js'],
                 dest: 'dist/js/min/pgnvjs.js'
-            },
-            nojq: {
-                src: ['dist-nojq/js/pgnvjs.js'],
-                dest: 'dist-nojq/js/min/pgnvjs.js'
             }
         },
         copy: {
@@ -75,29 +61,6 @@ module.exports = function(grunt) {
                         src: 'fonts/**',
                         dest: 'dist'
                     }
-                ]
-            },
-            nojq: {
-                files: [
-                    {
-                        src: [
-                            'locales/**',
-                            'img/chesspieces/**',
-                            'img/pattern/**',
-                            'img/*.png',
-                            'css/images/**'],
-                        dest: 'dist-nojq',
-                        expand: true
-                    }
-                ]
-            },
-            chessboardjs: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'chessboardjs/',
-                        src: ['img/chesspieces/**', 'css/chessboard.css'],
-                        dest: 'dist/'}
                 ]
             },
             markdown: {
@@ -142,33 +105,21 @@ module.exports = function(grunt) {
             },
             all: {
                 src: [
-                    "font-awesome/css/font-awesome.css",
-                    "css/jquery-ui.css",
-                    "css/jquery.multiselect.css",
-                    "css/chessground.css",
+                    'font-awesome/css/font-awesome.css',
+                    'choices.css',
+                    'css/chessground.css',
                     'css/theme.css',
-                    "css/pgnvjs.css"
+                    'css/pgnvjs.css'
                 ],
                 dest: "dist/css/pgnvjs.css"
             },
             dev: {
                 src: [
                     'font-awesome/css/font-awesome.css',
-                    'css/jquery-ui.css',
-                    'css/jquery.multiselect.css',
+                    'css/choices.css',
                     'css/chessground.css'
                 ],
                 dest: 'dist/css/third.css'
-            },
-            nojq: {
-                src: [
-                    "chessboardjs/css/chessboard.css",
-                    "css/jquery-ui.css",
-                    "css/jquery.multiselect.css",
-                    "font-awesome/css/font-awesome.css",
-                    "css/pgnvjs.css"
-                ],
-                dest: "dist-nojq/css/pgnvjs.css"
             }
         }
 
@@ -188,7 +139,6 @@ module.exports = function(grunt) {
     //grunt.registerTask('default', ['clean', 'concat:all', 'concat_css',  'uglify', 'copy:all', 'genExamples']);
     grunt.registerTask('default', ['clean', 'concat:all', 'concat_css',  'copy:all', 'genExamples']);
     grunt.registerTask('debug', ['clean', 'concat:all', 'copy:all']);
-    grunt.registerTask('nojq', ['clean', 'concat:nojq', 'concat_css:nojq', 'copy:nojq', 'uglify:nojq' ]);
     grunt.registerTask('dev', ['concat:dev', 'concat_css:dev']);
 
     /* Define the function and register it to generate the HTML example files in the documentation.

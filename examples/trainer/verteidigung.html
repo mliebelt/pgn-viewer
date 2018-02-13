@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Verteidigung</title>
+    <!-- Libraries used: chessboardjs and chess.js from GitHub -->
+    <script src="../../../chessboardjs/js/chessboard.js" type="text/javascript"></script>
+    <script src="../../../chessboardjs/js/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../../../chessboardjs/js/json3.min.js" type="text/javascript"></script>
+    <script src="../../../chess.js/chess.js" type="text/javascript"></script>
+	<script src="../../../js/i18next-1.11.2.js" type="text/javascript"></script>
+
+    <!-- CSS used: chessboardjs from GitHub -->
+    <link href="../../../chessboardjs/css/chessboard.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../../font-awesome/css/font-awesome.min.css">
+
+    <!-- My own library -->
+    <script src="../../../js/pgnvjs.js" type="text/javascript"></script>
+    <script src="../../../js/jquery.timer.js" type="text/javascript"></script>
+    <script src="../../../js/pgn.js" type="text/javascript"></script>
+    <script src="../../../js/pgn-parser.js" type="text/javascript"></script>
+    <script src="../../../js/mousetrap.js"  type="text/javascript"></script>
+    <script src="../../../js/jquery-ui.js" type="text/javascript"></script>
+    <script src="../../../js/jquery.multiselect.js" type="text/javascript"></script>
+    <link href="../../../css/jquery-ui.css" type="text/css" rel="stylesheet"/>
+    <link href="../../../css/jquery.multiselect.css" type="text/css" rel="stylesheet"/>
+    <link href="../../../css/pgnvjs.css" type="text/css" rel="stylesheet"/>
+
+</head>
+<body>
+<h3>Verteidigung (Lehrprobe)</h3>
+
+
+
+<div id="board1" style="width: 300px;margin: 40px;"></div>
+
+<div id="board2" style="width: 300px;margin: 40px;"></div>
+
+<div id="board3" style="width: 300px;margin: 40px;"></div>
+
+<div id="board4" style="width: 300px;margin: 40px;"></div>
+
+<div id="board5" style="width: 300px;margin: 40px;"></div>
+
+<div id="board6" style="width: 300px;margin: 40px;"></div>
+
+<div id="board7" style="width: 300px;margin: 40px;"></div>
+
+<div id="board8" style="width: 300px;margin: 40px;"></div>
+
+<div id="board9" style="width: 300px;margin: 40px;"></div>
+
+<div id="board10" style="width: 300px;margin: 40px;"></div>
+
+<div id="board11" style="width: 300px;margin: 40px;"></div>
+
+<div id="board12" style="width: 300px;margin: 40px;"></div>
+
+<div id="board13" style="width: 300px;margin: 40px;"></div>
+
+<div id="board14" style="width: 300px;margin: 40px;"></div>
+
+<div id="board15" style="width: 300px;margin: 40px;"></div>
+
+<div id="board16" style="width: 300px;margin: 40px;"></div>
+
+<script>
+    positions = [
+        "6k1/5r2/6p1/2B3P1/3P4/6P1/3K1R2/8 w - - 0 1",
+        "8/1bp4p/p4k2/3qp3/P7/1P3B1P/2P2PP1/5RK1 b - - 0 1",
+        "2rr3k/p5pp/5p2/8/3Q4/2BP2P1/5PK1/8 w - - 0 1",
+        "4rk2/4Rppp/2q5/4Q3/7P/6P1/4KP2/8 w - - 0 1",
+        "8/4Bp2/k4P2/1p6/8/b7/2K5/8 b - - 0 1",
+        "r1b4r/1p3k1p/1np1pnp1/5p2/pPBPpB2/P7/2P1NPPP/R4RK1 w - - 0 1",
+        "1rb2rk1/3nppb1/p1pp1np1/q5Bp/1pPPP2P/2N2P1N/PPQ1B1P1/1K1R3R w - - 0 1",
+        "4Q3/6pk/6p1/2p5/3q1pP1/pPR5/P7/K7 w - - 0 1",
+        "7r/ppk2nbr/2p1n1p1/4pp2/2P2P2/1P2B1PB/P2RN1KP/5R2 w - - 0 1",
+        "r2qr1k1/pppbbppp/3p1n2/4P3/3B4/2N5/PPP1BPPP/R2Q1RK1 b KQkq - 0 1",
+        "1k3b1r/ppq2p2/1n2p1p1/Q2r1p2/2pP4/2P3P1/PP1N1PBP/2KR3R w - - 0 1",
+        "rnbqkbnr/p3pppp/3p4/8/2pP4/4PQ2/1P3PPP/RNB1KBNR b KQkq - 0 1",
+        "rn2kb1r/ppp2p1p/7n/8/2B1Ppbq/8/PPPP1NPP/RNBQK2R w KQkq - 0 1",
+        "3r1k2/p4p2/1nq1N2r/2p2P2/3p4/6P1/PP4QP/2KR3R b - - 0 1",
+        "r4rk1/1b3ppp/1q2p3/p2pP2P/3N1P2/2pBQ3/P1P3P1/1K1R3R w - - 0 1",
+        "6k1/p2nq2p/8/2pb4/5p1P/1P3N2/PB2Q2K/R5b1 w - - 0 1"
+    ];
+    positions.forEach(function (value, i) {
+            pgnb = pgnBoard("board" + (i + 1), {position: value});
+    });
+    
+</script>
+
+
+</body>
+</html>
