@@ -21,6 +21,7 @@ var pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
     const VERSION = "0.9.6";
     let that = {};
+    let utils = new Utils();
     // Sets the default parameters for all modes. See individual functions for individual overwrites
     let defaults = {
         width: '320px',
@@ -33,6 +34,7 @@ var pgnBase = function (boardId, configuration) {
         timerTime: 700,
         locale: 'en',
         movable: { free: false },  
+        highlight: { lastMove: true, check: true},
         viewOnly: true
     }
     that.configuration = Object.assign(defaults, configuration);
@@ -92,7 +94,7 @@ var pgnBase = function (boardId, configuration) {
      * Adds a class to an element.
      */
     function addClass(elementOrId, className) {
-        let ele = _.isElement(elementOrId) ? elementOrId : document.getElementById(elementOrId);
+        let ele = utils.pvIsElement(elementOrId) ? elementOrId : document.getElementById(elementOrId);
         if (! ele) return;
         if (ele.classList) {
             ele.classList.add(className);
@@ -105,7 +107,7 @@ var pgnBase = function (boardId, configuration) {
      * Remove a class from an element.
      */
     function removeClass(elementOrId, className) {
-        let ele = _.isElement(elementOrId) ? elementOrId : document.getElementById(elementOrId);
+        let ele = utils.pvIsElement(elementOrId) ? elementOrId : document.getElementById(elementOrId);
         if (ele === null) return;
         if (ele.classList) {
             ele.classList.remove(className);
@@ -132,7 +134,7 @@ var pgnBase = function (boardId, configuration) {
      * Adds an event listener to the DOM element.
      */
     function addEventListener(elementOrId, event, func) {
-        let ele = _.isElement(elementOrId) ? elementOrId : document.getElementById(elementOrId);
+        let ele = utils.pvIsElement(elementOrId) ? elementOrId : document.getElementById(elementOrId);
         if (ele === null) return;
         ele.addEventListener(event, func);
     }
@@ -287,7 +289,7 @@ var pgnBase = function (boardId, configuration) {
         sel.multiple = true;
         sel.setAttribute("multiple", "multiple");
         var choices = [];
-        _.each(that.mypgn.NAGS, function (index, value) {
+        utils.pvEach(that.mypgn.NAGS, function (index, value) {
             if (value != null) {
                 choices.push( { value: index, label: value } );
             }
@@ -468,7 +470,7 @@ var pgnBase = function (boardId, configuration) {
     var generateBoard = function() {
         function copyBoardConfiguration(source, target, keys) {
             //var pieceStyle = source.pieceStyle || 'wikipedia';
-            _.each(keys, function(key) {
+            utils.pvEach(keys, function(key) {
                 if (typeof source[key] != "undefined") {
                     target[key] = source[key];
                 }
@@ -478,7 +480,7 @@ var pgnBase = function (boardId, configuration) {
         let boardConfiguration = { coordsInner: true, coordsFactor: 1.0, width: '320px' };
         copyBoardConfiguration(that.configuration, boardConfiguration,
             ['position', 'orientation', 'showNotation', 'pieceTheme', 'draggable', 
-            'coordsInner', 'coordsFactor', 'width', 'movable', 'viewOnly']);
+            'coordsInner', 'coordsFactor', 'width', 'movable', 'viewOnly', 'highlight']);
         // board = new ChessBoard(innerBoardId, boardConfiguration);
         if (typeof boardConfiguration.showNotation != 'undefined') {
             boardConfiguration.coordinates = boardConfiguration.showNotation;
@@ -627,7 +629,7 @@ var pgnBase = function (boardId, configuration) {
      */
     var updateUI = function (next) {
         let elements = document.querySelectorAll("div.buttons .gray");
-        _.each(elements, function(ele) {
+        utils.pvEach(elements, function(ele) {
             removeClass(ele, 'gray');
         })
         var move = that.mypgn.getMove(next);
@@ -678,16 +680,16 @@ var pgnBase = function (boardId, configuration) {
         function fillComment(moveNumber) {
             var myMove = that.mypgn.getMove(moveNumber);
             if (myMove.commentAfter) {
-                document.getElementById(boardId + " input.afterComment").checked = true;
-                document.getElementById(boardId + " textarea.comment").value = myMove.commentAfter;
+                document.querySelector('#' + boardId + " input.afterComment").checked = true;
+                document.querySelector('#' + boardId + " textarea.comment").value = myMove.commentAfter;
             } else if (myMove.commentBefore) {
-                document.getElementById(boardId + " input.beforeComment").checked = true;
-                document.getElementById(boardId + " textarea.comment").value = myMove.commentBefore;
+                document.querySelector('#' + boardId + " input.beforeComment").checked = true;
+                document.querySelector('#' + boardId + " textarea.comment").value = myMove.commentBefore;
             } else if (myMove.commentMove) {
-                document.getElementById(boardId + " input.moveComment").checked = true;
-                document.getElementById(boardId + " textarea.comment").value = myMove.commentMove;
+                document.querySelector('#' + boardId + " input.moveComment").checked = true;
+                document.querySelector('#' + boardId + " textarea.comment").value = myMove.commentMove;
             } else {
-                document.getElementById(boardId + " textarea.comment").value = "";
+                document.querySelector('#' + boardId + " textarea.comment").value = "";
             }
         }
 
@@ -748,7 +750,7 @@ var pgnBase = function (boardId, configuration) {
             board.set({fen: game.fen()});
         }
         let fenField = document.getElementById(fenId);
-        if (_.isElement(fenField)) {
+        if (utils.pvIsElement(fenField)) {
             fenField.value = game.fen();
         }
 
@@ -758,7 +760,7 @@ var pgnBase = function (boardId, configuration) {
          */
         var generateHeaders = function() {
             var headers = that.mypgn.getHeaders();
-            if (that.configuration.headers == false || (_.isEmpty(headers))) {
+            if (that.configuration.headers == false || (utils.pvIsEmpty(headers))) {
                 let hd = document.getElementById(headersId);
                 hd.parentNode.removeChild(hd);
                 return; }
@@ -902,13 +904,13 @@ var pgnBase = function (boardId, configuration) {
                     let fen = that.mypgn.getMove(curr).fen;
                     makeMove(null, that.currentMove, fen);
                 });
-                document.getElementById(boardId + ' .pgn').style.display = 'none';
-                document.getElementById('comment' + buttonsId + " textarea.comment").change(function() {
+                document.querySelector('#' + boardId + ' .pgn').style.display = 'none';
+                document.querySelector('#comment' + buttonsId + " textarea.comment").onchange = function() {
                     function commentText() {
-                        return " " + document.getElementById('comment' + buttonsId + " textarea.comment").val() + " ";
+                        return " " + document.querySelector('#' + 'comment' + buttonsId + " textarea.comment").value + " ";
                     }
                     var text = commentText();
-                    var checked = document.getElementById("comment" + buttonsId + " :checked").value || "after";
+                    var checked = document.querySelector('#' + "comment" + buttonsId + " :checked").value || "after";
                     moveSpan(that.currentMove).find("." + checked + "Comment").text(text);
                     if (checked === "after") {
                         that.mypgn.getMove(that.currentMove).commentAfter = text;
@@ -917,11 +919,11 @@ var pgnBase = function (boardId, configuration) {
                     } else if (checked === "move") {
                         that.mypgn.getMove(that.currentMove).commentMove = text;
                     }
-                });
+                };
                 var rad = ["moveComment", "beforeComment", "afterComment"];
                 var prevComment = null;
                 for (var i = 0;i < rad.length; i++) {
-                    document.getElementById('comment' + buttonsId + " ." + rad[i]).click(function() {
+                    document.querySelector('#' + 'comment' + buttonsId + " ." + rad[i]).onclick = function() {
                         var checked = this.value;
                         var text;
                         if (checked === "after") {
@@ -931,8 +933,8 @@ var pgnBase = function (boardId, configuration) {
                         } else if (checked === "move") {
                             text = that.mypgn.getMove(that.currentMove).commentMove;
                         }
-                        document.getElementById(boardId + " textarea.comment").value = text;
-                    });
+                        document.querySelector('#' + boardId + " textarea.comment").value = text;
+                    };
                 }
             }
             function togglePlay() {
@@ -981,7 +983,7 @@ var pgnBase = function (boardId, configuration) {
         bindFunctions();
         generateHeaders();
         if (hasMode('edit')) {
-            generateNAGMenu(getElementById("edit" + boardId + "Button"));
+            generateNAGMenu(document.getElementById("edit" + boardId + "Button"));
     //         $(function(){
     //             $("select#" + buttonsId + "nag").multiselect({
     //                 header: false,
@@ -1100,7 +1102,16 @@ var pgnBoard = function(boardId, configuration) {
  *    allowAnnotations: false or true (default)
  */
 var pgnEdit = function(boardId, configuration) {
-    let base = pgnBase(boardId, Object.assign({showFen: true, mode: 'edit', movable: { free: true }, viewOnly: false}, configuration));
+    let base = pgnBase(boardId, Object.assign(
+        {
+            showFen: true, mode: 'edit', movable: { 
+                free: true, events: { 
+                    after: function(orig, dest, meta) {
+                        console.log("Move from: " + orig + " To: " + dest);
+                    }
+                } }, 
+            viewOnly: false}, 
+        configuration));
     base.generateHTML();
     let board = base.generateBoard();
     base.generateMoves(board);

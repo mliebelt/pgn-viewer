@@ -70,10 +70,114 @@ function StringBuilder(value) {
     }
 }
 
+function Utils() {
+    var
+        nativeIsArray      = Array.isArray,
+        nativeKeys         = Object.keys,
+        nativeCreate       = Object.create;
+    
+    var isString = function(obj) {
+        return toString.call(obj) === '[object String]';
+    }
+    var isArguments = function(obj) {
+        return toString.call(obj) === '[object Arguments]';
+    }
+    var MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;  
+    var isArrayLike = function(collection) {
+        var length = getLength(collection);
+        return typeof length == 'number' && length >= 0 && length <= MAX_ARRAY_INDEX;
+    };
+    var isArray = nativeIsArray || function(obj) {
+        return toString.call(obj) === '[object Array]';
+      };
+    var property = function(key) {
+        return function(obj) {
+          return obj == null ? void 0 : obj[key];
+        };
+      };
+    var getLength = property('length');
+    var isObject = function(obj) {
+        var type = typeof obj;
+        return type === 'function' || type === 'object' && !!obj;
+      };
+    var optimizeCb = function(func, context, argCount) {
+        if (context === void 0) return func;
+        switch (argCount == null ? 3 : argCount) {
+          case 1: return function(value) {
+            return func.call(context, value);
+          };
+          case 2: return function(value, other) {
+            return func.call(context, value, other);
+          };
+          case 3: return function(value, index, collection) {
+            return func.call(context, value, index, collection);
+          };
+          case 4: return function(accumulator, value, index, collection) {
+            return func.call(context, accumulator, value, index, collection);
+          };
+        }
+        return function() {
+          return func.apply(context, arguments);
+        };
+      };  
+    // The cornerstone, an `each` implementation, aka `forEach`.
+    // Handles raw objects in addition to array-likes. Treats all
+    // sparse array-likes as if they were dense.
+    let pvEach = function(obj, iteratee, context) {
+        iteratee = optimizeCb(iteratee, context);
+        var i, length;
+        if (isArrayLike(obj)) {
+            for (i = 0, length = obj.length; i < length; i++) {
+                iteratee(obj[i], i, obj);
+            }
+            } else {
+            var keys = keys(obj);
+            for (i = 0, length = keys.length; i < length; i++) {
+                iteratee(obj[keys[i]], keys[i], obj);
+            }
+        }
+        return obj;
+    };
+    var has = function(obj, key) {
+        return obj != null && hasOwnProperty.call(obj, key);
+      };    
+    // Retrieve the names of an object's own properties.
+    // Delegates to **ECMAScript 5**'s native `Object.keys`
+    let keys = function(obj) {
+        if (! isObject(obj)) return [];
+        if (nativeKeys) return nativeKeys(obj);
+        var keys = [];
+        for (var key in obj) if (has(obj, key)) keys.push(key);
+        // Ahem, IE < 9.
+        if (hasEnumBug) collectNonEnumProps(obj, keys);
+        return keys;
+    };
+
+    // Is a given value a DOM element?
+    let pvIsElement = function(obj) {
+        return !!(obj && obj.nodeType === 1);
+    };
+
+    // Is a given array, string, or object empty?
+    // An "empty" object has no enumerable own-properties.
+    let pvIsEmpty = function(obj) {
+        if (obj == null) return true;
+        if (isArrayLike(obj) && (isArray(obj) || isString(obj) || isArguments(obj))) return obj.length === 0;
+        return keys(obj).length === 0;
+    };
+
+    return {
+        pvEach: pvEach,
+        pvIsElement: pvIsElement,
+        pvIsEmpty: pvIsEmpty
+    }
+}
+
 
 
 var pgnReader = function (configuration) {
     var that = {};
+    var utils = new Utils();
     that.configuration = configuration;
     var initialize_configuration = function(configuration) {
         var readPgnFromFile = function(url) {
@@ -353,7 +457,7 @@ var pgnReader = function (configuration) {
          * it is much easier to keep only the first move of the variation.
          */
         var correctVariations = function() {
-            _.each(getMoves(), function(move) {
+            utils.pvEach(getMoves(), function(move) {
                 for (i = 0; i < move.variations.length; i++) {
                     move.variations[i] = move.variations[i][0];
                 }
@@ -377,7 +481,7 @@ var pgnReader = function (configuration) {
             if ((getTurn(configuration.position) === 'b') &&
                     (isMove(0)) &&
                     (that.moves[0].turn === 'w')) {
-                _.each(getMoves(), function(move) {
+                utils.pvEeach(getMoves(), function(move) {
                     move.turn = (move.turn === 'w') ? 'b' : 'w'
                 })
             }
@@ -774,7 +878,7 @@ var pgnReader = function (configuration) {
                 return (tokens[1] === 'b') ? move_number : move_number - 1
             }
             var prevMove = (prev != null ? that.moves[prev] : null);
-            _.each(moveArray, function(move, i) {
+            utils.pvEach(moveArray, function(move, i) {
                 current++;
                 move.variationLevel = level;
                 that.moves.push(move);
@@ -817,7 +921,7 @@ var pgnReader = function (configuration) {
                 }
                 move.moveNumber = getMoveNumberFromPosition(fen);
 
-                _.each(move.variations, function(variation) {
+                utils.pvEach(move.variations, function(variation) {
                     eachMoveVariation(variation, level + 1, prev);
                 })
             })
