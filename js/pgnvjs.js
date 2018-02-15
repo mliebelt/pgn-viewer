@@ -167,103 +167,24 @@ var pgnBase = function (boardId, configuration) {
     }
 
     /**
-     * The function removes the background of the marked fields for moves.
-     */
-    var removePossibleSquares = function() {
-        removeClass(boardId + ' .square-55d63', 'possible');
-    };
-
-    /**
-     * The function marks the fields 'possible' that are reachable by a move.
-     * @param square the ID of the square
-     */
-    var possibleSquare = function(square) {
-        addClass(boardId + ' .square-' + square, 'possible');
-    };
-
-    /**
-     * Start the drag of piece only if possible
-     * @param source not used here
-     * @param piece the piece string
-     * @returns {boolean}
-     */
-    var onDragStart = function(source, piece) {
-        // do not pick up pieces if the game is over
-        // or if it's not that side's turn
-        if (game.game_over() === true ||
-            (game.turn() === 'w' && piece.search(/^b/) !== -1) ||
-            (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
-            return false;
-        }
-    };
-
-    /**
-     * Called when a piece is dropped.
-     * @param source the start square
-     * @param target the end square
-     * @returns {string} 'snapback' if illegal
-     */
-    var onDrop = function(source, target) {
-        removePossibleSquares();
-        // see if the move is legal
-        var move = game.move({
-            from: source,
-            to: target,
-            promotion: 'q' // NOTE: always promote to a queen for example simplicity
-        });
-        // illegal move
-        if (move === null) {
-            return 'snapback';
-        } else {
-            that.currentMoveNotation = move.san;
-        }
-    };
-
-    /**
-     * Mark possible squares as "valid" for the player.
-     * @param square the square to move from
-     * @param piece the piece to move (not used here)
-     */
-    var onMouseoverSquare = function(square, piece) {
-        // get list of possible moves for this square
-        var moves = game.moves({
-            square: square,
-            verbose: true
-        });
-        // exit if there are no moves available for this square
-        if (moves.length === 0) return;
-        // highlight the square they moused over
-        possibleSquare(square);
-        // highlight the possible squares for this piece
-        for (var i = 0; i < moves.length; i++) {
-            possibleSquare(moves[i].to);
-        }
-    };
-
-    /**
-     * Called when ???
-     * @param square
-     * @param piece
-     */
-    var onMouseoutSquare = function(square, piece) {
-        removePossibleSquares();
-    };
-
-    /**
      * Called when the piece is released. Here should be the logic for calling all
      * pgn enhancement.
+     * @param from the source
+     * @param to the destination
+     * @param meta additional parameters (not used at the moment)
      */
-    var onSnapEnd = function() {
-        board.position(game.fen());
+    var onSnapEnd = function(from, to, meta) {
+        //console.log("Move from: " + from + " To: " + to + " Meta: " + JSON.stringify(meta, null, 2));
+        //board.set({fen: game.fen()});
         var cur = that.currentMove;
-        that.currentMove = that.mypgn.addMove(that.currentMoveNotation, cur);
+        that.currentMove = that.mypgn.addMove({ from: from, to: to}, cur);
         var move = that.mypgn.getMove(that.currentMove);
-        if (moveSpan(that.currentMove).length == 0) {
+        if (moveSpan(that.currentMove) === null) {
             generateMove(that.currentMove, null, move, move.prev, document.getElementById(movesId), []);
         }
         unmarkMark(that.currentMove);
         updateUI(that.currentMove);
-        makeMove(null, that.currentMove, game.fen());
+        //makeMove(null, that.currentMove, move.fen);
     };
 
     // Utility function for generating general HTML elements with id, class (with theme)
@@ -1033,10 +954,6 @@ var pgnBase = function (boardId, configuration) {
         generateBoard: generateBoard,
         generateMoves: generateMoves,
         hideHTML: hideHTML,
-        onDragStart: onDragStart,
-        onDrop: onDrop,
-        onMouseoutSquare: onMouseoutSquare,
-        onMouseoverSquare: onMouseoverSquare,
         onSnapEnd: onSnapEnd
     }
 
@@ -1103,13 +1020,8 @@ var pgnBoard = function(boardId, configuration) {
  */
 var pgnEdit = function(boardId, configuration) {
     let base = pgnBase(boardId, Object.assign(
-        {
-            showFen: true, mode: 'edit', movable: { 
-                free: true, events: { 
-                    after: function(orig, dest, meta) {
-                        console.log("Move from: " + orig + " To: " + dest);
-                    }
-                } }, 
+        { showFen: true, mode: 'edit', movable: { 
+                free: true, events: { after: function(orig, dest, meta) { base.onSnapEnd(orig, dest, meta); } } }, 
             viewOnly: false}, 
         configuration));
     base.generateHTML();
