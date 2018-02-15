@@ -1031,6 +1031,8 @@ var pgnReader = function (configuration) {
         var curr = existing_move(move, moveNumber);
         if (typeof curr == 'number') return curr;
         var real_move = {};
+        real_move.from = move.from;
+        real_move.to = move.to;
         real_move.notation = {};
         real_move.variations = [];
         if (moveNumber == null) {
