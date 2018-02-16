@@ -175,7 +175,7 @@ function Utils() {
 
 
 
-var pgnReader = function (configuration) {
+var pgnReader = function (configuration, chess) {
     var that = {};
     var utils = new Utils();
     that.configuration = configuration;
@@ -222,7 +222,7 @@ var pgnReader = function (configuration) {
     initialize_configuration(configuration);
     var parser = pgnParser;
     that.startMove = 0;
-    var game = new Chess();
+    var game = chess || new Chess();
     var set_to_start = function() {
         if (configuration.position == 'start') {
                 game.reset();
@@ -931,6 +931,19 @@ var pgnReader = function (configuration) {
     };
 
     /**
+     * Returns a map of possible moves.
+     * @param {*} game the chess to use
+     */
+    let possibleMoves = function(game) {
+        const dests = {};
+        game.SQUARES.forEach(s => {
+          const ms = game.moves({square: s, verbose: true});
+          if (ms.length) dests[s] = ms.map(m => m.to);
+        });
+        return dests;
+    }
+
+    /**
      * Adds the move to the current state after moveNumber.
      * In all cases the following has to be done:
      * * compute a complete move object
@@ -1196,6 +1209,7 @@ var pgnReader = function (configuration) {
         san: san,
         sanWithNags: sanWithNags,
         game: game,
-        load_pgn: load_pgn
+        load_pgn: load_pgn,
+        possibleMoves: possibleMoves
     }
 };
