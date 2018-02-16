@@ -34,16 +34,17 @@ var pgnBase = function (boardId, configuration) {
         timerTime: 700,
         locale: 'en',
         movable: { free: false },  
-        highlight: { lastMove: true, check: true},
+        highlight: { lastMove: true},
         viewOnly: true
     }
     that.configuration = Object.assign(defaults, configuration);
-    that.mypgn = pgnReader( that.configuration );
+    let game = new Chess();
+    that.mypgn = pgnReader( that.configuration, game );
     let theme = that.configuration.theme || 'default';
     that.configuration['markup'] = (typeof boardId) == "object";
     let hasMarkup = function() { return that.configuration['markup'] };
     let hasMode = function(mode) { return that.configuration['mode'] === mode; }
-    let game = new Chess();
+    let possibleMoves = function() { return that.mypgn.possibleMoves(game); }
     let board;              // Will be set later, but has to be a known variable
     // IDs needed for styling and adressing the HTML elements, only used if no markup is done by the user
     if (! hasMarkup()) {
@@ -184,6 +185,9 @@ var pgnBase = function (boardId, configuration) {
         }
         unmarkMark(that.currentMove);
         updateUI(that.currentMove);
+        let col = move.turn == 'w' ? 'black' : 'white';
+        board.set( {movable: Object.assign({}, board.state.movable, {color: col, dests: possibleMoves(game)}), 
+            check: game.in_check()} );
         //makeMove(null, that.currentMove, move.fen);
     };
 
@@ -423,6 +427,11 @@ var pgnBase = function (boardId, configuration) {
         }
         if (boardConfiguration.coordsInner) {
             el.classList.add('coords-inner');
+        }
+        if (hasMode('edit')) {
+            board.set({ movable: { 
+                color: 'white',
+                dests: possibleMoves(game)}});
         }
         return board;
     };
@@ -1020,8 +1029,10 @@ var pgnBoard = function(boardId, configuration) {
  */
 var pgnEdit = function(boardId, configuration) {
     let base = pgnBase(boardId, Object.assign(
-        { showFen: true, mode: 'edit', movable: { 
-                free: true, events: { after: function(orig, dest, meta) { base.onSnapEnd(orig, dest, meta); } } }, 
+        { showFen: true, mode: 'edit', 
+          movable: { 
+                free: false, 
+                events: { after: function(orig, dest, meta) { base.onSnapEnd(orig, dest, meta); } } }, 
             viewOnly: false}, 
         configuration));
     base.generateHTML();
