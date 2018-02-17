@@ -849,9 +849,10 @@ var pgnBase = function (boardId, configuration) {
                     function commentText() {
                         return " " + document.querySelector('#' + 'comment' + buttonsId + " textarea.comment").value + " ";
                     }
-                    var text = commentText();
-                    var checked = document.querySelector('#' + "comment" + buttonsId + " :checked").value || "after";
-                    moveSpan(that.currentMove).find("." + checked + "Comment").text(text);
+                    let text = commentText();
+                    let checked = document.querySelector('#' + "comment" + buttonsId + " :checked");
+                    checked = checked ? checked.value : "after";
+                    moveSpan(that.currentMove).querySelector("." + checked + "Comment").textContent = text;
                     if (checked === "after") {
                         that.mypgn.getMove(that.currentMove).commentAfter = text;
                     } else if (checked === "before") {
