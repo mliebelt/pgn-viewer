@@ -641,6 +641,10 @@ var pgnBase = function (boardId, configuration) {
         that.currentMove = next;
         scrollToView(moveSpan(next));
         if (hasMode('edit')) {
+            let col = game.turn() == 'w' ? 'white' : 'black';
+            board.set( {
+                movable: Object.assign({}, board.state.movable, {color: col, dests: possibleMoves(game)}), 
+                turnColor: col, check: game.in_check()} );
             fillComment(next);
         }
         let fenView = document.getElementById(fenId);
