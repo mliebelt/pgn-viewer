@@ -122,13 +122,13 @@ examples["1024"] = {
         "\n<div id='b2'></div><br/>" +
         "\n<div id='b3'></div>",
     name: "Different board sizes  set in the configuration",
-    jsStr: "pgnBoard('b1', {boardSize: '200px'});" +
-        "\npgnBoard('b2', {boardSize: '350px'});" +
-        "\npgnBoard('b3', {boardSize: '500px'});",
+    jsStr: "pgnBoard('b1', {width: '200px'});" +
+        "\npgnBoard('b2', {width: '350px'});" +
+        "\npgnBoard('b3', {width: '500px'});",
     jsFn: function() {
-        pgnBoard('b1', {boardSize: '200px'});
-        pgnBoard('b2', {boardSize: '350px'});
-        pgnBoard('b3', {boardSize: '500px'});
+        pgnBoard('b1', {width: '200px'});
+        pgnBoard('b2', {width: '350px'});
+        pgnBoard('b3', {width: '500px'});
     }
 };
 
@@ -678,10 +678,10 @@ examples["1232"] = {
     }
 };
 examples["1233"] = {
-    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/47'>ticket 47</a> at GitHub (unsolved). " +
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/47'>ticket 47</a> at GitHub. " +
     "2 cases: start with move 3 from FEN, but shows 1; start with a black move, but move number is wrong.",
     html: "<div id='board1' style='width: 200px'></div><div id='board2' style='width: 200px'></div>",
-    name: "#47: Ensure that move numbers are 'correct' (unsolved)",
+    name: "#47: Ensure that move numbers are 'correct'",
     jsStr: 'pgnEdit("board1", {pgn: "1. Bc4 Bc5", position: "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3"});\npgnEdit("board2", {pgn: "1... e5", position: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"});',
     jsFn: function() {
         pgnEdit("board1", {pgn: "1. Bc4 Bc5", position: "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3"});
