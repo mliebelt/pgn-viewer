@@ -64,9 +64,15 @@ var pgnBase = function (boardId, configuration) {
     // Anonymous function, has not to be visible from the outside
     // Does all the initialization stuff only needed once, here mostly internationalization.
     (function(){
+        let localPath = function() {
+            let jsFileLocation = document.querySelector('script[src*=pgnvjs]').src;  // the js file path
+            var index = jsFileLocation.indexOf('pgnvjs');
+            console.log("Local path: " + jsFileLocation.substring(0, index - 3));
+            return jsFileLocation.substring(0, index - 3);   // the father of the js folder
+        }
         var i18n_option = {
             getAsync: false,
-            resGetPath: '/locales/__ns__-__lng__.json',
+            resGetPath: localPath() + 'locales/__ns__-__lng__.json',
             ns: {
                 namespaces: ['chess', 'nag', 'buttons'],
                 defaultNs: 'chess'
