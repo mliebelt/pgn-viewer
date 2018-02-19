@@ -849,7 +849,11 @@ var pgnBase = function (boardId, configuration) {
                 addEventListener(buttonsId + "promoteVar", 'click', function() {
                     let curr = that.currentMove;
                     that.mypgn.promoteMove(that.currentMove);
-                    document.getElementById(movesId).html("");
+                    //document.getElementById(movesId).html("");
+                    let myNode = document.getElementById(movesId);
+                    while (myNode.firstChild) {
+                        myNode.removeChild(myNode.firstChild);
+                    }
                     regenerateMoves(that.mypgn.getOrderedMoves());
                     let fen = that.mypgn.getMove(curr).fen;
                     makeMove(null, that.currentMove, fen);
