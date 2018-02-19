@@ -39,7 +39,7 @@ var pgnBase = function (boardId, configuration) {
     }
     that.configuration = Object.assign(defaults, configuration);
     let game = new Chess();
-    that.mypgn = pgnReader( that.configuration, game );
+    that.mypgn = pgnReader( that.configuration, game ); // Use the same instance from chess.js
     let theme = that.configuration.theme || 'default';
     that.configuration['markup'] = (typeof boardId) == "object";
     let hasMarkup = function() { return that.configuration['markup'] };
@@ -652,6 +652,12 @@ var pgnBase = function (boardId, configuration) {
                 movable: Object.assign({}, board.state.movable, {color: col, dests: possibleMoves(game)}), 
                 turnColor: col, check: game.in_check()} );
             fillComment(next);
+        } else if (hasMode('view')) {
+            let col = game.turn() == 'w' ? 'white' : 'black';
+            board.set( {
+                movable: Object.assign({}, board.state.movable, {color: col}), 
+                turnColor: col, check: game.in_check()} );
+            fillComment(next);
         }
         let fenView = document.getElementById(fenId);
         if (fenView) {
@@ -815,13 +821,13 @@ var pgnBase = function (boardId, configuration) {
             var togglePgn = function() {
                 var pgnButton = document.getElementById(buttonsId + "pgn");
                 var pgnText = document.getElementById(boardId + " .outerpgn");
-                document.getElementById(buttonsId + "pgn").toggleClass('selected');
-                if ($('#' + buttonsId + "pgn").hasClass('selected')) {
+                document.getElementById(buttonsId + "pgn").classList.toggle('selected');
+                if (document.getElementById(buttonsId + "pgn").classList.contains('selected')) {
                     var str = computePgn();
                     showPgn(str);
-                    $("#" + boardId + " .pgn").slideDown(700, "linear");
+                    document.querySelector("#" + boardId + " .pgn").style.display = 'block'; //slideDown(700, "linear");
                 } else {
-                    $( "#" + boardId + " .pgn").slideUp(400);//hide( "fold");
+                    document.querySelector("#" + boardId + " .pgn").style.display = 'none'; 
                 }
             }
             if (hasMode('edit')) { // only relevant functions for edit mode
@@ -832,7 +838,11 @@ var pgnBase = function (boardId, configuration) {
                     var prev = that.mypgn.getMove(that.currentMove).prev;
                     var fen = that.mypgn.getMove(prev).fen;
                     that.mypgn.deleteMove(that.currentMove);
-                    document.getElementById(movesId).html("");
+                    //document.getElementById(movesId).innerHtml = "";
+                    let myNode = document.getElementById(movesId);
+                    while (myNode.firstChild) {
+                        myNode.removeChild(myNode.firstChild);
+                    }
                     regenerateMoves(that.mypgn.getMoves());
                     makeMove(null, prev, fen);
                 });
@@ -902,7 +912,7 @@ var pgnBase = function (boardId, configuration) {
         };
 
         var showPgn = function (val) {
-            document.getElementById('pgn' + buttonsId).text(val).show(1000);
+            document.getElementById('pgn' + buttonsId).textContent = val;
         };
 
         /**
@@ -924,7 +934,7 @@ var pgnBase = function (boardId, configuration) {
         bindFunctions();
         generateHeaders();
         if (hasMode('edit')) {
-            generateNAGMenu(document.getElementById("edit" + boardId + "Button"));
+            //generateNAGMenu(document.getElementById("edit" + boardId + "Button"));
     //         $(function(){
     //             $("select#" + buttonsId + "nag").multiselect({
     //                 header: false,
