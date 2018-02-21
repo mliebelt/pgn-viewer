@@ -1018,7 +1018,7 @@ var pgnReader = function (configuration, chess) {
 
         // Handle possible variation
         function handle_variation(move, prev, next) {
-            console.log("handle variation: prev == " + prev + " next == " + next);
+            //console.log("handle variation: prev == " + prev + " next == " + next);
             var prevMove = getMove(prev);
             if (prevMove === undefined) { // special case: variation on first move
                 if (next === 0) return; // First move

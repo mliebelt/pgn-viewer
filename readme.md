@@ -70,7 +70,7 @@ your web page.
 * Clone the repository.
 * Run `npm install` from the root, to ensure are tools are installed.
 * Run `grunt default` to build a distribution.
-* Copy the files from the directory `dist` (or `dist-nojq` for a variation without jQuery included).
+* Copy the files from the directory `dist`.
 * Create new HTML files with the corresponding head and body.
 
 ### Using the viewer
@@ -139,7 +139,6 @@ We use the following libraries in the implementation:
 * [chess.js](https://github.com/jhlywa/chess.js) Base library to model chess in JavaScript
 * [Chessground](https://github.com/ornicar/chessground) The chessboard used by lichess.org
 * [pegjs](https://github.com/pegjs/pegjs) Parser Generator implemented in Javascript.
-* [Choices.js](https://github.com/jshjohnson/Choices) A multiselect widget
 * [Mousetrap](https://craig.is/killing/mice) Binds keys to actions in the UI
 * [i18next](https://www.i18next.com/) Internationalization (== i18n) library to translate chess into current 18 languages.
 * [Timer.js](https://github.com/fschaefer/Timer.js) Small timer for automatic moves

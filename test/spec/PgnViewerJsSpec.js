@@ -87,7 +87,7 @@ describe("PGN Viewer", function() {
         });
 
         it ("should have the start position", function() {
-            $('#bInner');
+            //$('#bInner');
         })
     });
 
