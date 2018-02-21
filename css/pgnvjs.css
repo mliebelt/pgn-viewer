@@ -114,9 +114,55 @@ div.buttons > i.button, div.edit > i.button {
     border-radius: 4px;
 }
 
-div.buttons > i.button.selected, div.edit > i.button.selected {
+div.buttons > i.button.selected, div.edit > i.button.selected, .nagMenu.selected {
     color: #fff;
     background-color: #71a0df;
+}
+
+div.nagMenu {
+    border: 1px grey dotted;
+    display: none;
+    width: 600px;
+}
+
+div.nagMove, div.nagObservation, div.nagPosition {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 33.3%;
+    text-align: left;
+    flex-wrap: wrap;
+}
+
+.nagMove i, .nagPosition i, .nagObservation i {
+    display: flex!important;
+    cursor: pointer;
+    transition: 0.13s;
+    align-items: center;
+    margin: 2px;
+}
+
+.nagMove i::before, .nagPosition i::before, .nagObservation i::before {
+    content: attr(data-symbol);
+    /* font-size: 1.2em; */
+    font-style: normal;
+    font-weight: bold;
+    display: block;
+    width: 30px;
+    text-align: center;
+    background: #f3f3f3;
+    padding: 2px 2px;
+    margin-right: 6px;
+    transition: 0.13s;
+}
+
+a.active i::before {
+    background: #71a0df!important;
+    color: #fff!important;
+}
+
+.nagMove i:hover, .nagPosition i:hover, .nagObservation i:hover {
+    background: #efefef;
+    color: #71a0df;
 }
 
 /* Necessary fixes for examples  */
