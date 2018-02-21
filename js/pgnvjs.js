@@ -17,23 +17,6 @@ var addAsDefault = function(key, value, configurationMap) {
     }
 }
 
-class NagMenu {
-    constructor(selected, element) {
-        this.selected = selected;
-        this.element = element;
-    }
-
-    openUI() {
-        this.element.style.display = 'block';
-    }
-
-    close() {
-        this.element.display = 'none';
-    }
-
-
-}
-
 var pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
     const VERSION = "0.9.6";
@@ -229,25 +212,6 @@ var pgnBase = function (boardId, configuration) {
             father.appendChild(ele);
         }
         return ele;
-    }
-
-    function generateNAGMenu(buttonDiv) {
-
-        var sel = createEle("select", buttonsId + "nag", "nag", theme, buttonDiv);
-        sel.multiple = true;
-        sel.setAttribute("multiple", "multiple");
-        var choices = [];
-        utils.pvEach(that.mypgn.NAGS, function (index, value) {
-            if (value != null) {
-                choices.push( { value: index, label: value } );
-            }
-        });
-        var choicesSelect = new Choices('#' + buttonsId + 'nag', {
-            //removeItemButton: true,
-            choices: choices,
-            removeItemButton: true,
-            shouldSort: false
-          });
     }
 
     /**
@@ -472,7 +436,7 @@ var pgnBase = function (boardId, configuration) {
             el.className += " " + that.configuration.pieceStyle;
         }
         board = Chessground(el, boardConfiguration);
-        console.log("Board width: " + board.width);
+        //console.log("Board width: " + board.width);
         if (boardConfiguration.width) {
             el.style.width = boardConfiguration.width;
             el.style.height = boardConfiguration.width;
@@ -634,19 +598,15 @@ var pgnBase = function (boardId, configuration) {
             if (move === undefined) {
                 return;
             }
-            /* $("select#" + buttonsId + "nag").multiselect("uncheckAll");
-            var selectMenu = $("select#" + buttonsId + "nag")[0];
-            var nag = move.nag ? move.nag : [];
-            $.each(nag, function(index, value) {
-                var nagValue = value.substring(1);
-                $.each(selectMenu.options, function(optIndex, optValue) {
-                    if (optValue.value == nagValue) {
-                        optValue.selected = true;
-                    }
-                })
+            let nagMenu = document.querySelector('#nagMenu' + buttonsId);
+            document.querySelectorAll('#nagMenu' + buttonsId + ' a.active').forEach(function(act) {
+                act.classList.toggle('active');
             })
-            $("select#" + buttonsId + "nag").multiselect("refresh");
- */
+            let nags = move.nag || [];
+            nags.forEach(function(eachNag) {
+                document.querySelector('#nagMenu' + buttonsId + ' [data-value="' + eachNag.substring(1) + '"]')
+                    .parentNode.classList.toggle('active');
+            })
         } catch (err) {
 
         }

@@ -15,7 +15,6 @@ module.exports = function(grunt) {
                     'js/i18next-1.11.2.js',
                     'js/Timer.js',
                     'js/mousetrap.js',
-                    'js/choices.js',
                     'js/pgn.js',
                     'js/pgn-parser.js',
                     'js/pgnvjs.js'
@@ -30,7 +29,6 @@ module.exports = function(grunt) {
                     'js/i18next-1.11.2.js',
                     'js/Timer.js',
                     'js/mousetrap.js',
-                    'js/choices.js',
                     'js/pgn-parser.js'
                 ],
                 dest: 'dist/js/third.js'
@@ -106,7 +104,6 @@ module.exports = function(grunt) {
             all: {
                 src: [
                     'font-awesome/css/font-awesome.css',
-                    'choices.css',
                     'css/chessground.css',
                     'css/theme.css',
                     'css/pgnvjs.css'
@@ -116,7 +113,6 @@ module.exports = function(grunt) {
             dev: {
                 src: [
                     'font-awesome/css/font-awesome.css',
-                    'css/choices.css',
                     'css/chessground.css'
                 ],
                 dest: 'dist/css/third.css'
