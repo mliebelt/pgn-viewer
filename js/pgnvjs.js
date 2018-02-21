@@ -17,6 +17,23 @@ var addAsDefault = function(key, value, configurationMap) {
     }
 }
 
+class NagMenu {
+    constructor(selected, element) {
+        this.selected = selected;
+        this.element = element;
+    }
+
+    openUI() {
+        this.element.style.display = 'block';
+    }
+
+    close() {
+        this.element.display = 'none';
+    }
+
+
+}
+
 var pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
     const VERSION = "0.9.6";
@@ -259,11 +276,42 @@ var pgnBase = function (boardId, configuration) {
                 //but.className = but.className + " gray"; // just a test, worked.
                 // only gray out if not usable, check that later.
             });
-            [["pgn", "fa-print"]].forEach(function(entry) {
+            [["pgn", "fa-print"], ['nagButton', 'fa-cog']].forEach(function(entry) {
                 var but = addButton(entry, buttonDiv);
             });
         };
 
+        // Generate 3 rows, similar to lichess in studies
+        let generateNagMenu = function(nagEle) {
+            let generateRow = function(array, rowClass, nagEle) {
+                let generateLink = function(link, nagDiv) {
+                    let generateIcon = function(icon, myLink) {
+                        let ele = createEle('i', null, null, theme, myLink);
+                        let i = that.mypgn.NAGS[icon] || '';
+                        ele.setAttribute("data-symbol", i);
+                        ele.setAttribute("data-value", icon);
+                        ele.textContent = i18n.t('nag:$' + icon + "_menu", {lng: that.configuration.locale});
+                    }
+                    let myLink = createEle('a', null, null, theme, myDiv);
+                    generateIcon(link, myLink);
+                    myLink.addEventListener("click", function(){
+                        function updateMoveSAN(moveIndex) {
+                            let move = that.mypgn.getMove(moveIndex);
+                            document.querySelector("#" + movesId + moveIndex + " > a").textContent = that.mypgn.sanWithNags(move);
+                        }
+                        this.classList.toggle("active");
+                        let iNode = this.firstChild;
+                        that.mypgn.changeNag('$' + iNode.getAttribute('data-value'), that.currentMove, this.classList.contains('active'));
+                        updateMoveSAN(that.currentMove);
+                    });
+                }
+                let myDiv = createEle('div', null, rowClass, theme, nagEle);
+                array.forEach(ele => generateLink(ele, myDiv))
+            }
+            generateRow([1, 2, 3, 4, 5, 6, 7, 8], 'nagMove', nagEle)
+            generateRow([10, 13, 14, 15, 16, 17, 18, 19], 'nagPosition', nagEle)
+            generateRow([22, 24,30, 36, 40, 42, 44], 'nagObservation', nagEle)
+        }
         var generateCommentDiv = function(commentDiv) {
             var radio = createEle("div", null, "commentRadio", theme, commentDiv);
             var mc = createEle("input", null, "moveComment", theme, radio);
@@ -374,6 +422,8 @@ var pgnBase = function (boardId, configuration) {
                 generateEditButtons(editButtonsBoardDiv);
 //                var outerPgnDiv = createEle("div", "outerpgn" + buttonsId, "outerpgn", theme, outerInnerBoardDiv);
 //                var pgnHideButton  = addButton(["hidePGN", "fa-times"], outerPgnDiv);
+                let nagMenu = createEle('div', 'nagMenu' + buttonsId, 'nagMenu', theme, divBoard);
+                generateNagMenu(nagMenu);
                 var pgnDiv  = createEle("textarea", "pgn" + buttonsId, "pgn", theme, divBoard);
                 var commentBoardDiv = createEle("div", "comment" + buttonsId, "comment", theme, divBoard);
                 generateCommentDiv(commentBoardDiv);
@@ -818,7 +868,7 @@ var pgnBase = function (boardId, configuration) {
                 var fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
                 makeMove(that.currentMove, that.mypgn.getMoves().length - 1, fen);
             });
-            var togglePgn = function() {
+            let togglePgn = function() {
                 var pgnButton = document.getElementById(buttonsId + "pgn");
                 var pgnText = document.getElementById(boardId + " .outerpgn");
                 document.getElementById(buttonsId + "pgn").classList.toggle('selected');
@@ -830,10 +880,21 @@ var pgnBase = function (boardId, configuration) {
                     document.querySelector("#" + boardId + " .pgn").style.display = 'none'; 
                 }
             }
+            let toggleNagMenu = function() {
+                let nagMenu = document.getElementById(buttonsId + 'nagButton').classList.toggle('selected');
+                if (document.getElementById(buttonsId + 'nagButton').classList.contains('selected')) {
+                    document.getElementById('nagMenu' + buttonsId).style.display = 'flex';
+                } else {
+                    document.getElementById('nagMenu' + buttonsId).style.display = 'none';
+                }
+            }
             if (hasMode('edit')) { // only relevant functions for edit mode
                 addEventListener(buttonsId + "pgn", 'click', function() {
                     togglePgn();
                 });
+                addEventListener(buttonsId + 'nagButton', 'click', function() {
+                    toggleNagMenu();
+                })
                 addEventListener(buttonsId + "deleteMoves", 'click', function() {
                     var prev = that.mypgn.getMove(that.currentMove).prev;
                     var fen = that.mypgn.getMove(prev).fen;
