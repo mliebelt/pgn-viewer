@@ -286,10 +286,14 @@ var pgnReader = function (configuration, chess) {
     that.NAGs[37]=    "→";
     that.NAGs[40]=    "↑";
     that.NAGs[41]=    "↑";
-    that.NAGs[132]=    "⇆";
-    that.NAGs[133]=    "⇆";
-    that.NAGs[220]=    "D";
-    that.NAGs[221]=    "D";
+    that.NAGs[44]=    "=∞";
+    that.NAGs[132]=   "⇆";
+    that.NAGs[133]=   "⇆";
+    that.NAGs[136]=   "⊕";
+    that.NAGs[140]=   "∆";
+    that.NAGs[146]=   "N";
+    that.NAGs[220]=   "D";
+    that.NAGs[221]=   "D";
 
     that.PGN_NAGS = {};
 
