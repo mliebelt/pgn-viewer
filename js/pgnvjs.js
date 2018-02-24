@@ -17,6 +17,27 @@ var addAsDefault = function(key, value, configurationMap) {
     }
 }
 
+// Anonymous function, has not to be visible from the outside
+// Does all the initialization stuff only needed once, here mostly internationalization.
+let initI18n = function(){
+    let localPath = function() {
+        let jsFileLocation = document.querySelector('script[src*=pgnvjs]').src;  // the js file path
+        var index = jsFileLocation.indexOf('pgnvjs');
+        //console.log("Local path: " + jsFileLocation.substring(0, index - 3));
+        return jsFileLocation.substring(0, index - 3);   // the father of the js folder
+    }
+    var i18n_option = {
+        getAsync: false,
+        resGetPath: localPath() + 'locales/__ns__-__lng__.json',
+        ns: {
+            namespaces: ['chess', 'nag', 'buttons'],
+            defaultNs: 'chess'
+        }
+    };
+    i18n.init(i18n_option, function (err, t) {});
+};
+initI18n();
+
 var pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
     const VERSION = "0.9.6";
@@ -61,32 +82,10 @@ var pgnBase = function (boardId, configuration) {
         var fenId;
     }
 
-    // Anonymous function, has not to be visible from the outside
-    // Does all the initialization stuff only needed once, here mostly internationalization.
-    (function(){
-        let localPath = function() {
-            let jsFileLocation = document.querySelector('script[src*=pgnvjs]').src;  // the js file path
-            var index = jsFileLocation.indexOf('pgnvjs');
-            console.log("Local path: " + jsFileLocation.substring(0, index - 3));
-            return jsFileLocation.substring(0, index - 3);   // the father of the js folder
-        }
-        var i18n_option = {
-            getAsync: false,
-            resGetPath: localPath() + 'locales/__ns__-__lng__.json',
-            ns: {
-                namespaces: ['chess', 'nag', 'buttons'],
-                defaultNs: 'chess'
-            }
-        };
-        i18n.init(i18n_option, function (err, t) {});
-        if (that.configuration.locale) {
-            that.configuration.locale = that.configuration.locale.replace(/_/g, "-");
-            i18n.setLng(that.configuration.locale); 
-        }
-    })();
-
-    // Some Utility functions without context
-
+    if (that.configuration.locale) {
+        that.configuration.locale = that.configuration.locale.replace(/_/g, "-");
+        i18n.setLng(that.configuration.locale); 
+    }
     /**
      * Allow logging of error to HTML.
      */
@@ -164,11 +163,12 @@ var pgnBase = function (boardId, configuration) {
     function scrollToView(element){
         var node = element;
         var movesNode = node.offsetParent;
+        console.log('Has scrollbar: ' + (movesNode.scrollHeight > movesNode.clientHeight));
         var nodeRect = node.getBoundingClientRect();
         var movesRect = movesNode.getBoundingClientRect();
-        if (movesRect.bottom < nodeRect.bottom) {
+        if (nodeRect.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
             node.scrollIntoView(false);
-        } else if (movesRect.top > nodeRect.top) {
+        } else if (nodeRect.top <= 0) {
             node.scrollIntoView(true);
         }
     }
@@ -272,9 +272,9 @@ var pgnBase = function (boardId, configuration) {
                 let myDiv = createEle('div', null, rowClass, theme, nagEle);
                 array.forEach(ele => generateLink(ele, myDiv))
             }
-            generateRow([1, 2, 3, 4, 5, 6, 7, 8], 'nagMove', nagEle)
+            generateRow([1, 2, 3, 4, 5, 6, 7, 146], 'nagMove', nagEle)
             generateRow([10, 13, 14, 15, 16, 17, 18, 19], 'nagPosition', nagEle)
-            generateRow([22, 24,30, 36, 40, 42, 44], 'nagObservation', nagEle)
+            generateRow([22, 40, 36, 132, 136, 32, 44, 140], 'nagObservation', nagEle)
         }
         var generateCommentDiv = function(commentDiv) {
             var radio = createEle("div", null, "commentRadio", theme, commentDiv);
@@ -422,10 +422,10 @@ var pgnBase = function (boardId, configuration) {
             });
         }
         // Default values of the board, if not overwritten by the given configuration
-        let boardConfiguration = { coordsInner: true, coordsFactor: 1.0, width: '320px' };
+        let boardConfiguration = { coordsInner: true, coordsFactor: 1.0 };
         copyBoardConfiguration(that.configuration, boardConfiguration,
             ['position', 'orientation', 'showNotation', 'pieceTheme', 'draggable', 
-            'coordsInner', 'coordsFactor', 'width', 'movable', 'viewOnly', 'highlight']);
+            'coordsInner', 'coordsFactor', 'width', 'movable', 'viewOnly', 'highlight', 'boardSize']);
         // board = new ChessBoard(innerBoardId, boardConfiguration);
         if (typeof boardConfiguration.showNotation != 'undefined') {
             boardConfiguration.coordinates = boardConfiguration.showNotation;
@@ -434,6 +434,9 @@ var pgnBase = function (boardId, configuration) {
         var el = document.getElementById(innerBoardId);
         if (typeof that.configuration.pieceStyle != 'undefined') {
             el.className += " " + that.configuration.pieceStyle;
+        }
+        if (boardConfiguration.boardSize) {
+            boardConfiguration.width = boardConfiguration.boardSize;
         }
         board = Chessground(el, boardConfiguration);
         //console.log("Board width: " + board.width);
@@ -667,7 +670,6 @@ var pgnBase = function (boardId, configuration) {
             board.set( {
                 movable: Object.assign({}, board.state.movable, {color: col}), 
                 turnColor: col, check: game.in_check()} );
-            fillComment(next);
         }
         let fenView = document.getElementById(fenId);
         if (fenView) {

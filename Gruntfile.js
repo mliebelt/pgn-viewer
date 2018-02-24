@@ -9,11 +9,11 @@ module.exports = function(grunt) {
         concat: {
             all: {
                 src: [
-                    //'js/underscore.js',
                     'chess.js/chess.js',
                     'js/chessground.js',
                     'js/i18next-1.11.2.js',
                     'js/Timer.js',
+                    'js/smoothscroll.js',
                     'js/mousetrap.js',
                     'js/pgn.js',
                     'js/pgn-parser.js',
@@ -23,11 +23,11 @@ module.exports = function(grunt) {
             },
             dev: {
                 src: [
-                    //'js/underscore.js',
                     'chess.js/chess.js',
                     'js/chessground.js',
                     'js/i18next-1.11.2.js',
                     'js/Timer.js',
+                    'js/smoothscroll.js',
                     'js/mousetrap.js',
                     'js/pgn-parser.js'
                 ],
