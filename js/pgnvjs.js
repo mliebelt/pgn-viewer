@@ -532,10 +532,10 @@ var pgnBase = function (boardId, configuration) {
             //span.appendChild(document.createTextNode(" ( "));
         }
         span.appendChild(generateCommentSpan(move.commentMove, "moveComment"));
-        if (move.turn == 'w') {
+        if ( (move.turn == 'w') || (that.mypgn.startVariation(move)) ) {
             var mn = move.moveNumber;
             var num = createEle('span', null, "moveNumber", null, span);
-            num.appendChild(document.createTextNode("" + mn + ". "));
+            num.appendChild(document.createTextNode("" + mn + ((move.turn == 'w') ? ". " : "... ")));
         }
         span.appendChild(generateCommentSpan(move.commentBefore, "beforeComment"));
         var link = createEle('a', null, null, null, span);
