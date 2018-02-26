@@ -769,9 +769,11 @@ var pgnReader = function (configuration, chess) {
         };
 
         var write_NAGs = function(move, sb) {
-            sb.append(move.nag);    // Perhaps better not to export the symbols, gut the $-notation?
-                                    // lichess exports from $7 on only the value, not the symbol
-            //sb.append(nag_to_symbol(move.nag));
+            if (move.nag) {
+                move.nag.forEach(function(ele) {
+                    sb.append(ele);
+                })
+            }
         };
 
         var write_variation = function (move, sb) {
