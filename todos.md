@@ -150,4 +150,44 @@ Underscore is used for:
 * .each
 * .isEmpty
 
-Worked well, 100 lines of code instead of 1.500
+Worked well, 100 lines of code instead of 1.500. But at the end, replacing all calls directly (without underscore) was pretty easy.
+
+### #83: abstractions in NAG from colors
+
+* This may be appropriate (from a user perspective), but is that doable all the time.
+* There may be situations when e.g. "White has a clear time advantage" (§30) may be appropriate as annotion after a move of black.
+
+#### Alternative approach
+
+* Take only the clear things that are white and black annotations (like zugzwang) after the move in the menu.
+* Add to the menu a text box that allows to enter some search text, that is then used to filter all NAGs, to select one, and integrate that then into the NAGs.
+
+### #80: Rank font size
+
+* Was easy to set, but there are some other parts that should go together. Those are
+  * ranks.right: Default -2px, depends heavily on the size of the rank fonts.
+  * ranks.top: Default 0px, may be adjusted as well.
+  * files.left: Default 2px, so moved mostly tot the left.
+  * files.bottom: Default -3px, so moved mostly to the bottom.
+
+If would be nice to have the option to style all of that. So reasonable are the following options:
+
+    { rankFont: 20 }
+
+This just adjusts the font size of the ranks (and files).
+
+    { rankFont:
+      { size: 20,
+        ranks: { right: 4, top: -4 },
+        files: { left: 0, bottom: -3}
+      }
+    }
+
+This is the most complicated structure, but very concrete, and therefore easy to implement.
+
+We should then provide some examples how to use that so that different coordinate locations are easy to do.
+
+`coordsInnner` and `coordsFactor` should be taken into consideration as well. Not sure what is the best approach here.
+The upper one is the most flexible, and allows to build `coordsInner` and `coordsFactor` with it. Perhaps I have to get rid of `coordsInner` and `coordsFactor` all together. Or build some logic with reasonable defaults around it.
+
+How about the measures that are taken here? top, right, left, and bottom may be relative as well, most are used as pixel values. And the font size may be a factor, a size in pixel or a size in em??
