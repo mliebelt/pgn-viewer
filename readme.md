@@ -142,7 +142,6 @@ We use the following libraries in the implementation:
 * [Mousetrap](https://craig.is/killing/mice) Binds keys to actions in the UI
 * [i18next](https://www.i18next.com/) Internationalization (== i18n) library to translate chess into current 18 languages.
 * [Timer.js](https://github.com/fschaefer/Timer.js) Small timer for automatic moves
-* [Underscore](http://underscorejs.org/) Tool belt for utility functions
 * [FontAwesome](http://fontawesome.io/): Nice icon font used for some buttons
 * [PGN Specification](http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm): PGN (Portable Game Notation) specification
 * [NAG Specification](http://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs) Definition of the NAGs (Numeric Annotation Glyphs)

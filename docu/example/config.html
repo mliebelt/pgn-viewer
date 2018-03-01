@@ -6,14 +6,7 @@
     <meta name="description" content="Shows variable parameters of the configuration in a UI.">
     <meta name="author" content="Markus Liebelt">
 
-    <!-- CSS
-================================================== -->
     <link rel="stylesheet" href="../../dist/css/pgnvjs.css">
-    <link rel="stylesheet" href="../../font-awesome/css/font-awesome.min.css">
-
-
-    <!-- JS for PgnViewerJS
-    ================================================= -->
     <script src="../../dist/js/pgnvjs.js" type="text/javascript"></script>
     <style>
         #config {
@@ -183,7 +176,7 @@ and helps to define a new configuration.
     </form>
 </div>
 
-<div id="outer">
+<div id="outer" class='merida blue'>
     <div id="board" style="width: 400px"></div>
 </div>
 <div id="nofloat"></div>
@@ -311,8 +304,8 @@ and helps to define a new configuration.
         return output;
     }
     var initPgn = function() {
-        $('#notation').prop('checked', true);
-        $('#orientation').prop('checked', true);
+        document.getElementById('notation').checked = true;
+        document.getElementById('orientation').checked = true;
         document.getElementById('modus').onchange = changedSomething;
         document.getElementById('game').onchange = changedGame;
         document.getElementById('notation').onclick = changedSomething;
