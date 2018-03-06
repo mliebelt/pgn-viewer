@@ -181,29 +181,12 @@ var pgnReader = function (configuration, chess) {
     that.configuration = configuration;
     var initialize_configuration = function(configuration) {
         var readPgnFromFile = function(url) {
-            var retPGN = '';
-            function callback(data) {
-                retPGN = data;
-            }
-            var request = new XMLHttpRequest();
-            request.open('GET', url, true);
-            
-            request.onload = function() {
-              if (request.status >= 200 && request.status < 400) {
-                // Success!
-                retPGN = request.responseText;
-              } else {
-                // We reached our target server, but it returned an error
-            
-              }
-            };
-            
-            request.onerror = function() {
-                alert("Could not read PGN file from: " + url);
-            },
-            
+            let request = new XMLHttpRequest();
+            request.open('GET', url, false);
             request.send();
-            return retPGN;
+            if (request.status === 200) {
+                return request.responseText;
+            }
         }
         if (typeof configuration.position == 'undefined') {
             configuration.position = 'start';
