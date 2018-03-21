@@ -688,6 +688,11 @@ var pgnReader = function (configuration, chess) {
         return move.variationLevel > 0 && ! move.next;
     };
 
+    // Returns true, if the move is after a move with at least one variation
+    var afterMoveWithVariation = function(move) {
+        return getMoves()[move.prev] && (getMoves()[move.prev].variations.length > 0);
+    };
+
     /**
      * Writes the pgn (fully) of the current game. The algorithm goes like that:
      * * Start with the first move (there has to be only one in the main line)
@@ -1189,6 +1194,7 @@ var pgnReader = function (configuration, chess) {
         nag_to_symbol: nag_to_symbol,
         startVariation: startVariation,
         endVariation: endVariation,
+        afterMoveWithVariation: afterMoveWithVariation,
         changeNag: changeNag,
         clearNags: clearNags,
         addMove: addMove,
