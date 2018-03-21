@@ -540,7 +540,7 @@ var pgnBase = function (boardId, configuration) {
             //span.appendChild(document.createTextNode(" ( "));
         }
         span.appendChild(generateCommentSpan(move.commentMove, "moveComment"));
-        if ( (move.turn == 'w') || (that.mypgn.startVariation(move)) ) {
+        if ( (move.turn == 'w') || (that.mypgn.startVariation(move)) || (that.mypgn.afterMoveWithVariation(move)) ) {
             var mn = move.moveNumber;
             var num = createEle('span', null, "moveNumber", null, span);
             num.appendChild(document.createTextNode("" + mn + ((move.turn == 'w') ? ". " : "... ")));
@@ -812,7 +812,9 @@ var pgnBase = function (boardId, configuration) {
                 board.set({fen: game.fen()});
                 unmarkMark(null);
                 that.currentMove = null;
-                document.getElementById(fenId).value = game.fen();
+                if (document.getElementById(fenId)) {
+                    document.getElementById(fenId).value = game.fen();
+                }
                 updateUI(null);
             };
             var timer = new Timer(10);
