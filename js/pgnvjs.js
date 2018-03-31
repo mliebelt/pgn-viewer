@@ -146,17 +146,6 @@ var pgnBase = function (boardId, configuration) {
     }
     
     /**
-     * Allow to hide HTML by calling this function. It will prepend
-     * the boardId, and search for an ID in the DOM.
-     * @param eleName the element name added to the boardId
-     * @param prefix the prefix used for the unique Id
-     */
-    var hideHTML = function(eleName, prefix) {
-        var ele = (prefix ? prefix : "") + boardId + eleName;
-        document.getElementById(ele).style.display = "none";
-    };
-
-    /**
      * Scroll if element is not visible
      * @param element the element to show by scrolling
      */
@@ -650,6 +639,16 @@ var pgnBase = function (boardId, configuration) {
             }
         }
 
+        function handlePromotion(aMove) {
+            if (aMove.notation.promotion) {
+                let promPiece = aMove.notation.promotion.substring(1,2).toLowerCase();
+                let pieces = {};
+                pieces[aMove.to] = 
+                    {role: that.mypgn.PROMOTIONS[promPiece], 
+                    color: (aMove.turn == 'w' ? 'white' : 'black')};
+                board.setPieces(pieces);
+            }
+        }
         //console.log("Marke move: Curr " + curr + " Next " + next + " FEN " + fen);
         //board.set({fen: fen});
         if ( (curr === null) || (next > curr) ) {
@@ -657,11 +656,13 @@ var pgnBase = function (boardId, configuration) {
             let prevMove = that.mypgn.getMove(myMove.prev);
             board.set({fen: (prevMove === undefined) ? that.configuration.fen : prevMove.fen});
             board.move(myMove.from, myMove.to);    
+            handlePromotion(myMove);
         } else {
             let myMove = that.mypgn.getMove(next);
             let prevMove = that.mypgn.getMove(myMove.prev);
             //makeMove(myMove.prev, myMove.index, myMove.fen); 
             board.set({fen: myMove.fen, lastMove: [myMove.from, myMove.to]});
+            handlePromotion(myMove);
         }
         game.load(fen);
         unmarkMark(next);
@@ -1020,7 +1021,6 @@ var pgnBase = function (boardId, configuration) {
         generateHTML: generateHTML,
         generateBoard: generateBoard,
         generateMoves: generateMoves,
-        hideHTML: hideHTML,
         onSnapEnd: onSnapEnd
     }
 
