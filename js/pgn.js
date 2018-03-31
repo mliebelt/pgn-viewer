@@ -239,6 +239,12 @@ var pgnReader = function (configuration, chess) {
         SetUp: '"0": position is start position, "1": tag FEN defines the position',
         FEN: 'Alternative start position, tag SetUp has to be set to "1"'
     };
+    that.PROMOTIONS = {
+        'q': 'queen',
+        'r': 'rook',
+        'b': 'bishop',
+        'n': 'knight'
+    }
     /**
      * Returns the NAGs as defined in http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm#c10
      * The index is the index number after the '$' sign like in $3 == 'very good move'.
@@ -1200,6 +1206,7 @@ var pgnReader = function (configuration, chess) {
         addMove: addMove,
         has_diagram_nag: has_diagram_nag,
         PGN_NAGS: that.PGN_NAGS,
+        PROMOTIONS: that.PROMOTIONS,
         NAGS: that.NAGs,
         san: san,
         sanWithNags: sanWithNags,
