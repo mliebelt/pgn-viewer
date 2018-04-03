@@ -10,8 +10,10 @@ module.exports = function(grunt) {
             all: {
                 src: [
                     'chess.js/chess.js',
-                    'js/chessground.js',
-                    'js/i18next-1.11.2.js',
+                    'js/chessground.min.js',
+                    'js/i18next.min.js',
+                    'js/i18nextXHRBackend.js',
+                    'js/i18nextLocalStorageCache.js',
                     'js/Timer.js',
                     'js/smoothscroll.js',
                     'js/mousetrap.js',
@@ -24,8 +26,10 @@ module.exports = function(grunt) {
             dev: {
                 src: [
                     'chess.js/chess.js',
-                    'js/chessground.js',
-                    'js/i18next-1.11.2.js',
+                    'js/chessground.min.js',
+                    'js/i18next.js',
+                    'js/i18nextXHRBackend.js',
+                    'js/i18nextLocalStorageCache.js',
                     'js/Timer.js',
                     'js/smoothscroll.js',
                     'js/mousetrap.js',
