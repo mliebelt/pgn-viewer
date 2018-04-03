@@ -17,24 +17,42 @@ var addAsDefault = function(key, value, configurationMap) {
     }
 }
 
+function Scheduler() {
+    this.list = [];
+};
+var GLOB_SCHED = new Scheduler();
+GLOB_SCHED.schedule = function(loc, func) {
+    let myLoc = (typeof loc != 'undefined') ? loc : 'en';
+    if (i18next.hasResourceBundle(myLoc)) {
+        func.call(null);
+    } else {
+        i18next.loadLanguages(myLoc, (err, t) => {
+            func.call(null);
+        })
+    }
+};
+
 // Anonymous function, has not to be visible from the outside
 // Does all the initialization stuff only needed once, here mostly internationalization.
 let initI18n = function(){
     let localPath = function() {
         let jsFileLocation = document.querySelector('script[src*=pgnvjs]').src;  // the js file path
         var index = jsFileLocation.indexOf('pgnvjs');
-        //console.log("Local path: " + jsFileLocation.substring(0, index - 3));
+        console.log("Local path: " + jsFileLocation.substring(0, index - 3));
         return jsFileLocation.substring(0, index - 3);   // the father of the js folder
     }
     var i18n_option = {
-        getAsync: false,
-        resGetPath: localPath() + 'locales/__ns__-__lng__.json',
-        ns: {
-            namespaces: ['chess', 'nag', 'buttons'],
-            defaultNs: 'chess'
-        }
+        backend: {
+            loadPath: localPath() + 'locales/{{ns}}-{{lng}}.json',
+        } ,
+        cache: {
+            enabled: true
+        },
+        ns: ['chess', 'nag', 'buttons'],
+        defaultNS: 'chess',
+        debug: true
     };
-    i18n.init(i18n_option, function (err, t) {});
+    i18next.use(window.i18nextXHRBackend).use(window.i18nextLocalStorageCache).init(i18n_option, (err, t) => {});
 };
 initI18n();
 
@@ -84,7 +102,7 @@ var pgnBase = function (boardId, configuration) {
 
     if (that.configuration.locale) {
         that.configuration.locale = that.configuration.locale.replace(/_/g, "-");
-        i18n.setLng(that.configuration.locale); 
+        i18next.loadLanguages(that.configuration.locale, (err, t) => {});
     }
     /**
      * Allow logging of error to HTML.
@@ -184,6 +202,10 @@ var pgnBase = function (boardId, configuration) {
         board.set( {movable: Object.assign({}, board.state.movable, {color: col, dests: possibleMoves(game)}), 
             check: game.in_check()} );
         //makeMove(null, that.currentMove, move.fen);
+        let fenView = document.getElementById(fenId);
+        if (fenView) {
+            fenView.value = move.fen;
+        }
     };
 
     // Utility function for generating general HTML elements with id, class (with theme)
@@ -212,7 +234,7 @@ var pgnBase = function (boardId, configuration) {
         function addButton(pair, buttonDiv) {
             var l_theme = (['green', 'blue'].indexOf(theme) >= 0) ? theme : 'default';
             var button = createEle("i", buttonsId + pair[0], "button fa " + pair[1], l_theme, buttonDiv);
-            var title = i18n.t("buttons:" + pair[0], {lng: that.configuration.locale});
+            var title = i18next.t("buttons:" + pair[0], {lng: that.configuration.locale});
             document.getElementById(buttonsId + pair[0]).setAttribute("title", title);
             return button;
         }
@@ -229,7 +251,7 @@ var pgnBase = function (boardId, configuration) {
                 //but.className = but.className + " gray"; // just a test, worked.
                 // only gray out if not usable, check that later.
             });
-            [["pgn", "fa-print"], ['nagButton', 'fa-cog']].forEach(function(entry) {
+            [["pgn", "fa-print"], ['nags', 'fa-cog']].forEach(function(entry) {
                 var but = addButton(entry, buttonDiv);
             });
         };
@@ -243,7 +265,7 @@ var pgnBase = function (boardId, configuration) {
                         let i = that.mypgn.NAGS[icon] || '';
                         ele.setAttribute("data-symbol", i);
                         ele.setAttribute("data-value", icon);
-                        ele.textContent = i18n.t('nag:$' + icon + "_menu", {lng: that.configuration.locale});
+                        ele.textContent = i18next.t('nag:$' + icon + "_menu", {lng: that.configuration.locale});
                     }
                     let myLink = createEle('a', null, null, theme, myDiv);
                     generateIcon(link, myLink);
@@ -854,8 +876,8 @@ var pgnBase = function (boardId, configuration) {
                 }
             }
             let toggleNagMenu = function() {
-                let nagMenu = document.getElementById(buttonsId + 'nagButton').classList.toggle('selected');
-                if (document.getElementById(buttonsId + 'nagButton').classList.contains('selected')) {
+                let nagMenu = document.getElementById(buttonsId + 'nags').classList.toggle('selected');
+                if (document.getElementById(buttonsId + 'nags').classList.contains('selected')) {
                     document.getElementById('nagMenu' + buttonsId).style.display = 'flex';
                 } else {
                     document.getElementById('nagMenu' + buttonsId).style.display = 'none';
@@ -865,7 +887,7 @@ var pgnBase = function (boardId, configuration) {
                 addEventListener(buttonsId + "pgn", 'click', function() {
                     togglePgn();
                 });
-                addEventListener(buttonsId + 'nagButton', 'click', function() {
+                addEventListener(buttonsId + 'nags', 'click', function() {
                     toggleNagMenu();
                 })
                 addEventListener(buttonsId + "deleteMoves", 'click', function() {
@@ -943,6 +965,7 @@ var pgnBase = function (boardId, configuration) {
             addEventListener(buttonsId + 'play', 'click', function() {
                 togglePlay();
             })
+        
         };
 
         var computePgn = function() {
@@ -1036,15 +1059,17 @@ var pgnBase = function (boardId, configuration) {
  * @returns {{chess: chess, getPgn: getPgn}} all utility functions available
  */
 var pgnView = function(boardId, configuration) {
-    var base = pgnBase(boardId, Object.assign({mode: 'view'}, configuration));
-    base.generateHTML();
-    var b = base.generateBoard();
-    base.generateMoves(b);
-    return {
-        chess: base.chess,
-        getPgn: base.getPgn,
-        version: base.VERSION
-    }
+    GLOB_SCHED.schedule(configuration.locale, () => {
+        var base = pgnBase(boardId, Object.assign({mode: 'view'}, configuration));
+        base.generateHTML();
+        var b = base.generateBoard();
+        base.generateMoves(b);
+        return {
+            chess: base.chess,
+            getPgn: base.getPgn,
+            version: base.VERSION
+        }
+    })
 };
 
 /**
@@ -1063,14 +1088,15 @@ var pgnView = function(boardId, configuration) {
  *  theme: (only CSS related) some of zeit, blue, chesscom, ... (as string)
  */
 var pgnBoard = function(boardId, configuration) {
-    let base = pgnBase(boardId, Object.assign({headers: false, mode: 'board'}, configuration));
-    base.generateHTML();
-    let b = base.generateBoard();
-    return {
-        chess: base.chess,
-        board: b
-    }
-
+    GLOB_SCHED.schedule(configuration.locale,  () => {
+        let base = pgnBase(boardId, Object.assign({headers: false, mode: 'board'}, configuration));
+        base.generateHTML();
+        let b = base.generateBoard();
+        return {
+            chess: base.chess,
+            board: b
+        }
+    });
 };
 
 /**
@@ -1086,16 +1112,18 @@ var pgnBoard = function(boardId, configuration) {
  *    allowAnnotations: false or true (default)
  */
 var pgnEdit = function(boardId, configuration) {
-    let base = pgnBase(boardId, Object.assign(
-        { showFen: true, mode: 'edit', 
-          movable: { 
-                free: false, 
-                events: { after: function(orig, dest, meta) { base.onSnapEnd(orig, dest, meta); } } }, 
-            viewOnly: false}, 
-        configuration));
-    base.generateHTML();
-    let board = base.generateBoard();
-    base.generateMoves(board);
+    GLOB_SCHED.schedule(configuration.locale,  () => {
+        let base = pgnBase(boardId, Object.assign(
+            { showFen: true, mode: 'edit', 
+            movable: { 
+                    free: false, 
+                    events: { after: function(orig, dest, meta) { base.onSnapEnd(orig, dest, meta); } } }, 
+                viewOnly: false}, 
+            configuration));
+        base.generateHTML();
+        let board = base.generateBoard();
+        base.generateMoves(board);
+    });
 };
 
 /**
@@ -1107,7 +1135,9 @@ var pgnEdit = function(boardId, configuration) {
  * Rest will be ignored.
  */
 var pgnPrint = function(boardId, configuration) {
-    let base = pgnBase(boardId, Object.assign( {showNotation: false, mode: 'print'}, configuration ));
-    base.generateHTML();
-    base.generateMoves(null);
+    GLOB_SCHED.schedule(configuration.locale,  () => {
+        let base = pgnBase(boardId, Object.assign( {showNotation: false, mode: 'print'}, configuration ));
+        base.generateHTML();
+        base.generateMoves(null);
+    });
 };

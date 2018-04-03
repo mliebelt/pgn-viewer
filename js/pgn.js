@@ -324,7 +324,7 @@ var pgnReader = function (configuration, chess) {
         if (fig == 'P') {
             return '';
         }
-        return i18n.isInitialized() ? i18n.t(fig, {lng: that.configuration.locale}) : fig;
+        return i18next.t(fig, {lng: that.configuration.locale});
     }
 
     /**
