@@ -79,11 +79,7 @@ div.layout-bottom-right > .outerBoard {
     margin-left: 10px;
 }
 
-div.layout-left > .outerBoard {
-    /* flex: 0 0 400px; */
-}
-
-div.edit .gray, div.buttons .gray {
+div.layout-left > .outerBoard div.edit .gray, div.buttons .gray {
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
     filter: grayscale(100%);
@@ -321,10 +317,6 @@ div.comment > textarea.comment {
     display: inline;
 }
 
-.moves .move .moveNumber {
-/*    font-size: 24px;*/
-}
-
 .moves .move .comment {
     color: green;
     font-weight: 500;
@@ -340,7 +332,6 @@ div.comment > textarea.comment {
 .chesscom.whole {
     /*    border: 2px solid #404040; */
     border: 2px gray solid;
-    width: 800px;
     display: flex;
     flex-flow: row wrap;
 }
