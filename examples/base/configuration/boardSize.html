@@ -16,14 +16,15 @@
 <h3>Parameter boardSize</h3>
 
 <div>The following boards (and moves) set the parameter boardSize:</div>
-<ul>
-    <li><s>Implicit by using the size of the div</s> Uses the default of Chessground, not the div.</li>
-    <li><s>Implicit by using the parameter size.</s> Uses the parameter width all the time.</li>
-    <li>Explicit to set the board width</li>
-    <li>Explicit to set the board width big (just to show the difference)</li>
-    <li>Explicit to set the board width small (for pgnPrint usage).</li>
-    <li>Explicit to set the board width medium (for the viewer or editor).</li>
-</ul>
+<ol>
+    <li>Uses the default of Chessground, not the div: 320px</li>
+    <li>Uses the parameter width: 450px</li>
+    <li>Explicit to set the board width: 600px</li>
+    <li>Explicit to set the board width big: 450px, coordsInner: false</li>
+    <li>Explicit to set the board width small: 200px, width: 400px (for the moves)</li>
+    <li>Explicit to set the board width small: 200px (board and moves)</li>
+    <li>Explicit to set the board width: 300px, moves: 400px</li>
+</ol>
 <div id="board0" style="float: left; margin: 25px"></div>
 <div id="board1" style="float: left; margin: 25px"></div>
 <div id="board2" style="float: left; margin: 25px"></div>
