@@ -1,0 +1,14 @@
+{
+    "flipper" : "Demo 77: Tausche die Seiten",
+    "first" : "Demo 77: Gehe zum ersten Zug",
+    "prev" : "Demo 77: Gehe einen Zug zurück",
+    "next" : "Demo 77: Nächster Zug",
+    "play" : "Demo 77: Spiele alle Züge",
+    "last" : "Demo 77: Gehe ans Ende des Spiels",
+    "deleteVar" : "Lösche Variante",
+    "promoteVar" : "Werte Variante auf",
+    "deleteMoves" : "Lösche die restlichen Züge von hier",
+    "nags" : "NAGs Menü",
+    "pgn" : "Zeige die PGN Notation an",
+    "hidePGN" : "Ausblenden des angezeigten PGN"
+}

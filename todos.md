@@ -208,3 +208,34 @@ A more elaborate solution would do the following:
 * schedule: check if a language is loaded, if yes, call immediate, if no, wait until loaded.
 * Hold the languages loaded (or ask again all the times)
 * So no preload would be done, init would do nothing, but calling schedule would then load the language (if necessary) lazy.
+
+## #77: Allow definition of localPath
+
+What is the problem here?
+
+* The function `localPath` is only used in the context of i18next (initialization).
+* This is done of course early during startup.
+* To define a different path / function, this has to be known early as well.
+
+Syntax (pseudo-code) could be:
+
+    file: my-init.js
+      pgnBase.defaults.loadPath = '/src/loc/{{ns}}-{{lng}}.json';
+
+    in html file:
+    <script src="/dist/js/my-init.js" type="text/javascript"></script>
+    <script src="/dist/js/pgnvjs.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/dist/css/pgnv.css">
+    ....
+
+The path itself consists of the following:
+
+* `loadPath`: The whole path to the locale files. E.g. `http://localhost:5001/locales/{{ns}}-{{lng}}.json`
+* `localPath`: The function that returns the root of the web application (son is `js/pgnvjs.js`). Currently: `http://localhost:5001/`
+* `localesPattern`: Currently `locales/{{ns}}-{{lng}}.json`
+
+So it would be nice to have all options here:
+
+* Define `loadPath`: whole path is taken, rest is ignored.
+* Define `localesPattern`  only: Define where from the root of the application the locales can be found.
+* Define `localPath` only: On which server are the resources located.

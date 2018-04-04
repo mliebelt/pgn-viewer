@@ -1,33 +1,27 @@
 'use strict';
 
+// Users of PgnViewerJS may redefine some defaults by defining globally the var `PgnBaseDefaults.
+// This will be merged then with the defaults defined by the app itself.
+var PgnBaseDefaults = window.PgnBaseDefaults ? window.PgnBaseDefaults : {};
+// Holds defined pgnBase objects to allow test specs
+window.pgnTestRegistry = {};
 /**
- * This implements the base function that is used to display a board, a whole game
- * or even allow to play it.
- * See the other functions and their implementation how to use the building blocks
- * of pgnBase to build new functionality. The configuration here is the super-set
- * of all the configurations of the other functions.
+ * Utilities used outside from pgnBase.
  */
-
- /**
- * Adds a default configuration parameter if not already there.
- */
-var addAsDefault = function(key, value, configurationMap) {
-    if (configurationMap[key] === undefined) {
-        configurationMap[key] = value;
-    }
-}
-
-function Scheduler() {
+function PgnScheduler() {
     this.list = [];
 };
-var GLOB_SCHED = new Scheduler();
-GLOB_SCHED.schedule = function(loc, func) {
+var GLOB_SCHED = new PgnScheduler();
+GLOB_SCHED.schedule = function(loc, func, res) {
     let myLoc = (typeof loc != 'undefined') ? loc : 'en';
     if (i18next.hasResourceBundle(myLoc)) {
         func.call(null);
     } else {
         i18next.loadLanguages(myLoc, (err, t) => {
-            func.call(null);
+            let myRes = func.call(null);
+            if (typeof res != 'undefined') {
+                res.call(null, myRes);
+            }
         })
     }
 };
@@ -36,26 +30,35 @@ GLOB_SCHED.schedule = function(loc, func) {
 // Does all the initialization stuff only needed once, here mostly internationalization.
 let initI18n = function(){
     let localPath = function() {
+        if (window.PgnBaseDefaults.localPath) {
+            return window.PgnBaseDefaults.localPath;
+        }
         let jsFileLocation = document.querySelector('script[src*=pgnvjs]').src;  // the js file path
         var index = jsFileLocation.indexOf('pgnvjs');
         console.log("Local path: " + jsFileLocation.substring(0, index - 3));
         return jsFileLocation.substring(0, index - 3);   // the father of the js folder
     }
+    let localesPattern = window.PgnBaseDefaults.localesPattern || 'locales/{{ns}}-{{lng}}.json';
+    let loadPath = window.PgnBaseDefaults.loadPath || (localPath() + localesPattern);
     var i18n_option = {
-        backend: {
-            loadPath: localPath() + 'locales/{{ns}}-{{lng}}.json',
-        } ,
-        cache: {
-            enabled: true
-        },
+        backend: { loadPath: loadPath } ,
+        cache: { enabled: true },
+        fallbackLng: 'en',
         ns: ['chess', 'nag', 'buttons'],
         defaultNS: 'chess',
-        debug: true
+        debug: false
     };
     i18next.use(window.i18nextXHRBackend).use(window.i18nextLocalStorageCache).init(i18n_option, (err, t) => {});
 };
 initI18n();
 
+/**
+ * This implements the base function that is used to display a board, a whole game
+ * or even allow to play it.
+ * See the other functions and their implementation how to use the building blocks
+ * of pgnBase to build new functionality. The configuration here is the super-set
+ * of all the configurations of the other functions.
+ */
 var pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
     const VERSION = "0.9.6";
@@ -76,7 +79,7 @@ var pgnBase = function (boardId, configuration) {
         highlight: { lastMove: true},
         viewOnly: true
     }
-    that.configuration = Object.assign(defaults, configuration);
+    that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration);
     let game = new Chess();
     that.mypgn = pgnReader( that.configuration, game ); // Use the same instance from chess.js
     let theme = that.configuration.theme || 'default';
@@ -1035,8 +1038,7 @@ var pgnBase = function (boardId, configuration) {
     //         });
         }
     };
-
-    return {
+    let ret = {
         // PUBLIC API
         chess: game,
         board: board,
@@ -1045,8 +1047,9 @@ var pgnBase = function (boardId, configuration) {
         generateBoard: generateBoard,
         generateMoves: generateMoves,
         onSnapEnd: onSnapEnd
-    }
-
+    };
+    window.pgnTestRegistry[boardId] = ret;
+    return ret;
 };
 
 /**
@@ -1059,17 +1062,13 @@ var pgnBase = function (boardId, configuration) {
  * @returns {{chess: chess, getPgn: getPgn}} all utility functions available
  */
 var pgnView = function(boardId, configuration) {
-    GLOB_SCHED.schedule(configuration.locale, () => {
-        var base = pgnBase(boardId, Object.assign({mode: 'view'}, configuration));
-        base.generateHTML();
-        var b = base.generateBoard();
-        base.generateMoves(b);
-        return {
-            chess: base.chess,
-            getPgn: base.getPgn,
-            version: base.VERSION
-        }
-    })
+    GLOB_SCHED.schedule(configuration.locale, 
+        () => {
+            var base = pgnBase(boardId, Object.assign({mode: 'view'}, configuration));
+            base.generateHTML();
+            var b = base.generateBoard();
+            base.generateMoves(b);
+        })
 };
 
 /**
