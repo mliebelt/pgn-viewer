@@ -202,7 +202,8 @@ var pgnBase = function (boardId, configuration) {
         unmarkMark(that.currentMove);
         updateUI(that.currentMove);
         let col = move.turn == 'w' ? 'black' : 'white';
-        board.set( {movable: Object.assign({}, board.state.movable, {color: col, dests: possibleMoves(game)}), 
+        board.set( {
+            movable: Object.assign({}, board.state.movable, {color: col, dests: possibleMoves(game)}), 
             check: game.in_check()} );
         //makeMove(null, that.currentMove, move.fen);
         let fenView = document.getElementById(fenId);
@@ -474,9 +475,11 @@ var pgnBase = function (boardId, configuration) {
             el.classList.add('coords-inner');
         }
         if (hasMode('edit')) {
-            board.set({ movable: { 
-                color: 'white',
-                dests: possibleMoves(game)}});
+            game.load(boardConfiguration.position);
+            let toMove = (game.turn() == 'w') ? 'white' : 'black';
+            board.set( {
+                movable: Object.assign({}, board.state.movable, {color: toMove, dests: possibleMoves(game)}), 
+                turnColor: toMove, check: game.in_check()} );
         }
         return board;
     };
