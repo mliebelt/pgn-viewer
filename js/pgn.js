@@ -1050,13 +1050,15 @@ var pgnReader = function (configuration, chess) {
         real_move.variations = [];
         if (moveNumber == null) {
             set_to_start();
-            real_move.turn = "w";
+            real_move.turn = game.turn();
             real_move.moveNumber = 1;
         } else {
             game.load(getMove(moveNumber).fen);
             real_move.turn = get_turn(moveNumber);
             if (real_move.turn === "w") {
-                real_move.moveNumber = getMove(getMove(moveNumber).prev).moveNumber + 1;
+                real_move.moveNumber = getMove(moveNumber).moveNumber + 1;
+            } else {
+                real_move.moveNumber = getMove(moveNumber).moveNumber;
             }
         }
         var pgn_move = game.move(move);
