@@ -395,8 +395,8 @@ var pgnReader = function (configuration, chess) {
         var splitHeaders = function (string) {
             let headers = {};
             let xarr;
-            let index;
-            let lastMatch;
+            let index = 0;
+            let lastMatch = '';
             let re = /\[([^\]]+)]/g;
             while (xarr = re.exec(string)) {
                 let ret = xarr[0].match(/\[(\w+)\s+\"([^\"]+)\"/);
