@@ -393,19 +393,23 @@ var pgnReader = function (configuration, chess) {
          * @returns the headers read
          */
         var splitHeaders = function (string) {
-            var headers = {};
-            var list = string.match(/\[([^\]]+)]/g);
-            if (list === null) { return headers; }
-            for (var i=0; i < list.length; i++) {
-                var ret = list[i].match(/\[(\w+)\s+\"([^\"]+)\"/);
+            let headers = {};
+            let xarr;
+            let index;
+            let lastMatch;
+            let re = /\[([^\]]+)]/g;
+            while (xarr = re.exec(string)) {
+                let ret = xarr[0].match(/\[(\w+)\s+\"([^\"]+)\"/);
                 if (ret) {
-                    var key = ret[1];
+                    let key = ret[1];
                     if (that.PGN_TAGS[key]) {
                         headers[key] = ret[2];
                     }
+                    index = xarr.index;
+                    lastMatch = xarr[0];
                 }
             }
-            return headers;
+            return { headers: headers, rest: (string.substring(index + lastMatch.length))};
         };
         /**
          * Implemment the logic to interpret the headers.
@@ -424,10 +428,10 @@ var pgnReader = function (configuration, chess) {
                 that.endGame = that.headers['Result'];
             }
         } 
-        that.headers = splitHeaders(configuration.pgn);
+        let retHeaders = splitHeaders(configuration.pgn);
+        that.headers = retHeaders.headers;
         interpretHeaders();
-        var index = configuration.pgn.lastIndexOf("]");
-        return configuration.pgn.substring(index + 1);
+        return retHeaders.rest;
     };
 
     var wireMoves = function(current, prev, currentMove, prevMove) {
