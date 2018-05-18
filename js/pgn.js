@@ -345,7 +345,7 @@ var pgnReader = function (configuration, chess) {
         }
         var check = notation.check ? notation.check : '';
         var mate = notation.mate ? notation.mate : '';
-        var prom = notation.promotion ? notation.promotion : '';
+        var prom = notation.promotion ? '=' + figI18n(notation.promotion.substring(1,2).toLowerCase()) : '';
         return fig + disc + strike + notation.col + notation.row + prom + check + mate;
     };
 
