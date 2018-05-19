@@ -193,9 +193,30 @@ var pgnBase = function (boardId, configuration) {
     var onSnapEnd = function(from, to, meta) {
         //console.log("Move from: " + from + " To: " + to + " Meta: " + JSON.stringify(meta, null, 2));
         //board.set({fen: game.fen()});
+        /**
+         * Fills the promotion of primMove if move of pawn reached tthe last row
+         * @param {string} from the start square of the move
+         * @param {string} to  the end square of the move
+         * @param {object} primMove primite move, will be expanded with key 'promotion' if necessary
+         */
+        let needsPromotion = function(from, to, primMove) {
+            if (! (that.mypgn.game.get(from).type == 'p')) return;
+            if ( (to.substring(1,2) == '8') || (to.substring(1,2) == '1') ) {
+                primMove.promotion = 'q'    // Here a real selection should stand!!
+            }
+        } 
         var cur = that.currentMove;
-        that.currentMove = that.mypgn.addMove({ from: from, to: to}, cur);
+        let primMove = { from: from, to: to};
+        needsPromotion(from, to, primMove);
+        that.currentMove = that.mypgn.addMove(primMove, cur);
         var move = that.mypgn.getMove(that.currentMove);
+        if (primMove.promotion) {
+            let pieces = {}
+            pieces[to] = null
+            board.setPieces(pieces)
+            pieces[to] = {color: (move.turn == 'w' ? 'white' : 'black'), role: 'queen'}
+            board.setPieces(pieces)
+        }
         if (moveSpan(that.currentMove) === null) {
             generateMove(that.currentMove, null, move, move.prev, document.getElementById(movesId), []);
         }
@@ -797,10 +818,8 @@ var pgnBase = function (boardId, configuration) {
                 } else {
                     key_ID = "#" + boardId + ",#" + boardId + "Moves";
                 }
-//                jQuery(key_ID).bind('keydown', key,function (evt){
                 var form = document.querySelector(key_ID);
                 Mousetrap(form).bind(key, function(evt) {
-//                Mousetrap.bind(key, function(evt) {
                     to_call();
                     evt.stopPropagation();
                 });
