@@ -1076,6 +1076,9 @@ var pgnReader = function (configuration, chess) {
             if (pgn_move.piece != "p") {
                 real_move.notation.fig = pgn_move.piece.charAt(0).toUpperCase();
             }
+            if (pgn_move.promotion) {
+                real_move.notation.promotion = '=' + pgn_move.promotion.toUpperCase();
+            }
             if (pgn_move.flags == game.FLAGS.CAPTURE) {
                 real_move.notation.strike = 'x';
             }
