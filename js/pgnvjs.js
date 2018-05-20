@@ -79,6 +79,7 @@ var pgnBase = function (boardId, configuration) {
         highlight: { lastMove: true},
         viewOnly: true
     }
+    that.promMappings = { q: 'queen', r: 'rook', b: 'bishop', n: 'knight'}
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration);
     let game = new Chess();
     that.mypgn = pgnReader( that.configuration, game ); // Use the same instance from chess.js
@@ -190,31 +191,30 @@ var pgnBase = function (boardId, configuration) {
      * @param to the destination
      * @param meta additional parameters (not used at the moment)
      */
-    var onSnapEnd = function(from, to, meta) {
+    var onSnapEnd = async function(from, to, meta) {
         //console.log("Move from: " + from + " To: " + to + " Meta: " + JSON.stringify(meta, null, 2));
         //board.set({fen: game.fen()});
-        /**
-         * Fills the promotion of primMove if move of pawn reached tthe last row
-         * @param {string} from the start square of the move
-         * @param {string} to  the end square of the move
-         * @param {object} primMove primite move, will be expanded with key 'promotion' if necessary
-         */
-        let needsPromotion = function(from, to, primMove) {
-            if (! (that.mypgn.game.get(from).type == 'p')) return;
-            if ( (to.substring(1,2) == '8') || (to.substring(1,2) == '1') ) {
-                primMove.promotion = 'q'    // Here a real selection should stand!!
-            }
-        } 
         var cur = that.currentMove;
         let primMove = { from: from, to: to};
-        needsPromotion(from, to, primMove);
+        if ((that.mypgn.game.get(from).type == 'p') && ( (to.substring(1,2) == '8') || (to.substring(1,2) == '1') ) ) {
+            let sel = await swal("Select the promotion figure", {
+                buttons: {
+                    queen: { text: "Queen", value: 'q'},
+                    rook: { text: "Rook", value: 'r'},
+                    bishop: { text: "Bishop", value: 'b'},
+                    knight: { text: 'Knight', value: 'n'}
+                }
+            });
+            primMove.promotion = sel;
+            //primMove.promotion = 'q'    // Here a real selection should stand!!
+        }
         that.currentMove = that.mypgn.addMove(primMove, cur);
         var move = that.mypgn.getMove(that.currentMove);
         if (primMove.promotion) {
             let pieces = {}
             pieces[to] = null
             board.setPieces(pieces)
-            pieces[to] = {color: (move.turn == 'w' ? 'white' : 'black'), role: 'queen'}
+            pieces[to] = {color: (move.turn == 'w' ? 'white' : 'black'), role: that.promMappings[primMove.promotion]}
             board.setPieces(pieces)
         }
         if (moveSpan(that.currentMove) === null) {

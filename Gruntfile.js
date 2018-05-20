@@ -16,6 +16,7 @@ module.exports = function(grunt) {
                     'js/i18nextLocalStorageCache.js',
                     'js/Timer.js',
                     'js/smoothscroll.js',
+                    'js/sweetalert.min.js',
                     'js/mousetrap.js',
                     'js/pgn.js',
                     'js/pgn-parser.js',
@@ -32,6 +33,7 @@ module.exports = function(grunt) {
                     'js/i18nextLocalStorageCache.js',
                     'js/Timer.js',
                     'js/smoothscroll.js',
+                    'js/sweetalert.min.js',
                     'js/mousetrap.js',
                     'js/pgn-parser.js'
                 ],
