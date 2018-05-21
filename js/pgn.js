@@ -977,21 +977,21 @@ var pgnReader = function (configuration, chess) {
             var pgn_move = game.move(move);
             if (typeof pgn_move == "undefined") {
                 return null;
-             } else if (first_move_notation() == move) {
+             } else if (first_move_notation() == pgn_move.san) {
                 return 0;
              } else {   // TODO: Could be a variation of the first move ...
-                return existing_variation_first_move(move);
+                return existing_variation_first_move(pgn_move);
              }
         }
 
         // Handles the first move that may be a variation of the first move, returns that.
         // If not, returns null
-        function existing_variation_first_move(move) {
+        function existing_variation_first_move(pgn_move) {
             if (typeof getMove(0) == 'undefined') return null;
             var variations = getMove(0).variations;
             var vari;
             for (vari in variations) {
-                if (variations[vari].notation.notation == move) return variations[vari].moveNumber;
+                if (variations[vari].notation.notation == pgn_move.san) return variations[vari].moveNumber;
             }
             return null; // no variation found
         }
