@@ -377,14 +377,14 @@ examples["1204"] = {
     "The boards above have the three locales fr, de, and en, and show the moves initially in the language " +
     "of choice. However, when you edit the games, you will see that the last locale (here english) is used " +
     "in all of them.",
-    html: '<div id="board" style="width: 200px;float: left;margin-right: 20px"></div>\n<div id="board1" style="width: 200px;float: left;margin-right: 20px"></div>\n<div id="board2" style="width: 200px;float: left;margin-right: 20px"></div>',
+    html: '<div id="board" style="float: left;margin-right: 20px"></div>\n<div id="board1" style="float: left;margin-right: 20px"></div>\n<div id="board2" style="float: left;margin-right: 20px"></div>',
     name: "#6: locale in edit mode",
-    jsStr: "var pgn = '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5';\npgnEdit('board', {pgn: pgn, locale: 'fr'});\npgnEdit('board1', {pgn: pgn,locale: 'de'});\npgnEdit('board2', {pgn: pgn, locale: 'en'});",
+    jsStr: "var pgn = '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5';\npgnEdit('board', {pgn: pgn, locale: 'fr', width: '200px'});\npgnEdit('board1', {pgn: pgn,locale: 'de', width: '200px'});\npgnEdit('board2', {pgn: pgn, locale: 'en', width: '200px'});",
     jsFn: function() {
         var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5";
-        pgnEdit("board", {pgn: pgn, locale: 'fr'});
-        pgnEdit("board1", {pgn: pgn,locale: 'de'});
-        pgnEdit("board2", {pgn: pgn, locale: 'en'});
+        pgnEdit("board", {pgn: pgn, locale: 'fr', width: '200px'});
+        pgnEdit("board1", {pgn: pgn,locale: 'de', width: '200px'});
+        pgnEdit("board2", {pgn: pgn, locale: 'en', width: '200px'});
     }
 };
 examples["1205"] = {
@@ -563,12 +563,12 @@ examples["1220"] = {
 };
 examples["1221"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/30'>ticket 30</a> at GitHub. " +
-    "Underpromotion in edit mode possible.",
+    "Underpromotion in edit mode possible. Try to promote the pawn.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#30: Underpromotion in edit mode possible (unsolved)",
-    jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5#43 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
+    jsStr: 'pgnView("board", {pgn: "1. e4 f5 2. exf5 g6 3. fxg6 Bg7 4. gxh7 Kf7"})',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
+        pgnEdit("board", {pgn: "1. e4 f5 2. exf5 g6 3. fxg6 Bg7 4. gxh7 Kf7"});
     }
 };
 examples["1222"] = {
@@ -617,14 +617,14 @@ examples["1225"] = {
 examples["1226"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/37'>ticket 37</a> at GitHub. " +
     "Add additional languages: take some locales : cs, da, de, en, es, et, fi ,fr, hu, is, it nb, nl, pl, pt, ro, sv.",
-    html: "<div>Default language: en, Locale es and Locale fi</div>\n<div id='board1' style='width: 200px; float: left'></div>\n<div id='board2' style='width: 200px; float: left'></div>\n<div id='board3' style='width: 200px; float: left'></div>",
+    html: "<div>Default language: en, Locale es and Locale fi</div>\n<div id='board1' style='float: left'></div>\n<div id='board2' style='float: left'></div>\n<div id='board3' style='float: left'></div>",
     name: "#37: Add additional languages",
-    jsStr: 'pgn = "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6";\npgnEdit("board1", {pgn: pgn});\npgnEdit("board2", {pgn: pgn, locale: "es"});\npgnÊdit("board3", {pgn: pgn, locale: "fi"});',
+    jsStr: 'pgn = "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6";\npgnEdit("board1", {pgn: pgn, width: "200px"});\npgnEdit("board2", {pgn: pgn, locale: "es", width: "200px"});\npgnÊdit("board3", {pgn: pgn, locale: "fi", width: "200px"});',
     jsFn: function() {
         pgn = "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6";
-        pgnEdit("board1", {pgn: pgn});
-        pgnEdit("board2", {pgn: pgn, locale: "es"});
-        pgnEdit("board3", {pgn: pgn, locale: "fi"});
+        pgnEdit("board1", {pgn: pgn, width: '200px'});
+        pgnEdit("board2", {pgn: pgn, locale: "es", width: '200px'});
+        pgnEdit("board3", {pgn: pgn, locale: "fi", width: '200px'});
     }
 };
 examples["1227"] = {
@@ -669,7 +669,7 @@ examples["1230"] = {
 };
 examples["1232"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/46'>ticket 46</a> at GitHub. " +
-    "Add the NAGs from a move to the NAG menu. Edit the game, and add NAGs to a move which has already NAGs",
+    "Allow FEN string with PGN to define start position from analysis (unsolved)",
     html: "<div id='board' style='width: 200px'/>",
     name: "#46: Allow FEN string with PGN to define start position from analysis",
     jsStr: 'pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
@@ -850,5 +850,186 @@ examples["1254"] = {
     jsStr: 'pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
     jsFn: function() {
         pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
+    }
+};
+examples["1255"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/71'>ticket 71</a> at GitHub. " +
+    "Don't add 'D' symbol (for diagram) to PGN display.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#71: Don't add 'D' symbol",
+    jsStr: 'pgnPrint("board", {pgn: "1. e4 e5 (1... c5 2. Nf3 d6D) 2. Nf3 Nc6 3. Bb5D (3. Bc4 Nf6) ", width: "160px"})',
+    jsFn: function() {
+        pgnPrint("board", {pgn: "1. e4 e5 (1... c5 2. Nf3 d6D) 2. Nf3 Nc6 3. Bb5D (3. Bc4 Nf6) ", width: "160px"});
+    }
+};
+examples["1256"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/75'>ticket 75</a> at GitHub. " +
+    "Add an option to show board at a given move at page creation time (view / edit mode) (unsolved)",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#75: Show board at a given move",
+    jsStr: 'pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
+    jsFn: function() {
+        pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
+    }
+};
+examples["1257"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/78'>ticket 78</a> at GitHub. " +
+    "Use chessground (lichess.org UI) as back-end. Try the following: click right-mouse-button, drag right-mouse-button\n\nTry to combine those with SHIFT, CTRL, ALT ... see marks when moving.\n\nSee last move and chess mark as well.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#78: Use chessground (lichess.org UI)",
+    jsStr: 'pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
+    jsFn: function() {
+        pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
+    }
+};
+examples["1258"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/79'>ticket 79</a> at GitHub. " +
+    "Chessground: allow positioning of coordinates. Default is coordsInner == true, ",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#79: Allow positioning of coordinates",
+    jsStr: 'pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", coordsInner: false})',
+    jsFn: function() {
+        pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", coordsInner: false});
+    }
+};
+examples["1259"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/80'>ticket 80</a> at GitHub. " +
+    "Chessground: Size the coordinates according to the board size.",
+    html: "<div id='board'/>\n<div id='b1'/>",
+    name: "#80: Size the corrdinates according to board size",
+    jsStr: 'pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});\npgnView("b1", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
+    jsFn: function() {
+        pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", width: "200px"}); 
+        pgnView("b1", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", width: "400px"});
+    }
+};
+examples["1260"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/81'>ticket 81</a> at GitHub. " +
+    "Missing promotion in edit mode.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#81: Missing promotion in edit mode",
+    jsStr: 'pgnEdit("board", {position: "rnbq2nr/pppppkbP/8/8/8/8/PPPP1PPP/RNBQKBNR w KQ - 1 5"})',
+    jsFn: function() {
+        pgnEdit("board", {position: "rnbq2nr/pppppkbP/8/8/8/8/PPPP1PPP/RNBQKBNR w KQ - 1 5"});
+    }
+};
+examples["1261"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/82'>ticket 82</a> at GitHub. " +
+    "Implement NAG menu native.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#82: Implement NAG menu",
+    jsStr: 'pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
+    jsFn: function() {
+        pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
+    }
+};
+examples["1262"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/83'>ticket 83</a> at GitHub. " +
+    "Use abstraction from NAGs and convert them to concrete notation (unsolved).",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#83: Use abstraction from NAGs and convert them to concrete notation",
+    jsStr: 'pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
+    jsFn: function() {
+        pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
+    }
+};
+examples["1263"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/84'>ticket 84</a> at GitHub. " +
+    "Show move number for start of variation.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#84: Show move number for start of variation",
+    jsStr: 'pgnView("board", {pgn: "1. e4 e5 (c5 2. Nf3 d6) 2. Nf3 Nc6 3. Bb5 (Bc4 Nf6) "})',
+    jsFn: function() {
+        pgnView("board", {pgn: "1. e4 e5 (c5 2. Nf3 d6) 2. Nf3 Nc6 3. Bb5 (Bc4 Nf6) "});
+    }
+};
+examples["1264"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/85'>ticket 85</a> at GitHub. " +
+    "Scrolling does not work reliable (unsolved).",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#85: Scrolling does not work reliable",
+    jsStr: 'pgnView("board", {pgn: "1. {This chess game was nicknamed...", layout: "left", boardSize: "200px", movesHeight: "220px"})',
+    jsFn: function() {
+        pgnView("board", {layout: "left", boardSize: '200px', movesHeight: "220px", size: '500px', pgn: "1. {This chess game was nicknamed \"The Game of the Century\" by Hans Kmoch in \"Chess Review\". It was played between chessmaster Donald Byrne and 13-year old Bobby Fischer in the Rosenwald Memorial Tournament in New York on October 17, 1956. The text of this annotation was written by David A. Wheeler, based on a number of sources (see references, below) and his own study of the game.  Donald Byrne (1930-1976) had already obtained first place in the 1953 US Open Championship, and would represent the United States in three Olympiads (1962, 1964, and 1968). Robert \"Bobby\" Fischer (1943-) eventually became world champion. In this game, Fischer (playing black) is amazingly brilliant, with such beautiful play that it was called the \"Game of the Century\". Byrne (playing white), after a standard opening, makes a minor mistake on move 11, moving the same piece twice (wasting time). Fischer pounces, with strong sacrificial play, culminating in an incredible queen sacrifice on move 17.  Byrne captures the queen, but Fischer more than compensates by taking many other pieces. The ending is an excellent demonstration of pieces working together to achieve a checkmate.} Nf3 {This is the \"Reti\" opening,  a noncomittal move that can easily transpose into a number of other different openings.} Nf6 2. c4 g6 3. Nc3 Bg7 {Fischer has opted for a defense based on \"hypermodern\" principles: he's inviting Byrne to establish a classical pawn stronghold in the center, which Fischer hopes to undermine and transform into a target. Fischer has fianchettoed his bishop, so it can attack the a1-h8 diagonal including its center squares.} 4. d4 O-O {Fischer castles, concentrating on protecting his king immediately.} 5. Bf4 d5 6. Qb3 dxc4 7.  Qxc4 c6 8. e4 Nbd7 9. Rd1 Nb6 10. Qc5 Bg4 {At this point, Byrne's pieces are more developed, and he controls the center squares. However, Fischer's king is well-protected, while Byrne's king is not.} 11. Bg5$2 {Here Byrne makes a mistake - he moves the same piece twice, losing time, instead of developing in some way. Both Burgess, Nunn and Emms and Wade and O'Connell suggest 11.  Be2; this would protect the King and enable a later kingside castle.}  (11. {For example, the game Flear-Morris, Dubling 1991, continued in this way:} Be2 Nfd7 12. Qa3 Bxf3 13. Bxf3 e5 14. dxe5 Qe8 15. Be2 Nxe5 16. O-O$16) 11... Na4$3 {Here Fischer cleverly offers up his Knight, but if Byrne takes it with Nxa4 Fischer will play Nxe4, and Byrne then suddenly has some terrible choices: } 12. Qa3 (12. Nxa4 Nxe4 13. Qxe7 (13. Bxe7 Nxc5 14. Bxd8 Nxa4 15. Bg5 Bxf3 16.  gxf3 Nxb2 {gives Fischer an extra pawn and ruin's Byrne's pawn structure.}) ( 13. Qc1 Qa5+ 14. Nc3 Bxf3 15. gxf3 Nxg5 {gives Fischer back his piece and a better position.}) 13... Qa5+ 14. b4 Qxa4 15. Qxe4 Rfe8 16. Be7 Bxf3 17. gxf3 Bf8 {produces a terrible pin.}) 12... Nxc3 13. bxc3 Nxe4$1 {Byrne declined to take the knight on move 12, so Fischer tries again by offering material to Byrne, in exchange for a much better position that is especially dangerous to white: an open e-file, with white's king poorly protected.} 14. Bxe7 {Byrne wisely decides to decline the offered material.} Qb6 15. Bc4 Nxc3$1 16. Bc5 Rfe8+ 17. Kf1 Be6$3 {This is a very clever move by Fischer; this is the move that made this game famous. Instead of trying to protect his queen, Fischer viciously counter-attacks using his bishop and sacrifices his queen. Byrne cannot simply take the bishop, because that will lead to checkmate.} 18. Bxb6 { Byrne takes Fischer's queen, as Fischer offered.} (18. Bxe6 Qb5+ 19. Kg1 Ne2+ 20. Kf1 Ng3+ 21. Kg1 Qf1+ 22. Rxf1 Ne2#) 18... Bxc4+ {Fischer now begins a series of discovered checks, picking up material.} 19. Kg1 Ne2+ 20. Kf1 Nxd4+ 21. Kg1 Ne2+ 22. Kf1 Nc3+ 23. Kg1 axb6 {This move by Fischer takes time out to capture a piece, but it doesn't waste time because it also threatens Byrne's queen. Byrne's queen cannot take the knight on c3, because it's protected by Fischer's bishop on g7.} 24. Qb4 Ra4 {Fischer uses his pieces together nicely in concert; the knight on c3 protects the rook on a4, which in turn protects the bishop on c4. This forces Byrne's queen away.} 25. Qxb6 {Byrne's queen picks up a pawn, but it's now poorly placed.} Nxd1 {Fischer has taken a rook, 2 bishops, and a pawn as compensation for his queen; in short, Fischer has gained significantly more material than he's lost. In addition, Byrne's remaining rook is stuck on h1 and it will take precious time to free it, giving Fischer opportunity to set up another offensive. Byrne has the only remaining queen, but this will not be enough.} 26. h3 Rxa2 27. Kh2 Nxf2 28. Re1 Rxe1 29. Qd8+ Bf8 30. Nxe1 Bd5 31. Nf3 Ne4 32. Qb8 b5 33. h4 h5 34. Ne5 Kg7 { Fischer breaks the pin, allowing the bishop to attack as well.} 35. Kg1 Bc5+ { Now Fischer \"peels away\" the white king from his last defender, and begins a series of checks that culminate in checkmate. This series of moves is extremely interesting in the way Fischer shows how to use various pieces together to force a checkmate.} 36. Kf1 Ng3+ {Adjacent bishops can, without opposition, simply move next to each other to force the king along. However, Fischer can't do this here by simply moving his light-square bishop to c4, because Byrne's knight protects c4. However, the knight does the job, forcing Byrne's king along.} 37. Ke1 Bb4+ 38. Kd1 Bb3+ 39. Kc1 Ne2+ 40. Kb1 Nc3+ 41.  Kc1 Rc2#"});
+    }
+};
+examples["1265"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/86'>ticket 86</a> at GitHub. " +
+    "Migrate to FontAwesome 5 (unsolved).",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#86: Migrate to FontAwesome 5",
+    jsStr: 'pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
+    jsFn: function() {
+        pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
+    }
+};
+examples["1266"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/87'>ticket 87</a> at GitHub. " +
+    "Show (optional?) move number on continuation of variation and main line.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#87: Show move number on continuation of variation and main line",
+    jsStr: 'pgnView("board", {pgn: "1. e4 e5 (1... c5 2. Nf3 d6) 2. Nf3 Nc6 3. Bb5 (3. Bc4 Nf6) "})',
+    jsFn: function() {
+        pgnView("board", {pgn: "1. e4 e5 (1... c5 2. Nf3 d6) 2. Nf3 Nc6 3. Bb5 (3. Bc4 Nf6) "});
+    }
+};
+examples["1267"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/88'>ticket 88</a> at GitHub. " +
+    "Allow all layouts (left, top, top-left, ...) as well for edit mode (unsolved).",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#88: Allow all layouts in edit mode",
+    jsStr: 'pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", layout: "left"})',
+    jsFn: function() {
+        pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", layout: 'left'});
+    }
+};
+examples["1268"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/89'>ticket 89</a> at GitHub. " +
+    "Promotion with Chessground does not work any more.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#89: Promotion with Chessground",
+    jsStr: 'pgnEdit("board", {position: "rnbqkbr1/ppppp2P/5n2/8/8/8/PPPP1PPP/RNBQKBNR w KQq - 1 5"})',
+    jsFn: function() {
+        pgnEdit("board", {position: "rnbqkbr1/ppppp2P/5n2/8/8/8/PPPP1PPP/RNBQKBNR w KQq - 1 5"});
+    }
+};
+examples["1269"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/90'>ticket 90</a> at GitHub. " +
+    "Use newest i18next with getFixedT.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#90: Use newest i18next",
+    jsStr: 'pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", locale: "fr"})',
+    jsFn: function() {
+        pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", locale: "fr"});
+    }
+};
+examples["1270"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/91'>ticket 91</a> at GitHub. " +
+    "Comment Markup Annotations (unsolved).",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#91: Comment Markup Annotations",
+    jsStr: 'pgnView("board", {pgn: "1. e4 { [%csl Rc4,Yf4,Gg5][%cal Gg1f3,Rf1c4] } "})',
+    jsFn: function() {
+        pgnView("board", {pgn: "1. e4 { [%csl Rc4,Yf4,Gg5][%cal Gg1f3,Rf1c4] } "});
+    }
+};
+examples["1271"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/92'>ticket 92</a> at GitHub. " +
+    "Hide Moves (unsolved).",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#92: Hide Moves",
+    jsStr: 'pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
+    jsFn: function() {
+        pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
+    }
+};
+examples["1272"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/93'>ticket 93</a> at GitHub. " +
+    "Game could not be read. Reason were the move annotations (arrows, circles, ...) in output of lichess.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#93: Game not readable",
+    jsStr: 'pgnView("board", {pgn: "1. e4 { [%csl Rc4,Yf4,Gg5][%cal Gg1f3,Rf1c4] } "})',
+    jsFn: function() {
+        pgnView("board", {pgn: "1. e4 { [%csl Rc4,Yf4,Gg5][%cal Gg1f3,Rf1c4] } "});
     }
 };
