@@ -9,15 +9,37 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
-## [0.9.6]
+## [0.9.7](https://github.com/mliebelt/PgnViewerJS/compare/v.0.9.6...v.0.9.7) 2018-06-01
+
+### Change
+
+* Moved to Chessground as implementation for the chess board.
+* Got rid of jQuery dependency.
+* Used in parts ES6, so PGNViewerJS does not work any more with IE11.
+* [#77](https://github.com/mliebelt/PgnViewerJS/issues/77) Allow definition of function `localPath()`.
+* [#78](https://github.com/mliebelt/PgnViewerJS/issues/78) Use chessground (lichess.org UI) as back-end.
+* [#79](https://github.com/mliebelt/PgnViewerJS/issues/79) Chessground: allow positioning of coordinates
+* [#80](https://github.com/mliebelt/PgnViewerJS/issues/80) Chessground: Size the coordinates according to the board size.
+* [#82](https://github.com/mliebelt/PgnViewerJS/issues/82) Implement NAG menu native.
+* [#90](https://github.com/mliebelt/PgnViewerJS/issues/90) Upgrade i18next to newest version.
+
+### Fixed
+
+* [#81](https://github.com/mliebelt/PgnViewerJS/issues/81) Fixed promotion with new UI (Chessground)
+* [#84](https://github.com/mliebelt/PgnViewerJS/issues/84) Show move number for start of variation
+* [#87](https://github.com/mliebelt/PgnViewerJS/issues/87) Ensure move numbers after end of variation
+* [#89](https://github.com/mliebelt/PgnViewerJS/issues/89) Fixed promotion with new UI (Chessground)
+* [#93](https://github.com/mliebelt/PgnViewerJS/issues/93) Game with color annotation from lichess could lnot be read
+
+## [0.9.6](https://github.com/mliebelt/PgnViewerJS/compare/v.0.9.5...v.0.9.6) 2017-12-29
 
 ### Changed
 
 * Added parameter layout (top, left, bottom, right, top-left, top-right, bottom-left, bottom-right) to define relation of board to moves.
-* #53: Added all NAGs with symbols, changed display and print of NAGs
-* #66: Allow pgn with line breaks in it
-* #67: Restructured the README to follow the conventions
-* #68: Added @media print to config, to allow easier print out
+* [#53](https://github.com/mliebelt/PgnViewerJS/issues/53) Added all NAGs with symbols, changed display and print of NAGs
+* [#66](https://github.com/mliebelt/PgnViewerJS/issues/66) Allow pgn with line breaks in it
+* [#67](https://github.com/mliebelt/PgnViewerJS/issues/67) Restructured the README to follow the conventions
+* [#68](https://github.com/mliebelt/PgnViewerJS/issues/68) Added @media print to config, to allow easier print out
 
 ### Fixed
 
@@ -35,8 +57,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * [#72](https://github.com/mliebelt/PgnViewerJS/issues/72) Fixed scrolling of moves (again)
 * [#73](https://github.com/mliebelt/PgnViewerJS/issues/73) Added missing NPM dependencies
 
-
-## [0.9.5]
+## [0.9.5](https://github.com/mliebelt/PgnViewerJS/compare/v.0.9.4...v.0.9.5) 2017-05-12
 
 ### Changed
 
@@ -59,7 +80,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * [#49](https://github.com/mliebelt/PgnViewerJS/issues/49): Ensure that the buttons look in the example section of documentation the same
 * [#50](https://github.com/mliebelt/PgnViewerJS/issues/50): Pawn captures (by pawns) are shown now in the edit mode
 
-## [0.9.4]
+## [0.9.4](https://github.com/mliebelt/PgnViewerJS/compare/v.0.9.3...v.0.9.4) 2016-12-11
 
 ### Changed
 
@@ -74,8 +95,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * [#23](https://github.com/mliebelt/PgnViewerJS/issues/23): Interpretation of tag "SetUp" from the headers
 * [#33](https://github.com/mliebelt/PgnViewerJS/issues/33): Button "first" goes to inital position
 
-
-## [0.9.3]
+## [0.9.3](https://github.com/mliebelt/PgnViewerJS/compare/v.0.9.2...v.0.9.3) 2016-11-02
 
 ### Changed
 
@@ -83,7 +103,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Switched to version 0.10.2 of [chess.js](https://github.com/jhlywa/chess.js) to add sloppy flag when reading moves.
 * Added additional format for calling the different modes. Instead of using the board ID (only), it is now possible to
   give a map of IDs for header, inner (for the board), button and moves. Edit mode is not supported (yet). See the example file
-  ticket25.html for an example how to use it. 
+  ticket25.html for an example how to use it.
 
 ### Fixed
 
@@ -95,14 +115,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * [#34](https://github.com/mliebelt/PgnViewerJS/issues/34): Added `reamde.html`, added links to `readme.md`, ensure that examples files are included.
 * [#35](https://github.com/mliebelt/PgnViewerJS/issues/35): Font Awesome icons don't work on Firefox when used locally. Similar workaround, start a local web server.
 
-
-## [0.9.2]
+## [0.9.2](https://github.com/mliebelt/PgnViewerJS/compare/v.0.9.1...v.0.9.2) 2016-08-22
 
 ### Changed
 
 * Tried to restructure some code, to minimize the API published, allowing creating new functionality.
-* One convention used everywhere: use API functions, and publish as part of those functions the ones that could be used by others. 
-* Use `font-awesome` as a local copy, so no internet connection is needed.  
+* One convention used everywhere: use API functions, and publish as part of those functions the ones that could be used by others.
+* Use `font-awesome` as a local copy, so no internet connection is needed.
 
 ### Fixed
 
@@ -111,7 +130,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * [#20](https://github.com/mliebelt/PgnViewerJS/issues/20): Corrected variation UI (event handling) for Firefox
 * [#21](https://github.com/mliebelt/PgnViewerJS/issues/21): Added rules for "1-0" and "0-1" to avoid errors
 
-## [0.9.1] 
+## [0.9.1](https://github.com/mliebelt/PgnViewerJS/compare/v.0.9.0...v.0.9.1) 2016-02-09
 
 ### Added
 
@@ -131,7 +150,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * [#11](https://github.com/mliebelt/PgnViewerJS/issues/11): Disambiguation from the source is kept.
 * [#13](https://github.com/mliebelt/PgnViewerJS/issues/13): FEN positions for black are recognized as those.
 
-## [0.9.0]
+## [0.9.0](https://github.com/mliebelt/PgnViewerJS/commit/b6726ae1c3540410a23f5eb9e8462f6bb453b0c9) 2016-02-09
 
-First published version, so the sections changed and added don't make sense. Rough version, was mostly workable,
-with not too much glitches known. 
+First published version, so the sections changed and added don't make sense. Rough version, was mostly workable, with not too much glitches known.

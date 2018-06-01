@@ -14,23 +14,23 @@
 <h2>#6: locale in edit mode</h2>
 <h3>Javascript part</h3>
 <pre class="prettyprint lang-js">var pgn = '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5';
-pgnEdit('board', {pgn: pgn, locale: 'fr'});
-pgnEdit('board1', {pgn: pgn,locale: 'de'});
-pgnEdit('board2', {pgn: pgn, locale: 'en'});</pre>
+pgnEdit('board', {pgn: pgn, locale: 'fr', width: '200px'});
+pgnEdit('board1', {pgn: pgn,locale: 'de', width: '200px'});
+pgnEdit('board2', {pgn: pgn, locale: 'en', width: '200px'});</pre>
 <h3>HTML part</h3>
-<pre class="prettyprint lang-html">&lt;div id=&quot;board&quot; style=&quot;width: 200px;float: left;margin-right: 20px&quot;&gt;&lt;&#x2F;div&gt;
-&lt;div id=&quot;board1&quot; style=&quot;width: 200px;float: left;margin-right: 20px&quot;&gt;&lt;&#x2F;div&gt;
-&lt;div id=&quot;board2&quot; style=&quot;width: 200px;float: left;margin-right: 20px&quot;&gt;&lt;&#x2F;div&gt;</pre>
+<pre class="prettyprint lang-html">&lt;div id=&quot;board&quot; style=&quot;float: left;margin-right: 20px&quot;&gt;&lt;&#x2F;div&gt;
+&lt;div id=&quot;board1&quot; style=&quot;float: left;margin-right: 20px&quot;&gt;&lt;&#x2F;div&gt;
+&lt;div id=&quot;board2&quot; style=&quot;float: left;margin-right: 20px&quot;&gt;&lt;&#x2F;div&gt;</pre>
 <p>See the <a href="../examples.html#1204">back link</a> to the original examples page.</p>
 <div>See <a href='https://github.com/mliebelt/PgnViewerJS/issues/6'>ticket 6</a> at GitHub. The boards above have the three locales fr, de, and en, and show the moves initially in the language of choice. However, when you edit the games, you will see that the last locale (here english) is used in all of them.</div>
-<div id="board" style="width: 200px;float: left;margin-right: 20px"></div>
-<div id="board1" style="width: 200px;float: left;margin-right: 20px"></div>
-<div id="board2" style="width: 200px;float: left;margin-right: 20px"></div>
+<div id="board" style="float: left;margin-right: 20px"></div>
+<div id="board1" style="float: left;margin-right: 20px"></div>
+<div id="board2" style="float: left;margin-right: 20px"></div>
 <script>
 var pgn = '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5';
-pgnEdit('board', {pgn: pgn, locale: 'fr'});
-pgnEdit('board1', {pgn: pgn,locale: 'de'});
-pgnEdit('board2', {pgn: pgn, locale: 'en'});
+pgnEdit('board', {pgn: pgn, locale: 'fr', width: '200px'});
+pgnEdit('board1', {pgn: pgn,locale: 'de', width: '200px'});
+pgnEdit('board2', {pgn: pgn, locale: 'en', width: '200px'});
 </script>
 <script>prettyPrint();</script>
 </body>

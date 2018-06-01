@@ -3,6 +3,12 @@
 PgnViewerJS is a simple JavaScript implementation to show PGN files (Portable Game Notation == Chess)
 in a web page. PgnViewerJS does not write everything anew, but it uses the following libraries:
 
+* [chess.js](https://github.com/jhlywa/chess.js) Base library to model chess in JavaScript
+* [Chessground](https://github.com/ornicar/chessground) The chessboard used by lichess.org
+* [pegjs](https://github.com/pegjs/pegjs) Parser Generator implemented in Javascript.
+
+See the section Acknowledgments for more supporting libraries.
+
 See the working examples on my new GitHub Pages site [PgnViewerJS](http://mliebelt.github.io/PgnViewerJS/), especially the [Configuration Builder](http://mliebelt.github.io/PgnViewerJS/docu/example/config.html) that demonstrates all parameters in a running example.
 
 ## Getting Started
@@ -14,16 +20,16 @@ The easiest way to use it is to download a release, unpack that release, copy on
 The following are example screenshots with the configuration set below, to show the rich possibilities of PgnViewerJS.
 
 ![Theme Sportverlag](img/screenshots/sportverlag.png)
-![Viewer](img/screenshots/view-with-fen.png)
 ![Edit with variations](img/screenshots/edit-variation.png)
+![Viewer](img/screenshots/view-layout-left.png)
 
 The screenshots show from left to right:
 
 * `mode: board; theme: sportverlag; pieceStyle: uscf`
-* `mode: view; showNotation: false; showFen: true` with comment
 * `mode: edit; orientation: black; locale: de` with comments
+* `mode: view; layout: 'left'` with comments
 
-Go to the [github.io pages](http://mliebelt.github.io/PgnViewerJS/) (documentation), where the current (and former) versions will be available.
+Go to the [github.io pages](http://mliebelt.github.io/PgnViewerJS/) (documentation), where the current (and former) versions are available.
 
 ### Features
 
@@ -115,6 +121,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 Because not all people want to build on themselves, I keep the versions available for downloads:
 
+* [Version 0.9.7](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.7.zip): UI with Chessground, small improvements, promotion.
 * [Version 0.9.6](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.6.zip): A lot of fixes, multi-line notation, stability.
 * [Version 0.9.5](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.5.zip): Some more fixes, stability.
 * [Version 0.9.4](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.4.zip): Finished edit mode, cleanup, some more fixes.

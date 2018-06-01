@@ -13,14 +13,14 @@
 <body class="merida zeit">
 <h2>#30: Underpromotion in edit mode possible (unsolved)</h2>
 <h3>Javascript part</h3>
-<pre class="prettyprint lang-js">pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5#43 Bxd1 6. Bxf7 Ke7 7. Nd5"})</pre>
+<pre class="prettyprint lang-js">pgnView("board", {pgn: "1. e4 f5 2. exf5 g6 3. fxg6 Bg7 4. gxh7 Kf7"})</pre>
 <h3>HTML part</h3>
 <pre class="prettyprint lang-html">&lt;div id=&#39;board&#39; style=&#39;width: 200px&#39;&#x2F;&gt;</pre>
 <p>See the <a href="../examples.html#1221">back link</a> to the original examples page.</p>
-<div>See <a href='https://github.com/mliebelt/PgnViewerJS/issues/30'>ticket 30</a> at GitHub. Underpromotion in edit mode possible.</div>
+<div>See <a href='https://github.com/mliebelt/PgnViewerJS/issues/30'>ticket 30</a> at GitHub. Underpromotion in edit mode possible. Try to promote the pawn.</div>
 <div id='board' style='width: 200px'/>
 <script>
-pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5#43 Bxd1 6. Bxf7 Ke7 7. Nd5"})
+pgnView("board", {pgn: "1. e4 f5 2. exf5 g6 3. fxg6 Bg7 4. gxh7 Kf7"})
 </script>
 <script>prettyPrint();</script>
 </body>

@@ -1,0 +1,71 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "cg-themes",
+            "url": "http://localhost:5001/examples/modes/board/cg-themes.html",
+            "webRoot": "${workspaceRoot}"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch test via NPM",
+            "runtimeExecutable": "npm test test/spec/pgnSpec.js",
+            "runtimeArgs": [
+                "run-script",
+                "debug"
+            ],
+            "port": 5858
+        },
+    {
+        "type": "chrome",
+        "request": "launch",
+        "name": "Empty edit",
+        "url": "http://localhost:5000/examples/modes/edit/empty.html",
+        "sourceMaps": true,
+        "webRoot": "${workspaceRoot}"
+    },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Config Builder",
+            "url": "http://localhost:5000/docu/example/config.html",
+            "sourceMaps": true,
+            "webRoot": "${workspaceRoot}"
+        },
+        {
+            "name": "Edit games",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:5000/examples/modes/edit/edit.html",
+            "sourceMaps": true,
+            "webRoot": "${workspaceRoot}"
+        },
+        {
+            "name": "Ticket 72",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:5000/examples/tickets/ticket072.html",
+            "sourceMaps": true,
+            "webRoot": "${workspaceRoot}"
+        },
+        {
+            "name": "Launch Jasmine",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:5000/test/SpecRunner.html",
+            "sourceMaps": true,
+            "webRoot": "${workspaceRoot}"
+        },
+        {
+            "name": "Attach to Chrome, with sourcemaps",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222,
+            "sourceMaps": true,
+            "webRoot": "${workspaceRoot}"
+        }
+    ]
+}
