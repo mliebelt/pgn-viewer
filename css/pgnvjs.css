@@ -121,6 +121,10 @@ div.nagMenu {
     width: 600px;
 }
 
+div.nagMenu a {
+    text-decoration: none;
+}
+
 div.nagMove, div.nagObservation, div.nagPosition {
     display: flex;
     flex-direction: column;
