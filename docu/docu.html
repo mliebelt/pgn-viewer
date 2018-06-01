@@ -46,7 +46,7 @@
 	<div class="container">
 		<div class="sixteen columns">
 			<h1 class="remove-bottom" style="margin-top: 40px">PgnViewerJS</h1>
-			<h5>Version 0.9.6</h5>
+			<h5>Version 0.9.7</h5>
 			<hr />
 		</div>
         <div class="container">
@@ -223,11 +223,19 @@
                         <td>.</td>
                     </tr>
                     <tr>
-                        <td><code class="js plain">size</code>
-                        <p>Size of the whole div.</p></td>
+                        <td><code class="js plain">width</code>
+                        <p>Width of the whole div.</p></td>
                         <td>no</td>
                         <td>-</td>
-                        <td>Denotes the size of the div widget.</td>
+                        <td>Denotes the width of the div widget.</td>
+                        <td>.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="js plain">boardSize</code>
+                        <p>Size of the board only.</p></td>
+                        <td>no</td>
+                        <td>-</td>
+                        <td>Denotes the size of board only, may be the same as width.</td>
                         <td>.</td>
                     </tr>
                     <tr>
@@ -270,6 +278,24 @@
                         </td>
                         <td>.</td>
                     </tr>
+                    <tr>
+                        <td><code class="js plain">coordsInner</code>
+                        <p>False, if coordinates of the ranks should be shown outside of the board.</p></td>
+                        <td>no</td>
+                        <td>true</td>
+                        <td>Set to false, if coords should be shown on the outside. Default is true.
+                        </td>
+                        <td>.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="js plain">coordsFactor</code>
+                        <p>Factor by which the coords font size should be multiplied.</p></td>
+                        <td>no</td>
+                        <td>1.0</td>
+                        <td>Factor by which the coords font size should be multiplied. Default is 1.0.
+                        </td>
+                        <td>.</td>
+                    </tr>
                 </tbody>
             </table>
 
@@ -290,14 +316,14 @@
                 <tr>
                     <td><code class="js plain">pgnBoard</code>
                     <td>ID, position</td>
-                    <td>theme, pieceStyle, orientation, showNotation</td>
+                    <td>theme, pieceStyle, orientation, showNotation, width, boardSize, coordsInner, coordsFactor</td>
                     <td>Displays (only) a board, in the size given by the container.</td>
                     <td>See the page <a href="examples.html#1021">boards</a> for some examples.</td>
                 </tr>
                 <tr>
                     <td><code class="js plain">pgnPrint</code> </td>
                     <td>ID, pgn</td>
-                    <td>theme, pieceStyle, orientation, showNotation</td>
+                    <td>theme, pieceStyle, orientation, showNotation, width, boardSize</td>
                     <td>Shows the whole game in a notation seen normally in
                     magazines or books. Does <strong>not</strong> allow to
                     play the game interactively.</td>
