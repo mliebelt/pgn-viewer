@@ -3,12 +3,13 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        clean: ["dist/css", 'dist/js', 'dist/img', 'dist/locales', 'dist/doc', "docu/dist/css",
+        clean: ["dist/css", 'dist/examples', 'dist/fonts', 'dist/js', 'dist/img', 'dist/locales', 'dist/doc', "docu/dist/css",
             'docu/dist/js', 'docu/dist/img', 'docu/dist/locales', 'docu/dist/doc',
-            'PgnViewerJS.zip'],
+            'dist/PgnViewerJS*.zip'],
         concat: {
             all: {
                 src: [
+                    //'js/polyfill.min.js',
                     'chess.js/chess.js',
                     'js/chessground.min.js',
                     'js/i18next.min.js',
@@ -46,6 +47,20 @@ module.exports = function(grunt) {
                 dest: 'dist/js/min/pgnvjs.js'
             }
         },
+        // babel: {
+        //     options: {
+        //         sourceMap: false
+        //     },
+        //     dist: {
+        //         files: [ { 
+        //             expand: true,
+        //             cwd: 'tmp/js',
+        //             dest: 'dist/js/',
+        //             src:  [ '*.js']
+        //         }
+        //         ]
+        //     }
+        // },
         copy: {
             all: {
                 files: [
@@ -95,7 +110,7 @@ module.exports = function(grunt) {
         compress: {
             main: {
                 options: {
-                    archive: 'dist/PgnViewerJS-0.9.6.zip'
+                    archive: 'dist/PgnViewerJS-0.9.7.zip'
                 },
                 expand: true,
                 cwd: 'dist/',
@@ -135,6 +150,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-markdown');
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-concat-css');
+    grunt.loadNpmTasks('grunt-babel');
 
     // Default task.
     // uglify does not work with ES6
