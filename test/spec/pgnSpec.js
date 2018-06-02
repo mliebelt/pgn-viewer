@@ -221,6 +221,34 @@ describe("When reading pgn with wrong headers", function() {
     });
 });
 
+describe("When reading PGN with comments", function() {
+    var my_pgn;
+    it("should read all sorts of comments", function() {
+        my_pgn = pgnReader({pgn: "{Before move} 1. {Before number} e4 {After move} {[%csl Ya4, Gb4]}"});
+        var first = my_pgn.getMove(0);
+        expect(first.commentMove).toEqual("Before move");
+        expect(first.commentBefore).toEqual("Before number");
+        expect(first.commentAfter).toEqual("After move");
+        expect(first.commentDiag.colorFields.length).toEqual(2);
+    });
+    it ("should understand format of diagram circles", function() {
+        my_pgn = pgnReader({pgn: "1. e4 {[%csl Ya4, Gb4,Rc4]}"});
+        var first = my_pgn.getMove(0);
+        expect(first.commentDiag.colorFields.length).toEqual(3);
+        expect(first.commentDiag.colorFields[0]).toEqual("Ya4");
+        expect(first.commentDiag.colorFields[1]).toEqual("Gb4");
+        expect(first.commentDiag.colorFields[2]).toEqual("Rc4");
+    })
+    it ("should understand format of diagram arrows", function() {
+        my_pgn = pgnReader({pgn: "1. e4 {[%cal Ya4b2, Gb4h8,Rc4c8]}"});
+        var first = my_pgn.getMove(0);
+        expect(first.commentDiag.colorArrows.length).toEqual(3);
+        expect(first.commentDiag.colorArrows[0]).toEqual("Ya4b2");
+        expect(first.commentDiag.colorArrows[1]).toEqual("Gb4h8");
+        expect(first.commentDiag.colorArrows[2]).toEqual("Rc4c8");
+    })
+});
+
 describe("When reading PGN with variations", function() {
     var my_pgn;
 

@@ -20,11 +20,13 @@ pgnStartBlack
 
 pgnWhite
   = whiteSpace? cm:comment? whiteSpace? mn:moveNumber? whiteSpace? cb:comment? whiteSpace?
-    hm:halfMove  whiteSpace? nag:nags?  whiteSpace? ca:comment? whiteSpace? vari:variationWhite? all:pgnBlack?
+    hm:halfMove  whiteSpace? nag:nags?  whiteSpace? ca:comment? whiteSpace? cd:commentDiag? whiteSpace? vari:variationWhite? all:pgnBlack?
     { var arr = (all ? all : []);
       var move = {}; move.turn = 'w'; move.moveNumber = mn;
       move.notation = hm; move.commentBefore = cb; move.commentAfter = ca; move.commentMove = cm;
-      move.variations = (vari ? vari : []); move.nag = (nag ? nag : null); arr.unshift(move); return arr; }
+      move.variations = (vari ? vari : []); move.nag = (nag ? nag : null); arr.unshift(move); 
+      move.commentDiag = (cd ? cd : []);
+      return arr; }
   / endGame
 
 pgnBlack
@@ -45,11 +47,40 @@ endGame
   / "*"  { return ["*"]; }
 
 comment
-  = cl cm:[^}]+ cr { return cm.join("").trim(); }
+  = ! commentDiag cl cm:[^}]+ cr { return cm.join("").trim(); }
+
+commentDiag
+  = cl whiteSpace? cas:commentAnnotations+ whiteSpace? cr { return cas; }
+
+commentAnnotations
+  = ca:commentAnnotation whiteSpace?  { return ca; }
+
+commentAnnotation
+  = bl whiteSpace? "%csl" whiteSpace cfs:colorFields whiteSpace? br { return { colorFields: cfs}; }
+
+colorFields
+  = cf:colorField whiteSpace? cfl:("," whiteSpace? colorField)* 
+  { var arr = []; arr.push(cf); for (var i=0; i < cfl.length; i++) { arr.push(cfl[i][2])}; return arr; }
+
+colorField
+  = col:color f:field { return col + f; }
+
+color 
+  = "Y" { return "Y"; } // yellow
+  / "G" { return "G"; } // green
+  / "R" { return "R"; } // red
+  / "B" { return "B"; } // blue
+
+field
+  = col:column row:row { return col + row; }
 
 cl = '{'
 
 cr = '}'
+
+bl = '['
+
+br = ']'
 
 variationWhite
   = pl vari:pgnWhite pr whiteSpace? all:variationWhite? whiteSpace? me:moveEllipse?
