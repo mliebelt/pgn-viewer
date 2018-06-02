@@ -3,7 +3,7 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        clean: ["dist/css", 'dist/examples', 'dist/fonts', 'dist/js', 'dist/img', 'dist/locales', 'dist/doc', "docu/dist/css",
+        clean: ["dist/css", 'dist/fonts', 'dist/js', 'dist/img', 'dist/locales', 'dist/doc', "docu/dist/css",
             'docu/dist/js', 'docu/dist/img', 'docu/dist/locales', 'docu/dist/doc',
             'dist/PgnViewerJS*.zip'],
         concat: {
