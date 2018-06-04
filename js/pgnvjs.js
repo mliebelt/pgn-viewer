@@ -698,21 +698,41 @@ var pgnBase = function (boardId, configuration) {
                 board.setPieces(pieces);
             }
         }
+
+        function getShapes(commentDiag) {
+            function colOfDiag(color) {
+                const colors = { Y: 'yellow', R: 'red', B: 'blue', G: 'green'};
+                return colors[color];
+            }
+            let arr = [];
+            if (commentDiag !== undefined) {
+                if (commentDiag.colorArrows) {
+                    for (var i=0; i < commentDiag.colorArrows.length; i++) {
+                        let comm = commentDiag.colorArrows[i];
+                        arr.push({ orig: comm.substring(1,3), dest: comm.substring(3,5), brush: colOfDiag(comm.substring(0,1))});
+                    }
+                }
+                if (commentDiag.colorFields) {
+                    for (var i=0; i < commentDiag.colorFields.length; i++) {
+                        let comm = commentDiag.colorFields[i];
+                        arr.push({ orig: comm.substring(1,3), brush: colOfDiag(comm.substring(0,1))});
+                    }
+                }
+            }
+            return arr;
+        }
         //console.log("Marke move: Curr " + curr + " Next " + next + " FEN " + fen);
         //board.set({fen: fen});
+        let myMove = that.mypgn.getMove(next);
+        let prevMove = that.mypgn.getMove(myMove.prev);
         if ( (curr === null) || (next > curr) ) {
-            let myMove = that.mypgn.getMove(next);
-            let prevMove = that.mypgn.getMove(myMove.prev);
             board.set({fen: (prevMove === undefined) ? that.configuration.fen : prevMove.fen});
             board.move(myMove.from, myMove.to);    
-            handlePromotion(myMove);
         } else {
-            let myMove = that.mypgn.getMove(next);
-            let prevMove = that.mypgn.getMove(myMove.prev);
-            //makeMove(myMove.prev, myMove.index, myMove.fen); 
             board.set({fen: myMove.fen, lastMove: [myMove.from, myMove.to]});
-            handlePromotion(myMove);
         }
+        handlePromotion(myMove);
+        board.setShapes(getShapes(myMove.commentDiag));
         game.load(fen);
         unmarkMark(next);
         that.currentMove = next;

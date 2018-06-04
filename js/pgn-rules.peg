@@ -25,17 +25,19 @@ pgnWhite
       var move = {}; move.turn = 'w'; move.moveNumber = mn;
       move.notation = hm; move.commentBefore = cb; move.commentAfter = ca; move.commentMove = cm;
       move.variations = (vari ? vari : []); move.nag = (nag ? nag : null); arr.unshift(move); 
-      move.commentDiag = (cd ? cd : []);
+      move.commentDiag = cd;
       return arr; }
   / endGame
 
 pgnBlack
   = whiteSpace? cm:comment? whiteSpace? me:moveEllipse? whiteSpace? cb:comment? whiteSpace?
-    hm:halfMove whiteSpace?  nag:nags? whiteSpace? ca:comment? whiteSpace? vari:variationBlack? all:pgnWhite?
+    hm:halfMove whiteSpace?  nag:nags? whiteSpace? ca:comment? whiteSpace? cd:commentDiag? whiteSpace? vari:variationBlack? all:pgnWhite?
     { var arr = (all ? all : []);
       var move = {}; move.turn = 'b'; move.moveNumber = me;
       move.notation = hm; move.commentBefore = cb; move.commentAfter = ca;
-      move.variations = (vari ? vari : []); arr.unshift(move); move.nag = (nag ? nag : null); return arr; }
+      move.variations = (vari ? vari : []); arr.unshift(move); move.nag = (nag ? nag : null);
+      move.commentDiag = cd;
+      return arr; }
   / endGame
 
 endGame
@@ -50,13 +52,17 @@ comment
   = ! commentDiag cl cm:[^}]+ cr { return cm.join("").trim(); }
 
 commentDiag
-  = cl whiteSpace? cas:commentAnnotations+ whiteSpace? cr { return cas; }
+  = cl whiteSpace? cas:commentAnnotations whiteSpace? cr { return cas; }
 
 commentAnnotations
-  = ca:commentAnnotation whiteSpace?  { return ca; }
+  = caf:commentAnnotationFields? whiteSpace? caa:commentAnnotationArrows? 
+  { var ret = {}; if (caf) { ret.colorFields = caf; }; if (caa) { ret.colorArrows = caa; }; return ret; }
 
-commentAnnotation
-  = bl whiteSpace? "%csl" whiteSpace cfs:colorFields whiteSpace? br { return { colorFields: cfs}; }
+commentAnnotationFields
+  = bl whiteSpace? "%csl" whiteSpace cfs:colorFields whiteSpace? br { return cfs; }
+
+commentAnnotationArrows
+  = bl whiteSpace? "%cal" whiteSpace cfs:colorArrows whiteSpace? br { return cfs; }
 
 colorFields
   = cf:colorField whiteSpace? cfl:("," whiteSpace? colorField)* 
@@ -64,6 +70,13 @@ colorFields
 
 colorField
   = col:color f:field { return col + f; }
+
+colorArrows
+  = cf:colorArrow whiteSpace? cfl:("," whiteSpace? colorArrow)* 
+  { var arr = []; arr.push(cf); for (var i=0; i < cfl.length; i++) { arr.push(cfl[i][2])}; return arr; }
+
+colorArrow
+  = col:color ff:field ft:field { return col + ff + ft; }
 
 color 
   = "Y" { return "Y"; } // yellow
