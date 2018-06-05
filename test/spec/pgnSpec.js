@@ -247,6 +247,12 @@ describe("When reading PGN with comments", function() {
         expect(first.commentDiag.colorArrows[1]).toEqual("Gb4h8");
         expect(first.commentDiag.colorArrows[2]).toEqual("Rc4c8");
     })
+    it ("should understand both circles and arrows", function() {
+        my_pgn = pgnReader({pgn: "e4 {[%csl Yf4,Gg5,Gd4,Rc4,Bb4,Ya4][%cal Gg1f3,Rf1c4,Gh2h4,Rg2g4,Bf2f4,Ye2e4]}"});
+        var first = my_pgn.getMove(0);
+        expect(first.commentDiag.colorArrows.length).toEqual(6);
+        expect(first.commentDiag.colorFields.length).toEqual(6);
+    })
 });
 
 describe("When reading PGN with variations", function() {

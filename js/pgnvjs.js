@@ -433,7 +433,7 @@ var pgnBase = function (boardId, configuration) {
                 addEventListener("pgn" + buttonsId, 'mousedown', function(e) {
 	                e = e || window.event;
                     e.preventDefault();
-                    e.fromElement.select();
+                    e.target.select();
                 });
                 document.getElementById("pgn" + buttonsId).onpaste = function(e) {
                     var pastedData = e.originalEvent.clipboardData.getData('text');
@@ -705,7 +705,7 @@ var pgnBase = function (boardId, configuration) {
                 return colors[color];
             }
             let arr = [];
-            if (commentDiag !== undefined) {
+            if ( (commentDiag !== undefined) && (commentDiag !== null) ) {
                 if (commentDiag.colorArrows) {
                     for (var i=0; i < commentDiag.colorArrows.length; i++) {
                         let comm = commentDiag.colorArrows[i];
