@@ -1,4 +1,4 @@
-## Development documentation
+# Development documentation
 
 The following is the (rough) development documentation. When do you need it:
 
@@ -7,7 +7,40 @@ The following is the (rough) development documentation. When do you need it:
 * When you want to understand how the whole development process works.
 * When you are mliebelt and have to remember all the little things.
 
-### Overview
+## In a Nutshell
+
+If you don't want to read a lot of documentation, here is the shortest form possible.
+
+### Pre-requisits
+
+* You have to have installed node.js (any version)
+* You have to have cloned the repository, or downloaded a zip file of its content locally. This is contained in the folder `/PgnViewerJS` if we need a reference.
+
+### Boot-strapping
+
+Do the following steps to have PgnViewerJS build:
+
+* Run `npm install` to have all the additional libraries downloaded and installed locally.
+* Run `grunt dev` to build a development distribution. This will create the library part of PgnViewerJS only.
+  * `dist/css/third.css` and
+  * `dist/js/third.js`.
+
+### Running examples
+
+* Open a shell and go to `/PgnViewerJS`.
+* Run a local web server on that directory.
+* Open in a web browser (preferred Chrome or Firefox) the URL `http://localhost:5001/examples`. Navigate to the directory and open the example file locally.
+
+### Running Unit Tests
+
+* Same as above Running Examples.
+* The URL for running the tests is then `http://localhost:5001/test/SpecRunner.html`
+
+The rest of the documentation is pretty old and not in good shape. I hope I can clean up that later.
+
+----
+
+## Overview
 
 The following gives an overview over the parts that are relevant for development:
 
@@ -17,25 +50,22 @@ The following gives an overview over the parts that are relevant for development
 * gh-pages: How to publish the documentation, examples, ... (without removing anything)
 * Testing: how are the tests done, what to expect, what does not work, ...
 
-### Branching Model
+## Branching Model
 
 * GitHub does not make any statement which branching model to use, so you are free to get your own (working).
 * I want to publish with GitHub, so I have to use `gh-pages` for that.
-* Additionally I want to be able to exchange sources between different computers (I use) and ensure that I am
-working on each computer all the time on the latest sources. So I created the branch develop for that.
+* Additionally I want to be able to exchange sources between different computers (I use) and ensure that I am working on each computer all the time on the latest sources. So I created the branch develop for that.
 * After having understood what is the strength of Git, I want to use feature branches here or there.
 
 So these requirements give the following branching model (only textually, have to draw that):
 
 * Use `develop` for development. No `dist` files there, ensure that.
 * Use `rebase` when possible to get an easy to follow history.
-* Use `squash` when merging something from `develop` to the `master` to build a new release. So each
-commit on the master should be only one commit, which is then nicely documented.
-* Merge the changes of the master to the `gh-pages` branch, clean-up, build the documentation, and 
- `rebase` and `squash` here as well.
-* Try to use big-binaries that are available from GitHub now, to include the (zipped) distro only. 
+* Use `squash` when merging something from `develop` to the `master` to build a new release. So each commit on the master should be only one commit, which is then nicely documented.
+* Merge the changes of the master to the `gh-pages` branch, clean-up, build the documentation, and `rebase` and `squash` here as well.
+* Try to use big-binaries that are available from GitHub now, to include the (zipped) distro only.
 
-##### TODOs
+### TODOs
 
 * Start an (explicit) feature branch when starting development for a feature (or bug fix).
 * Start that branch from `develop` first.
@@ -45,8 +75,7 @@ commit on the master should be only one commit, which is then nicely documented.
 #### Chess.js
 
 * Library found on GitHub
-* Including  some documentation (from chessboard.js, see below) how to constuct some working Javascript UI with those
-libraries
+* Including  some documentation (from chessboard.js, see below) how to constuct some working Javascript UI with those libraries
 
 ##### TODOs
 
@@ -90,8 +119,7 @@ I have done this to do it:
 * Recreate the file `pgn-parser.js` by the online PEG tool. (/)
 * Create some test cases for checking that the peg-rules do work well, additional to the existing ones.
 * Create for that purpose the file `pgn-parser.js` anew each time by using the Grunt build.
-* Create a Gruntfile task for that purpose, so changing the rules, and then pressing the test button should be
-sufficient.
+* Create a Gruntfile task for that purpose, so changing the rules, and then pressing the test button should be sufficient.
 * Is it wise to use Jasemine for that job? At least it works at the moment ...
 * Try to read all tickets to the robustness of parsing, and try to match each one by creating a test case for it.
 
@@ -110,8 +138,7 @@ sufficient.
 #### jquery.multiselect
 
 * Allows to use the multiselectd widget of JQuery UI (if installed)
-* Works ok (more or less), but there are some subtleties that lead to wrong tests,
-display of UI, ...
+* Works ok (more or less), but there are some subtleties that lead to wrong tests, display of UI, ...
 
 #### jquery.timer
 
@@ -129,16 +156,13 @@ display of UI, ...
 
 #### pgn.js
 
-* Originally the reader function, should also be used as a writer
-(in all cases, even for the UI).
-* Uses the base functionality of `chess.js` and `pgn-parser` (created by PEG)
-alot.
+* Originally the reader function, should also be used as a writer (in all cases, even for the UI).
+* Uses the base functionality of `chess.js` and `pgn-parser` (created by PEG) alot.
 
 ##### TODOs
 
 * Provide a clean API that could then be used (only) by the UI.
-* The UI should not use the internal structure (alot), but the
-API functions.
+* The UI should not use the internal structure (alot), but the API functions.
 
 ### Project structure
 
@@ -151,14 +175,14 @@ The following gives some hints, what the different directories and files (beside
         jquery.multiselect.css: Styles the multi select widget
         jquery-ui.css: Base style
         jquery-ui.theme.css: Don't remember the theme I have taken
-        pgnvjs.css: One file for all styling (on top of the others). 
+        pgnvjs.css: One file for all styling (on top of the others).
         templ.css: documentation how to create and embedd a new style. Not sure if that works.
     /dist: Will be generated on the master / gh-pages for a new release
     /dist-nojq: Variation that does not contain jquery (to minimize the distribution)
-    /docu: Provides the base for the documentation on github pages. 
+    /docu: Provides the base for the documentation on github pages.
            Uses the (then created) dist directory.
         /css: Additional styling
-        /img: 
+        /img:
         /js
             examples.js: Examples for the documentation (as Javascript array)
             prettify.js: Uses prettify to render the (HTML and Javascript) source code.
@@ -190,27 +214,25 @@ The following gives some hints, what the different directories and files (beside
       * Features in work are marked by (working)
     readme.md: Main documentation file for GitHub (master)
     todos.txt: tempory notes, only interesting for the developer
-        
-    
-##### TODOs
-    
+
+#### TODOs
+
 * Create jquery-ui new (for the current version)
 * Document the decisions for jquery-ui (widgets, themes)
-    
+
 ### gh-pages publishing
 
 * The branch gh-pages is currently used to "publish" PgnViewerJS (which works quite well).
 * The process is difficult, and I should only have the relevant files on the relevant branches
 
-##### TODOs
-
+#### TODOs
 
 ### Testing
 
 * Upgraded to the latest Jasmine version (2.3.4)
 * Checked that all unit tests work again (without any change).
 
-##### TODOs
+#### TODOs
 
 * Complete the set of necessary tests by checking the plans, and which plans are implemented.
 * Structure the sections by those plans, so there is a bigger set of things to do all the time.
