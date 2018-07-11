@@ -478,7 +478,7 @@ var pgnReader = function (configuration, chess) {
             if ((getTurn(configuration.position) === 'b') &&
                     (isMove(0)) &&
                     (that.moves[0].turn === 'w')) {
-                utils.pvEeach(getMoves(), function(move) {
+                utils.pvEach(getMoves(), function(move) {
                     move.turn = (move.turn === 'w') ? 'b' : 'w'
                 })
             }
