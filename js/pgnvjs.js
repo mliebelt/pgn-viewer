@@ -172,16 +172,36 @@ var pgnBase = function (boardId, configuration) {
      * @param element the element to show by scrolling
      */
     function scrollToView(element){
+        function scrollParentToChild(parent, child) {
+            let parentRect = parent.getBoundingClientRect();
+            // What can you see?
+            let parentViewableArea = {
+                height: parent.clientHeight,
+                width: parent.clientWidth
+            };
+            
+            // Where is the child
+            let childRect = child.getBoundingClientRect();
+            // Is the child viewable?
+            let isViewable = (childRect.top >= parentRect.top) && (childRect.top <= parentRect.top + parentViewableArea.height);
+            
+            // if you can't see the child try to scroll parent
+            if (!isViewable) {
+                // scroll by offset relative to parent
+                parent.scrollTop = (childRect.top + parent.scrollTop) - parentRect.top
+            }
+        }
         var node = element;
         var movesNode = node.offsetParent;
-        console.log('Has scrollbar: ' + (movesNode.scrollHeight > movesNode.clientHeight));
-        var nodeRect = node.getBoundingClientRect();
-        var movesRect = movesNode.getBoundingClientRect();
-        if (nodeRect.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
-            node.scrollIntoView(false);
-        } else if (nodeRect.top <= 0) {
-            node.scrollIntoView(true);
-        }
+        scrollParentToChild(movesNode, node);
+        // console.log('Has scrollbar: ' + (movesNode.scrollHeight > movesNode.clientHeight));
+        // var nodeRect = node.getBoundingClientRect();
+        // var movesRect = movesNode.getBoundingClientRect();
+        // if (nodeRect.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
+        //     node.scrollIntoView(false);
+        // } else if (nodeRect.top <= 0) {
+        //     node.scrollIntoView(true);
+        // }
     }
 
     /**
