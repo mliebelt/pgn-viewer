@@ -19,21 +19,25 @@ pgnStartBlack
   = pb:pgnBlack { return pb; }
 
 pgnWhite
-  = whiteSpace? cm:comment? whiteSpace? mn:moveNumber? whiteSpace? cb:comment? whiteSpace?
-    hm:halfMove  whiteSpace? nag:nags?  whiteSpace? ca:comment? whiteSpace? vari:variationWhite? all:pgnBlack?
+  = whiteSpace? cm:comments? whiteSpace? mn:moveNumber? whiteSpace? cb:comments? whiteSpace?
+    hm:halfMove  whiteSpace? nag:nags?  whiteSpace? ca:comments? whiteSpace? cd:commentDiag? whiteSpace? vari:variationWhite? all:pgnBlack?
     { var arr = (all ? all : []);
       var move = {}; move.turn = 'w'; move.moveNumber = mn;
       move.notation = hm; move.commentBefore = cb; move.commentAfter = ca; move.commentMove = cm;
-      move.variations = (vari ? vari : []); move.nag = (nag ? nag : null); arr.unshift(move); return arr; }
+      move.variations = (vari ? vari : []); move.nag = (nag ? nag : null); arr.unshift(move); 
+      move.commentDiag = cd;
+      return arr; }
   / endGame
 
 pgnBlack
-  = whiteSpace? cm:comment? whiteSpace? me:moveEllipse? whiteSpace? cb:comment? whiteSpace?
-    hm:halfMove whiteSpace?  nag:nags? whiteSpace? ca:comment? whiteSpace? vari:variationBlack? all:pgnWhite?
+  = whiteSpace? cm:comments? whiteSpace? me:moveEllipse? whiteSpace? cb:comments? whiteSpace?
+    hm:halfMove whiteSpace?  nag:nags? whiteSpace? ca:comments? whiteSpace? cd:commentDiag? whiteSpace? vari:variationBlack? all:pgnWhite?
     { var arr = (all ? all : []);
       var move = {}; move.turn = 'b'; move.moveNumber = me;
       move.notation = hm; move.commentBefore = cb; move.commentAfter = ca; move.commentMove = cm;
-      move.variations = (vari ? vari : []); arr.unshift(move); move.nag = (nag ? nag : null); return arr; }
+      move.variations = (vari ? vari : []); arr.unshift(move); move.nag = (nag ? nag : null);
+      move.commentDiag = cd;
+      return arr; }
   / endGame
 
 endGame
@@ -44,12 +48,56 @@ endGame
   / "1/2-1/2"  { return ["1/2-1/2"]; }
   / "*"  { return ["*"]; }
 
+comments
+  = cf:comment cfl:(whiteSpace? comment)* 
+  { var comm = cf; for (var i=0; i < cfl.length; i++) { comm += " " + cfl[i][1]}; return comm; }
+
 comment
-  = cl cm:[^}]+ cr { return cm.join("").trim(); }
+  = ! commentDiag cl cm:[^}]+ cr { return cm.join("").trim(); }
+
+commentDiag
+  = cl whiteSpace? cas:commentAnnotations whiteSpace? cr { return cas; }
+
+commentAnnotations
+  = caf:commentAnnotationFields? whiteSpace? caa:commentAnnotationArrows? 
+  { var ret = {}; if (caf) { ret.colorFields = caf; }; if (caa) { ret.colorArrows = caa; }; return ret; }
+
+commentAnnotationFields
+  = bl whiteSpace? "%csl" whiteSpace cfs:colorFields whiteSpace? br { return cfs; }
+
+commentAnnotationArrows
+  = bl whiteSpace? "%cal" whiteSpace cfs:colorArrows whiteSpace? br { return cfs; }
+
+colorFields
+  = cf:colorField whiteSpace? cfl:("," whiteSpace? colorField)* 
+  { var arr = []; arr.push(cf); for (var i=0; i < cfl.length; i++) { arr.push(cfl[i][2])}; return arr; }
+
+colorField
+  = col:color f:field { return col + f; }
+
+colorArrows
+  = cf:colorArrow whiteSpace? cfl:("," whiteSpace? colorArrow)* 
+  { var arr = []; arr.push(cf); for (var i=0; i < cfl.length; i++) { arr.push(cfl[i][2])}; return arr; }
+
+colorArrow
+  = col:color ff:field ft:field { return col + ff + ft; }
+
+color 
+  = "Y" { return "Y"; } // yellow
+  / "G" { return "G"; } // green
+  / "R" { return "R"; } // red
+  / "B" { return "B"; } // blue
+
+field
+  = col:column row:row { return col + row; }
 
 cl = '{'
 
 cr = '}'
+
+bl = '['
+
+br = ']'
 
 variationWhite
   = pl vari:pgnWhite pr whiteSpace? all:variationWhite? whiteSpace? me:moveEllipse?
