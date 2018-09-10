@@ -42,7 +42,7 @@ function StringBuilder(value) {
             }
         }
         return true;
-    }
+    };
 
     // Return the last character (as string) of the receiver.
     // Return null if none is found
@@ -51,7 +51,7 @@ function StringBuilder(value) {
             return null;
         }
         return that.strings[that.strings.length - 1].slice(-1);
-    }
+    };
 
     // Converts this instance to a String.
     var toString = function () {
@@ -67,7 +67,7 @@ function StringBuilder(value) {
         length: length,
         isEmpty: isEmpty,
         lastChar: lastChar
-    }
+    };
 }
 
 function Utils() {
@@ -78,17 +78,17 @@ function Utils() {
     
     var isString = function(obj) {
         return toString.call(obj) === '[object String]';
-    }
+    };
     var isArguments = function(obj) {
         return toString.call(obj) === '[object Arguments]';
-    }
+    };
     var MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;  
     var isArrayLike = function(collection) {
         var length = getLength(collection);
         return typeof length == 'number' && length >= 0 && length <= MAX_ARRAY_INDEX;
     };
     var isArray = nativeIsArray || function(obj) {
-        return toString.call(obj) === '[object Array]';
+        return Array.isArray(obj);
       };
     var property = function(key) {
         return function(obj) {
@@ -170,7 +170,7 @@ function Utils() {
         pvEach: pvEach,
         pvIsElement: pvIsElement,
         pvIsEmpty: pvIsEmpty
-    }
+    };
 }
 
 
@@ -187,7 +187,7 @@ var pgnReader = function (configuration, chess) {
             if (request.status === 200) {
                 return request.responseText;
             }
-        }
+        };
         if (typeof configuration.position == 'undefined') {
             configuration.position = 'start';
         }
@@ -201,7 +201,7 @@ var pgnReader = function (configuration, chess) {
         if (typeof configuration.locale == 'undefined') {
             configuration.locale = 'en';
         }
-    }
+    };
     initialize_configuration(configuration);
     var parser = pgnParser;
     that.startMove = 0;
@@ -210,9 +210,9 @@ var pgnReader = function (configuration, chess) {
         if (configuration.position == 'start') {
                 game.reset();
             } else {
-                game.load(configuration.position)
+                game.load(configuration.position);
             }
-    }
+    };
     that.PGN_TAGS = {
         Event: "the name of the tournament or match event",
         Site: "the location of the event",
@@ -244,7 +244,7 @@ var pgnReader = function (configuration, chess) {
         'r': 'rook',
         'b': 'bishop',
         'n': 'knight'
-    }
+    };
     /**
      * Returns the NAGs as defined in http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm#c10
      * The index is the index number after the '$' sign like in $3 == 'very good move'.
@@ -266,7 +266,7 @@ var pgnReader = function (configuration, chess) {
     that.NAGs[16]=    "±";    // 16
     that.NAGs[17]=    "∓";    // 17
     that.NAGs[18]=    "+−";   // 18
-    that.NAGs[19]=    "-+"    // 19
+    that.NAGs[19]=    "-+";    // 19
     that.NAGs[22]=    "⨀";
     that.NAGs[23]=    "⨀";
     that.NAGs[32]=    "⟳";
@@ -325,7 +325,7 @@ var pgnReader = function (configuration, chess) {
             return '';
         }
         return i18next.t(fig, {lng: that.configuration.locale});
-    }
+    };
 
     /**
      * Returns the real notation from the move (excluding NAGs).
@@ -415,19 +415,18 @@ var pgnReader = function (configuration, chess) {
          * Implemment the logic to interpret the headers.
          */
         var interpretHeaders = function () {
-            if (that.headers['SetUp']) {
-                var setup = that.headers['SetUp'];
+            if (that.headers.SetUp) {
+                var setup = that.headers.SetUp;
                 if (setup === '0') {
                     configuration.position = 'start';
                 } else {
-                    var fen = that.headers['FEN'];
+                    var fen = that.headers.FEN;
                     configuration.position = fen;
                 }
             }
-            if (that.headers['Result']) {
-                that.endGame = that.headers['Result'];
-            }
-        } 
+            if (that.headers.Result) {
+                that.endGame = that.headers.Result;            }
+        };
         let retHeaders = splitHeaders(configuration.pgn);
         that.headers = retHeaders.headers;
         interpretHeaders();
@@ -458,8 +457,8 @@ var pgnReader = function (configuration, chess) {
                 for (i = 0; i < move.variations.length; i++) {
                     move.variations[i] = move.variations[i][0];
                 }
-            })
-        }
+            });
+        };
         var remindEndGame = function(movesMainLine) {
             if (typeof movesMainLine[movesMainLine.length - 1] == "string") {
                 that.endGame = movesMainLine.pop();
@@ -471,18 +470,18 @@ var pgnReader = function (configuration, chess) {
          */
         var correctTurn = function() {
             var getTurn = function(fen) {
-                var tokens = fen.split(/\s+/)
-                return tokens[1]
-            }
+                var tokens = fen.split(/\s+/);
+                return tokens[1];
+            };
             // 
             if ((getTurn(configuration.position) === 'b') &&
                     (isMove(0)) &&
                     (that.moves[0].turn === 'w')) {
                 utils.pvEach(getMoves(), function(move) {
-                    move.turn = (move.turn === 'w') ? 'b' : 'w'
-                })
+                    move.turn = (move.turn === 'w') ? 'b' : 'w';
+                });
             }
-        }
+        };
 
         // Ensure that PGN string is just one line, with no tab or line break in it.
         var movesStringTrimmed = movesString.trim();
@@ -502,7 +501,7 @@ var pgnReader = function (configuration, chess) {
      */
     var isMove = function(id) {
         return getMoves().length > id;
-    }
+    };
 
     /**
      * Returns true, if the move with ID id is deleted.
@@ -519,7 +518,7 @@ var pgnReader = function (configuration, chess) {
         if (id == 0 && (current)) // The first move is not deleted
             return false;
         return (current.prev === null); // All moves without a previous move are deleted
-    }
+    };
 
 
     /**
@@ -575,7 +574,7 @@ var pgnReader = function (configuration, chess) {
             var ret = array[index];
             array.splice(index, 1);
             return ret;
-        }
+        };
 
         if (isDeleted(id)) {
             return;
@@ -647,7 +646,7 @@ var pgnReader = function (configuration, chess) {
                 return move;
             }
             return firstMoveOfVariation(getMove(move.prev));
-        }
+        };
         var move = getMove(id);
         // 1. Check that is variation
         if ((typeof move.variationLevel == "undefined") || (move.variationLevel === 0)) {
@@ -669,13 +668,13 @@ var pgnReader = function (configuration, chess) {
         // 4. If variation index is > 0 (not the first variation)
         if (indexVariation > 0) {
             // Just switch with the previous index
-            var tmpMove = higherVariationMove.variations[indexVariation-1];
+            let tmpMove = higherVariationMove.variations[indexVariation-1];
             higherVariationMove.variations[indexVariation-1] = higherVariationMove.variations[indexVariation];
             higherVariationMove.variations[indexVariation] = tmpMove;
         } else {
             // 5. Now the most difficult case: create new array from line above, switch that with
             // the variation
-            var tmpMove = higherVariationMove;
+            let tmpMove = higherVariationMove;
             var tmpVariations = higherVariationMove.variations;
             var prevMove = getMove(higherVariationMove.prev);
             prevMove.next = myFirst.index;
@@ -746,9 +745,9 @@ var pgnReader = function (configuration, chess) {
         
         var write_check_or_mate  = function (move, sb) {
             if (move.notation.check) {
-                sb.append(move.notation.check)
+                sb.append(move.notation.check);
             }
-        }
+        };
 
         var write_move_number = function (move, sb) {
             prepend_space(sb);
@@ -770,7 +769,7 @@ var pgnReader = function (configuration, chess) {
             if (move.nag) {
                 move.nag.forEach(function(ele) {
                     sb.append(ele);
-                })
+                });
             }
         };
 
@@ -820,7 +819,7 @@ var pgnReader = function (configuration, chess) {
                 _sb.append(" ");
                 _sb.append(that.endGame);
             }
-        }
+        };
 
         var write_pgn2 = function(move, _sb) {
 
@@ -859,7 +858,7 @@ var pgnReader = function (configuration, chess) {
         var findPrevMove = function(level, index) {
             while (index >= 0) {
                 if (that.moves[index].variationLevel == level) {
-                    return that.moves[index]
+                    return that.moves[index];
                 }
                 index--;
             }
@@ -877,10 +876,10 @@ var pgnReader = function (configuration, chess) {
         var eachMoveVariation = function(moveArray, level, prev) {
             // Computes the correct move numer from the position
             var getMoveNumberFromPosition = function(fen) {
-                var tokens = fen.split(/\s+/)
-                var move_number = parseInt(tokens[5], 10)
-                return (tokens[1] === 'b') ? move_number : move_number - 1
-            }
+                var tokens = fen.split(/\s+/);
+                var move_number = parseInt(tokens[5], 10);
+                return (tokens[1] === 'b') ? move_number : move_number - 1;
+            };
             var prevMove = (prev != null ? that.moves[prev] : null);
             utils.pvEach(moveArray, function(move, i) {
                 current++;
@@ -927,8 +926,8 @@ var pgnReader = function (configuration, chess) {
 
                 utils.pvEach(move.variations, function(variation) {
                     eachMoveVariation(variation, level + 1, prev);
-                })
-            })
+                });
+            });
         };
         that.firstMove = movesMainLine[0];
         eachMoveVariation(movesMainLine, 0, null);
@@ -945,7 +944,7 @@ var pgnReader = function (configuration, chess) {
           if (ms.length) dests[s] = ms.map(m => m.to);
         });
         return dests;
-    }
+    };
 
     /**
      * Adds the move to the current state after moveNumber.
@@ -1149,7 +1148,7 @@ var pgnReader = function (configuration, chess) {
         } else {
             return returnedMoves;
         }
-    }
+    };
 
     /**
      * Return the moves of the main line.
@@ -1163,7 +1162,7 @@ var pgnReader = function (configuration, chess) {
             returnedMoves.push(current);
         }
         return returnedMoves;
-    }
+    };
 
     /**
      * Returns the moves, ensures that the pgn string is read.
@@ -1222,5 +1221,5 @@ var pgnReader = function (configuration, chess) {
         game: game,
         load_pgn: load_pgn,
         possibleMoves: possibleMoves
-    }
+    };
 };
