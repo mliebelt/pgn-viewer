@@ -77,7 +77,8 @@ var pgnBase = function (boardId, configuration) {
         locale: 'en',
         movable: { free: false },  
         highlight: { lastMove: true},
-        viewOnly: true
+        viewOnly: true,
+        hideMovesBefore: false
     };
     that.promMappings = { q: 'queen', r: 'rook', b: 'bishop', n: 'knight'};
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration);
@@ -194,14 +195,6 @@ var pgnBase = function (boardId, configuration) {
         var node = element;
         var movesNode = node.offsetParent;
         scrollParentToChild(movesNode, node);
-        // console.log('Has scrollbar: ' + (movesNode.scrollHeight > movesNode.clientHeight));
-        // var nodeRect = node.getBoundingClientRect();
-        // var movesRect = movesNode.getBoundingClientRect();
-        // if (nodeRect.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
-        //     node.scrollIntoView(false);
-        // } else if (nodeRect.top <= 0) {
-        //     node.scrollIntoView(true);
-        // }
     }
 
     /**
@@ -251,7 +244,7 @@ var pgnBase = function (boardId, configuration) {
         if (fenView) {
             fenView.value = move.fen;
         }
-    }
+    };
 
     // Utility function for generating general HTML elements with id, class (with theme)
     function createEle(kind, id, clazz, my_theme, father) {
@@ -1059,46 +1052,46 @@ var pgnBase = function (boardId, configuration) {
         regenerateMoves(myMoves);
         bindFunctions();
         generateHeaders();
-        if (hasMode('edit')) {
-            //generateNAGMenu(document.getElementById("edit" + boardId + "Button"));
-    //         $(function(){
-    //             $("select#" + buttonsId + "nag").multiselect({
-    //                 header: false,
-    //                 selectedList: 4,
-    //                 minWidth: 80,
-    //                 checkAllText: "",
-    //                 uncheckAllText: "Clean",
-    //                 noneSelectedText: "NAGs",
-    //                 click: function(event, ui) {
-    //                     /**
-    //                      * Add (or remove) a NAG from the current move. Ignore it, if there is
-    //                      * no current move.
-    //                      */
-    //                     function changeNAG(value, checked) {
-    //                         /**
-    //                          * Updates the visual display of the move (only the notation, not the comments).
-    //                          * @param moveIndex the index of the move to update
-    //                          */
-    //                         function updateMoveSAN(moveIndex) {
-    //                             var move = that.mypgn.getMove(moveIndex);
-    //                             $("#" + movesId + moveIndex + " > a").text(that.mypgn.sanWithNags(move));
-    //                         }
 
-    //                         console.log("clicked: " + value + " Checked? " + checked);
-    //                         that.mypgn.changeNag("$" + value, that.currentMove, checked);
-    //                         updateMoveSAN(that.currentMove);
-    //                     }
+        /**
+         * Allows to add functions after having generated the moves. Used currently for setting start position.
+         */
+        function postGenerateMoves() {
+            function findMoveForStart() {
+                let startPlay  = that.configuration.startPlay;
+                let move = that.mypgn.getMove(0); // first move
+                if (! isNaN(startPlay)) {
+                    startPlay = startPlay - 1;
+                    while (startPlay > 0) {
+                        startPlay = startPlay - 1;
+                        move = that.mypgn.getMove(move.next);
+                    }
+                    return move;
+                }
+                do {
+                    if (move.fen.startsWith(startPlay)) {
+                        return move;
+                    } else if (move.notation.notation == startPlay) {
+                        return move;
+                    }
+                    move = that.mypgn.getMove(move.next);
+                }
+                while (move.next);
+                return undefined;
+            }
 
-    //                     //  event: the original event object
-    // //                    ui.value: value of the checkbox
-    // //                    ui.text: text of the checkbox
-    // //                    ui.checked: whether or not the input was checked or unchecked (boolean)
-
-    //                     changeNAG(ui.value, ui.checked);
-    //                 }
-    //             });
-    //         });
+            if ( that.configuration.startPlay && ! that.configuration.hideMovesBefore) {
+                let move = findMoveForStart();
+                if (move === undefined) {
+                    logError('Could not find startPlay: ' + that.configuration.startPlay);
+                    return;
+                }
+                makeMove(move.prev, move.index, move.fen);
+                unmarkMark(move.index);
+            }
         }
+
+        postGenerateMoves();
     };
     let ret = {
         // PUBLIC API
