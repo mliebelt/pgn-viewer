@@ -1059,24 +1059,23 @@ var pgnBase = function (boardId, configuration) {
         function postGenerateMoves() {
             function findMoveForStart() {
                 let startPlay  = that.configuration.startPlay;
-                let move = that.mypgn.getMove(0); // first move
-                if (! isNaN(startPlay)) {
+                if (! isNaN(startPlay)) {   // the following goes only over the main line, move number cannot denote a variation
                     startPlay = startPlay - 1;
+                    let move = that.mypgn.getMove(0);
                     while (startPlay > 0) {
                         startPlay = startPlay - 1;
                         move = that.mypgn.getMove(move.next);
                     }
                     return move;
                 }
-                do {
+                let moves = that.mypgn.getMoves();
+                for (let move of moves) {
                     if (move.fen.startsWith(startPlay)) {
                         return move;
                     } else if (move.notation.notation == startPlay) {
                         return move;
                     }
-                    move = that.mypgn.getMove(move.next);
                 }
-                while (move.next);
                 return undefined;
             }
 
