@@ -18,24 +18,28 @@
 <h3>Normal behavior (no parameter startPlay)</h3>
 <div id="board1" style="width: 400px"></div>
 
-<h3>Parameter startPlay == move number (14)</h3>
+<h3>Parameter startPlay == move number (5)</h3>
 <div id="board2" style="width: 400px"></div>
 
-<h3>Parameter startPlay == move notation ('Nf3')</h3>
+<h3>Parameter startPlay == move notation ('Bc4')</h3>
 <div id="board3" style="width: 400px"></div>
 
-<h3>Parameter startPlay == move fen ('r1bqkbnr/1ppp1ppp/p1n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq')</h3>
+<h3>Parameter startPlay == move notation (variation 'exd5')</h3>
 <div id="board4" style="width: 400px"></div> Parameter startPlay == move notation, hideMovesBefore == true
 
-<h3>Parameter startPlay == move notation, hideMovesBefore == true</h3>
+<h3>Parameter startPlay == move fen (variation 'rnbqkbnr/ppp2ppp/8/3pp3/4PP2/8/PPPP2PP/RNBQKBNR w KQkq')</h3>
 <div id="board5" style="width: 400px"></div> Parameter startPlay == move notation, hideMovesBefore == true
+
+<h3>Parameter startPlay == move notation, hideMovesBefore == true</h3>
+<div id="board6" style="width: 400px"></div> Parameter startPlay == move notation, hideMovesBefore == true
 <script>
-    let pgn = "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. c3 O-O 7. Re1 d5 8. exd5 Nxd5 9. Nxe5 Nxe5 10. Rxe5 c6 11. d4 Bd6 12. Re1 Qh4 13. g3 Qh3 14. Qd3";
+    let pgn = "1. e4 e5 2. Nf3 (2. f4 d5 3. exd5 e4) 2... Nc6 3. Bc4 Nf6";
     pgnView('board1', { pgn: pgn});
-    pgnView('board2', {pgn: pgn, startPlay: 14});
-    pgnView('board3', {pgn: pgn, startPlay: 'Nf3'});
-    pgnView('board4', {pgn: pgn, startPlay: 'r1bqkbnr/1ppp1ppp/p1n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq'});
-    pgnView('board5', {pgn: pgn, startPlay: 'd5', hideMovesBefore: true});
+    pgnView('board2', {pgn: pgn, startPlay: 5});
+    pgnView('board3', {pgn: pgn, startPlay: 'Bc4'});
+    pgnView('board4', {pgn: pgn, startPlay: 'exd5'}); // Variation
+    pgnView('board5', {pgn: pgn, startPlay: 'rnbqkbnr/ppp2ppp/8/3pp3/4PP2/8/PPPP2PP/RNBQKBNR w KQkq'}); // Variation
+    pgnView('board6', {pgn: pgn, startPlay: 'Bc4', hideMovesBefore: true});
 </script>
 </body>
 </html>
