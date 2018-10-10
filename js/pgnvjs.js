@@ -745,12 +745,13 @@ var pgnBase = function (boardId, configuration) {
         //board.set({fen: fen});
         let myMove = that.mypgn.getMove(next);
         let prevMove = that.mypgn.getMove(myMove.prev);
-        if ( (curr === null) || (next > curr) ) {
-            board.set({fen: (prevMove === undefined) ? that.configuration.fen : prevMove.fen});
-            board.move(myMove.from, myMove.to);    
-        } else {
-            board.set({fen: myMove.fen, lastMove: [myMove.from, myMove.to]});
-        }
+        // if ( (curr === null) ) {
+        //     board.set({fen: (prevMove === undefined) ? that.configuration.fen : prevMove.fen});
+        //     board.move(myMove.from, myMove.to);    
+        // } else {
+        //     board.set({fen: myMove.fen, lastMove: [myMove.from, myMove.to]});
+        // }
+        board.set({fen: myMove.fen, lastMove: [myMove.from, myMove.to]});
         handlePromotion(myMove);
         board.setShapes(getShapes(myMove.commentDiag));
         game.load(fen);
