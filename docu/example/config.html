@@ -93,10 +93,10 @@ and helps to define a new configuration.
         <input type="checkbox" id="headers" value="true">
         <!-- coordsInner -->
         <label for="coordsInner">coordsInner</label>
-        <input type="checkbox" id="coordsInner" value="true">
+        <input type="checkbox" id="coordsInner" checked>
         <!-- coordsFactor -->
         <label for="coordsFactor">coordsFactor</label>
-        <input type="number" id="coordsFactor" class="number">
+        <input type="number" id="coordsFactor" class="number" value='1.0'>
         <br/>
         <!-- Theme: zeit, blue, green, default -->
         <label for="theme">Theme</label>
@@ -312,14 +312,14 @@ and helps to define a new configuration.
                     'movesWidth', 'movesHeight', 'showFen', 'coordsInner', 'headers', 'coordsFactor'];
         for (property of props) {
             var val = config[property];
-            if (val != '' && (val != undefined)) {
+            if (val != undefined) {
                 val = (typeof val === "string") ? "'" + val + "'" : val;
                 output += property + ': ' + val+', ';
             }
         }
         output += "};\n";
         output += document.getElementById('modus').value;
-        output += "(board, config);\n";
+        output += "('board', config);\n";
         output += '<';
         output += '/script>';
         return output;
