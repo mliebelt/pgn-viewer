@@ -155,7 +155,7 @@ var pgnParser =
               return arr; },
         peg$c6 = function(cm, me, cb, hm, nag, ca, cd, vari, all) { var arr = (all ? all : []);
               var move = {}; move.turn = 'b'; move.moveNumber = me;
-              move.notation = hm; move.commentBefore = cb; move.commentAfter = ca;
+              move.notation = hm; move.commentBefore = cb; move.commentAfter = ca; move.commentMove = cm;
               move.variations = (vari ? vari : []); arr.unshift(move); move.nag = (nag ? nag : null);
               move.commentDiag = cd;
               return arr; },
