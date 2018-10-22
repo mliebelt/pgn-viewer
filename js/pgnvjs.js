@@ -692,7 +692,8 @@ var pgnBase = function (boardId, configuration) {
          * Fills the comment field depending on which and if a comment is filled for that move.
          */
         function fillComment(moveNumber) {
-            var myMove = that.mypgn.getMove(moveNumber);
+            let myMove = that.mypgn.getMove(moveNumber);
+            if (!~myMove) return;
             if (myMove.commentAfter) {
                 document.querySelector('#' + boardId + " input.afterComment").checked = true;
                 document.querySelector('#' + boardId + " textarea.comment").value = myMove.commentAfter;
@@ -708,6 +709,7 @@ var pgnBase = function (boardId, configuration) {
         }
 
         function handlePromotion(aMove) {
+            if (! aMove) return;
             if (aMove.notation.promotion) {
                 let promPiece = aMove.notation.promotion.substring(1,2).toLowerCase();
                 let pieces = {};
@@ -743,26 +745,31 @@ var pgnBase = function (boardId, configuration) {
         //console.log("Marke move: Curr " + curr + " Next " + next + " FEN " + fen);
         //board.set({fen: fen});
         let myMove = that.mypgn.getMove(next);
-        let prevMove = that.mypgn.getMove(myMove.prev);
-        // if ( (curr === null) ) {
-        //     board.set({fen: (prevMove === undefined) ? that.configuration.fen : prevMove.fen});
-        //     board.move(myMove.from, myMove.to);    
-        // } else {
-        //     board.set({fen: myMove.fen, lastMove: [myMove.from, myMove.to]});
-        // }
-        board.set({fen: myMove.fen, lastMove: [myMove.from, myMove.to]});
+        let myFen = myMove ? myMove.fen : fen;
+        if (! myFen) { // fen not given, take start position
+            myFen = that.configuration.position == 'start' ? 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1' : that.configuration.position;
+        }
+        if (myMove) {
+            board.set({fen: myFen, lastMove: [myMove.from, myMove.to]});
+        } else {
+            board.set({fen: myFen});
+        }
         handlePromotion(myMove);
-        board.setShapes(getShapes(myMove.commentDiag));
-        game.load(fen);
+        if (myMove) {
+            board.setShapes(getShapes(myMove.commentDiag));
+        }
+        game.load(myFen);
         unmarkMark(next);
         that.currentMove = next;
-        scrollToView(moveSpan(next));
+        if (next) {
+            scrollToView(moveSpan(next));
+        }
         if (hasMode('edit')) {
             let col = game.turn() == 'w' ? 'white' : 'black';
             board.set( {
                 movable: Object.assign({}, board.state.movable, {color: col, dests: possibleMoves(game)}), 
                 turnColor: col, check: game.in_check()} );
-            fillComment(next);
+            if (next) { fillComment(next); }
         } else if (hasMode('view')) {
             let col = game.turn() == 'w' ? 'white' : 'black';
             board.set( {
@@ -883,7 +890,7 @@ var pgnBase = function (boardId, configuration) {
                 }
                 else {
                     var prev = that.mypgn.getMove(that.currentMove).prev;
-                    if (typeof prev === 'undefined') {
+                    if ( (typeof prev === 'undefined')  || (prev == null) ) {
                         firstMove();
                     } else {
                         fen = that.mypgn.getMove(prev).fen;
@@ -892,18 +899,7 @@ var pgnBase = function (boardId, configuration) {
                 }
             };
             var firstMove = function () {
-                if (that.configuration.position == 'start') {
-                    game.reset();
-                } else {
-                    game.load(that.configuration.position);
-                }
-                board.set({fen: game.fen()});
-                unmarkMark(null);
-                that.currentMove = null;
-                if (document.getElementById(fenId)) {
-                    document.getElementById(fenId).value = game.fen();
-                }
-                updateUI(null);
+                makeMove(null, null, null);
             };
             var timer = new Timer(10);
             timer.bind(that.configuration.timerTime, function() {
