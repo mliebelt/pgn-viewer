@@ -175,7 +175,15 @@ and helps to define a new configuration.
         <label for="movesHeight">movesHeight</label>
         <input type="number" id="movesHeight" class="number">
         <br/>
-
+        <!-- colorMarker -->
+        <label for="colorMarker">colorMarker</label>
+        <select id="colorMarker">
+            <option value="">No marker (default)</option>
+            <option value="any">any marker (will be square)</option>
+            <option value="circle">circle</option>
+            <option value="cm-small">cm-small</option>
+            <option value="cm-big">cm-big</option>
+        </select>
         <h2>Configuration output</h2>
 
         <p>The following is the output of the configuration done above. You may
@@ -257,6 +265,7 @@ and helps to define a new configuration.
         var movesWidth = document.getElementById('movesWidth').value;
         var movesHeight = document.getElementById('movesHeight').value;
         var showFen = document.getElementById('showFen').checked;
+        var colorMarker = document.getElementById('colorMarker').value;
 
         configuration['position']= 'start';
         if (fen != '') {
@@ -295,6 +304,7 @@ and helps to define a new configuration.
         configuration['pgn']= pgn;
         configuration['fen']= fen;
         configuration['layout']= layout;
+        configuration['colorMarker'] = colorMarker;
         configuration.showFen = showFen;
         document.getElementById('config_out').value = printConfig(configuration);
         var fun = window[modus];
@@ -309,7 +319,8 @@ and helps to define a new configuration.
                 "config = {";
         var props = ['pgn','position', 'showNotation', 'orientation', 'theme',
                     'pieceStyle', 'locale', 'timerTime', 'size', 'boardSize', 'layout',
-                    'movesWidth', 'movesHeight', 'showFen', 'coordsInner', 'headers', 'coordsFactor'];
+                    'movesWidth', 'movesHeight', 'showFen', 'coordsInner', 'headers',
+                    'coordsFactor', 'colorMarker'];
         for (property of props) {
             var val = config[property];
             if (val != undefined) {
@@ -346,6 +357,7 @@ and helps to define a new configuration.
         document.getElementById('layout').onchange = changedSomething;
         document.getElementById('movesWidth').onchange = changedSomething;
         document.getElementById('movesHeight').onchange = changedSomething;
+        document.getElementById('colorMarker').onchange = changedSomething;
         changedGame();
     }
     window.onload = initPgn();
