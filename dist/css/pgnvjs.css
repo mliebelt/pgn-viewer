@@ -3066,3 +3066,52 @@ div.comment > textarea.comment {
 .cg-board-wrap coords.files {
     text-transform: none;
 }
+
+/* board and colorMarker */
+.boardAnd {
+    /*
+    display: grid;
+    grid-template-columns: 400px 40px;
+    */
+}
+
+.board {
+    /*order: 2;*/
+}
+
+.colorMarker {
+    width: 20px; height: 20px;
+    border-color: black;
+    border-width: 2px;
+    border-style: double;
+    margin: 10px;
+    /*order: 1; */
+}
+
+.colorMarker.circle {
+    border-radius: 10px;
+}
+
+.colorMarker.circle.cm-big {
+    border-radius: 20px;
+}
+
+.colorMarker.circle.cm-small {
+    border-radius: 5px;
+}
+
+.cm-black {
+    background-color: black;
+}
+
+.cm-white {
+    background-color: white;
+}
+
+.cm-big {
+    width: 40px; height: 40px;   
+}
+
+.cm-small {
+    width: 10px; height: 10px;
+}
