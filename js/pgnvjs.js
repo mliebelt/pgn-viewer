@@ -416,12 +416,6 @@ var pgnBase = function (boardId, configuration) {
                     divBoard.removeChild(divBoard.childNodes[0]);
                 }
             }
-            if (that.configuration.size) {
-                divBoard.style.width = that.configuration.size;
-                if (!that.configuration.width) {
-                    that.configuration.width = that.configuration.size;
-                }
-            }
             divBoard.classList.add(theme);
             divBoard.classList.add('whole');
             divBoard.setAttribute('tabindex', '0');

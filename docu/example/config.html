@@ -161,9 +161,9 @@ and helps to define a new configuration.
         <!-- timerTime -->
         <label for="timerTime">timerTime</label>
         <input type="number" id="timerTime" class="number">
-        <!-- size -->
-        <label for="size">size</label>
-        <input type="number" id="size" class="number">
+        <!-- width -->
+        <label for="width">width</label>
+        <input type="number" id="width" class="number">
         <!-- boardSize -->
         <label for="boardSize">boardSize</label>
         <input type="number" id="boardSize" class="number">
@@ -181,8 +181,10 @@ and helps to define a new configuration.
             <option value="">No marker (default)</option>
             <option value="any">any marker (will be square)</option>
             <option value="circle">circle</option>
-            <option value="cm-small">cm-small</option>
-            <option value="cm-big">cm-big</option>
+            <option value="circle-small">circle small</option>
+            <option value="circle-big">circle big</option>
+            <option value="cm-small">square small</option>
+            <option value="cm-big">square big</option>
         </select>
         <h2>Configuration output</h2>
 
@@ -257,7 +259,7 @@ and helps to define a new configuration.
         var locale = document.getElementById('locale').value;
         var timerTime = document.getElementById('timerTime').value;
         var coordsFactor = document.getElementById('coordsFactor').value;
-        var size = document.getElementById('size').value;
+        var width = document.getElementById('width').value;
         var boardSize = document.getElementById('boardSize').value;
         var pgn = document.getElementById('pgn').value;
         var fen = document.getElementById('fen').value;
@@ -289,8 +291,8 @@ and helps to define a new configuration.
         configuration['locale']= locale;
         configuration['timerTime']= timerTime;
         configuration['coordsFactor']= coordsFactor;
-        if (size !== "") {
-            configuration['size']= size + 'px';
+        if (width !== "") {
+            configuration['width']= width + 'px';
         }
         if (movesHeight!== "") {
             configuration['movesHeight']= movesHeight + 'px';
@@ -318,7 +320,7 @@ and helps to define a new configuration.
                 "<script>\n" +
                 "config = {";
         var props = ['pgn','position', 'showNotation', 'orientation', 'theme',
-                    'pieceStyle', 'locale', 'timerTime', 'size', 'boardSize', 'layout',
+                    'pieceStyle', 'locale', 'timerTime', 'width', 'boardSize', 'layout',
                     'movesWidth', 'movesHeight', 'showFen', 'coordsInner', 'headers',
                     'coordsFactor', 'colorMarker'];
         for (property of props) {
@@ -350,7 +352,7 @@ and helps to define a new configuration.
         document.getElementById('locale').onchange = changedSomething;
         document.getElementById('timerTime').oninput = changedSomething;
         document.getElementById('coordsFactor').oninput = changedSomething;
-        document.getElementById('size').oninput = changedSomething;
+        document.getElementById('width').oninput = changedSomething;
         document.getElementById('boardSize').oninput = changedSomething;
         document.getElementById('pgn').onchange = changedSomething;
         document.getElementById('fen').onchange = changedSomething;

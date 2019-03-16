@@ -2720,7 +2720,7 @@ div.layout-left > .outerBoard div.edit .gray, div.buttons .gray {
 /** Font Awesome buttons (see http://fontawesome.io/) */
 
 .fen {
-    width: 96%;
+    /* width: 96%; */
     height: 30px;
     min-height: 30px;
     padding: 2px;
@@ -3092,12 +3092,14 @@ div.comment > textarea.comment {
     border-radius: 10px;
 }
 
-.colorMarker.circle.cm-big {
+.colorMarker.circle-big {
     border-radius: 20px;
+    width: 40px; height: 40px;
 }
 
-.colorMarker.circle.cm-small {
+.colorMarker.circle-small {
     border-radius: 5px;
+    width: 10px; height: 10px;
 }
 
 .cm-black {
