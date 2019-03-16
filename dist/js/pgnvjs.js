@@ -8325,6 +8325,8 @@ var pgnBase = function (boardId, configuration) {
                 } else {
                     document.getElementById(fenId).readonly = true;
                 }
+                let fenSize = that.configuration.width ? that.configuration.width : that.configuration.boardSize;
+                document.getElementById(fenId).style.width = fenSize;
             }
             if (hasMode('print') || hasMode('view') || hasMode('edit')) {
                 // Ensure that moves are scrollable (by styling CSS) when necessary
