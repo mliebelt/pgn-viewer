@@ -82,7 +82,8 @@ var pgnBase = function (boardId, configuration) {
         highlight: {lastMove: true},
         viewOnly: true,
         hideMovesBefore: false,
-        colorMarker: null
+        colorMarker: null,
+        showResult: false
     };
     that.promMappings = {q: 'queen', r: 'rook', b: 'bishop', n: 'knight'};
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration);
@@ -1162,6 +1163,16 @@ var pgnBase = function (boardId, configuration) {
                 }
                 makeMove(move.prev, move.index, move.fen);
                 unmarkMark(move.index);
+            }
+
+            if (that.configuration.showResult) {
+                // find the result from the header
+                let endGame = that.mypgn.getEndGame();
+                // Insert it as new span
+                let span = createEle("span", movesId + "Result", "move", theme,
+                    document.getElementById(movesId));
+                span.innerHTML = endGame ? endGame : "*";
+
             }
         }
 
