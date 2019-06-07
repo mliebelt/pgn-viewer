@@ -1189,6 +1189,10 @@ var pgnReader = function (configuration, chess) {
         }
     }
 
+    function getEndGame() {
+        return that.endGame;
+    }
+
     // This defines the public API of the pgn function.
     return {
         configuration: configuration,
@@ -1200,6 +1204,7 @@ var pgnReader = function (configuration, chess) {
         getMoves: getMoves,
         getOrderedMoves: getOrderedMoves,
         getMove: getMove,
+        getEndGame: getEndGame,
         getHeaders: getHeaders,
 //        splitHeaders: splitHeaders,
         getParser: function() { return parser; },
