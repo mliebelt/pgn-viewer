@@ -310,7 +310,7 @@ var pgnReader = function (configuration, chess) {
             var number = parseInt(array[i].substring(1));
             if (number != 220) { // Don't add diagrams to notation
                 var ret = that.NAGs[number];
-                ret_string += (typeof ret != 'undefined') ? ret : "$"+number;    
+                ret_string += (typeof ret != 'undefined') ? ret : "$"+number;
             }
         }
         return ret_string;
@@ -447,7 +447,7 @@ var pgnReader = function (configuration, chess) {
      * Read moves read the moves that are not part of the headers.
      */
     var readMoves = function(movesString) {
-        
+
         /**
          * Originally variations are kept as array of moves. But after having linked prev and next,
          * it is much easier to keep only the first move of the variation.
@@ -473,7 +473,7 @@ var pgnReader = function (configuration, chess) {
                 var tokens = fen.split(/\s+/);
                 return tokens[1];
             };
-            // 
+            //
             if ((getTurn(configuration.position) === 'b') &&
                     (isMove(0)) &&
                     (that.moves[0].turn === 'w')) {
@@ -594,14 +594,14 @@ var pgnReader = function (configuration, chess) {
                     var my_var = removeFromArray(vars, i);
                     if (current.next !== undefined) {
                        deleteMove(current.next);
-                    }        
+                    }
                     getMoves()[current.index] = null;
                     return;
                 }
             }
         }
         // 3. Some line some other move, no variation
-        if (current.variations.length === 0) { 
+        if (current.variations.length === 0) {
             if (current.next !== undefined && (current.next !== null)) {
                 deleteMove(current.next);
             }
@@ -610,7 +610,7 @@ var pgnReader = function (configuration, chess) {
             return;
         }
         // 4. Some line some other move, with variation
-        if (current.variations.length > 0) { 
+        if (current.variations.length > 0) {
             if (current.next !== undefined) {
                 deleteMove(current.next);
             }
@@ -619,7 +619,7 @@ var pgnReader = function (configuration, chess) {
             that.moves[current.prev].next = variationMove.index;
             that.moves[id] = null;
             updateVariationLevel(variationMove, varLevel - 1);
-        } 
+        }
     };
 
     /**
@@ -742,7 +742,7 @@ var pgnReader = function (configuration, chess) {
         var write_comment_after = function(move, sb) {
             write_comment(move.commentAfter, sb);
         };
-        
+
         var write_check_or_mate  = function (move, sb) {
             if (move.notation.check) {
                 sb.append(move.notation.check);
@@ -1193,6 +1193,29 @@ var pgnReader = function (configuration, chess) {
         return that.endGame;
     }
 
+    function setShapes(move, shapes) {
+        if (! move.commentDiag) {
+            move.commentDiag = {};
+        }
+        if (! move.commentDiag.colorArrows) {
+            move.commentDiag.colorArrows = [];
+        }
+        if (! move.commentDiag.colorFields) {
+            move.commentDiag.colorFields = [];
+        }
+        shapes.forEach( (shape) => {
+            if (shape.dest) { // arrow
+                let colArrow = shape.brush.slice(0,1).toUpperCase()
+                let arr = shape.orig + shape.dest;
+                move.commentDiag.colorArrows.push(colArrow + arr);
+            } else { // field
+                let colField = shape.brush.slice(0,1).toUpperCase();
+                let fie = shape.orig;
+                move.commentDiag.colorFields.push(colField + fie);
+            }
+        })
+    }
+
     // This defines the public API of the pgn function.
     return {
         configuration: configuration,
@@ -1226,6 +1249,7 @@ var pgnReader = function (configuration, chess) {
         sanWithNags: sanWithNags,
         game: game,
         load_pgn: load_pgn,
-        possibleMoves: possibleMoves
+        possibleMoves: possibleMoves,
+        setShapes: setShapes
     };
 };
