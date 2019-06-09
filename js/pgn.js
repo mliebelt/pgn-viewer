@@ -1197,12 +1197,10 @@ var pgnReader = function (configuration, chess) {
         if (! move.commentDiag) {
             move.commentDiag = {};
         }
-        if (! move.commentDiag.colorArrows) {
-            move.commentDiag.colorArrows = [];
-        }
-        if (! move.commentDiag.colorFields) {
-            move.commentDiag.colorFields = [];
-        }
+        // Ensure everything is reset
+        move.commentDiag.colorArrows = [];
+        move.commentDiag.colorFields = [];
+
         shapes.forEach( (shape) => {
             if (shape.dest) { // arrow
                 let colArrow = shape.brush.slice(0,1).toUpperCase()
