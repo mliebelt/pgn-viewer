@@ -749,6 +749,38 @@ var pgnReader = function (configuration, chess) {
             }
         };
 
+        var write_comment_diag = function(move, sb) {
+            let has_diags = (move) => {
+                return move.commentDiag
+                && ( ( move.commentDiag.colorArrows && move.commentDiag.colorArrows.length > 0)
+                    || ( move.commentDiag.colorFields && move.commentDiag.colorFields.length > 0)
+                );
+            }
+            let arrows = (move) => { return move.commentDiag.colorArrows || []; }
+            let fields = (move) => { return move.commentDiag.colorFields || []; }
+
+            if (has_diags(move)) {
+                let sbdiags = StringBuilder("");
+                let first = true
+                sbdiags.append("[%csl ")
+                fields(move).forEach( (field) => {
+                    ! first ? sbdiags.append(",") : sbdiags.append("");
+                    first = false;
+                    sbdiags.append(field);
+                });
+                sbdiags.append("]");
+                first = true
+                sbdiags.append("[%cal ")
+                arrows(move).forEach( (arrow) => {
+                    ! first ? sbdiags.append(",") : sbdiags.append("");
+                    first = false;
+                    sbdiags.append(arrow);
+                });
+                sbdiags.append("]");
+                write_comment(sbdiags.toString(), sb);
+            }
+        }
+
         var write_move_number = function (move, sb) {
             prepend_space(sb);
             if (move.turn === "w") {
@@ -809,6 +841,7 @@ var pgnReader = function (configuration, chess) {
             //write_check_or_mate(move, sb);    // not necessary if san from chess.js is used
             write_NAGs(move, sb);
             write_comment_after(move, sb);
+            write_comment_diag(move, sb);
             write_variations(move, sb);
             var next = get_next_move(move);
             write_move(next, sb);
