@@ -525,7 +525,14 @@ var pgnBase = function (boardId, configuration) {
         }
 
         // Default values of the board, if not overwritten by the given configuration
-        let boardConfiguration = {coordsInner: true, coordsFactor: 1.0};
+        let boardConfiguration = {coordsInner: true, coordsFactor: 1.0, disableContextMenu: true,
+            drawable: {
+                onChange: (shapes) => {
+                    let move = that.mypgn.getMove(that.currentMove)
+                    that.mypgn.setShapes(move, shapes);
+                }
+            }};
+
         copyBoardConfiguration(that.configuration, boardConfiguration,
             ['position', 'orientation', 'showNotation', 'pieceTheme', 'draggable',
                 'coordsInner', 'coordsFactor', 'width', 'movable', 'viewOnly', 'highlight', 'boardSize',
