@@ -1,0 +1,14 @@
+{
+    "flipper" : "Vend sider av bordet",
+    "first" : "Gå til første trekket",
+    "prev" : "Gå til forrige trekk",
+    "next" : "Gå til neste trekk",
+    "play" : "Play / slutte å spille alle trekk",
+    "last" : "Gå til siste trekk",
+    "deleteVar" : "Slett variasjon",
+    "promoteVar" : "Fremme variasjon",
+    "deleteMoves" : "Slett resten beveger seg fra her",
+    "nags" : "NAGs menu",
+    "pgn" : "Visning PGN av dagens spill",
+    "hidePGN" : "Skjul vises PGN"
+}

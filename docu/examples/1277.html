@@ -13,8 +13,8 @@
 <body class="merida zeit">
 <h2>#117: FEN more resilient</h2>
 <h3>Javascript part</h3>
-<pre class="prettyprint lang-js">pgnView("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - -"});
-pgnView("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - - 1 1"});</pre>
+<pre class="prettyprint lang-js">pgnBoard("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - -"});
+pgnBoard("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - - 1 1"});</pre>
 <h3>HTML part</h3>
 <pre class="prettyprint lang-html">&lt;div id=&#39;board&#39; style=&#39;width: 200px&#39;&#x2F;&gt;
 &lt;div id=&#39;board1&#39; style=&#39;width: 200px&#39;&#x2F;&gt;</pre>
@@ -23,8 +23,8 @@ pgnView("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - - 1 1"});</pre>
 <div id='board' style='width: 200px'/>
 <div id='board1' style='width: 200px'/>
 <script>
-pgnView("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - -"});
-pgnView("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - - 1 1"});
+pgnBoard("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - -"});
+pgnBoard("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - - 1 1"});
 </script>
 <script>prettyPrint();</script>
 </body>

@@ -1,0 +1,14 @@
+{
+    "flipper" : "Flip hliðar borðsins",
+    "first" : "Fara á fyrsta ferðinni",
+    "prev" : "Fara í fyrri ferðinni",
+    "next" : "Fara á næsta hreyfa",
+    "play" : "Play / hætta að spila allt færist",
+    "last" : "Fara að síðasta færa",
+    "deleteVar" : "Eyða tilbrigði",
+    "promoteVar" : "Efla tilbrigði",
+    "deleteMoves" : "Eyða hvíld færist frá hér",
+    "nags" : "NAGs menu",
+    "pgn" : "Sýna PGN núverandi leik",
+    "hidePGN" : "Fela birtist PGN"
+}

@@ -9,6 +9,22 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [0.9.8]() 2019-06-10
+
+### Changed
+
+* [#46](https://github.com/mliebelt/PgnViewerJS/issues/46) Allow starting a game from a defined move.
+* [#91](https://github.com/mliebelt/PgnViewerJS/issues/91) Added notation for circles and arrows, with creating them in editing mode.
+* [#112](https://github.com/mliebelt/PgnViewerJS/issues/112) Add color marker for the player at move.
+* [#114](https://github.com/mliebelt/PgnViewerJS/issues/114) Show result in move list: use option `showResult: true` for that.
+
+### Fixed
+
+* [#30](https://github.com/mliebelt/PgnViewerJS/issues/30) Underpromotion in a first simple mode.
+* [#106](https://github.com/mliebelt/PgnViewerJS/issues/106) Ensure marks are unset before first move.
+* [#109](https://github.com/mliebelt/PgnViewerJS/issues/109) Fixed nasty first move variation problem.
+* [#117](https://github.com/mliebelt/PgnViewerJS/issues/117) Makes defining FEN more resilient.
+
 ## [0.9.7](https://github.com/mliebelt/PgnViewerJS/compare/v.0.9.6...v.0.9.7) 2018-06-01
 
 ### Change

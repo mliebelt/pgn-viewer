@@ -1,0 +1,14 @@
+{
+    "flipper" : "Flip oldalán a tábla",
+    "first" : "Menjünk az első lépés",
+    "prev" : "Ugrás az előző mozgás",
+    "next" : "Ugrás a következő lépés",
+    "play" : "Lejátszás / stop playing minden mozog",
+    "last" : "Menj az utolsó lépés",
+    "deleteVar" : "Törlés variáció",
+    "promoteVar" : "Támogassák variáció",
+    "deleteMoves" : "Törlés többi mozog itt",
+    "nags" : "NAGs menu",
+    "pgn" : "Kijelző PGN aktuális játék",
+    "hidePGN" : "Elrejtése a megjelenített PGN"
+}

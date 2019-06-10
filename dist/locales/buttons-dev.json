@@ -1,0 +1,14 @@
+{
+    "flipper" : "Flip the sides of the board",
+    "first" : "Go to first move",
+    "prev" : "Go to previous move",
+    "next" : "Go to next move",
+    "play" : "Play / stop playing all moves",
+    "last" : "Go to last move",
+    "deleteVar" : "Delete variation",
+    "promoteVar" : "Promote variation",
+    "deleteMoves" : "Delete rest moves from here",
+    "nags" : "NAGs menu",
+    "pgn" : "Display PGN of current game",
+    "hidePGN" : "Hide the displayed PGN"
+}

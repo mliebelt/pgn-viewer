@@ -1,0 +1,14 @@
+{
+    "flipper" : "Voltear los lados del tablero",
+    "first" : "Ir al primer movimiento",
+    "prev" : "Ir al movimiento anterior",
+    "next" : "Ir al siguiente movimiento",
+    "play" : "Reproducir / detener todos los movimientos",
+    "last" : "Ir al último movimiento",
+    "deleteVar" : "Eliminar variación",
+    "promoteVar" : "Promover la variación",
+    "deleteMoves" : "Eliminar resto se mueve desde aquí",
+    "nags" : "NAGs menu",
+    "pgn" : "Mostrar PGN del juego actual",
+    "hidePGN" : "Ocultar la PGN mostrada"
+}

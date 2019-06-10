@@ -565,7 +565,7 @@ examples["1221"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/30'>ticket 30</a> at GitHub. " +
     "Underpromotion in edit mode possible. Try to promote the pawn.",
     html: "<div id='board' style='width: 200px'/>",
-    name: "#30: Underpromotion in edit mode possible (unsolved)",
+    name: "#30: Underpromotion in edit mode possible",
     jsStr: 'pgnView("board", {pgn: "1. e4 f5 2. exf5 g6 3. fxg6 Bg7 4. gxh7 Kf7"})',
     jsFn: function() {
         pgnEdit("board", {pgn: "1. e4 f5 2. exf5 g6 3. fxg6 Bg7 4. gxh7 Kf7"});
@@ -669,12 +669,12 @@ examples["1230"] = {
 };
 examples["1232"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/46'>ticket 46</a> at GitHub. " +
-    "Allow FEN string with PGN to define start position from analysis (unsolved)",
+    "Allow FEN string with PGN to define start position from analysis",
     html: "<div id='board' style='width: 200px'/>",
     name: "#46: Allow FEN string with PGN to define start position from analysis",
-    jsStr: 'pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
+    jsStr: 'pgnEdit("board", {startPlay: "Bc4", pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
     jsFn: function() {
-        pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"});
+        pgnEdit("board", {startPlay: 'Bc4', pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"});
     }
 };
 examples["1233"] = {
@@ -1005,7 +1005,7 @@ examples["1269"] = {
 };
 examples["1270"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/91'>ticket 91</a> at GitHub. " +
-    "Comment Markup Annotations (unsolved).",
+    "Comment Markup Annotations",
     html: "<div id='board' style='width: 200px'/>",
     name: "#91: Comment Markup Annotations",
     jsStr: 'pgnView("board", {pgn: "1. e4 { [%csl Rc4,Yf4,Gg5][%cal Gg1f3,Rf1c4] } "})',
@@ -1031,5 +1031,57 @@ examples["1272"] = {
     jsStr: 'pgnView("board", {pgn: "1. e4 { [%csl Rc4,Yf4,Gg5][%cal Gg1f3,Rf1c4] } "})',
     jsFn: function() {
         pgnView("board", {pgn: "1. e4 { [%csl Rc4,Yf4,Gg5][%cal Gg1f3,Rf1c4] } "});
+    }
+};
+examples["1273"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/106'>ticket 106</a> at GitHub. " +
+    "Ensure marks are unset for fist move. Press first move button to see the effect.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#106: Unset marks for first move",
+    jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 Nc6", startPlay: "Nf3"})',
+    jsFn: function() {
+        pgnView("board", {pgn: "1. e4 e5 2. Nf3 Nc6", startPlay: "Nf3"});
+    }
+};
+examples["1274"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/109'>ticket 109</a> at GitHub. " +
+    "Allow first move variation. Play e4, then go back and play d4",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#109: Allow variation of first move",
+    jsStr: 'pgnEdit("board", {})',
+    jsFn: function() {
+        pgnEdit("board", {});
+    }
+};
+examples["1275"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/112'>ticket 112</a> at GitHub. " +
+    "Adds color marker for the player at move.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#112: Color marker for player at move",
+    jsStr: 'pgnView("board", {pgn: "1. e4 e5", colorMarker: "cm-small"})',
+    jsFn: function() {
+        pgnView("board", {pgn: "1. e4 e5 ", colorMarker: "cm-small"});
+    }
+};
+examples["1276"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/114'>ticket 114</a> at GitHub. " +
+    "Show result in move list. Default is false.",
+    html: '<div id="board" style="width: 200px"/><div id="board1" style="width: 200px"/>',
+    name: "#114: Show result in move list",
+    jsStr: 'pgnView("board", {pgn: "1. e4 e5 1-0 ", showResult: true});\npgnView("board", {pgn: "1. e4 e5 1-0 "});',
+    jsFn: function() {
+        pgnView("board", {pgn: "1. e4 e5 1-0 ", showResult: true});
+        pgnView("board1", {pgn: "1. e4 e5 1-0 "});
+    }
+};
+examples["1277"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/117'>ticket 117</a> at GitHub. " +
+    "Makes defining FEN more resilient. See the 2 variations that work.",
+    html: "<div id='board' style='width: 200px'/>\n<div id='board1' style='width: 200px'/>",
+    name: "#117: FEN more resilient",
+    jsStr: 'pgnBoard("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - -"});\npgnBoard("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - - 1 1"});',
+    jsFn: function() {
+        pgnBoard("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - -"});
+        pgnBoard("board1", {position: "1k6/5KP1/8/8/8/8/8/8 w - - 1 1"});
     }
 };

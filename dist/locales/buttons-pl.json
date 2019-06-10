@@ -1,0 +1,14 @@
+{
+    "flipper" : "Przerzuć boki planszy",
+    "first" : "Idź do pierwszego ruchu",
+    "prev" : "Przejdź do poprzedniej akcji",
+    "next" : "Przejdź do następnej akcji",
+    "play" : "Odtwarzanie / zatrzymanie odtwarzania wszystkich ruchów",
+    "last" : "Idź do ostatniego ruchu",
+    "deleteVar" : "Usuń odmianę",
+    "promoteVar" : "Promuj wariancji",
+    "deleteMoves" : "Usuń ruchy odpocząć od tutaj",
+    "nags" : "NAGs menu",
+    "pgn" : "Wyświetlacz PGN bieżącej grze",
+    "hidePGN" : "Ukrywanie wyświetlanych PGN"
+}
