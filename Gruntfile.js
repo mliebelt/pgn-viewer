@@ -12,7 +12,7 @@ module.exports = function(grunt) {
                     //'js/polyfill.min.js',
                     'chess.js/chess.js',
                     'js/chessground.min.js',
-                    'js/i18next.min.js',
+                    'js/i18next.js',
                     'js/i18nextXHRBackend.js',
                     'js/i18nextLocalStorageCache.js',
                     'js/Timer.js',
@@ -110,7 +110,7 @@ module.exports = function(grunt) {
         compress: {
             main: {
                 options: {
-                    archive: 'dist/PgnViewerJS-0.9.7.zip'
+                    archive: 'dist/PgnViewerJS-0.9.8.zip'
                 },
                 expand: true,
                 cwd: 'dist/',
