@@ -823,7 +823,7 @@ var pgnBase = function (boardId, configuration) {
         if (myMove) {
             board.set({fen: myFen, lastMove: [myMove.from, myMove.to]});
         } else {
-            board.set({fen: myFen});
+            board.set({fen: myFen, lastMove: []});
         }
         handlePromotion(myMove);
         if (myMove) {
