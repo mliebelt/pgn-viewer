@@ -125,6 +125,14 @@ var pgnBase = function (boardId, configuration) {
         });
     }
 
+    if (that.configuration.position) { // Allow early correction
+        if (that.configuration.position === 'start') return;
+        let tokens = that.configuration.position.split(/\s+/);
+        if (tokens.length == 4) {
+            that.configuration.position += ' 1 1';
+        }
+    }
+
     /**
      * Allow logging of error to HTML.
      */
@@ -541,7 +549,6 @@ var pgnBase = function (boardId, configuration) {
         if (typeof boardConfiguration.showNotation != 'undefined') {
             boardConfiguration.coordinates = boardConfiguration.showNotation;
         }
-        boardConfiguration.fen = boardConfiguration.position;
         var el = document.getElementById(innerBoardId);
         if (typeof that.configuration.pieceStyle != 'undefined') {
             el.className += " " + that.configuration.pieceStyle;
