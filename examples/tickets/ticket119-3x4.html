@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Print of PgnViewerJS</title>
+    <script src="/dist/js/third.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/dist/css/third.css">
+
+    <!-- My own library -->
+    <script src="/js/pgnvjs.js" type="text/javascript"></script>
+    <script src="/js/pgn.js" type="text/javascript"></script>
+    <link href="/css/pgnvjs.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/theme.css" type="text/css" rel="stylesheet"/> <!-- chessground -->
+
+    <style>
+        .row3 {
+            display: flex;
+        }
+
+        article {
+            flex: 1;
+            padding: 20px;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body class='merida zeit'>
+
+<h1>Is the bishop sacrifice working on h7?</h1>
+<div class="row3">
+    <article>
+    <div id="board1"></div>
+    
+    </article>
+
+    <article>
+    <div id="board2"></div>
+        
+    </article>
+
+    <article>
+    <div id="board3"></div>
+        
+    </article>
+</div>
+
+<div class="row3">
+    <article>
+    <div id="board4"></div>
+    
+    </article>
+
+    <article>
+    <div id="board5"></div>
+        
+    </article>
+
+    <article>
+
+    <div id="board6"></div>
+        
+    </article>
+</div>
+
+<div class="row3">
+    <article>
+    <div id="board7"></div>
+    
+    </article>
+
+    <article>
+    <div id="board8"></div>
+        
+    </article>
+
+    <article>
+
+    <div id="board9"></div>
+        
+    </article>
+</div>
+
+<div class="row3">
+    <article>
+    <div id="board10"></div>
+    
+    </article>
+
+    <article>
+    <div id="board11"></div>
+        
+    </article>
+
+    <article>
+
+    <div id="board12"></div>
+        
+    </article>
+</div>
+
+<script>
+    let cfg = { showNotation: false, width: '260px', colorMarker: 'small' };
+    pgnBoard('board1', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board2', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board3', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board4', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board5', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board6', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board7', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board8', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board9', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board10', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board11', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board12', Object.assign({fen: 'start'}, cfg));
+</script>
+</body>
+</html>
