@@ -83,7 +83,8 @@ var pgnBase = function (boardId, configuration) {
         viewOnly: true,
         hideMovesBefore: false,
         colorMarker: null,
-        showResult: false
+        showResult: false,
+        timeAnnotation: 'none'
     };
     that.promMappings = {q: 'queen', r: 'rook', b: 'bishop', n: 'knight'};
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration);
@@ -680,6 +681,15 @@ var pgnBase = function (boardId, configuration) {
         var text = document.createTextNode(san);
         link.appendChild(text);
         span.appendChild(document.createTextNode(" "));
+        if (that.configuration.timeAnnotation != 'none' && move.commentDiag && move.commentDiag.clock) {
+            let cl_time = move.commentDiag.clock.value;
+            let cl_class = that.configuration.timeAnnotation.class || 'timeNormal';
+            let clock_span = generateCommentSpan(cl_time, cl_class);
+            if (that.configuration.timeAnnotation.colorClass) {
+                clock_span.style = "color: " + that.configuration.timeAnnotation.colorClass;
+            }
+            span.appendChild(clock_span);
+        }
         span.appendChild(generateCommentSpan(move.commentAfter, "afterComment"));
         append_to_current_div(move.prev, span, movesDiv, varStack);
         //movesDiv.appendChild(span);

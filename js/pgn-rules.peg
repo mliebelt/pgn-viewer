@@ -59,8 +59,13 @@ commentDiag
   = cl whiteSpace? cas:commentAnnotations whiteSpace? cr { return cas; }
 
 commentAnnotations
-  = caf:commentAnnotationFields? whiteSpace? caa:commentAnnotationArrows? 
-  { var ret = {}; if (caf) { ret.colorFields = caf; }; if (caa) { ret.colorArrows = caa; }; return ret; }
+  = ca:commentAnnotation whiteSpace? cal:(commentAnnotation)*
+  { var ret = { }; if (cal) { var o = cal[0]; return {...ca, ...o}; } return ca; }
+
+commentAnnotation
+  = caf:commentAnnotationFields { var ret = {}; ret.colorFields = caf; return ret; }
+  / caa:commentAnnotationArrows { var ret = {}; ret.colorArrows = caa; return ret; }
+  / cac:commentAnnotationClock { var ret = {}; ret.clock = cac; return ret; }
 
 commentAnnotationFields
   = bl whiteSpace? "%csl" whiteSpace cfs:colorFields whiteSpace? br { return cfs; }
@@ -69,20 +74,20 @@ commentAnnotationArrows
   = bl whiteSpace? "%cal" whiteSpace cfs:colorArrows whiteSpace? br { return cfs; }
 
 colorFields
-  = cf:colorField whiteSpace? cfl:("," whiteSpace? colorField)* 
+  = cf:colorField whiteSpace? cfl:("," whiteSpace? colorField)*
   { var arr = []; arr.push(cf); for (var i=0; i < cfl.length; i++) { arr.push(cfl[i][2])}; return arr; }
 
 colorField
   = col:color f:field { return col + f; }
 
 colorArrows
-  = cf:colorArrow whiteSpace? cfl:("," whiteSpace? colorArrow)* 
+  = cf:colorArrow whiteSpace? cfl:("," whiteSpace? colorArrow)*
   { var arr = []; arr.push(cf); for (var i=0; i < cfl.length; i++) { arr.push(cfl[i][2])}; return arr; }
 
 colorArrow
   = col:color ff:field ft:field { return col + ff + ft; }
 
-color 
+color
   = "Y" { return "Y"; } // yellow
   / "G" { return "G"; } // green
   / "R" { return "R"; } // red
@@ -98,6 +103,23 @@ cr = '}'
 bl = '['
 
 br = ']'
+
+commentAnnotationClock
+  = bl whiteSpace? "%" cc:clockCommand whiteSpace cv:clockValue whiteSpace? br
+  { var ret = {}; ret.type = cc; ret.value = cv; return ret; }
+
+clockCommand
+  = "clk" { return "clk"; }
+  / "egt" { return "egt"; }
+  / "emt" { return "emt"; }
+  / "mct" { return "mct"; }
+
+clockValue
+  = h1:digit h2:digit? ":" m1:digit m2:digit ":" s1:digit s2:digit
+  { var ret = h1; if (h2) { ret += h2 }; ret += ":" + m1 + m2 + ":" + s1 + s2; return ret; }
+
+digit
+  = d:[0-9] { return d; }
 
 variationWhite
   = pl vari:pgnWhite pr whiteSpace? all:variationWhite? whiteSpace? me:moveEllipse?

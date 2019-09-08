@@ -2663,7 +2663,7 @@ div.moves {
 }
 div.layout-left > .moves, div.layout-right > .moves {
     position: relative;
-    flex: 1 40%;
+    /*flex: 1 40%;*/
 }
 
 div.layout-left > .moves, div.layout-right > .moves, div.layout-top > .moves, div.layout-bottom > .moves {

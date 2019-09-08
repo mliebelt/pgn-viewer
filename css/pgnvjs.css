@@ -31,7 +31,7 @@ div.moves {
 }
 div.layout-left > .moves, div.layout-right > .moves {
     position: relative;
-    flex: 1 40%;
+    /*flex: 1 40%;*/
 }
 
 div.layout-left > .moves, div.layout-right > .moves, div.layout-top > .moves, div.layout-bottom > .moves {
@@ -324,6 +324,19 @@ div.comment > textarea.comment {
 .moves .move .comment {
     color: green;
     font-weight: 500;
+}
+
+.moves .move .comment.timeTiny {
+    font-weight: 300;
+    font-size: 60%;
+}
+
+.moves .move .comment.timeLarge {
+}
+
+.moves .move .timeNormal {
+    font-weight: 400;
+    font-size: 80%;
 }
 
 .moves .white:before {
