@@ -11703,13 +11703,12 @@ var pgnBase = function (boardId, configuration) {
  * @returns {{chess: chess, getPgn: getPgn}} all utility functions available
  */
 var pgnView = function (boardId, configuration) {
-    return GLOB_SCHED.schedule(configuration.locale,
+    GLOB_SCHED.schedule(configuration.locale,
         () => {
             var base = pgnBase(boardId, Object.assign({mode: 'view'}, configuration));
             base.generateHTML();
             var b = base.generateBoard();
             base.generateMoves(b);
-            return base;
         });
 };
 
