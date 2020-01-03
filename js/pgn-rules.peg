@@ -30,7 +30,7 @@ pgnWhite
   / endGame
 
 pgnBlack
-  = whiteSpace? cm:comments? whiteSpace? me:moveEllipse? whiteSpace? cb:comments? whiteSpace?
+  = whiteSpace? cm:comments? whiteSpace? me:moveNumber? whiteSpace? cb:comments? whiteSpace?
     hm:halfMove whiteSpace?  nag:nags? whiteSpace? ca:comments? whiteSpace? cd:commentDiag? whiteSpace? vari:variationBlack? all:pgnWhite?
     { var arr = (all ? all : []);
       var move = {}; move.turn = 'b'; move.moveNumber = me;
@@ -49,7 +49,7 @@ endGame
   / "*"  { return ["*"]; }
 
 comments
-  = cf:comment cfl:(whiteSpace? comment)* 
+  = cf:comment cfl:(whiteSpace? comment)*
   { var comm = cf; for (var i=0; i < cfl.length; i++) { comm += " " + cfl[i][1]}; return comm; }
 
 comment
@@ -122,7 +122,7 @@ digit
   = d:[0-9] { return d; }
 
 variationWhite
-  = pl vari:pgnWhite pr whiteSpace? all:variationWhite? whiteSpace? me:moveEllipse?
+  = pl vari:pgnWhite pr whiteSpace? all:variationWhite? whiteSpace? me:moveNumber?
     { var arr = (all ? all : []); arr.unshift(vari); return arr; }
 
 variationBlack
@@ -134,13 +134,19 @@ pl = '('
 pr = ')'
 
 moveNumber
-    = num:integer"."? { return num; }
+    = num:integer dotOrWhitespace* { return num; }
+
+dot = "."
 
 integer "integer"
     = digits:[0-9]+ { return makeInteger(digits); }
 
 whiteSpace
     = " "+ { return '';}
+
+dotOrWhitespace
+    = dot
+    / whiteSpace
 
 halfMove
   = fig:figure? & checkdisc disc:discriminator str:strike?
@@ -198,9 +204,6 @@ discriminator
 
 checkdisc
   = discriminator strike? column row
-
-moveEllipse
-  = num:integer"."+ { return num; }
 
 figure
   = [RNBQKP]

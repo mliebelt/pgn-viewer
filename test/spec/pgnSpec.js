@@ -284,6 +284,16 @@ describe("When reading PGN with variations", function() {
         expect(my_pgn.getMove(3).prev).toEqual(2);
     });
 
+    it("should understand all variations for black and white with different move number formats", function () {
+        my_pgn = pgnReader({pgn: "1. e4 (1... c4?) e5 (1. .. d5 2 exd5 2... Qxd5)"});
+        expect(my_pgn.movesMainLine().length).toEqual(2);
+        expect(my_pgn.getMove(0).variations.length).toEqual(1);
+        expect(my_pgn.getMove(1).variations.length).toEqual(0);
+        expect(my_pgn.getMove(2).variations[0].notation.notation).toEqual("d5");
+        expect(my_pgn.getMove(3).prev).toEqual(0);
+        expect(my_pgn.getMove(4).prev).toEqual(3);
+    });
+
     it("should understand one variation for black without move number", function () {
         my_pgn = pgnReader({pgn: "1. e4 e5 (d5 2. exd5 Qxd5)"});
         expect(my_pgn.movesMainLine().length).toEqual(2);
