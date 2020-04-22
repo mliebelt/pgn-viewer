@@ -230,7 +230,7 @@ var pgnBase = function (boardId, configuration) {
         }
 
         var node = element;
-        var movesNode = node.offsetParent;
+        var movesNode = node.parentElement;
         scrollParentToChild(movesNode, node);
     }
 
@@ -444,10 +444,14 @@ var pgnBase = function (boardId, configuration) {
             }
             if (that.configuration.width || that.configuration.boardSize) {
                 let size = that.configuration.width ? that.configuration.width : that.configuration.boardSize;
-                boardAndDiv.style.display = 'grid';
+                //boardAndDiv.style.display = 'grid';
                 boardAndDiv.style.gridTemplateColumns = size + ' 40px';
             }
+            let topInnerBoardDiv = createEle("div", null, "topInnerBoard", theme, boardAndDiv);
+            let topTime = createEle("span", null, "topTime", theme, topInnerBoardDiv);
             var innerBoardDiv = createEle("div", innerBoardId, "board", theme, boardAndDiv);
+            let bottomInnerBoardDiv = createEle("div", null, "bottomInnerBoard", theme, boardAndDiv);
+            let bottomTime = createEle("div", null, "bottomTime", theme, bottomInnerBoardDiv);
             if (that.configuration.colorMarker && (!hasMode('print'))) {
                 createEle("div", colorMarkerId, 'colorMarker' + " " + that.configuration.colorMarker, theme, boardAndDiv);
             }
@@ -548,6 +552,8 @@ var pgnBase = function (boardId, configuration) {
                 'coordsInner', 'coordsFactor', 'width', 'movable', 'viewOnly', 'highlight', 'boardSize',
                 'rankFontSize']);
         // board = new ChessBoard(innerBoardId, boardConfiguration);
+        // Allow Chessground to be resizable
+        boardConfiguration.resizable = true;
         if (typeof boardConfiguration.showNotation != 'undefined') {
             boardConfiguration.coordinates = boardConfiguration.showNotation;
         }
@@ -559,7 +565,12 @@ var pgnBase = function (boardId, configuration) {
         if (boardConfiguration.boardSize) {
             boardConfiguration.width = boardConfiguration.boardSize;
         }
-        board = Chessground(el, boardConfiguration);
+        let currentWidth = parseInt(boardConfiguration.width);
+        let moduloWidth = currentWidth % 8;
+        let smallerWidth = currentWidth - moduloWidth;
+        // Ensure that boardWidth is a multiply of 8
+        boardConfiguration.width = "" + smallerWidth +"px";
+        board = window.Chessground(el, boardConfiguration);
         //console.log("Board width: " + board.width);
         if (boardConfiguration.width) {
             el.style.width = boardConfiguration.width;
@@ -898,7 +909,18 @@ var pgnBase = function (boardId, configuration) {
                 logError(err);
             }
         }
-        var myMoves = that.mypgn.getMoves();
+        //TODO: Move the whole block to `pgn.js` and do the compuation there.
+        // This should already be finished after load_pgn
+        // if (that.configuration.startPlay && that.configuration.hideMovesBefore) {
+        //     let new_fen = that.mypgn.deleteMovesBefore(that.configuration.startPlay);
+        //     let new_pgn = that.mypgn.write_pgn();
+        //     that.configuration.startPlay = null;
+        //     that.configuration.hideMovesBefore = false;
+        //     that.configuration.pgn = new_pgn;
+        //     that.configuration.position = new_fen;
+        //     that.mypgn.load_pgn();
+        // }
+        let myMoves = that.mypgn.getMoves();
         if (that.configuration.position == 'start') {
             game.reset();
         } else {
@@ -1144,7 +1166,8 @@ var pgnBase = function (boardId, configuration) {
             var movesDiv = document.getElementById(movesId);
             var prev = null;
             var varStack = [];
-            for (var i = 0; i < myMoves.length; i++) {
+            var firstMove = 0;
+            for (var i = firstMove; i < myMoves.length; i++) {
                 if (!that.mypgn.isDeleted(i)) {
                     var move = myMoves[i];
                     prev = generateMove(move.index, game, move, prev, movesDiv, varStack);
@@ -1159,30 +1182,8 @@ var pgnBase = function (boardId, configuration) {
          * Allows to add functions after having generated the moves. Used currently for setting start position.
          */
         function postGenerateMoves() {
-            function findMoveForStart() {
-                let startPlay = that.configuration.startPlay;
-                if (!isNaN(startPlay)) {   // the following goes only over the main line, move number cannot denote a variation
-                    startPlay = startPlay - 1;
-                    let move = that.mypgn.getMove(0);
-                    while (startPlay > 0) {
-                        startPlay = startPlay - 1;
-                        move = that.mypgn.getMove(move.next);
-                    }
-                    return move;
-                }
-                let moves = that.mypgn.getMoves();
-                for (let move of moves) {
-                    if (move.fen.startsWith(startPlay)) {
-                        return move;
-                    } else if (move.notation.notation == startPlay) {
-                        return move;
-                    }
-                }
-                return undefined;
-            }
-
             if (that.configuration.startPlay && !that.configuration.hideMovesBefore) {
-                let move = findMoveForStart();
+                let move = that.mypgn.findMove(that.configuration.startPlay)
                 if (move === undefined) {
                     logError('Could not find startPlay: ' + that.configuration.startPlay);
                     return;

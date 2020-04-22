@@ -30,6 +30,10 @@ describe("Chess Game", function() {
     xit("should know the castling rules from FEN only black", function(){
       var fen ="rnbqk2r/pppp1ppp/5n2/4p3/1b1PP3/5N2/PPPB1PPP/RN1QKB1R b KQkq - 2 4";
       chess = new Chess(fen);
+    });
+
+    it("should know the castling rules for chess960: white", function () {
+      let fen = ""
     })
   });
 

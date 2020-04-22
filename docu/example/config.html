@@ -97,6 +97,13 @@ and helps to define a new configuration.
         <!-- coordsFactor -->
         <label for="coordsFactor">coordsFactor</label>
         <input type="number" id="coordsFactor" class="number" value='1.0'>
+        <!-- startPlay -->
+        <label for="startPlay">startPlay</label>
+        <input type="number" id="startPlay" class="number" value=''>
+        <!-- hideMovesBefore -->
+        <label for="hideMovesBefore">hideMovesBefore</label>
+        <input type="checkbox" id="hideMovesBefore" checked>
+
         <br/>
         <!-- Theme: zeit, blue, green, default -->
         <label for="theme">Theme</label>
@@ -259,6 +266,8 @@ and helps to define a new configuration.
         var locale = document.getElementById('locale').value;
         var timerTime = document.getElementById('timerTime').value;
         var coordsFactor = document.getElementById('coordsFactor').value;
+        var startPlay = document.getElementById('startPlay').value;
+        var hideMovesBefore = document.getElementById('hideMovesBefore').checked;
         var width = document.getElementById('width').value;
         var boardSize = document.getElementById('boardSize').value;
         var pgn = document.getElementById('pgn').value;
@@ -291,6 +300,9 @@ and helps to define a new configuration.
         configuration['locale']= locale;
         configuration['timerTime']= timerTime;
         configuration['coordsFactor']= coordsFactor;
+        configuration['startPlay']= startPlay;
+        if (hideMovesBefore) { configuration['hideMovesBefore'] = true } else {
+            configuration['hideMovesBefore'] = false }
         if (width !== "") {
             configuration['width']= width + 'px';
         }
@@ -322,7 +334,7 @@ and helps to define a new configuration.
         var props = ['pgn','position', 'showNotation', 'orientation', 'theme',
                     'pieceStyle', 'locale', 'timerTime', 'width', 'boardSize', 'layout',
                     'movesWidth', 'movesHeight', 'showFen', 'coordsInner', 'headers',
-                    'coordsFactor', 'colorMarker'];
+                    'coordsFactor', 'colorMarker', 'startPlay', 'hideMovesBefore'];
         for (property of props) {
             var val = config[property];
             if (val != undefined) {
@@ -352,6 +364,8 @@ and helps to define a new configuration.
         document.getElementById('locale').onchange = changedSomething;
         document.getElementById('timerTime').oninput = changedSomething;
         document.getElementById('coordsFactor').oninput = changedSomething;
+        document.getElementById('startPlay').oninput = changedSomething;
+        document.getElementById('hideMovesBefore').onclick = changedSomething;
         document.getElementById('width').oninput = changedSomething;
         document.getElementById('boardSize').oninput = changedSomething;
         document.getElementById('pgn').onchange = changedSomething;

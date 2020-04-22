@@ -11,7 +11,7 @@ module.exports = function(grunt) {
                 src: [
                     //'js/polyfill.min.js',
                     'chess.js/chess.js',
-                    'js/chessground.min.js',
+                    'js/chessground.js',
                     'js/i18next.js',
                     'js/i18nextXHRBackend.js',
                     'js/i18nextLocalStorageCache.js',
@@ -28,7 +28,7 @@ module.exports = function(grunt) {
             dev: {
                 src: [
                     'chess.js/chess.js',
-                    'js/chessground.min.js',
+                    'js/chessground.js',
                     'js/i18next.js',
                     'js/i18nextXHRBackend.js',
                     'js/i18nextLocalStorageCache.js',

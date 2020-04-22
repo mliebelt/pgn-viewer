@@ -164,7 +164,7 @@ describe("When using all kind of notation", function() {
 
 describe("When reading PGN with headers", function() {
     beforeEach(function() {
-        var pgn_string = ['[Event "Casual Game"]',
+        let pgn_string = ['[Event "Casual Game"]',
             '[Site "Berlin GER"]',
             '[Date "1852.??.??"]',
             '[EventDate "?"]',
@@ -174,28 +174,30 @@ describe("When reading PGN with headers", function() {
             '[Black "Jean Dufresne"]',
             '[SetUp "0"]',
             '1. e4 e5 2. Nf3 Nc6'];
-        var pgn_string2 = ['[SetUp "1"]', '[FEN "8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57"]'];
+        let pgn_string2 = ['[SetUp "1"]', '[FEN "8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57"]'];
         my_pgn = pgnReader({pgn: pgn_string.join(" ")});
         my_pgn2 = pgnReader({pgn: pgn_string2.join(" ")});
     });
 
-    // Disabled that because not used any where
-    xit("should know the input pgn (the moves)", function() {
-        expect(my_pgn.movesString()).toEqual("1. e2 e4 2. Nf3 Nc6");
-        expect(my_pgn.getMoves().length).toEqual(4);
-    });
-
     it("should have these headers read", function() {
         expect(Object.keys(my_pgn.getHeaders()).length).toEqual(8); // EventDate is not valid
-        expect(my_pgn.getHeaders().Site).toEqual("Berlin GER");
-        expect(my_pgn.getHeaders().Date).toEqual("1852.??.??");
-        expect(my_pgn.getHeaders().SetUp).toEqual("0");
+        expect(my_pgn.getHeaders().site).toEqual("Berlin GER");
+        expect(my_pgn.getHeaders().date).toEqual("1852.??.??");
+        expect(my_pgn.getHeaders().setup).toEqual("0");
         expect(my_pgn.configuration.position).toEqual("start");
     });
 
     it("should have header mapped to FEN", function() {
         expect(Object.keys(my_pgn2.getHeaders()).length).toEqual(2); // EventDate is not valid
-        expect(my_pgn2.getHeaders().SetUp).toEqual("1");
+        expect(my_pgn2.getHeaders().setup).toEqual("1");
+        expect(my_pgn2.configuration.position).toEqual("8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57");
+    })
+
+    it("should accept variations of case in header", function() {
+        let pgn_string = ['[Setup "1"]', '[feN "8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57"]'];
+        my_pgn = pgnReader({pgn: pgn_string.join(" ")});
+        expect(Object.keys(my_pgn2.getHeaders()).length).toEqual(2); // EventDate is not valid
+        expect(my_pgn2.getHeaders().setup).toEqual("1");
         expect(my_pgn2.configuration.position).toEqual("8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57");
     })
 });
@@ -753,6 +755,15 @@ describe("When deleting lines" , function () {
         my_pgn.deleteMove(4);
         expect(my_pgn.isDeleted(3)).toBeFalsy();
         expect(my_pgn.isDeleted(4)).toBeTruthy();
+    });
+
+    it("should delete the moves before (without the move)", function () {
+        my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 Nc6"});
+        my_pgn.deleteMovesBefore(0);
+        expect(my_pgn.getMoves().length).toEqual(4);
+        my_pgn.deleteMovesBefore(1);
+        expect(my_pgn.getMoves().length).toEqual(4);
+        expect(my_pgn.isDeleted(0)).toBeTruthy();
     });
 
 });

@@ -1,404 +1,404 @@
 /*
  * Board
  */
-.blue .cg-board-wrap {
+.blue .cg-wrap {
   background-image: url(images/board/blue.svg);
 }
-.brown .cg-board-wrap {
+.brown .cg-wrap {
   background-image: url(images/board/brown.svg);
 }
-.zeit .cg-board-wrap {
+.zeit .cg-wrap {
   background-image: url(images/board/zeit.svg);
 }
-.chesscom .cg-board-wrap {
+.chesscom .cg-wrap {
   background-image: url(images/board/chesscom.svg);
 }
-.informator .cg-board-wrap {
+.informator .cg-wrap {
   background-image: url(images/board/informator.svg);
 }
-.sportverlag .cg-board-wrap {
+.sportverlag .cg-wrap {
   background-image: url(images/board/sportverlag.svg);
 }
-.beyer .cg-board-wrap {
+.beyer .cg-wrap {
   background-image: url(images/board/beyer.svg);
 }
-.falken .cg-board-wrap {
+.falken .cg-wrap {
   background-image: url(images/board/falken.svg);
 }
-.green .cg-board-wrap {
+.green .cg-wrap {
   background-image: url(images/board/green.svg);
 }
 
 /*
  * Board
  */
-.merida .cg-board piece.pawn.white {
+.merida  cg-board piece.pawn.white {
   background-image: url('images/pieces/merida/wP.svg');
 }
-.merida .cg-board piece.bishop.white {
+.merida  cg-board piece.bishop.white {
   background-image: url('images/pieces/merida/wB.svg');
 }
-.merida .cg-board piece.knight.white {
+.merida  cg-board piece.knight.white {
   background-image: url('images/pieces/merida/wN.svg');
 }
-.merida .cg-board piece.rook.white {
+.merida  cg-board piece.rook.white {
   background-image: url('images/pieces/merida/wR.svg');
 }
-.merida .cg-board piece.queen.white {
+.merida  cg-board piece.queen.white {
   background-image: url('images/pieces/merida/wQ.svg');
 }
-.merida .cg-board piece.king.white {
+.merida  cg-board piece.king.white {
   background-image: url('images/pieces/merida/wK.svg');
 }
-.merida .cg-board piece.pawn.black {
+.merida  cg-board piece.pawn.black {
   background-image: url('images/pieces/merida/bP.svg');
 }
-.merida .cg-board piece.bishop.black {
+.merida  cg-board piece.bishop.black {
   background-image: url('images/pieces/merida/bB.svg');
 }
-.merida .cg-board piece.knight.black {
+.merida  cg-board piece.knight.black {
   background-image: url('images/pieces/merida/bN.svg');
 }
-.merida .cg-board piece.rook.black {
+.merida  cg-board piece.rook.black {
   background-image: url('images/pieces/merida/bR.svg');
 }
-.merida .cg-board piece.queen.black {
+.merida  cg-board piece.queen.black {
   background-image: url('images/pieces/merida/bQ.svg');
 }
-.merida .cg-board piece.king.black {
+.merida  cg-board piece.king.black {
   background-image: url('images/pieces/merida/bK.svg');
 }
 
 /* Wikipedia */
-.wikipedia .cg-board piece.pawn.white {
+.wikipedia  cg-board piece.pawn.white {
   background-image: url('../img/chesspieces/wikipedia/wP.png');
 }
-.wikipedia .cg-board piece.bishop.white {
+.wikipedia  cg-board piece.bishop.white {
   background-image: url('../img/chesspieces/wikipedia/wB.png');
 }
-.wikipedia .cg-board piece.knight.white {
+.wikipedia  cg-board piece.knight.white {
   background-image: url('../img/chesspieces/wikipedia/wN.png');
 }
-.wikipedia .cg-board piece.rook.white {
+.wikipedia  cg-board piece.rook.white {
   background-image: url('../img/chesspieces/wikipedia/wR.png');
 }
-.wikipedia .cg-board piece.queen.white {
+.wikipedia  cg-board piece.queen.white {
   background-image: url('../img/chesspieces/wikipedia/wQ.png');
 }
-.wikipedia .cg-board piece.king.white {
+.wikipedia cg-board piece.king.white {
   background-image: url('../img/chesspieces/wikipedia/wK.png');
 }
-.wikipedia .cg-board piece.pawn.black {
+.wikipedia cg-board piece.pawn.black {
   background-image: url('../img/chesspieces/wikipedia/bP.png');
 }
-.wikipedia .cg-board piece.bishop.black {
+.wikipedia cg-board piece.bishop.black {
   background-image: url('../img/chesspieces/wikipedia/bB.png');
 }
-.wikipedia .cg-board piece.knight.black {
+.wikipedia cg-board piece.knight.black {
   background-image: url('../img/chesspieces/wikipedia/bN.png');
 }
-.wikipedia .cg-board piece.rook.black {
+.wikipedia cg-board piece.rook.black {
   background-image: url('../img/chesspieces/wikipedia/bR.png');
 }
-.wikipedia .cg-board piece.queen.black {
+.wikipedia cg-board piece.queen.black {
   background-image: url('../img/chesspieces/wikipedia/bQ.png');
 }
-.wikipedia .cg-board piece.king.black {
+.wikipedia cg-board piece.king.black {
   background-image: url('../img/chesspieces/wikipedia/bK.png');
 }
 /* Alpha */
-.alpha .cg-board piece.pawn.white {
+.alpha cg-board piece.pawn.white {
   background-image: url('../img/chesspieces/alpha/wP.png');
 }
-.alpha .cg-board piece.bishop.white {
+.alpha cg-board piece.bishop.white {
   background-image: url('../img/chesspieces/alpha/wB.png');
 }
-.alpha .cg-board piece.knight.white {
+.alpha cg-board piece.knight.white {
   background-image: url('../img/chesspieces/alpha/wN.png');
 }
-.alpha .cg-board piece.rook.white {
+.alpha cg-board piece.rook.white {
   background-image: url('../img/chesspieces/alpha/wR.png');
 }
-.alpha .cg-board piece.queen.white {
+.alpha cg-board piece.queen.white {
   background-image: url('../img/chesspieces/alpha/wQ.png');
 }
-.alpha .cg-board piece.king.white {
+.alpha cg-board piece.king.white {
   background-image: url('../img/chesspieces/alpha/wK.png');
 }
-.alpha .cg-board piece.pawn.black {
+.alpha cg-board piece.pawn.black {
   background-image: url('../img/chesspieces/alpha/bP.png');
 }
-.alpha .cg-board piece.bishop.black {
+.alpha cg-board piece.bishop.black {
   background-image: url('../img/chesspieces/alpha/bB.png');
 }
-.alpha .cg-board piece.knight.black {
+.alpha  cg-board piece.knight.black {
   background-image: url('../img/chesspieces/alpha/bN.png');
 }
-.alpha .cg-board piece.rook.black {
+.alpha  cg-board piece.rook.black {
   background-image: url('../img/chesspieces/alpha/bR.png');
 }
-.alpha .cg-board piece.queen.black {
+.alpha  cg-board piece.queen.black {
   background-image: url('../img/chesspieces/alpha/bQ.png');
 }
-.alpha .cg-board piece.king.black {
+.alpha  cg-board piece.king.black {
   background-image: url('../img/chesspieces/alpha/bK.png');
 }
 /* Beyer */
-.beyer .cg-board piece.pawn.white {
+.beyer  cg-board piece.pawn.white {
   background-image: url('../img/chesspieces/beyer/wP.png');
 }
-.beyer .cg-board piece.bishop.white {
+.beyer  cg-board piece.bishop.white {
   background-image: url('../img/chesspieces/beyer/wB.png');
 }
-.beyer .cg-board piece.knight.white {
+.beyer  cg-board piece.knight.white {
   background-image: url('../img/chesspieces/beyer/wN.png');
 }
-.beyer .cg-board piece.rook.white {
+.beyer  cg-board piece.rook.white {
   background-image: url('../img/chesspieces/beyer/wR.png');
 }
-.beyer .cg-board piece.queen.white {
+.beyer  cg-board piece.queen.white {
   background-image: url('../img/chesspieces/beyer/wQ.png');
 }
-.beyer .cg-board piece.king.white {
+.beyer  cg-board piece.king.white {
   background-image: url('../img/chesspieces/beyer/wK.png');
 }
-.beyer .cg-board piece.pawn.black {
+.beyer  cg-board piece.pawn.black {
   background-image: url('../img/chesspieces/beyer/bP.png');
 }
-.beyer .cg-board piece.bishop.black {
+.beyer  cg-board piece.bishop.black {
   background-image: url('../img/chesspieces/beyer/bB.png');
 }
-.beyer .cg-board piece.knight.black {
+.beyer  cg-board piece.knight.black {
   background-image: url('../img/chesspieces/beyer/bN.png');
 }
-.beyer .cg-board piece.rook.black {
+.beyer  cg-board piece.rook.black {
   background-image: url('../img/chesspieces/beyer/bR.png');
 }
-.beyer .cg-board piece.queen.black {
+.beyer  cg-board piece.queen.black {
   background-image: url('../img/chesspieces/beyer/bQ.png');
 }
-.beyer .cg-board piece.king.black {
+.beyer  cg-board piece.king.black {
   background-image: url('../img/chesspieces/beyer/bK.png');
 }
 /* Case */
-.case .cg-board piece.pawn.white {
+.case  cg-board piece.pawn.white {
   background-image: url('../img/chesspieces/case/wP.png');
 }
-.case .cg-board piece.bishop.white {
+.case  cg-board piece.bishop.white {
   background-image: url('../img/chesspieces/case/wB.png');
 }
-.case .cg-board piece.knight.white {
+.case  cg-board piece.knight.white {
   background-image: url('../img/chesspieces/case/wN.png');
 }
-.case .cg-board piece.rook.white {
+.case  cg-board piece.rook.white {
   background-image: url('../img/chesspieces/case/wR.png');
 }
-.case .cg-board piece.queen.white {
+.case  cg-board piece.queen.white {
   background-image: url('../img/chesspieces/case/wQ.png');
 }
-.case .cg-board piece.king.white {
+.case  cg-board piece.king.white {
   background-image: url('../img/chesspieces/case/wK.png');
 }
-.case .cg-board piece.pawn.black {
+.case  cg-board piece.pawn.black {
   background-image: url('../img/chesspieces/case/bP.png');
 }
-.case .cg-board piece.bishop.black {
+.case  cg-board piece.bishop.black {
   background-image: url('../img/chesspieces/case/bB.png');
 }
-.case .cg-board piece.knight.black {
+.case  cg-board piece.knight.black {
   background-image: url('../img/chesspieces/case/bN.png');
 }
-.case .cg-board piece.rook.black {
+.case  cg-board piece.rook.black {
   background-image: url('../img/chesspieces/case/bR.png');
 }
-.case .cg-board piece.queen.black {
+.case  cg-board piece.queen.black {
   background-image: url('../img/chesspieces/case/bQ.png');
 }
-.case .cg-board piece.king.black {
+.case  cg-board piece.king.black {
   background-image: url('../img/chesspieces/case/bK.png');
 }
 /* Chesscom */
-.chesscom .cg-board piece.pawn.white {
+.chesscom  cg-board piece.pawn.white {
   background-image: url('../img/chesspieces/chesscom/wp.png');
 }
-.chesscom .cg-board piece.bishop.white {
+.chesscom  cg-board piece.bishop.white {
   background-image: url('../img/chesspieces/chesscom/wb.png');
 }
-.chesscom .cg-board piece.knight.white {
+.chesscom  cg-board piece.knight.white {
   background-image: url('../img/chesspieces/chesscom/wn.png');
 }
-.chesscom .cg-board piece.rook.white {
+.chesscom  cg-board piece.rook.white {
   background-image: url('../img/chesspieces/chesscom/wr.png');
 }
-.chesscom .cg-board piece.queen.white {
+.chesscom  cg-board piece.queen.white {
   background-image: url('../img/chesspieces/chesscom/wq.png');
 }
-.chesscom .cg-board piece.king.white {
+.chesscom  cg-board piece.king.white {
   background-image: url('../img/chesspieces/chesscom/wk.png');
 }
-.chesscom .cg-board piece.pawn.black {
+.chesscom  cg-board piece.pawn.black {
   background-image: url('../img/chesspieces/chesscom/bp.png');
 }
-.chesscom .cg-board piece.bishop.black {
+.chesscom  cg-board piece.bishop.black {
   background-image: url('../img/chesspieces/chesscom/bb.png');
 }
-.chesscom .cg-board piece.knight.black {
+.chesscom  cg-board piece.knight.black {
   background-image: url('../img/chesspieces/chesscom/bn.png');
 }
-.chesscom .cg-board piece.rook.black {
+.chesscom  cg-board piece.rook.black {
   background-image: url('../img/chesspieces/chesscom/br.png');
 }
-.chesscom .cg-board piece.queen.black {
+.chesscom  cg-board piece.queen.black {
   background-image: url('../img/chesspieces/chesscom/bq.png');
 }
-.chesscom .cg-board piece.king.black {
+.chesscom  cg-board piece.king.black {
   background-image: url('../img/chesspieces/chesscom/bk.png');
 }
 /* Condal */
-.condal .cg-board piece.pawn.white {
+.condal  cg-board piece.pawn.white {
   background-image: url('../img/chesspieces/condal/wP.png');
 }
-.condal .cg-board piece.bishop.white {
+.condal  cg-board piece.bishop.white {
   background-image: url('../img/chesspieces/condal/wB.png');
 }
-.condal .cg-board piece.knight.white {
+.condal  cg-board piece.knight.white {
   background-image: url('../img/chesspieces/condal/wN.png');
 }
-.condal .cg-board piece.rook.white {
+.condal  cg-board piece.rook.white {
   background-image: url('../img/chesspieces/condal/wR.png');
 }
-.condal .cg-board piece.queen.white {
+.condal  cg-board piece.queen.white {
   background-image: url('../img/chesspieces/condal/wQ.png');
 }
-.condal .cg-board piece.king.white {
+.condal  cg-board piece.king.white {
   background-image: url('../img/chesspieces/condal/wK.png');
 }
-.condal .cg-board piece.pawn.black {
+.condal  cg-board piece.pawn.black {
   background-image: url('../img/chesspieces/condal/bP.png');
 }
-.condal .cg-board piece.bishop.black {
+.condal  cg-board piece.bishop.black {
   background-image: url('../img/chesspieces/condal/bB.png');
 }
-.condal .cg-board piece.knight.black {
+.condal  cg-board piece.knight.black {
   background-image: url('../img/chesspieces/condal/bN.png');
 }
-.condal .cg-board piece.rook.black {
+.condal  cg-board piece.rook.black {
   background-image: url('../img/chesspieces/condal/bR.png');
 }
-.condal .cg-board piece.queen.black {
+.condal  cg-board piece.queen.black {
   background-image: url('../img/chesspieces/condal/bQ.png');
 }
-.condal .cg-board piece.king.black {
+.condal  cg-board piece.king.black {
   background-image: url('../img/chesspieces/condal/bK.png');
 }
 /* Leipzig */
-.leipzig .cg-board piece.pawn.white {
+.leipzig  cg-board piece.pawn.white {
   background-image: url('../img/chesspieces/leipzig/wP.png');
 }
-.leipzig .cg-board piece.bishop.white {
+.leipzig  cg-board piece.bishop.white {
   background-image: url('../img/chesspieces/leipzig/wB.png');
 }
-.leipzig .cg-board piece.knight.white {
+.leipzig  cg-board piece.knight.white {
   background-image: url('../img/chesspieces/leipzig/wN.png');
 }
-.leipzig .cg-board piece.rook.white {
+.leipzig  cg-board piece.rook.white {
   background-image: url('../img/chesspieces/leipzig/wR.png');
 }
-.leipzig .cg-board piece.queen.white {
+.leipzig  cg-board piece.queen.white {
   background-image: url('../img/chesspieces/leipzig/wQ.png');
 }
-.leipzig .cg-board piece.king.white {
+.leipzig  cg-board piece.king.white {
   background-image: url('../img/chesspieces/leipzig/wK.png');
 }
-.leipzig .cg-board piece.pawn.black {
+.leipzig  cg-board piece.pawn.black {
   background-image: url('../img/chesspieces/leipzig/bP.png');
 }
-.leipzig .cg-board piece.bishop.black {
+.leipzig  cg-board piece.bishop.black {
   background-image: url('../img/chesspieces/leipzig/bB.png');
 }
-.leipzig .cg-board piece.knight.black {
+.leipzig  cg-board piece.knight.black {
   background-image: url('../img/chesspieces/leipzig/bN.png');
 }
-.leipzig .cg-board piece.rook.black {
+.leipzig  cg-board piece.rook.black {
   background-image: url('../img/chesspieces/leipzig/bR.png');
 }
-.leipzig .cg-board piece.queen.black {
+.leipzig  cg-board piece.queen.black {
   background-image: url('../img/chesspieces/leipzig/bQ.png');
 }
-.leipzig .cg-board piece.king.black {
+.leipzig  cg-board piece.king.black {
   background-image: url('../img/chesspieces/leipzig/bK.png');
 }
 /* Maya */
-.maya .cg-board piece.pawn.white {
+.maya  cg-board piece.pawn.white {
   background-image: url('../img/chesspieces/maya/wP.png');
 }
-.maya .cg-board piece.bishop.white {
+.maya  cg-board piece.bishop.white {
   background-image: url('../img/chesspieces/maya/wB.png');
 }
-.maya .cg-board piece.knight.white {
+.maya  cg-board piece.knight.white {
   background-image: url('../img/chesspieces/maya/wN.png');
 }
-.maya .cg-board piece.rook.white {
+.maya  cg-board piece.rook.white {
   background-image: url('../img/chesspieces/maya/wR.png');
 }
-.maya .cg-board piece.queen.white {
+.maya  cg-board piece.queen.white {
   background-image: url('../img/chesspieces/maya/wQ.png');
 }
-.maya .cg-board piece.king.white {
+.maya  cg-board piece.king.white {
   background-image: url('../img/chesspieces/maya/wK.png');
 }
-.maya .cg-board piece.pawn.black {
+.maya  cg-board piece.pawn.black {
   background-image: url('../img/chesspieces/maya/bP.png');
 }
-.maya .cg-board piece.bishop.black {
+.maya  cg-board piece.bishop.black {
   background-image: url('../img/chesspieces/maya/bB.png');
 }
-.maya .cg-board piece.knight.black {
+.maya  cg-board piece.knight.black {
   background-image: url('../img/chesspieces/maya/bN.png');
 }
-.maya .cg-board piece.rook.black {
+.maya  cg-board piece.rook.black {
   background-image: url('../img/chesspieces/maya/bR.png');
 }
-.maya .cg-board piece.queen.black {
+.maya  cg-board piece.queen.black {
   background-image: url('../img/chesspieces/maya/bQ.png');
 }
-.maya .cg-board piece.king.black {
+.maya  cg-board piece.king.black {
   background-image: url('../img/chesspieces/maya/bK.png');
 }
 /* USCF */
-.uscf .cg-board piece.pawn.white {
+.uscf  cg-board piece.pawn.white {
   background-image: url('../img/chesspieces/uscf/wP.png');
 }
-.uscf .cg-board piece.bishop.white {
+.uscf  cg-board piece.bishop.white {
   background-image: url('../img/chesspieces/uscf/wB.png');
 }
-.uscf .cg-board piece.knight.white {
+.uscf  cg-board piece.knight.white {
   background-image: url('../img/chesspieces/uscf/wN.png');
 }
-.uscf .cg-board piece.rook.white {
+.uscf  cg-board piece.rook.white {
   background-image: url('../img/chesspieces/uscf/wR.png');
 }
-.uscf .cg-board piece.queen.white {
+.uscf  cg-board piece.queen.white {
   background-image: url('../img/chesspieces/uscf/wQ.png');
 }
-.uscf .cg-board piece.king.white {
+.uscf  cg-board piece.king.white {
   background-image: url('../img/chesspieces/uscf/wK.png');
 }
-.uscf .cg-board piece.pawn.black {
+.uscf  cg-board piece.pawn.black {
   background-image: url('../img/chesspieces/uscf/bP.png');
 }
-.uscf .cg-board piece.bishop.black {
+.uscf  cg-board piece.bishop.black {
   background-image: url('../img/chesspieces/uscf/bB.png');
 }
-.uscf .cg-board piece.knight.black {
+.uscf  cg-board piece.knight.black {
   background-image: url('../img/chesspieces/uscf/bN.png');
 }
-.uscf .cg-board piece.rook.black {
+.uscf  cg-board piece.rook.black {
   background-image: url('../img/chesspieces/uscf/bR.png');
 }
-.uscf .cg-board piece.queen.black {
+.uscf  cg-board piece.queen.black {
   background-image: url('../img/chesspieces/uscf/bQ.png');
 }
-.uscf .cg-board piece.king.black {
+.uscf  cg-board piece.king.black {
   background-image: url('../img/chesspieces/uscf/bK.png');
 }
