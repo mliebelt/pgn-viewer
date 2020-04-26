@@ -757,6 +757,11 @@ const pgnReader = function (configuration, chess) {
     };
 
 
+    // Returns true, if the move is the start of teh main line
+    const startMainLine = function(move) {
+        return  move.variationLevel == 0 && (typeof move.prev != "number") ;
+    };
+
     // Returns true, if the move is the start of a (new) variation
     const startVariation = function(move) {
         return  move.variationLevel > 0 &&
@@ -1341,6 +1346,7 @@ const pgnReader = function (configuration, chess) {
         write_pgn: write_pgn,
         nag_to_symbol: nag_to_symbol,
         startVariation: startVariation,
+        startMainLine: startMainLine,
         endVariation: endVariation,
         afterMoveWithVariation: afterMoveWithVariation,
         changeNag: changeNag,

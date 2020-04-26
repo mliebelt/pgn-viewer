@@ -681,7 +681,7 @@ var pgnBase = function (boardId, configuration) {
             //span.appendChild(document.createTextNode(" ( "));
         }
         span.appendChild(generateCommentSpan(move.commentMove, "moveComment"));
-        if ((move.turn == 'w') || (that.mypgn.startVariation(move)) || (that.mypgn.afterMoveWithVariation(move))) {
+        if ((move.turn == 'w') || (that.mypgn.startMainLine(move)) || (that.mypgn.startVariation(move)) || (that.mypgn.afterMoveWithVariation(move))) {
             var mn = move.moveNumber;
             var num = createEle('span', null, "moveNumber", null, span);
             num.appendChild(document.createTextNode("" + mn + ((move.turn == 'w') ? ". " : "... ")));
