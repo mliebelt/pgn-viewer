@@ -8439,7 +8439,8 @@ const pgnReader = function (configuration, chess) {
      * @param notation
      * @return {*}
      */
-    const san = function(notation) {
+    const san = function(move) {
+        let notation = move.notation;
         if (typeof notation.row == 'undefined') {
             return notation.notation; // move like O-O and O-O-O
         }
@@ -8447,17 +8448,21 @@ const pgnReader = function (configuration, chess) {
         const disc = notation.disc ? notation.disc : '';
         const strike = notation.strike ? notation.strike : '';
         // Pawn moves with capture need the col as "discriminator"
-        if ((fig === '') && (strike === 'x')) {
-            return notation.notation;
-        }
         const check = notation.check ? notation.check : '';
         const mate = notation.mate ? notation.mate : '';
         const prom = notation.promotion ? '=' + figI18n(notation.promotion.substring(1,2).toLowerCase()) : '';
-        return fig + disc + strike + notation.col + notation.row + prom + check + mate;
+        if (configuration.notation === 'short') {
+            if ((fig === '') && (strike === 'x')) {
+                return notation.notation + prom + check + mate;
+            }
+            return fig + disc + strike + notation.col + notation.row + prom + check + mate;
+        } else if (configuration.notation === 'long') {
+            return fig + move.from + (notation.strike ? strike : '-') + move.to + prom + check + mate;
+        }
     }
 
     const sanWithNags = function (move) {
-        let _san = san(move.notation);
+        let _san = san(move);
         if (move.nag) {
             _san += nag_to_symbol(move.nag);
         }
@@ -12771,7 +12776,7 @@ var pgnBase = function (boardId, configuration) {
     // Sets the default parameters for all modes. See individual functions for individual overwrites
     let defaults = {
         width: '320px',
-        showNotation: true,
+        showCoords: true,
         orientation: 'white',
         position: 'start',
         showFen: false,
@@ -12785,7 +12790,8 @@ var pgnBase = function (boardId, configuration) {
         hideMovesBefore: false,
         colorMarker: null,
         showResult: false,
-        timeAnnotation: 'none'
+        timeAnnotation: 'none',
+        notation: 'short'
     };
     that.promMappings = {q: 'queen', r: 'rook', b: 'bishop', n: 'knight'};
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration);
@@ -13249,14 +13255,14 @@ var pgnBase = function (boardId, configuration) {
             }};
 
         copyBoardConfiguration(that.configuration, boardConfiguration,
-            ['position', 'orientation', 'showNotation', 'pieceTheme', 'draggable',
+            ['position', 'orientation', 'showCoords', 'pieceTheme', 'draggable',
                 'coordsInner', 'coordsFactor', 'width', 'movable', 'viewOnly', 'highlight', 'boardSize',
                 'rankFontSize']);
         // board = new ChessBoard(innerBoardId, boardConfiguration);
         // Allow Chessground to be resizable
         boardConfiguration.resizable = true;
-        if (typeof boardConfiguration.showNotation != 'undefined') {
-            boardConfiguration.coordinates = boardConfiguration.showNotation;
+        if (typeof boardConfiguration.showCoords != 'undefined') {
+            boardConfiguration.coordinates = boardConfiguration.showCoords;
         }
         boardConfiguration.fen = boardConfiguration.position;
         var el = document.getElementById(innerBoardId);
@@ -13949,7 +13955,7 @@ var pgnView = function (boardId, configuration) {
  * @param configuration object with the attributes:
  *  position: 'start' or FEN string
  *  orientation: 'black' or 'white' (default)
- *  showNotation: false or true (default)
+ *  showCoords: false or true (default)
  *  pieceStyle: some of alpha, uscf, wikipedia (from chessboardjs) or
  *              merida (default), case, leipzip, maya, condal (from ChessTempo)
  *              or chesscom (from chess.com) (as string)
@@ -14013,7 +14019,7 @@ var pgnEdit = function (boardId, configuration) {
  */
 var pgnPrint = function (boardId, configuration) {
     GLOB_SCHED.schedule(configuration.locale, () => {
-        let base = pgnBase(boardId, Object.assign({showNotation: false, mode: 'print'}, configuration));
+        let base = pgnBase(boardId, Object.assign({showCoords: false, mode: 'print'}, configuration));
         base.generateHTML();
         base.generateMoves(null);
     });

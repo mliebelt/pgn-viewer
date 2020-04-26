@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Use long algebraic notation</title>
+    <script src="/dist/js/third.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/dist/css/third.css">
+
+    <!-- My own library -->
+    <script src="/js/pgnvjs.js" type="text/javascript"></script>
+    <script src="/js/pgn.js" type="text/javascript"></script>
+    <link href="/css/pgnvjs.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/theme.css" type="text/css" rel="stylesheet"/>
+</head>
+<body class='zeit merida'>
+<p><a href="https://github.com/mliebelt/PgnViewerJS/issues/135">Ticket 135 at GitHub</a>.
+    Use long algebraic notation</p>
+<div id="board" style="width: 400px; float: left; margin-right: 10px"></div>
+<script>
+let pgn = '1... e5 2. Nf3 Nc6 (2... d5 3. exd5) 3. Bc4 (3. Nc3) 3... Bc5';
+    var board = pgnView("board", {pgn: pgn, notation: 'long',
+        position: 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1'});
+</script>
+</body>
+</html>

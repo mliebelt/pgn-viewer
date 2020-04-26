@@ -338,7 +338,8 @@ const pgnReader = function (configuration, chess) {
      * @param notation
      * @return {*}
      */
-    const san = function(notation) {
+    const san = function(move) {
+        let notation = move.notation;
         if (typeof notation.row == 'undefined') {
             return notation.notation; // move like O-O and O-O-O
         }
@@ -346,17 +347,21 @@ const pgnReader = function (configuration, chess) {
         const disc = notation.disc ? notation.disc : '';
         const strike = notation.strike ? notation.strike : '';
         // Pawn moves with capture need the col as "discriminator"
-        if ((fig === '') && (strike === 'x')) {
-            return notation.notation;
-        }
         const check = notation.check ? notation.check : '';
         const mate = notation.mate ? notation.mate : '';
         const prom = notation.promotion ? '=' + figI18n(notation.promotion.substring(1,2).toLowerCase()) : '';
-        return fig + disc + strike + notation.col + notation.row + prom + check + mate;
+        if (configuration.notation === 'short') {
+            if ((fig === '') && (strike === 'x')) {
+                return notation.notation + prom + check + mate;
+            }
+            return fig + disc + strike + notation.col + notation.row + prom + check + mate;
+        } else if (configuration.notation === 'long') {
+            return fig + move.from + (notation.strike ? strike : '-') + move.to + prom + check + mate;
+        }
     }
 
     const sanWithNags = function (move) {
-        let _san = san(move.notation);
+        let _san = san(move);
         if (move.nag) {
             _san += nag_to_symbol(move.nag);
         }

@@ -84,7 +84,8 @@ var pgnBase = function (boardId, configuration) {
         hideMovesBefore: false,
         colorMarker: null,
         showResult: false,
-        timeAnnotation: 'none'
+        timeAnnotation: 'none',
+        notation: 'short'
     };
     that.promMappings = {q: 'queen', r: 'rook', b: 'bishop', n: 'knight'};
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration);

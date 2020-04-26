@@ -79,9 +79,6 @@ and helps to define a new configuration.
             <option value="r1bqk2r/pppp1Np1/2n2n1p/2b1p3/2B1P3/8/PPPP1PPP/RNBQ1RK1 b kq - 0 6">Black at move</option>
             <option value="r1bqk2r/pppp1Npp/2n2n2/4p3/2B1P3/8/PPPP1bPP/RNBQK2R w KQkq - 0 6">White at move</option>>
         </select>
-        <!-- Show Notation -->
-        <label for="notation">Show Notation</label>
-        <input type="checkbox" id="notation">
         <!-- Orientation: white or black -->
         <label for="orientation">Orientation</label>
         <input type="checkbox" id="orientation" value="true">
@@ -91,12 +88,22 @@ and helps to define a new configuration.
         <!-- headers -->
         <label for="headers">headers</label>
         <input type="checkbox" id="headers" value="true">
+        <!-- Show Coordinates -->
+        <label for="showCoords">Show Coordinates</label>
+        <input type="checkbox" id="showCoords">
         <!-- coordsInner -->
         <label for="coordsInner">coordsInner</label>
         <input type="checkbox" id="coordsInner" checked>
         <!-- coordsFactor -->
         <label for="coordsFactor">coordsFactor</label>
         <input type="number" id="coordsFactor" class="number" value='1.0'>
+        <!-- notation -->
+        <label for="notation">Notation</label>
+        <select id="notation">
+            <option value="short">short</option>
+            <option value="long">long</option>
+        </select>
+
         <!-- startPlay -->
         <label for="startPlay">startPlay</label>
         <input type="number" id="startPlay" class="number" value=''>
@@ -256,7 +263,7 @@ and helps to define a new configuration.
         doingRefreshAlready = true;
         var configuration = {};
         var modus = document.getElementById('modus').value;
-        var notation = document.getElementById('notation').checked;
+        var showCoords = document.getElementById('showCoords').checked;
         var orientation = document.getElementById('orientation').checked;
         var headers = document.getElementById('headers').checked;
         var coordsInner = document.getElementById('coordsInner').checked;
@@ -266,6 +273,7 @@ and helps to define a new configuration.
         var locale = document.getElementById('locale').value;
         var timerTime = document.getElementById('timerTime').value;
         var coordsFactor = document.getElementById('coordsFactor').value;
+        var notation = document.getElementById('notation').value;
         var startPlay = document.getElementById('startPlay').value;
         var hideMovesBefore = document.getElementById('hideMovesBefore').checked;
         var width = document.getElementById('width').value;
@@ -282,10 +290,10 @@ and helps to define a new configuration.
         if (fen != '') {
             configuration['position']= fen;
         }
-        if (notation) { 
-            configuration['showNotation'] = true;
+        if (showCoords) {
+            configuration['showCoords'] = true;
         } else { 
-            configuration['showNotation'] = false;
+            configuration['showCoords'] = false;
         }
         if (orientation) { configuration['orientation'] = 'white'} else {
             configuration['orientation'] = 'black'
@@ -295,7 +303,7 @@ and helps to define a new configuration.
         if (coordsInner) { configuration['coordsInner'] = true } else {
             configuration['coordsInner'] = false }
         configuration['theme']= theme;
-        configuration['theme']= theme;
+        configuration['notation']= notation;
         configuration['pieceStyle']= pieceStyle;
         configuration['locale']= locale;
         configuration['timerTime']= timerTime;
@@ -331,10 +339,10 @@ and helps to define a new configuration.
         var output = "<div id='board'></div>\n" +
                 "<script>\n" +
                 "config = {";
-        var props = ['pgn','position', 'showNotation', 'orientation', 'theme',
+        var props = ['pgn','position', 'showCoords', 'orientation', 'theme',
                     'pieceStyle', 'locale', 'timerTime', 'width', 'boardSize', 'layout',
                     'movesWidth', 'movesHeight', 'showFen', 'coordsInner', 'headers',
-                    'coordsFactor', 'colorMarker', 'startPlay', 'hideMovesBefore'];
+                    'coordsFactor', 'colorMarker', 'startPlay', 'hideMovesBefore', 'notation'];
         for (property of props) {
             var val = config[property];
             if (val != undefined) {
@@ -350,16 +358,17 @@ and helps to define a new configuration.
         return output;
     }
     var initPgn = function() {
-        document.getElementById('notation').checked = true;
+//        document.getElementById('showCoords').checked = true;
         document.getElementById('orientation').checked = true;
         document.getElementById('modus').onchange = changedSomething;
         document.getElementById('game').onchange = changedGame;
-        document.getElementById('notation').onclick = changedSomething;
+        document.getElementById('showCoords').onclick = changedSomething;
         document.getElementById('showFen').onclick = changedSomething;
         document.getElementById('coordsInner').onclick = changedSomething;
         document.getElementById('headers').onclick = changedSomething;
         document.getElementById('orientation').onclick = changedSomething;
         document.getElementById('theme').onchange = changedSomething;
+        document.getElementById('notation').onchange = changedSomething;
         document.getElementById('pieceStyle').onchange = changedSomething;
         document.getElementById('locale').onchange = changedSomething;
         document.getElementById('timerTime').oninput = changedSomething;

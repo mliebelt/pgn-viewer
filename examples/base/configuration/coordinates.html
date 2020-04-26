@@ -44,6 +44,12 @@ no coordsFactor set (== default)
 coordsFactor == 1.5 (which is too big)
 <div id="board5" style="width: 350px; margin-right: 25px"></div>
 
+no showCoords set (== default)
+<div id="board6" style="width: 350px; margin-right: 25px"></div>
+
+showCoords == false
+<div id="board7" style="width: 350px; margin-right: 25px"></div>
+
 <script>
     var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4";
     pgnv = pgnView("board0", {pgn: pgn, coordsInner: true});
@@ -52,6 +58,8 @@ coordsFactor == 1.5 (which is too big)
     pgnv = pgnView("board3", {pgn: pgn, coordsFactor: 1.0});
     pgnv = pgnView("board4", {pgn: pgn});
     pgnv = pgnView("board5", {pgn: pgn, coordsFactor: 1.5});
+    pgnv = pgnView("board6", {pgn: pgn});
+    pgnv = pgnView("board7", {pgn: pgn, showCoords: false});
 </script>
 
 
