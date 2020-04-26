@@ -70,7 +70,7 @@ var pgnBase = function (boardId, configuration) {
     // Sets the default parameters for all modes. See individual functions for individual overwrites
     let defaults = {
         width: '320px',
-        showNotation: true,
+        showCoords: true,
         orientation: 'white',
         position: 'start',
         showFen: false,
@@ -548,14 +548,14 @@ var pgnBase = function (boardId, configuration) {
             }};
 
         copyBoardConfiguration(that.configuration, boardConfiguration,
-            ['position', 'orientation', 'showNotation', 'pieceTheme', 'draggable',
+            ['position', 'orientation', 'showCoords', 'pieceTheme', 'draggable',
                 'coordsInner', 'coordsFactor', 'width', 'movable', 'viewOnly', 'highlight', 'boardSize',
                 'rankFontSize']);
         // board = new ChessBoard(innerBoardId, boardConfiguration);
         // Allow Chessground to be resizable
         boardConfiguration.resizable = true;
-        if (typeof boardConfiguration.showNotation != 'undefined') {
-            boardConfiguration.coordinates = boardConfiguration.showNotation;
+        if (typeof boardConfiguration.showCoords != 'undefined') {
+            boardConfiguration.coordinates = boardConfiguration.showCoords;
         }
         boardConfiguration.fen = boardConfiguration.position;
         var el = document.getElementById(innerBoardId);
@@ -1248,7 +1248,7 @@ var pgnView = function (boardId, configuration) {
  * @param configuration object with the attributes:
  *  position: 'start' or FEN string
  *  orientation: 'black' or 'white' (default)
- *  showNotation: false or true (default)
+ *  showCoords: false or true (default)
  *  pieceStyle: some of alpha, uscf, wikipedia (from chessboardjs) or
  *              merida (default), case, leipzip, maya, condal (from ChessTempo)
  *              or chesscom (from chess.com) (as string)
@@ -1312,7 +1312,7 @@ var pgnEdit = function (boardId, configuration) {
  */
 var pgnPrint = function (boardId, configuration) {
     GLOB_SCHED.schedule(configuration.locale, () => {
-        let base = pgnBase(boardId, Object.assign({showNotation: false, mode: 'print'}, configuration));
+        let base = pgnBase(boardId, Object.assign({showCoords: false, mode: 'print'}, configuration));
         base.generateHTML();
         base.generateMoves(null);
     });
