@@ -428,23 +428,23 @@ div.comment > textarea.comment {
   CHESSGROUND changes.
   */
  
-.cg-board-wrap.coords-inner {
+.cg-wrap.coords-inner {
     margin-bottom: 0px;
     margin-right: 0px;
 }
-.cg-board-wrap {
+.cg-wrap {
     margin-bottom: 15px;
     margin-right: 15px;
 }
-.cg-board-wrap.coords-inner coords.ranks {
+.cg-wrap.coords-inner coords.ranks {
     right: -2px;
 }
-.cg-board-wrap.coords-inner coords.files {
+.cg-wrap.coords-inner coords.files {
     bottom: 2px;
     left: 2px;
     text-align: left;
 }
-.cg-board-wrap coords.files {
+.cg-wrap coords.files {
     text-transform: none;
 }
 

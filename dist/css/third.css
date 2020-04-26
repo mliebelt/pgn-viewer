@@ -2215,7 +2215,7 @@ cg-board piece.fading {
     display: flex;
     pointer-events: none;
     opacity: 0.8;
-    font-size: 9px;
+/*    font-size: 9px; */
 }
 .cg-wrap coords.ranks {
     right: -15px;
