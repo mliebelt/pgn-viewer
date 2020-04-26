@@ -996,6 +996,7 @@ var pgnBase = function (boardId, configuration) {
                     makeMove(null, 0, fen);
                 } else {
                     var next = that.mypgn.getMove(that.currentMove).next;
+                    if (typeof next == 'undefined') return;
                     fen = that.mypgn.getMove(next).fen;
                     makeMove(that.currentMove, next, fen);
                 }
