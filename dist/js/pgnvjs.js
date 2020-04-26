@@ -8858,6 +8858,11 @@ const pgnReader = function (configuration, chess) {
     };
 
 
+    // Returns true, if the move is the start of teh main line
+    const startMainLine = function(move) {
+        return  move.variationLevel == 0 && (typeof move.prev != "number") ;
+    };
+
     // Returns true, if the move is the start of a (new) variation
     const startVariation = function(move) {
         return  move.variationLevel > 0 &&
@@ -9442,6 +9447,7 @@ const pgnReader = function (configuration, chess) {
         write_pgn: write_pgn,
         nag_to_symbol: nag_to_symbol,
         startVariation: startVariation,
+        startMainLine: startMainLine,
         endVariation: endVariation,
         afterMoveWithVariation: afterMoveWithVariation,
         changeNag: changeNag,
@@ -13376,7 +13382,7 @@ var pgnBase = function (boardId, configuration) {
             //span.appendChild(document.createTextNode(" ( "));
         }
         span.appendChild(generateCommentSpan(move.commentMove, "moveComment"));
-        if ((move.turn == 'w') || (that.mypgn.startVariation(move)) || (that.mypgn.afterMoveWithVariation(move))) {
+        if ((move.turn == 'w') || (that.mypgn.startMainLine(move)) || (that.mypgn.startVariation(move)) || (that.mypgn.afterMoveWithVariation(move))) {
             var mn = move.moveNumber;
             var num = createEle('span', null, "moveNumber", null, span);
             num.appendChild(document.createTextNode("" + mn + ((move.turn == 'w') ? ". " : "... ")));
@@ -13691,6 +13697,7 @@ var pgnBase = function (boardId, configuration) {
                     makeMove(null, 0, fen);
                 } else {
                     var next = that.mypgn.getMove(that.currentMove).next;
+                    if (typeof next == 'undefined') return;
                     fen = that.mypgn.getMove(next).fen;
                     makeMove(that.currentMove, next, fen);
                 }
