@@ -8294,18 +8294,18 @@ const pgnReader = function (configuration, chess) {
                 return request.responseText
             }
         }
-        if (typeof configuration.position == 'undefined') {
-            configuration.position = 'start';
-        }
+        let defaults = {
+            notation: 'short',
+            position: 'start',
+            locale: 'en'
+        };
+        configuration = Object.assign(defaults, configuration);
         if (typeof configuration.pgn == 'undefined') {
             if (typeof configuration.pgnFile == 'undefined') {
                 configuration.pgn = '';
             } else {
                 configuration.pgn = readPgnFromFile(configuration.pgnFile);
             }
-        }
-        if (typeof configuration.locale == 'undefined') {
-            configuration.locale = 'en';
         }
     };
     initialize_configuration(configuration);

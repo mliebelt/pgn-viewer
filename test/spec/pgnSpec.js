@@ -611,6 +611,10 @@ describe("Writing PGN like", function() {
         var my_pgn = pgnReader({pgn: '[Result "1-0"] 1. e4 e5'});
         expect(my_pgn.write_pgn()).toEqual("1. e4 e5 1-0");
     });
+    it("should write promotion correct", function () {
+        var my_pgn = pgnReader({position: '8/6P1/8/2k5/8/8/8/7K w - - 0 1', pgn: '1. g8=R'});
+        expect(my_pgn.write_pgn()).toEqual("1. g8=R");
+    });
 });
 
 describe("When reading a PGN game", function () {
@@ -803,7 +807,8 @@ describe("When upvoting lines", function () {
     });
 
 
-})
+});
+
 describe("When working with NAGs", function () {
     var my_pgn;
     beforeEach(function () {
