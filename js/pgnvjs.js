@@ -14,18 +14,23 @@ function PgnScheduler() {
 }
 
 var GLOB_SCHED = new PgnScheduler();
-GLOB_SCHED.schedule = function (loc, func, res) {
+/**
+ * Schedules a call, ensures that the result of that call is given back.
+ * @param loc the given local, or not defined (default: en)
+ * @param func the function that should be called after having loaded the locale.
+ * @returns the result of the function call
+ */
+GLOB_SCHED.schedule = function (loc, func) {
+    let my_res = null;
     let myLoc = (typeof loc != 'undefined') ? loc : 'en';
     if (i18next.hasResourceBundle(myLoc)) {
-        func.call(null);
+        my_res = func.call(null);
     } else {
         i18next.loadLanguages(myLoc, (err, t) => {
-            let myRes = func.call(null);
-            if (typeof res != 'undefined') {
-                res.call(null, myRes);
-            }
+            my_res = func.call(null);
         });
     }
+    return my_res;
 };
 
 // Anonymous function, has not to be visible from the outside
@@ -1230,15 +1235,19 @@ var pgnBase = function (boardId, configuration) {
  * @param configuration the configuration for chess, board and pgn.
  *      See the configuration of `pgnBoard` for the board configuration. Relevant for pgn is:
  *   pgn: the pgn as single string, or empty string (default)
- * @returns {{chess: chess, getPgn: getPgn}} all utility functions available
+ * @returns {{base, board}} base: all utility functions available, board: reference to Chessground
  */
 var pgnView = function (boardId, configuration) {
-    GLOB_SCHED.schedule(configuration.locale,
+    return GLOB_SCHED.schedule(configuration.locale,
         () => {
-            var base = pgnBase(boardId, Object.assign({mode: 'view'}, configuration));
+            let base = pgnBase(boardId, Object.assign({mode: 'view'}, configuration));
             base.generateHTML();
-            var b = base.generateBoard();
+            let b = base.generateBoard();
             base.generateMoves(b);
+            return {
+                base,
+                board: b
+            };
         });
 };
 
@@ -1258,15 +1267,17 @@ var pgnView = function (boardId, configuration) {
  *  theme: (only CSS related) some of zeit, blue, chesscom, ... (as string)
  */
 var pgnBoard = function (boardId, configuration) {
-    GLOB_SCHED.schedule(configuration.locale, () => {
-        let base = pgnBase(boardId, Object.assign({headers: false, mode: 'board'}, configuration));
-        base.generateHTML();
-        let b = base.generateBoard();
-        return {
-            chess: base.chess,
-            board: b
-        };
-    });
+    return GLOB_SCHED.schedule(
+        configuration.locale,
+        () => {
+            let base = pgnBase(boardId, Object.assign({headers: false, mode: 'board'}, configuration));
+            base.generateHTML();
+            let board = base.generateBoard();
+            return {
+                base,
+                board
+            };
+        });
 };
 
 /**
@@ -1282,7 +1293,7 @@ var pgnBoard = function (boardId, configuration) {
  *    allowAnnotations: false or true (default)
  */
 var pgnEdit = function (boardId, configuration) {
-    GLOB_SCHED.schedule(configuration.locale, () => {
+    return GLOB_SCHED.schedule(configuration.locale, () => {
         let base = pgnBase(boardId, Object.assign(
             {
                 showFen: true, mode: 'edit',
@@ -1300,6 +1311,7 @@ var pgnEdit = function (boardId, configuration) {
         base.generateHTML();
         let board = base.generateBoard();
         base.generateMoves(board);
+        return { base, board };
     });
 };
 
@@ -1312,9 +1324,10 @@ var pgnEdit = function (boardId, configuration) {
  * Rest will be ignored.
  */
 var pgnPrint = function (boardId, configuration) {
-    GLOB_SCHED.schedule(configuration.locale, () => {
+    return GLOB_SCHED.schedule(configuration.locale, () => {
         let base = pgnBase(boardId, Object.assign({showCoords: false, mode: 'print'}, configuration));
         base.generateHTML();
         base.generateMoves(null);
+        return base;
     });
 };

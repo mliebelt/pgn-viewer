@@ -12717,17 +12717,19 @@ function PgnScheduler() {
 
 var GLOB_SCHED = new PgnScheduler();
 GLOB_SCHED.schedule = function (loc, func, res) {
+    let my_res = null;
     let myLoc = (typeof loc != 'undefined') ? loc : 'en';
     if (i18next.hasResourceBundle(myLoc)) {
-        func.call(null);
+        my_res = func.call(null);
     } else {
         i18next.loadLanguages(myLoc, (err, t) => {
-            let myRes = func.call(null);
+            my_res = func.call(null);
             if (typeof res != 'undefined') {
-                res.call(null, myRes);
+                return res.call(null, my_res);
             }
         });
     }
+    return my_res;
 };
 
 // Anonymous function, has not to be visible from the outside
@@ -13960,15 +13962,18 @@ var pgnView = function (boardId, configuration) {
  *  theme: (only CSS related) some of zeit, blue, chesscom, ... (as string)
  */
 var pgnBoard = function (boardId, configuration) {
-    GLOB_SCHED.schedule(configuration.locale, () => {
-        let base = pgnBase(boardId, Object.assign({headers: false, mode: 'board'}, configuration));
-        base.generateHTML();
-        let b = base.generateBoard();
-        return {
-            chess: base.chess,
-            board: b
-        };
-    });
+    let my_res = GLOB_SCHED.schedule(
+        configuration.locale,
+        () => {
+            let base = pgnBase(boardId, Object.assign({headers: false, mode: 'board'}, configuration));
+            base.generateHTML();
+            let b = base.generateBoard();
+            return {
+                chess: base.chess,
+                board: b
+            };
+        });
+    return my_res;
 };
 
 /**
