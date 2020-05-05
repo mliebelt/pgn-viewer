@@ -48,7 +48,7 @@ describe("ambiguator or variations of formats", function() {
         expect(my_pgn.sanWithNags(my_pgn.getMove(0))).toEqual("Nxe4");
     });
 
-    // chess.js does not allow to leave out the strike symbol, or I have to have more in the long notation
+    // chess.src does not allow to leave out the strike symbol, or I have to have more in the long notation
     // even with the long variation, the move Nf6-e4 is not accepted, even not in sloppy mode
     xit ("should understand that Long Algebraic Notation can leave out strike symbol", function() {
         my_pgn = pgnReader({pgn: '4... Nf6e4', position: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 5 4'});

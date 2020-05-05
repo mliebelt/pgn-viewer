@@ -1030,7 +1030,7 @@
     // expose mousetrap to the global object
     window.Mousetrap = Mousetrap;
 
-    // expose as a common js module
+    // expose as a common src module
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = Mousetrap;
     }

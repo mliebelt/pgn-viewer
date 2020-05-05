@@ -1,5 +1,5 @@
 /*
- * Timer.js: A periodic timer for Node.js and the browser.
+ * Timer.src: A periodic timer for Node.src and the browser.
  *
  * Copyright (c) 2012 Arthur Klepchukov, Jarvis Badgley, Florian Schäfer
  * Licensed under the BSD license (BSD_LICENSE.txt)

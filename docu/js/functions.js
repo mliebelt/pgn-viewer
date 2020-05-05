@@ -31,7 +31,7 @@ var showExample = function(number) {
     $('#example_single_page_link').attr('href', 'examples/' + number + ".html");
     $('#example_desc_container').html(examples[number].desc);
     $('#example_html_container').html(examples[number].html);
-    $('#example_js_container').html('<pre class="prettyprint lang-js">' + examples[number].jsStr + '</pre>');
+    $('#example_js_container').html('<pre class="prettyprint lang-src">' + examples[number].jsStr + '</pre>');
     $('#example_show_html_container').html('<pre class="prettyprint lang-html">' + htmlEscape(examples[number].html) + '</pre>');
     examples[number].jsFn();
     prettyPrint();

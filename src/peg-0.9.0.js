@@ -4,7 +4,7 @@ var arrays  = require("./utils/arrays"),
     objects = require("./utils/objects");
 
 var PEG = {
-  /* PEG.js version (uses semantic versioning). */
+  /* PEG.src version (uses semantic versioning). */
   VERSION: "0.9.0",
 
   GrammarError: require("./grammar-error"),

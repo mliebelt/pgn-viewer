@@ -120,4 +120,32 @@ describe("PGN Viewer", function() {
 
         })
     })
+
+    describe("When working with base commands", function () {
+        it("should return base and board from calling pgnView", function () {
+            let res = pgnView('b', { pgn: ''})
+            expect(typeof res.base).toBe("object")
+            expect(res.base.chess).toBeDefined()
+            expect(res.base.getPgn()).toBeDefined()
+            expect(res.board).toBeDefined()
+        })
+        it("should return base and board from calling pgnEdit", function () {
+            let res = pgnView('b', { pgn: ''})
+            expect(typeof res.base).toBe("object")
+            expect(res.base.chess).toBeDefined()
+            expect(res.base.getPgn()).toBeDefined()
+            expect(res.board).toBeDefined()
+        })
+        it("should return base and board from calling pgnBoard", function () {
+            let res = pgnBoard('b', { pgn: ''})
+            expect(typeof res.base).toBe("object")
+            expect(res.base.chess).toBeDefined()
+            expect(res.base.getPgn()).toBeDefined()
+            expect(res.board).toBeDefined()
+        })
+        it("should return base and board from calling pgnPrint", function () {
+            let res = pgnPrint('b', { pgn: ''})
+            expect(typeof res).toBe("object")
+        })
+    })
 });
