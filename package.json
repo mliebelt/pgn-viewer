@@ -32,6 +32,7 @@
     "start": "webpack-dev-server --open --config webpack.dev.js"
   },
   "dependencies": {
+    "@mliebelt/pgn-parser": "^0.9.8",
     "chess.js": "^0.10.3",
     "chessground": "^7.6.12",
     "i18next": "^19.4.4",

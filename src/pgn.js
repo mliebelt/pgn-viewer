@@ -1,6 +1,6 @@
 'use strict';
 
-import parser from './pgn-parser';
+import parser from '@mliebelt/pgn-parser';
 import Chess from 'chess.js';
 import i18next  from 'i18next';
 
