@@ -1,6 +1,11 @@
 'use strict';
 
-import 'i18next';
+import i18next  from 'i18next';
+import { Utils, StringBuilder, pgnReader } from './pgn';
+import Chess from 'chess.js';
+import { Chessground } from 'chessground';
+import Timer from './Timer';
+import Mousetrap from 'mousetrap';
 
 /**
  * This implements the base function that is used to display a board, a whole game
@@ -518,7 +523,7 @@ let pgnBase = function (boardId, configuration) {
         let smallerWidth = currentWidth - moduloWidth;
         // Ensure that boardWidth is a multiply of 8
         boardConfiguration.width = "" + smallerWidth +"px";
-        board = window.Chessground(el, boardConfiguration);
+        board = Chessground(el, boardConfiguration);
         //console.log("Board width: " + board.width);
         if (boardConfiguration.width) {
             el.style.width = boardConfiguration.width;

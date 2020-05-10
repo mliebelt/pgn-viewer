@@ -19,9 +19,9 @@ The easiest way to use it is to download a release, unpack that release, copy on
 
 The following are example screenshots with the configuration set below, to show the rich possibilities of PgnViewerJS.
 
-![Theme Sportverlag](img/screenshots/sportverlag.png)
-![Edit with variations](img/screenshots/edit-variation.png)
-![Viewer](img/screenshots/view-layout-left.png)
+![Theme Sportverlag](screenshots/sportverlag.png)
+![Edit with variations](screenshots/edit-variation.png)
+![Viewer](screenshots/view-layout-left.png)
 
 The screenshots show from left to right:
 

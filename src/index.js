@@ -1,21 +1,18 @@
 import 'chess.js';
-import { Chessground } from "chessground";
 import i18next  from 'i18next';
 import i18nextXHRBackend from 'i18next-xhr-backend';
 import i18nextLocalStorageCache from 'i18next-localstorage-cache';
-// import './Timer';
-// import './smoothscroll';
-// import './sweetalert.min';
-// import './mousetrap';
-// import './pgn';
-// import './pgn-parser';
-import './pgnvjs';
+import smoothscroll from 'smoothscroll-polyfill';
+import swal from 'sweetalert';
+import pgnBase from "./pgnvjs";
 
 import './css/chessground.css';
 import './css/theme.css';
-// import './css/pgnvjs.css';
+import './css/pgnvjs.css';
 
 let GLOB_SCHED = {};
+// kick off the polyfill!
+smoothscroll.polyfill();
 
 /**
  * Schedules a call, ensures that the result of that call is given back.
@@ -180,9 +177,11 @@ GLOB_SCHED.schedule("fr", () => {
     console.log(i18next.t("nag:$18", { lng: 'fr'}));
 });
 
-let my_div2 = document.createElement('div');
+/*let my_div2 = document.createElement('div');
 my_div2.classList.add("merida");
 my_div2.classList.add("blue");
 document.style = "--cg-coord-color-white:#DEE3E6; --cg-coord-color-black:#788a94; --cg-coord-shadow:none;";
 document.body.appendChild(my_div2);
-Chessground(my_div2, {coordinates: true});
+Chessground(my_div2, {coordinates: true});*/
+
+export { pgnBoard, pgnEdit, pgnBase, pgnPrint, pgnView };
