@@ -1,8 +1,7 @@
 'use strict';
 
 import i18next  from 'i18next';
-import { Utils, StringBuilder, pgnReader } from '../../pgn-reader/src/pgn';
-import Chess from '../../../node_modules/chess.js/chess';
+import { Utils, pgnReader } from '../../pgn-reader/dist/pgn';
 import { Chessground } from 'chessground';
 import Timer from './Timer';
 import Mousetrap from 'mousetrap';
@@ -41,8 +40,8 @@ let pgnBase = function (boardId, configuration) {
     };
     that.promMappings = {q: 'queen', r: 'rook', b: 'bishop', n: 'knight'};
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration);
-    let game = new Chess();
-    that.mypgn = pgnReader(that.configuration, game); // Use the same instance from chess.src
+    that.mypgn = pgnReader(that.configuration);
+    let game = that.mypgn.game;     // Use the same instance from chess.src
     let theme = that.configuration.theme || 'default';
     that.configuration.markup = (typeof boardId) == "object";
     let hasMarkup = function () {
@@ -263,6 +262,25 @@ let pgnBase = function (boardId, configuration) {
         return ele;
     }
 
+    // Internationionalize the figures in SAN
+    function i18nSan(san) {
+        function i18nFig(fig, locale) {
+            return i18next.t("chess:" + fig, { lng: locale});
+        }
+        let locale = that.configuration.locale;
+        if (! locale) return san;
+        let new_san = san;
+        if ( ! (san.match(/^[a-h]x/) || san.match(/^[a-h]\d/) ) ) {
+            let move_fig = i18nFig(san[0], locale);
+            new_san = san.replace(san[0], move_fig);
+        }
+        let m = new_san.match(/=([QRNB])/);
+        if (m) {
+            new_san = new_san.replace(m[1], i18nFig(m[1], locale));
+        }
+        return new_san;
+    }
+
     /**
      * Generates all HTML elements needed for display of the (playing) board and
      * the moves. Generates that in dependence of the theme
@@ -312,7 +330,8 @@ let pgnBase = function (boardId, configuration) {
                     myLink.addEventListener("click", function () {
                         function updateMoveSAN(moveIndex) {
                             let move = that.mypgn.getMove(moveIndex);
-                            document.querySelector("#" + movesId + moveIndex + " > a").textContent = that.mypgn.sanWithNags(move);
+                            let san = i18nSan(that.mypgn.sanWithNags(move));
+                            document.querySelector("#" + movesId + moveIndex + " > a").textContent = san;
                         }
 
                         this.classList.toggle("active");
@@ -603,6 +622,11 @@ let pgnBase = function (boardId, configuration) {
                 varStack[varStack.length - 1].appendChild(span);
             }
         };
+        function localBoard(id, configuration) {
+            let base = pgnBase(id, Object.assign({headers: false, mode: 'board'}, configuration));
+            base.generateHTML();
+            base.generateBoard();
+        }
         // Ignore null moves
         if (move === null || (move === undefined)) {
             return prevCounter;
@@ -641,7 +665,7 @@ let pgnBase = function (boardId, configuration) {
         }
         span.appendChild(generateCommentSpan(move.commentBefore, "beforeComment"));
         var link = createEle('a', null, null, null, span);
-        var san = that.mypgn.sanWithNags(move);
+        var san = i18nSan(that.mypgn.sanWithNags(move));
         var text = document.createTextNode(san);
         link.appendChild(text);
         span.appendChild(document.createTextNode(" "));
@@ -670,7 +694,7 @@ let pgnBase = function (boardId, configuration) {
             var diaDiv = createEle('div', diaID);
             span.appendChild(diaDiv);
             that.configuration.position = move.fen;
-            pgnBoard(diaID, that.configuration);
+            localBoard(diaID, that.configuration);
         }
         return currentCounter;
     };
