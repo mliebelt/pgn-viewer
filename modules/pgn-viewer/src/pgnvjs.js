@@ -1,8 +1,8 @@
 'use strict';
 
 import i18next  from 'i18next';
-import { Utils, StringBuilder, pgnReader } from './pgn';
-import Chess from 'chess.js';
+import { Utils, StringBuilder, pgnReader } from '../../pgn-reader/src/pgn';
+import Chess from '../../../node_modules/chess.js/chess';
 import { Chessground } from 'chessground';
 import Timer from './Timer';
 import Mousetrap from 'mousetrap';

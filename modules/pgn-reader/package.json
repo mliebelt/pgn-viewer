@@ -1,8 +1,8 @@
 {
-  "name": "@mliebelt/PgnViewerJS",
+  "name": "@mliebelt/pgn-reader",
   "version": "0.9.8",
-  "main": "dist/bundle.js",
-  "module": "modules/pgn-viewer/src/index.js",
+  "main": "dist/pgn.js",
+  "module": "modules/pgn-reaeder/src/pgn.js",
   "author": "mliebelt",
   "license": "Apache-2.0",
   "repository": {
@@ -15,10 +15,10 @@
     "css-loader": "^3.5.3",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
-    "jasmine": "^2.7.0",
-    "jasmine-node": "^3.0.0",
+    "mocha": "^7.1.2",
     "node-sass": "^4.14.1",
     "postcss-loader": "^3.0.0",
+    "should": "^13.2.3",
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
     "webpack": "^4.43.0",
@@ -27,22 +27,16 @@
     "webpack-merge": "^4.2.2"
   },
   "scripts": {
-    "default": "grunt default",
-    "dev": "grunt dev",
     "build": "webpack --config webpack.prod.js",
     "start": "webpack-dev-server --open --config webpack.dev.js",
-    "test": "jasmine --config=test/spec/jasmine.json",
-    "test-pgn": "jasmine-node modules/pgn-reader/test/pgnSpec.js"
+    "test": "mocha",
+    "test-interactive": "mocha -w"
   },
   "dependencies": {
     "@mliebelt/pgn-parser": "^0.10.0",
     "chess.js": "^0.10.3",
-    "chessground": "^7.6.12",
     "i18next": "^19.4.4",
     "i18next-localstorage-cache": "^1.1.1",
-    "i18next-xhr-backend": "^3.2.2",
-    "mousetrap": "^1.6.5",
-    "smoothscroll-polyfill": "^0.4.4",
-    "sweetalert": "^2.1.2"
+    "i18next-xhr-backend": "^3.2.2"
   }
 }

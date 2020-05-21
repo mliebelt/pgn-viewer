@@ -1,4 +1,4 @@
-import 'chess.js';
+import '../../../node_modules/chess.js/chess';
 import i18next  from 'i18next';
 import i18nextXHRBackend from 'i18next-xhr-backend';
 import i18nextLocalStorageCache from 'i18next-localstorage-cache';
