@@ -60,13 +60,13 @@ examples["1020"] = {
     }
 };
 examples["1021"] = {
-    desc: "ChessBoard pieceStyle 'merida', 'case', 'wikipedia', 'alpha', 'uscf', 'condal', 'maya', and 'leipzig'.",
+    desc: "ChessBoard pieceStyle 'merida-svg', 'case', 'wikipedia', 'alpha', 'uscf', 'condal', 'maya', and 'leipzig'.",
     html: 'Merida <div id="board"></div> Case <div id="board2"></div> Wikipedia <div id="board3"></div> Alpha <div id="board4"></div>' + 
     ' USCF <div id="board5"></div>  Condal <div id="board7"></div> Maya <div id="board8"></div> Leipzig <div id="board9"></div>',
     name: "Piece Styles",
-    jsStr: "var board = pgnBoard('board', {pieceStyle: 'merida', boardSize: '400px'});\nvar board2 = pgnBoard('board2', {pieceStyle: 'case', boardSize: '400px'});\nvar board3 = pgnBoard('board3', {pieceStyle: 'wikipedia', boardSize: '400px'});\nvar board4 = pgnBoard('board4', {pieceStyle: 'alpha',  boardSize: '400px'});\nvar board5 = pgnBoard('board5', {pieceStyle: 'uscf',  boardSize: '400px'});\nvar board7 = pgnBoard('board7', {pieceStyle: 'condal', boardSize: '400px'});\nvar board8 = pgnBoard('board8', {pieceStyle: 'maya',  boardSize: '400px'});\nvar board9 = pgnBoard('board9', {pieceStyle: 'leipzig', boardSize: '400px'});",
+    jsStr: "var board = pgnBoard('board', {pieceStyle: 'merida-svg', boardSize: '400px'});\nvar board2 = pgnBoard('board2', {pieceStyle: 'case', boardSize: '400px'});\nvar board3 = pgnBoard('board3', {pieceStyle: 'wikipedia', boardSize: '400px'});\nvar board4 = pgnBoard('board4', {pieceStyle: 'alpha',  boardSize: '400px'});\nvar board5 = pgnBoard('board5', {pieceStyle: 'uscf',  boardSize: '400px'});\nvar board7 = pgnBoard('board7', {pieceStyle: 'condal', boardSize: '400px'});\nvar board8 = pgnBoard('board8', {pieceStyle: 'maya',  boardSize: '400px'});\nvar board9 = pgnBoard('board9', {pieceStyle: 'leipzig', boardSize: '400px'});",
     jsFn: function() {
-        var board = pgnBoard('board', {pieceStyle: 'merida', boardSize: '400px'});
+        var board = pgnBoard('board', {pieceStyle: 'merida-svg', boardSize: '400px'});
         var board2 = pgnBoard('board2', {pieceStyle: 'case', boardSize: '400px'});
         var board3 = pgnBoard('board3', {pieceStyle: 'wikipedia', boardSize: '400px'});
         var board4 = pgnBoard('board4', {pieceStyle: 'alpha',  boardSize: '400px'});
@@ -501,7 +501,7 @@ examples["1214"] = {
 };
 examples["1215"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/22'>ticket 22</a> at GitHub. " +
-    "Integrate stockfish.js in the viewer, to allow analyzing games ad hoc.",
+    "Integrate stockfish.src in the viewer, to allow analyzing games ad hoc.",
     html: "<div id='board' style='width: 360px'/>",
     name: "#22: Integrate stockfish.js in the viewer (unsolved)",
     jsStr: 'pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});',

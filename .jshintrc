@@ -3,14 +3,7 @@
     "predef": [
         "window",
         "document",
-        "i18next",
         "console",
         "swal",
-        "Mousetrap",
-        "Timer",
-        "Utils",
-        "Chess",
-        "pgnReader",
-        "Chessground",
         "Event"]
 }

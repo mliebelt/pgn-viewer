@@ -1,0 +1,22 @@
+{
+  "name": "@mliebelt/pgn-reader",
+  "version": "0.9.8",
+  "main": "dist/pgn.js",
+  "module": "modules/pgn-reaeder/src/pgn.js",
+  "author": "mliebelt",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mliebelt/PgnViewerJS.git"
+  },
+  "scripts": {
+    "build": "../../node_modules/.bin/webpack --config webpack.prod.js",
+    "start": "../../node_modules/.bin/webpack-dev-server --open --config webpack.dev.js",
+    "test": "cd ../../ && ./node_modules/.bin/mocha ./modules/pgn-reader/test/*.js",
+    "test-interactive": "cd ../../ && ./node_modules/.bin/mocha -w  ./modules/pgn-reader/test/*.js"
+  },
+  "dependencies": {
+    "@mliebelt/pgn-parser": "^0.10.0",
+    "chess.js": "^0.10.3"
+  }
+}
