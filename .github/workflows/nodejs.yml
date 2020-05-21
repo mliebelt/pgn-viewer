@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [10.x, 12.x]
 
     steps:
     - uses: actions/checkout@v1
@@ -20,7 +20,12 @@ jobs:
     - name: npm install, build, and test
       run: |
         npm install
+        cd modules/pgn-reader
+        npm install
         npm run build --if-present
         npm test
+        cd ../pgn-viewer
+        npm install
+        npm run build
       env:
         CI: true
