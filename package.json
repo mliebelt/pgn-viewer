@@ -17,7 +17,8 @@
     "html-webpack-plugin": "^4.3.0",
     "mocha": "^7.1.2",
     "node-sass": "^4.14.1",
-    "postcss-loader": "^3.0.0",
+    "nps": "^5.9.12",
+    "postcss-loader": "^d 3.0.0",
     "should": "^13.2.3",
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
@@ -27,9 +28,8 @@
     "webpack-merge": "^4.2.2"
   },
   "scripts": {
-    "build": "webpack --config webpack.prod.js",
-    "start": "webpack-dev-server --open --config webpack.dev.js",
-    "test": "jasmine --config=test/spec/jasmine.json",
-    "test-pgn": "jasmine-node modules/pgn-reader/test/pgnSpec.js"
+    "start": "nps",
+    "test": "nps test",
+    "gen_examples": "nps gen_examples"
   }
 }

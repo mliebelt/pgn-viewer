@@ -6,8 +6,8 @@
     <meta name="description" content="Shows variable parameters of the configuration in a UI.">
     <meta name="author" content="Markus Liebelt">
 
-    <link rel="stylesheet" href="../../dist/css/pgnvjs.css">
-    <script src="../../dist/js/pgnvjs.js" type="text/javascript"></script>
+    <script src="../js/bundle.js" type="text/javascript"></script>
+    <script src="https://use.fontawesome.com/4cf2a2bf7b.js"></script>
     <style>
         #config {
             float: left;
@@ -329,7 +329,7 @@ and helps to define a new configuration.
         configuration['colorMarker'] = colorMarker;
         configuration.showFen = showFen;
         document.getElementById('config_out').value = printConfig(configuration);
-        var fun = window[modus];
+        var fun = PGNV[modus];
         if (typeof fun === 'function') {
             fun('board', configuration);
         }
