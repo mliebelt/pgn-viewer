@@ -168,7 +168,7 @@ describe("When reading PGN with headers", function() {
         should(Object.keys(my_pgn2.getHeaders()).length).equal(2); // EventDate is not valid
         should(my_pgn2.getHeaders().setup).equal("1");
         should(my_pgn2.configuration.position).equal("8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57");
-    })
+    });
 
     it("should accept variations of case in header", function() {
         let pgn_string = ['[Setup "1"]', '[feN "8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57"]'];
