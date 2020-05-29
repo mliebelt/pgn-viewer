@@ -386,7 +386,22 @@ const pgnReader = function (configuration) {
      * the moves from the beginning to the startPlay are cut. Ugly, but working.
      */
     let load_pgn = function () {
+        const interpretHeaders = function () {
+            if (that.tags.SetUp) {
+                const setup = that.tags.SetUp;
+                if (setup === '0') {
+                    that.configuration.position = 'start';
+                } else {
+                    const fen = that.tags.FEN;
+                    that.configuration.position = fen;
+                }
+            }
+            if (that.tags.Result) {
+                that.endGame = that.tags.Result;            }
+        };
         let _mgame = parser.parse(that.configuration.pgn, {startRule: "game"});
+        that.tags = _mgame.tags;
+        interpretHeaders();
         readMoves(_mgame.moves);
         if (that.configuration.startPlay && that.configuration.hideMovesBefore) {
             let new_fen = deleteMovesBefore(that.configuration.startPlay);
@@ -1235,14 +1250,14 @@ const pgnReader = function (configuration) {
     }
 
     /**
-     * Returns the headers. Ensures that pgn is already read.
+     * Returns the tags. Ensures that pgn is already read.
      */
-    function getHeaders() {
-        if (typeof that.headers != 'undefined') {
-            return that.headers;
+    function getTags() {
+        if (typeof that.tags != 'undefined') {
+            return that.tags;
         } else {
             load_pgn();
-            return that.headers;
+            return that.tags;
         }
     }
 
@@ -1284,7 +1299,7 @@ const pgnReader = function (configuration) {
         getOrderedMoves: getOrderedMoves,
         getMove: getMove,
         getEndGame: getEndGame,
-        getHeaders: getHeaders,
+        getTags: getTags,
 //        splitHeaders: splitHeaders,
         getParser: () => parser,
 //        eachMove: function() { return eachMove(); },
