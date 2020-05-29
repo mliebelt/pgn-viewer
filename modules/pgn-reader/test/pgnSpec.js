@@ -1,6 +1,6 @@
 
-var should = require('should');
-var pgnReader = require('../dist/pgn').pgnReader;
+const should = require('should');
+const pgnReader = require('../dist/pgn').pgnReader;
 
 /**
  * Checks all functionality for reading and interpreting a spec.
@@ -8,7 +8,7 @@ var pgnReader = require('../dist/pgn').pgnReader;
 
 
 describe("ambiguator or variations of formats", function() {
-    var my_pgn;
+    let my_pgn;
     // Not a real disambiguator, because when pawns are captured, the column has to be used.
     xit ("should read and remember disambiguator", function() {
         my_pgn = pgnReader({pgn: "4. dxe5", position: "rnbqkbnr/ppp3pp/8/3ppp2/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 0 4"});
@@ -54,7 +54,7 @@ describe("ambiguator or variations of formats", function() {
 })
 
 describe("When working with different PGN beginnings and endings", function() {
-    var my_pgn;
+    let my_pgn;
 
     it("should work with no moves at all", function() {
         my_pgn = pgnReader({pgn: ""});
@@ -103,7 +103,7 @@ describe("When working with different PGN beginnings and endings", function() {
 });
 
 describe("When using all kind of notation", function() {
-    var my_pgn;
+    let my_pgn;
     it ("should know how to move all kind of figures", function() {
         my_pgn = pgnReader({pgn: "1. e4 Nf6 2. Bb5 c6 3. Ba4 Qa5 4. Nf3 d5 5. O-O e6 6. Re1 "});
         should(my_pgn.getMoves().length).equal(11);
@@ -140,62 +140,65 @@ describe("When using all kind of notation", function() {
 });
 
 describe("When reading PGN with headers", function() {
+    let pgn_string = null
+    let pgn_string2 = null
+    let my_pgn = null
+    let my_pgn2 = null
     beforeEach(function() {
-        let pgn_string = ['[Event "Casual Game"]',
-            '[Site "Berlin GER"]',
-            '[Date "1852.??.??"]',
-            '[EventDate "?"]',
-            '[Round "?"]',
-            '[Result "1-0"]',
-            '[White "Adolf Anderssen"]',
-            '[Black "Jean Dufresne"]',
-            '[SetUp "0"]',
+        pgn_string = ['["Event" "Casual Game"]',
+            '["Site" "Berlin GER"]',
+            '["Date" "1852.12.31"]',
+            '["Round" "1"]',
+            '["Result" "1-0"]',
+            '["White" "Adolf Anderssen"]',
+            '["Black" "Jean Dufresne"]',
+            '["SetUp" "0"]',
             '1. e4 e5 2. Nf3 Nc6'];
-        let pgn_string2 = ['[SetUp "1"]', '[FEN "8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57"]'];
+        pgn_string2 = ['["SetUp" "1"]', '["FEN" "8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57"]'];
         my_pgn = pgnReader({pgn: pgn_string.join(" ")});
         my_pgn2 = pgnReader({pgn: pgn_string2.join(" ")});
     });
 
     it("should have these headers read", function() {
-        should(Object.keys(my_pgn.getHeaders()).length).equal(8); // EventDate is not valid
-        should(my_pgn.getHeaders().site).equal("Berlin GER");
-        should(my_pgn.getHeaders().date).equal("1852.??.??");
-        should(my_pgn.getHeaders().setup).equal("0");
+        should(Object.keys(my_pgn.getTags()).length).equal(8); // EventDate is not valid
+        should(my_pgn.getTags().Site).equal("Berlin GER");
+        should(my_pgn.getTags().Date).equal("1852.12.31");
+        should(my_pgn.getTags().SetUp).equal("0");
         should(my_pgn.configuration.position).equal("start");
     });
 
     it("should have header mapped to FEN", function() {
-        should(Object.keys(my_pgn2.getHeaders()).length).equal(2); // EventDate is not valid
-        should(my_pgn2.getHeaders().setup).equal("1");
+        should(Object.keys(my_pgn2.getTags()).length).equal(2); // EventDate is not valid
+        should(my_pgn2.getTags().SetUp).equal("1");
         should(my_pgn2.configuration.position).equal("8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57");
-    })
+    });
 
     it("should accept variations of case in header", function() {
         let pgn_string = ['[Setup "1"]', '[feN "8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57"]'];
         my_pgn = pgnReader({pgn: pgn_string.join(" ")});
-        should(Object.keys(my_pgn2.getHeaders()).length).equal(2); // EventDate is not valid
-        should(my_pgn2.getHeaders().setup).equal("1");
+        should(Object.keys(my_pgn2.getTags()).length).equal(2);
+        should(my_pgn2.getTags().SetUp).equal("1");
         should(my_pgn2.configuration.position).equal("8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57");
     })
 });
 
 describe("When reading pgn with wrong headers", function() {
     beforeEach(function() {
-        var pgn_string = ['[Event "Casual Game"]',
-            '[Site "Berlin GER"]',
-            '[Date "1852.??.??"]',
-            '[EventDate "?"]',
-            '[Round "?"]',
-            '[Result "1-0"]',
-            '[White "Adolf Anderssen"]',
-            '[Black "Jean Dufresne"]',
+        var pgn_string = ['["Event" "Casual Game"]',
+            '["Site" "Berlin GER"]',
+            '["Date" "1852.??.??"]',
+            '["EventDate" "?"]',
+            '["Round" "?"]',
+            '["Result" "1-0"]',
+            '["White" "Adolf Anderssen"]',
+            '["Black" "Jean Dufresne"]',
             '[a "Hallo"]',
             '[b "Hallo"]',
             '1. e2 e4 2. Nf3 Nc6'];
         var my_pgn = pgnReader({pgn: pgn_string.join(" ")});
     });
-    it("should ignore wrong headers", function() {
-        var h = my_pgn.getHeaders();
+    xit("should ignore wrong headers", function() { // is now a syntax error, not ignored
+        var h = my_pgn.getTags();
         should.not.exist(h["a"]);  // Because that is not an allowed key
     });
 });
@@ -573,19 +576,19 @@ describe("Writing PGN like", function() {
         should(my_pgn.write_pgn()).equal("1. e4 e5 1/2-1/2");
     });
     it("should write the end of the game as part of tags", function () {
-        var my_pgn = pgnReader({pgn: '[Result "0-1"] 1. e4 e5'});
+        var my_pgn = pgnReader({pgn: '["Result" "0-1"] 1. e4 e5'});
         should(my_pgn.write_pgn()).equal("1. e4 e5 0-1");
     });
     it("should write the end of the game as part of tags, understand all results: *", function () {
-        var my_pgn = pgnReader({pgn: '[Result "*"] 1. e4 e5'});
+        var my_pgn = pgnReader({pgn: '["Result" "*"] 1. e4 e5'});
         should(my_pgn.write_pgn()).equal("1. e4 e5 *");
     });
     it("should write the end of the game as part of tags, understand all results: 1/2-1/2", function () {
-        var my_pgn = pgnReader({pgn: '[Result "1/2-1/2"] 1. e4 e5'});
+        var my_pgn = pgnReader({pgn: '["Result" "1/2-1/2"] 1. e4 e5'});
         should(my_pgn.write_pgn()).equal("1. e4 e5 1/2-1/2");
     });
     it("should write the end of the game as part of tags, understand all results: 1-0", function () {
-        var my_pgn = pgnReader({pgn: '[Result "1-0"] 1. e4 e5'});
+        var my_pgn = pgnReader({pgn: '["Result" "1-0"] 1. e4 e5'});
         should(my_pgn.write_pgn()).equal("1. e4 e5 1-0");
     });
     it("should write promotion correct", function () {
