@@ -916,23 +916,23 @@ let pgnBase = function (boardId, configuration) {
          * that just works.
          */
         var generateHeaders = function () {
-            var headers = that.mypgn.getHeaders();
-            if (that.configuration.headers == false || (utils.pvIsEmpty(headers))) {
+            let tags = that.mypgn.getTags();
+            if (that.configuration.headers == false || (utils.pvIsEmpty(tags))) {
                 let hd = document.getElementById(headersId);
                 hd.parentNode.removeChild(hd);
                 return;
             }
-            var div_h = document.getElementById(headersId);
-            var white = createEle('span', null, "whiteHeader", theme, div_h);
-            if (headers.White) {
-                white.appendChild(document.createTextNode(headers.White + " "));
+            let div_h = document.getElementById(headersId);
+            let white = createEle('span', null, "whiteHeader", theme, div_h);
+            if (tags.White) {
+                white.appendChild(document.createTextNode(tags.White + " "));
             }
             //div_h.appendChild(document.createTextNode(" - "));
-            var black = createEle('span', null, "blackHeader", theme, div_h);
-            if (headers.Black) {
-                black.appendChild(document.createTextNode(" " + headers.Black));
+            let black = createEle('span', null, "blackHeader", theme, div_h);
+            if (tags.Black) {
+                black.appendChild(document.createTextNode(" " + tags.Black));
             }
-            var rest = "";
+            let rest = "";
             var appendHeader = function (result, header, separator) {
                 if (header) {
                     if (result.length > 0) {
@@ -942,8 +942,8 @@ let pgnBase = function (boardId, configuration) {
                 }
                 return result;
             };
-            [headers.Event, headers.Site, headers.Round, headers.Date,
-                headers.ECO, headers.Result].forEach(function (header) {
+            [tags.Event, tags.Site, tags.Round, tags.Date,
+                tags.ECO, tags.Result].forEach(function (header) {
                 rest = appendHeader(rest, header, " | ");
             });
             var restSpan = createEle("span", null, "restHeader", theme, div_h);
@@ -1195,7 +1195,6 @@ let pgnBase = function (boardId, configuration) {
         generateMoves: generateMoves,
         onSnapEnd: onSnapEnd
     };
-    window.pgnTestRegistry[boardId] = ret;
     return ret;
 };
 

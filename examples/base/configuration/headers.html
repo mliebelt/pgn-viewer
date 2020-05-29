@@ -40,14 +40,14 @@ Normal pgnBoard, headers are per default not shown
     let pgnBoard = PGNV.pgnBoard;
 
    var pgn =
-        ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
-         '[Result "1-0"][ECO "C52"]',
-         '[Site "Berlin"][Date "1852"]',
+        ['["White" "Anderssen, Adolf"]["Black" "Dufresne, Jean"]',
+         '["Result" "1-0"]["ECO" "C52"]',
+         '["Site" "Berlin"]["Date" "1852.08.17"]',
          '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6'].join(" ");
     var pgnp =
-        ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
-         '[Result "1-0"][ECO "C52"]',
-         '[Site "Berlin"][Date "1852"]',
+        ['["White" "Anderssen, Adolf"]["Black" "Dufresne, Jean"]',
+         '["Result" "1-0"]["ECO" "C52"]',
+         '["Site" "Berlin"]["Date" "1852.10.10"]',
          '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5D 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6D 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8D'].join(" ");
     pgnv = pgnView("board0", {pgn: pgn, width: '450px'});
     pgnv = pgnPrint("board1", {pgn: pgnp, width: '250px', orientation: 'black'});

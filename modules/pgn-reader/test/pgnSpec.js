@@ -145,16 +145,16 @@ describe("When reading PGN with headers", function() {
     let my_pgn = null
     let my_pgn2 = null
     beforeEach(function() {
-        pgn_string = ['["Event" "Casual Game"]',
-            '["Site" "Berlin GER"]',
-            '["Date" "1852.12.31"]',
-            '["Round" "1"]',
-            '["Result" "1-0"]',
-            '["White" "Adolf Anderssen"]',
-            '["Black" "Jean Dufresne"]',
-            '["SetUp" "0"]',
+        pgn_string = ['[Event "Casual Game"]',
+            '[Site "Berlin GER"]',
+            '[Date "1852.12.31"]',
+            '[Round "1"]',
+            '[Result "1-0"]',
+            '[White "Adolf Anderssen"]',
+            '[Black "Jean Dufresne"]',
+            '[SetUp "0"]',
             '1. e4 e5 2. Nf3 Nc6'];
-        pgn_string2 = ['["SetUp" "1"]', '["FEN" "8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57"]'];
+        pgn_string2 = ['[SetUp "1"]', '[FEN "8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57"]'];
         my_pgn = pgnReader({pgn: pgn_string.join(" ")});
         my_pgn2 = pgnReader({pgn: pgn_string2.join(" ")});
     });
@@ -576,19 +576,19 @@ describe("Writing PGN like", function() {
         should(my_pgn.write_pgn()).equal("1. e4 e5 1/2-1/2");
     });
     it("should write the end of the game as part of tags", function () {
-        var my_pgn = pgnReader({pgn: '["Result" "0-1"] 1. e4 e5'});
+        var my_pgn = pgnReader({pgn: '[Result "0-1"] 1. e4 e5'});
         should(my_pgn.write_pgn()).equal("1. e4 e5 0-1");
     });
     it("should write the end of the game as part of tags, understand all results: *", function () {
-        var my_pgn = pgnReader({pgn: '["Result" "*"] 1. e4 e5'});
+        var my_pgn = pgnReader({pgn: '[Result "*"] 1. e4 e5'});
         should(my_pgn.write_pgn()).equal("1. e4 e5 *");
     });
     it("should write the end of the game as part of tags, understand all results: 1/2-1/2", function () {
-        var my_pgn = pgnReader({pgn: '["Result" "1/2-1/2"] 1. e4 e5'});
+        var my_pgn = pgnReader({pgn: '[Result "1/2-1/2"] 1. e4 e5'});
         should(my_pgn.write_pgn()).equal("1. e4 e5 1/2-1/2");
     });
     it("should write the end of the game as part of tags, understand all results: 1-0", function () {
-        var my_pgn = pgnReader({pgn: '["Result" "1-0"] 1. e4 e5'});
+        var my_pgn = pgnReader({pgn: '[Result "1-0"] 1. e4 e5'});
         should(my_pgn.write_pgn()).equal("1. e4 e5 1-0");
     });
     it("should write promotion correct", function () {

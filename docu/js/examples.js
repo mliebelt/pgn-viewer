@@ -1044,6 +1044,16 @@ examples["1273"] = {
     }
 };
 examples["1274"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/108'>ticket 108</a> at GitHub. " +
+    "En passent not working well. Play fxg3 on the board.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#108: Allow en passent in edit mode",
+    jsStr: 'PGNV.pgnEdit("board", {pgn: "1. e4 e5 2. f4 exf4 3. g4"})',
+    jsFn: function() {
+        PGNV.pgnEdit("board", {pgn: "1. e4 e5 2. f4 exf4 3. g4"});
+    }
+};
+examples["1275"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/109'>ticket 109</a> at GitHub. " +
     "Allow first move variation. Play e4, then go back and play d4",
     html: "<div id='board' style='width: 200px'/>",
@@ -1053,7 +1063,18 @@ examples["1274"] = {
         PGNV.pgnEdit("board", {});
     }
 };
-examples["1275"] = {
+examples["1276"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/111'>ticket 111</a> at GitHub. " +
+    "Promote variation of first move does not work (open). Do the steps in edit mode: Do first move, go back, do " +
+        "different one, try to promote that ==> nothing happens",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#111: Promote variation of first move does not work (open)",
+    jsStr: 'PGNV.pgnEdit("board", {})',
+    jsFn: function() {
+        PGNV.pgnEdit("board", {});
+    }
+};
+examples["1277"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/112'>ticket 112</a> at GitHub. " +
     "Adds color marker for the player at move.",
     html: "<div id='board' style='width: 200px'/>",
@@ -1063,7 +1084,7 @@ examples["1275"] = {
         PGNV.pgnView("board", {pgn: "1. e4 e5 ", colorMarker: "cm-small"});
     }
 };
-examples["1276"] = {
+examples["1278"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/114'>ticket 114</a> at GitHub. " +
     "Show result in move list. Default is false.",
     html: '<div id="board" style="width: 200px"/><div id="board1" style="width: 200px"/>',
@@ -1074,7 +1095,17 @@ examples["1276"] = {
         PGNV.pgnView("board1", {pgn: "1. e4 e5 1-0 "});
     }
 };
-examples["1277"] = {
+examples["1279"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/116'>ticket 116</a> at GitHub. " +
+    "Cut moves before (not implemented yet).",
+    html: "<div id='board' style='width: 200px'/>\n<div id='board1' style='width: 200px'/>",
+    name: "#116: Cut moves before (not implemented)",
+    jsStr: 'PGNV.pgnEdit("board", {});',
+    jsFn: function() {
+        PGNV.pgnEdit("board", {});
+    }
+};
+examples["1280"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/117'>ticket 117</a> at GitHub. " +
     "Makes defining FEN more resilient. See the 2 variations that work.",
     html: "<div id='board' style='width: 200px'/>\n<div id='board1' style='width: 200px'/>",
@@ -1083,5 +1114,109 @@ examples["1277"] = {
     jsFn: function() {
         PGNV.pgnBoard("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - -"});
         PGNV.pgnBoard("board1", {position: "1k6/5KP1/8/8/8/8/8/8 w - - 1 1"});
+    }
+};
+examples["1281"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/118'>ticket 118</a> at GitHub. " +
+    "Allow different styles for lines and column marker (not yet implemented).",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#118: Different styles for column markers (not yet implemented)",
+    jsStr: 'PGNV.pgnBoard("board", {});',
+    jsFn: function() {
+        PGNV.pgnBoard("board", {});
+    }
+};
+examples["1282"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/120'>ticket 120</a> at GitHub. " +
+    "Reading of NAGs with symbol characters (not yet implemented).",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#120: Reading of NAGs with symbol characters (not yet implemented)",
+    jsStr: 'PGNV.pgnView("board", {pgn: "e4 {!!} $16"});',
+    jsFn: function() {
+        PGNV.pgnView("board", {pgn: "e4 {!!} $16"});
+    }
+};
+examples["1283"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/121'>ticket 121</a> at GitHub. " +
+    "Chess960 castling is not handled (not yet implemented).",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#121: Chess960 castling is not handled (not yet implemented)",
+    jsStr: 'PGNV.pgnView("board", {});',
+    jsFn: function() {
+        PGNV.pgnView("board", {});
+    }
+};
+examples["1284"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/122'>ticket 122</a> at GitHub. " +
+    "Chess clock support (not finished).",
+    html: "<div id='board' style='width: 150px'/><div id='board1' style='width: 200px'/>",
+    name: "#122: Chess clock support (not finished)",
+    jsStr: 'PGNV.pgnView("board", {pgn: "c4 {[%clk 2:10:30]} Nf6 {[%clk 2:10:30]} 2. Nc3 {[%clk 2:10:30]} e5\n' +
+        '{[%clk 2:10:30]} 3. Nf3 {[%clk 2:10:30]} Nc6 {[%clk 2:10:30]} 4. e4\n' +
+        '{[%clk 2:10:30]} Bb4 {[%clk 2:10:17]} 5. d3 {[%clk 2:10:30]} d6 {[%clk 2:09:44]}"});',
+    jsFn: function() {
+        PGNV.pgnView("board", {width: "200px", pgn: "c4 {[%clk 2:10:30]} Nf6 {[%clk 2:10:30]} 2. Nc3 {[%clk 2:10:30]} e5\n" +
+                "{[%clk 2:10:30]} 3. Nf3 {[%clk 2:10:30]} Nc6 {[%clk 2:10:30]} 4. e4\n" +
+                "{[%clk 2:10:30]} Bb4 {[%clk 2:10:17]} 5. d3 {[%clk 2:10:30]} d6 {[%clk 2:09:44]}"});
+    }
+};
+examples["1285"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/126'>ticket 126</a> at GitHub. " +
+    "Allow resize of chessboard (not yet implemented).",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#126: Allow resize of chessboard (not yet implemented)",
+    jsStr: 'PGNV.pgnView("board", {pgn: "e4 "});',
+    jsFn: function() {
+        PGNV.pgnView("board", {pgn: "e4 "});
+    }
+};
+examples["1286"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/130'>ticket 130</a> at GitHub. " +
+    "Allow any number of white space and dots for move numbers.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#130: White space for move numbers",
+    jsStr: 'PGNV.pgnView("board", {pgn: "1.. e4 1. .. d5 2 .... f4"});',
+    jsFn: function() {
+        PGNV.pgnView("board", {pgn: "1.. e4 1. .. d5 2 .... f4"});
+    }
+};
+examples["1287"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/134'>ticket 134</a> at GitHub. " +
+    "Allow figurine notation (not yet implemented).",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#134: Allow figurine notation (not yet implemented)",
+    jsStr: 'PGNV.pgnView("board", {pgn: "Nf3 Nf6"});',
+    jsFn: function() {
+        PGNV.pgnView("board", {pgn: "Nf3 Nf6"});
+    }
+};
+examples["1288"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/135'>ticket 135</a> at GitHub. " +
+    "Allow long algebraic notation as output",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#135: Allow long algebraic notation as output",
+    jsStr: 'PGNV.pgnView("board", {pgn: "Nf3 Nf6", notation: "long"});',
+    jsFn: function() {
+        PGNV.pgnView("board", {pgn: "Nf3 Nf6", notation: "long"});
+    }
+};
+examples["1289"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/140'>ticket 140</a> at GitHub. " +
+    "Move number missing for first black move",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#140: Move number missing for first black move",
+    jsStr: 'PGNV.pgnView("board", {pgn: "1... e5", position: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1"});',
+    jsFn: function() {
+        PGNV.pgnView("board", {pgn: "1... e5", position: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1"});
+    }
+};
+examples["1290"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/144'>ticket 144</a> at GitHub. " +
+    "Locale not considered for promoted pieces.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#144: Locale not considered for promoted pieces",
+    jsStr: 'PGNV.pgnView("board", {locale: "de", pgn: "1. h4 g5 2. hxg5 Nf6 3. gxf6 d6 4. fxe7 Kd7 5. exf8=R Qh4 6. Rxh8 Qxh1 7. Rxh7 Ke8 8. Rxh1 *"});',
+    jsFn: function() {
+        PGNV.pgnView("board", {locale: "de", pgn: "1. h4 g5 2. hxg5 Nf6 3. gxf6 d6 4. fxe7 Kd7 5. exf8=R Qh4 6. Rxh8 Qxh1 7. Rxh7 Ke8 8. Rxh1 *"});
     }
 };
