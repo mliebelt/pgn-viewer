@@ -16,7 +16,7 @@
     "test-interactive": "cd ../../ && ./node_modules/.bin/mocha -w  ./modules/pgn-reader/test/*.js"
   },
   "dependencies": {
-    "@mliebelt/pgn-parser": "^1.0.0",
+    "@mliebelt/pgn-parser": "^1.0.1",
     "chess.js": "^0.10.3"
   }
 }
