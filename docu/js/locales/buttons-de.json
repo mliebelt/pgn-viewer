@@ -1,0 +1,14 @@
+{
+    "flipper" : "Tausche die Seiten",
+    "first" : "Gehe zum ersten Zug",
+    "prev" : "Gehe einen Zug zurück",
+    "next" : "Nächster Zug",
+    "play" : "Spiele alle Züge",
+    "last" : "Gehe ans Ende des Spiels",
+    "deleteVar" : "Lösche Variante",
+    "promoteVar" : "Werte Variante auf",
+    "deleteMoves" : "Lösche die restlichen Züge von hier",
+    "nags" : "NAGs Menü",
+    "pgn" : "Zeige die PGN Notation an",
+    "hidePGN" : "Ausblenden des angezeigten PGN"
+}

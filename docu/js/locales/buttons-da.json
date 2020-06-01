@@ -1,0 +1,14 @@
+{
+    "flipper" : "Flip siderne af brættet",
+    "first" : "Gå til første skridt",
+    "prev" : "Gå til forrige træk",
+    "next" : "Gå til næste træk",
+    "play" : "Afspil / stoppe med at spille alle bevægelser",
+    "last" : "Gå til sidste træk",
+    "deleteVar" : "Slet variation",
+    "promoteVar" : "Fremme variation",
+    "deleteMoves" : "Slet resten bevæger sig fra her",
+    "nags" : "NAGs menu",
+    "pgn" : "Visning PGN af aktuelle spil",
+    "hidePGN" : "Skjul den viste PGN"
+}
