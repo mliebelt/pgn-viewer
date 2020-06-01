@@ -2,7 +2,6 @@ import i18next  from 'i18next';
 import i18nextXHRBackend from 'i18next-xhr-backend';
 import i18nextLocalStorageCache from 'i18next-localstorage-cache';
 import smoothscroll from 'smoothscroll-polyfill';
-import swal from 'sweetalert';
 import pgnBase from "./pgnvjs";
 
 import './css/chessground.css';
@@ -47,8 +46,8 @@ let initI18n = function () {
         if (window.PgnBaseDefaults.localPath) {
             return window.PgnBaseDefaults.localPath;
         }
-        let jsFileLocation = document.querySelector('script[src*=bundle]').src;  // the src file path
-        let index = jsFileLocation.indexOf('bundle');
+        let jsFileLocation = document.querySelector('script[src*=pgnv]').src;  // the src file path
+        let index = jsFileLocation.indexOf('pgnv');
         console.log("Local path: " + jsFileLocation.substring(0, index));
         return jsFileLocation.substring(0, index);   // the father of the src folder
     };

@@ -15,17 +15,9 @@ module.exports = {
     ],
     output: {
         filename: 'pgn.js',
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/dist/',
+        path: path.resolve(__dirname, 'lib'),
+        publicPath: '/lib/',
         library: 'pgn-parser',
         libraryTarget: 'umd',
-    },
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader', 'postcss-loader'],
-            },
-        ],
     },
 };

@@ -18,9 +18,9 @@ module.exports = {
         ]),
     ],
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/dist/',
+        filename: 'pgnv.js',
+        path: path.resolve(__dirname, 'lib'),
+        publicPath: '/lib/',
         library: 'PGNV',
         libraryTarget: "var",
     },

@@ -1149,7 +1149,7 @@ examples["1283"] = {
 examples["1284"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/122'>ticket 122</a> at GitHub. " +
     "Chess clock support (not finished).",
-    html: "<div id='board' style='width: 150px'/><div id='board1' style='width: 200px'/>",
+    html: "<div id='board' style='width: 150px'/>",
     name: "#122: Chess clock support (not finished)",
     jsStr: 'PGNV.pgnView("board", {pgn: "c4 {[%clk 2:10:30]} Nf6 {[%clk 2:10:30]} 2. Nc3 {[%clk 2:10:30]} e5\n' +
         '{[%clk 2:10:30]} 3. Nf3 {[%clk 2:10:30]} Nc6 {[%clk 2:10:30]} 4. e4\n' +

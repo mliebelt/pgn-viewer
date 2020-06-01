@@ -1,10 +1,9 @@
-'use strict';
-
 import i18next  from 'i18next';
-import { Utils, pgnReader } from '../../pgn-reader/dist/pgn';
+import { Utils, pgnReader } from '@mliebelt/pgn-reader';
 import { Chessground } from 'chessground';
 import Timer from './Timer';
 import Mousetrap from 'mousetrap';
+import swal from 'sweetalert';
 
 /**
  * This implements the base function that is used to display a board, a whole game
@@ -91,8 +90,8 @@ let pgnBase = function (boardId, configuration) {
      * Allow logging of error to HTML.
      */
     function logError(str) {
-        var node = document.createElement("DIV");
-        var textnode = document.createTextNode(str);
+        let node = document.createElement("DIV");
+        const textnode = document.createTextNode(str);
         node.appendChild(textnode);
         that.errorDiv.appendChild(node);
     }
@@ -129,7 +128,7 @@ let pgnBase = function (boardId, configuration) {
      * @param {*} targetElement the element after to insert
      */
     function insertAfter(newElement, targetElement) {
-        var parent = targetElement.parentNode;
+        const parent = targetElement.parentNode;
         if (parent.lastChild == targetElement) {
             parent.appendChild(newElement);
         } else {
@@ -181,8 +180,8 @@ let pgnBase = function (boardId, configuration) {
             }
         }
 
-        var node = element;
-        var movesNode = node.parentElement;
+        const node = element;
+        const movesNode = node.parentElement;
         scrollParentToChild(movesNode, node);
     }
 
@@ -193,10 +192,10 @@ let pgnBase = function (boardId, configuration) {
      * @param to the destination
      * @param meta additional parameters (not used at the moment)
      */
-    var onSnapEnd = async function (from, to, meta) {
+    const onSnapEnd = async function (from, to, meta) {
         //console.log("Move from: " + from + " To: " + to + " Meta: " + JSON.stringify(meta, null, 2));
         //board.set({fen: game.fen()});
-        var cur = that.currentMove;
+        const cur = that.currentMove;
         let primMove = {from: from, to: to};
         if ((that.mypgn.game.get(from).type == 'p') && ((to.substring(1, 2) == '8') || (to.substring(1, 2) == '1'))) {
             let sel = await swal("Select the promotion figure", {
@@ -211,7 +210,7 @@ let pgnBase = function (boardId, configuration) {
             //primMove.promotion = 'q'    // Here a real selection should stand!!
         }
         that.currentMove = that.mypgn.addMove(primMove, cur);
-        var move = that.mypgn.getMove(that.currentMove);
+        const move = that.mypgn.getMove(that.currentMove);
         if (primMove.promotion) {
             let pieces = {};
             pieces[to] = null;
@@ -245,7 +244,7 @@ let pgnBase = function (boardId, configuration) {
 
     // Utility function for generating general HTML elements with id, class (with theme)
     function createEle(kind, id, clazz, my_theme, father) {
-        var ele = document.createElement(kind);
+        const ele = document.createElement(kind);
         if (id) {
             ele.setAttribute("id", id);
         }
@@ -285,32 +284,32 @@ let pgnBase = function (boardId, configuration) {
      * Generates all HTML elements needed for display of the (playing) board and
      * the moves. Generates that in dependence of the theme
      */
-    var generateHTML = function () {
+    const generateHTML = function () {
         // Utility function for generating buttons divs
         function addButton(pair, buttonDiv) {
-            var l_theme = (['green', 'blue'].indexOf(theme) >= 0) ? theme : 'default';
-            var button = createEle("i", buttonsId + pair[0], "button fa " + pair[1], l_theme, buttonDiv);
-            var title = i18next.t("buttons:" + pair[0], {lng: that.configuration.locale});
+            const l_theme = (['green', 'blue'].indexOf(theme) >= 0) ? theme : 'default';
+            const button = createEle("i", buttonsId + pair[0], "button fa " + pair[1], l_theme, buttonDiv);
+            const title = i18next.t("buttons:" + pair[0], {lng: that.configuration.locale});
             document.getElementById(buttonsId + pair[0]).setAttribute("title", title);
             return button;
         }
 
         // Generates the view buttons (only)
-        var generateViewButtons = function (buttonDiv) {
+        const generateViewButtons = function (buttonDiv) {
             [["flipper", "fa-adjust"], ["first", "fa-fast-backward"], ["prev", "fa-step-backward"],
                 ["next", "fa-step-forward"], ["play", "fa-play-circle"], ["last", "fa-fast-forward"]].forEach(function (entry) {
                 addButton(entry, buttonDiv);
             });
         };
         // Generates the edit buttons (only)
-        var generateEditButtons = function (buttonDiv) {
+        const generateEditButtons = function (buttonDiv) {
             [["promoteVar", "fa-hand-o-up"], ["deleteMoves", "fa-scissors"]].forEach(function (entry) {
-                var but = addButton(entry, buttonDiv);
+                addButton(entry, buttonDiv);
                 //but.className = but.className + " gray"; // just a test, worked.
                 // only gray out if not usable, check that later.
             });
             [["pgn", "fa-print"], ['nags', 'fa-cog']].forEach(function (entry) {
-                var but = addButton(entry, buttonDiv);
+                addButton(entry, buttonDiv);
             });
         };
 
@@ -347,19 +346,19 @@ let pgnBase = function (boardId, configuration) {
             generateRow([10, 13, 14, 15, 16, 17, 18, 19], 'nagPosition', nagEle);
             generateRow([22, 40, 36, 132, 136, 32, 44, 140], 'nagObservation', nagEle);
         };
-        var generateCommentDiv = function (commentDiv) {
-            var radio = createEle("div", null, "commentRadio", theme, commentDiv);
-            var mc = createEle("input", null, "moveComment", theme, radio);
+        const generateCommentDiv = function (commentDiv) {
+            const radio = createEle("div", null, "commentRadio", theme, commentDiv);
+            const mc = createEle("input", null, "moveComment", theme, radio);
             mc.type = "radio";
             mc.value = "move";
             mc.name = "radio";
             createEle("label", null, "labelMoveComment", theme, radio).appendChild(document.createTextNode("Move"));
-            var mb = createEle("input", null, "beforeComment", theme, radio);
+            const mb = createEle("input", null, "beforeComment", theme, radio);
             mb.type = "radio";
             mb.value = "before";
             mb.name = "radio";
             createEle("label", null, "labelBeforeComment", theme, radio).appendChild(document.createTextNode("Before"));
-            var ma = createEle("input", null, "afterComment", theme, radio);
+            const ma = createEle("input", null, "afterComment", theme, radio);
             ma.type = "radio";
             ma.value = "after";
             ma.name = "radio";
@@ -378,7 +377,7 @@ let pgnBase = function (boardId, configuration) {
             if (boardId.button) {
                 buttonsId = boardId.button;
                 addClass(buttonsId, 'buttons');
-                var buttonsDiv = document.getElementById(buttonsId);
+                const buttonsDiv = document.getElementById(buttonsId);
                 generateViewButtons(buttonsDiv);
             }
             if (boardId.moves) {
@@ -386,11 +385,11 @@ let pgnBase = function (boardId, configuration) {
                 addClass(movesId, 'moves');
             }
             if (boardId.editButton) {
-                var editButtonsBoardDiv = document.getElementById(boardId.editButton);
+                const editButtonsBoardDiv = document.getElementById(boardId.editButton);
                 generateEditButtons(editButtonsBoardDiv);
             }
         } else {
-            var divBoard = document.getElementById(boardId);
+            const divBoard = document.getElementById(boardId);
             if (divBoard == null) {
                 return;
             } else {
@@ -409,7 +408,7 @@ let pgnBase = function (boardId, configuration) {
             // Add an error div to show errors
             that.errorDiv = createEle("div", boardId + "Error", 'error', null, divBoard);
             createEle("div", headersId, "headers", theme, divBoard);
-            var outerInnerBoardDiv = createEle("div", null, "outerBoard", null, divBoard);
+            const outerInnerBoardDiv = createEle("div", null, "outerBoard", null, divBoard);
             let boardAndDiv = createEle('div', null, 'boardAnd', theme, outerInnerBoardDiv);
             if (that.configuration.boardSize) {
                 outerInnerBoardDiv.style.width = that.configuration.boardSize;
@@ -421,18 +420,18 @@ let pgnBase = function (boardId, configuration) {
             }
             let topInnerBoardDiv = createEle("div", null, "topInnerBoard", theme, boardAndDiv);
             let topTime = createEle("span", null, "topTime", theme, topInnerBoardDiv);
-            var innerBoardDiv = createEle("div", innerBoardId, "board", theme, boardAndDiv);
+            const innerBoardDiv = createEle("div", innerBoardId, "board", theme, boardAndDiv);
             let bottomInnerBoardDiv = createEle("div", null, "bottomInnerBoard", theme, boardAndDiv);
             let bottomTime = createEle("div", null, "bottomTime", theme, bottomInnerBoardDiv);
             if (that.configuration.colorMarker && (!hasMode('print'))) {
                 createEle("div", colorMarkerId, 'colorMarker' + " " + that.configuration.colorMarker, theme, boardAndDiv);
             }
             if (hasMode('view') || hasMode('edit')) {
-                var buttonsBoardDiv = createEle("div", buttonsId, "buttons", theme, outerInnerBoardDiv);
+                const buttonsBoardDiv = createEle("div", buttonsId, "buttons", theme, outerInnerBoardDiv);
                 generateViewButtons(buttonsBoardDiv);
             }
             if ((hasMode('edit') || hasMode('view')) && (that.configuration.showFen)) {
-                var fenDiv = createEle("textarea", fenId, "fen", theme, outerInnerBoardDiv);
+                const fenDiv = createEle("textarea", fenId, "fen", theme, outerInnerBoardDiv);
                 addEventListener(fenId, 'mousedown', function (e) {
                     e = e || window.event;
                     e.preventDefault();
@@ -440,7 +439,7 @@ let pgnBase = function (boardId, configuration) {
                 });
                 if (hasMode('edit')) {
                     document.getElementById(fenId).onpaste = function (e) {
-                        var pastedData = e.originalEvent.clipboardData.getData('text');
+                        const pastedData = e.originalEvent.clipboardData.getData('text');
                         // console.log(pastedData);
                         that.configuration.position = pastedData;
                         that.configuration.pgn = '';
@@ -457,7 +456,7 @@ let pgnBase = function (boardId, configuration) {
                 // To be scrollable, the height of the element has to be set
                 // TODO: Find a way to set the height, if all other parameters denote that it had to be set:
                 // scrollable == true; layout == left|right
-                var movesDiv = createEle("div", movesId, "moves", null, divBoard);
+                const movesDiv = createEle("div", movesId, "moves", null, divBoard);
 
                 if (that.configuration.movesWidth) {
                     movesDiv.style.width = that.configuration.movesWidth;
@@ -470,14 +469,12 @@ let pgnBase = function (boardId, configuration) {
                 }
             }
             if (hasMode('edit')) {
-                var editButtonsBoardDiv = createEle("div", "edit" + buttonsId, "edit", theme, divBoard);
+                const editButtonsBoardDiv = createEle("div", "edit" + buttonsId, "edit", theme, divBoard);
                 generateEditButtons(editButtonsBoardDiv);
-//                var outerPgnDiv = createEle("div", "outerpgn" + buttonsId, "outerpgn", theme, outerInnerBoardDiv);
-//                var pgnHideButton  = addButton(["hidePGN", "fa-times"], outerPgnDiv);
                 let nagMenu = createEle('div', 'nagMenu' + buttonsId, 'nagMenu', theme, divBoard);
                 generateNagMenu(nagMenu);
-                var pgnDiv = createEle("textarea", "pgn" + buttonsId, "pgn", theme, divBoard);
-                var commentBoardDiv = createEle("div", "comment" + buttonsId, "comment", theme, divBoard);
+                const pgnDiv = createEle("textarea", "pgn" + buttonsId, "pgn", theme, divBoard);
+                const commentBoardDiv = createEle("div", "comment" + buttonsId, "comment", theme, divBoard);
                 generateCommentDiv(commentBoardDiv);
                 // Bind the paste key ...
                 addEventListener("pgn" + buttonsId, 'mousedown', function (e) {
@@ -486,12 +483,12 @@ let pgnBase = function (boardId, configuration) {
                     e.target.select();
                 });
                 document.getElementById("pgn" + buttonsId).onpaste = function (e) {
-                    var pastedData = e.originalEvent.clipboardData.getData('text');
+                    const pastedData = e.originalEvent.clipboardData.getData('text');
                     that.configuration.pgn = pastedData;
                     pgnEdit(boardId, that.configuration);
                 };
             }
-            var endDiv = createEle("div", null, "endBoard", null, divBoard);
+            const endDiv = createEle("div", null, "endBoard", null, divBoard);
         }
     };
 
@@ -500,9 +497,8 @@ let pgnBase = function (boardId, configuration) {
      * that is for the board only. Returns the resulting object (as reference for others).
      * @returns {Window.ChessBoard} the board object that may play the moves later
      */
-    var generateBoard = function () {
+    const generateBoard = function () {
         function copyBoardConfiguration(source, target, keys) {
-            //var pieceStyle = source.pieceStyle || 'wikipedia';
             utils.pvEach(keys, function (key) {
                 if (typeof source[key] != "undefined") {
                     target[key] = source[key];
@@ -530,7 +526,7 @@ let pgnBase = function (boardId, configuration) {
             boardConfiguration.coordinates = boardConfiguration.showCoords;
         }
         boardConfiguration.fen = boardConfiguration.position;
-        var el = document.getElementById(innerBoardId);
+        const el = document.getElementById(innerBoardId);
         if (typeof that.configuration.pieceStyle != 'undefined') {
             el.className += " " + that.configuration.pieceStyle;
         }
@@ -580,7 +576,7 @@ let pgnBase = function (boardId, configuration) {
         return board;
     };
 
-    var moveSpan = function (i) {
+    const moveSpan = function (i) {
         return document.getElementById(movesId + i);
     };
 
@@ -595,7 +591,7 @@ let pgnBase = function (boardId, configuration) {
      * @param varStack if empty no current variation (main line), else contains the divs of the variations played currently
      * @return {*} the current counter which may the next prev counter
      */
-    var generateMove = function (currentCounter, game, move, prevCounter, movesDiv, varStack) {
+    const generateMove = function (currentCounter, game, move, prevCounter, movesDiv, varStack) {
         /**
          * Comments are generated inline, there is no special block rendering
          * possible for them.
@@ -603,15 +599,15 @@ let pgnBase = function (boardId, configuration) {
          * @param clazz class parameter appended to differentiate different comments
          * @returns {HTMLElement} the new created span with the comment as text
          */
-        var generateCommentSpan = function (comment, clazz) {
-            var span = createEle('span', null, "comment " + clazz);
+        const generateCommentSpan = function (comment, clazz) {
+            const span = createEle('span', null, "comment " + clazz);
             if (comment && (typeof comment == "string")) {
                 span.appendChild(document.createTextNode(" " + comment + " "));
             }
             return span;
         };
 
-        var append_to_current_div = function (index, span, movesDiv, varStack) {
+        const append_to_current_div = function (index, span, movesDiv, varStack) {
             if (varStack.length == 0) {
                 if (typeof index == "number") {
                     insertAfter(span, moveSpan(index));
@@ -631,19 +627,19 @@ let pgnBase = function (boardId, configuration) {
         if (move === null || (move === undefined)) {
             return prevCounter;
         }
-        var clAttr = "move";
+        let clAttr = "move";
         if (move.variationLevel > 0) {
             clAttr = clAttr + " var var" + move.variationLevel;
         }
         if (move.turn == 'w') {
             clAttr = clAttr + " white";
         }
-        var span = createEle("span", movesId + currentCounter, clAttr);
+        const span = createEle("span", movesId + currentCounter, clAttr);
         if (that.mypgn.startVariation(move)) {
-            var varDiv = createEle("div", null, "variation");
+            const varDiv = createEle("div", null, "variation");
             if (varStack.length == 0) {
                 // This is the head of the current variation
-                var varHead = null;
+                let varHead = null;
                 if (typeof move.prev == "number") {
                     varHead = that.mypgn.getMove(move.prev).next;
                 } else {
@@ -659,14 +655,14 @@ let pgnBase = function (boardId, configuration) {
         }
         span.appendChild(generateCommentSpan(move.commentMove, "moveComment"));
         if ((move.turn == 'w') || (that.mypgn.startMainLine(move)) || (that.mypgn.startVariation(move)) || (that.mypgn.afterMoveWithVariation(move))) {
-            var mn = move.moveNumber;
-            var num = createEle('span', null, "moveNumber", null, span);
+            const mn = move.moveNumber;
+            const num = createEle('span', null, "moveNumber", null, span);
             num.appendChild(document.createTextNode("" + mn + ((move.turn == 'w') ? ". " : "... ")));
         }
         span.appendChild(generateCommentSpan(move.commentBefore, "beforeComment"));
-        var link = createEle('a', null, null, null, span);
-        var san = i18nSan(that.mypgn.sanWithNags(move));
-        var text = document.createTextNode(san);
+        const link = createEle('a', null, null, null, span);
+        const san = i18nSan(that.mypgn.sanWithNags(move));
+        const text = document.createTextNode(san);
         link.appendChild(text);
         span.appendChild(document.createTextNode(" "));
         if (that.configuration.timeAnnotation != 'none' && move.commentDiag && move.commentDiag.clock) {
@@ -690,8 +686,8 @@ let pgnBase = function (boardId, configuration) {
             event.stopPropagation();
         });
         if (that.mypgn.has_diagram_nag(move)) {
-            var diaID = boardId + "dia" + currentCounter;
-            var diaDiv = createEle('div', diaID);
+            const diaID = boardId + "dia" + currentCounter;
+            const diaDiv = createEle('div', diaID);
             span.appendChild(diaDiv);
             that.configuration.position = move.fen;
             localBoard(diaID, that.configuration);
@@ -704,7 +700,7 @@ let pgnBase = function (boardId, configuration) {
      * @param next the next move number
      */
     function unmarkMark(next) {
-        var moveASpan = function (i) {
+        const moveASpan = function (i) {
             return document.querySelector('#' + movesId + i + '> a');
         };
 
@@ -715,12 +711,12 @@ let pgnBase = function (boardId, configuration) {
     /**
      * Check which buttons should be grayed out
      */
-    var updateUI = function (next) {
+    const updateUI = function (next) {
         let elements = document.querySelectorAll("div.buttons .gray");
         utils.pvEach(elements, function (ele) {
             removeClass(ele, 'gray');
         });
-        var move = that.mypgn.getMove(next);
+        const move = that.mypgn.getMove(next);
         if (next === null) {
             ["prev", "first"].forEach(function (name) {
                 addClass(document.querySelector("div.buttons ." + name), 'gray');
@@ -757,7 +753,7 @@ let pgnBase = function (boardId, configuration) {
      * @param next the move to take now
      * @param fen the fen of the move to make
      */
-    var makeMove = function (curr, next, fen) {
+    const makeMove = function (curr, next, fen) {
         /**
          * Fills the comment field depending on which and if a comment is filled for that move.
          */
@@ -801,7 +797,7 @@ let pgnBase = function (boardId, configuration) {
             let arr = [];
             if ((commentDiag !== undefined) && (commentDiag !== null)) {
                 if (commentDiag.colorArrows) {
-                    for (var i = 0; i < commentDiag.colorArrows.length; i++) {
+                    for (let i = 0; i < commentDiag.colorArrows.length; i++) {
                         let comm = commentDiag.colorArrows[i];
                         arr.push({
                             orig: comm.substring(1, 3),
@@ -870,12 +866,12 @@ let pgnBase = function (boardId, configuration) {
      * Generates the HTML (for the given moves). Includes the following: move number,
      * link to FEN (position after move)
      */
-    var generateMoves = function (board) {
+    const generateMoves = function (board) {
         try {
             that.mypgn.load_pgn();
         } catch (err) {
             if (typeof err.location != "undefined") {
-                var sta = err.location.start.offset;
+                const sta = err.location.start.offset;
                 let pgnStr = that.configuration.pgn;
                 logError("Offset: " + sta);
                 logError("PGN: " + pgnStr);
@@ -915,7 +911,7 @@ let pgnBase = function (boardId, configuration) {
          * Generate a useful notation for the headers, allow for styling. First a version
          * that just works.
          */
-        var generateHeaders = function () {
+        const generateHeaders = function () {
             let tags = that.mypgn.getTags();
             if (that.configuration.headers == false || (utils.pvIsEmpty(tags))) {
                 let hd = document.getElementById(headersId);
@@ -933,7 +929,7 @@ let pgnBase = function (boardId, configuration) {
                 black.appendChild(document.createTextNode(" " + tags.Black));
             }
             let rest = "";
-            var appendHeader = function (result, header, separator) {
+            const appendHeader = function (result, header, separator) {
                 if (header) {
                     if (result.length > 0) {
                         result += separator;
@@ -946,46 +942,46 @@ let pgnBase = function (boardId, configuration) {
                 tags.ECO, tags.Result].forEach(function (header) {
                 rest = appendHeader(rest, header, " | ");
             });
-            var restSpan = createEle("span", null, "restHeader", theme, div_h);
+            const restSpan = createEle("span", null, "restHeader", theme, div_h);
             restSpan.appendChild(document.createTextNode(rest));
 
         };
 
         // Bind the necessary functions to move the pieces.
-        var bindFunctions = function () {
-            var bind_key = function (key, to_call) {
-                var key_ID;
+        const bindFunctions = function () {
+            const bind_key = function (key, to_call) {
+                let key_ID;
                 if (hasMarkup()) {
                     key_ID = "#" + boardId.moves;
                 } else {
                     key_ID = "#" + boardId + ",#" + boardId + "Moves";
                 }
-                var form = document.querySelector(key_ID);
+                const form = document.querySelector(key_ID);
                 Mousetrap(form).bind(key, function (evt) {
                     to_call();
                     evt.stopPropagation();
                 });
             };
-            var nextMove = function () {
-                var fen = null;
+            const nextMove = function () {
+                let fen = null;
                 if ((typeof that.currentMove == 'undefined') || (that.currentMove === null)) {
                     fen = that.mypgn.getMove(0).fen;
                     makeMove(null, 0, fen);
                 } else {
-                    var next = that.mypgn.getMove(that.currentMove).next;
+                    const next = that.mypgn.getMove(that.currentMove).next;
                     if (typeof next == 'undefined') return;
                     fen = that.mypgn.getMove(next).fen;
                     makeMove(that.currentMove, next, fen);
                 }
             };
-            var prevMove = function () {
-                var fen = null;
+            const prevMove = function () {
+                let fen = null;
                 if ((typeof that.currentMove == 'undefined') || (that.currentMove == null)) {
                     /*fen = that.mypgn.getMove(0).fen;
                      makeMove(null, 0, fen);*/
                 }
                 else {
-                    var prev = that.mypgn.getMove(that.currentMove).prev;
+                    const prev = that.mypgn.getMove(that.currentMove).prev;
                     if ((typeof prev === 'undefined') || (prev == null)) {
                         firstMove();
                     } else {
@@ -994,10 +990,10 @@ let pgnBase = function (boardId, configuration) {
                     }
                 }
             };
-            var firstMove = function () {
+            const firstMove = function () {
                 makeMove(null, null, null);
             };
-            var timer = new Timer(10);
+            const timer = new Timer(10);
             timer.bind(that.configuration.timerTime, function () {
                 nextMove();
             });
@@ -1011,21 +1007,18 @@ let pgnBase = function (boardId, configuration) {
                 prevMove();
             });
             addEventListener(buttonsId + 'first', 'click', function () {
-                // Goes to the position after the first move.
-                // var fen = that.mypgn.getMove(0).fen;
-                // makeMove(that.currentMove, 0, fen);
                 firstMove();
             });
             addEventListener(buttonsId + 'last', 'click', function () {
-                var fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
+                const fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
                 makeMove(that.currentMove, that.mypgn.getMoves().length - 1, fen);
             });
             let togglePgn = function () {
-                var pgnButton = document.getElementById(buttonsId + "pgn");
-                var pgnText = document.getElementById(boardId + " .outerpgn");
+                const pgnButton = document.getElementById(buttonsId + "pgn");
+                const pgnText = document.getElementById(boardId + " .outerpgn");
                 document.getElementById(buttonsId + "pgn").classList.toggle('selected');
                 if (document.getElementById(buttonsId + "pgn").classList.contains('selected')) {
-                    var str = computePgn();
+                    const str = computePgn();
                     showPgn(str);
                     document.querySelector("#" + boardId + " .pgn").style.display = 'block'; //slideDown(700, "linear");
                 } else {
@@ -1048,8 +1041,8 @@ let pgnBase = function (boardId, configuration) {
                     toggleNagMenu();
                 });
                 addEventListener(buttonsId + "deleteMoves", 'click', function () {
-                    var prev = that.mypgn.getMove(that.currentMove).prev;
-                    var fen = that.mypgn.getMove(prev).fen;
+                    const prev = that.mypgn.getMove(that.currentMove).prev;
+                    const fen = that.mypgn.getMove(prev).fen;
                     that.mypgn.deleteMove(that.currentMove);
                     //document.getElementById(movesId).innerHtml = "";
                     let myNode = document.getElementById(movesId);
@@ -1089,12 +1082,12 @@ let pgnBase = function (boardId, configuration) {
                         that.mypgn.getMove(that.currentMove).commentMove = text;
                     }
                 };
-                var rad = ["moveComment", "beforeComment", "afterComment"];
-                var prevComment = null;
-                for (var i = 0; i < rad.length; i++) {
+                const rad = ["moveComment", "beforeComment", "afterComment"];
+                const prevComment = null;
+                for (let i = 0; i < rad.length; i++) {
                     document.querySelector('#' + 'comment' + buttonsId + " ." + rad[i]).onclick = function () {
-                        var checked = this.value;
-                        var text;
+                        const checked = this.value;
+                        let text;
                         if (checked === "after") {
                             text = that.mypgn.getMove(that.currentMove).commentAfter;
                         } else if (checked === "before") {
@@ -1109,8 +1102,8 @@ let pgnBase = function (boardId, configuration) {
 
             function togglePlay() {
                 timer.running() ? timer.stop() : timer.start();
-                var playButton = document.getElementById(buttonsId + 'play');
-                var clString = playButton.getAttribute('class');
+                const playButton = document.getElementById(buttonsId + 'play');
+                const clString = playButton.getAttribute('class');
                 if (clString.indexOf('play') < 0) { // has the stop button
                     clString = clString.replace('stop', 'play');
                 } else {
@@ -1128,11 +1121,11 @@ let pgnBase = function (boardId, configuration) {
 
         };
 
-        var computePgn = function () {
+        const computePgn = function () {
             return that.mypgn.write_pgn();
         };
 
-        var showPgn = function (val) {
+        const showPgn = function (val) {
             document.getElementById('pgn' + buttonsId).textContent = val;
         };
 
@@ -1140,14 +1133,14 @@ let pgnBase = function (boardId, configuration) {
          * Regenerate the moves div, may be used the first time (DIV is empty)
          * or later (moves have changed).
          */
-        var regenerateMoves = function (myMoves) {
-            var movesDiv = document.getElementById(movesId);
-            var prev = null;
-            var varStack = [];
-            var firstMove = 0;
-            for (var i = firstMove; i < myMoves.length; i++) {
+        const regenerateMoves = function (myMoves) {
+            const movesDiv = document.getElementById(movesId);
+            let prev = null;
+            const varStack = [];
+            let firstMove = 0;
+            for (let i = firstMove; i < myMoves.length; i++) {
                 if (!that.mypgn.isDeleted(i)) {
-                    var move = myMoves[i];
+                    const move = myMoves[i];
                     prev = generateMove(move.index, game, move, prev, movesDiv, varStack);
                 }
             }

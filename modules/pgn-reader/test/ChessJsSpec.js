@@ -1,5 +1,5 @@
 var should = require('should');
-var pgnReader = require('../dist/pgn').pgnReader;
+var pgnReader = require('../lib/pgn').pgnReader;
 
 xdescribe("Chess Game", function() {
   var chess;

@@ -9,11 +9,11 @@ in a web page. PgnViewerJS does not write everything anew, but it uses the follo
 
 See the section Acknowledgments for more supporting libraries.
 
-See the working examples on my new GitHub Pages site [PgnViewerJS](http://mliebelt.github.io/PgnViewerJS/), especially the [Configuration Builder](http://mliebelt.github.io/PgnViewerJS/docu/example/config.html) that demonstrates all parameters in a running example.
+See the working examples on my new GitHub Pages site [PgnViewerJS](http://mliebelt.github.io/PgnViewerJS/), especially the [Configuration Builder](http://mliebelt.github.io/PgnViewerJS/docu/config/config.html) that demonstrates all parameters in a running example.
 
 ## Getting Started
 
-The easiest way to use it is to download a release, unpack that release, copy one of the examples HTLM files in `examples` (depending which mode you want to use), and modify them to your liking.
+The easiest way to use it is to install it by using NPM: `npm install @mliebelt/pgn-viewer`. You will find there the diretory `lib` that contains everything. Copy that onto your webserver.
 
 ### Example Screenshots
 
@@ -50,64 +50,60 @@ This implementation has the following features:
 
 There are four different kind of usages:
 
-* pgnView renders the whole game, and allows to play it through, jump to any position.
-* pgnEdit is a superset of pgnView, that allows to additional add variations, change the order of main line and variations, and allows all other kind of interactions that are possible: adding comments, PGN notation elements, whatever.
-* pgnBoard will just show a position without any interaction possible.
-* pgnPrint will just show a whole chess game, without any interaction possible.
+* `PGNV.pgnView` renders the whole game, and allows to play it through, jump to any position.
+* `PGNV.pgnEdit` is a superset of pgnView, that allows to additional add variations, change the order of main line and variations, and allows all other kind of interactions that are possible: adding comments, PGN notation elements, whatever.
+* `PGNV.pgnBoard` will just show a position without any interaction possible.
+* `PGNV.pgnPrint` will just show a whole chess game, without any interaction possible.
 
-There is at the moment no way to save a game that was edited in `pgnEdit` mode. But
-you may at least copy the whole notation, and insert it again in the HTML code of
-your web page.
+There is at the moment no way to save a game that was edited in `pgnEdit` mode. But you may at least copy the whole notation, and insert it again in the HTML code of your web page.
 
 ## Running the tests
 
-* Clone the repository.
-* Open the file `test/SpecRunner.html` and see if some tests break.
+* Run `npm test`. This runs the tests for the module `pgn-reader`.
 
 ## Deployment
 
 ### From Release
 
-* Copy the files from a release into a web server.
+* Copy the files from directory `lib` into a web server.
 * Create new HTML files with the corresponding head and body.
 
 ### From Clone
 
 * Clone the repository.
 * Run `npm install` from the root, to ensure are tools are installed.
-* Run `grunt default` to build a distribution.
-* Copy the files from the directory `dist`.
+* Run `npm build` to both modules (first pgn-reader, then pgn-viewer) build a distribution.
+* Copy the files from the directory `modules/pgn-viewer/lib`.
 * Create new HTML files with the corresponding head and body.
 
 ### Using the viewer
 
 To use the viewer in an HTML page, you have to do the following steps:
 
-* Include the necessary libraries.
-* Include the necessary CSS files.
-* Include the necessary div container for rendering of the
-   board and the moves.
+* Include the necessary library `pgnv.js`.
+* Have Fontawesome referenced.
+* Include the necessary div container for rendering of the  board and the moves.
 * Include JavaScript code inside your HTML page to call the viewer.
 
 So a rough template will look like:
 
     <!DOCTYPE html>
         <head>
-            <link href="dist/css/pgnvjs.css" rel="stylesheet">
-            <script src="dist/js/pgnviewerjs.js" type="text/javascript"></script>
+            <script src="js/pgnv.js" type="text/javascript" ></script>
+            <script src="https://use.fontawesome.com/4cf2a2bf7b.js"></script>
         </head>
         <body>
             <div id="board"></div>
             <script>
-                pgnView('board',{ pgn: '1. e4 e5 2. Nf3 Nc6 3. Bb5', pieceStyle: 'merida' });
+                PGNV.pgnView('board',{ pgn: '1. e4 e5 2. Nf3 Nc6 3. Bb5', pieceStyle: 'merida' });
             </script>
         </body>
     </html>
 
 ## Built With
 
-* [Grunt](https://gruntjs.com/) The Javascript builder
-* [NPM](https://www.npmjs.com/) For boot-straping Grunt
+* [NPM](https://www.npmjs.com/) For libraries, building, ...
+* [Webpack](https://webpack.js.org/) For building optimized bundle.
 
 ## Contributing
 

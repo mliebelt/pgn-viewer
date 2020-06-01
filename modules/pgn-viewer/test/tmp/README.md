@@ -8,5 +8,5 @@ Then I have to start a web server locally in each root directory, and see, if th
 
 * `exp1`: `index.html`, bundle and resources are located directly here. This should work all the time (default usage).
 * `exp2`: Have the `index.html` file directly here, but the other resources located somewhere else.
-* `exp3` Have the `index.html` somewhere else, referencing relative the `bundle.js` file.
+* `exp3` Have the `index.html` somewhere else, referencing relative the `pgnv.js` file.
 * `exp4`: Have `index.html` somewhere else, referencing the bundle with an absolute (local) path.

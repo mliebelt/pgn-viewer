@@ -1,6 +1,6 @@
 
 const should = require('should');
-const pgnReader = require('../dist/pgn').pgnReader;
+const pgnReader = require('../lib/pgn').pgnReader;
 
 /**
  * Checks all functionality for reading and interpreting a spec.

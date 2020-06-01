@@ -18,6 +18,7 @@
 
 	<!-- CSS
   ================================================== -->
+    <link rel="stylesheet" href="css/prettify.css">
 	<link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" href="css/skeleton.css">
 	<link rel="stylesheet" href="css/layout.css">
@@ -25,6 +26,7 @@
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+    <script src="js/prettify.js" type="text/javascript"></script>
 
 	<!-- Favicons
 	================================================== -->
@@ -37,16 +39,10 @@
 <body>
 
 <a href="https://github.com/mliebelt/PgnViewerJS"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
-
-	<!-- Primary Page Layout
-	================================================== -->
-
-	<!-- Delete everything in this .container and get started on your own site! -->
-
 	<div class="container">
 		<div class="sixteen columns">
 			<h1 class="remove-bottom" style="margin-top: 40px">PgnViewerJS</h1>
-			<h5>Version 0.9.8</h5>
+			<h5>Version 1.0.0</h5>
 			<hr />
 		</div>
     </div>
@@ -74,7 +70,7 @@
 
             <p>I first started using pgn4web and others as part of our Wordpress Installation,
             but I had difficulties here and there. At the end, I wanted to have a viewer
-            that was at least as nice as the one from chess.com</p>
+            that was at least as nice as the one from chess.com (later: from lichess.org).</p>
 		</div>
 		<div class="six columns">
 			<h3>Implementation</h3>
@@ -86,15 +82,21 @@
                     displaying a chess board, with some functions: Moving pieces, some
                 animations, ... This board was developed for lichess.org.</li>
 				<li><strong>PEG.js</strong>: Parser Generator for JavaScript to read pgn notation.</li>
-				<li><strong>PgnViewerJS</strong>: builds the wrapper, makes  the move output,
-                allows some different interfaces: pgnBoard, pgnPrint, pgnView, pgnEdit</li>
+				<li><strong>PgnViewerJS</strong>:
+                    <ul>
+                        <li><strong>pgn-parser</strong>: module to parse the games.</li>
+                        <li><strong>pgn-reader</strong>: module to model the game.</li>
+                        <li><strong>pgn-viewer</strong>: module to show the game in a website.</li>
+                    </ul>
+                It allows currently the following interfaces: pgnBoard, pgnPrint, pgnView, pgnEdit</li>
 			</ul>
 		</div>
 		<div class="six columns">
 			<h3>How To &amp; Support</h3>
 			<p>To start with PgnViewerJS, you have to do the following steps:</p>
             <ul class="square">
-                <li>Download the current sources or the distro from below.</li>
+                <li>Download the current sources or the distro from below or build it on you own: `npm install; npm build`.
+                The directory `dist` is what you need.</li>
                 <li>Fill the head of your HTML file with the relevant definitions, examples are included
                 in the distro in the directory <code>examples</code>.</li>
                 <li>Define in the body 2 parts:
@@ -112,13 +114,18 @@
 		</div>
     </div>
     <div class="container">
-        <div class="eight columns">
+        <div class="four columns">
             <h2>Downloads</h2>
             <ul>
                 <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.8.zip">Version 0.9.8</a></li>
                 <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.7.zip">Version 0.9.7</a></li>
                 <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.6.zip">Version 0.9.6</a></li>
                 <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.5.zip">Version 0.9.5</a> </li>
+            </ul>
+        </div>
+        <div class="four columns">
+            <h2>(cont.)</h2>
+            <ul>
                 <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.4.zip">Version 0.9.4</a> </li>
                 <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.3.zip">Version 0.9.3</a> </li>
                 <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.2.zip">Version 0.9.2</a> </li>

@@ -1,18 +1,5 @@
-'use strict';
-
 import parser from '@mliebelt/pgn-parser';
 import Chess from 'chess.js';
-
-/**
- * Defines the pgnReader function / object that is used for reading and writing
- * pgn. This should build then a structure that is easier to
- * use, but contains all the information necessary to do all
- * the things we want to do. So calling this function with no argument will
- * just give you a pgnReader that is able to record moves and write them out.
- * @param spec object with keys
- *  'pgn': the pgn string, if missing replaced with an empty string
- * @returns {{}}
- */
 
 // Initializes a new instance of the StringBuilder class
 // and appends the given value if supplied
@@ -24,18 +11,6 @@ function StringBuilder(value) {
         if (value) {
             that.strings.push(value);
         }
-    };
-
-    // Clears the string buffer
-    let clear = function () {
-        that.strings.length = 1;
-    };
-
-    // Returns the length of the final string (without building it)
-    let length = function () {
-        return that.strings.reduce(function(previousValue, currentValue, index, array){
-            return previousValue + currentValue.length;
-        }, 0);
     };
 
     // Return true if the receiver is empty. Don't compute length!!
@@ -66,9 +41,7 @@ function StringBuilder(value) {
 
     return {
         append: append,
-        clear: clear,
         toString: toString,
-        length: length,
         isEmpty: isEmpty,
         lastChar: lastChar
     };
@@ -76,16 +49,14 @@ function StringBuilder(value) {
 
 function Utils() {
     let
-        nativeIsArray      = Array.isArray,
-        nativeKeys         = Object.keys,
-        nativeCreate       = Object.create;
-    
+        nativeIsArray      = Array.isArray
+
     let isString = function(obj) {
-        return toString.call(obj) === '[object String]';
+        return toString.call(obj) === '[object String]'
     };
     let isArguments = function(obj) {
-        return toString.call(obj) === '[object Arguments]';
-    };
+        return toString.call(obj) === '[object Arguments]'
+    }
     let MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;  
     let isArrayLike = function(collection) {
         const length = getLength(collection);
@@ -100,10 +71,6 @@ function Utils() {
         };
       };
     let getLength = property('length');
-    let isObject = function(obj) {
-        const type = typeof obj;
-        return type === 'function' || type === 'object' && !!obj;
-      };
     let optimizeCb = function(func, context, argCount) {
         if (context === void 0) return func;
         switch (argCount == null ? 3 : argCount) {
@@ -123,7 +90,7 @@ function Utils() {
         return function() {
           return func.apply(context, arguments);
         };
-      };  
+      };
     // The cornerstone, an `each` implementation, aka `forEach`.
     // Handles raw objects in addition to array-likes. Treats all
     // sparse array-likes as if they were dense.
@@ -135,39 +102,24 @@ function Utils() {
                 iteratee(obj[i], i, obj);
             }
             } else {
-            let keys = keys(obj);
+            let keys = Object.keys(obj);
             for (i = 0, length = keys.length; i < length; i++) {
                 iteratee(obj[keys[i]], keys[i], obj);
             }
         }
         return obj;
     };
-    let has = function(obj, key) {
-        return obj != null && hasOwnProperty.call(obj, key);
-      };    
-    // Retrieve the names of an object's own properties.
-    // Delegates to **ECMAScript 5**'s native `Object.keys`
-    let keys = function(obj) {
-        if (! isObject(obj)) return [];
-        if (nativeKeys) return nativeKeys(obj);
-        let keys = [];
-        for (let key in obj) if (has(obj, key)) keys.push(key);
-        // Ahem, IE < 9.
-        if (hasEnumBug) collectNonEnumProps(obj, keys);
-        return keys;
-    };
-
     // Is a given value a DOM element?
     let pvIsElement = function(obj) {
-        return !!(obj && obj.nodeType === 1);
-    };
+        return !!(obj && obj.nodeType === 1)
+    }
 
     // Is a given array, string, or object empty?
     // An "empty" object has no enumerable own-properties.
     let pvIsEmpty = function(obj) {
         if (obj == null) return true;
         if (isArrayLike(obj) && (isArray(obj) || isString(obj) || isArguments(obj))) return obj.length === 0;
-        return keys(obj).length === 0;
+        return Object.keys(obj).length === 0;
     };
 
     return {
@@ -182,7 +134,6 @@ function Utils() {
  * The configuration is the part of the configuration given to the PgnViewer that is relevant
  * for the reader.
  * @param {*} configuration Given values that are relevant for reading and working with PGN
- * @param {*} chess  the chess instance used to evaluate the PGN when reading
  */
 const pgnReader = function (configuration) {
     const that = {};
@@ -214,7 +165,7 @@ const pgnReader = function (configuration) {
     that.startMove = 0;
     const game = new Chess();
     const set_to_start = function() {
-        if (that.configuration.position == 'start') {
+        if (that.configuration.position === 'start') {
                 game.reset();
             } else {
                 game.load(that.configuration.position);
@@ -315,7 +266,7 @@ const pgnReader = function (configuration) {
         }
         for (let i = 0; i < array.length; i++) {
             const number = parseInt(array[i].substring(1));
-            if (number != 220) { // Don't add diagrams to notation
+            if (number !== 220) { // Don't add diagrams to notation
                 const ret = that.NAGs[number];
                 ret_string += (typeof ret != 'undefined') ? ret : "$"+number;
             }
@@ -328,7 +279,7 @@ const pgnReader = function (configuration) {
      * Optional pawn symbols are ignored (SAN is used for output, not reading).
      */
     const getFig = function (fig) {
-        if (fig == 'P') {
+        if (fig === 'P') {
             return '';
         }
         return fig;
@@ -336,12 +287,12 @@ const pgnReader = function (configuration) {
 
     /**
      * Returns the real notation from the move (excluding NAGs).
-     * @param notation
-     * @return {*}
+     * @param move given move in JSON notation
+     * @return {*} the SAN string created from the move
      */
     const san = function(move) {
         let notation = move.notation;
-        if (typeof notation.row == 'undefined') {
+        if (typeof notation.row === 'undefined') {
             return notation.notation; // move like O-O and O-O-O
         }
         const fig = notation.fig ? getFig(notation.fig) : '';
@@ -392,8 +343,7 @@ const pgnReader = function (configuration) {
                 if (setup === '0') {
                     that.configuration.position = 'start';
                 } else {
-                    const fen = that.tags.FEN;
-                    that.configuration.position = fen;
+                    that.configuration.position = that.tags.FEN;
                 }
             }
             if (that.tags.Result) {
@@ -442,7 +392,7 @@ const pgnReader = function (configuration) {
             });
         };
         const remindEndGame = function(movesMainLine) {
-            if (typeof movesMainLine[movesMainLine.length - 1] == "string") {
+            if (typeof movesMainLine[movesMainLine.length - 1] === "string") {
                 that.endGame = movesMainLine.pop();
             }
         };
@@ -494,7 +444,7 @@ const pgnReader = function (configuration) {
         if (current === null) {
             return true;
         }
-        if (id == 0 && (current)) // The first move is not deleted
+        if (id === 0 && (current)) // The first move is not deleted
             return false;
 //        return (current.prev === null); // All moves without a previous move are deleted
     };
@@ -570,7 +520,7 @@ const pgnReader = function (configuration) {
             const vars = getMove(getMove(current.prev).next).variations;
             for (let i = 0; vars.length; i++) {
                 if (vars[i] === current) {
-                    let my_let = removeFromArray(vars, i);
+                    removeFromArray(vars, i);
                     if (current.next !== undefined) {
                        deleteMove(current.next);
                     }
@@ -618,7 +568,7 @@ const pgnReader = function (configuration) {
         for (let move of moves) {
             if (move.fen.startsWith(moveRep)) {
                 return move;
-            } else if (move.notation.notation == moveRep) {
+            } else if (move.notation.notation === moveRep) {
                 return move;
             }
         }
@@ -664,12 +614,6 @@ const pgnReader = function (configuration) {
      * </ul>
      */
     const promoteMove = function (id) {
-        /**
-         * Returns the index of the variation denoted by the move.
-         */
-        const indexOfVariationArray = function (move) {
-
-        };
         /**
          * Returns the first move of a variation.
          */
@@ -721,13 +665,13 @@ const pgnReader = function (configuration) {
 
     // Returns true, if the move is the start of teh main line
     const startMainLine = function(move) {
-        return  move.variationLevel == 0 && (typeof move.prev != "number") ;
+        return  move.variationLevel === 0 && (typeof move.prev !== "number") ;
     };
 
     // Returns true, if the move is the start of a (new) variation
     const startVariation = function(move) {
         return  move.variationLevel > 0 &&
-            ( (typeof move.prev != "number") || (getMoves()[move.prev].next != move.index));
+            ( (typeof move.prev != "number") || (getMoves()[move.prev].next !== move.index));
     };
     // Returns true, if the move is the end of a variation
     const endVariation = function(move) {
@@ -749,11 +693,10 @@ const pgnReader = function (configuration) {
      * @return the string of all moves
      */
     const write_pgn = function() {
-        let left_variation = false;
 
         // Prepend a space if necessary
         function prepend_space(sb) {
-            if ( (!sb.isEmpty()) && (sb.lastChar() != " ")) {
+            if ( (!sb.isEmpty()) && (sb.lastChar() !== " ")) {
                 sb.append(" ");
             }
         }
@@ -780,17 +723,11 @@ const pgnReader = function (configuration) {
             write_comment(move.commentAfter, sb);
         };
 
-        const write_check_or_mate  = function (move, sb) {
-            if (move.notation.check) {
-                sb.append(move.notation.check);
-            }
-        };
-
         const write_comment_diag = function(move, sb) {
             let has_diags = (move) => {
-                return move.commentDiag
-                && ( ( move.commentDiag.colorArrows && move.commentDiag.colorArrows.length > 0)
-                    || ( move.commentDiag.colorFields && move.commentDiag.colorFields.length > 0)
+                return move.commentDiag &&
+                    ( ( move.commentDiag.colorArrows && move.commentDiag.colorArrows.length > 0 ) ||
+                      ( move.commentDiag.colorFields && move.commentDiag.colorFields.length > 0 )
                 );
             }
             let arrows = (move) => { return move.commentDiag.colorArrows || []; }
@@ -809,7 +746,7 @@ const pgnReader = function (configuration) {
                 first = true
                 sbdiags.append("[%cal ")
                 arrows(move).forEach( (arrow) => {
-                    ! first ? sbdiags.append(",") : sbdiags.append("");
+                    ! first ? sbdiags.append(",") : sbdiags.append("")
                     first = false;
                     sbdiags.append(arrow);
                 });
@@ -893,9 +830,9 @@ const pgnReader = function (configuration) {
 
         const write_pgn2 = function(move, _sb) {
 
-            write_move(move, sb);
+            write_move(move, _sb);
             write_end_game(_sb);
-            return sb.toString();
+            return _sb.toString();
         };
         const sb = StringBuilder("");
         let indexFirstMove = 0;
@@ -929,7 +866,7 @@ const pgnReader = function (configuration) {
          */
         const findPrevMove = function(level, index) {
             while (index >= 0) {
-                if (that.moves[index].variationLevel == level) {
+                if (that.moves[index].variationLevel === level) {
                     return that.moves[index];
                 }
                 index--;
@@ -976,22 +913,21 @@ const pgnReader = function (configuration) {
                     set_to_start();
                 }
                 let pgn_move = game.move(move.notation.notation, {'sloppy' : true});
-                if (pgn_move == null) {
+                if (pgn_move === null) {
                     throw "No legal move: " + move.notation.notation;
                 }
                 let fen = game.fen();
                 move.fen = fen;
                 move.from = pgn_move.from;
                 move.to = pgn_move.to;
-                if (pgn_move != null) {
-                    move.notation.notation = pgn_move.san;
-                }
-                if (pgn_move != null && pgn_move.flags == 'c') {
+                move.notation.notation = pgn_move.san;
+
+                if (pgn_move.flags === 'c') {
                     move.notation.strike = 'x';
                 }
-                if (pgn_move != null && game.in_checkmate()) {
+                if (game.in_checkmate()) {
                     move.notation.check = '#';
-                } else if (pgn_move != null && game.in_check()) {
+                } else if (game.in_check()) {
                     move.notation.check = '+';
                 }
                 move.moveNumber = getMoveNumberFromPosition(fen);
@@ -1048,7 +984,7 @@ const pgnReader = function (configuration) {
             let pgn_move = game.move(move);
             if (typeof pgn_move == "undefined") {
                 return null;
-             } else if (first_move_notation() == pgn_move.san) {
+             } else if (first_move_notation() === pgn_move.san) {
                 return 0;
              } else {   // TODO: Could be a variation of the first move ...
                 return existing_variation_first_move(pgn_move);
@@ -1062,7 +998,7 @@ const pgnReader = function (configuration) {
             let variations = getMove(0).variations;
             let vari;
             for (vari in variations) {
-                if (variations[vari].notation.notation == pgn_move.san) return variations[vari].moveNumber;
+                if (variations[vari].notation.notation === pgn_move.san) return variations[vari].moveNumber;
             }
             return null; // no variation found
         }
@@ -1077,13 +1013,13 @@ const pgnReader = function (configuration) {
             let pgn_move = game.move(move);
             let nextMove = getMove(prevMove.next);
             if (typeof nextMove == "undefined") return null;
-            if (nextMove.notation.notation == pgn_move.san) {
+            if (nextMove.notation.notation === pgn_move.san) {
                 return prevMove.next;
             } else { // check if there exists variations
                 let mainMove = getMove(prevMove.next);
                 for (let i = 0; i < mainMove.variations.length; i++) {
                     let variation = mainMove.variations[i];
-                    if (variation.notation.notation == pgn_move.san) {
+                    if (variation.notation.notation === pgn_move.san) {
                         return variation.index;
                     }
                 }
@@ -1099,15 +1035,12 @@ const pgnReader = function (configuration) {
                 if (next === 0) return; // First move
                 getMove(0).variations.push(move);
                 move.variationLevel = 1;
-                if (move.turn == 'b') {
-                    move.moveNumber = prevMove.moveNumber;
-                }
                 return;
             }
             if (prevMove.next) {    // has a next move set, so should be a variation
                 getMove(prevMove.next).variations.push(move);
                 move.variationLevel = (prevMove.variationLevel ? prevMove.variationLevel : 0) + 1;
-                if (move.turn == 'b') {
+                if (move.turn === 'b') {
                     move.moveNumber = prevMove.moveNumber;
                 }
             } else {    // main variation
@@ -1140,11 +1073,11 @@ const pgnReader = function (configuration) {
         real_move.fen = game.fen();
         // san is the real notation, in case of O-O is that O-O.
         // to is the to field, in case of (white) O-O is that g1.
-        if (pgn_move.san.substring(0,1) != "O") {
+        if (pgn_move.san.substring(0,1) !== "O") {
             real_move.notation.notation = pgn_move.san;
             real_move.notation.col = pgn_move.to.substring(0,1);
             real_move.notation.row = pgn_move.to.substring(1,2);
-            if (pgn_move.piece != "p") {
+            if (pgn_move.piece !== "p") {
                 real_move.notation.fig = pgn_move.piece.charAt(0).toUpperCase();
             }
             if (pgn_move.promotion) {
@@ -1183,9 +1116,9 @@ const pgnReader = function (configuration) {
         if (move.nag == null) {
             move.nag = [];
         }
-        let nagSym = (nag[0] == "$") ? nag : symbol_to_nag(nag);
+        let nagSym = (nag[0] === "$") ? nag : symbol_to_nag(nag);
         if (added) {
-            if (move.nag.indexOf(nagSym) == -1) {
+            if (move.nag.indexOf(nagSym) === -1) {
                 move.nag.push(nagSym);
             }
         } else {
