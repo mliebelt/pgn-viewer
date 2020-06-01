@@ -9,9 +9,9 @@ const gen_examples = function() {
             .replace(/\//g, '&#x2F;')
             .replace(/`/g, '&#x60;');
     };
-    console.log("Will generate examples in directory: " + __dirname + '\\docu\\examples');
+    console.log("Will generate examples in directory: " + __dirname + '\\docs\\examples');
     var fs = require('fs');
-    require('../docu/js/examples.js');
+    require('../docs/js/examples.js');
     console.log("Available keys: " + Object.keys(examples));
     var exKeys = Object.keys(examples);
     // Loop through all examples
@@ -45,7 +45,7 @@ const gen_examples = function() {
         buf += '<script>prettyPrint();</script>' + "\r\n";
         buf += '</body>' + "\r\n";
         buf += '</html>' + "\r\n";
-        fs.writeFileSync('docu/examples/' + exKeys[i] + ".html", buf);
+        fs.writeFileSync('docs/examples/' + exKeys[i] + ".html", buf);
     }
 };
 
