@@ -4,9 +4,9 @@ examples["1000"] = {
     desc: "Use PgnViewerJS for only displaying a board. See the section \"Boards\" for details on that.",
     html: "<div id=\"board\" style=\"width: 400px\"><\/div>",
     name: "Board with defaults",
-    jsStr: "var board = pgnBoard('board', {});",
+    jsStr: "var board = PGNV.pgnBoard('board', {});",
     jsFn: function() {
-        var board = pgnBoard('board', {});
+        var board = PGNV.pgnBoard('board', {});
     }
 };
 
@@ -16,10 +16,10 @@ examples["1001"] = {
         "mandatory when using \"pgnView\".",
     html: "<div id=\"board\" style=\"width: 400px\"><\/div>",
     name: "Shortest game possible",
-    jsStr: "var pgn = \"1. f4 e6 2. g4 Qh4#\";\nvar board = pgnView('board', {pgn: pgn});",
+    jsStr: "var pgn = \"1. f4 e6 2. g4 Qh4#\";\nvar board = PGNV.pgnView('board', {pgn: pgn});",
     jsFn: function() {
         var pgn = "1. f4 e6 2. g4 Qh4#";
-        var board = pgnView('board', {pgn: pgn});
+        var board = PGNV.pgnView('board', {pgn: pgn});
     }
 };
 
@@ -29,11 +29,11 @@ examples["1002"] = {
         "For the diagram, I have taken the NAG 'D' (or $220), see <a href=\"http://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs\">NAGs at Wikipedia</a> for details",
     html: "<div id=\"board\" style=\"width: 250px\"><\/div>",
     name: "Printing a game",
-    jsStr: "var pgn = \"1. f4 e6 2. g4D Qh4#$220\";\nvar board = pgnPrint('board', {pgn: pgn});",
+    jsStr: "var pgn = \"1. f4 e6 2. g4D Qh4#$220\";\nvar board = PGNV.pgnPrint('board', {pgn: pgn});",
     jsFn: function() {
         var pgn = "1. f4 e6 2. g4D { what a horrible move (but the shortest mate " +
             "you can get ...) } Qh4#$220";
-        var board = pgnPrint('board', {pgn: pgn});
+        var board = PGNV.pgnPrint('board', {pgn: pgn});
     }
 };
 
@@ -44,9 +44,9 @@ examples["1003"] = {
         "game in the pgn notation (including comments).",
     html: "<div id=\"board\" style=\"width: 300px\"><\/div>",
     name: "Editing a game",
-    jsStr: "var board = pgnEdit('board', {});",
+    jsStr: "var board = PGNV.pgnEdit('board', {});",
     jsFn: function() {
-        var board = pgnEdit('board', {});
+        var board = PGNV.pgnEdit('board', {});
     }
 };
 
@@ -54,26 +54,26 @@ examples["1020"] = {
     desc: "ChessBoard initializes to the starting position on board with an empty configuration.",
     html: "<div id=\"board\" style=\"width: 400px\"><\/div>",
     name: "Starting Board",
-    jsStr: "var board = pgnBoard('board', {});",
+    jsStr: "var board = PGNV.pgnBoard('board', {});",
     jsFn: function() {
-        var board = pgnBoard('board', {});
+        var board = PGNV.pgnBoard('board', {});
     }
 };
 examples["1021"] = {
-    desc: "ChessBoard pieceStyle 'merida', 'case', 'wikipedia', 'alpha', 'uscf', 'condal', 'maya', and 'leipzig'.",
+    desc: "ChessBoard pieceStyle 'merida-svg', 'case', 'wikipedia', 'alpha', 'uscf', 'condal', 'maya', and 'leipzig'.",
     html: 'Merida <div id="board"></div> Case <div id="board2"></div> Wikipedia <div id="board3"></div> Alpha <div id="board4"></div>' + 
     ' USCF <div id="board5"></div>  Condal <div id="board7"></div> Maya <div id="board8"></div> Leipzig <div id="board9"></div>',
     name: "Piece Styles",
-    jsStr: "var board = pgnBoard('board', {pieceStyle: 'merida', boardSize: '400px'});\nvar board2 = pgnBoard('board2', {pieceStyle: 'case', boardSize: '400px'});\nvar board3 = pgnBoard('board3', {pieceStyle: 'wikipedia', boardSize: '400px'});\nvar board4 = pgnBoard('board4', {pieceStyle: 'alpha',  boardSize: '400px'});\nvar board5 = pgnBoard('board5', {pieceStyle: 'uscf',  boardSize: '400px'});\nvar board7 = pgnBoard('board7', {pieceStyle: 'condal', boardSize: '400px'});\nvar board8 = pgnBoard('board8', {pieceStyle: 'maya',  boardSize: '400px'});\nvar board9 = pgnBoard('board9', {pieceStyle: 'leipzig', boardSize: '400px'});",
+    jsStr: "var board = PGNV.pgnBoard('board', {pieceStyle: 'merida-svg', boardSize: '400px'});\nvar board2 = PGNV.pgnBoard('board2', {pieceStyle: 'case', boardSize: '400px'});\nvar board3 = PGNV.pgnBoard('board3', {pieceStyle: 'wikipedia', boardSize: '400px'});\nvar board4 = PGNV.pgnBoard('board4', {pieceStyle: 'alpha',  boardSize: '400px'});\nvar board5 = PGNV.pgnBoard('board5', {pieceStyle: 'uscf',  boardSize: '400px'});\nvar board7 = PGNV.pgnBoard('board7', {pieceStyle: 'condal', boardSize: '400px'});\nvar board8 = PGNV.pgnBoard('board8', {pieceStyle: 'maya',  boardSize: '400px'});\nvar board9 = PGNV.pgnBoard('board9', {pieceStyle: 'leipzig', boardSize: '400px'});",
     jsFn: function() {
-        var board = pgnBoard('board', {pieceStyle: 'merida', boardSize: '400px'});
-        var board2 = pgnBoard('board2', {pieceStyle: 'case', boardSize: '400px'});
-        var board3 = pgnBoard('board3', {pieceStyle: 'wikipedia', boardSize: '400px'});
-        var board4 = pgnBoard('board4', {pieceStyle: 'alpha',  boardSize: '400px'});
-        var board5 = pgnBoard('board5', {pieceStyle: 'uscf',  boardSize: '400px'});
-        var board7 = pgnBoard('board7', {pieceStyle: 'condal', boardSize: '400px'});
-        var board8 = pgnBoard('board8', {pieceStyle: 'maya',  boardSize: '400px'});
-        var board9 = pgnBoard('board9', {pieceStyle: 'leipzig', boardSize: '400px'});
+        var board = PGNV.pgnBoard('board', {pieceStyle: 'merida-svg', boardSize: '400px'});
+        var board2 = PGNV.pgnBoard('board2', {pieceStyle: 'case', boardSize: '400px'});
+        var board3 = PGNV.pgnBoard('board3', {pieceStyle: 'wikipedia', boardSize: '400px'});
+        var board4 = PGNV.pgnBoard('board4', {pieceStyle: 'alpha',  boardSize: '400px'});
+        var board5 = PGNV.pgnBoard('board5', {pieceStyle: 'uscf',  boardSize: '400px'});
+        var board7 = PGNV.pgnBoard('board7', {pieceStyle: 'condal', boardSize: '400px'});
+        var board8 = PGNV.pgnBoard('board8', {pieceStyle: 'maya',  boardSize: '400px'});
+        var board9 = PGNV.pgnBoard('board9', {pieceStyle: 'leipzig', boardSize: '400px'});
     }
 };
 
@@ -90,16 +90,16 @@ examples["1022"] = {
         "\n     'PPPPP2P/RNBQKBNR w KQkq - 0 3';" +
         "\nvar fen3 = 'r1bqkbnr/1ppp1ppp/p1n5/1B2p3/4P3/5N2/' +" +
         "\n     'PPPP1PPP/RNBQK2R w KQkq - 0 4';" +
-        "\npgnBoard('b1', {fen: fen1});" +
-        "\npgnBoard('b2', {position: fen2});" +
-        "\npgnBoard('b3', {position: fen3});",
+        "\nPGNV.pgnBoard('b1', {fen: fen1});" +
+        "\nPGNV.pgnBoard('b2', {position: fen2});" +
+        "\nPGNV.pgnBoard('b3', {position: fen3});",
     jsFn: function() {
         var fen1 = 'start';
         var fen2 = 'rnb1kbnr/pppp1ppp/4p3/8/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 0 3';
         var fen3 = 'r1bqkbnr/1ppp1ppp/p1n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 4';
-        pgnBoard('b1', {position: fen1});
-        pgnBoard('b2', {position: fen2});
-        pgnBoard('b3', {position: fen3});
+        PGNV.pgnBoard('b1', {position: fen1});
+        PGNV.pgnBoard('b2', {position: fen2});
+        PGNV.pgnBoard('b3', {position: fen3});
     }
 };
 
@@ -108,11 +108,11 @@ examples["1023"] = {
     html: "<div id=\"b1\" style=\"width: 300px; margin: 20px\"><\/div>" +
         "\n<div id=\"b2\" style=\"width: 300px; margin: 20px\"><\/div>",
     name: "Additional parameters",
-    jsStr: "pgnBoard('b1', {orientation: 'black'});" +
-        "\npgnBoard('b2', {showNotation: false});",
+    jsStr: "PGNV.pgnBoard('b1', {orientation: 'black'});" +
+        "\nPGNV.pgnBoard('b2', {showNotation: false});",
     jsFn: function() {
-        pgnBoard('b1', {orientation: 'black'});
-        pgnBoard('b2', {showNotation: false});
+        PGNV.pgnBoard('b1', {orientation: 'black'});
+        PGNV.pgnBoard('b2', {showNotation: false});
     }
 };
 
@@ -122,147 +122,147 @@ examples["1024"] = {
         "\n<div id='b2'></div><br/>" +
         "\n<div id='b3'></div>",
     name: "Different board sizes  set in the configuration",
-    jsStr: "pgnBoard('b1', {width: '200px'});" +
-        "\npgnBoard('b2', {width: '350px'});" +
-        "\npgnBoard('b3', {width: '500px'});",
+    jsStr: "PGNV.pgnBoard('b1', {width: '200px'});" +
+        "\nPGNV.pgnBoard('b2', {width: '350px'});" +
+        "\nPGNV.pgnBoard('b3', {width: '500px'});",
     jsFn: function() {
-        pgnBoard('b1', {width: '200px'});
-        pgnBoard('b2', {width: '350px'});
-        pgnBoard('b3', {width: '500px'});
+        PGNV.pgnBoard('b1', {width: '200px'});
+        PGNV.pgnBoard('b2', {width: '350px'});
+        PGNV.pgnBoard('b3', {width: '500px'});
     }
 };
 
 examples["1050"] = {
-    desc: "This is the same theme again, with a typical example to show how the game is displayed. Have a look at the headers, board and the moves.",
+    desc: "This is the same theme again, with a typical config to show how the game is displayed. Have a look at the headers, board and the moves.",
     html: "<div id=\"b1\"><\/div>",
     name: "Complete game in Chess.com style",
     jsStr: "pgn = '[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"] 1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0';" +
-        "\npgnView('b1', {pgn: pgn, theme: 'chesscom', layout: 'left', width: '390px', boardSize: '200px',  movesWidth: '180px', scrollable: true, movesHeight: '220px'});",
+        "\nPGNV.pgnView('b1', {pgn: pgn, theme: 'chesscom', layout: 'left', width: '390px', boardSize: '200px',  movesWidth: '180px', scrollable: true, movesHeight: '220px'});",
     jsFn: function() {
         pgn = '[White "Anderssen, Adolf"][Black "Dufresne, Jean"]' +
             ' 1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0';
-        pgnView('b1', {pgn: pgn, theme: 'chesscom',layout: 'left', width: '390px', boardSize: '200px', movesWidth: '180px', scrollable: true, movesHeight: "220px"});
+        PGNV.pgnView('b1', {pgn: pgn, theme: 'chesscom',layout: 'left', width: '390px', boardSize: '200px', movesWidth: '180px', scrollable: true, movesHeight: "220px"});
     }
 };
 examples["1051"] = {
-    desc: "An example for a normal game, with the standard style. Try to use the buttons, and play the game forth and back. You may set any position in the game by just clicking on the move.",
+    desc: "An config for a normal game, with the standard style. Try to use the buttons, and play the game forth and back. You may set any position in the game by just clicking on the move.",
     html: "<div id=\"b1\" style=\"width: 380px\"><\/div>",
     name: "Normal Game",
-    jsStr: "var pgn = '[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"][Result \"1-0\"][ECO \"C52\"][Site \"Berlin\"][Date \"1852\"] 1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0';\n pgnv = pgnView('b1', {pgn: pgn});",
+    jsStr: "var pgn = '[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"][Result \"1-0\"][ECO \"C52\"][Site \"Berlin\"][Date \"1852\"] 1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0';\n pgnv = PGNV.pgnView('b1', {pgn: pgn});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
             '[Site "Berlin"][Date "1852"]',
             '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0'].join(" ");
-        pgnv = pgnView("b1", {pgn: pgn});
+        pgnv = PGNV.pgnView("b1", {pgn: pgn});
     }
 };
 examples["1052"] = {
     desc: "The same game in a more traditional style",
     html: "<div id=\"b1\" style=\"width: 380px\"><\/div>",
     name: "Falken Style",
-    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = pgnView('b1', {pgn: pgn, theme: 'falken'});",
+    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'falken'});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
             '[Site "Berlin"][Date "1852"]',
             '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0'].join(" ");
-        pgnv = pgnView("b1", {pgn: pgn, theme: 'falken'});
+        pgnv = PGNV.pgnView("b1", {pgn: pgn, theme: 'falken'});
     }
 };
 examples["1053"] = {
     desc: "The same game in green style",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Green Style",
-    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = pgnView('b1', {pgn: pgn, theme: 'green'});",
+    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'green'});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
             '[Site "Berlin"][Date "1852"]',
             '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0'].join(" ");
-        pgnv = pgnView("b1", {pgn: pgn, theme: 'green'});
+        pgnv = PGNV.pgnView("b1", {pgn: pgn, theme: 'green'});
     }
 };
 examples["1054"] = {
     desc: "The same game in Zeit style",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Zeit Style",
-    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = pgnView('b1', {pgn: pgn, theme: 'zeit'});",
+    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'zeit'});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
             '[Site "Berlin"][Date "1852"]',
             '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0'].join(" ");
-        pgnv = pgnView("b1", {pgn: pgn, theme: 'zeit'});
+        pgnv = PGNV.pgnView("b1", {pgn: pgn, theme: 'zeit'});
     }
 };
 examples["1055"] = {
     desc: "The same game in informator style",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Informator Style",
-    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = pgnView('b1', {pgn: pgn, theme: 'informator'});",
+    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'informator'});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
             '[Site "Berlin"][Date "1852"]',
             '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0'].join(" ");
-        pgnv = pgnView("b1", {pgn: pgn, theme: 'informator'});
+        pgnv = PGNV.pgnView("b1", {pgn: pgn, theme: 'informator'});
     }
 };
 examples["1056"] = {
     desc: "The same game in sportverlag style",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Sportverlag Style",
-    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = pgnView('b1', {pgn: pgn, theme: 'sportverlag'});",
+    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'sportverlag'});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
             '[Site "Berlin"][Date "1852"]',
             '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0'].join(" ");
-        pgnv = pgnView("b1", {pgn: pgn, theme: 'sportverlag'});
+        pgnv = PGNV.pgnView("b1", {pgn: pgn, theme: 'sportverlag'});
     }
 };
 examples["1057"] = {
     desc: "The same game in beyer style",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Beyer Style",
-    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = pgnView('b1', {pgn: pgn, theme: 'beyer'});",
+    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'beyer'});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
             '[Site "Berlin"][Date "1852"]',
             '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0'].join(" ");
-        pgnv = pgnView("b1", {pgn: pgn, theme: 'beyer'});
+        pgnv = PGNV.pgnView("b1", {pgn: pgn, theme: 'beyer'});
     }
 };
 examples["1058"] = {
     desc: "The same game in a blue style",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Blue Style",
-    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = pgnView('b1', {pgn: pgn, theme: 'blue'});",
+    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'blue'});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
             '[Site "Berlin"][Date "1852"]',
             '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0'].join(" ");
-        pgnv = pgnView("b1", {pgn: pgn, theme: 'blue'});
+        pgnv = PGNV.pgnView("b1", {pgn: pgn, theme: 'blue'});
     }
 };
 examples["1100"] = {
-    desc: "This is an example of a chess game, where the moves are not only shown, but can be " +
+    desc: "This is an config of a chess game, where the moves are not only shown, but can be " +
         "changed. Try to play on the board, use the move, before and after comments, switch " +
         "between them. Insert new moves, and see the display changing. " +
         "Try to find the PGN button, and refresh the display when you have changed " +
         "a comment.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Edit game",
-    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = pgnEdit('b1', {pgn: pgn});",
+    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0']\n.join(\" \");\npgnv = PGNV.pgnEdit('b1', {pgn: pgn});",
     jsFn: function() {
         var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
             '[Result "1-0"][ECO "C52"]',
             '[Site "Berlin"][Date "1852"]',
             '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0'].join(" ");
-        pgnv = pgnEdit("b1", {pgn: pgn});
+        pgnv = PGNV.pgnEdit("b1", {pgn: pgn});
     }
 };
 examples["1101"] = {
@@ -272,59 +272,59 @@ examples["1101"] = {
         "check that ....",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Annotated moves",
-    jsStr: "var pgn = '1. e4$1 e5$2 2. Nf3$3 Nc6$4 3. Bb5$5 a6$6 4. Ba4$7 Nf6$10 5. O-O$13 Be7$14 6. Re1$15 b5$16 7. Bb3$17 O-O$18 8. c3$19 d5$3';\npgnView('b1', {pgn: pgn});",
+    jsStr: "var pgn = '1. e4$1 e5$2 2. Nf3$3 Nc6$4 3. Bb5$5 a6$6 4. Ba4$7 Nf6$10 5. O-O$13 Be7$14 6. Re1$15 b5$16 7. Bb3$17 O-O$18 8. c3$19 d5$3';\nPGNV.pgnView('b1', {pgn: pgn});",
     jsFn: function() {
         var pgn = '1. e4$1 e5$2 2. Nf3$3 Nc6$4 3. Bb5$5 a6$6 4. Ba4$7 Nf6$10 5. O-O$13 Be7$14 6. Re1$15 b5$16 7. Bb3$17 O-O$18 8. c3$19 d5$3';
-        pgnView('b1', {pgn: pgn});
+        PGNV.pgnView('b1', {pgn: pgn});
     }
 };
 examples["1102"] = {
     desc: "Here a game with a lot of variations, sometimes two or more levels deep. This is part of my opening repertoire as white.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Variations in Moves",
-    jsStr: "var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'\npgnView('b1', {pgn: pgn});",
+    jsStr: "var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'\nPGNV.pgnView('b1', {pgn: pgn});",
     jsFn: function() {
         var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'
-        pgnView('b1', {pgn: pgn});
+        PGNV.pgnView('b1', {pgn: pgn});
     }
 };
 examples["1150"] = {
-    desc: "Here is an example game in the style of chess.com",
+    desc: "Here is an config game in the style of chess.com",
     html: '<div id="board2" style="width: 300px;margin-right: 25px"></div>',
     name: "Themes: Chess.com",
-    jsStr: "var pgn = \"1. e4 e5 2. Nf3 Nc6  ...  24. Bxe7# 1:0\"\;\npgnv = pgnView(\"board2\", {pgn: pgn, position: \"start\", pieceStyle: 'chesscom', theme: 'zeit'});",
+    jsStr: "var pgn = \"1. e4 e5 2. Nf3 Nc6  ...  24. Bxe7# 1:0\"\;\npgnv = PGNV.pgnView(\"board2\", {pgn: pgn, position: \"start\", pieceStyle: 'chesscom', theme: 'zeit'});",
     jsFn: function() {
         var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0";
-        pgnv = pgnView("board2", {pgn: pgn, position: "start", pieceStyle: 'chesscom', theme: 'zeit'});
+        pgnv = PGNV.pgnView("board2", {pgn: pgn, position: "start", pieceStyle: 'chesscom', theme: 'zeit'});
     }
 };
 examples["1151"] = {
     desc: "Here the style green for the start position.",
     html: '<div id="board" style="width: 400px; margin-right: 25px">',
     name: "Themes: Green",
-    jsStr: "var cfg = { showNotation: false, theme: 'green' };\nvar board = pgnBoard('board', cfg);",
+    jsStr: "var cfg = { showNotation: false, theme: 'green' };\nvar board = PGNV.pgnBoard('board', cfg);",
     jsFn: function() {
         var cfg = { showNotation: false, position: 'start', theme: 'green' };
-        var board = pgnBoard('board', cfg);
+        var board = PGNV.pgnBoard('board', cfg);
     }
 };
 examples["1152"] = {
     desc: "",
     html: '<div id="board2" style="width: 400px"></div>',
     name: "Themes: Zeit",
-    jsStr: "cfg = { pieceStyle: 'uscf', orientation: 'black', position: 'start', theme: 'zeit'};\nvar board2 = pgnBoard('board2', cfg);",
+    jsStr: "cfg = { pieceStyle: 'uscf', orientation: 'black', position: 'start', theme: 'zeit'};\nvar board2 = PGNV.pgnBoard('board2', cfg);",
     jsFn: function() {
         cfg = { pieceStyle: 'uscf', orientation: 'black', position: 'start', theme: 'zeit'};
-        var board2 = pgnBoard("board2", cfg);    }
+        var board2 = PGNV.pgnBoard("board2", cfg);    }
 };
 examples["1153"] = {
     desc: "Chess board in the informator style",
     html: '<div id="board" style="width: 400px">',
     name: "Themes: Informator",
-    jsStr: "var cfg = { showNotation: false, position: 'start', theme: 'informator' };\nvar board = pgnBoard('board', cfg);",
+    jsStr: "var cfg = { showNotation: false, position: 'start', theme: 'informator' };\nvar board = PGNV.pgnBoard('board', cfg);",
     jsFn: function() {
         var cfg = { showNotation: false, position: 'start', theme: 'informator' };
-        var board = pgnBoard('board', cfg);
+        var board = PGNV.pgnBoard('board', cfg);
     }
 };
 examples["1200"] = {
@@ -355,21 +355,21 @@ examples["1202"] = {
     "games, the first two with real buttons, the third with font buttons from FontAwesome.",
     html: '<div id="board1" style="width: 400px"></div><div id="board2" style="width: 400px"></div><div id="board3" style="width: 400px"></div>',
     name: "#4: Use FontAwesome for the UI",
-    jsStr: "pgnView('board1', { pgn: '1. e4 e5 2. Nf3 Nc6', theme: 'green' });\npgnView('board2', { pgn: '1. e4 e5 2. Nf3 Nc6', theme: 'blue' });\npgnView('board3', { pgn: '1. e4 e5 2. Nf3 Nc6' });",
+    jsStr: "PGNV.pgnView('board1', { pgn: '1. e4 e5 2. Nf3 Nc6', theme: 'green' });\nPGNV.pgnView('board2', { pgn: '1. e4 e5 2. Nf3 Nc6', theme: 'blue' });\nPGNV.pgnView('board3', { pgn: '1. e4 e5 2. Nf3 Nc6' });",
     jsFn: function() {
-        pgnView('board1', { pgn: '1. e4 e5 2. Nf3 Nc6', theme: 'green' });
-        pgnView('board2', { pgn: '1. e4 e5 2. Nf3 Nc6', theme: 'blue' });
-        pgnView('board3', { pgn: '1. e4 e5 2. Nf3 Nc6' });
+        PGNV.pgnView('board1', { pgn: '1. e4 e5 2. Nf3 Nc6', theme: 'green' });
+        PGNV.pgnView('board2', { pgn: '1. e4 e5 2. Nf3 Nc6', theme: 'blue' });
+        PGNV.pgnView('board3', { pgn: '1. e4 e5 2. Nf3 Nc6' });
     }
 };
 examples["1203"] = {
-    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/5'>ticket 5</a> at GitHub. Shows in an example " +
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/5'>ticket 5</a> at GitHub. Shows in an config " +
     "that the input with captures leads to output that include in the capture moves the character 'x'",
     html: '<div id="board1" style="width: 400px"/>',
     name: "#5: Missing capture symbol",
-    jsStr: "pgnView('board1', { pgn: '1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Nf6 5. Nc3 Nxd4 6. Qxd4' });",
+    jsStr: "PGNV.pgnView('board1', { pgn: '1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Nf6 5. Nc3 Nxd4 6. Qxd4' });",
     jsFn: function() {
-        pgnView('board1', { pgn: '1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Nf6 5. Nc3 Nxd4 6. Qxd4' });
+        PGNV.pgnView('board1', { pgn: '1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Nf6 5. Nc3 Nxd4 6. Qxd4' });
     }
 };
 examples["1204"] = {
@@ -379,23 +379,23 @@ examples["1204"] = {
     "in all of them.",
     html: '<div id="board" style="float: left;margin-right: 20px"></div>\n<div id="board1" style="float: left;margin-right: 20px"></div>\n<div id="board2" style="float: left;margin-right: 20px"></div>',
     name: "#6: locale in edit mode",
-    jsStr: "var pgn = '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5';\npgnEdit('board', {pgn: pgn, locale: 'fr', width: '200px'});\npgnEdit('board1', {pgn: pgn,locale: 'de', width: '200px'});\npgnEdit('board2', {pgn: pgn, locale: 'en', width: '200px'});",
+    jsStr: "var pgn = '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5';\nPGNV.pgnEdit('board', {pgn: pgn, locale: 'fr', width: '200px'});\nPGNV.pgnEdit('board1', {pgn: pgn,locale: 'de', width: '200px'});\nPGNV.pgnEdit('board2', {pgn: pgn, locale: 'en', width: '200px'});",
     jsFn: function() {
         var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5";
-        pgnEdit("board", {pgn: pgn, locale: 'fr', width: '200px'});
-        pgnEdit("board1", {pgn: pgn,locale: 'de', width: '200px'});
-        pgnEdit("board2", {pgn: pgn, locale: 'en', width: '200px'});
+        PGNV.pgnEdit("board", {pgn: pgn, locale: 'fr', width: '200px'});
+        PGNV.pgnEdit("board1", {pgn: pgn,locale: 'de', width: '200px'});
+        PGNV.pgnEdit("board2", {pgn: pgn, locale: 'en', width: '200px'});
     }
 };
 examples["1205"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/9'>ticket 9</a> at GitHub. " +
-    "The example shows different nags ('$' followed by a number) with variations in white space " +
+    "The config shows different nags ('$' followed by a number) with variations in white space " +
     "directly before it. ",
     html: '<div id="board" style="width: 300px"/>',
     name: "#9: spaces after a half move before a NAG",
-    jsStr: 'pgnView("board", {pgn: "1. e4 $1 e5 $2 2. Nf3 $3 Nc6 $4 3. Bc4$13 Bc5$14 4. c3$15 Nf6$16"});',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e4 $1 e5 $2 2. Nf3 $3 Nc6 $4 3. Bc4$13 Bc5$14 4. c3$15 Nf6$16"});',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 $1 e5 $2 2. Nf3 $3 Nc6 $4 3. Bc4$13 Bc5$14 4. c3$15 Nf6$16"});
+        PGNV.pgnView("board", {pgn: "1. e4 $1 e5 $2 2. Nf3 $3 Nc6 $4 3. Bc4$13 Bc5$14 4. c3$15 Nf6$16"});
     }
 };
 examples["1206"] = {
@@ -404,9 +404,9 @@ examples["1206"] = {
     "number may help in the orientation of the reader (when constructing the PGN string).",
     html: '<div id="board" style="width: 300px"/>',
     name: "#10: repeating move number",
-    jsStr: 'pgnView("board", {pgn: "1. e4 { comment } 1... e5"});',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e4 { comment } 1... e5"});',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 { comment } 1... e5"});
+        PGNV.pgnView("board", {pgn: "1. e4 { comment } 1... e5"});
     }
 };
 examples["1207"] = {
@@ -415,9 +415,9 @@ examples["1207"] = {
     "was clearly included in the pgn provided, but was not displayed in the output of PGN.",
     html: "<div id='board' style='width: 360px'/>",
     name: "#11: disabmbiguation in print format",
-    jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Bxc6 dxc6"});',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Bxc6 dxc6"});',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Bxc6 dxc6"});
+        PGNV.pgnView("board", {pgn: "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Bxc6 dxc6"});
     }
 };
 examples["1208"] = {
@@ -438,9 +438,9 @@ examples["1209"] = {
     "the only ones now to move.",
     html: "<div id='board' style='width: 360px'/>",
     name: "#13: FEN not recognized",
-    jsStr: 'pgnEdit("board", {position: "rnbqkbnr/pp1p1ppp/4p3/4P3/2PQ4/2N5/PP3PPP/R1B1KBNR b KQkq - 0 6"});',
+    jsStr: 'PGNV.pgnEdit("board", {position: "rnbqkbnr/pp1p1ppp/4p3/4P3/2PQ4/2N5/PP3PPP/R1B1KBNR b KQkq - 0 6"});',
     jsFn: function() {
-        pgnEdit("board", {position: "rnbqkbnr/pp1p1ppp/4p3/4P3/2PQ4/2N5/PP3PPP/R1B1KBNR b KQkq - 0 6"});
+        PGNV.pgnEdit("board", {position: "rnbqkbnr/pp1p1ppp/4p3/4P3/2PQ4/2N5/PP3PPP/R1B1KBNR b KQkq - 0 6"});
 
     }
 };
@@ -450,9 +450,9 @@ examples["1210"] = {
     "displayed as part of the notation.",
     html: "<div id='board' style='width: 360px'/>",
     name: "#14: Parsing rules for result",
-    jsStr: 'pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});',
     jsFn: function() {
-        pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});
+        PGNV.pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});
     }
 };
 examples["1211"] = {
@@ -461,9 +461,9 @@ examples["1211"] = {
     "following is only one of many examples that the rules for reading are more strict that they should be.",
     html: "<div id='board' style='width: 360px'/>",
     name: "#16: Make import more robust",
-    jsStr: 'pgnView("board", {pgn: "1. f4 e6 2. g4 Qd8-h4#"});',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. f4 e6 2. g4 Qd8-h4#"});',
     jsFn: function() {
-        pgnView("board", {pgn: "1. f4 e6 2. g4 Qd8-h4#"});
+        PGNV.pgnView("board", {pgn: "1. f4 e6 2. g4 Qd8-h4#"});
     }
 };
 examples["1212"] = {
@@ -471,12 +471,12 @@ examples["1212"] = {
     "This could be a feature to provide additional functions to allow adding moves. " +
     "This is currently implemented (only) to allow adding moves at the end to the current position, " +
     "I don't know what will happen if you do that at any other place. Please have a look into the " +
-    "real example in `examples/pgnAddMoves.html`. The following is not the real example ...",
+    "real config in `examples/pgnAddMoves.html`. The following is not the real config ...",
     html: "<div id='board' style='width: 360px'/>",
     name: "#19: Adding moves from a backend in real time",
-    jsStr: 'pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});',
     jsFn: function() {
-        pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});
+        PGNV.pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});
     }
 };
 examples["1213"] = {
@@ -484,29 +484,29 @@ examples["1213"] = {
     "Clicking on variations in Firefox didn't worked at all.",
     html: "<div id='b1' style='width: 360px'/>",
     name: "#20: Clicking on variation in Firefox does not work",
-    jsStr: 'var pgn = \'1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4\';\npgnView(\'b1\', {pgn: pgn});',
+    jsStr: 'var pgn = \'1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4\';\nPGNV.pgnView(\'b1\', {pgn: pgn});',
     jsFn: function() {
         var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'
-        pgnView('b1', {pgn: pgn});    }
+        PGNV.pgnView('b1', {pgn: pgn});    }
 };
 examples["1214"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/21'>ticket 21</a> at GitHub. " +
     "The results 1-0 and 0-1 in the move notation led to a failure at the end.",
     html: "<div id='board' style='width: 360px'/>",
     name: "#21: Parsing rules for result",
-    jsStr: 'pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0-1"});',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0-1"});',
     jsFn: function() {
-        pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0-1"});
+        PGNV.pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0-1"});
     }
 };
 examples["1215"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/22'>ticket 22</a> at GitHub. " +
-    "Integrate stockfish.js in the viewer, to allow analyzing games ad hoc.",
+    "Integrate stockfish.src in the viewer, to allow analyzing games ad hoc.",
     html: "<div id='board' style='width: 360px'/>",
     name: "#22: Integrate stockfish.js in the viewer (unsolved)",
-    jsStr: 'pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});',
     jsFn: function() {
-        pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});
+        PGNV.pgnView("board", {pgn: "1. f4 e6 2. g4 Qh4# 0:1"});
     }
 };
 examples["1216"] = {
@@ -514,9 +514,9 @@ examples["1216"] = {
     "Use the pgn notation flag 'setup' and interpret it the right way as replacement for the fen parameter.",
     html: "<div id='board' style='width: 360px'/>",
     name: "#23: Use the pgn notation flag 'setup'",
-    jsStr: "pgnView('board', {pgn: '[SetUp \"1\"][FEN \"rnbqkbnr/1ppppppp/p7/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2\"] 2. Nc3 e5 3. Nf3 Qe7'});",
+    jsStr: "PGNV.pgnView('board', {pgn: '[SetUp \"1\"][FEN \"rnbqkbnr/1ppppppp/p7/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2\"] 2. Nc3 e5 3. Nf3 Qe7'});",
     jsFn: function() {
-        pgnView("board", {pgn: "[SetUp \"1\"]\
+        PGNV.pgnView("board", {pgn: "[SetUp \"1\"]\
         [FEN \"rnbqkbnr/1ppppppp/p7/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2\"] 2. Nc3 e5 3. Nf3 Qe7"});
     }
 };
@@ -526,9 +526,9 @@ examples["1217"] = {
     "not as usual board, buttons and then the moves",
     html: "<div id='board' style='width: 200px'></div><div id='moves'></div><div id='button'></div>",
     name: "#25: Allow different markup",
-    jsStr: 'pgnView({inner: "board", moves: "moves", button: "button"}, {pgn: "1. f4 e6 2. g4 Qh4#"})',
+    jsStr: 'PGNV.pgnView({inner: "board", moves: "moves", button: "button"}, {pgn: "1. f4 e6 2. g4 Qh4#"})',
     jsFn: function() {
-        pgnView({inner: "board", moves: "moves", button: "button"}, {pgn: "1. f4 e6 2. g4 Qh4#"});
+        PGNV.pgnView({inner: "board", moves: "moves", button: "button"}, {pgn: "1. f4 e6 2. g4 Qh4#"});
     }
 };
 examples["1218"] = {
@@ -536,9 +536,9 @@ examples["1218"] = {
     "Viewer does not symbolize check (+) or mate (#).",
     html: "<div id='board' style='width: 200px'/>",
     name: "#26: Symbolize check or mate",
-    jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
+        PGNV.pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
     }
 };
 examples["1219"] = {
@@ -546,9 +546,9 @@ examples["1219"] = {
     "Viewer should be robust if check and mate symbols are not included.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#27: Be robust if check or mate are not included",
-    jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
+        PGNV.pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
     }
 };
 examples["1220"] = {
@@ -556,9 +556,9 @@ examples["1220"] = {
     "Should accept Long Algebraic Notation in various forms.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#28: Should accept Long Algebraic Notation in various forms",
-    jsStr: 'pgnView("board", {pgn: "1. e2-e4 e7-e5 2. Ng1-f3 d6 3. d4 e5xd4"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e2-e4 e7-e5 2. Ng1-f3 d6 3. d4 e5xd4"})',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e2-e4 e7-e5 2. Ng1-f3 d6 3. d4 e5xd4"});
+        PGNV.pgnView("board", {pgn: "1. e2-e4 e7-e5 2. Ng1-f3 d6 3. d4 e5xd4"});
     }
 };
 examples["1221"] = {
@@ -566,9 +566,9 @@ examples["1221"] = {
     "Underpromotion in edit mode possible. Try to promote the pawn.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#30: Underpromotion in edit mode possible",
-    jsStr: 'pgnView("board", {pgn: "1. e4 f5 2. exf5 g6 3. fxg6 Bg7 4. gxh7 Kf7"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e4 f5 2. exf5 g6 3. fxg6 Bg7 4. gxh7 Kf7"})',
     jsFn: function() {
-        pgnEdit("board", {pgn: "1. e4 f5 2. exf5 g6 3. fxg6 Bg7 4. gxh7 Kf7"});
+        PGNV.pgnEdit("board", {pgn: "1. e4 f5 2. exf5 g6 3. fxg6 Bg7 4. gxh7 Kf7"});
     }
 };
 examples["1222"] = {
@@ -576,9 +576,9 @@ examples["1222"] = {
     "Show meaningful error message when PGN is wrong.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#31: Show meaningful error message when PGN is wrong",
-    jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd4"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd4"})',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd4"});
+        PGNV.pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd4"});
     }
 };
 examples["1223"] = {
@@ -586,11 +586,11 @@ examples["1223"] = {
     "Internationalization of buttons does not work as expected. Hover over the buttons to see the result.",
     html: "Locale fr <div id='board' style='width: 200px'></div> Locale nl <div id='board2' style='width: 200px'></div> Locale cs <div id='board3' style='width: 200px'></div>",
     name: "#32: Internationalization of buttons",
-    jsStr: 'pgnEdit("board", {locale: "fr", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})\npgnEdit("board2", {locale: "nl", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});\npgnEdit("board3", {locale: "cs", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});',
+    jsStr: 'PGNV.pgnEdit("board", {locale: "fr", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})\nPGNV.pgnEdit("board2", {locale: "nl", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});\nPGNV.pgnEdit("board3", {locale: "cs", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});',
     jsFn: function() {
-        pgnEdit("board", {locale: "fr", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
-        pgnEdit("board2", {locale: "nl", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
-        pgnEdit("board3", {locale: "cs", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
+        PGNV.pgnEdit("board", {locale: "fr", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
+        PGNV.pgnEdit("board2", {locale: "nl", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
+        PGNV.pgnEdit("board3", {locale: "cs", pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
     }
 }; 
 examples["1224"] = {
@@ -598,9 +598,9 @@ examples["1224"] = {
     "buttons:first should go to the start position. Jump to the ennd and back to beginning. Make some moves, and jump back to the beginning to see that.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#33: buttons:first should go to the start position",
-    jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
+        PGNV.pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
     }
 };
 examples["1225"] = {
@@ -608,10 +608,10 @@ examples["1225"] = {
     "Add a UI for FEN and PGN in edit mode (PGN already there, FEN missing) and view mode (should then be per default off, here switched on).",
     html: "<div id='board' style='width: 200px'></div><div id='board1' style='width: 200px'></div>",
     name: "#36: Add UI for FEN and PGN in edit mode",
-    jsStr: 'pgnView("board", {showFen: true, pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});\npgnEdit("board1", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
+    jsStr: 'PGNV.pgnView("board", {showFen: true, pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});\nPGNV.pgnEdit("board1", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
     jsFn: function() {
-        pgnView("board", {showFen: true, pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
-        pgnEdit("board1", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})
+        PGNV.pgnView("board", {showFen: true, pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
+        PGNV.pgnEdit("board1", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})
     }
 };
 examples["1226"] = {
@@ -619,22 +619,22 @@ examples["1226"] = {
     "Add additional languages: take some locales : cs, da, de, en, es, et, fi ,fr, hu, is, it nb, nl, pl, pt, ro, sv.",
     html: "<div>Default language: en, Locale es and Locale fi</div>\n<div id='board1' style='float: left'></div>\n<div id='board2' style='float: left'></div>\n<div id='board3' style='float: left'></div>",
     name: "#37: Add additional languages",
-    jsStr: 'pgn = "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6";\npgnEdit("board1", {pgn: pgn, width: "200px"});\npgnEdit("board2", {pgn: pgn, locale: "es", width: "200px"});\npgnÊdit("board3", {pgn: pgn, locale: "fi", width: "200px"});',
+    jsStr: 'pgn = "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6";\nPGNV.pgnEdit("board1", {pgn: pgn, width: "200px"});\nPGNV.pgnEdit("board2", {pgn: pgn, locale: "es", width: "200px"});\npgnÊdit("board3", {pgn: pgn, locale: "fi", width: "200px"});',
     jsFn: function() {
         pgn = "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6";
-        pgnEdit("board1", {pgn: pgn, width: '200px'});
-        pgnEdit("board2", {pgn: pgn, locale: "es", width: '200px'});
-        pgnEdit("board3", {pgn: pgn, locale: "fi", width: '200px'});
+        PGNV.pgnEdit("board1", {pgn: pgn, width: '200px'});
+        PGNV.pgnEdit("board2", {pgn: pgn, locale: "es", width: '200px'});
+        PGNV.pgnEdit("board3", {pgn: pgn, locale: "fi", width: '200px'});
     }
 };
 examples["1227"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/39'>ticket 39</a> at GitHub. " +
-    "Allow opening of examples from the documentation in a separate tab. Just click on the link 'View example in new window'.",
+    "Allow opening of examples from the documentation in a separate tab. Just click on the link 'View config in new window'.",
     html: "<div id='board' style='width: 350px'/>",
     name: "#39: Allow opening of examples from the documentation in a separate tab",
-    jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"})',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
+        PGNV.pgnView("board", {pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5"});
     }
 };
 examples["1228"] = {
@@ -642,9 +642,9 @@ examples["1228"] = {
     "Allow using PGN from an external source.",
     html: "<div id='board' style='width: 350px'/>",
     name: "#42: Allow using PGN from an external source",
-    jsStr: 'pgnView("board", {pgnFile: "example/cori-vishnu.pgn"})',
+    jsStr: 'PGNV.pgnView("board", {pgnFile: "config/cori-vishnu.pgn"})',
     jsFn: function() {
-        pgnView("board", {pgnFile: "example/cori-vishnu.pgn"});
+        PGNV.pgnView("board", {pgnFile: "config/cori-vishnu.pgn"});
     }
 };
 examples["1229"] = {
@@ -652,9 +652,9 @@ examples["1229"] = {
     "Ugly display of tags.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#43: Ugly display of tags",
-    jsStr: 'pgnView("board", {pgnFile: "example/cori-vishnu.pgn"})',
+    jsStr: 'PGNV.pgnView("board", {pgnFile: "config/cori-vishnu.pgn"})',
     jsFn: function() {
-        pgnView("board", {pgnFile: "example/cori-vishnu.pgn"});
+        PGNV.pgnView("board", {pgnFile: "config/cori-vishnu.pgn"});
     }
 };
 examples["1230"] = {
@@ -662,9 +662,9 @@ examples["1230"] = {
     "Add the NAGs from a move to the NAG menu. Edit the game, and add NAGs to a move which has already NAGs",
     html: "<div id='board' style='width: 200px'/>",
     name: "#44: Add the NAGs from a move to the NAG menu",
-    jsStr: 'pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
+    jsStr: 'PGNV.pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
     jsFn: function() {
-        pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"});
+        PGNV.pgnEdit("board", {pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"});
     }
 };
 examples["1232"] = {
@@ -672,9 +672,9 @@ examples["1232"] = {
     "Allow FEN string with PGN to define start position from analysis",
     html: "<div id='board' style='width: 200px'/>",
     name: "#46: Allow FEN string with PGN to define start position from analysis",
-    jsStr: 'pgnEdit("board", {startPlay: "Bc4", pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
+    jsStr: 'PGNV.pgnEdit("board", {startPlay: "Bc4", pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
     jsFn: function() {
-        pgnEdit("board", {startPlay: 'Bc4', pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"});
+        PGNV.pgnEdit("board", {startPlay: 'Bc4', pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"});
     }
 };
 examples["1233"] = {
@@ -682,10 +682,10 @@ examples["1233"] = {
     "2 cases: start with move 3 from FEN, but shows 1; start with a black move, but move number is wrong.",
     html: "<div id='board1' style='width: 200px'></div><div id='board2' style='width: 200px'></div>",
     name: "#47: Ensure that move numbers are 'correct'",
-    jsStr: 'pgnEdit("board1", {pgn: "1. Bc4 Bc5", position: "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3"});\npgnEdit("board2", {pgn: "1... e5", position: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"});',
+    jsStr: 'PGNV.pgnEdit("board1", {pgn: "1. Bc4 Bc5", position: "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3"});\nPGNV.pgnEdit("board2", {pgn: "1... e5", position: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"});',
     jsFn: function() {
-        pgnEdit("board1", {pgn: "1. Bc4 Bc5", position: "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3"});
-        pgnEdit("board2", {pgn: "1... e5", position: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"});
+        PGNV.pgnEdit("board1", {pgn: "1. Bc4 Bc5", position: "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3"});
+        PGNV.pgnEdit("board2", {pgn: "1... e5", position: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"});
     }
 };
 examples["1234"] = {
@@ -693,9 +693,9 @@ examples["1234"] = {
     "??",
     html: "<div id='board' style='width: 200px'></div><div id='b1' style='width: 200px'></div>",
     name: "#48: Fix broken green and blue themes",
-    jsStr: 'pgnEdit("board", {theme: "green"}); pgnView("b1", {theme: "blue"})',
+    jsStr: 'PGNV.pgnEdit("board", {theme: "green"}); PGNV.pgnView("b1", {theme: "blue"})',
     jsFn: function() {
-        pgnEdit("board", {theme: "green"}); pgnView("b1", {theme: "blue"});
+        PGNV.pgnEdit("board", {theme: "green"}); PGNV.pgnView("b1", {theme: "blue"});
     }
 };
 examples["1235"] = {
@@ -703,9 +703,9 @@ examples["1235"] = {
     "Fixed differences in the examples only for PGN and FEN.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#49: Fix example style corresponding color of buttons",
-    jsStr: 'pgnView("board", {theme: "green", pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
+    jsStr: 'PGNV.pgnView("board", {theme: "green", pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"})',
     jsFn: function() {
-        pgnEdit("board", {theme: "green", pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"});
+        PGNV.pgnEdit("board", {theme: "green", pgn: "1. e4 e5 2. Nf3! d6? 3. Bc4?! Bg4 4. Nc3 h6 5. Nxe5 Bxd1?? 6. Bxf7 Ke7 7. Nd5"});
     }
 };
 
@@ -714,9 +714,9 @@ examples["1236"] = {
     "Missing column letter in pawn moves with captures. Play some moves with pawn captures to see it.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#49: Pawn Capture Bug",
-    jsStr: 'pgnView("board", {theme: "green"})',
+    jsStr: 'PGNV.pgnView("board", {theme: "green"})',
     jsFn: function() {
-        pgnEdit("board", {theme: "green"});
+        PGNV.pgnEdit("board", {theme: "green"});
     }
 };
 
@@ -725,9 +725,9 @@ examples["1240"] = {
     "Fixed errors in parsing O-O and O-O-O.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#52: Pawn Capture Bug",
-    jsStr: 'pgnView("board", {position: "R7/8/8/8/3N4/1BB5/pr6/kb2K2R w K - 0 1", pgn: "1. Bxa2 Bxa2 2. O-O#"})',
+    jsStr: 'PGNV.pgnView("board", {position: "R7/8/8/8/3N4/1BB5/pr6/kb2K2R w K - 0 1", pgn: "1. Bxa2 Bxa2 2. O-O#"})',
     jsFn: function() {
-        pgnView("board", {position: "R7/8/8/8/3N4/1BB5/pr6/kb2K2R w K - 0 1", pgn: "1. Bxa2 Bxa2 2. O-O#"});
+        PGNV.pgnView("board", {position: "R7/8/8/8/3N4/1BB5/pr6/kb2K2R w K - 0 1", pgn: "1. Bxa2 Bxa2 2. O-O#"});
     }
 };
 
@@ -736,9 +736,9 @@ examples["1241"] = {
     "Allows to use all NAG symbols in PGN notation.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#53: Use all NAG symbols",
-    jsStr: 'pgnEdit("board", {pgn: "1. e4! e5? 2. Nf3‼ Nc6⁇ 3. Bc4⁉ Nf6⁈ 4. Ng5□ Bc5= 5. Nxf7∞ Bxf2+⩲ 6. Kxf2⩱ Nxe4+± 7. Kg1∓ Qh4+- 8. g3-+";',
+    jsStr: 'PGNV.pgnEdit("board", {pgn: "1. e4! e5? 2. Nf3‼ Nc6⁇ 3. Bc4⁉ Nf6⁈ 4. Ng5□ Bc5= 5. Nxf7∞ Bxf2+⩲ 6. Kxf2⩱ Nxe4+± 7. Kg1∓ Qh4+- 8. g3-+";',
     jsFn: function() {
-        pgnEdit("board", {pgn: "1. e4! e5? 2. Nf3‼ Nc6⁇ 3. Bc4⁉ Nf6⁈ 4. Ng5□ Bc5= 5. Nxf7∞ Bxf2+⩲ 6. Kxf2⩱ Nxe4+± 7. Kg1∓ Qh4+- 8. g3-+"});
+        PGNV.pgnEdit("board", {pgn: "1. e4! e5? 2. Nf3‼ Nc6⁇ 3. Bc4⁉ Nf6⁈ 4. Ng5□ Bc5= 5. Nxf7∞ Bxf2+⩲ 6. Kxf2⩱ Nxe4+± 7. Kg1∓ Qh4+- 8. g3-+"});
     }
 };
 
@@ -747,9 +747,9 @@ examples["1242"] = {
     "Start playing moves, and see that the FEN string changes.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#54: FEN string is changed when playing moves",
-    jsStr: 'pgnView("board", {theme: "zeit"})',
+    jsStr: 'PGNV.pgnView("board", {theme: "zeit"})',
     jsFn: function() {
-        pgnEdit("board", {theme: "zeit"});
+        PGNV.pgnEdit("board", {theme: "zeit"});
     }
 };
 
@@ -758,9 +758,9 @@ examples["1243"] = {
     "Allow to play and record chess variant 'Horde'.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#57: Chess variant 'Horde' (unsolved)",
-    jsStr: 'pgnView("board", {theme: "green"})',
+    jsStr: 'PGNV.pgnView("board", {theme: "green"})',
     jsFn: function() {
-        pgnEdit("board", {theme: "green"});
+        PGNV.pgnEdit("board", {theme: "green"});
     }
 };
 
@@ -769,9 +769,9 @@ examples["1244"] = {
     "Play  the first (same) move with the mouse, and see that it is found in the notation.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#58: Replaying already existing moves",
-    jsStr: 'pgnEdit("board", {pgn: "1. e4 e5 2. Nf3 Nc6"})',
+    jsStr: 'PGNV.pgnEdit("board", {pgn: "1. e4 e5 2. Nf3 Nc6"})',
     jsFn: function() {
-        pgnEdit("board", {pgn: "1. e4 e5 2. Nf3 Nc6"});
+        PGNV.pgnEdit("board", {pgn: "1. e4 e5 2. Nf3 Nc6"});
     }
 };
 
@@ -780,9 +780,9 @@ examples["1245"] = {
     "Playing variant to first move adds that variant to the first move.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#59: Play variant to first move",
-    jsStr: 'pgnEdit("board", {pgn: "1. e4 e5 2. Nf3 Nc6"})',
+    jsStr: 'PGNV.pgnEdit("board", {pgn: "1. e4 e5 2. Nf3 Nc6"})',
     jsFn: function() {
-        pgnEdit("board", {pgn: "1. e4 e5 2. Nf3 Nc6"});
+        PGNV.pgnEdit("board", {pgn: "1. e4 e5 2. Nf3 Nc6"});
     }
 };
 
@@ -791,9 +791,9 @@ examples["1246"] = {
     "Parsing variations of first move now works with or without move numbers.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#49: Pawn Capture Bug",
-    jsStr: 'pgnView("board", {pgn: "1. e4 ( d4 d5 ) e5"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e4 ( d4 d5 ) e5"})',
     jsFn: function() {
-        pgnEdit("board", {pgn: "1. e4 ( d4 d5 ) e5"});
+        PGNV.pgnEdit("board", {pgn: "1. e4 ( d4 d5 ) e5"});
     }
 };
 
@@ -802,9 +802,9 @@ examples["1250"] = {
     "Playing a move of the first variation highlights that move and does not add it.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#61: Playing variant of first move",
-    jsStr: 'pgnEdit("board", {pgn: "1. e4 ( d4 d5 ) e5"})',
+    jsStr: 'PGNV.pgnEdit("board", {pgn: "1. e4 ( d4 d5 ) e5"})',
     jsFn: function() {
-        pgnEdit("board", {pgn: "1. e4 ( d4 d5 ) e5"});
+        PGNV.pgnEdit("board", {pgn: "1. e4 ( d4 d5 ) e5"});
     }
 };
 
@@ -813,10 +813,10 @@ examples["1251"] = {
     "Adding parameter layout with some variations possible.",
     html: "<div id='board' style='width: 200px'/> <div id='board2' style='width: 400px'/>",
     name: "#64: Variations of parameter layout",
-    jsStr: "pgnView('board', {layout: 'bottom', pgn: '1. e4 e5 2. Nf3 Nc6'})\npgnView('board', {layout: 'left', boardSize: '200px', pgn: '1. e4 e5 2. Nf3 Nc6 ...'})",
+    jsStr: "PGNV.pgnView('board', {layout: 'bottom', pgn: '1. e4 e5 2. Nf3 Nc6'})\nPGNV.pgnView('board', {layout: 'left', boardSize: '200px', pgn: '1. e4 e5 2. Nf3 Nc6 ...'})",
     jsFn: function() {
-        pgnView("board", {layout: "bottom", pgn: "1. e4 e5 2. Nf3 Nc6"});
-        pgnView("board2", {layout: "left", boardSize: "200px", pgn: "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 Bc5 5. Nxf7 Bxf2 6. Kxf2 Nxe4+"});
+        PGNV.pgnView("board", {layout: "bottom", pgn: "1. e4 e5 2. Nf3 Nc6"});
+        PGNV.pgnView("board2", {layout: "left", boardSize: "200px", pgn: "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 Bc5 5. Nxf7 Bxf2 6. Kxf2 Nxe4+"});
     }
 };
 
@@ -825,9 +825,9 @@ examples["1252"] = {
     "Using locales like de_DE should work.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#65: Using locales like de_DE",
-    jsStr: 'pgnView("board", {locale: "de_DE", pgn: "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6"})',
+    jsStr: 'PGNV.pgnView("board", {locale: "de_DE", pgn: "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6"})',
     jsFn: function() {
-        pgnView("board", {locale: "de_DE", pgn: "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6"});
+        PGNV.pgnView("board", {locale: "de_DE", pgn: "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6"});
     }
 };
 
@@ -836,9 +836,9 @@ examples["1253"] = {
     "Viewer should allow to read pgn input with line breaks in it.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#66: Allow line breaks in input string",
-    jsStr: 'pgnView("board", {pgn: "1. e4 e5\n2. Nf3 Nc6 \n3. Bb5 a6\n 4. Ba4 Nf6"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e4 e5\n2. Nf3 Nc6 \n3. Bb5 a6\n 4. Ba4 Nf6"})',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 e5\n2. Nf3 Nc6 \n3. Bb5 a6\n 4. Ba4 Nf6"});
+        PGNV.pgnView("board", {pgn: "1. e4 e5\n2. Nf3 Nc6 \n3. Bb5 a6\n 4. Ba4 Nf6"});
     }
 };
 
@@ -847,9 +847,9 @@ examples["1254"] = {
     "Piece move glitch when clicking 'next move' rapidly.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#69: Piece move glitch",
-    jsStr: 'pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
     jsFn: function() {
-        pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
+        PGNV.pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
     }
 };
 examples["1255"] = {
@@ -857,9 +857,9 @@ examples["1255"] = {
     "Don't add 'D' symbol (for diagram) to PGN display.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#71: Don't add 'D' symbol",
-    jsStr: 'pgnPrint("board", {pgn: "1. e4 e5 (1... c5 2. Nf3 d6D) 2. Nf3 Nc6 3. Bb5D (3. Bc4 Nf6) ", width: "160px"})',
+    jsStr: 'PGNV.pgnPrint("board", {pgn: "1. e4 e5 (1... c5 2. Nf3 d6D) 2. Nf3 Nc6 3. Bb5D (3. Bc4 Nf6) ", width: "160px"})',
     jsFn: function() {
-        pgnPrint("board", {pgn: "1. e4 e5 (1... c5 2. Nf3 d6D) 2. Nf3 Nc6 3. Bb5D (3. Bc4 Nf6) ", width: "160px"});
+        PGNV.pgnPrint("board", {pgn: "1. e4 e5 (1... c5 2. Nf3 d6D) 2. Nf3 Nc6 3. Bb5D (3. Bc4 Nf6) ", width: "160px"});
     }
 };
 examples["1256"] = {
@@ -867,9 +867,9 @@ examples["1256"] = {
     "Add an option to show board at a given move at page creation time (view / edit mode) (unsolved)",
     html: "<div id='board' style='width: 200px'/>",
     name: "#75: Show board at a given move",
-    jsStr: 'pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
     jsFn: function() {
-        pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
+        PGNV.pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
     }
 };
 examples["1257"] = {
@@ -877,9 +877,9 @@ examples["1257"] = {
     "Use chessground (lichess.org UI) as back-end. Try the following: click right-mouse-button, drag right-mouse-button\n\nTry to combine those with SHIFT, CTRL, ALT ... see marks when moving.\n\nSee last move and chess mark as well.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#78: Use chessground (lichess.org UI)",
-    jsStr: 'pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
+    jsStr: 'PGNV.pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
     jsFn: function() {
-        pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
+        PGNV.pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
     }
 };
 examples["1258"] = {
@@ -887,9 +887,9 @@ examples["1258"] = {
     "Chessground: allow positioning of coordinates. Default is coordsInner == true, ",
     html: "<div id='board' style='width: 200px'/>",
     name: "#79: Allow positioning of coordinates",
-    jsStr: 'pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", coordsInner: false})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", coordsInner: false})',
     jsFn: function() {
-        pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", coordsInner: false});
+        PGNV.pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", coordsInner: false});
     }
 };
 examples["1259"] = {
@@ -897,10 +897,10 @@ examples["1259"] = {
     "Chessground: Size the coordinates according to the board size.",
     html: "<div id='board'/>\n<div id='b1'/>",
     name: "#80: Size the corrdinates according to board size",
-    jsStr: 'pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});\npgnView("b1", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});\nPGNV.pgnView("b1", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
     jsFn: function() {
-        pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", width: "200px"}); 
-        pgnView("b1", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", width: "400px"});
+        PGNV.pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", width: "200px"}); 
+        PGNV.pgnView("b1", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", width: "400px"});
     }
 };
 examples["1260"] = {
@@ -908,9 +908,9 @@ examples["1260"] = {
     "Missing promotion in edit mode.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#81: Missing promotion in edit mode",
-    jsStr: 'pgnEdit("board", {position: "rnbq2nr/pppppkbP/8/8/8/8/PPPP1PPP/RNBQKBNR w KQ - 1 5"})',
+    jsStr: 'PGNV.pgnEdit("board", {position: "rnbq2nr/pppppkbP/8/8/8/8/PPPP1PPP/RNBQKBNR w KQ - 1 5"})',
     jsFn: function() {
-        pgnEdit("board", {position: "rnbq2nr/pppppkbP/8/8/8/8/PPPP1PPP/RNBQKBNR w KQ - 1 5"});
+        PGNV.pgnEdit("board", {position: "rnbq2nr/pppppkbP/8/8/8/8/PPPP1PPP/RNBQKBNR w KQ - 1 5"});
     }
 };
 examples["1261"] = {
@@ -918,9 +918,9 @@ examples["1261"] = {
     "Implement NAG menu native.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#82: Implement NAG menu",
-    jsStr: 'pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
+    jsStr: 'PGNV.pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
     jsFn: function() {
-        pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
+        PGNV.pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
     }
 };
 examples["1262"] = {
@@ -928,9 +928,9 @@ examples["1262"] = {
     "Use abstraction from NAGs and convert them to concrete notation (unsolved).",
     html: "<div id='board' style='width: 200px'/>",
     name: "#83: Use abstraction from NAGs and convert them to concrete notation",
-    jsStr: 'pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
+    jsStr: 'PGNV.pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
     jsFn: function() {
-        pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
+        PGNV.pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
     }
 };
 examples["1263"] = {
@@ -938,9 +938,9 @@ examples["1263"] = {
     "Show move number for start of variation.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#84: Show move number for start of variation",
-    jsStr: 'pgnView("board", {pgn: "1. e4 e5 (c5 2. Nf3 d6) 2. Nf3 Nc6 3. Bb5 (Bc4 Nf6) "})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e4 e5 (c5 2. Nf3 d6) 2. Nf3 Nc6 3. Bb5 (Bc4 Nf6) "})',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 e5 (c5 2. Nf3 d6) 2. Nf3 Nc6 3. Bb5 (Bc4 Nf6) "});
+        PGNV.pgnView("board", {pgn: "1. e4 e5 (c5 2. Nf3 d6) 2. Nf3 Nc6 3. Bb5 (Bc4 Nf6) "});
     }
 };
 examples["1264"] = {
@@ -948,9 +948,9 @@ examples["1264"] = {
     "Scrolling does not work reliable (unsolved).",
     html: "<div id='board' style='width: 200px'/>",
     name: "#85: Scrolling does not work reliable",
-    jsStr: 'pgnView("board", {pgn: "1. {This chess game was nicknamed...", layout: "left", boardSize: "200px", movesHeight: "220px"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. {This chess game was nicknamed...", layout: "left", boardSize: "200px", movesHeight: "220px"})',
     jsFn: function() {
-        pgnView("board", {layout: "left", boardSize: '200px', movesHeight: "220px", size: '500px', pgn: "1. {This chess game was nicknamed \"The Game of the Century\" by Hans Kmoch in \"Chess Review\". It was played between chessmaster Donald Byrne and 13-year old Bobby Fischer in the Rosenwald Memorial Tournament in New York on October 17, 1956. The text of this annotation was written by David A. Wheeler, based on a number of sources (see references, below) and his own study of the game.  Donald Byrne (1930-1976) had already obtained first place in the 1953 US Open Championship, and would represent the United States in three Olympiads (1962, 1964, and 1968). Robert \"Bobby\" Fischer (1943-) eventually became world champion. In this game, Fischer (playing black) is amazingly brilliant, with such beautiful play that it was called the \"Game of the Century\". Byrne (playing white), after a standard opening, makes a minor mistake on move 11, moving the same piece twice (wasting time). Fischer pounces, with strong sacrificial play, culminating in an incredible queen sacrifice on move 17.  Byrne captures the queen, but Fischer more than compensates by taking many other pieces. The ending is an excellent demonstration of pieces working together to achieve a checkmate.} Nf3 {This is the \"Reti\" opening,  a noncomittal move that can easily transpose into a number of other different openings.} Nf6 2. c4 g6 3. Nc3 Bg7 {Fischer has opted for a defense based on \"hypermodern\" principles: he's inviting Byrne to establish a classical pawn stronghold in the center, which Fischer hopes to undermine and transform into a target. Fischer has fianchettoed his bishop, so it can attack the a1-h8 diagonal including its center squares.} 4. d4 O-O {Fischer castles, concentrating on protecting his king immediately.} 5. Bf4 d5 6. Qb3 dxc4 7.  Qxc4 c6 8. e4 Nbd7 9. Rd1 Nb6 10. Qc5 Bg4 {At this point, Byrne's pieces are more developed, and he controls the center squares. However, Fischer's king is well-protected, while Byrne's king is not.} 11. Bg5$2 {Here Byrne makes a mistake - he moves the same piece twice, losing time, instead of developing in some way. Both Burgess, Nunn and Emms and Wade and O'Connell suggest 11.  Be2; this would protect the King and enable a later kingside castle.}  (11. {For example, the game Flear-Morris, Dubling 1991, continued in this way:} Be2 Nfd7 12. Qa3 Bxf3 13. Bxf3 e5 14. dxe5 Qe8 15. Be2 Nxe5 16. O-O$16) 11... Na4$3 {Here Fischer cleverly offers up his Knight, but if Byrne takes it with Nxa4 Fischer will play Nxe4, and Byrne then suddenly has some terrible choices: } 12. Qa3 (12. Nxa4 Nxe4 13. Qxe7 (13. Bxe7 Nxc5 14. Bxd8 Nxa4 15. Bg5 Bxf3 16.  gxf3 Nxb2 {gives Fischer an extra pawn and ruin's Byrne's pawn structure.}) ( 13. Qc1 Qa5+ 14. Nc3 Bxf3 15. gxf3 Nxg5 {gives Fischer back his piece and a better position.}) 13... Qa5+ 14. b4 Qxa4 15. Qxe4 Rfe8 16. Be7 Bxf3 17. gxf3 Bf8 {produces a terrible pin.}) 12... Nxc3 13. bxc3 Nxe4$1 {Byrne declined to take the knight on move 12, so Fischer tries again by offering material to Byrne, in exchange for a much better position that is especially dangerous to white: an open e-file, with white's king poorly protected.} 14. Bxe7 {Byrne wisely decides to decline the offered material.} Qb6 15. Bc4 Nxc3$1 16. Bc5 Rfe8+ 17. Kf1 Be6$3 {This is a very clever move by Fischer; this is the move that made this game famous. Instead of trying to protect his queen, Fischer viciously counter-attacks using his bishop and sacrifices his queen. Byrne cannot simply take the bishop, because that will lead to checkmate.} 18. Bxb6 { Byrne takes Fischer's queen, as Fischer offered.} (18. Bxe6 Qb5+ 19. Kg1 Ne2+ 20. Kf1 Ng3+ 21. Kg1 Qf1+ 22. Rxf1 Ne2#) 18... Bxc4+ {Fischer now begins a series of discovered checks, picking up material.} 19. Kg1 Ne2+ 20. Kf1 Nxd4+ 21. Kg1 Ne2+ 22. Kf1 Nc3+ 23. Kg1 axb6 {This move by Fischer takes time out to capture a piece, but it doesn't waste time because it also threatens Byrne's queen. Byrne's queen cannot take the knight on c3, because it's protected by Fischer's bishop on g7.} 24. Qb4 Ra4 {Fischer uses his pieces together nicely in concert; the knight on c3 protects the rook on a4, which in turn protects the bishop on c4. This forces Byrne's queen away.} 25. Qxb6 {Byrne's queen picks up a pawn, but it's now poorly placed.} Nxd1 {Fischer has taken a rook, 2 bishops, and a pawn as compensation for his queen; in short, Fischer has gained significantly more material than he's lost. In addition, Byrne's remaining rook is stuck on h1 and it will take precious time to free it, giving Fischer opportunity to set up another offensive. Byrne has the only remaining queen, but this will not be enough.} 26. h3 Rxa2 27. Kh2 Nxf2 28. Re1 Rxe1 29. Qd8+ Bf8 30. Nxe1 Bd5 31. Nf3 Ne4 32. Qb8 b5 33. h4 h5 34. Ne5 Kg7 { Fischer breaks the pin, allowing the bishop to attack as well.} 35. Kg1 Bc5+ { Now Fischer \"peels away\" the white king from his last defender, and begins a series of checks that culminate in checkmate. This series of moves is extremely interesting in the way Fischer shows how to use various pieces together to force a checkmate.} 36. Kf1 Ng3+ {Adjacent bishops can, without opposition, simply move next to each other to force the king along. However, Fischer can't do this here by simply moving his light-square bishop to c4, because Byrne's knight protects c4. However, the knight does the job, forcing Byrne's king along.} 37. Ke1 Bb4+ 38. Kd1 Bb3+ 39. Kc1 Ne2+ 40. Kb1 Nc3+ 41.  Kc1 Rc2#"});
+        PGNV.pgnView("board", {layout: "left", boardSize: '200px', movesHeight: "220px", size: '500px', pgn: "1. {This chess game was nicknamed \"The Game of the Century\" by Hans Kmoch in \"Chess Review\". It was played between chessmaster Donald Byrne and 13-year old Bobby Fischer in the Rosenwald Memorial Tournament in New York on October 17, 1956. The text of this annotation was written by David A. Wheeler, based on a number of sources (see references, below) and his own study of the game.  Donald Byrne (1930-1976) had already obtained first place in the 1953 US Open Championship, and would represent the United States in three Olympiads (1962, 1964, and 1968). Robert \"Bobby\" Fischer (1943-) eventually became world champion. In this game, Fischer (playing black) is amazingly brilliant, with such beautiful play that it was called the \"Game of the Century\". Byrne (playing white), after a standard opening, makes a minor mistake on move 11, moving the same piece twice (wasting time). Fischer pounces, with strong sacrificial play, culminating in an incredible queen sacrifice on move 17.  Byrne captures the queen, but Fischer more than compensates by taking many other pieces. The ending is an excellent demonstration of pieces working together to achieve a checkmate.} Nf3 {This is the \"Reti\" opening,  a noncomittal move that can easily transpose into a number of other different openings.} Nf6 2. c4 g6 3. Nc3 Bg7 {Fischer has opted for a defense based on \"hypermodern\" principles: he's inviting Byrne to establish a classical pawn stronghold in the center, which Fischer hopes to undermine and transform into a target. Fischer has fianchettoed his bishop, so it can attack the a1-h8 diagonal including its center squares.} 4. d4 O-O {Fischer castles, concentrating on protecting his king immediately.} 5. Bf4 d5 6. Qb3 dxc4 7.  Qxc4 c6 8. e4 Nbd7 9. Rd1 Nb6 10. Qc5 Bg4 {At this point, Byrne's pieces are more developed, and he controls the center squares. However, Fischer's king is well-protected, while Byrne's king is not.} 11. Bg5$2 {Here Byrne makes a mistake - he moves the same piece twice, losing time, instead of developing in some way. Both Burgess, Nunn and Emms and Wade and O'Connell suggest 11.  Be2; this would protect the King and enable a later kingside castle.}  (11. {For config, the game Flear-Morris, Dubling 1991, continued in this way:} Be2 Nfd7 12. Qa3 Bxf3 13. Bxf3 e5 14. dxe5 Qe8 15. Be2 Nxe5 16. O-O$16) 11... Na4$3 {Here Fischer cleverly offers up his Knight, but if Byrne takes it with Nxa4 Fischer will play Nxe4, and Byrne then suddenly has some terrible choices: } 12. Qa3 (12. Nxa4 Nxe4 13. Qxe7 (13. Bxe7 Nxc5 14. Bxd8 Nxa4 15. Bg5 Bxf3 16.  gxf3 Nxb2 {gives Fischer an extra pawn and ruin's Byrne's pawn structure.}) ( 13. Qc1 Qa5+ 14. Nc3 Bxf3 15. gxf3 Nxg5 {gives Fischer back his piece and a better position.}) 13... Qa5+ 14. b4 Qxa4 15. Qxe4 Rfe8 16. Be7 Bxf3 17. gxf3 Bf8 {produces a terrible pin.}) 12... Nxc3 13. bxc3 Nxe4$1 {Byrne declined to take the knight on move 12, so Fischer tries again by offering material to Byrne, in exchange for a much better position that is especially dangerous to white: an open e-file, with white's king poorly protected.} 14. Bxe7 {Byrne wisely decides to decline the offered material.} Qb6 15. Bc4 Nxc3$1 16. Bc5 Rfe8+ 17. Kf1 Be6$3 {This is a very clever move by Fischer; this is the move that made this game famous. Instead of trying to protect his queen, Fischer viciously counter-attacks using his bishop and sacrifices his queen. Byrne cannot simply take the bishop, because that will lead to checkmate.} 18. Bxb6 { Byrne takes Fischer's queen, as Fischer offered.} (18. Bxe6 Qb5+ 19. Kg1 Ne2+ 20. Kf1 Ng3+ 21. Kg1 Qf1+ 22. Rxf1 Ne2#) 18... Bxc4+ {Fischer now begins a series of discovered checks, picking up material.} 19. Kg1 Ne2+ 20. Kf1 Nxd4+ 21. Kg1 Ne2+ 22. Kf1 Nc3+ 23. Kg1 axb6 {This move by Fischer takes time out to capture a piece, but it doesn't waste time because it also threatens Byrne's queen. Byrne's queen cannot take the knight on c3, because it's protected by Fischer's bishop on g7.} 24. Qb4 Ra4 {Fischer uses his pieces together nicely in concert; the knight on c3 protects the rook on a4, which in turn protects the bishop on c4. This forces Byrne's queen away.} 25. Qxb6 {Byrne's queen picks up a pawn, but it's now poorly placed.} Nxd1 {Fischer has taken a rook, 2 bishops, and a pawn as compensation for his queen; in short, Fischer has gained significantly more material than he's lost. In addition, Byrne's remaining rook is stuck on h1 and it will take precious time to free it, giving Fischer opportunity to set up another offensive. Byrne has the only remaining queen, but this will not be enough.} 26. h3 Rxa2 27. Kh2 Nxf2 28. Re1 Rxe1 29. Qd8+ Bf8 30. Nxe1 Bd5 31. Nf3 Ne4 32. Qb8 b5 33. h4 h5 34. Ne5 Kg7 { Fischer breaks the pin, allowing the bishop to attack as well.} 35. Kg1 Bc5+ { Now Fischer \"peels away\" the white king from his last defender, and begins a series of checks that culminate in checkmate. This series of moves is extremely interesting in the way Fischer shows how to use various pieces together to force a checkmate.} 36. Kf1 Ng3+ {Adjacent bishops can, without opposition, simply move next to each other to force the king along. However, Fischer can't do this here by simply moving his light-square bishop to c4, because Byrne's knight protects c4. However, the knight does the job, forcing Byrne's king along.} 37. Ke1 Bb4+ 38. Kd1 Bb3+ 39. Kc1 Ne2+ 40. Kb1 Nc3+ 41.  Kc1 Rc2#"});
     }
 };
 examples["1265"] = {
@@ -958,9 +958,9 @@ examples["1265"] = {
     "Migrate to FontAwesome 5 (unsolved).",
     html: "<div id='board' style='width: 200px'/>",
     name: "#86: Migrate to FontAwesome 5",
-    jsStr: 'pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
     jsFn: function() {
-        pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
+        PGNV.pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
     }
 };
 examples["1266"] = {
@@ -968,9 +968,9 @@ examples["1266"] = {
     "Show (optional?) move number on continuation of variation and main line.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#87: Show move number on continuation of variation and main line",
-    jsStr: 'pgnView("board", {pgn: "1. e4 e5 (1... c5 2. Nf3 d6) 2. Nf3 Nc6 3. Bb5 (3. Bc4 Nf6) "})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e4 e5 (1... c5 2. Nf3 d6) 2. Nf3 Nc6 3. Bb5 (3. Bc4 Nf6) "})',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 e5 (1... c5 2. Nf3 d6) 2. Nf3 Nc6 3. Bb5 (3. Bc4 Nf6) "});
+        PGNV.pgnView("board", {pgn: "1. e4 e5 (1... c5 2. Nf3 d6) 2. Nf3 Nc6 3. Bb5 (3. Bc4 Nf6) "});
     }
 };
 examples["1267"] = {
@@ -978,9 +978,9 @@ examples["1267"] = {
     "Allow all layouts (left, top, top-left, ...) as well for edit mode (unsolved).",
     html: "<div id='board' style='width: 200px'/>",
     name: "#88: Allow all layouts in edit mode",
-    jsStr: 'pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", layout: "left"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", layout: "left"})',
     jsFn: function() {
-        pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", layout: 'left'});
+        PGNV.pgnEdit("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", layout: 'left'});
     }
 };
 examples["1268"] = {
@@ -988,9 +988,9 @@ examples["1268"] = {
     "Promotion with Chessground does not work any more.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#89: Promotion with Chessground",
-    jsStr: 'pgnEdit("board", {position: "rnbqkbr1/ppppp2P/5n2/8/8/8/PPPP1PPP/RNBQKBNR w KQq - 1 5"})',
+    jsStr: 'PGNV.pgnEdit("board", {position: "rnbqkbr1/ppppp2P/5n2/8/8/8/PPPP1PPP/RNBQKBNR w KQq - 1 5"})',
     jsFn: function() {
-        pgnEdit("board", {position: "rnbqkbr1/ppppp2P/5n2/8/8/8/PPPP1PPP/RNBQKBNR w KQq - 1 5"});
+        PGNV.pgnEdit("board", {position: "rnbqkbr1/ppppp2P/5n2/8/8/8/PPPP1PPP/RNBQKBNR w KQq - 1 5"});
     }
 };
 examples["1269"] = {
@@ -998,9 +998,9 @@ examples["1269"] = {
     "Use newest i18next with getFixedT.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#90: Use newest i18next",
-    jsStr: 'pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", locale: "fr"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", locale: "fr"})',
     jsFn: function() {
-        pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", locale: "fr"});
+        PGNV.pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6", locale: "fr"});
     }
 };
 examples["1270"] = {
@@ -1008,9 +1008,9 @@ examples["1270"] = {
     "Comment Markup Annotations",
     html: "<div id='board' style='width: 200px'/>",
     name: "#91: Comment Markup Annotations",
-    jsStr: 'pgnView("board", {pgn: "1. e4 { [%csl Rc4,Yf4,Gg5][%cal Gg1f3,Rf1c4] } "})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e4 { [%csl Rc4,Yf4,Gg5][%cal Gg1f3,Rf1c4] } "})',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 { [%csl Rc4,Yf4,Gg5][%cal Gg1f3,Rf1c4] } "});
+        PGNV.pgnView("board", {pgn: "1. e4 { [%csl Rc4,Yf4,Gg5][%cal Gg1f3,Rf1c4] } "});
     }
 };
 examples["1271"] = {
@@ -1018,9 +1018,9 @@ examples["1271"] = {
     "Hide Moves (unsolved).",
     html: "<div id='board' style='width: 200px'/>",
     name: "#92: Hide Moves",
-    jsStr: 'pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"})',
     jsFn: function() {
-        pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
+        PGNV.pgnView("board", {pgn: "e4 e5 Nf3 Nc6 Bb5 a6"});
     }
 };
 examples["1272"] = {
@@ -1028,9 +1028,9 @@ examples["1272"] = {
     "Game could not be read. Reason were the move annotations (arrows, circles, ...) in output of lichess.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#93: Game not readable",
-    jsStr: 'pgnView("board", {pgn: "1. e4 { [%csl Rc4,Yf4,Gg5][%cal Gg1f3,Rf1c4] } "})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e4 { [%csl Rc4,Yf4,Gg5][%cal Gg1f3,Rf1c4] } "})',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 { [%csl Rc4,Yf4,Gg5][%cal Gg1f3,Rf1c4] } "});
+        PGNV.pgnView("board", {pgn: "1. e4 { [%csl Rc4,Yf4,Gg5][%cal Gg1f3,Rf1c4] } "});
     }
 };
 examples["1273"] = {
@@ -1038,50 +1038,185 @@ examples["1273"] = {
     "Ensure marks are unset for fist move. Press first move button to see the effect.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#106: Unset marks for first move",
-    jsStr: 'pgnView("board", {pgn: "1. e4 e5 2. Nf3 Nc6", startPlay: "Nf3"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e4 e5 2. Nf3 Nc6", startPlay: "Nf3"})',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 e5 2. Nf3 Nc6", startPlay: "Nf3"});
+        PGNV.pgnView("board", {pgn: "1. e4 e5 2. Nf3 Nc6", startPlay: "Nf3"});
     }
 };
 examples["1274"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/108'>ticket 108</a> at GitHub. " +
+    "En passent not working well. Play fxg3 on the board.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#108: Allow en passent in edit mode",
+    jsStr: 'PGNV.pgnEdit("board", {pgn: "1. e4 e5 2. f4 exf4 3. g4"})',
+    jsFn: function() {
+        PGNV.pgnEdit("board", {pgn: "1. e4 e5 2. f4 exf4 3. g4"});
+    }
+};
+examples["1275"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/109'>ticket 109</a> at GitHub. " +
     "Allow first move variation. Play e4, then go back and play d4",
     html: "<div id='board' style='width: 200px'/>",
     name: "#109: Allow variation of first move",
-    jsStr: 'pgnEdit("board", {})',
+    jsStr: 'PGNV.pgnEdit("board", {})',
     jsFn: function() {
-        pgnEdit("board", {});
+        PGNV.pgnEdit("board", {});
     }
 };
-examples["1275"] = {
+examples["1276"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/111'>ticket 111</a> at GitHub. " +
+    "Promote variation of first move does not work (open). Do the steps in edit mode: Do first move, go back, do " +
+        "different one, try to promote that ==> nothing happens",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#111: Promote variation of first move does not work (open)",
+    jsStr: 'PGNV.pgnEdit("board", {})',
+    jsFn: function() {
+        PGNV.pgnEdit("board", {});
+    }
+};
+examples["1277"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/112'>ticket 112</a> at GitHub. " +
     "Adds color marker for the player at move.",
     html: "<div id='board' style='width: 200px'/>",
     name: "#112: Color marker for player at move",
-    jsStr: 'pgnView("board", {pgn: "1. e4 e5", colorMarker: "cm-small"})',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e4 e5", colorMarker: "cm-small"})',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 e5 ", colorMarker: "cm-small"});
+        PGNV.pgnView("board", {pgn: "1. e4 e5 ", colorMarker: "cm-small"});
     }
 };
-examples["1276"] = {
+examples["1278"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/114'>ticket 114</a> at GitHub. " +
     "Show result in move list. Default is false.",
     html: '<div id="board" style="width: 200px"/><div id="board1" style="width: 200px"/>',
     name: "#114: Show result in move list",
-    jsStr: 'pgnView("board", {pgn: "1. e4 e5 1-0 ", showResult: true});\npgnView("board", {pgn: "1. e4 e5 1-0 "});',
+    jsStr: 'PGNV.pgnView("board", {pgn: "1. e4 e5 1-0 ", showResult: true});\nPGNV.pgnView("board", {pgn: "1. e4 e5 1-0 "});',
     jsFn: function() {
-        pgnView("board", {pgn: "1. e4 e5 1-0 ", showResult: true});
-        pgnView("board1", {pgn: "1. e4 e5 1-0 "});
+        PGNV.pgnView("board", {pgn: "1. e4 e5 1-0 ", showResult: true});
+        PGNV.pgnView("board1", {pgn: "1. e4 e5 1-0 "});
     }
 };
-examples["1277"] = {
+examples["1279"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/116'>ticket 116</a> at GitHub. " +
+    "Cut moves before (not implemented yet).",
+    html: "<div id='board' style='width: 200px'/>\n<div id='board1' style='width: 200px'/>",
+    name: "#116: Cut moves before (not implemented)",
+    jsStr: 'PGNV.pgnEdit("board", {});',
+    jsFn: function() {
+        PGNV.pgnEdit("board", {});
+    }
+};
+examples["1280"] = {
     desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/117'>ticket 117</a> at GitHub. " +
     "Makes defining FEN more resilient. See the 2 variations that work.",
     html: "<div id='board' style='width: 200px'/>\n<div id='board1' style='width: 200px'/>",
     name: "#117: FEN more resilient",
-    jsStr: 'pgnBoard("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - -"});\npgnBoard("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - - 1 1"});',
+    jsStr: 'PGNV.pgnBoard("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - -"});\nPGNV.pgnBoard("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - - 1 1"});',
     jsFn: function() {
-        pgnBoard("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - -"});
-        pgnBoard("board1", {position: "1k6/5KP1/8/8/8/8/8/8 w - - 1 1"});
+        PGNV.pgnBoard("board", {position: "1k6/5KP1/8/8/8/8/8/8 w - -"});
+        PGNV.pgnBoard("board1", {position: "1k6/5KP1/8/8/8/8/8/8 w - - 1 1"});
+    }
+};
+examples["1281"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/118'>ticket 118</a> at GitHub. " +
+    "Allow different styles for lines and column marker (not yet implemented).",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#118: Different styles for column markers (not yet implemented)",
+    jsStr: 'PGNV.pgnBoard("board", {});',
+    jsFn: function() {
+        PGNV.pgnBoard("board", {});
+    }
+};
+examples["1282"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/120'>ticket 120</a> at GitHub. " +
+    "Reading of NAGs with symbol characters (not yet implemented).",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#120: Reading of NAGs with symbol characters (not yet implemented)",
+    jsStr: 'PGNV.pgnView("board", {pgn: "e4 {!!} $16"});',
+    jsFn: function() {
+        PGNV.pgnView("board", {pgn: "e4 {!!} $16"});
+    }
+};
+examples["1283"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/121'>ticket 121</a> at GitHub. " +
+    "Chess960 castling is not handled (not yet implemented).",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#121: Chess960 castling is not handled (not yet implemented)",
+    jsStr: 'PGNV.pgnView("board", {});',
+    jsFn: function() {
+        PGNV.pgnView("board", {});
+    }
+};
+examples["1284"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/122'>ticket 122</a> at GitHub. " +
+    "Chess clock support (not finished).",
+    html: "<div id='board' style='width: 150px'/>",
+    name: "#122: Chess clock support (not finished)",
+    jsStr: 'PGNV.pgnView("board", {pgn: "c4 {[%clk 2:10:30]} Nf6 {[%clk 2:10:30]} 2. Nc3 {[%clk 2:10:30]} e5\n' +
+        '{[%clk 2:10:30]} 3. Nf3 {[%clk 2:10:30]} Nc6 {[%clk 2:10:30]} 4. e4\n' +
+        '{[%clk 2:10:30]} Bb4 {[%clk 2:10:17]} 5. d3 {[%clk 2:10:30]} d6 {[%clk 2:09:44]}"});',
+    jsFn: function() {
+        PGNV.pgnView("board", {width: "200px", pgn: "c4 {[%clk 2:10:30]} Nf6 {[%clk 2:10:30]} 2. Nc3 {[%clk 2:10:30]} e5\n" +
+                "{[%clk 2:10:30]} 3. Nf3 {[%clk 2:10:30]} Nc6 {[%clk 2:10:30]} 4. e4\n" +
+                "{[%clk 2:10:30]} Bb4 {[%clk 2:10:17]} 5. d3 {[%clk 2:10:30]} d6 {[%clk 2:09:44]}"});
+    }
+};
+examples["1285"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/126'>ticket 126</a> at GitHub. " +
+    "Allow resize of chessboard (not yet implemented).",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#126: Allow resize of chessboard (not yet implemented)",
+    jsStr: 'PGNV.pgnView("board", {pgn: "e4 "});',
+    jsFn: function() {
+        PGNV.pgnView("board", {pgn: "e4 "});
+    }
+};
+examples["1286"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/130'>ticket 130</a> at GitHub. " +
+    "Allow any number of white space and dots for move numbers.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#130: White space for move numbers",
+    jsStr: 'PGNV.pgnView("board", {pgn: "1.. e4 1. .. d5 2 .... f4"});',
+    jsFn: function() {
+        PGNV.pgnView("board", {pgn: "1.. e4 1. .. d5 2 .... f4"});
+    }
+};
+examples["1287"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/134'>ticket 134</a> at GitHub. " +
+    "Allow figurine notation (not yet implemented).",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#134: Allow figurine notation (not yet implemented)",
+    jsStr: 'PGNV.pgnView("board", {pgn: "Nf3 Nf6"});',
+    jsFn: function() {
+        PGNV.pgnView("board", {pgn: "Nf3 Nf6"});
+    }
+};
+examples["1288"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/135'>ticket 135</a> at GitHub. " +
+    "Allow long algebraic notation as output",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#135: Allow long algebraic notation as output",
+    jsStr: 'PGNV.pgnView("board", {pgn: "Nf3 Nf6", notation: "long"});',
+    jsFn: function() {
+        PGNV.pgnView("board", {pgn: "Nf3 Nf6", notation: "long"});
+    }
+};
+examples["1289"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/140'>ticket 140</a> at GitHub. " +
+    "Move number missing for first black move",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#140: Move number missing for first black move",
+    jsStr: 'PGNV.pgnView("board", {pgn: "1... e5", position: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1"});',
+    jsFn: function() {
+        PGNV.pgnView("board", {pgn: "1... e5", position: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1"});
+    }
+};
+examples["1290"] = {
+    desc: "See <a href='https://github.com/mliebelt/PgnViewerJS/issues/144'>ticket 144</a> at GitHub. " +
+    "Locale not considered for promoted pieces.",
+    html: "<div id='board' style='width: 200px'/>",
+    name: "#144: Locale not considered for promoted pieces",
+    jsStr: 'PGNV.pgnView("board", {locale: "de", pgn: "1. h4 g5 2. hxg5 Nf6 3. gxf6 d6 4. fxe7 Kd7 5. exf8=R Qh4 6. Rxh8 Qxh1 7. Rxh7 Ke8 8. Rxh1 *"});',
+    jsFn: function() {
+        PGNV.pgnView("board", {locale: "de", pgn: "1. h4 g5 2. hxg5 Nf6 3. gxf6 d6 4. fxe7 Kd7 5. exf8=R Qh4 6. Rxh8 Qxh1 7. Rxh7 Ke8 8. Rxh1 *"});
     }
 };

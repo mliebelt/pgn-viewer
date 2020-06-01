@@ -3,14 +3,8 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Some gamebBoards in different styles</title>
-    <script src="/dist/js/third.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="/dist/css/third.css">
-
-    <!-- My own library -->
-    <script src="/js/pgnvjs.js" type="text/javascript"></script>
-    <script src="/js/pgn.js" type="text/javascript"></script>
-    <link href="/css/pgnvjs.css" type="text/css" rel="stylesheet"/>
-    <link href="/css/theme.css" type="text/css" rel="stylesheet"/> <!-- chessground -->
+    <script src="/modules/pgn-viewer/dist/bundle.js" type="text/javascript"></script>
+    <script src="https://use.fontawesome.com/4cf2a2bf7b.js"></script>
 </head>
 <body class="blue">
 <h2>Some boards in different styles</h2>
@@ -48,34 +42,34 @@ Displays some boards in different styles. See the sources for to see the differe
 <div id="board9"></div>
 <script>
 var cfg = { showNotation: false, position: 'start', theme: 'green' };
-var board = pgnBoard('board', cfg);
+var board = PGNV.pgnBoard('board', cfg);
 
 cfg = { position: 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R', pieceStyle: 'alpha'};
-var board1 = pgnBoard("board1", cfg);
+var board1 = PGNV.pgnBoard("board1", cfg);
 
 cfg = { pieceStyle: 'uscf', orientation: 'black', position: 'start', theme: 'zeit'};
-var board2 = pgnBoard("board2", cfg);
+var board2 = PGNV.pgnBoard("board2", cfg);
 
 cfg = { showNotation: false, pieceStyle: 'wikipedia', orientation: 'black', position: 'start', theme: 'blue'};
-var board3 = pgnBoard("board3", cfg);
+var board3 = PGNV.pgnBoard("board3", cfg);
 
 cfg = { showNotation: true, pieceStyle: 'chesscom', position: 'start', theme: 'chesscom', size: '320px'};
-var board4 = pgnBoard("board4", cfg);
+var board4 = PGNV.pgnBoard("board4", cfg);
 
 cfg = { showNotation: false, pieceStyle: 'merida', position: 'start'};
-var board5 = pgnBoard("board5", cfg);
+var board5 = PGNV.pgnBoard("board5", cfg);
 
 cfg = { showNotation: false, pieceStyle: 'condal', position: 'start', theme: 'blue'};
-var board6 = pgnBoard("board6", cfg);
+var board6 = PGNV.pgnBoard("board6", cfg);
 
 cfg = { showNotation: false, pieceStyle: 'leipzig', position: 'start'};
-var board7 = pgnBoard("board7", cfg);
+var board7 = PGNV.pgnBoard("board7", cfg);
 
 cfg = { showNotation: false, pieceStyle: 'case', position: 'start'};
-var board8 = pgnBoard("board8", cfg);
+var board8 = PGNV.pgnBoard("board8", cfg);
 
 cfg = { showNotation: false, pieceStyle: 'maya', position: 'start'};
-var board9 = pgnBoard("board9", cfg);
+var board9 = PGNV.pgnBoard("board9", cfg);
 </script>
 
 </body>

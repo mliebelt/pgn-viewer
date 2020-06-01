@@ -1,252 +1,281 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en"> <!--<![endif]-->
 <head>
 
-	<!-- Basic Page Needs
+    <!-- Basic Page Needs
   ================================================== -->
-	<meta charset="utf-8">
-	<title>Documentation of PgnViewerJS</title>
-	<meta name="description" content="Shows the documentation that could be used to include PgnViewerJS in your web site.">
-	<meta name="author" content="Markus Liebelt">
+    <meta charset="utf-8">
+    <title>Documentation of PgnViewerJS</title>
+    <meta name="description"
+          content="Shows the documentation that could be used to include PgnViewerJS in your web site.">
+    <meta name="author" content="Markus Liebelt">
 
-	<!-- Mobile Specific Metas
+    <!-- Mobile Specific Metas
   ================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-	<!-- CSS
+    <!-- CSS
   ================================================== -->
     <link rel="stylesheet" href="css/prettify.css">
-	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/skeleton.css">
-	<link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="../dist/css/pgnvjs.css">
-
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/layout.css">
 
     <!-- JS for PgnViewerJS
     ================================================= -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="../dist/js/pgnvjs.js" type="text/javascript"></script>
+    <script src="js/pgnv.js" type="text/javascript"></script>
     <script src="js/prettify.js" type="text/javascript"></script>
+    <script src="https://use.fontawesome.com/4cf2a2bf7b.js"></script>
 
 
-	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-	<!-- Favicons
-	================================================== -->
-	<link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    <!-- Favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
 
     <!-- JS
     ================================================= -->
 
 </head>
 <body>
-<a href="https://github.com/mliebelt/PgnViewerJS"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+<a href="https://github.com/mliebelt/PgnViewerJS"><img style="position: absolute; top: 0; right: 0; border: 0;"
+                                                       src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67"
+                                                       alt="Fork me on GitHub"
+                                                       data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+<script src="js/examples.js" type="text/javascript"></script>
+<script src="js/functions.js" type="text/javascript"></script>
 
+<div class="container">
+    <div class="sixteen columns">
+        <h1 class="remove-bottom" style="margin-top: 40px">PgnViewerJS</h1>
+        <h5>Version 1.0.0</h5>
+        <hr/>
+    </div>
+</div>
+<div class="container">
+    <div class="two columns">
+        <h1>ML</h1>
+    </div>
 
-	<!-- Primary Page Layout
-	================================================== -->
+    <div id="nav" class="fourteen columns">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="docu.html">API</a></li>
+            <li><a href="examples.html">Examples</a></li>
+            <li><a href="https://github.com/mliebelt">Contact</a></li>
+        </ul>
+    </div>
+</div><!-- container -->
+<div class="container">
+    <div class="sixteen columns">
+        The collection of examples allows you to try out various aspects of PgnViewerJS. You see the following:
+        <ul class="square">
+            <li>On the top the example you have selected on the left (View example in new window does not work at
+                the moment)
+            </li>
+            <li>Below that a short explanation followed by</li>
+            <li>first the necessary JavaScript part with</li>
+            <li>then the HTML part necessary for your HTML page.</li>
+        </ul>
 
-	<!-- Delete everything in this .container and get started on your own site! -->
-    <script src="js/prettify.js" type="text/javascript"></script>
-    <script src="js/examples.js" type="text/javascript"></script>
-    <script src="js/functions.js" type="text/javascript"></script>
+        To modify all aspects of the configuration, use the <a href="config/config.html">configuration builder</a>
+        instead.
+    </div>
+</div>
+<div class="container">
+    <div id="examples_list_container" class="four columns">
+        <h4 id="group_header_1">Basics</h4>
+        <ul id="group_container_1" style="display:none">
+            <li id="example_1000">Board</li>
+            <li id="example_1001">Viewer</li>
+            <li id="example_1002">Print</li>
+            <li id="example_1003">Edit</li>
+        </ul>
+        <h4 id="group_header_2">Boards</h4>
+        <ul id="group_container_2" style="display:none">
+            <li id="example_1020">Simple</li>
+            <li id="example_1021">Piece Style</li>
+            <li id="example_1022">Position</li>
+            <li id="example_1023">Others</li>
+            <li id="example_1024">Board Sizes</li>
+        </ul>
+        <h4 id="group_header_3">Themes & Styles</h4>
+        <ul id="group_container_3" style="display:none">
+            <li id="example_1050">Chess.com Style</li>
+            <li id="example_1051">Normal</li>
+            <li id="example_1052">Falken</li>
+            <li id="example_1053">Green</li>
+            <li id="example_1054">Zeit</li>
+            <li id="example_1055">Informator</li>
+            <li id="example_1056">Sportverlag</li>
+            <li id="example_1057">Beyer</li>
+            <li id="example_1058">Blue</li>
+        </ul>
+        <h4 id="group_header_4">Moves</h4>
+        <ul id="group_container_4" style="display:none">
+            <li id="example_1100">Editing Games</li>
+            <li id="example_1101">Game with NAGs</li>
+            <li id="example_1102">Variations</li>
+        </ul>
+        <h4 id="group_header_6">Fixed Bugs (part 1)</h4>
+        <ul id="group_container_6" style="display:none">
+            <li id="example_1200">#2: Guess the Move (unsolved)</li>
+            <li id="example_1201">#3: Add lichess.org (unsolved)</li>
+            <li id="example_1202">#4: Use FontAwesome for the UI</li>
+            <li id="example_1203">#5: Missing capture symbol</li>
+            <li id="example_1204">#6: locale in edit mode</li>
+            <li id="example_1205">#9: spaces after a half move before a NAG</li>
+        </ul>
+        <h4 id="group_header_61">Fixed Bugs (part 2)</h4>
+        <ul id="group_container_61" style="display:none">
+            <li id="example_1206">#10: repeating move number</li>
+            <li id="example_1207">#11: disabmbiguation in print format</li>
+            <li id="example_1208">#12: display of many games (unsolved)</li>
+            <li id="example_1209">#13: FEN not recognized</li>
+            <li id="example_1210">#14: Parsing rules for result</li>
+            <li id="example_1211">#16: Make import more robust</li>
+        </ul>
+        <h4 id="group_header_62">Fixed Bugs (part 3)</h4>
+        <ul id="group_container_62" style="display:none">
+            <li id="example_1212">#19: Adding moves from a backend in real time</li>
+            <li id="example_1213">#20: Clicking on variation in Firefox does not work</li>
+            <li id="example_1214">#21: Parsing rules for result</li>
+            <li id="example_1215">#22: Integrate stockfish.js in the viewer (unsolved)</li>
+            <li id="example_1216">#23: Use the pgn notation flag 'setup'</li>
+            <li id="example_1217">#25: Allow different markup</li>
+        </ul>
+        <h4 id="group_header_63">Fixed Bugs (part 4)</h4>
+        <ul id="group_container_63" style="display:none">
+            <li id="example_1218">#26: Symbolize check or mate</li>
+            <li id="example_1219">#27: Be robust if check or mate are not included</li>
+            <li id="example_1220">#28: Should accept Long Algebraic Notation in various forms</li>
+            <li id="example_1221">#30: Underpromotion in edit mode possible</li>
+            <li id="example_1222">#31: Show meaningful error message when PGN is wrong</li>
+            <li id="example_1223">#32: Internationalization of buttons</li>
+        </ul>
+        <h4 id="group_header_64">Fixed Bugs (part 5)</h4>
+        <ul id="group_container_64" style="display:none">
+            <li id="example_1224">#33: buttons:first should go to the start position</li>
+            <li id="example_1225">#36: Add UI for FEN and PGN in edit mode</li>
+            <li id="example_1226">#37: Add additional languages</li>
+            <li id="example_1227">#39: Allow opening of examples from the documentation in a separate tab</li>
+            <li id="example_1228">#42: Allow using PGN from an external source</li>
+            <li id="example_1229">#43: Ugly display of tags</li>
+        </ul>
+        <h4 id="group_header_65">Fixed Bugs (part 6)</h4>
+        <ul id="group_container_65" style="display:none">
+            <li id="example_1230">#44: Add the NAGs from a move to the NAG menu</li>
+            <li id="example_1232">#46: Allow FEN string with PGN to define start position from analysis</li>
+            <li id="example_1233">#47: Ensure that move numbers are "correct"</li>
+            <li id="example_1234">#48: Fix broken green and blue themes</li>
+            <li id="example_1235">#49: Fix example style corresponding color of buttons</li>
+            <li id="example_1236">#50: Pawn Capture Bug</li>
+        </ul>
+        <h4 id="group_header_66">Fixed Bugs (part 7)</h4>
+        <ul id="group_container_66" style="display:none">
+            <li id="example_1240">#52: Fixing O-O and O-O-O cases in pgn-parser</li>
+            <li id="example_1241">#53: Include all NAG symbols in the grammar</li>
+            <li id="example_1242">#54: No correct FEN when playing new moves in edit mode</li>
+            <li id="example_1243">#57: Allow to play and record chess variant "Horde" (unsolved)</li>
+            <li id="example_1244">#58: Playing first move in edit mode</li>
+            <li id="example_1245">#59: Playing first move as variant of first move</li>
+        </ul>
+        <h4 id="group_header_67">Fixed Bugs (part 8)</h4>
+        <ul id="group_container_67" style="display:none">
+            <li id="example_1246">#60: Parsing variations of the first move</li>
+            <li id="example_1250">#61: Playing a variant of the first move</li>
+            <li id="example_1251">#64: Add parameter layout and split it with theme</li>
+            <li id="example_1252">#65: Using locales like "de_DE" does not work</li>
+            <li id="example_1253">#66: Viewer should allow to read pgn input with line breaks in it</li>
+            <li id="example_1254">#69: Piece move glitch when clicking 'next move' rapidly (unsolved)</li>
+        </ul>
+        <h4 id="group_header_68">Fixed Bugs (part 9)</h4>
+        <ul id="group_container_68" style="display:none">
+            <li id="example_1255">#71: Don't add 'D' symbol (for diagram) to PGN display</li>
+            <li id="example_1256">#75: Add an option to show board at a given move at page creation time (view /
+                edit mode) (unsolved)
+            </li>
+            <li id="example_1257">#78: Use chessground (lichess.org UI) as back-end</li>
+            <li id="example_1258">#79: Chessground: allow positioning of coordinates</li>
+            <li id="example_1259">#80: Chessground: Size the coordinates according to the board size</li>
+            <li id="example_1260">#81: Missing promotion in edit mode</li>
+        </ul>
+        <h4 id="group_header_69">Fixed Bugs (part 10)</h4>
+        <ul id="group_container_69" style="display:none">
+            <li id="example_1261">#82: Implement NAG menu native</li>
+            <li id="example_1262">#83: Use abstraction from NAGs and convert them to concrete notation (unsolved)
+            </li>
+            <li id="example_1263">#84: Show move number for start of variation</li>
+            <li id="example_1264">#85: Scrolling does not work reliable (unsolved)</li>
+            <li id="example_1265">#86: Migrate to FontAwesome 5 (unsolved)</li>
+            <li id="example_1266">#87: Show (optional?) move number on continuation of variation and main line</li>
+        </ul>
+        <h4 id="group_header_70">Fixed Bugs (part 11)</h4>
+        <ul id="group_container_70" style="display:none">
+            <li id="example_1267">#88: Allow all layouts (left, top, top-left, ...) as well for edit mode
+                (unsolved)
+            </li>
+            <li id="example_1268">#89: Promotion with Chessground does not work any more</li>
+            <li id="example_1269">#90: Use newest i18next with getFixedT</li>
+            <li id="example_1270">#91: Comment Markup Annotations</li>
+            <li id="example_1271">#92: Hide Moves (unsolved)</li>
+            <li id="example_1272">#93: Game could not be read</li>
+            <li id="example_1273">#106: Unset marks for first move</li>
+        </ul>
+        <h4 id="group_header_71">Fixed Bugs (part 12)</h4>
+        <ul id="group_container_71" style="display:none">
+            <li id="example_1274">#108: Allow en passent in edit mode</li>
+            <li id="example_1275">#109: Allow variation of first move</li>
+            <li id="example_1276">#111: Promote variation of first move (open)</li>
+            <li id="example_1277">#112: Color marker for player at move</li>
+            <li id="example_1278">#114: Show result in move list</li>
+            <li id="example_1279">#116: Cut moves before (not implemented)</li>
+        </ul>
+        <h4 id="group_header_72">Fixed Bugs (part 13)</h4>
+        <ul id="group_container_72" style="display:none">
+            <li id="example_1280">#117: FEN more resilient</li>
+            <li id="example_1281">#118: Different styles for column markers (not yet implemented)</li>
+            <li id="example_1282">#120: Reading of NAGs with symbol characters (not yet implemented)</li>
+            <li id="example_1283">#121: Chess960 castling is not handled (not yet implemented)</li>
+            <li id="example_1284">#122: Chess clock support (not finished)</li>
+            <li id="example_1285">#126: Allow resize of chessboard (not yet implemented)</li>
+            <li id="example_1286">#130: White space for move numbers</li>
+        </ul>
+        <h4 id="group_header_73">Fixed Bugs (part 14)</h4>
+        <ul id="group_container_73" style="display:none">
+            <li id="example_1287">#134: Allow figurine notation (not yet implemented)</li>
+            <li id="example_1288">#135: Allow long algebraic notation as output</li>
+            <li id="example_1289">#140: Move number missing for first black move</li>
+            <li id="example_1290">#144: Locale not considered for promoted pieces</li>
+        </ul>
+    </div>
 
-	<div class="container">
-		<div class="sixteen columns">
-			<h1 class="remove-bottom" style="margin-top: 40px">PgnViewerJS</h1>
-			<h5>Version 0.9.8</h5>
-			<hr />
-		</div>
-        <div class="container">
-            <div class="two columns">
-                <h1>ML</h1>
-            </div>
-
-            <div id="nav" class="fourteen columns">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="docu.html">API</a></li>
-                    <li><a href="examples.html">Examples</a></li>
-                    <li><a href="https://github.com/mliebelt">Contact</a></li>
-                </ul>
-            </div>
-        </div><!-- container -->
-        <div>
-            The collection of examples allows you to try out various aspects of PgnViewerJS. You see the following:
-            <ul class="square">
-                <li>On the top the example you have selected on the left (View example in new window does not work at
-                the moment)</li>
-                <li>Below that a short explanation followed by</li>
-                <li>first the necessary JavaScript part with</li>
-                <li>then the HTML part necessary for your HTML page.</li>
-            </ul>
-
-            To modify all aspects of the configuration, use the <a href="example/config.html">configuration builder</a>
-            instead.
-        </div>
-        <div class="container">
-            <div id="examples_list_container" class="four columns">
-                <h4 id="group_header_1">Basics</h4>
-                <ul id="group_container_1" style="display:none">
-                    <li id="example_1000">Board</li>
-                    <li id="example_1001">Viewer </li>
-                    <li id="example_1002">Print </li>
-                    <li id="example_1003">Edit </li>
-                </ul>
-                <h4 id="group_header_2">Boards</h4>
-                <ul id="group_container_2" style="display:none">
-                    <li id="example_1020">Simple</li>
-                    <li id="example_1021">Piece Style </li>
-                    <li id="example_1022">Position </li>
-                    <li id="example_1023">Others </li>
-                    <li id="example_1024">Board Sizes </li>
-                </ul>
-                <h4 id="group_header_3">Themes & Styles</h4>
-                <ul id="group_container_3" style="display:none">
-                    <li id="example_1050">Chess.com Style</li>
-                    <li id="example_1051">Normal</li>
-                    <li id="example_1052">Falken</li>
-                    <li id="example_1053">Green</li>
-                    <li id="example_1054">Zeit</li>
-                    <li id="example_1055">Informator</li>
-                    <li id="example_1056">Sportverlag</li>
-                    <li id="example_1057">Beyer</li>
-                    <li id="example_1058">Blue</li>
-                </ul>
-                <h4 id="group_header_4">Moves</h4>
-                <ul id="group_container_4" style="display:none">
-                    <li id="example_1100">Editing Games</li>
-                    <li id="example_1101">Game with NAGs</li>
-                    <li id="example_1102">Variations</li>
-                </ul>
-                <h4 id="group_header_6">Fixed Bugs (part 1)</h4>
-                <ul  id="group_container_6" style="display:none">
-                    <li id="example_1200">#2: Guess the Move (unsolved)</li>
-                    <li id="example_1201">#3: Add lichess.org (unsolved)</li>
-                    <li id="example_1202">#4: Use FontAwesome for the UI</li>
-                    <li id="example_1203">#5: Missing capture symbol</li>
-                    <li id="example_1204">#6: locale in edit mode</li>
-                    <li id="example_1205">#9: spaces after a half move before a NAG</li>
-                </ul>
-                <h4 id="group_header_61">Fixed Bugs (part 2)</h4>
-                <ul  id="group_container_61" style="display:none">
-                    <li id="example_1206">#10: repeating move number</li>
-                    <li id="example_1207">#11: disabmbiguation in print format</li>
-                    <li id="example_1208">#12: display of many games (unsolved)</li>
-                    <li id="example_1209">#13: FEN not recognized</li>
-                    <li id="example_1210">#14: Parsing rules for result</li>
-                    <li id="example_1211">#16: Make import more robust</li>
-                </ul>
-                <h4 id="group_header_62">Fixed Bugs (part 3)</h4>
-                <ul  id="group_container_62" style="display:none">
-                    <li id="example_1212">#19: Adding moves from a backend in real time</li>
-                    <li id="example_1213">#20: Clicking on variation in Firefox does not work</li>
-                    <li id="example_1214">#21: Parsing rules for result</li>
-                    <li id="example_1215">#22: Integrate stockfish.js in the viewer (unsolved)</li>
-                    <li id="example_1216">#23: Use the pgn notation flag 'setup'</li>
-                    <li id="example_1217">#25: Allow different markup</li>
-                </ul>
-                <h4 id="group_header_63">Fixed Bugs (part 4)</h4>
-                <ul  id="group_container_63" style="display:none">
-                    <li id="example_1218">#26: Symbolize check or mate</li>
-                    <li id="example_1219">#27: Be robust if check or mate are not included</li>
-                    <li id="example_1220">#28: Should accept Long Algebraic Notation in various forms</li>
-                    <li id="example_1221">#30: Underpromotion in edit mode possible</li>
-                    <li id="example_1222">#31: Show meaningful error message when PGN is wrong</li>
-                    <li id="example_1223">#32: Internationalization of buttons</li>
-                </ul>
-                <h4 id="group_header_64">Fixed Bugs (part 5)</h4>
-                <ul  id="group_container_64" style="display:none">
-                    <li id="example_1224">#33: buttons:first should go to the start position</li> 
-                    <li id="example_1225">#36: Add UI for FEN and PGN in edit mode</li> 
-                    <li id="example_1226">#37: Add additional languages</li> 
-                    <li id="example_1227">#39: Allow opening of examples from the documentation in a separate tab</li> 
-                    <li id="example_1228">#42: Allow using PGN from an external source</li> 
-                    <li id="example_1229">#43: Ugly display of tags</li> 
-                </ul>
-                <h4 id="group_header_65">Fixed Bugs (part 6)</h4>
-                <ul  id="group_container_65" style="display:none">
-                    <li id="example_1230">#44: Add the NAGs from a move to the NAG menu</li> 
-                    <li id="example_1232">#46: Allow FEN string with PGN to define start position from analysis</li>
-                    <li id="example_1233">#47: Ensure that move numbers are "correct"</li> 
-                    <li id="example_1234">#48: Fix broken green and blue themes</li> 
-                    <li id="example_1235">#49: Fix example style corresponding color of buttons</li> 
-                    <li id="example_1236">#50: Pawn Capture Bug</li> 
-                </ul>
-                <h4 id="group_header_66">Fixed Bugs (part 7)</h4>
-                <ul  id="group_container_66" style="display:none">
-                    <li id="example_1240">#52: Fixing O-O and O-O-O cases in pgn-parser</li> 
-                    <li id="example_1241">#53: Include all NAG symbols in the grammar</li> 
-                    <li id="example_1242">#54: No correct FEN when playing new moves in edit mode</li> 
-                    <li id="example_1243">#57: Allow to play and record chess variant "Horde" (unsolved)</li> 
-                    <li id="example_1244">#58: Playing first move in edit mode</li> 
-                    <li id="example_1245">#59: Playing first move as variant of first move</li> 
-                    <li id="example_1246">#60: Parsing variations of the first move</li> 
-                </ul>
-                <h4 id="group_header_67">Fixed Bugs (part 8)</h4>
-                <ul  id="group_container_67" style="display:none">
-                    <li id="example_1250">#61: Playing a variant of the first move</li> 
-                    <li id="example_1251">#64: Add parameter layout and split it with theme</li> 
-                    <li id="example_1252">#65: Using locales like "de_DE" does not work</li> 
-                    <li id="example_1253">#66: Viewer should allow to read pgn input with line breaks in it</li> 
-                    <li id="example_1254">#69: Piece move glitch when clicking 'next move' rapidly (unsolved)</li> 
-                    <li id="example_1255">#71: Don't add 'D' symbol (for diagram) to PGN display</li> 
-                    <li id="example_1256">#75: Add an option to show board at a given move at page creation time (view / edit mode) (unsolved)</li> 
-                </ul>
-                <h4 id="group_header_68">Fixed Bugs (part 9)</h4>
-                <ul id="group_container_68" style="display:none">
-                    <li id="example_1257">#78: Use chessground (lichess.org UI) as back-end</li> 
-                    <li id="example_1258">#79: Chessground: allow positioning of coordinates</li> 
-                    <li id="example_1259">#80: Chessground: Size the coordinates according to the board size</li> 
-                    <li id="example_1260">#81: Missing promotion in edit mode</li> 
-                    <li id="example_1261">#82: Implement NAG menu native</li> 
-                    <li id="example_1262">#83: Use abstraction from NAGs and convert them to concrete notation (unsolved)</li> 
-                    <li id="example_1263">#84: Show move number for start of variation</li> 
-                </ul>
-                <h4 id="group_header_69">Fixed Bugs (part 10)</h4>
-                <ul id="group_container_69" style="display:none">
-                    <li id="example_1264">#85: Scrolling does not work reliable (unsolved)</li> 
-                    <li id="example_1265">#86: Migrate to FontAwesome 5 (unsolved)</li> 
-                    <li id="example_1266">#87: Show (optional?) move number on continuation of variation and main line</li> 
-                    <li id="example_1267">#88: Allow all layouts (left, top, top-left, ...) as well for edit mode (unsolved)</li> 
-                    <li id="example_1268">#89: Promotion with Chessground does not work any more</li> 
-                    <li id="example_1269">#90: Use newest i18next with getFixedT</li> 
-                    <li id="example_1270">#91: Comment Markup Annotations</li>
-                </ul>
-                <h4 id="group_header_70">Fixed Bugs (part 11)</h4>
-                <ul id="group_container_70" style="display:none">
-                    <li id="example_1271">#92: Hide Moves (unsolved)</li> 
-                    <li id="example_1272">#93: Game could not be read</li> 
-                    <li id="example_1273">#106: Unset marks for first move</li>
-                    <li id="example_1274">#109: Allow first move variation</li>
-                    <li id="example_1275">#112: Color marker for player at move</li>
-                    <li id="example_1276">#114: Show result of game</li>
-                    <li id="example_1277">#117: Allow sloppy FEN</li>
-                </ul>
-            </div>
-
-            <div class="twelve columns">
-                <h2 id="example_name"></h2>
-                <p><a href="#" id="example_single_page_link" target="_blank">View example in new window.</a></p>
-                <div id="example_html_container" class='merida zeit'></div>
-                <div style="clear: both"/>
-                <p id="example_desc_container"></p>
-                <h4>JavaScript</h4>
-                <div id="example_js_container"></div>
-                <h4>HTML</h4>
-                <div id="example_show_html_container"></div>
-            </div>
-        </div>
-
-	</div><!-- container -->
+    <div class="twelve columns">
+        <h2 id="example_name"></h2>
+        <p><a href="#" id="example_single_page_link" target="_blank">View example in new window.</a></p>
+        <div id="example_html_container" class='merida zeit'></div>
+        <div style="clear: both"/>
+        <p id="example_desc_container"></p>
+        <h4>JavaScript</h4>
+        <div id="example_js_container"></div>
+        <h4>HTML</h4>
+        <div id="example_show_html_container"></div>
+    </div>
+</div><!-- container -->
 
 
 <!-- End Document

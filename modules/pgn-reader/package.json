@@ -1,0 +1,26 @@
+{
+  "name": "@mliebelt/pgn-reader",
+  "description": "A pgn reader (backend only) to read, understand and play chess games. Used mainly by pgn-viewer.",
+  "version": "1.0.1",
+  "main": "lib/pgn.js",
+  "files": [
+    "README.md"
+  ],
+  "module": "modules/pgn-reaeder/src/pgn.js",
+  "author": "mliebelt",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mliebelt/PgnViewerJS.git"
+  },
+  "scripts": {
+    "build": "../../node_modules/.bin/webpack --config webpack.prod.js",
+    "start": "../../node_modules/.bin/webpack-dev-server --open --config webpack.dev.js",
+    "test": "cd ../../ && ./node_modules/.bin/mocha ./modules/pgn-reader/test/*.js",
+    "test-interactive": "cd ../../ && ./node_modules/.bin/mocha -w  ./modules/pgn-reader/test/*.js"
+  },
+  "dependencies": {
+    "@mliebelt/pgn-parser": "^1.0.1",
+    "chess.js": "^0.10.3"
+  }
+}
