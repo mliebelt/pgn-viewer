@@ -18,6 +18,8 @@ let pgnBase = function (boardId, configuration) {
     let utils = new Utils();
     // Sets the default parameters for all modes. See individual functions for individual overwrites
     let defaults = {
+        theme: "blue",
+        pieceStyle: 'merida',
         width: '320px',
         showCoords: true,
         orientation: 'white',
