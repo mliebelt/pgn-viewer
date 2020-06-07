@@ -1,0 +1,32 @@
+<head><meta name="viewport" content="width=device-width, initial-scale=1"></head>Html Webpack Plugin:
+<pre>
+  Error: Child compilation failed:
+  Module build failed (from /home/mliebelt/priv/dev/PgnViewerJS/node_modules/html-webpack-plugin/lib/loader.js):
+  Error: ENOENT: no such file or directory, open '/home/mliebelt/priv/dev/PgnViewerJS/node_modules/html-webpack-plugin/default_index.ejs':
+  Error: ENOENT: no such file or directory, open '/home/mliebelt/priv/dev/PgnViewerJS/node_modules/html-webpack-plugin/default_index.ejs'
+  
+  - child-compiler.js:122 childCompiler.runAsChild
+    [PgnViewerJS]/[html-webpack-plugin]/lib/child-compiler.js:122:18
+  
+  - Compiler.js:343 compile
+    [PgnViewerJS]/[webpack]/lib/Compiler.js:343:11
+  
+  - Compiler.js:681 hooks.afterCompile.callAsync.err
+    [PgnViewerJS]/[webpack]/lib/Compiler.js:681:15
+  
+  
+  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
+    [PgnViewerJS]/[tapable]/lib/Hook.js:154:20
+  
+  - Compiler.js:678 compilation.seal.err
+    [PgnViewerJS]/[webpack]/lib/Compiler.js:678:31
+  
+  
+  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
+    [PgnViewerJS]/[tapable]/lib/Hook.js:154:20
+  
+  - Compilation.js:1423 hooks.optimizeAssets.callAsync.err
+    [PgnViewerJS]/[webpack]/lib/Compilation.js:1423:35
+  
+  
+</pre><script src="/dist/pgn.js"></script>
