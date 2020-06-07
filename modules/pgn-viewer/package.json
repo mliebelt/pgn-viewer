@@ -1,10 +1,10 @@
 {
   "name": "@mliebelt/pgn-viewer",
   "description": "A pgn viewer to view or edit chess games on HTML web sites.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "lib/pgnv.js",
   "files": [
-    "lib/img/**",
+    "lib/pgnv-assets/**",
     "lib/locales/**",
     "README.md"
   ],

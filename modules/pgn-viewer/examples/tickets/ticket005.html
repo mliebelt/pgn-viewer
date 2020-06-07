@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Fixed: Missing Capture Symbol in Notation</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+    <script src="https://use.fontawesome.com/4cf2a2bf7b.js"></script>
+</head>
+<body class='merida blue'>
+<p>This example shows that capture symbols are there in the notation:
+<a href="https://github.com/mliebelt/PgnViewerJS/issues/5">Ticket 5 at GitHub</a>.
+</p>
+<div id="board" style="width: 400px"></div>
+
+<script>
+    PGNV.pgnView('board', { pgn: '1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Nf6 5. Nc3 Nxd4 6. Qxd4' });
+</script>
+</body>
+</html>

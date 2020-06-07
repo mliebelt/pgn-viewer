@@ -14,7 +14,6 @@ import swal from 'sweetalert';
  */
 let pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
-    const VERSION = "0.9.7";
     let that = {};
     let utils = new Utils();
     // Sets the default parameters for all modes. See individual functions for individual overwrites

@@ -171,15 +171,4 @@ let pgnPrint = function (boardId, configuration) {
     });
 };
 
-GLOB_SCHED.schedule("fr", () => {
-    console.log(i18next.t("nag:$18", { lng: 'fr'}));
-});
-
-/*let my_div2 = document.createElement('div');
-my_div2.classList.add("merida");
-my_div2.classList.add("blue");
-document.style = "--cg-coord-color-white:#DEE3E6; --cg-coord-color-black:#788a94; --cg-coord-shadow:none;";
-document.body.appendChild(my_div2);
-Chessground(my_div2, {coordinates: true});*/
-
 export { pgnBoard, pgnEdit, pgnBase, pgnPrint, pgnView };

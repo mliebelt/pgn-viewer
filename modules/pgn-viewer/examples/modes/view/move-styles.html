@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Move styles</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+    <script src="https://use.fontawesome.com/4cf2a2bf7b.js"></script>
+</head>
+<body class='merida zeit'>
+<h3>Move styles</h3>
+
+<div>The following demonstrates how different move styles could be implemented.</div>
+
+<div id="board">
+    <div id="boardMoves" class="moves"><span class="move white"><span class="moveNumber">1. </span> e4 </span> <span class="move">e5 </span><span class="move white"><span class="moveNumber">2. </span>Nf3 </span><span class="move">Nc6 </span><span class="move white"><span class="moveNumber">3. </span>Bc4 </span><span class="move">Bc5 </span><span class="move white"><span class="moveNumber">4. </span>b4 </span><span class="move">Bb4 </span><span class="move white"><span class="moveNumber">5. </span>c3 </span><span class="move">Ba5 </span><span class="move white"><span class="moveNumber">6. </span>d4 </span><span class="move">ed4 </span><span class="move white"><span class="moveNumber">7. </span>O-O </span><span class="move">d3 </span><span class="move white"><span class="moveNumber">8. </span>Qb3 </span><span class="move">Qf6 </span><span class="move white"><span class="moveNumber">9. </span>e5 </span><span class="move">Qg6 </span><span class="move white"><span class="moveNumber">10. </span>Re1 </span><span class="move">Nge7 </span><span class="move white"><span class="moveNumber">11. </span>Ba3 </span><span class="move">b5 </span><span class="move white"><span class="moveNumber">12. </span>Qb5 </span><span class="move">Rb8 </span><span class="move white"><span class="moveNumber">13. </span>Qa4 </span><span class="move">Bb6 </span><span class="move white"><span class="moveNumber">14. </span>Nbd2 </span><span class="move">Bb7 </span><span class="move white"><span class="moveNumber">15. </span>Ne4 </span><span class="move">Qf5 </span><span class="move white"><span class="moveNumber">16. </span>Bd3 </span><span class="move">Qh5 <span class="comment"> now the whole idea unfolds </span></span><span class="move white"><span class="moveNumber">17. </span>Nf6+ </span><span class="move">gf6 </span><span class="move white"><span class="moveNumber">18. </span>ef6 </span><span class="move">Rg8 </span><span class="move white"><span class="moveNumber">19. </span>Rad1! <span class="comment"> This move sets a deep trap, which Black falls into. Lasker and others have suggested that </span></span><span class="move var var1 white"> ( <span class="moveNumber">19. </span>Be4 <span class="comment"> was objectively stronger; however, after the forcing line </span></span><span class="move var var1">Qh3 </span><span class="move var var1 white"><span class="moveNumber">20. </span>g3 </span><span class="move var var1">Rg3+ </span><span class="move var var1 white"><span class="moveNumber">21. </span>hg3 </span><span class="move var var1">Qg3+ </span><span class="move var var1 white"><span class="moveNumber">22. </span>Kh1 </span><span class="move var var1">Bf2 </span><span class="move var var1 white"><span class="moveNumber">23. </span>Be7 </span><span class="move var var1">Qh3+ </span><span class="move var var1 white"><span class="moveNumber">24. </span>Nh2 </span><span class="move var var1">Be1 </span><span class="move var var1 white"><span class="moveNumber">25. </span>Re1 </span><span class="move var var1">Qh4 </span><span class="move var var1 white"><span class="moveNumber">26. </span>Qd1 </span><span class="move var var1">Ne7 </span><span class="move var var1 white"><span class="moveNumber">27. </span>Bb7 </span><span class="move var var1">Qf6  ) <span class="comment"> it is unclear whether White is winning </span></span><span class="move">Qf3? </span><span class="move white"><span class="moveNumber">20. </span>Re7+! </span><span class="move">Ne7 </span><span class="move white"><span class="moveNumber">21. </span>Qd7+ </span><span class="move">Kd7 </span><span class="move white"><span class="moveNumber">22. </span>Bf5+ </span><span class="move">Ke8 </span><span class="move white"><span class="moveNumber">23. </span>Bd7+ </span><span class="move">Kf8 </span><span class="move white"><span class="moveNumber">24. </span>Be7# </span></div> </div> <br/>
+
+<div id="board2">
+    <div id="board2Moves" class="moves">
+        <span class="move white"><span class="moveNumber">1. </span> e4 </span>
+        <span class="move">e5 </span>
+        <span class="move white"><span class="moveNumber">2. </span>Nf3 </span>
+        <span class="move">Nc6 </span>
+        <span class="move white"><span class="moveNumber">3. </span>Bc4 </span>
+        <span class="move">Bc5 </span>
+        <span class="move white"><span class="moveNumber">4. </span>b4 </span>
+        <span class="move">Bb4 </span>
+        <span class="move white"><span class="moveNumber">5. </span>c3 </span>
+        <span class="move">Ba5 </span>
+        <span class="move white"><span class="moveNumber">6. </span>d4 </span>
+        <span class="move">ed4 </span>
+        <span class="move white"><span class="moveNumber">7. </span>O-O </span>
+        <span class="move">d3 </span>
+        <span class="move white"><span class="moveNumber">8. </span>Qb3 </span>
+        <span class="move">Qf6 </span>
+        <span class="move white"><span class="moveNumber">9. </span>e5 </span>
+        <span class="move">Qg6 </span>
+        <span class="move white"><span class="moveNumber">10. </span>Re1 </span>
+        <span class="move">Nge7 </span>
+        <span class="move white"><span class="moveNumber">11. </span>Ba3 </span>
+        <span class="move">b5 </span>
+        <span class="move white"><span class="moveNumber">12. </span>Qb5 </span>
+        <span class="move">Rb8 </span>
+        <span class="move white"><span class="moveNumber">13. </span>Qa4 </span>
+        <span class="move">Bb6 </span>
+        <span class="move white"><span class="moveNumber">14. </span>Nbd2 </span>
+        <span class="move">Bb7 </span>
+        <span class="move white"><span class="moveNumber">15. </span>Ne4 </span>
+        <span class="move">Qf5 </span>
+        <span class="move white"><span class="moveNumber">16. </span>Bd3 </span>
+        <span class="move">Qh5
+            <span class="comment"> now the whole idea unfolds </span>
+        </span>
+        <span class="move white"><span class="moveNumber">17. </span>Nf6+ </span>
+        <span class="move">gf6 </span>
+        <span class="move white"><span class="moveNumber">18. </span>ef6 </span>
+        <span class="move">Rg8 </span>
+        <span class="move white"><span class="moveNumber">19. </span>Rad1! </span>
+        <div class="varblock">
+            <span class="move var var1 white">
+                <span class="comment"> This move sets a deep trap, which Black falls into. Lasker and others have suggested that </span>
+                <span class="moveNumber">19. </span>
+                Be4
+                <span class="comment"> was objectively stronger; however, after the forcing line </span>
+            </span>
+            <span class="move var var1">Qh3 </span>
+            <span class="move var var1 white"><span class="moveNumber">20. </span>g3 </span>
+            <span class="move var var1">Rg3+ </span>
+            <span class="move var var1 white"><span class="moveNumber">21. </span>hg3 </span>
+            <span class="move var var1">Qg3+ </span>
+            <span class="move var var1 white"><span class="moveNumber">22. </span>Kh1 </span>
+            <span class="move var var1">Bf2 </span>
+            <span class="move var var1 white"><span class="moveNumber">23. </span>Be7 </span>
+            <span class="move var var1">Qh3+ </span>
+            <span class="move var var1 white"><span class="moveNumber">24. </span>Nh2 </span>
+            <span class="move var var1">Be1 </span>
+            <span class="move var var1 white"><span class="moveNumber">25. </span>Re1 </span>
+            <span class="move var var1">Qh4 </span>
+            <span class="move var var1 white"><span class="moveNumber">26. </span>Qd1 </span>
+            <span class="move var var1">Ne7 </span>
+            <span class="move var var1 white"><span class="moveNumber">27. </span>Bb7 </span>
+            <span class="move var var1">Qf6
+                <span class="comment"> it is unclear whether White is winning </span>
+            </span>
+        </div>
+        <span class="move">Qf3? </span>
+        <span class="move white"><span class="moveNumber">20. </span>Re7+! </span>
+        <span class="move">Ne7 </span>
+        <span class="move white"><span class="moveNumber">21. </span>Qd7+ </span>
+        <span class="move">Kd7 </span>
+        <span class="move white"><span class="moveNumber">22. </span>Bf5+ </span>
+        <span class="move">Ke8 </span>
+        <span class="move white"><span class="moveNumber">23. </span>Bd7+ </span>
+        <span class="move">Kf8 </span>
+        <span class="move white"><span class="moveNumber">24. </span>Be7# </span>
+    </div>
+</div>
+
+<p>Here some comments what a reasonable structure can be:
+<ul>
+    <li>Moves have to be captured in one div, with a special class.</li>
+    <li>There should be an option to style moves per move number:
+        <ul>
+            <li>Only break before white is moving.</li>
+            <li>Break all the time before white is moving.</li>
+            <li>Do that only for main lines, not variations.</li>
+        </ul></li>
+    <li>Comments have to be part of the move:
+    <ul>
+        <li>Before comment directly before the move (even for white before or after the move
+        number??)</li>
+        <li>After comment directly after the move</li>
+    </ul></li>
+    <li>Decide if variations would be included in parentheses or some other thing. This
+    can be done easily directly in the CSS (only).</li>
+</ul></p>
+
+<p>So here in essence some of the examples (in a pseudo HTML notation):</p>
+
+<h3>Simplest example</h3>
+
+<ul>
+    <li>div moves
+    <ul>
+        <li>span move</li>
+        <li>span move</li>
+        <li>span move
+            <ul>
+                <li>span comment before</li>
+                <li>move</li>
+                <li>span comment after</li>
+            </ul>
+        </li>
+        <li>span move</li>
+    </ul></li>
+</ul>
+
+<h3>Example with one level variations</h3>
+
+<ul>
+    <li>div moves
+        <ul>
+            <li>span move</li>
+            <li>span move
+                <ul>
+                    <li>div var1
+                        <ul>
+                            <li>span move</li>
+                            <li>span move</li>
+                            <li>span move</li>
+                            <li>span move</li>
+                            <li>span move
+                                <ul>
+                                    <li>span comment after</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>span move</li>
+            <li>span move</li>
+            <li>span move</li>
+            <li>span move
+                <ul>
+                    <li>div var2
+                        <ul>
+                            <li>span move</li>
+                            <li>span move</li>
+                            <li>span move</li>
+                            <li>span move</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<h3>Deeper variations</h3>
+
+<ul>
+    <li>div moves
+        <ul>
+            <li>span move</li>
+            <li>span move</li>
+            <li>span move</li>
+            <li>span move</li>
+            <li>
+                <ul>
+                    <li>div var1
+                        <ul>
+                            <li>span move</li>
+                            <li>span move</li>
+                            <li>span move</li>
+                            <li>
+                                <ul>
+                                    <li>div var11
+                                        <ul>
+                                            <li>span move</li>
+                                            <li>span move</li>
+                                            <li>span move</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>span move</li>
+                            <li>span move</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>span move</li>
+            <li>span move</li>
+            <li>span move</li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>

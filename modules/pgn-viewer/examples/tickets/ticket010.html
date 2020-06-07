@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Some Games to Edit</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+    <script src="https://use.fontawesome.com/4cf2a2bf7b.js"></script>
+</head>
+<body>
+<p>Example that demontrates that the ticket 10 is fixed:
+<a href="https://github.com/mliebelt/PgnViewerJS/issues/10">Ticket 10 at GitHub</a> </p>
+<div id="board" style="width: 400px"></div>
+<script>
+var pgn = "1. e4 {comment} 1... e5";
+    var cfg = { showNotation: false, position: 'start', pgn: pgn };
+    var board = PGNV.pgnView('board', cfg);
+</script>
+<br/>
+<div>The shown pgn is the following: <code>1. e4 {comment} 1... e5</code></div>
+</body>
+</html>

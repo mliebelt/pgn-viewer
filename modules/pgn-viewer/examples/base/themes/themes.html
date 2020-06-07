@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Some Games to Edit</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+    <script src="https://use.fontawesome.com/4cf2a2bf7b.js"></script>
+<body>
+<h3>The Evergreen Game</h3>
+
+<div>The following game is one of the most prominent in the history
+of chess. Play through the beautiful moves, and see where black is without and chance.</div>
+<br/>
+<div>Try to use the play button, because the three boards have differenct
+speed defined. You can stop at any time, and use instead the cursor LEFT and
+RIGHT for playing back and forth. And you may switch colors during the play
+at will.</div>
+<div>Here are the combinations of piecestyle and themes:
+    <ol>
+        <li>piecestyle: leipzig, theme: green</li>
+        <li>piecestyle: maya, theme: blue</li>
+        <li>piecestyle: chesscom, theme: zeit</li>
+        <li>piecestyle: beyer, theme: beyer</li>
+        <li>piecestyle: wikipedia, theme: informator</li>
+        <li>piecestyle: merida, theme: falken</li>
+    </ol>
+</div>
+<br/>
+<div id="board" style="float: left; margin-right: 25px"></div>
+<div id="board1" style="float: left; margin-right: 25px"></div>
+<div id="board2" style="float: left; margin-right: 25px"></div>
+
+<br/>
+<div id='b3' style='float: left; margin-right: 25px'></div>
+<div id='b4' style='float: left; margin-right: 25px'></div>
+<div id='b5' style='float: left; margin-right: 25px'></div>
+
+<script>
+//    var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 (19... Rxg2 20. Kxg2 Ne5 { does not work }) 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7#";
+    var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0";
+    pgnv = PGNV.pgnView("board", {pgn: pgn, position: "start", pieceStyle: 'leipzig', theme: 'green', timerTime: 200});
+    pgnv = PGNV.pgnView("board1", {pgn: pgn, position: "start", pieceStyle: 'maya', theme: 'blue', orientation: 'black', timerTime: 1200});
+    pgnv = PGNV.pgnView("board2", {pgn: pgn, position: "start", pieceStyle: 'chesscom', theme: 'zeit'});
+    let pgn2 = "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O b5 6. Bb3 Be7 7. Re1 O-O";
+    PGNV.pgnView('b3', {pgn: pgn2, pieceStyle: 'beyer', theme: 'beyer'});
+    PGNV.pgnView('b4', {pgn: pgn2, pieceStyle: 'wikipedia', theme: 'informator'});
+    PGNV.pgnView('b5', {pgn: pgn2, pieceStyle: 'merida', theme: 'falken'});
+</script>
+
+
+</body>
+</html>

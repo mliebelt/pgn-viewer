@@ -25,11 +25,11 @@
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^4.2.2",
+    "webpack-require-from": "^1.8.1"
   },
   "scripts": {
     "start": "nps",
-    "test": "nps test",
     "gen_examples": "nps gen_examples"
   }
 }

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Parameter size</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+    <script src="https://use.fontawesome.com/4cf2a2bf7b.js"></script>
+</head>
+<body class='merida zeit'>
+<h3>Parameter size</h3>
+
+<div>The parameter size sets the whole width of the game (including the board). Depending in which
+    mode you are working, the result may be different:</div>
+<ol>
+    <li>In case of board, set the size of the board.</li>
+    <li>in case of print, set the size of the column used for printing the game.</li>
+    <li>In case of view, it sets the size of the board and the column to print the moves.</li>
+    <li>In case of edit, it sets the size of the board, the comment field (and others), and
+        the size of the column to print the moves.</li>
+</ol>
+<br/>
+<div id="board0" style="float: left; margin-right: 25px"></div>
+<div id="board1" style="float: left; margin-right: 25px"></div>
+<div id="board2" style="float: left; margin-right: 25px"></div>
+<div id="board3" style="float: left; margin-right: 25px"></div>
+
+<script>
+    var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0";
+    var pgnp = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4D 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6D 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8D 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5D { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7D 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7#D 1:0";
+    pgnv = PGNV.pgnBoard("board0", {pgn: pgn, width: '450px'});
+    pgnv = PGNV.pgnPrint("board1", {pgn: pgnp, width: '250px', orientation: 'black'});
+    pgnv = PGNV.pgnView("board2", {pgn: pgn, width: '350px'});
+    pgnv = PGNV.pgnEdit("board3", {pgn: pgn, width: '350px'});
+</script>
+
+
+</body>
+</html>

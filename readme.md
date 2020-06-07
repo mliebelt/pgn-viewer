@@ -9,7 +9,7 @@ in a web page. PgnViewerJS does not write everything anew, but it uses the follo
 
 See the section Acknowledgments for more supporting libraries.
 
-See the working examples on my new GitHub Pages site [PgnViewerJS](http://mliebelt.github.io/PgnViewerJS/), especially the [Configuration Builder](http://mliebelt.github.io/PgnViewerJS/docu/config/config.html) that demonstrates all parameters in a running example.
+See the working examples on my new GitHub Pages site [PgnViewerJS](http://mliebelt.github.io/PgnViewerJS/), especially the [Configuration Builder](http://mliebelt.github.io/PgnViewerJS/config/config.html) that demonstrates all parameters in a running example.
 
 ## Getting Started
 
@@ -80,7 +80,7 @@ There is at the moment no way to save a game that was edited in `pgnEdit` mode. 
 
 To use the viewer in an HTML page, you have to do the following steps:
 
-* Include the necessary library `pgnv.js`.
+* Include the necessary library `pgnv.js` and the corresponding resources `locales` and `pgnv-assets`.
 * Have Fontawesome referenced.
 * Include the necessary div container for rendering of the  board and the moves.
 * Include JavaScript code inside your HTML page to call the viewer.
