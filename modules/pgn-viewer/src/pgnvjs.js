@@ -425,7 +425,7 @@ let pgnBase = function (boardId, configuration) {
             let bottomInnerBoardDiv = createEle("div", null, "bottomInnerBoard", theme, boardAndDiv);
             let bottomTime = createEle("div", null, "bottomTime", theme, bottomInnerBoardDiv);
             if (that.configuration.colorMarker && (!hasMode('print'))) {
-                createEle("div", colorMarkerId, 'colorMarker' + " " + that.configuration.colorMarker, theme, boardAndDiv);
+                createEle("div", colorMarkerId, 'colorMarker' + " " + that.configuration.colorMarker, theme, topInnerBoardDiv);
             }
             if (hasMode('view') || hasMode('edit')) {
                 const buttonsBoardDiv = createEle("div", buttonsId, "buttons", theme, outerInnerBoardDiv);

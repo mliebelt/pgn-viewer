@@ -449,16 +449,6 @@ div.comment > textarea.comment {
 }
 
 /* board and colorMarker */
-.boardAnd {
-    /*
-    display: grid;
-    grid-template-columns: 400px 40px;
-    */
-}
-
-.board {
-    /*order: 2;*/
-}
 
 .colorMarker {
     width: 20px; height: 20px;
@@ -466,7 +456,6 @@ div.comment > textarea.comment {
     border-width: 2px;
     border-style: double;
     margin: 10px;
-    /*order: 1; */
 }
 
 .colorMarker.circle {
