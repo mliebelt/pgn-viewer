@@ -14,13 +14,13 @@ but different in using the new parameter layout.</p>
 <h3>Layout Top</h3>
 
 <p>Brings the board to the top (default), and moves to the bottom.</p>
-<div id="b1" style="width: 400px"></div>
+<div id="b1"></div>
 
 <h3>Layout Bottom</h3>
 
 <p>The opposite, board to the bottom, rest to top.</p>
 
-<div id="b2" style="width: 400px"></div>
+<div id="b2"></div>
 
 <h3>Experiment: No size of whole</h3>
 
@@ -31,13 +31,14 @@ but different in using the new parameter layout.</p>
 <div id="b4"></div>
 
 <script>
-    pgnView('b1', { pgnFile: "/docu/example/cori-vishnu.pgn", layout: 'top', 
+    let pgnView = PGNV.pgnView;
+    pgnView('b1', { pgnFile: "../pgn/cori-vishnu.pgn", layout: 'top', 
+        movesHeight: '240px', movesWidth: '320px'});
+    pgnView('b2', { pgnFile: "../pgn/cori-vishnu.pgn", layout: 'bottom', 
+        boardSize: '400px', movesHeight: '200px', movesWidth: '400px'});
+    pgnView('b3', { pgnFile: "../pgn/cori-vishnu.pgn", layout: 'top', 
         boardSize: '400px', movesHeight: '240px'});
-    pgnView('b2', { pgnFile: "/docu/example/cori-vishnu.pgn", layout: 'bottom', 
-        boardSize: '400px', movesHeight: '240px'});
-    pgnView('b3', { pgnFile: "/docu/example/cori-vishnu.pgn", layout: 'top', 
-        boardSize: '400px', movesHeight: '240px'});
-    pgnView('b4', { pgnFile: "/docu/example/cori-vishnu.pgn", layout: 'bottom', 
+    pgnView('b4', { pgnFile: "../pgn/cori-vishnu.pgn", layout: 'bottom', 
         movesHeight: '240px'});
 </script>
 </body>

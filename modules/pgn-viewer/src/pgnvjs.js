@@ -20,7 +20,8 @@ let pgnBase = function (boardId, configuration) {
     let defaults = {
         theme: "blue",
         pieceStyle: 'merida',
-        width: '320px',
+        //width: '320px',
+        //boardSize: '320px',
         showCoords: true,
         orientation: 'white',
         position: 'start',
@@ -56,21 +57,15 @@ let pgnBase = function (boardId, configuration) {
     let board;              // Will be set later, but has to be a known variable
     // IDs needed for styling and adressing the HTML elements, only used if no markup is done by the user
     if (!hasMarkup()) {
-        var headersId = boardId + 'Headers';
+        var whiteHeaderId = boardId + 'WhiteHeader';
+        var blackHeaderId = boardId + 'BlackHeader';
         var innerBoardId = boardId + 'Inner';
         var movesId = boardId + 'Moves';
         var buttonsId = boardId + 'Button';
         var fenId = boardId + "Fen";
         var colorMarkerId = innerBoardId + 'ColorMarker';
     } else { // will be filled later
-        var innerBoardId;
-        var headersId;
-        var movesId;
-        var buttonsId;
-        var fenId;
-        var colorMarkerId;
-
-    }
+            }
 
     if (that.configuration.locale) {
         that.configuration.locale = that.configuration.locale.replace(/_/g, "-");
@@ -193,13 +188,13 @@ let pgnBase = function (boardId, configuration) {
      * @param to the destination
      * @param meta additional parameters (not used at the moment)
      */
-    const onSnapEnd = async function (from, to, meta) {
+    const onSnapEnd = function (from, to, meta) {
         //console.log("Move from: " + from + " To: " + to + " Meta: " + JSON.stringify(meta, null, 2));
         //board.set({fen: game.fen()});
         const cur = that.currentMove;
         let primMove = {from: from, to: to};
         if ((that.mypgn.game.get(from).type == 'p') && ((to.substring(1, 2) == '8') || (to.substring(1, 2) == '1'))) {
-            let sel = await swal("Select the promotion figure", {
+            let sel = swal("Select the promotion figure", {
                 buttons: {
                     queen: {text: "Queen", value: 'q'},
                     rook: {text: "Rook", value: 'r'},
@@ -366,29 +361,13 @@ let pgnBase = function (boardId, configuration) {
             createEle("label", null, "labelAfterComment", theme, radio).appendChild(document.createTextNode("After"));
             createEle("textarea", null, "comment", theme, commentDiv);
         };
+
+        const hasHeaders = function () {
+            return that.configuration.headers && (Object.keys(that.mypgn.getTags()).length > 0)
+        }
+        // TODO: Remove hasMarkup all together
         if (hasMarkup()) {
-            if (boardId.header) {
-                headersId = boardId.header; // Real header will be built later
-                addClass(headersId, 'headers');
-            }
-            if (boardId.inner) {
-                innerBoardId = boardId.inner;
-                addClass(innerBoardId, 'board');
-            }
-            if (boardId.button) {
-                buttonsId = boardId.button;
-                addClass(buttonsId, 'buttons');
-                const buttonsDiv = document.getElementById(buttonsId);
-                generateViewButtons(buttonsDiv);
-            }
-            if (boardId.moves) {
-                movesId = boardId.moves;
-                addClass(movesId, 'moves');
-            }
-            if (boardId.editButton) {
-                const editButtonsBoardDiv = document.getElementById(boardId.editButton);
-                generateEditButtons(editButtonsBoardDiv);
-            }
+
         } else {
             const divBoard = document.getElementById(boardId);
             if (divBoard == null) {
@@ -401,36 +380,50 @@ let pgnBase = function (boardId, configuration) {
             }
             divBoard.classList.add(theme);
             divBoard.classList.add('whole');
+            divBoard.classList.add(that.configuration.mode + 'Mode');
             divBoard.setAttribute('tabindex', '0');
             // Add layout for class if configured
             if (that.configuration.layout) {
                 divBoard.classList.add('layout-' + that.configuration.layout);
             }
-            // Add an error div to show errors
+            /** Add an error div to show errors */
             that.errorDiv = createEle("div", boardId + "Error", 'error', null, divBoard);
-            createEle("div", headersId, "headers", theme, divBoard);
+
+            /** Header Div (as part of topInner ?? */
+            //createEle("div", headersId, "headers", theme, divBoard);
+
+            /** outerBoard */
             const outerInnerBoardDiv = createEle("div", null, "outerBoard", null, divBoard);
             let boardAndDiv = createEle('div', null, 'boardAnd', theme, outerInnerBoardDiv);
+            // TODO Move the computation of grid layout sizes to one function (with parameters)
             if (that.configuration.boardSize) {
                 outerInnerBoardDiv.style.width = that.configuration.boardSize;
             }
-            if (that.configuration.width || that.configuration.boardSize) {
-                let size = that.configuration.width ? that.configuration.width : that.configuration.boardSize;
-                //boardAndDiv.style.display = 'grid';
-                boardAndDiv.style.gridTemplateColumns = size + ' 40px';
-            }
+            /** topInner for headers / time of Black. TODO: Orientation should switch that then. **/
             let topInnerBoardDiv = createEle("div", null, "topInnerBoard", theme, boardAndDiv);
+            let blackHeader = createEle('div', blackHeaderId, "blackHeader", theme, boardAndDiv);
             let topTime = createEle("span", null, "topTime", theme, topInnerBoardDiv);
             const innerBoardDiv = createEle("div", innerBoardId, "board", theme, boardAndDiv);
+            /** bottomInner for headers / time of White. TODO: Orientation should switch that then. **/
             let bottomInnerBoardDiv = createEle("div", null, "bottomInnerBoard", theme, boardAndDiv);
+            let whiteHeader = createEle('div', whiteHeaderId, "whiteHeader", theme, boardAndDiv);
             let bottomTime = createEle("div", null, "bottomTime", theme, bottomInnerBoardDiv);
-            if (that.configuration.colorMarker && (!hasMode('print'))) {
-                createEle("div", colorMarkerId, 'colorMarker' + " " + that.configuration.colorMarker, theme, topInnerBoardDiv);
-            }
+
+            /** Buttons */
             if (hasMode('view') || hasMode('edit')) {
-                const buttonsBoardDiv = createEle("div", buttonsId, "buttons", theme, outerInnerBoardDiv);
+                const buttonsBoardDiv = createEle("div", buttonsId, "buttons", theme, divBoard);
                 generateViewButtons(buttonsBoardDiv);
+                if ( that.configuration.colorMarker ) {
+                    createEle("div", colorMarkerId, 'colorMarker' + " " + that.configuration.colorMarker, theme, buttonsBoardDiv);
+                }
             }
+            if (hasMode('board')) {
+                if ( that.configuration.colorMarker ) {
+                    createEle("div", colorMarkerId, 'colorMarker' + " " + that.configuration.colorMarker, theme, topInnerBoardDiv);
+                }
+            }
+
+            /** Fen */
             if ((hasMode('edit') || hasMode('view')) && (that.configuration.showFen)) {
                 const fenDiv = createEle("textarea", fenId, "fen", theme, outerInnerBoardDiv);
                 addEventListener(fenId, 'mousedown', function (e) {
@@ -449,26 +442,14 @@ let pgnBase = function (boardId, configuration) {
                 } else {
                     document.getElementById(fenId).readonly = true;
                 }
-                let fenSize = that.configuration.width ? that.configuration.width : that.configuration.boardSize;
-                document.getElementById(fenId).style.width = fenSize;
             }
-            if (hasMode('print') || hasMode('view') || hasMode('edit')) {
-                // Ensure that moves are scrollable (by styling CSS) when necessary
-                // To be scrollable, the height of the element has to be set
-                // TODO: Find a way to set the height, if all other parameters denote that it had to be set:
-                // scrollable == true; layout == left|right
-                const movesDiv = createEle("div", movesId, "moves", null, divBoard);
 
-                if (that.configuration.movesWidth) {
-                    movesDiv.style.width = that.configuration.movesWidth;
-                }
-                else if (that.configuration.width) {
-                    movesDiv.style.width = that.configuration.width;
-                }
-                if (that.configuration.movesHeight) {
-                    movesDiv.style.height = that.configuration.movesHeight;
-                }
+            /** Moves Div */
+            if (hasMode('print') || hasMode('view') || hasMode('edit')) {
+                const movesDiv = createEle("div", movesId, "moves", null, divBoard);
             }
+
+            /** Edit Divs TODO Redo those */
             if (hasMode('edit')) {
                 const editButtonsBoardDiv = createEle("div", "edit" + buttonsId, "edit", theme, divBoard);
                 generateEditButtons(editButtonsBoardDiv);
@@ -489,7 +470,79 @@ let pgnBase = function (boardId, configuration) {
                     pgnEdit(boardId, that.configuration);
                 };
             }
-            const endDiv = createEle("div", null, "endBoard", null, divBoard);
+            let computeBoardSize = function() {
+                let _boardSize = that.configuration.boardSize;
+                let _width =  that.configuration.width || divBoard.style.width;
+                if (that.configuration.layout === 'top' || that.configuration.layout === 'bottom') {
+                    if (_boardSize) {
+                        that.configuration.width = _boardSize;
+                        divBoard.style.width = _boardSize;
+                        return _boardSize;
+                    } else {
+                        _width = _width || '320px';
+                        that.configuration.boardSize = _width;
+                        that.configuration.width = _width;
+                        divBoard.style.width = _width;
+                        return _width;
+                    }
+                }
+                // Layout left or right, more complex combinations possible
+                if (_boardSize && _width) {
+                    divBoard.style.width = _width;
+                    that.configuration.width = _width;
+                    return _boardSize;
+                } else if (! _boardSize) {
+                    divBoard.style.width = _width;
+                    that.configuration.width = _width;
+                    _width = "" + parseInt(_width) / 8 * 5 + "px";
+                    that.configuration.boardSize = _width;
+                    return _width;
+                }
+            }
+
+            let _boardHeight = computeBoardSize();
+            let _boardWidth = _boardHeight;
+            let _buttonFontSize = `${parseInt(_boardHeight) / 18}px`;
+            if (document.getElementById(buttonsId)) {
+                document.getElementById(buttonsId).style.fontSize = _buttonFontSize;
+            }
+
+            window.addEventListener('load', (event) => { // same as window.addEventListener('load', (event) => {
+                if (hasMode('board')) {
+                    if (document.getElementById(colorMarkerId)) {
+                        document.getElementById(colorMarkerId).style.marginLeft = 'auto';
+                    }
+                    return;
+                }
+                if (hasMode('print')) return;
+                if (that.configuration.showFen) {
+                    let _fenHeight = document.getElementById(fenId).offsetHeight;
+                    _boardHeight = `${parseInt(_boardHeight) + _fenHeight}px`;
+                }
+                if (hasHeaders()) {
+                    _boardHeight = `${parseInt(_boardHeight) + 40}px`;
+                }
+                let _buttonsHeight = document.getElementById(buttonsId).offsetHeight;
+                if (that.configuration.layout === 'left' || that.configuration.layout === 'right') {
+                    divBoard.style.gridTemplateRows = `auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px`;
+                    let _movesWidth = `${parseInt(that.configuration.width) - parseInt(_boardWidth)}px`;
+                    if (that.configuration.layout === 'left') {
+                        divBoard.style.gridTemplateColumns = _boardWidth + " " + _movesWidth;
+                    } else {
+                        divBoard.style.gridTemplateColumns = _movesWidth + " " + _boardWidth;
+                    }
+                } else {
+                    let _movesCount = that.mypgn.getMoves().length;
+                    let _minMovesHeight = (_movesCount + 7) / 7 * 30;
+                    let _movesHeight = parseInt(_boardHeight) / 5 * 3;
+                    if (_minMovesHeight < _movesHeight) _movesHeight = _minMovesHeight;
+                    if (that.configuration.layout === 'top') {
+                        divBoard.style.gridTemplateRows = `auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px minmax(0, ${_movesHeight}px)`;
+                    } else if (that.configuration.layout === 'bottom') {
+                        divBoard.style.gridTemplateRows = `auto minmax(0,${_movesHeight}px) minmax(auto,${_boardHeight}) ${_buttonsHeight}px`;
+                    }
+                }
+            })
         }
     };
 
@@ -620,7 +673,7 @@ let pgnBase = function (boardId, configuration) {
             }
         };
         function localBoard(id, configuration) {
-            let base = pgnBase(id, Object.assign({headers: false, mode: 'board'}, configuration));
+            let base = pgnBase(id, Object.assign({headers: false, mode: 'board', boardSize: '200px'}, configuration));
             base.generateHTML();
             base.generateBoard();
         }
@@ -693,6 +746,7 @@ let pgnBase = function (boardId, configuration) {
             that.configuration.position = move.fen;
             localBoard(diaID, that.configuration);
         }
+        //console.log(`FEN size: ${move.fen.length}`)
         return currentCounter;
     };
 
@@ -914,37 +968,36 @@ let pgnBase = function (boardId, configuration) {
          */
         const generateHeaders = function () {
             let tags = that.mypgn.getTags();
+            let whd = document.getElementById(whiteHeaderId);
+            let bhd = document.getElementById(blackHeaderId);
             if (that.configuration.headers == false || (utils.pvIsEmpty(tags))) {
-                let hd = document.getElementById(headersId);
-                hd.parentNode.removeChild(hd);
+                whd.parentNode.removeChild(whd);
+                bhd.parentNode.removeChild(bhd);
                 return;
             }
-            let div_h = document.getElementById(headersId);
-            let white = createEle('span', null, "whiteHeader", theme, div_h);
             if (tags.White) {
-                white.appendChild(document.createTextNode(tags.White + " "));
+                whd.appendChild(document.createTextNode(tags.White + " "));
             }
             //div_h.appendChild(document.createTextNode(" - "));
-            let black = createEle('span', null, "blackHeader", theme, div_h);
             if (tags.Black) {
-                black.appendChild(document.createTextNode(" " + tags.Black));
+                bhd.appendChild(document.createTextNode(" " + tags.Black));
             }
-            let rest = "";
-            const appendHeader = function (result, header, separator) {
-                if (header) {
-                    if (result.length > 0) {
-                        result += separator;
-                    }
-                    result += header;
-                }
-                return result;
-            };
-            [tags.Event, tags.Site, tags.Round, tags.Date,
-                tags.ECO, tags.Result].forEach(function (header) {
-                rest = appendHeader(rest, header, " | ");
-            });
-            const restSpan = createEle("span", null, "restHeader", theme, div_h);
-            restSpan.appendChild(document.createTextNode(rest));
+            // let rest = "";
+            // const appendHeader = function (result, header, separator) {
+            //     if (header) {
+            //         if (result.length > 0) {
+            //             result += separator;
+            //         }
+            //         result += header;
+            //     }
+            //     return result;
+            // };
+            // [tags.Event, tags.Site, tags.Round, tags.Date,
+            //     tags.ECO, tags.Result].forEach(function (header) {
+            //     rest = appendHeader(rest, header, " | ");
+            // });
+            // const restSpan = createEle("span", null, "restHeader", theme, div_h);
+            // restSpan.appendChild(document.createTextNode(rest));
 
         };
 
@@ -1104,7 +1157,7 @@ let pgnBase = function (boardId, configuration) {
             function togglePlay() {
                 timer.running() ? timer.stop() : timer.start();
                 const playButton = document.getElementById(buttonsId + 'play');
-                const clString = playButton.getAttribute('class');
+                let clString = playButton.getAttribute('class');
                 if (clString.indexOf('play') < 0) { // has the stop button
                     clString = clString.replace('stop', 'play');
                 } else {

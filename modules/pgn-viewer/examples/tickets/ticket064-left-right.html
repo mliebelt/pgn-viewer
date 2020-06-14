@@ -31,6 +31,7 @@ but different in using the new parameter layout.</p>
 <div id="b4"></div>
 
 <script>
+    let pgnView = PGNV.pgnView;
     let pgn = '1.d4 d5 2.Nf3 c5 3.e3 Nc6 4.Be2 4...cxd4 5.exd4 Bg4 6.c3 e6 7.Qb3  7...Qc7 ( 7...Rb8 8.Bf4 Bd6 9.Bxd6 Qxd6 10.Nbd2 Nge7' +
         '11.O-O O-O { looks very comfortable for Black. } ) 8.Bf4!? { A fairly typical move that (I believe) is actually a known idea in the exchange Khan.  } 8...Bd6??' +
         '( 8...Qxf4 9.Qxb7 Qc1+ 10.Bd1 Nd8 11.Qxa8 Bxf3 12.gxf3 Qxb2 13.Ba4+ Ke7 14.O-O { leads to an extremely messy position that is probably more' +
@@ -41,7 +42,7 @@ but different in using the new parameter layout.</p>
         'up on a subtle detail: with Black"s king still uncastled, there is always the remote possibility of unpleasant checks along the a4-e8 diagonal. In the' +
         'absence of Black"s knight and the d4 pawn, Qa4+ would actually win the bishop. But are these thoughts relevant in the least? } 10.Ne5!  Bxe2'
     pgnView('b1', { pgn: pgn, layout: 'left', locale: 'de_DE',
-        boardSize: '400px', movesHeight: '420px'});
+        boardSize: '400px'});
     pgnView('b2', { pgn: pgn, layout: 'right', 
         boardSize: '400px', movesHeight: '420px'});
     pgnView('b3', { pgn: pgn, layout: 'left', 
