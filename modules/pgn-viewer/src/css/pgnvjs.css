@@ -1,8 +1,53 @@
+:root {
+    --space-xss: 0.25rem;
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1.25rem;
+    --space-lg: 2rem;
+    --space-xl: 3.25rem;
+    --space-xxl: 5.25rem;
+}
+
+:root {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell, sans-serif;
+    --gray-100: #F7FAFC;
+    --gray-200: #EDF2F7;
+    --gray-300: #E2E8F0;
+    --gray-400: #CBD5E0;
+    --gray-500: #A0AEC0;
+    --gray-600: #718096;
+    --gray-700: #4A5568;
+    --gray-800: #2D3748;
+    --gray-900: #1A202C;
+    --box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --highlight: rgba(255, 255, 153, 1.0);
+}
+
+/** Reset */
+body {
+    margin: 0;
+}
+ul, ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+h2, h3 {
+    margin: 0;
+}
+main > * {
+    padding: var(--space-xs);
+}
+
 div.whole:focus {
     /* The following suppresses the outline of the element that has the focus. Only when
        that focus is set, the keyboard mappings work. You may of course enable the outline
        for debugging purposes. */
     outline: 0;
+}
+
+div.whole {
+    margin: var(--space-xs);
 }
 
 span.whiteHeader:before {
@@ -16,103 +61,148 @@ span.blackHeader:before {
 span.restHeader:before { content: " ("}
 span.restHeader:after { content: ")"}
 
-div.layout-left.whole, div.layout-right.whole {
+.whole .moves {
+    overflow: auto;
+}
+
+.whole .buttons {
     display: flex;
-    flex-flow: row wrap;
 }
 
-div.layout-left > .headers, div.layout-right > headers {
-    flex: 1 100%;
+/** Layout styles: View */
+.whole.layout-left, .whole.layout-right {
+    display: grid;
+    gap: 0.5em;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto minmax(auto,1fr) 50px;
 }
 
-div.moves {
-    /* overflow-y: auto; */
-    padding: 10px;
-}
-div.layout-left > .moves, div.layout-right > .moves {
-    position: relative;
-    /*flex: 1 40%;*/
+.whole.layout-left .error, .whole.layout-right .error {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
 }
 
-div.layout-left > .moves, div.layout-right > .moves, div.layout-top > .moves, div.layout-bottom > .moves {
-    overflow-y: auto;
+.whole.layout-left .outerBoard, .whole.layout-left .outerBoard {
+    grid-row: 2 / 3;
 }
 
-div.layout-right > .moves {
-    order: 1;
+.whole.layout-left .outerBoard {
+    grid-column: 1 / 2;
 }
 
-div.layout-right > .outerBoard {
-    order: 2;
-    /* flex: 1 1 auto; */
+.whole.layout-right .outerBoard {
+    grid-column: 2 / 3;
 }
 
-div.layout-bottom.whole {
-    display: flex;
-    flex-flow: column wrap;
+.whole.layout-left .buttons {
+    place-self: center;
+    grid-row: 3 / 4;
 }
 
-div.layout-bottom > .outerBoard {
-    order: 2;
+.whole.viewMode.layout-left .buttons, .whole.editMode.layout-right .buttons {
+    grid-column: 1 / 2;
 }
 
-div.layout-top-left > .outerBoard {
-    float: left;
-    margin-right: 10px;
+.whole.viewMode.layout-right .buttons, .whole.editMode.layout-left .buttons {
+    grid-column: 2 / 3;
 }
 
-div.layout-bottom-left > .outerBoard {
-    float: left;
-    margin-right: 10px;
-    /* display: table-cell;
-    vertical-align: bottom; */
+.whole.layout-left .moves, .whole.layout-right .moves {
+    grid-row: 2 / 4;
+    overflow: auto;
 }
 
-div.layout-top-right > .outerBoard {
-    float: right;
-    margin-left: 10px;
+.whole.layout-left .moves {
+    grid-column: 2 / 3;
 }
 
-/* Not found any trick that allows to use baseline, bottom, ... with float: left|right */
-div.layout-bottom-right > .outerBoard {
-    float: right;
-    margin-left: 10px;
+.whole.layout-right .moves {
+    grid-column: 1 / 2;
 }
 
-div.layout-left > .outerBoard div.edit .gray, div.buttons .gray {
-    -webkit-filter: grayscale(100%);
-    -moz-filter: grayscale(100%);
-    filter: grayscale(100%);
+/* layout top / bottom */
+.whole.layout-top {
+    display: grid;
+    gap: 0.5em;
+    grid-template-columns: auto;
+    grid-template-rows: auto minmax(auto,1fr) 50px auto;
 }
 
-/** Font Awesome buttons (see http://fontawesome.io/) */
+.whole.layout-bottom {
+    display: grid;
+    gap: 0.5em;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto minmax(auto,400px) 50px;
+}
+
+.whole.layout-top .error, .whole.layout-bottom .error {
+    grid-row: 1 / 2;
+}
+
+.whole.layout-top .outerBoard {
+    grid-row: 2 / 3;
+}
+
+.whole.layout-bottom .outerBoard {
+    grid-row: 3 / 4;
+}
+
+.whole.layout-top .buttons {
+    place-self: center;
+    grid-row: 3 / 4;
+}
+
+.whole.layout-bottom .buttons {
+    place-self: center;
+    grid-row: 4 / 5;
+}
+
+.whole.layout-top .moves, .whole.layout-bottom .moves {
+    overflow: auto;
+}
+
+.whole.layout-top .moves {
+    grid-row: 4 / 5;
+}
+
+.whole.layout-bottom .moves {
+    grid-row: 2 / 3;
+}
+
+/** Other styling ... */
 
 .fen {
-    /* width: 96%; */
-    height: 30px;
-    min-height: 30px;
-    padding: 2px;
+    width: 98%;
+    height: 35px;
+    margin: 0px;
+    /*padding: var(--space-xss);*/
+    /*padding-inline: unset;*/
     font-family: monospace;
 }
 
-div.error {
-    color: red;
-}
+/*div.error {*/
+/*    color: red;*/
+/*}*/
 div.buttons > i.button, div.edit > i.button {
-    font-size: 16px;
-    line-height: 1.4em;
-    color: #71a0df;
-    background-color: white;
-    background-image: none;
-     margin: 5px;
+    /*font-size: 1rem;*/
+    /*line-height: 1.4em;*/
+    color: var(--gray-600);
+    background-color: var(--gray-100);
+    /*background-image: none;*/
+    margin: 0.24rem;
     padding: 4px;
-    border: solid lightgrey 1px;
+    border: solid var(--gray-300) 1px;
     border-radius: 4px;
 }
 
 div.buttons > i.button.selected, div.edit > i.button.selected, .nagMenu.selected {
-    color: #fff;
-    background-color: #71a0df;
+    color: var(--gray-100);
+    background-color: var(--gray-700);
+}
+
+div.buttons > i.button:hover,div.edit > i.button:hover  {
+    cursor: pointer;
+    border: solid dimgrey 1px;
 }
 
 div.nagMenu {
@@ -165,7 +255,7 @@ a.active i::before {
     color: #71a0df;
 }
 
-/* Necessary fixes for examples  */
+ Necessary fixes for examples
 button.ui-multiselect {
     background-image: none;
     background-color: white;
@@ -180,10 +270,6 @@ select.nag {
 }
 
 
-div.buttons > i.button:hover,div.edit > i.button:hover  {
-    cursor: pointer;
-    border: solid dimgrey 1px;
-}
 
 /** The following are all font-awesome buttons.
   Where known, I have added their short names (to find them later again). **/
@@ -233,17 +319,17 @@ textarea.pgn {
 }
 
 /* Green buttons. */
-div.buttons.green > .button, div.edit.green > .button {
-    color: green;
-    border: solid lightgrey 1px;
-    border-radius: 4px;
-}
+/*div.buttons.green > .button, div.edit.green > .button {*/
+/*    color: green;*/
+/*    border: solid lightgrey 1px;*/
+/*    border-radius: 4px;*/
+/*}*/
 /* Blue buttons. */
-div.buttons.blue > .button, div.edit.blue > .button {
-    color: blue;
-    border: solid lightgrey 1px;
-    border-radius: 4px;
-}
+/*div.buttons.blue > .button, div.edit.blue > .button {*/
+/*    color: blue;*/
+/*    border: solid lightgrey 1px;*/
+/*    border-radius: 4px;*/
+/*}*/
 
 .ui-widget {
     font-size: 1em;
@@ -264,7 +350,9 @@ div.comment > textarea.comment {
 }
 
 .moves .move a.yellow {
-    background-color: rgba(255, 255, 153, 1.0);
+    /*background-color: rgba(255, 255, 153, 1.0);*/
+    color: var(--gray-800);
+    background-color: var(--highlight);
 }
 
 .moves .move a {
@@ -274,7 +362,7 @@ div.comment > textarea.comment {
 
 .moves .move a:hover {
     border: 1px yellow dotted;
-    background-color: rgba(255, 255, 153, 1.0);
+    background-color: var(--highlight);
     cursor: crosshair;
 }
 
@@ -286,12 +374,17 @@ div.comment > textarea.comment {
     line-height: 24px;
 }
 
-.moves .move.var {
+.moves > .variation > .move.var {
+    font-size: 95%;
+    font-weight: 600;
+}
+
+.moves .variation .variation .move.var {
+    font-size: 90%;
     font-weight: 500;
 }
 
 .moves .variation {
-    font-size: 100%;
     display: block;
     padding: 5px;
 }
@@ -304,7 +397,6 @@ div.comment > textarea.comment {
 }
 
 .moves .variation .variation {
-    font-size: 90%;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -322,107 +414,83 @@ div.comment > textarea.comment {
 }
 
 .moves .move .comment {
-    color: green;
+    color: var(--gray-800);
     font-weight: 500;
 }
 
-.moves .move .comment.timeTiny {
-    font-weight: 300;
-    font-size: 60%;
-}
+/*.moves .move .comment.timeTiny {*/
+/*    font-weight: 300;*/
+/*    font-size: 60%;*/
+/*}*/
 
-.moves .move .comment.timeLarge {
-}
+/*.moves .move .comment.timeLarge {*/
+/*}*/
 
-.moves .move .timeNormal {
-    font-weight: 400;
-    font-size: 80%;
-}
-
-.moves .white:before {
-    content: '\A';
-    display: inline-block;
-}
+/*.moves .move .timeNormal {*/
+/*    font-weight: 400;*/
+/*    font-size: 80%;*/
+/*}*/
 
 /* Pattern of the Chess.com similar */
 /* board */
-.chesscom.whole {
-    /*    border: 2px solid #404040; */
-    border: 2px gray solid;
-    display: flex;
-    flex-flow: row wrap;
-}
+/*.chesscom.whole {*/
+/*    !*    border: 2px solid #404040; *!*/
+/*    border: 2px gray solid;*/
+/*    display: flex;*/
+/*    flex-flow: row wrap;*/
+/*}*/
 
-.chesscom .headers {
-    font-family: "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif;
-    font-size: 18px;
-/*    padding: 15px;*/
-    background-color: #f3f3f3;
-    font-weight: bold;
-    flex: 1 100%;
-}
+/*.chesscom .headers {*/
+/*    font-family: "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif;*/
+/*    font-size: 18px;*/
+/*!*    padding: 15px;*!*/
+/*    background-color: #f3f3f3;*/
+/*    font-weight: bold;*/
+/*    flex: 1 100%;*/
+/*}*/
 
-.chesscom .headers > .whiteHeader:before {
-    content: "";
-}
+/*.chesscom .headers > .whiteHeader:before {*/
+/*    content: "";*/
+/*}*/
 
-.chesscom .headers > .whiteHeader {
-    display: inline-block;
-    padding-top: 10px;
-    padding-left: 10px;
-}
+/*.chesscom .headers > .whiteHeader {*/
+/*    display: inline-block;*/
+/*    padding-top: 10px;*/
+/*    padding-left: 10px;*/
+/*}*/
 
-.chesscom .headers > .blackHeader:before {
-    content: "  vs. ";
-}
+/*.chesscom .headers > .blackHeader:before {*/
+/*    content: "  vs. ";*/
+/*}*/
 
-.chesscom .headers > .blackHeader {
-    display: inline-block;
-    padding-top: 10px;
-    padding-left: 10px;
-}
-.chesscom .headers > .restHeader {
-    display: block;
-    padding-left: 10px;
-    padding-bottom: 10px;
-    font-weight: 500;
-    font-size: 80%;
-}
+/*.chesscom .headers > .blackHeader {*/
+/*    display: inline-block;*/
+/*    padding-top: 10px;*/
+/*    padding-left: 10px;*/
+/*}*/
+/*.chesscom .headers > .restHeader {*/
+/*    display: block;*/
+/*    padding-left: 10px;*/
+/*    padding-bottom: 10px;*/
+/*    font-weight: 500;*/
+/*    font-size: 80%;*/
+/*}*/
 
-.chesscom .players {
-    font-weight: 900;
-}
+/*.chesscom .players {*/
+/*    font-weight: 900;*/
+/*}*/
 
-.chesscom .outerBoard {
-    /* float: left; */
-    width: 388px;
-}
+/*.chesscom .outerBoard {*/
+/*    !* float: left; *!*/
+/*    width: 388px;*/
+/*}*/
 
-/* .chesscom .movesScroller {
-    padding: 3px 3px;
-    font-size: 13px;
-    font-family: "Trebuchet MS", Arial, sans-serif;
-    font-weight: bold;
-    border-right: 2px solid #f3f3f3;
-    background: #ffffff;
-    vertical-align: baseline;
-    text-align: left;
-    overflow: auto;
-} */
-
-
-.moves {
-    /*  position: relative;
-    overflow-y: auto;*/
-    padding: 10px;
-}
-
-.chesscom .endBoard {
-    clear: both;
-}
-.chesscom .moves a {
-    text-decoration: none;
-}
+/*.chesscom .endBoard {*/
+/*    clear: both;*/
+/*}*/
+/*.chesscom .moves a {*/
+/*    text-decoration: none;*/
+/*}*/
 
 /**
   CHESSGROUND changes.
@@ -455,7 +523,8 @@ div.comment > textarea.comment {
     border-color: black;
     border-width: 2px;
     border-style: double;
-    margin: 10px;
+    margin-left: 50px;
+    align-self: center;
 }
 
 .colorMarker.circle {

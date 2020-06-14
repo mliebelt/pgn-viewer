@@ -31,13 +31,14 @@ but different in using the new parameter layout.</p>
 <div id="b4" style="width: 800px"></div>
 
 <script>
-    pgnView('b1', { pgnFile: "/docu/example/cori-vishnu.pgn", layout: 'top-left', 
+    let pgnView = PGNV.pgnView;
+    pgnView('b1', { pgnFile: "../pgn/cori-vishnu.pgn", layout: 'top-left', 
         boardSize: '400px'});
-    pgnView('b2', { pgnFile: "/docu/example/cori-vishnu.pgn", layout: 'top-right', 
+    pgnView('b2', { pgnFile: "../pgn/cori-vishnu.pgn", layout: 'top-right', 
         boardSize: '400px'});
-    pgnView('b3', { pgnFile: "/docu/example/cori-vishnu.pgn", layout: 'bottom-left', 
+    pgnView('b3', { pgnFile: "../pgn/cori-vishnu.pgn", layout: 'bottom-left', 
         boardSize: '400px'});
-    pgnView('b4', { pgnFile: "/docu/example/cori-vishnu.pgn", layout: 'bottom-right', 
+    pgnView('b4', { pgnFile: "../pgn/cori-vishnu.pgn", layout: 'bottom-right', 
         boardSize: '400px'});
 </script>
 </body>
