@@ -97,22 +97,6 @@
             <td>See all examples on the page <a href="examples.html">examples</a> .</td>
         </tr>
         <tr>
-            <td><code class="js plain">map of IDs</code></td>
-            <td>yes</td>
-            <td>-</td>
-            <td>Alternative for the one ID for everything. You have to style your markup yourself.
-                The IDs you can use in the map are:
-                <ul>
-                    <li>inner: stands for the board alone (used in mode board, view, edit)</li>
-                    <li>header: (optional) headers of the game</li>
-                    <li>button: DIV for the buttons (only view and edit mode)</li>
-                    <li>moves: DIV for the PGN moves (only print, view and edit mode)</li>
-                    <li>editButton: DIV for the edit buttons (not finished yet)</li>
-                </ul>
-            </td>
-            <td>See the example <a href="../modules/pgn-viewer/examples/tickets/ticket025.html">ticket25.html</a> .</td>
-        </tr>
-        <tr>
             <td><code class="js plain">mode</code></td>
             <td>yes</td>
             <td>-</td>
@@ -148,10 +132,10 @@
             <td>See the <a href="examples.html#1051">Games Examples</a> how to do that.</td>
         </tr>
         <tr>
-            <td><code class="js plain">showNotation</code></td>
+            <td><code class="js plain">showCoords</code></td>
             <td>no</td>
             <td>true</td>
-            <td>Defines if the columns and rows should be show the labels
+            <td>Defines if the columns and rows should be show the coordinates
                 a to h (for the columns) and 1 to 8 (for the rows). If shown,
                 it could be styled by CSS.
             <td>See the <a href="examples.html#1023">second board</a> of the examples.</td>
@@ -245,12 +229,11 @@
         </tr>
         <tr>
             <td><code class="js plain">layout</code>
-                <p>Layout of the board and moves. Available are: <code class="js string">left, right, top, bottom,
-                    top-left, top-right, bottom-left, bottom-right</code></p></td>
+                <p>Layout of the board and moves. Available are: <code class="js string">left, right, top, bottom</code></p></td>
             <td>no</td>
             <td>top</td>
-            <td>Denotes the layout of the board relevant to the moves. top is board over moves, top-left
-                if board on the top left and moves floating; left is board on the left, and moves on the right.
+            <td>Denotes the layout of the board relevant to the moves. top is board over moves, left is board on the left,
+                and moves on the right ...
             </td>
             <td>.</td>
         </tr>
@@ -269,8 +252,8 @@
                 <p>Height of the moves div.</p></td>
             <td>no</td>
             <td>-</td>
-            <td>Set the height of the moves div. Is especially useful when using layout left or right,
-                to ensure that the moves height is not bigger than the board height.
+            <td>Set the height of the moves div. Automatic computed with layout left and right, only relevant
+                for layout top and bottom.
             </td>
             <td>.</td>
         </tr>
@@ -341,14 +324,14 @@
         <tr>
             <td><code class="js plain">pgnBoard</code>
             <td>ID, position</td>
-            <td>theme, pieceStyle, orientation, showNotation, width, boardSize, coordsInner, coordsFactor</td>
+            <td>theme, pieceStyle, orientation, showCoords, width, boardSize, coordsInner, coordsFactor</td>
             <td>Displays (only) a board, in the size given by the container.</td>
             <td>See the page <a href="examples.html#1021">boards</a> for some examples.</td>
         </tr>
         <tr>
             <td><code class="js plain">pgnPrint</code></td>
             <td>ID, pgn</td>
-            <td>theme, pieceStyle, orientation, showNotation, width, boardSize</td>
+            <td>theme, pieceStyle, orientation, showCoords, width, boardSize</td>
             <td>Shows the whole game in a notation seen normally in
                 magazines or books. Does <strong>not</strong> allow to
                 play the game interactively.
