@@ -1,6 +1,6 @@
-import i18next  from 'i18next';
-import { Utils, pgnReader } from '@mliebelt/pgn-reader';
-import { Chessground } from 'chessground';
+import i18next from 'i18next';
+import {pgnReader, Utils} from '@mliebelt/pgn-reader';
+import {Chessground} from 'chessground';
 import Timer from './Timer';
 import Mousetrap from 'mousetrap';
 import swal from 'sweetalert';
@@ -37,46 +37,42 @@ let pgnBase = function (boardId, configuration) {
         colorMarker: null,
         showResult: false,
         timeAnnotation: 'none',
-        notation: 'short'
+        notation: 'short',
+        IDs: {
+            bottomHeaderId: boardId + 'BottomHeader',
+            topHeaderId: boardId + 'TopHeader',
+            innerBoardId: boardId + 'Inner',
+            movesId: boardId + 'Moves',
+            buttonsId: boardId + 'Button',
+            fenId: boardId + "Fen",
+            colorMarkerId: boardId + 'ColorMarker'
+        }
     };
     that.promMappings = {q: 'queen', r: 'rook', b: 'bishop', n: 'knight'};
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration);
     that.mypgn = pgnReader(that.configuration);
     let game = that.mypgn.game;     // Use the same instance from chess.src
     let theme = that.configuration.theme || 'default';
-    that.configuration.markup = (typeof boardId) == "object";
-    let hasMarkup = function () {
-        return that.configuration.markup;
-    };
-    let hasMode = function (mode) {
+    const hasMode = function (mode) {
         return that.configuration.mode === mode;
     };
-    let possibleMoves = function () {
+    const possibleMoves = function () {
         return that.mypgn.possibleMoves(game);
     };
+    const id = function (id) {
+        return that.configuration.IDs[id];
+    }
     let board;              // Will be set later, but has to be a known variable
-    // IDs needed for styling and adressing the HTML elements, only used if no markup is done by the user
-    if (!hasMarkup()) {
-        var whiteHeaderId = boardId + 'WhiteHeader';
-        var blackHeaderId = boardId + 'BlackHeader';
-        var innerBoardId = boardId + 'Inner';
-        var movesId = boardId + 'Moves';
-        var buttonsId = boardId + 'Button';
-        var fenId = boardId + "Fen";
-        var colorMarkerId = innerBoardId + 'ColorMarker';
-    } else { // will be filled later
-            }
 
     if (that.configuration.locale) {
         that.configuration.locale = that.configuration.locale.replace(/_/g, "-");
-        i18next.loadLanguages(that.configuration.locale, (err, t) => {
-        });
+        i18next.loadLanguages(that.configuration.locale);
     }
 
     if (that.configuration.position) { // Allow early correction
         if (that.configuration.position !== 'start') {
             let tokens = that.configuration.position.split(/\s+/);
-            if (tokens.length == 4) {
+            if (tokens.length === 4) {
                 that.configuration.position += ' 1 1';
             }
         }
@@ -125,7 +121,7 @@ let pgnBase = function (boardId, configuration) {
      */
     function insertAfter(newElement, targetElement) {
         const parent = targetElement.parentNode;
-        if (parent.lastChild == targetElement) {
+        if (parent.lastChild === targetElement) {
             parent.appendChild(newElement);
         } else {
             parent.insertBefore(newElement, targetElement.nextSibling);
@@ -142,7 +138,7 @@ let pgnBase = function (boardId, configuration) {
     }
 
     function toggleColorMarker() {
-        let ele = document.getElementById(colorMarkerId);
+        let ele = document.getElementById(id('colorMarkerId'));
         if (!ele) return;
         if (ele.classList.contains('cm-black')) {
             ele.classList.remove('cm-black');
@@ -193,7 +189,7 @@ let pgnBase = function (boardId, configuration) {
         //board.set({fen: game.fen()});
         const cur = that.currentMove;
         let primMove = {from: from, to: to};
-        if ((that.mypgn.game.get(from).type == 'p') && ((to.substring(1, 2) == '8') || (to.substring(1, 2) == '1'))) {
+        if ((that.mypgn.game.get(from).type === 'p') && ((to.substring(1, 2) === '8') || (to.substring(1, 2) === '1'))) {
             let sel = swal("Select the promotion figure", {
                 buttons: {
                     queen: {text: "Queen", value: 'q'},
@@ -221,7 +217,7 @@ let pgnBase = function (boardId, configuration) {
             board.setPieces(pieces);
         }
         if (moveSpan(that.currentMove) === null) {
-            generateMove(that.currentMove, null, move, move.prev, document.getElementById(movesId), []);
+            generateMove(that.currentMove, null, move, move.prev, document.getElementById(id('movesId')), []);
         }
         unmarkMark(that.currentMove);
         updateUI(that.currentMove);
@@ -231,7 +227,7 @@ let pgnBase = function (boardId, configuration) {
             check: game.in_check()
         });
         //makeMove(null, that.currentMove, move.fen);
-        let fenView = document.getElementById(fenId);
+        let fenView = document.getElementById(id('fenId'));
         if (fenView) {
             fenView.value = move.fen;
         }
@@ -284,9 +280,9 @@ let pgnBase = function (boardId, configuration) {
         // Utility function for generating buttons divs
         function addButton(pair, buttonDiv) {
             const l_theme = (['green', 'blue'].indexOf(theme) >= 0) ? theme : 'default';
-            const button = createEle("i", buttonsId + pair[0], "button fa " + pair[1], l_theme, buttonDiv);
+            const button = createEle("i", id('buttonsId') + pair[0], "button fa " + pair[1], l_theme, buttonDiv);
             const title = i18next.t("buttons:" + pair[0], {lng: that.configuration.locale});
-            document.getElementById(buttonsId + pair[0]).setAttribute("title", title);
+            document.getElementById(id('buttonsId') + pair[0]).setAttribute("title", title);
             return button;
         }
 
@@ -326,7 +322,7 @@ let pgnBase = function (boardId, configuration) {
                         function updateMoveSAN(moveIndex) {
                             let move = that.mypgn.getMove(moveIndex);
                             let san = i18nSan(that.mypgn.sanWithNags(move));
-                            document.querySelector("#" + movesId + moveIndex + " > a").textContent = san;
+                            document.querySelector("#" + id('movesId') + moveIndex + " > a").textContent = san;
                         }
 
                         this.classList.toggle("active");
@@ -365,189 +361,197 @@ let pgnBase = function (boardId, configuration) {
         const hasHeaders = function () {
             return that.configuration.headers && (Object.keys(that.mypgn.getTags()).length > 0)
         }
-        // TODO: Remove hasMarkup all together
-        if (hasMarkup()) {
 
+        const divBoard = document.getElementById(boardId);
+        if (divBoard == null) {
+            return;
         } else {
-            const divBoard = document.getElementById(boardId);
-            if (divBoard == null) {
-                return;
-            } else {
-                // ensure that the board is empty before filling it
-                while (divBoard.childNodes.length > 0) {
-                    divBoard.removeChild(divBoard.childNodes[0]);
-                }
+            // ensure that the board is empty before filling it
+            while (divBoard.childNodes.length > 0) {
+                divBoard.removeChild(divBoard.childNodes[0]);
             }
-            divBoard.classList.add(theme);
-            divBoard.classList.add('whole');
-            divBoard.classList.add(that.configuration.mode + 'Mode');
-            divBoard.setAttribute('tabindex', '0');
-            // Add layout for class if configured
-            if (that.configuration.layout) {
-                divBoard.classList.add('layout-' + that.configuration.layout);
-            }
-            /** Add an error div to show errors */
-            that.errorDiv = createEle("div", boardId + "Error", 'error', null, divBoard);
+        }
+        divBoard.classList.add(theme);
+        divBoard.classList.add('whole');
+        divBoard.classList.add(that.configuration.mode + 'Mode');
+        divBoard.setAttribute('tabindex', '0');
+        // Add layout for class if configured
+        if (that.configuration.layout) {
+            divBoard.classList.add('layout-' + that.configuration.layout);
+        }
+        /** Add an error div to show errors */
+        that.errorDiv = createEle("div", boardId + "Error", 'error', null, divBoard);
 
-            /** Header Div (as part of topInner ?? */
-            //createEle("div", headersId, "headers", theme, divBoard);
+        /** Header Div (as part of topInner ?? */
+        //createEle("div", headersId, "headers", theme, divBoard);
 
-            /** outerBoard */
-            const outerInnerBoardDiv = createEle("div", null, "outerBoard", null, divBoard);
-            let boardAndDiv = createEle('div', null, 'boardAnd', theme, outerInnerBoardDiv);
-            // TODO Move the computation of grid layout sizes to one function (with parameters)
-            if (that.configuration.boardSize) {
-                outerInnerBoardDiv.style.width = that.configuration.boardSize;
-            }
-            /** topInner for headers / time of Black. TODO: Orientation should switch that then. **/
-            let topInnerBoardDiv = createEle("div", null, "topInnerBoard", theme, boardAndDiv);
-            let blackHeader = createEle('div', blackHeaderId, "blackHeader", theme, boardAndDiv);
-            let topTime = createEle("span", null, "topTime", theme, topInnerBoardDiv);
-            const innerBoardDiv = createEle("div", innerBoardId, "board", theme, boardAndDiv);
-            /** bottomInner for headers / time of White. TODO: Orientation should switch that then. **/
-            let bottomInnerBoardDiv = createEle("div", null, "bottomInnerBoard", theme, boardAndDiv);
-            let whiteHeader = createEle('div', whiteHeaderId, "whiteHeader", theme, boardAndDiv);
-            let bottomTime = createEle("div", null, "bottomTime", theme, bottomInnerBoardDiv);
+        /** outerBoard */
+        const outerInnerBoardDiv = createEle("div", null, "outerBoard", null, divBoard);
+        let boardAndDiv = createEle('div', null, 'boardAnd', theme, outerInnerBoardDiv);
+        // TODO Move the computation of grid layout sizes to one function (with parameters)
+        if (that.configuration.boardSize) {
+            outerInnerBoardDiv.style.width = that.configuration.boardSize;
+        }
+        /** topInner for headers / time of Black. TODO: Orientation should switch that then. **/
+        let topInnerBoardDiv = createEle("div", null, "topInnerBoard", theme, boardAndDiv);
+        let blackHeader = createEle('div', id('topHeaderId'), "blackHeader", theme, boardAndDiv);
+        let topTime = createEle("span", null, "topTime", theme, topInnerBoardDiv);
+        const innerBoardDiv = createEle("div", id('innerBoardId'), "board", theme, boardAndDiv);
+        /** bottomInner for headers / time of White. TODO: Orientation should switch that then. **/
+        let bottomInnerBoardDiv = createEle("div", null, "bottomInnerBoard", theme, boardAndDiv);
+        let whiteHeader = createEle('div', id('bottomHeaderId'), "whiteHeader", theme, boardAndDiv);
+        let bottomTime = createEle("div", null, "bottomTime", theme, bottomInnerBoardDiv);
 
-            /** Buttons */
-            if (hasMode('view') || hasMode('edit')) {
-                const buttonsBoardDiv = createEle("div", buttonsId, "buttons", theme, divBoard);
-                generateViewButtons(buttonsBoardDiv);
-                if ( that.configuration.colorMarker ) {
-                    createEle("div", colorMarkerId, 'colorMarker' + " " + that.configuration.colorMarker, theme, buttonsBoardDiv);
-                }
+        /** Buttons */
+        if (hasMode('view') || hasMode('edit')) {
+            const buttonsBoardDiv = createEle("div", id('buttonsId'), "buttons", theme, divBoard);
+            generateViewButtons(buttonsBoardDiv);
+            if ( that.configuration.colorMarker ) {
+                createEle("div", id('colorMarkerId'), 'colorMarker' + " " + that.configuration.colorMarker, theme, buttonsBoardDiv);
             }
-            if (hasMode('board')) {
-                if ( that.configuration.colorMarker ) {
-                    createEle("div", colorMarkerId, 'colorMarker' + " " + that.configuration.colorMarker, theme, topInnerBoardDiv);
-                }
+        }
+        if (hasMode('board')) {
+            if ( that.configuration.colorMarker ) {
+                createEle("div", id('colorMarkerId'), 'colorMarker' + " " + that.configuration.colorMarker, theme, topInnerBoardDiv);
             }
+        }
 
-            /** Fen */
-            if ((hasMode('edit') || hasMode('view')) && (that.configuration.showFen)) {
-                const fenDiv = createEle("textarea", fenId, "fen", theme, outerInnerBoardDiv);
-                addEventListener(fenId, 'mousedown', function (e) {
-                    e = e || window.event;
-                    e.preventDefault();
-                    this.select();
-                });
-                if (hasMode('edit')) {
-                    document.getElementById(fenId).onpaste = function (e) {
-                        const pastedData = e.originalEvent.clipboardData.getData('text');
-                        // console.log(pastedData);
-                        that.configuration.position = pastedData;
-                        that.configuration.pgn = '';
-                        pgnEdit(boardId, that.configuration);
-                    };
-                } else {
-                    document.getElementById(fenId).readonly = true;
-                }
-            }
-
-            /** Moves Div */
-            if (hasMode('print') || hasMode('view') || hasMode('edit')) {
-                const movesDiv = createEle("div", movesId, "moves", null, divBoard);
-            }
-
-            /** Edit Divs TODO Redo those */
+        /** Fen */
+        if ((hasMode('edit') || hasMode('view')) && (that.configuration.showFen)) {
+            const fenDiv = createEle("textarea", id('fenId'), "fen", theme, outerInnerBoardDiv);
+            addEventListener(id('fenId'), 'mousedown', function (e) {
+                e = e || window.event;
+                e.preventDefault();
+                this.select();
+            });
             if (hasMode('edit')) {
-                const editButtonsBoardDiv = createEle("div", "edit" + buttonsId, "edit", theme, divBoard);
-                generateEditButtons(editButtonsBoardDiv);
-                let nagMenu = createEle('div', 'nagMenu' + buttonsId, 'nagMenu', theme, divBoard);
-                generateNagMenu(nagMenu);
-                const pgnDiv = createEle("textarea", "pgn" + buttonsId, "pgn", theme, divBoard);
-                const commentBoardDiv = createEle("div", "comment" + buttonsId, "comment", theme, divBoard);
-                generateCommentDiv(commentBoardDiv);
-                // Bind the paste key ...
-                addEventListener("pgn" + buttonsId, 'mousedown', function (e) {
-                    e = e || window.event;
-                    e.preventDefault();
-                    e.target.select();
-                });
-                document.getElementById("pgn" + buttonsId).onpaste = function (e) {
+                document.getElementById(id('fenId')).onpaste = function (e) {
                     const pastedData = e.originalEvent.clipboardData.getData('text');
-                    that.configuration.pgn = pastedData;
+                    // console.log(pastedData);
+                    that.configuration.position = pastedData;
+                    that.configuration.pgn = '';
                     pgnEdit(boardId, that.configuration);
                 };
+            } else {
+                document.getElementById(id('fenId')).readonly = true;
             }
-            let computeBoardSize = function() {
-                let _boardSize = that.configuration.boardSize;
-                let _width =  that.configuration.width || divBoard.style.width;
-                if (that.configuration.layout === 'top' || that.configuration.layout === 'bottom') {
-                    if (_boardSize) {
-                        that.configuration.width = _boardSize;
-                        divBoard.style.width = _boardSize;
-                        return _boardSize;
-                    } else {
-                        _width = _width || '320px';
-                        that.configuration.boardSize = _width;
-                        that.configuration.width = _width;
-                        divBoard.style.width = _width;
-                        return _width;
-                    }
-                }
-                // Layout left or right, more complex combinations possible
-                if (_boardSize && _width) {
-                    divBoard.style.width = _width;
-                    that.configuration.width = _width;
+        }
+
+        /** Moves Div */
+        if (hasMode('print') || hasMode('view') || hasMode('edit')) {
+            const movesDiv = createEle("div", id('movesId'), "moves", null, divBoard);
+        }
+
+        /** Edit Divs TODO Redo those */
+        if (hasMode('edit')) {
+            const editButtonsBoardDiv = createEle("div", "edit" + id('buttonsId'), "edit", theme, divBoard);
+            generateEditButtons(editButtonsBoardDiv);
+            let nagMenu = createEle('div', 'nagMenu' + id('buttonsId'), 'nagMenu', theme, divBoard);
+            generateNagMenu(nagMenu);
+            const pgnDiv = createEle("textarea", "pgn" + id('buttonsId'), "pgn", theme, divBoard);
+            const commentBoardDiv = createEle("div", "comment" + id('buttonsId'), "comment", theme, divBoard);
+            generateCommentDiv(commentBoardDiv);
+            // Bind the paste key ...
+            addEventListener("pgn" + id('buttonsId'), 'mousedown', function (e) {
+                e = e || window.event;
+                e.preventDefault();
+                e.target.select();
+            });
+            document.getElementById("pgn" + id('buttonsId')).onpaste = function (e) {
+                const pastedData = e.originalEvent.clipboardData.getData('text');
+                that.configuration.pgn = pastedData;
+                pgnEdit(boardId, that.configuration);
+            };
+        }
+
+        const computeBoardSize = function() {
+            const setBoardSizeAndWidth = function (boardSize, width) {
+                that.configuration.boardSize = boardSize;
+                that.configuration.width = width;
+                divBoard.style.width = width;
+            }
+            let _boardSize = that.configuration.boardSize;
+            let _width =  that.configuration.width || divBoard.style.width;
+
+            function getRoundedBoardSize(_boardSize) {
+                return `${Math.round(parseInt(_boardSize) / 8) * 8}px`;
+            }
+
+            if (that.configuration.layout === 'top' || that.configuration.layout === 'bottom') {
+                if (_boardSize) {
+                    let rounded = getRoundedBoardSize(_boardSize);
+                    setBoardSizeAndWidth(rounded, rounded)
                     return _boardSize;
-                } else if (! _boardSize) {
-                    divBoard.style.width = _width;
-                    that.configuration.width = _width;
-                    _width = "" + parseInt(_width) / 8 * 5 + "px";
-                    that.configuration.boardSize = _width;
+                } else {
+                    _width = _width || '320px';
+                    _width = getRoundedBoardSize(_width);
+                    setBoardSizeAndWidth(_width, _width);
                     return _width;
                 }
             }
-
-            let _boardHeight = computeBoardSize();
-            let _boardWidth = _boardHeight;
-            let _buttonFontSize = `${parseInt(_boardHeight) / 18}px`;
-            if (document.getElementById(buttonsId)) {
-                document.getElementById(buttonsId).style.fontSize = _buttonFontSize;
+            // Layout left or right, more complex combinations possible
+            if (_boardSize && _width) {
+                _boardSize = getRoundedBoardSize(_boardSize)
+                setBoardSizeAndWidth(_boardSize, _width)
+                return _boardSize
+            } else if (! _boardSize) {
+                _boardSize = getRoundedBoardSize(parseInt(_width) / 8 * 5);
+                setBoardSizeAndWidth(_boardSize, _width)
+                return _boardSize
+            } else {
+                _width = `${parseInt(_boardSize) / 5 * 8}px`
+                setBoardSizeAndWidth(_boardSize, _width)
+                return _boardSize
             }
-
-            window.addEventListener('load', (event) => { // same as window.addEventListener('load', (event) => {
-                if (hasMode('board')) {
-                    if (document.getElementById(colorMarkerId)) {
-                        document.getElementById(colorMarkerId).style.marginLeft = 'auto';
-                    }
-                    return;
-                }
-                if (hasMode('print')) return;
-                if (that.configuration.showFen) {
-                    let _fenHeight = document.getElementById(fenId).offsetHeight;
-                    _boardHeight = `${parseInt(_boardHeight) + _fenHeight}px`;
-                }
-                if (hasHeaders()) {
-                    _boardHeight = `${parseInt(_boardHeight) + 40}px`;
-                }
-                let _buttonsHeight = document.getElementById(buttonsId).offsetHeight;
-                if (that.configuration.layout === 'left' || that.configuration.layout === 'right') {
-                    divBoard.style.gridTemplateRows = `auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px`;
-                    let _movesWidth = `${parseInt(that.configuration.width) - parseInt(_boardWidth)}px`;
-                    if (that.configuration.layout === 'left') {
-                        divBoard.style.gridTemplateColumns = _boardWidth + " " + _movesWidth;
-                    } else {
-                        divBoard.style.gridTemplateColumns = _movesWidth + " " + _boardWidth;
-                    }
-                } else {
-                    let _movesCount = that.mypgn.getMoves().length;
-                    let _minMovesHeight = (_movesCount + 7) / 7 * 30;
-                    let _movesHeight = parseInt(_boardHeight) / 5 * 3;
-                    if (_minMovesHeight < _movesHeight) _movesHeight = _minMovesHeight;
-                    if (that.configuration.layout === 'top') {
-                        divBoard.style.gridTemplateRows = `auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px minmax(0, ${_movesHeight}px)`;
-                    } else if (that.configuration.layout === 'bottom') {
-                        divBoard.style.gridTemplateRows = `auto minmax(0,${_movesHeight}px) minmax(auto,${_boardHeight}) ${_buttonsHeight}px`;
-                    }
-                }
-            })
         }
+
+        let _boardHeight = computeBoardSize();
+        let _boardWidth = _boardHeight;
+        let _buttonFontSize = `${Math.max(10, parseInt(_boardHeight) / 18)}px`;
+        if (document.getElementById(id('buttonsId'))) {
+            document.getElementById(id('buttonsId')).style.fontSize = _buttonFontSize;
+        }
+
+        window.addEventListener('load', (event) => { // same as window.addEventListener('load', (event) => {
+            if (hasMode('board')) {
+                if (document.getElementById(id('colorMarkerId'))) {
+                    document.getElementById(id('colorMarkerId')).style.marginLeft = 'auto';
+                }
+                return;
+            }
+            if (hasMode('print')) return;
+            if (that.configuration.showFen) {
+                let _fenHeight = document.getElementById(id('fenId')).offsetHeight;
+                _boardHeight = `${parseInt(_boardHeight) + _fenHeight}px`;
+            }
+            if (hasHeaders()) {
+                _boardHeight = `${parseInt(_boardHeight) + 40}px`;
+            }
+            let _buttonsHeight = document.getElementById(id('buttonsId')).offsetHeight;
+            if (that.configuration.layout === 'left' || that.configuration.layout === 'right') {
+                divBoard.style.gridTemplateRows = `auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px`;
+                let _movesWidth = `${parseInt(that.configuration.width) - parseInt(_boardWidth)}px`;
+                if (that.configuration.layout === 'left') {
+                    divBoard.style.gridTemplateColumns = _boardWidth + " " + _movesWidth;
+                } else {
+                    divBoard.style.gridTemplateColumns = _movesWidth + " " + _boardWidth;
+                }
+            } else {
+                let _movesCount = that.mypgn.getMoves().length;
+                let _minMovesHeight = (_movesCount + 7) / 7 * 30;
+                let _movesHeight = parseInt(_boardHeight) / 5 * 3;
+                if (_minMovesHeight < _movesHeight) _movesHeight = _minMovesHeight;
+                if (that.configuration.layout === 'top') {
+                    divBoard.style.gridTemplateRows = `auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px minmax(0, ${_movesHeight}px)`;
+                } else if (that.configuration.layout === 'bottom') {
+                    divBoard.style.gridTemplateRows = `auto minmax(0,${_movesHeight}px) minmax(auto,${_boardHeight}) ${_buttonsHeight}px`;
+                }
+            }
+        })
     };
 
     /**
-     * Generate the board that uses the unique innerBoardId and the part of the configuration
+     * Generate the board that uses the unique id('innerBoardId') and the part of the configuration
      * that is for the board only. Returns the resulting object (as reference for others).
      * @returns {Window.ChessBoard} the board object that may play the moves later
      */
@@ -573,14 +577,14 @@ let pgnBase = function (boardId, configuration) {
             ['position', 'orientation', 'showCoords', 'pieceTheme', 'draggable',
                 'coordsInner', 'coordsFactor', 'width', 'movable', 'viewOnly', 'highlight', 'boardSize',
                 'rankFontSize']);
-        // board = new ChessBoard(innerBoardId, boardConfiguration);
+        // board = new ChessBoard(id('innerBoardId'), boardConfiguration);
         // Allow Chessground to be resizable
         boardConfiguration.resizable = true;
         if (typeof boardConfiguration.showCoords != 'undefined') {
             boardConfiguration.coordinates = boardConfiguration.showCoords;
         }
         boardConfiguration.fen = boardConfiguration.position;
-        const el = document.getElementById(innerBoardId);
+        const el = document.getElementById(id('innerBoardId'));
         if (typeof that.configuration.pieceStyle != 'undefined') {
             el.className += " " + that.configuration.pieceStyle;
         }
@@ -620,8 +624,8 @@ let pgnBase = function (boardId, configuration) {
         }
         if (that.configuration.colorMarker) {
             if ( (that.configuration.position != 'start') &&
-                (that.configuration.position.split(' ')[1] == 'b') ) {
-                let ele = document.getElementById(colorMarkerId);
+                (that.configuration.position.split(' ')[1] === 'b') ) {
+                let ele = document.getElementById(id('colorMarkerId'));
                 if (ele) {
                     ele.classList.add('cm-black');
                 }
@@ -631,7 +635,7 @@ let pgnBase = function (boardId, configuration) {
     };
 
     const moveSpan = function (i) {
-        return document.getElementById(movesId + i);
+        return document.getElementById(id('movesId') + i);
     };
 
     /**
@@ -688,7 +692,7 @@ let pgnBase = function (boardId, configuration) {
         if (move.turn == 'w') {
             clAttr = clAttr + " white";
         }
-        const span = createEle("span", movesId + currentCounter, clAttr);
+        const span = createEle("span", id('movesId') + currentCounter, clAttr);
         if (that.mypgn.startVariation(move)) {
             const varDiv = createEle("div", null, "variation");
             if (varStack.length == 0) {
@@ -756,10 +760,10 @@ let pgnBase = function (boardId, configuration) {
      */
     function unmarkMark(next) {
         const moveASpan = function (i) {
-            return document.querySelector('#' + movesId + i + '> a');
+            return document.querySelector('#' + id('movesId') + i + '> a');
         };
 
-        removeClass(document.querySelector('#' + movesId + " a.yellow"), 'yellow');
+        removeClass(document.querySelector('#' + id('movesId') + " a.yellow"), 'yellow');
         addClass(moveASpan(next), 'yellow');
     }
 
@@ -787,13 +791,13 @@ let pgnBase = function (boardId, configuration) {
             if (move === undefined) {
                 return;
             }
-            let nagMenu = document.querySelector('#nagMenu' + buttonsId);
-            document.querySelectorAll('#nagMenu' + buttonsId + ' a.active').forEach(function (act) {
+            let nagMenu = document.querySelector('#nagMenu' + id('buttonsId'));
+            document.querySelectorAll('#nagMenu' + id('buttonsId') + ' a.active').forEach(function (act) {
                 act.classList.toggle('active');
             });
             let nags = move.nag || [];
             nags.forEach(function (eachNag) {
-                document.querySelector('#nagMenu' + buttonsId + ' [data-value="' + eachNag.substring(1) + '"]')
+                document.querySelector('#nagMenu' + id('buttonsId') + ' [data-value="' + eachNag.substring(1) + '"]')
                     .parentNode.classList.toggle('active');
             });
         } catch (err) {
@@ -909,7 +913,7 @@ let pgnBase = function (boardId, configuration) {
                 turnColor: col, check: game.in_check()
             });
         }
-        let fenView = document.getElementById(fenId);
+        let fenView = document.getElementById(id('fenId'));
         if (fenView) {
             fenView.value = fen;
         }
@@ -957,7 +961,7 @@ let pgnBase = function (boardId, configuration) {
         if (board !== null) {
             board.set({fen: game.fen()});
         }
-        let fenField = document.getElementById(fenId);
+        let fenField = document.getElementById(id('fenId'));
         if (utils.pvIsElement(fenField)) {
             fenField.value = game.fen();
         }
@@ -968,8 +972,8 @@ let pgnBase = function (boardId, configuration) {
          */
         const generateHeaders = function () {
             let tags = that.mypgn.getTags();
-            let whd = document.getElementById(whiteHeaderId);
-            let bhd = document.getElementById(blackHeaderId);
+            let whd = document.getElementById(id('bottomHeaderId'));
+            let bhd = document.getElementById(id('topHeaderId'));
             if (that.configuration.headers == false || (utils.pvIsEmpty(tags))) {
                 whd.parentNode.removeChild(whd);
                 bhd.parentNode.removeChild(bhd);
@@ -1003,14 +1007,14 @@ let pgnBase = function (boardId, configuration) {
 
         // Bind the necessary functions to move the pieces.
         const bindFunctions = function () {
+            const switchHeaderValues = function () {
+                let bottomInner = document.getElementById(id('bottomHeaderId')).innerText;
+                let topInner = document.getElementById(id('topHeaderId')).innerText;
+                document.getElementById(id('bottomHeaderId')).innerText = topInner;
+                document.getElementById(id('topHeaderId')).innerText = bottomInner;
+            }
             const bind_key = function (key, to_call) {
-                let key_ID;
-                if (hasMarkup()) {
-                    key_ID = "#" + boardId.moves;
-                } else {
-                    key_ID = "#" + boardId + ",#" + boardId + "Moves";
-                }
-                const form = document.querySelector(key_ID);
+                const form = document.querySelector("#" + boardId + ",#" + boardId + "Moves");
                 Mousetrap(form).bind(key, function (evt) {
                     to_call();
                     evt.stopPropagation();
@@ -1051,27 +1055,28 @@ let pgnBase = function (boardId, configuration) {
             timer.bind(that.configuration.timerTime, function () {
                 nextMove();
             });
-            addEventListener(buttonsId + 'flipper', 'click', function () {
+            addEventListener(id('buttonsId') + 'flipper', 'click', function () {
                 board.toggleOrientation();
+                switchHeaderValues();
             });
-            addEventListener(buttonsId + 'next', 'click', function () {
+            addEventListener(id('buttonsId') + 'next', 'click', function () {
                 nextMove();
             });
-            addEventListener(buttonsId + 'prev', 'click', function () {
+            addEventListener(id('buttonsId') + 'prev', 'click', function () {
                 prevMove();
             });
-            addEventListener(buttonsId + 'first', 'click', function () {
+            addEventListener(id('buttonsId') + 'first', 'click', function () {
                 firstMove();
             });
-            addEventListener(buttonsId + 'last', 'click', function () {
+            addEventListener(id('buttonsId') + 'last', 'click', function () {
                 const fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
                 makeMove(that.currentMove, that.mypgn.getMoves().length - 1, fen);
             });
             let togglePgn = function () {
-                const pgnButton = document.getElementById(buttonsId + "pgn");
+                const pgnButton = document.getElementById(id('buttonsId') + "pgn");
                 const pgnText = document.getElementById(boardId + " .outerpgn");
-                document.getElementById(buttonsId + "pgn").classList.toggle('selected');
-                if (document.getElementById(buttonsId + "pgn").classList.contains('selected')) {
+                document.getElementById(id('buttonsId') + "pgn").classList.toggle('selected');
+                if (document.getElementById(id('buttonsId') + "pgn").classList.contains('selected')) {
                     const str = computePgn();
                     showPgn(str);
                     document.querySelector("#" + boardId + " .pgn").style.display = 'block'; //slideDown(700, "linear");
@@ -1080,37 +1085,37 @@ let pgnBase = function (boardId, configuration) {
                 }
             };
             let toggleNagMenu = function () {
-                let nagMenu = document.getElementById(buttonsId + 'nags').classList.toggle('selected');
-                if (document.getElementById(buttonsId + 'nags').classList.contains('selected')) {
-                    document.getElementById('nagMenu' + buttonsId).style.display = 'flex';
+                let nagMenu = document.getElementById(id('buttonsId') + 'nags').classList.toggle('selected');
+                if (document.getElementById(id('buttonsId') + 'nags').classList.contains('selected')) {
+                    document.getElementById('nagMenu' + id('buttonsId')).style.display = 'flex';
                 } else {
-                    document.getElementById('nagMenu' + buttonsId).style.display = 'none';
+                    document.getElementById('nagMenu' + id('buttonsId')).style.display = 'none';
                 }
             };
             if (hasMode('edit')) { // only relevant functions for edit mode
-                addEventListener(buttonsId + "pgn", 'click', function () {
+                addEventListener(id('buttonsId') + "pgn", 'click', function () {
                     togglePgn();
                 });
-                addEventListener(buttonsId + 'nags', 'click', function () {
+                addEventListener(id('buttonsId') + 'nags', 'click', function () {
                     toggleNagMenu();
                 });
-                addEventListener(buttonsId + "deleteMoves", 'click', function () {
+                addEventListener(id('buttonsId') + "deleteMoves", 'click', function () {
                     const prev = that.mypgn.getMove(that.currentMove).prev;
                     const fen = that.mypgn.getMove(prev).fen;
                     that.mypgn.deleteMove(that.currentMove);
-                    //document.getElementById(movesId).innerHtml = "";
-                    let myNode = document.getElementById(movesId);
+                    //document.getElementById(id('movesId')).innerHtml = "";
+                    let myNode = document.getElementById(id('movesId'));
                     while (myNode.firstChild) {
                         myNode.removeChild(myNode.firstChild);
                     }
                     regenerateMoves(that.mypgn.getMoves());
                     makeMove(null, prev, fen);
                 });
-                addEventListener(buttonsId + "promoteVar", 'click', function () {
+                addEventListener(id('buttonsId') + "promoteVar", 'click', function () {
                     let curr = that.currentMove;
                     that.mypgn.promoteMove(that.currentMove);
-                    //document.getElementById(movesId).html("");
-                    let myNode = document.getElementById(movesId);
+                    //document.getElementById(id('movesId')).html("");
+                    let myNode = document.getElementById(id('movesId'));
                     while (myNode.firstChild) {
                         myNode.removeChild(myNode.firstChild);
                     }
@@ -1119,13 +1124,13 @@ let pgnBase = function (boardId, configuration) {
                     makeMove(null, that.currentMove, fen);
                 });
                 document.querySelector('#' + boardId + ' .pgn').style.display = 'none';
-                document.querySelector('#comment' + buttonsId + " textarea.comment").onchange = function () {
+                document.querySelector('#comment' + id('buttonsId') + " textarea.comment").onchange = function () {
                     function commentText() {
-                        return " " + document.querySelector('#' + 'comment' + buttonsId + " textarea.comment").value + " ";
+                        return " " + document.querySelector('#' + 'comment' + id('buttonsId') + " textarea.comment").value + " ";
                     }
 
                     let text = commentText();
-                    let checked = document.querySelector('#' + "comment" + buttonsId + " :checked");
+                    let checked = document.querySelector('#' + "comment" + id('buttonsId') + " :checked");
                     checked = checked ? checked.value : "after";
                     moveSpan(that.currentMove).querySelector("." + checked + "Comment").textContent = text;
                     if (checked === "after") {
@@ -1139,7 +1144,7 @@ let pgnBase = function (boardId, configuration) {
                 const rad = ["moveComment", "beforeComment", "afterComment"];
                 const prevComment = null;
                 for (let i = 0; i < rad.length; i++) {
-                    document.querySelector('#' + 'comment' + buttonsId + " ." + rad[i]).onclick = function () {
+                    document.querySelector('#' + 'comment' + id('buttonsId') + " ." + rad[i]).onclick = function () {
                         const checked = this.value;
                         let text;
                         if (checked === "after") {
@@ -1155,8 +1160,12 @@ let pgnBase = function (boardId, configuration) {
             }
 
             function togglePlay() {
-                timer.running() ? timer.stop() : timer.start();
-                const playButton = document.getElementById(buttonsId + 'play');
+                if (timer.running()) {
+                    timer.stop()
+                } else {
+                    timer.start()
+                }
+                const playButton = document.getElementById(id('buttonsId') + 'play');
                 let clString = playButton.getAttribute('class');
                 if (clString.indexOf('play') < 0) { // has the stop button
                     clString = clString.replace('stop', 'play');
@@ -1169,7 +1178,7 @@ let pgnBase = function (boardId, configuration) {
             bind_key("left", prevMove);
             bind_key("right", nextMove);
             //bind_key("space", togglePlay);
-            addEventListener(buttonsId + 'play', 'click', function () {
+            addEventListener(id('buttonsId') + 'play', 'click', function () {
                 togglePlay();
             });
 
@@ -1180,7 +1189,7 @@ let pgnBase = function (boardId, configuration) {
         };
 
         const showPgn = function (val) {
-            document.getElementById('pgn' + buttonsId).textContent = val;
+            document.getElementById('pgn' + id('buttonsId')).textContent = val;
         };
 
         /**
@@ -1188,7 +1197,7 @@ let pgnBase = function (boardId, configuration) {
          * or later (moves have changed).
          */
         const regenerateMoves = function (myMoves) {
-            const movesDiv = document.getElementById(movesId);
+            const movesDiv = document.getElementById(id('movesId'));
             let prev = null;
             const varStack = [];
             let firstMove = 0;
@@ -1221,8 +1230,8 @@ let pgnBase = function (boardId, configuration) {
                 // find the result from the header
                 let endGame = that.mypgn.getEndGame();
                 // Insert it as new span
-                let span = createEle("span", movesId + "Result", "move", theme,
-                    document.getElementById(movesId));
+                let span = createEle("span", id('movesId') + "Result", "move", theme,
+                    document.getElementById(id('movesId')));
                 span.innerHTML = endGame ? endGame : "*";
 
             }
@@ -1230,7 +1239,7 @@ let pgnBase = function (boardId, configuration) {
 
         postGenerateMoves();
     };
-    let ret = {
+    return {
         // PUBLIC API
         chess: game,
         board: board,
@@ -1242,7 +1251,6 @@ let pgnBase = function (boardId, configuration) {
         generateMoves: generateMoves,
         onSnapEnd: onSnapEnd
     };
-    return ret;
 };
 
 export default pgnBase;

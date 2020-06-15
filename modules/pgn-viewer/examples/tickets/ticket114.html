@@ -22,9 +22,9 @@ How to show who is to move.
 <script>
     var pgn = "1. e4 $4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 Bc5 5. Nxf7 Bxf2+ 1-0";
     var pgnd = "1. e4 $4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 Bc5 5. Nxf7 Bxf2+ 0-1";
-    var cfg10 = { showNotation: false, position: 'start', pgn: pgn, width: '400px', showResult: true };
-    var cfg01 = { showNotation: false, position: 'start', pgn: pgnd, width: '400px', showResult: true };
-    var cfg = { showNotation: false, position: 'start', pgn: pgnd, width: '400px'};
+    var cfg10 = { showCoords: false, position: 'start', pgn: pgn, width: '400px', showResult: true };
+    var cfg01 = { showCoords: false, position: 'start', pgn: pgnd, width: '400px', showResult: true };
+    var cfg = { showCoords: false, position: 'start', pgn: pgnd, width: '400px'};
     var board = PGNV.pgnView('board', cfg10);
     var board2 = PGNV.pgnView('board2', cfg01);
     var board3 = PGNV.pgnView('board3', cfg);
