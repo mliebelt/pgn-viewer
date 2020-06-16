@@ -194,11 +194,8 @@ div.error {
 }
 
 div.buttons > i.button, div.edit > i.button {
-    /*font-size: 1rem;*/
-    /*line-height: 1.4em;*/
     color: var(--gray-600);
     background-color: var(--gray-100);
-    /*background-image: none;*/
     margin: 0.24rem;
     padding: 4px;
     border: solid var(--gray-300) 1px;
@@ -218,46 +215,47 @@ div.buttons > i.button:hover,div.edit > i.button:hover  {
 div.nagMenu {
     border: 1px grey dotted;
     display: none;
-    width: 600px;
+    width: 500px;
 }
 
 div.nagMenu a {
     text-decoration: none;
+    /*text-align: center;*/
 }
 
 div.nagMove, div.nagObservation, div.nagPosition {
     display: flex;
     flex-direction: column;
     flex-basis: 33.3%;
-    text-align: left;
+    /*text-align: left;*/
     flex-wrap: wrap;
 }
-
 .nagMove i, .nagPosition i, .nagObservation i {
-    display: flex!important;
+    display: flex;
     cursor: pointer;
-    transition: 0.13s;
     align-items: center;
-    margin: 2px;
+    justify-content: left;
+    margin: var(--space-xss);
 }
 
 .nagMove i::before, .nagPosition i::before, .nagObservation i::before {
     content: attr(data-symbol);
-    /* font-size: 1.2em; */
     font-style: normal;
-    font-weight: bold;
-    display: block;
-    width: 30px;
-    text-align: center;
-    background: var(--gray-100);
-    padding: 2px 2px;
-    margin-right: 6px;
-    transition: 0.13s;
+    width: var(--space-md);
+    justify-content: center;
+    align-items: center;
+    /*width: 30px;*/
 }
+
 
 a.active i::before {
     background: var(--gray-700) !important;
     color: var(--gray-100)!important;
+}
+
+a.active i::before i:hover {
+    background: var(--gray-100) !important;
+    color: var(--gray-700)!important;
 }
 
 .nagMove i:hover, .nagPosition i:hover, .nagObservation i:hover {

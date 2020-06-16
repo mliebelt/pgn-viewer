@@ -215,12 +215,12 @@ const pgnReader = function (configuration) {
     that.NAGs[3]=    "‼";   // 3
     that.NAGs[4]=    "⁇";   // 4
     that.NAGs[5]=    "⁉";   // 5
-    that.NAGs[6]=    "⁈";   // 6
+    that.NAGs[6]=    "⁈";   // 6 
     that.NAGs[7]=    "□";    // 7
     that.NAGs[10]=    "=";    // 10
     that.NAGs[13]=    "∞";    // 13
-    that.NAGs[14]=    "⩲";    // 14
-    that.NAGs[15]=    "⩱";    // 15
+    that.NAGs[14]=    "⩲";    // 14➢0x2a72
+    that.NAGs[15]=    "⩱";    // 15 0x2a71
     that.NAGs[16]=    "±";    // 16
     that.NAGs[17]=    "∓";    // 17
     that.NAGs[18]=    "+−";   // 18

@@ -1,6 +1,6 @@
 # In a Nutshell
 
-You will find the detailed documentation about pgn-viewer (formerly named PgnViewerJS, which is a bad name for NPM) in the [top-level directory](../../readme.md).
+You will find the detailed documentation about pgn-viewer (formerly named PgnViewerJS, which is a bad name for NPM) in the [top-level directory](https://github.com/mliebelt/PgnViewerJS/blob/master/readme.md).
 
 ## How to Install
 
