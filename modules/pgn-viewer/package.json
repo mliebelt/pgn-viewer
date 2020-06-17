@@ -1,6 +1,11 @@
 {
   "name": "@mliebelt/pgn-viewer",
   "description": "A pgn viewer to view or edit chess games on HTML web sites.",
+  "keywords": [
+    "chess",
+    "pgn",
+    "viewer"
+  ],
   "version": "1.2.0",
   "main": "lib/pgnv.js",
   "files": [
@@ -20,7 +25,7 @@
     "start": "../../node_modules/.bin/webpack-dev-server --open --config webpack.dev.js"
   },
   "dependencies": {
-    "@mliebelt/pgn-reader": "^1.0.1",
+    "@mliebelt/pgn-reader": "^1.1.0",
     "chessground": "^7.6.12",
     "i18next": "^19.4.4",
     "i18next-localstorage-cache": "^1.1.1",

@@ -107,8 +107,13 @@ span.restHeader:after { content: ")"}
     grid-column: 2 / 3;
 }
 
-.whole.layout-left .moves, .whole.layout-right .moves {
+.whole.viewMode.layout-left .moves, .whole.viewMode.layout-right .moves {
     grid-row: 2 / 4;
+    overflow: auto;
+}
+
+.whole.editMode.layout-left .moves, .whole.editMode.layout-right .moves {
+    grid-row: 2 / 3;
     overflow: auto;
 }
 
@@ -179,6 +184,14 @@ span.restHeader:after { content: ")"}
 .whole.layout-top.printMode .moves {
     width: 110%;
 }
+
+/** Board mode */
+.whole.layout-top.boardMode {
+    gap: 0;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
 /** Other styling ... */
 
 .fen {
