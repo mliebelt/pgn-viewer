@@ -70,20 +70,24 @@ span.restHeader:after { content: ")"}
 }
 
 /** Layout styles: View */
+.whole.layout-left .games, .whole.layout-right .games {
+    grid-column: 1 / 3;
+}
+
 .whole.layout-left, .whole.layout-right {
     display: grid;
     gap: 0.5em;
     grid-template-columns: auto auto;
-    grid-template-rows: auto minmax(auto,1fr) 50px;
+    grid-template-rows: 40px auto minmax(auto,1fr) 50px;
 }
 
 .whole.layout-left .error, .whole.layout-right .error {
     grid-column: 1 / 3;
-    grid-row: 1 / 2;
+    grid-row: 2 / 3;
 }
 
 .whole.layout-left .outerBoard, .whole.layout-left .outerBoard {
-    grid-row: 2 / 3;
+    grid-row: 3 / 4;
 }
 
 .whole.layout-left .outerBoard {
@@ -96,7 +100,7 @@ span.restHeader:after { content: ")"}
 
 .whole.layout-left .buttons, .whole.layout-right .buttons {
     place-self: center;
-    grid-row: 3 / 4;
+    grid-row: 4 / 5;
 }
 
 .whole.viewMode.layout-left .buttons, .whole.editMode.layout-right .buttons {
@@ -108,13 +112,18 @@ span.restHeader:after { content: ")"}
 }
 
 .whole.viewMode.layout-left .moves, .whole.viewMode.layout-right .moves {
-    grid-row: 2 / 4;
+    grid-row: 3 / 5;
     overflow: auto;
 }
 
 .whole.editMode.layout-left .moves, .whole.editMode.layout-right .moves {
-    grid-row: 2 / 3;
+    grid-row: 3/4;
     overflow: auto;
+}
+
+.whole.editMode .edit {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
 }
 
 .whole.layout-left .moves {
@@ -141,25 +150,25 @@ span.restHeader:after { content: ")"}
 }
 
 .whole.layout-top .error, .whole.layout-bottom .error {
-    grid-row: 1 / 2;
+    grid-row: 2/3;
 }
 
 .whole.layout-top .outerBoard {
-    grid-row: 2 / 3;
+    grid-row: 3/4;
 }
 
 .whole.layout-bottom .outerBoard {
-    grid-row: 3 / 4;
+    grid-row: 4/5;
 }
 
 .whole.layout-top .buttons {
     place-self: center;
-    grid-row: 3 / 4;
+    grid-row: 4/5;
 }
 
 .whole.layout-bottom .buttons {
     place-self: center;
-    grid-row: 4 / 5;
+    grid-row: 5/6;
 }
 
 .whole.layout-top .moves, .whole.layout-bottom .moves {
@@ -167,11 +176,11 @@ span.restHeader:after { content: ")"}
 }
 
 .whole.layout-top .moves {
-    grid-row: 4 / 5;
+    grid-row: 5/6;
 }
 
 .whole.layout-bottom .moves {
-    grid-row: 2 / 3;
+    grid-row: 3/4;
 }
 
 /** Print mode */
@@ -387,9 +396,9 @@ div.comment > textarea.comment {
     cursor: crosshair;
 }
 
-.moves .move {
+.moves .move, select.games {
     font-size: 16px;
-    font-family: Georgia, "Bitstream Charter", serif;;
+    /*font-family: Georgia, "Bitstream Charter", serif;;*/
     color: black;
     font-weight: 700;
     line-height: 24px;

@@ -81,11 +81,10 @@ let pgnView = function (boardId, configuration) {
         () => {
             let base = pgnBase(boardId, Object.assign({mode: 'view'}, configuration));
             base.generateHTML();
-            let b = base.generateBoard();
-            base.generateMoves(b);
+            base.generateBoard();
+            base.generateMoves();
             return {
-                base,
-                board: b
+                base
             };
         });
 };
@@ -149,7 +148,7 @@ let pgnEdit = function (boardId, configuration) {
             configuration));
         base.generateHTML();
         let board = base.generateBoard();
-        base.generateMoves(board);
+        base.generateMoves();
         return { base, board };
     });
 };

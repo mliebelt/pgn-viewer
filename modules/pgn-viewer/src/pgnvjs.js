@@ -1,5 +1,6 @@
 import i18next from 'i18next';
 import {pgnReader, Utils} from '@mliebelt/pgn-reader';
+//import {pgnReader, Utils} from "../../pgn-reader/src/pgn";
 import {Chessground} from 'chessground';
 import Timer from './Timer';
 import Mousetrap from 'mousetrap';
@@ -22,6 +23,7 @@ let pgnBase = function (boardId, configuration) {
         pieceStyle: 'merida',
         //width: '320px',
         //boardSize: '320px',
+        manyGames: false,
         showCoords: true,
         orientation: 'white',
         position: 'start',
@@ -62,7 +64,7 @@ let pgnBase = function (boardId, configuration) {
     const id = function (id) {
         return that.configuration.IDs[id];
     }
-    let board;              // Will be set later, but has to be a known variable
+    that.board = null              // Will be set later, but has to be a known variable
 
     if (that.configuration.locale) {
         that.configuration.locale = that.configuration.locale.replace(/_/g, "-");
@@ -206,15 +208,15 @@ let pgnBase = function (boardId, configuration) {
         if (primMove.promotion) {
             let pieces = {};
             pieces[to] = null;
-            board.setPieces(pieces);
+            that.board.setPieces(pieces);
             pieces[to] = {color: (move.turn == 'w' ? 'white' : 'black'), role: that.promMappings[primMove.promotion]};
-            board.setPieces(pieces);
+            that.board.setPieces(pieces);
         }
         if (move.notation.ep) {
             let ep_field = to[0] + from[1];
             let pieces = {};
             pieces[ep_field] = null;
-            board.setPieces(pieces);
+            that.board.setPieces(pieces);
         }
         if (moveSpan(that.currentMove) === null) {
             generateMove(that.currentMove, null, move, move.prev, document.getElementById(id('movesId')), []);
@@ -222,8 +224,8 @@ let pgnBase = function (boardId, configuration) {
         unmarkMark(that.currentMove);
         updateUI(that.currentMove);
         let col = move.turn == 'w' ? 'black' : 'white';
-        board.set({
-            movable: Object.assign({}, board.state.movable, {color: col, dests: possibleMoves(game)}),
+        that.board.set({
+            movable: Object.assign({}, that.board.state.movable, {color: col, dests: possibleMoves(game)}),
             check: game.in_check()
         });
         //makeMove(null, that.currentMove, move.fen);
@@ -379,19 +381,20 @@ let pgnBase = function (boardId, configuration) {
         if (that.configuration.layout) {
             divBoard.classList.add('layout-' + that.configuration.layout);
         }
+
+        /** Add a drop-down list for all games if necessary. */
+        let gamesDropDown = createEle("select", boardId + "Games", 'games', null, divBoard)
+        if (! that.configuration.manyGames) {
+            gamesDropDown.style.display = 'none'
+        }
+
         /** Add an error div to show errors */
         that.errorDiv = createEle("div", boardId + "Error", 'error', null, divBoard);
-
-        /** Header Div (as part of topInner ?? */
-        //createEle("div", headersId, "headers", theme, divBoard);
 
         /** outerBoard */
         const outerInnerBoardDiv = createEle("div", null, "outerBoard", null, divBoard);
         let boardAndDiv = createEle('div', null, 'boardAnd', theme, outerInnerBoardDiv);
-        // TODO Move the computation of grid layout sizes to one function (with parameters)
-        if (that.configuration.boardSize) {
-            outerInnerBoardDiv.style.width = that.configuration.boardSize;
-        }
+
         /** topInner for headers / time of Black. TODO: Orientation should switch that then. **/
         let topInnerBoardDiv = createEle("div", null, "topInnerBoard", theme, boardAndDiv);
         let blackHeader = createEle('div', id('topHeaderId'), "blackHeader", theme, boardAndDiv);
@@ -446,10 +449,10 @@ let pgnBase = function (boardId, configuration) {
         if (hasMode('edit')) {
             const editButtonsBoardDiv = createEle("div", "edit" + id('buttonsId'), "edit", theme, divBoard);
             generateEditButtons(editButtonsBoardDiv);
-            let nagMenu = createEle('div', 'nagMenu' + id('buttonsId'), 'nagMenu', theme, divBoard);
+            let nagMenu = createEle('div', 'nagMenu' + id('buttonsId'), 'nagMenu', theme, editButtonsBoardDiv);
             generateNagMenu(nagMenu);
-            const pgnDiv = createEle("textarea", "pgn" + id('buttonsId'), "pgn", theme, divBoard);
-            const commentBoardDiv = createEle("div", "comment" + id('buttonsId'), "comment", theme, divBoard);
+            const pgnDiv = createEle("textarea", "pgn" + id('buttonsId'), "pgn", theme, editButtonsBoardDiv);
+            const commentBoardDiv = createEle("div", "comment" + id('buttonsId'), "comment", theme, editButtonsBoardDiv);
             generateCommentDiv(commentBoardDiv);
             // Bind the paste key ...
             addEventListener("pgn" + id('buttonsId'), 'mousedown', function (e) {
@@ -528,8 +531,9 @@ let pgnBase = function (boardId, configuration) {
                 _boardHeight = `${parseInt(_boardHeight) + 40}px`;
             }
             let _buttonsHeight = document.getElementById(id('buttonsId')).offsetHeight;
+            let _gamesHeight = that.configuration.manyGames ? '40px' : '0'
             if (that.configuration.layout === 'left' || that.configuration.layout === 'right') {
-                divBoard.style.gridTemplateRows = `auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px`;
+                divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px`;
                 let _movesWidth = `${parseInt(that.configuration.width) - parseInt(_boardWidth)}px`;
                 if (that.configuration.layout === 'left') {
                     divBoard.style.gridTemplateColumns = _boardWidth + " " + _movesWidth;
@@ -542,10 +546,11 @@ let pgnBase = function (boardId, configuration) {
                 let _movesHeight = parseInt(_boardHeight) / 5 * 3;
                 if (_minMovesHeight < _movesHeight) _movesHeight = _minMovesHeight;
                 if (that.configuration.layout === 'top') {
-                    divBoard.style.gridTemplateRows = `auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px minmax(0, ${_movesHeight}px)`;
+                    divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px minmax(0, ${_movesHeight}px)`;
                 } else if (that.configuration.layout === 'bottom') {
-                    divBoard.style.gridTemplateRows = `auto minmax(0,${_movesHeight}px) minmax(auto,${_boardHeight}) ${_buttonsHeight}px`;
+                    divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(0,${_movesHeight}px) minmax(auto,${_boardHeight}) ${_buttonsHeight}px`;
                 }
+                divBoard.style.gridTemplateColumns = _boardWidth
             }
         })
     };
@@ -596,7 +601,7 @@ let pgnBase = function (boardId, configuration) {
         let smallerWidth = currentWidth - moduloWidth;
         // Ensure that boardWidth is a multiply of 8
         boardConfiguration.width = "" + smallerWidth +"px";
-        board = Chessground(el, boardConfiguration);
+        that.board = Chessground(el, boardConfiguration);
         //console.log("Board width: " + board.width);
         if (boardConfiguration.width) {
             el.style.width = boardConfiguration.width;
@@ -617,8 +622,8 @@ let pgnBase = function (boardId, configuration) {
         if (hasMode('edit')) {
             game.load(boardConfiguration.position);
             let toMove = (game.turn() == 'w') ? 'white' : 'black';
-            board.set({
-                movable: Object.assign({}, board.state.movable, {color: toMove, dests: possibleMoves(game)}),
+            that.board.set({
+                movable: Object.assign({}, that.board.state.movable, {color: toMove, dests: possibleMoves(game)}),
                 turnColor: toMove, check: game.in_check()
             });
         }
@@ -631,7 +636,7 @@ let pgnBase = function (boardId, configuration) {
                 }
             }
         }
-        return board;
+        return that.board;
     };
 
     const moveSpan = function (i) {
@@ -843,7 +848,7 @@ let pgnBase = function (boardId, configuration) {
                         role: that.mypgn.PROMOTIONS[promPiece],
                         color: (aMove.turn == 'w' ? 'white' : 'black')
                     };
-                board.setPieces(pieces);
+                that.board.setPieces(pieces);
             }
         }
 
@@ -883,13 +888,13 @@ let pgnBase = function (boardId, configuration) {
             myFen = that.configuration.position == 'start' ? 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1' : that.configuration.position;
         }
         if (myMove) {
-            board.set({fen: myFen, lastMove: [myMove.from, myMove.to]});
+            that.board.set({fen: myFen, lastMove: [myMove.from, myMove.to]});
         } else {
-            board.set({fen: myFen, lastMove: []});
+            that.board.set({fen: myFen, lastMove: []});
         }
         handlePromotion(myMove);
         if (myMove) {
-            board.setShapes(getShapes(myMove.commentDiag));
+            that.board.setShapes(getShapes(myMove.commentDiag));
         }
         game.load(myFen);
         unmarkMark(next);
@@ -899,8 +904,8 @@ let pgnBase = function (boardId, configuration) {
         }
         if (hasMode('edit')) {
             let col = game.turn() == 'w' ? 'white' : 'black';
-            board.set({
-                movable: Object.assign({}, board.state.movable, {color: col, dests: possibleMoves(game)}),
+            that.board.set({
+                movable: Object.assign({}, that.board.state.movable, {color: col, dests: possibleMoves(game)}),
                 turnColor: col, check: game.in_check()
             });
             if (next) {
@@ -908,8 +913,8 @@ let pgnBase = function (boardId, configuration) {
             }
         } else if (hasMode('view')) {
             let col = game.turn() == 'w' ? 'white' : 'black';
-            board.set({
-                movable: Object.assign({}, board.state.movable, {color: col}),
+            that.board.set({
+                movable: Object.assign({}, that.board.state.movable, {color: col}),
                 turnColor: col, check: game.in_check()
             });
         }
@@ -925,9 +930,37 @@ let pgnBase = function (boardId, configuration) {
      * Generates the HTML (for the given moves). Includes the following: move number,
      * link to FEN (position after move)
      */
-    const generateMoves = function (board) {
+    const generateMoves = function () {
+        /** Create something printable from the tags for the list. */
+        function printTags(game) {
+            if (Object.keys(game.tags).length === 0) {
+                return "Should print somehow the moves of the game"
+            }
+            let _t = game.tags
+            return `[${_t.Event}] ${_t.Round}: ${_t.White} - ${_t.Black} (${_t.Date})`
+        }
+        /** Fill the drop down with loaded game. */
+        function fillGamesDropDown() {
+            let _games = that.mypgn.getGames()
+            let _select = document.getElementById(boardId + 'Games')
+            for (let i=0; i < _games.length; i++) {
+                let _el = document.createElement('option')
+                let _game = _games[i]
+                _el.text = printTags(_game)
+                _el.value = i
+                _select.add(_el)
+            }
+            _select.addEventListener('change', function (ev) {
+                that.mypgn.load_one(parseInt(ev.currentTarget.value))
+                regenerateMoves(that.mypgn.getMoves())
+                // bindFunctions();
+                generateHeaders()
+                makeMove(null, null, null)
+            })
+        }
         try {
             that.mypgn.load_pgn();
+            fillGamesDropDown();
         } catch (err) {
             if (typeof err.location != "undefined") {
                 const sta = err.location.start.offset;
@@ -941,25 +974,14 @@ let pgnBase = function (boardId, configuration) {
                 logError(err);
             }
         }
-        //TODO: Move the whole block to `pgn.src` and do the compuation there.
-        // This should already be finished after load_pgn
-        // if (that.configuration.startPlay && that.configuration.hideMovesBefore) {
-        //     let new_fen = that.mypgn.deleteMovesBefore(that.configuration.startPlay);
-        //     let new_pgn = that.mypgn.write_pgn();
-        //     that.configuration.startPlay = null;
-        //     that.configuration.hideMovesBefore = false;
-        //     that.configuration.pgn = new_pgn;
-        //     that.configuration.position = new_fen;
-        //     that.mypgn.load_pgn();
-        // }
         let myMoves = that.mypgn.getMoves();
         if (that.configuration.position == 'start') {
             game.reset();
         } else {
             game.load(that.configuration.position);
         }
-        if (board !== null) {
-            board.set({fen: game.fen()});
+        if (that.board) {
+            that.board.set({fen: game.fen()});
         }
         let fenField = document.getElementById(id('fenId'));
         if (utils.pvIsElement(fenField)) {
@@ -980,10 +1002,12 @@ let pgnBase = function (boardId, configuration) {
                 return;
             }
             if (tags.White) {
-                whd.appendChild(document.createTextNode(tags.White + " "));
+                whd.innerHTML = ''
+                whd.appendChild(document.createTextNode(tags.White + " "))
             }
             //div_h.appendChild(document.createTextNode(" - "));
             if (tags.Black) {
+                bhd.innerHTML = ''
                 bhd.appendChild(document.createTextNode(" " + tags.Black));
             }
             // let rest = "";
@@ -1008,10 +1032,11 @@ let pgnBase = function (boardId, configuration) {
         // Bind the necessary functions to move the pieces.
         const bindFunctions = function () {
             const switchHeaderValues = function () {
-                let bottomInner = document.getElementById(id('bottomHeaderId')).innerText;
-                let topInner = document.getElementById(id('topHeaderId')).innerText;
-                document.getElementById(id('bottomHeaderId')).innerText = topInner;
-                document.getElementById(id('topHeaderId')).innerText = bottomInner;
+                if (! document.getElementById(id('bottomHeaderId'))) return
+                let bottomInner = document.getElementById(id('bottomHeaderId')).innerText
+                let topInner = document.getElementById(id('topHeaderId')).innerText
+                document.getElementById(id('bottomHeaderId')).innerText = topInner
+                document.getElementById(id('topHeaderId')).innerText = bottomInner
             }
             const bind_key = function (key, to_call) {
                 const form = document.querySelector("#" + boardId + ",#" + boardId + "Moves");
@@ -1056,7 +1081,7 @@ let pgnBase = function (boardId, configuration) {
                 nextMove();
             });
             addEventListener(id('buttonsId') + 'flipper', 'click', function () {
-                board.toggleOrientation();
+                that.board.toggleOrientation();
                 switchHeaderValues();
             });
             addEventListener(id('buttonsId') + 'next', 'click', function () {
@@ -1197,8 +1222,9 @@ let pgnBase = function (boardId, configuration) {
          * or later (moves have changed).
          */
         const regenerateMoves = function (myMoves) {
-            const movesDiv = document.getElementById(id('movesId'));
-            let prev = null;
+            const movesDiv = document.getElementById(id('movesId'))
+            movesDiv.innerHTML = ''
+            let prev = null
             const varStack = [];
             let firstMove = 0;
             for (let i = firstMove; i < myMoves.length; i++) {
@@ -1242,7 +1268,7 @@ let pgnBase = function (boardId, configuration) {
     return {
         // PUBLIC API
         chess: game,
-        board: board,
+        board: that.board,
         getPgn: function () {
             return that.mypgn;
         },
