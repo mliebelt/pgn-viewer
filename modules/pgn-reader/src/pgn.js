@@ -162,7 +162,7 @@ const pgnReader = function (configuration) {
         return Object.assign(defaults, configuration)
     };
     that.configuration = initialize_configuration(configuration);
-    that.startMove = 0;
+    // that.startMove = 0;
     const game = new Chess();
     const set_to_start = function() {
         if (that.configuration.position === 'start') {
@@ -337,6 +337,25 @@ const pgnReader = function (configuration) {
      * the moves from the beginning to the startPlay are cut. Ugly, but working.
      */
     let load_pgn = function () {
+        function hasManyGames() {
+            return that.configuration.manyGames;
+        }
+
+        if (hasManyGames()) {
+            load_many()
+            load_one(that.games[0])
+            return that
+        }
+        let _mgame = parser.parse(that.configuration.pgn, {startRule: 'game'});
+        that.games = [_mgame]
+        load_one(_mgame)
+        return that;
+    };
+
+    let load_many = function () {
+        that.games = that.games = parser.parse(that.configuration.pgn, {startRule: 'games'});
+    }
+    let load_one = function (game) {
         const interpretHeaders = function () {
             if (that.tags.SetUp) {
                 const setup = that.tags.SetUp;
@@ -348,11 +367,13 @@ const pgnReader = function (configuration) {
             }
             if (that.tags.Result) {
                 that.endGame = that.tags.Result;            }
-        };
-        let _mgame = parser.parse(that.configuration.pgn, {startRule: "game"});
-        that.tags = _mgame.tags;
+        }
+
+        let _game = typeof game === 'number' ? that.games[game] : game
+        that.tags = _game.tags;
+        that.moves = _game.moves;
         interpretHeaders();
-        readMoves(_mgame.moves);
+        readMoves(_game.moves);
         if (that.configuration.startPlay && that.configuration.hideMovesBefore) {
             let new_fen = deleteMovesBefore(that.configuration.startPlay);
             let new_pgn = write_pgn();
@@ -362,8 +383,7 @@ const pgnReader = function (configuration) {
             that.configuration.position = new_fen;
             load_pgn();
         }
-        return that;
-    };
+    }
 
     const wireMoves = function(current, prev, currentMove, prevMove) {
         if (prevMove != null) {
@@ -937,7 +957,6 @@ const pgnReader = function (configuration) {
                 });
             });
         };
-        that.firstMove = movesMainLine[0];
         eachMoveVariation(movesMainLine, 0, null);
     };
 
@@ -982,7 +1001,7 @@ const pgnReader = function (configuration) {
             }
             set_to_start();
             let pgn_move = game.move(move);
-            if (typeof pgn_move == "undefined") {
+            if (! pgn_move) {
                 return null;
              } else if (first_move_notation() === pgn_move.san) {
                 return 0;
@@ -1139,10 +1158,6 @@ const pgnReader = function (configuration) {
      * next move, ...
      */
     const getOrderedMoves = function(current, returnedMoves) {
-        if (arguments.length === 0) {
-            current = getMove(that.startMove);
-            returnedMoves = [];
-        }
         returnedMoves.push(current);
         if (current.variations) {
             for (let i = 0; i < current.variations.length; i++) {
@@ -1154,20 +1169,6 @@ const pgnReader = function (configuration) {
         } else {
             return returnedMoves;
         }
-    };
-
-    /**
-     * Return the moves of the main line.
-     */
-    const movesMainLine = function() {
-        let current = getMove(that.startMove);
-        let returnedMoves = [];
-        returnedMoves.push(current);
-        while (current.next) {
-            current = getMove(current.next);
-            returnedMoves.push(current);
-        }
-        return returnedMoves;
     };
 
     /**
@@ -1191,6 +1192,18 @@ const pgnReader = function (configuration) {
         } else {
             load_pgn();
             return that.tags;
+        }
+    }
+
+    /**
+     * Returns the games. Ensures that pgn is already read.
+     */
+    function getGames() {
+        if (typeof that.games != 'undefined') {
+            return that.games;
+        } else {
+            load_pgn();
+            return that.games;
         }
     }
 
@@ -1233,10 +1246,9 @@ const pgnReader = function (configuration) {
         getMove: getMove,
         getEndGame: getEndGame,
         getTags: getTags,
-//        splitHeaders: splitHeaders,
+        getGames: getGames,
+        load_one: load_one,
         getParser: () => parser,
-//        eachMove: function() { return eachMove(); },
-        movesMainLine: movesMainLine,
         write_pgn: write_pgn,
         nag_to_symbol: nag_to_symbol,
         startVariation: startVariation,
