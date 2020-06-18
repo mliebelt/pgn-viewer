@@ -242,7 +242,6 @@ describe("When reading PGN with variations", function() {
 
     it("should understand one variation for white", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6) exf4"});
-        should(my_pgn.movesMainLine().length).equal(4);
         should(my_pgn.getMove(0).variations.length).equal(0);
         should(my_pgn.getMove(1).variations.length).equal(0);
         should(my_pgn.getMove(2).variations.length).equal(1);
@@ -258,7 +257,6 @@ describe("When reading PGN with variations", function() {
 
     it("should understand one variation for black with move number", function () {
         my_pgn = pgnReader({pgn: "1. e4 e5 (1... d5 2. exd5 Qxd5)"});
-        should(my_pgn.movesMainLine().length).equal(2);
         should(my_pgn.getMove(1).variations.length).equal(1);
         should(my_pgn.getMove(0).variations.length).equal(0);
         should(my_pgn.getMove(1).variations[0].notation.notation).equal("d5");
@@ -268,7 +266,6 @@ describe("When reading PGN with variations", function() {
 
     it("should understand all variations for black and white with different move number formats", function () {
         my_pgn = pgnReader({pgn: "1. e4 (1... c4?) e5 (1. .. d5 2 exd5 2... Qxd5)"});
-        should(my_pgn.movesMainLine().length).equal(2);
         should(my_pgn.getMove(0).variations.length).equal(1);
         should(my_pgn.getMove(1).variations.length).equal(0);
         should(my_pgn.getMove(2).variations[0].notation.notation).equal("d5");
@@ -278,7 +275,6 @@ describe("When reading PGN with variations", function() {
 
     it("should understand one variation for black without move number", function () {
         my_pgn = pgnReader({pgn: "1. e4 e5 (d5 2. exd5 Qxd5)"});
-        should(my_pgn.movesMainLine().length).equal(2);
         should(my_pgn.getMove(1).variations.length).equal(1);
         should(my_pgn.getMove(0).variations.length).equal(0);
         should(my_pgn.getMove(1).variations[0].notation.notation).equal("d5");
@@ -288,7 +284,6 @@ describe("When reading PGN with variations", function() {
 
     it("should understand nested variations", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 (d5 2. exd5 Qxd5 (2... Nf6))"});
-        should(my_pgn.movesMainLine().length).equal(2);
         should(my_pgn.getMove(1).variations[0].notation.notation).equal("d5");
         should(my_pgn.getMove(4).variations.length).equal(1);
         should(my_pgn.getMove(4).variations[0].notation.notation).equal("Nf6");
@@ -305,7 +300,6 @@ describe("When reading PGN with variations", function() {
 
     it ("should know about variations in syntax for variants", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 ( 1... d5 )"});
-        should(my_pgn.movesMainLine().length).equal(2);
         should(my_pgn.getMove(1).variations[0].notation.notation).equal("d5");
     })
 });
