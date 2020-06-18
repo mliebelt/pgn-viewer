@@ -1,7 +1,7 @@
 {
   "name": "@mliebelt/pgn-reader",
   "description": "A pgn reader (backend only) to read, understand and play chess games. Used mainly by pgn-viewer.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "lib/pgn.js",
   "files": [
     "README.md"
