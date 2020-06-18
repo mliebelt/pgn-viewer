@@ -6,7 +6,7 @@
 [Black "Maroczy,G"]
 [Result "1/2"]
 [ECO "A00"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "113"]
 
 1.b4 
@@ -245,7 +245,7 @@ Ke8
 [Black "Janowski,D"]
 [Result "1-0"]
 [ECO "A09"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "63"]
 
 1.Nf3 d5 2.c4 
@@ -315,7 +315,7 @@ fxe5 31.Qxe5+ Kc8 32.Qxf5+
 [Black "Janowski,D"]
 [Result "1-0"]
 [ECO "A09"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "85"]
 
 1.Nf3 d5 2.c4 
@@ -392,7 +392,7 @@ Bxb3
 [Black "Janowski,D"]
 [Result "1-0"]
 [ECO "A09"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "91"]
 
 1.Nf3 d5 2.g3 c5 3.Bg2 Nc6 4.O-O e5 
@@ -489,7 +489,7 @@ Nec6
 [Black "Lasker,Em"]
 [Result "0-1"]
 [ECO "A12"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "90"]
 
 1.Nf3 
@@ -585,7 +585,7 @@ Re6+ 43.Kf4 Re2 44.Bc1 Rc2 45.Be3 Bd5
 [Black "Bogoljubow,E"]
 [Result "1-0"]
 [ECO "A13"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "49"]
 
 1.Nf3 d5 2.c4 
@@ -633,7 +633,7 @@ Kh8 25.Be8
 [Black "Yates,F"]
 [Result "1-0"]
 [ECO "A13"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "61"]
 
 1.Nf3 
@@ -768,7 +768,7 @@ Rd2+
 [Black "Lasker,Ed"]
 [Result "1-0"]
 [ECO "A13"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "111"]
 
 1.Nf3 
@@ -1014,7 +1014,7 @@ Kf8
 [Black "Bogoljubow,E"]
 [Result "1/2"]
 [ECO "A13"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "121"]
 
 1.Nf3 Nf6 2.c4 e6 3.g3 d5 4.Bg2 
@@ -1078,7 +1078,7 @@ Bc2 60.Rd7+ Kc5 61.Rc7+
 [Black "Capablanca,J"]
 [Result "1-0"]
 [ECO "A15"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "61"]
 
 1.Nf3 
@@ -1278,7 +1278,7 @@ Kf8
 [Black "Lasker,Em"]
 [Result "0-1"]
 [ECO "A20"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "96"]
 
 1.c4 
@@ -1362,7 +1362,7 @@ Qxh4 { } )
 [Black "Marshall,F"]
 [Result "1-0"]
 [ECO "A30"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "121"]
 
 1.Nf3 
@@ -1423,7 +1423,7 @@ f5 58.a5 g5 59.a6 g3 60.a7 gxf4 61.a8=Q 1-0
 [Black "Maroczy,G"]
 [Result "1/2"]
 [ECO "A37"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "69"]
 
 1.Nf3 
@@ -1636,7 +1636,7 @@ Qg4+
 [Black "Marshall,F"]
 [Result "0-1"]
 [ECO "A46"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "150"]
 
 1.d4 
@@ -2004,7 +2004,7 @@ b2
 [Black "Alekhine,A"]
 [Result "0-1"]
 [ECO "A48"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "100"]
 
 1.d4 Nf6 2.Nf3 c5 
@@ -2117,7 +2117,7 @@ Kh6 ) 52...Rc1+ 54.Kg2 b1=Q 55.Qc3+ Rxc3 56.Rxb1 )
 [Black "Yates,F"]
 [Result "0-1"]
 [ECO "A48"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "162"]
 
 1.d4 Nf6 2.Nf3 g6 3.Bf4 Bg7 4.h3 O-O 5.e3 d6 6.Bc4 Nc6 7.O-O Nd7 8.Nc3 
@@ -2241,7 +2241,7 @@ Kf4
 [Black "Alekhine,A"]
 [Result "1/2"]
 [ECO "A48"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "60"]
 
 1.Nf3 Nf6 
@@ -2309,7 +2309,7 @@ Rxc2
 [Black "Capablanca,J"]
 [Result "1/2"]
 [ECO "A48"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "131"]
 
 1.d4 Nf6 2.Nf3 g6 3.e3 
@@ -2394,7 +2394,7 @@ Kg6 65.Rxa7 Rc3 66.Ra6
 [Black "Reti,R"]
 [Result "0-1"]
 [ECO "A48"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "88"]
 
 1.d4 Nf6 2.Nf3 g6 3.h3 
@@ -2493,7 +2493,7 @@ Qf2+ 53.Kh1 b1=Q+ 54.Qc1 Qxc1# )
 [Black "Yates,F"]
 [Result "0-1"]
 [ECO "A48"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "100"]
 
 1.d4 Nf6 2.Nf3 g6 3.c3 
@@ -2552,7 +2552,7 @@ c3+ 45.Kc1 Kc4 46.f4 d3 47.Ne3+ Kb3 48.Nf1 Be4 49.Nd2+ cxd2+ 50.Kxd2 Kxa3
 [Black "Alekhine,A"]
 [Result "1-0"]
 [ECO "A48"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "61"]
 
 1.Nf3 g6 2.d4 Nf6 3.Bf4 Bg7 4.h3 c5 
@@ -2618,7 +2618,7 @@ Qc6 23.Nxe8 Rxe8 24.Qc4 Ne5
 [Black "Janowski,D"]
 [Result "0-1"]
 [ECO "A50"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "124"]
 
 1.d4 
@@ -2928,7 +2928,7 @@ Qh2#
 [Black "Janowski,D"]
 [Result "1-0"]
 [ECO "A53"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "79"]
 
 1.d4 
@@ -3108,7 +3108,7 @@ f5
 [Black "Tartakower,S"]
 [Result "1-0"]
 [ECO "A80"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "103"]
 
 1.d4 
@@ -3327,7 +3327,7 @@ Rxa4
 [Black "Tartakower,S"]
 [Result "1/2"]
 [ECO "A85"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "73"]
 
 1.d4 
@@ -3562,7 +3562,7 @@ Kf6
 [Black "Tartakower,S"]
 [Result "1-0"]
 [ECO "A90"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "121"]
 
 1.d4 f5 
@@ -3639,7 +3639,7 @@ Rxb7 53.Rg7+ Kc6 54.Rxg6 Kc5 55.Rxe6 d4
 [Black "Alekhine,A"]
 [Result "0-1"]
 [ECO "B02"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "48"]
 
 1.e4 
@@ -3818,7 +3818,7 @@ Rf8
 [Black "Tartakower,S"]
 [Result "1/2"]
 [ECO "B03"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "58"]
 
 1.e4 Nf6 
@@ -4061,7 +4061,7 @@ Bxa3
 [Black "Maroczy,G"]
 [Result "1/2"]
 [ECO "B08"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "64"]
 
 1.d4 Nf6 2.Nf3 g6 3.Bf4 Bg7 
@@ -4118,7 +4118,7 @@ axb4 28.axb4 b6 { } 29.Nb5 { } Rc6
 [Black "Maroczy,G"]
 [Result "1/2"]
 [ECO "B08"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "81"]
 
 1.d4 
@@ -4369,7 +4369,7 @@ Ke7
 [Black "Reti,R"]
 [Result "1-0"]
 [ECO "B18"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "47"]
 
 1.e4 c6 
@@ -4434,7 +4434,7 @@ Qe7 24.Ng5
 [Black "Capablanca,J"]
 [Result "0-1"]
 [ECO "B27"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "120"]
 
 1.e4 g6 
@@ -4514,7 +4514,7 @@ Nxe6 55.Ke2 )
 [Black "Bogoljubow,E"]
 [Result "1-0"]
 [ECO "B40"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "121"]
 
 1.e4 c5 
@@ -4589,7 +4589,7 @@ Kd7 61.Ra3
 [Black "Tartakower,S"]
 [Result "1/2"]
 [ECO "B43"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "52"]
 
 1.e4 
@@ -4715,7 +4715,7 @@ Rd8
 [Black "Lasker,Em"]
 [Result "0-1"]
 [ECO "B45"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "106"]
 
 1.e4 c5 
@@ -4796,7 +4796,7 @@ Rc3+ 48.Kd2 Kd7
 [Black "Tartakower,S"]
 [Result "1-0"]
 [ECO "B48"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "99"]
 
 1.e4 c5 
@@ -4910,7 +4910,7 @@ Kxf8 46.Qc8+ Ke7 47.Qc7+ Ke8
 [Black "Tartakower,S"]
 [Result "1-0"]
 [ECO "B74"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "147"]
 
 1.Nf3 g6 2.e4 c5 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 d6 
@@ -4979,7 +4979,7 @@ Kb7 67.b5 Ka7 68.b6+ Kb7 69.Kb5 Kb8 70.Ka6 Ka8 71.b7+ Kb8 72.c4
 [Black "Lasker,Em"]
 [Result "0-1"]
 [ECO "B83"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "136"]
 
 1.e4 
@@ -5346,7 +5346,7 @@ Qe4
 [Black "Lasker,Em"]
 [Result "0-1"]
 [ECO "C11"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "60"]
 
 1.e4 
@@ -5492,7 +5492,7 @@ Rxh3
 [Black "Alekhine,A"]
 [Result "1/2"]
 [ECO "C12"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "124"]
 
 1.d4 
@@ -5753,7 +5753,7 @@ Rg5
 [Black "Reti,R"]
 [Result "1-0"]
 [ECO "C12"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "63"]
 
 1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bg5 Bb4 
@@ -5818,7 +5818,7 @@ Be8 23.Rd1 Rdc8
 [Black "Reti,R"]
 [Result "1-0"]
 [ECO "C12"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "89"]
 
 1.e4 
@@ -6056,7 +6056,7 @@ Kxc8
 [Black "Bogoljubow,E"]
 [Result "1-0"]
 [ECO "C12"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "129"]
 
 1.d4 e6 2.e4 d5 
@@ -6147,7 +6147,7 @@ Rg3 64.Nxg3 Bxg3 65.g8=Q
 [Black "Maroczy,G"]
 [Result "0-1"]
 [ECO "C13"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "138"]
 
 1.e4 e6 
@@ -6278,7 +6278,7 @@ Kf3
 [Black "Reti,R"]
 [Result "1-0"]
 [ECO "C14"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "71"]
 
 1.e4 e6 
@@ -6340,7 +6340,7 @@ Kh5 { }
 [Black "Alekhine,A"]
 [Result "1/2"]
 [ECO "C15"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "170"]
 
 1.e4 e6 2.d4 d5 3.Nc3 Nf6 4.Bg5 Bb4 5.Nge2 dxe4 
@@ -6460,7 +6460,7 @@ Kd7
 [Black "Maroczy,G"]
 [Result "1-0"]
 [ECO "C17"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "99"]
 
 1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.e5 c5 
@@ -6560,7 +6560,7 @@ Kg8 50.Qxf5
 [Black "Capablanca,J"]
 [Result "0-1"]
 [ECO "C33"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "60"]
 
 1.e4 e5 2.f4 
@@ -6637,7 +6637,7 @@ Ne6 29.Rd6 { } Qc4+
 [Black "Yates,F"]
 [Result "1-0"]
 [ECO "C33"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "89"]
 
 1.e4 
@@ -6876,7 +6876,7 @@ Kc8
 [Black "Bogoljubow,E"]
 [Result "1-0"]
 [ECO "C33"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "115"]
 
 1.e4 
@@ -7204,7 +7204,7 @@ Rd8
 [Black "Alekhine,A"]
 [Result "1/2"]
 [ECO "C33"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "78"]
 
 1.e4 e5 2.f4 
@@ -7287,7 +7287,7 @@ Qc4+
 [Black "Bogoljubow,E"]
 [Result "1/2"]
 [ECO "C41"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "101"]
 
 1.e4 
@@ -7658,7 +7658,7 @@ Kg7
 [Black "Marshall,F"]
 [Result "0-1"]
 [ECO "C42"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "114"]
 
 1.e4 e5 2.Nf3 Nf6 
@@ -7751,7 +7751,7 @@ Kxg6 57.Rg2+ Kf5
 [Black "Marshall,F"]
 [Result "1-0"]
 [ECO "C42"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "161"]
 
 1.e4 
@@ -8086,7 +8086,7 @@ Kg3
 [Black "Lasker,Ed"]
 [Result "1/2"]
 [ECO "C45"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "66"]
 
 1.e4 
@@ -8271,7 +8271,7 @@ Bf5
 [Black "Tartakower,S"]
 [Result "1/2"]
 [ECO "C46"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "64"]
 
 1.e4 e5 2.Nf3 Nc6 3.Nc3 
@@ -8332,7 +8332,7 @@ Kxc6
 [Black "Janowski,D"]
 [Result "1-0"]
 [ECO "C50"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "109"]
 
 1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 
@@ -8400,7 +8400,7 @@ Rc3 52.Bb4 Rc2 53.Rd2 Rc1+ 54.Kg2 Kf5 55.Be7
 [Black "Lasker,Ed"]
 [Result "1-0"]
 [ECO "C60"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "113"]
 
 1.e4 e5 2.Nf3 Nc6 3.Bb5 Qf6 
@@ -8487,7 +8487,7 @@ Bd7 52.Bd8 h3 53.gxh3 Bxh3 54.Kd4 Bd7 55.e5 Kf5 56.e6 Be8 57.Bxg5
 [Black "Lasker,Em"]
 [Result "0-1"]
 [ECO "C65"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "142"]
 
 1.e4 
@@ -8789,7 +8789,7 @@ Kh6
 [Black "Capablanca,J"]
 [Result "1/2"]
 [ECO "C66"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "60"]
 
 1.e4 
@@ -8954,7 +8954,7 @@ Kd7
 [Black "Marshall,F"]
 [Result "1-0"]
 [ECO "C68"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "87"]
 
 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Bxc6 
@@ -9034,7 +9034,7 @@ Rxe8 42.Rxe8 c5 43.Rd8+ Kc6 44.Rh8
 [Black "Alekhine,A"]
 [Result "0-1"]
 [ECO "C76"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "70"]
 
 1.e4 
@@ -9245,7 +9245,7 @@ Kxg6
 [Black "Reti,R"]
 [Result "0-1"]
 [ECO "C77"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "94"]
 
 1.e4 e5 2.Nf3 Nc6 3.Bb5 
@@ -9310,7 +9310,7 @@ Kh5
 [Black "Alekhine,A"]
 [Result "1/2"]
 [ECO "C78"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "115"]
 
 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Bc5 
@@ -9424,7 +9424,7 @@ b3 51.Kd1 )
 [Black "Janowski,D"]
 [Result "1/2"]
 [ECO "C79"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "91"]
 
 1.e4 
@@ -9700,7 +9700,7 @@ Rh5
 [Black "Yates,F"]
 [Result "1/2"]
 [ECO "C87"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "108"]
 
 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 d6 7.Bxc6+ bxc6 
@@ -9751,7 +9751,7 @@ Re7 52.Ke3 Rfe8 53.Rf4 Rf7 54.Rh4 Rfe7
 [Black "Janowski,D"]
 [Result "1-0"]
 [ECO "C87"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "163"]
 
 1.e4 e5 2.Nf3 Nc6 
@@ -9870,7 +9870,7 @@ Rxd3 67.Rxb7+ Kc8
 [Black "Yates,F"]
 [Result "1-0"]
 [ECO "C90"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "79"]
 
 1.e4 e5 2.Nf3 Nc6 3.Bb5 
@@ -9966,7 +9966,7 @@ h5 46.Rxh5+ Kg8 47.d8=Q# ) 41.Rxg8+ Rxg8 42.Qxh7# ) 39.Rxh7+
 [Black "Marshall,F"]
 [Result "0-1"]
 [ECO "C90"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "82"]
 
 1.e4 e5 2.Nf3 Nc6 3.Bb5 
@@ -10075,7 +10075,7 @@ Rxe1+ 41.Kxe1 Bxg3+ 42.hxg3 Kf7
 [Black "Bogoljubow,E"]
 [Result "0-1"]
 [ECO "C91"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "66"]
 
 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 d6 8.c3 O-O 
@@ -10118,7 +10118,7 @@ Bg6 22.Nxd4 Bxd4 23.Bxd4 cxd4 24.Qd3 Nb4
 [Black "Lasker,Ed"]
 [Result "1-0"]
 [ECO "C91"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "107"]
 
 1.e4 
@@ -10360,7 +10360,7 @@ Rxh8
 [Black "Capablanca,J"]
 [Result "1/2"]
 [ECO "C91"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "57"]
 
 1.e4 e5 2.Nf3 Nc6 3.Bb5 
@@ -10415,7 +10415,7 @@ Kh8 29.Bc2+
 [Black "Capablanca,J"]
 [Result "0-1"]
 [ECO "C96"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "114"]
 
 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 O-O 8.c3 
@@ -10490,7 +10490,7 @@ Kg3
 [Black "Reti,R"]
 [Result "1-0"]
 [ECO "C97"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "71"]
 
 1.e4 e5 2.Nf3 Nc6 3.Bb5 
@@ -10581,7 +10581,7 @@ cxb3 33.axb3 Nxb3 { } 34.Rb1 { } Na5 35.Rxa6 Nxa6 36.Bxe7
 [Black "Reti,R"]
 [Result "1/2"]
 [ECO "C99"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "115"]
 
 1.e4 e5 2.Nf3 Nc6 3.Bb5 
@@ -10661,7 +10661,7 @@ Nc1 { } 56.Nxa5 { } Kh7 57.Nc6 { } Nxb3 58.Nxb4
 [Black "Lasker,Ed"]
 [Result "1/2"]
 [ECO "C99"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "206"]
 
 1.e4 
@@ -11125,7 +11125,7 @@ Kd4+ 1/2
 [Black "Lasker,Ed"]
 [Result "1/2"]
 [ECO "D00"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "142"]
 
 1.d4 d5 2.Bf4 Nf6 3.e3 
@@ -11219,7 +11219,7 @@ Qd5+
 [Black "Lasker,Ed"]
 [Result "1/2"]
 [ECO "D00"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "92"]
 
 1.d4 Nf6 2.Nf3 g6 
@@ -11299,7 +11299,7 @@ Kf6 42.f4 Be4 43.Ne5 h5 44.g4 hxg4 45.hxg4 Ba8 46.Kg3 g5
 [Black "Yates,F"]
 [Result "1-0"]
 [ECO "D00"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "153"]
 
 1.d4 
@@ -11623,7 +11623,7 @@ Kg8
 [Black "Marshall,F"]
 [Result "1-0"]
 [ECO "D02"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "111"]
 
 1.Nf3 
@@ -11910,7 +11910,7 @@ a5
 [Black "Maroczy,G"]
 [Result "1/2"]
 [ECO "D02"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "59"]
 
 1.d4 
@@ -12058,7 +12058,7 @@ h6
 [Black "Capablanca,J"]
 [Result "0-1"]
 [ECO "D05"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "64"]
 
 1.d4 Nf6 2.Nf3 d5 3.e3 e6 4.Bd3 c5 5.b3 
@@ -12137,7 +12137,7 @@ b6 28.Nd3 Rc4
 [Black "Bogoljubow,E"]
 [Result "0-1"]
 [ECO "D05"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "54"]
 
 1.d4 
@@ -12269,7 +12269,7 @@ Qf6
 [Black "Marshall,F"]
 [Result "0-1"]
 [ECO "D06"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "60"]
 
 1.Nf3 Nf6 
@@ -12331,7 +12331,7 @@ Qc2# )
 [Black "Capablanca,J"]
 [Result "1/2"]
 [ECO "D10"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "35"]
 
 1.d4 d5 2.c4 
@@ -12382,7 +12382,7 @@ Qd8
 [Black "Lasker,Em"]
 [Result "1/2"]
 [ECO "D10"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "124"]
 
 1.d4 d5 2.c4 c6 
@@ -12560,7 +12560,7 @@ Qc4+
 [Black "Lasker,Em"]
 [Result "1-0"]
 [ECO "D13"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "99"]
 
 1.d4 Nf6 2.c4 c6 
@@ -12657,7 +12657,7 @@ c5
 [Black "Maroczy,G"]
 [Result "1-0"]
 [ECO "D15"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "57"]
 
 1.d4 d5 2.Nf3 Nf6 3.c4 c6 4.Nc3 
@@ -12718,7 +12718,7 @@ Nxc3 12.bxc3 Bb7
 [Black "Janowski,D"]
 [Result "1-0"]
 [ECO "D20"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "107"]
 
 1.d4 d5 2.c4 
@@ -12804,7 +12804,7 @@ Rxe7
 [Black "Janowski,D"]
 [Result "0-1"]
 [ECO "D26"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "88"]
 
 1.d4 
@@ -13002,7 +13002,7 @@ Bc4
 [Black "Maroczy,G"]
 [Result "0-1"]
 [ECO "D30"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "96"]
 
 1.d4 d5 2.c4 c6 
@@ -13129,7 +13129,7 @@ g3 47.c6 g2 48.c7 Rxc4
 [Black "Lasker,Em"]
 [Result "0-1"]
 [ECO "D35"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "72"]
 
 1.d4 
@@ -13363,7 +13363,7 @@ Rxg6
 [Black "Alekhine,A"]
 [Result "1/2"]
 [ECO "D35"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "64"]
 
 1.d4 { } Nf6 { } 2.Nf3 { } e6 { } 3.c4 { } d5 { } 4.Nc3 { } c6 { } 5.cxd5 
@@ -13421,7 +13421,7 @@ Qd2+ 29.Kg1 Qe3+ 30.Kg2 Qf3+ 31.Kg1 Qe3+ 32.Kg2 Qf3+ 1/2
 [Black "Marshall,F"]
 [Result "1/2"]
 [ECO "D38"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "92"]
 
 1.d4 d5 2.Nf3 e6 3.c4 Nf6 4.Nc3 Bb4 
@@ -13507,7 +13507,7 @@ Kf7 43.Qa7+ Kf6 44.Qb8 Qh1+ 45.Ke2 Qe4+ 46.Kf1 Qh1+
 [Black "Lasker,Ed"]
 [Result "1-0"]
 [ECO "D38"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "155"]
 
 1.c4 
@@ -13613,7 +13613,7 @@ Bb6 77.Nd6 Bf2
 [Black "Tartakower,S"]
 [Result "1/2"]
 [ECO "D43"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "84"]
 
 1.d4 Nf6 2.Nf3 d5 3.c4 e6 
@@ -13684,7 +13684,7 @@ Kd8 42.Qb6+ Kd7 1/2
 [Black "Tartakower,S"]
 [Result "1-0"]
 [ECO "D48"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "71"]
 
 1.d4 Nf6 
@@ -13813,7 +13813,7 @@ Bxc1 35.Rd7 Rf8 36.Qxe5 Ra2+ 37.Kf1 h6
 [Black "Lasker,Ed"]
 [Result "1/2"]
 [ECO "D52"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "53"]
 
 1.d4 
@@ -13939,7 +13939,7 @@ Rxd1+
 [Black "Lasker,Em"]
 [Result "0-1"]
 [ECO "D52"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "102"]
 
 1.d4 Nf6 2.c4 e6 3.Nc3 d5 
@@ -14036,7 +14036,7 @@ Ra2+ 47.Kf1 Rd2 48.Rxd2 Nxd2+
 [Black "Bogoljubow,E"]
 [Result "1-0"]
 [ECO "D52"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "75"]
 
 1.d4 Nf6 2.Nf3 e6 3.Bg5 d5 4.e3 
@@ -14103,7 +14103,7 @@ Kd6 37.Qh8 Qd8
 [Black "Bogoljubow,E"]
 [Result "0-1"]
 [ECO "D52"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "164"]
 
 1.d4 { } d5 { } 2.Nf3 { } Nf6 { } 3.c4 { } e6 { } 4.Nc3 { } Nbd7 { } 5.Bg5 
@@ -14224,7 +14224,7 @@ Rxh1 79.Bxh1 Bf5 80.Bg2 Be6
 [Black "Maroczy,G"]
 [Result "1/2"]
 [ECO "D55"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "66"]
 
 1.d4 Nf6 2.c4 e6 3.Nf3 d5 4.Nc3 Be7 5.Bg5 O-O 6.e3 Ne4 7.Bxe7 Qxe7 8.Qc2 
@@ -14281,7 +14281,7 @@ Bxf1 25.Kxf1 Ne4 26.Qd4 { } Nxc3
 [Black "Yates,F"]
 [Result "1-0"]
 [ECO "D65"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "179"]
 
 1.d4 Nf6 2.c4 e6 3.Nf3 d5 4.Nc3 Be7 
@@ -14419,7 +14419,7 @@ Kf4 102.Qe5+ Kf3 103.Qxh2 ) 96.Re6 Rh3 97.d7 Kg4 98.d8=Q Rh7+ 99.Kf6 Rh6+
 [Black "Capablanca,J"]
 [Result "1/2"]
 [ECO "D67"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "39"]
 
 1.d4 
@@ -14532,7 +14532,7 @@ Qh6
 [Black "Reti,R"]
 [Result "1-0"]
 [ECO "E62"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "87"]
 
 1.d4 
@@ -14733,7 +14733,7 @@ Kg8
 [Black "Marshall,F"]
 [Result "1/2"]
 [ECO "E76"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "123"]
 
 1.d4 
@@ -14992,7 +14992,7 @@ Kg6
 [Black "Yates,F"]
 [Result "1-0"]
 [ECO "E76"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "63"]
 
 1.d4 Nf6 2.c4 d6 3.Nc3 g6 4.e4 Bg7 
@@ -15076,7 +15076,7 @@ Bxc4
 [Black "Lasker,Ed"]
 [Result "1/2"]
 [ECO "E76"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "105"]
 
 1.c4 Nf6 2.d4 g6 3.Nc3 
@@ -15148,7 +15148,7 @@ Rf1 42.Bb2 Nxc6 43.Rxa2 Rf4+
 [Black "Reti,R"]
 [Result "1/2"]
 [ECO "E90"]
-[Annotator "Lopez "Battle Royale""]
+[Annotator "Lopez Battle Royale"]
 [PlyCount "100"]
 
 1.d4 

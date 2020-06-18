@@ -20,7 +20,7 @@ If 13. ... Bd4, 14. Rb1 Qa7 (To provide a flight-square for the Bishop.) 15. Nxd
 {
 Now the Black Pawn on e6 is backward. A black piece will be always tied down to the defence of this Pawn. After this move the activity of Black Bishop on c8 is greatly diminished. 
 }
-15. Rc1 Bb7 16. Be3 $1 Qd8 17. Nd4 Nf8 18. 0-0 h5 
+15. Rc1 Bb7 16. Be3 $1 Qd8 17. Nd4 Nf8 18. O-O h5 
 {
 To prevent 19. g4. But this move weakens Black's Pawn structure. 
 }
@@ -82,7 +82,7 @@ Emannuel Lasker became the second World Champion by defeating Steinitz in 1894. 
 {
 Black plays this move to exchange his Bishop for White Knight, breaking up White's King-side Pawns. However, after this exchange White will have an effective Pawn majority on the King-side against Black's ineffective one on the Queen-side. White can produce a passed Pawn in the resulting ending, while Black cannot force a passed Pawn with his Pawn majority on the other side. Black has a Bishop pair as a compensation for his Pawn weakness, which he can put to good use in open position.
 }
-7 Nc3 Qd4 8 Nd4 0-0-0 9 Be3 Bb4 10 Ne2 $1
+7 Nc3 Qd4 8 Nd4 O-O-O 9 Be3 Bb4 10 Ne2 $1
 {
 After 10 f3 Bc3+ 11 bc Bd7 12 Kf2 White would also have the better game, but, as opposite colored Bishops would be left after a possible exchange of Knights, Black would have drawing chances.
 }
@@ -118,7 +118,7 @@ Capablanca was the World Chess Champion from 1921 to 1927. The Greatest complime
 "Capablanca invariably chose the right option, no matter how intricate the position." Garry Kasparov.
 The following is an impeccably played game by the Former World Champion, typical of his seemingly effortless simplicity.
 }
-1 d4 Nf6 2 c4 e6 3 Nc3 Bb4 4 Qc2 d5 5 cxd5 exd5 6 Bg5 c6 7 e3 Nbd7 8 Bd3 h6 9 Bh4 0-0 10 Nf3 Re8 11 0-0 Be7 12 Bg3
+1 d4 Nf6 2 c4 e6 3 Nc3 Bb4 4 Qc2 d5 5 cxd5 exd5 6 Bg5 c6 7 e3 Nbd7 8 Bd3 h6 9 Bh4 O-O 10 Nf3 Re8 11 O-O Be7 12 Bg3
 {
 Preventing Black's Ne4, liquidating. 
 }
@@ -166,11 +166,11 @@ Alekhine's games can be described in one word - Wonderful!. His inexhaustible im
 {
 Alekhine's defence with reversed colours against Alekhine! Reti never repeated this experiment.
 }
-2... e4 3 Nd4 d5 4 d3 ed3 5 Qxd3 Nf6 6 Bg2 Bb4+ 7 Bd2 Bxd2 8 Nxd2 0-0 9 c4 $1 Na6
+2... e4 3 Nd4 d5 4 d3 ed3 5 Qxd3 Nf6 6 Bg2 Bb4+ 7 Bd2 Bxd2 8 Nxd2 O-O 9 c4 $1 Na6
 {
 (9....c5 10. N4b3 is good for White because of Nxc5 and cxd5 threats.)
 }
-10 cd5 Nb4 11 Qc4 Nbd5 12 N2b3 c6 13 0-0 Re8 14 Rfd1 Bg4 15 Rd2 Qc8 16 Nc5 Bh3 $1
+10 cd5 Nb4 11 Qc4 Nbd5 12 N2b3 c6 13 O-O Re8 14 Rfd1 Bg4 15 Rd2 Qc8 16 Nc5 Bh3 $1
 17 Bf3
 {
 Taking the pawn is always bad because 17. Bxh3 Qxh3 18. Nxb72 Ng4 19. Nf3 Nde3 $3 20. Fxe3 Nxe3 21. Qxf7+ Kh8! 22. Nh4 Rf8 and threat on 'f1' is deadly.
@@ -229,11 +229,11 @@ Brilliancy Prize
 {
 (5. a3? Qf6 -+ typical Marshall trap.)
 }
-5...d5 6 Nc3 f5 7 Nde4 fe4 8 Bf4 0-0 9 e3 c6
+5...d5 6 Nc3 f5 7 Nde4 fe4 8 Bf4 O-O 9 e3 c6
 {
 White was threatening 10. a3 Bd6 11. Bxd6 Qxd6 12. cd5 ed5 13. Nxd5!
 }
-10 Be2 Nd7 11 a3 Be7 12 0-0 Bg5
+10 Be2 Nd7 11 a3 Be7 12 O-O Bg5
 {
 There is hardly anything better for Black.
 }
@@ -505,7 +505,7 @@ This is the Modern Benoni Defence. Here Black develops his Bishop on g7 by playi
 {
 Not the best square for the Bishop. Better would have been 7. Nf3, 8.h3 and then placing the Bishop to d3 as per the latest theory.
 }
-7...Bg7 8. Nf3 0-0 9. 0-0 Re8
+7...Bg7 8. Nf3 O-O 9. O-O Re8
 {
 Black puts pressure on the e - Pawn and also prevents its advance. Later Black plays on the Queenside for... b5,... b4 etc.
 }
@@ -533,11 +533,11 @@ Black has compensation since he will get another Pawn on d5 with a tempo and als
 14. ... Nd5 15. Bd6
 ({Many alternatives were available at this stage.}
 15. Be3 Ne3 16. fxe3 d5 17. Rf5 dxe4 18. Rc5 Qd2 $1 {and the Pawn on e3 is lost with a winning position for Black.}) 
-(15. Bg5 Qd7 $1 (15...f6 16. Bc4) 16. Bf3 (17. f3 h6 18. Bh4 Nf4 19. -- d5) 16...h6 17. Bh4 Nb4 18. a3 Nc6 {with many threats -... g5 - g4,... d5 and... Nd4. })
+(15. Bg5 Qd7 $1 (15...f6 16. Bc4) 16. Bf3 (17. f3 h6 18. Bh4 Nf4 { with the idea 19. -- d5}) 16...h6 17. Bh4 Nb4 18. a3 Nc6 {with many threats -... g5 - g4,... d5 and... Nd4. })
 (15. Bg3 $1 {Looks to be the best move.} 15...Qe7 16. Bf3 
 (16. Bb5 $1 Be4 17. Ne4 Qe4 18. Be8 Qe8 19. Bd6 Qc6 20. Bg3 {White can achieve equality since Black seems to have good attacking prospects on the Queenside.} ) 16...Rad8 {Black has fully developed and centralised pieces, in addition to two Pawns for a piece. })
 15...Nf6 $1 16. Bf3
-(16. Nf6+ Qf6 17. Bd3 (17. Qd1 Qd6 18. Ne4 Qd1 ) 17...Qd6 18. Bf5 Qd2 19.-- Bb2 $19)
+(16. Nf6+ Qf6 17. Bd3 (17. Qd1 Qd6 18. Ne4 Qd1 ) 17...Qd6 18. Bf5 Qd2 { following 19.-- Bb2 $19})
 (16. Bc5 Ne4 17. Ne4 Be4 { when 18. Qd1 and 18. Qc1 can be met by 18...Qg5 and 18...Re8 respectively.})
 16...Ne4 17. Ne4 Be4 18. Be4 Qd6 19. Qc2
 {
@@ -622,7 +622,7 @@ Black should have retained this Bishop for the protection of his pawn on g7.
 {
 Now White has the advantage of the two Bishops.
 }
-11... 0-0
+11... O-O
 {
 Better was 11...Qe7 followed by 12...e5 to get some counterplay.
 }
@@ -634,7 +634,7 @@ If 12...Nf6, then 13 Be5 followed by Bxf6 wins the Pawn on e4.
 {
 Gets a grip on the black squares and prevents...Qe7 and...e5.
 }
-13... Re8 $2 14 0-0-0 Nf6 15 Be5 Bd7 16 f3 $1
+13... Re8 $2 14 O-O-O Nf6 15 Be5 Bd7 16 f3 $1
 {
 Threatens to win a pawn after 17 Bxf6, forcing Black to exchange pawns, opening the 'g' file.
 }
@@ -676,12 +676,12 @@ Threatening 31 Rg8+ and mate next move. If Black plays 30...Qf8, 31 Qg6+ Kd8 32 
 Ruy Lopez
 Tarrasch gives a valuable lesson in the Art of Exploiting Small Advantages.
 }
-1 e4 e5 2 Nf3 Nc6 3 Bb5 d6 4 d4 Bd7 5 Nc3 Nf6 6 0-0 Be7 7 Re1 exd4
+1 e4 e5 2 Nf3 Nc6 3 Bb5 d6 4 d4 Bd7 5 Nc3 Nf6 6 O-O Be7 7 Re1 exd4
 {
 Black must give up the centre. Delay may lead him in the following trap, discovered by Tarrasch
-7...0-0? 8 Bxc6 Bxc6 9 dxe5 dxe5 10 Qxd8 Raxd8 11 Nxe5 Bxe4 12 Nxe4 Nxe4 13 Nd3 f5 14 f3 Bc5+ 15 Nxc5 Nxc5 16 Bg5 Rd5 17 c4 Rd7 18 Be7- White wins the exchange.)
+7...O-O? 8 Bxc6 Bxc6 9 dxe5 dxe5 10 Qxd8 Raxd8 11 Nxe5 Bxe4 12 Nxe4 Nxe4 13 Nd3 f5 14 f3 Bc5+ 15 Nxc5 Nxc5 16 Bg5 Rd5 17 c4 Rd7 18 Be7- White wins the exchange.)
 }
-8 Nxd4 Nxd4 9 Qxd4 Bxb5 10 Nxb5 0-0 11 Bg5 Ng4
+8 Nxd4 Nxd4 9 Qxd4 Bxb5 10 Nxb5 O-O 11 Bg5 Ng4
 {
 Black tries to simflify the position.
 }
@@ -930,12 +930,11 @@ If Qd1, Raf8 with the threats of...R8f3,...Bxg3+,...Qe7 - h4.
 {
 Idea -...Re2
 }
-25. Rce1 h6
-({With so many pieces on the board, White finds himself in Zugzwang! e.g. -}
-25...h6 26 Bc1 Bxb1 {winning a Piece.})
-(25...h6 26 Rd1 Re2 {winning the Queen.})
-(25...h6 26 Bf1 R5f3 {winning the Queen.})
-(25...h6 26 Kh2 R5f3 $1)
-(25...h6 26 g4 R5f3 $1 27 Bxf3 Rh2#)
-0-1
+25. Rce1 h6 {With so many pieces on the board, White finds himself in Zugzwang! e.g. -}
+26 Bc1 (26 Rd1 Re2 {winning the Queen.})
+(26 Bf1 R5f3 {winning the Queen.})
+(26 Kh2 R5f3 $1)
+(26 g4 R5f3 $1 27 Bxf3 Rh2#)
+Bxb1 {winning a Piece.}
 
+0-1
