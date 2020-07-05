@@ -510,12 +510,13 @@ let pgnBase = function (boardId, configuration) {
 
         let _boardHeight = computeBoardSize();
         let _boardWidth = _boardHeight;
-        let _buttonFontSize = `${Math.max(10, parseInt(_boardHeight) / 18)}px`;
+        let _buttonFontSize = `${Math.max(10, parseInt(_boardHeight) / 24)}px`;
         if (document.getElementById(id('buttonsId'))) {
             document.getElementById(id('buttonsId')).style.fontSize = _buttonFontSize;
         }
 
-        window.addEventListener('load', (event) => { // same as window.addEventListener('load', (event) => {
+        const resizeLayout = function () {
+            console.log("Start computing layout")
             if (hasMode('board')) {
                 if (document.getElementById(id('colorMarkerId'))) {
                     document.getElementById(id('colorMarkerId')).style.marginLeft = 'auto';
@@ -552,7 +553,8 @@ let pgnBase = function (boardId, configuration) {
                 }
                 divBoard.style.gridTemplateColumns = _boardWidth
             }
-        })
+        }
+        resizeLayout()
     };
 
     /**

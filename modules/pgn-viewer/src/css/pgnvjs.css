@@ -107,9 +107,14 @@
     overflow: auto;
 }
 
-.whole.editMode .edit {
+.whole.editMode.layout-left .edit {
     grid-column: 1 / 2;
     grid-row: 4 / 5;
+}
+
+.whole.editMode.layout-top .edit {
+    grid-column: 1 / 2;
+    grid-row: 6 / 7;
 }
 
 .whole.layout-left .moves {
