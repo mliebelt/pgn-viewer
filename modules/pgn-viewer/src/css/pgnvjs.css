@@ -1,3 +1,5 @@
+@import "../fontawesome/css/all.css";
+
 :root {
     --space-xss: 0.25rem;
     --space-xs: 0.5rem;
@@ -9,7 +11,6 @@
 }
 
 :root {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell, sans-serif;
     --gray-100: #F7FAFC;
     --gray-200: #EDF2F7;
     --gray-300: #E2E8F0;
@@ -23,43 +24,28 @@
     --highlight: rgba(255, 255, 153, 1.0);
 }
 
-/** Reset */
-body {
+/** Reset / Set defaults */
+.whole {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell, sans-serif;
     margin: 0;
 }
-ul, ol {
+.whole ul, .whole ol {
     list-style: none;
     margin: 0;
     padding: 0;
 }
-h2, h3 {
-    margin: 0;
-}
-main > * {
-    padding: var(--space-xs);
-}
-
-div.whole:focus {
+/*.whole > * {*/
+/*    padding: var(--space-xs);*/
+/*}*/
+.whole:focus {
     /* The following suppresses the outline of the element that has the focus. Only when
        that focus is set, the keyboard mappings work. You may of course enable the outline
        for debugging purposes. */
     outline: 0;
 }
-
-div.whole {
-    margin: var(--space-xs);
-}
-
-span.whiteHeader:before {
-    content: " White: ";
-}
-
-span.blackHeader:before {
-    content: " Black: ";
-}
-
-span.restHeader:before { content: " ("}
-span.restHeader:after { content: ")"}
+/*.whole {*/
+/*    margin: var(--space-xs);*/
+/*}*/
 
 .whole .moves {
     overflow: auto;
@@ -206,7 +192,7 @@ span.restHeader:after { content: ")"}
 .fen {
     width: calc(100% - 8px);
     height: 35px;
-    margin: 0px;
+    margin: 0;
     padding: var(--space-xss);
     font-family: monospace;
 }
@@ -292,52 +278,11 @@ button.ui-multiselect {
 }
 
 ul.ui-multiselect-checkboxes > li {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 select.nag {
     width: 40px;
-}
-
-
-
-/** The following are all font-awesome buttons.
-  Where known, I have added their short names (to find them later again). **/
-div.buttons > .button.flipper.default:before { /* fa-adjust */
-    content: "\f042";
-}
-div.buttons > .button.first.default:before { /* fa-fast-backward */
-    content: "\f049";
-}
-div.buttons > .button.prev.default:before {    /* fa-step-backward */
-    content: "\f048";
-}
-div.buttons > .button.next.default:before {    /* fa-step-forward */
-    content: "\f051";
-}
-div.buttons > .button.last.default:before {    /* fa-fast-forward */
-    content: "\f050";
-}
-div.buttons > .button.play.default:before {    /* fa-play-circle */
-    content: "\f144";
-}
-div.buttons > .button.stop.default:before {     /* fa-pause */
-    content: "\f04c";
-}
-
-div.edit > .button.promoteVar.default:before { /* hand-o-up */
-    content: "\f0a6";
-}
-div.edit > .button.deleteMoves.default:before { /* scissors  */ 
-    content: "\f0c4";
-}
-
-.button.fa-times {
-   color: red;
-}
-
-.button.fa-times:hover {
-    border: red 2px solid;
 }
 
 textarea.pgn {
@@ -527,8 +472,8 @@ div.comment > textarea.comment {
   */
  
 .cg-wrap.coords-inner {
-    margin-bottom: 0px;
-    margin-right: 0px;
+    margin-bottom: 0;
+    margin-right: 0;
 }
 .cg-wrap {
     margin-bottom: 15px;

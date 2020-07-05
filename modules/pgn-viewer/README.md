@@ -19,7 +19,6 @@ You may include the viewer into an HTML page with roughly the following code.
     <html>
     <head>
       <script src="/lib/pgnv.js" type="text/javascript" ></script>
-      <script src="https://use.fontawesome.com/4cf2a2bf7b.js"></script>
     </head>
     <body class="merida zeit">
       <div id="board"/>

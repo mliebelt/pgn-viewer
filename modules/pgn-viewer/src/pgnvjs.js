@@ -297,7 +297,7 @@ let pgnBase = function (boardId, configuration) {
         };
         // Generates the edit buttons (only)
         const generateEditButtons = function (buttonDiv) {
-            [["promoteVar", "fa-hand-o-up"], ["deleteMoves", "fa-scissors"]].forEach(function (entry) {
+            [["promoteVar", "fa-hand-point-up"], ["deleteMoves", "fa-cut"]].forEach(function (entry) {
                 addButton(entry, buttonDiv);
                 //but.className = but.className + " gray"; // just a test, worked.
                 // only gray out if not usable, check that later.
@@ -1193,9 +1193,9 @@ let pgnBase = function (boardId, configuration) {
                 const playButton = document.getElementById(id('buttonsId') + 'play');
                 let clString = playButton.getAttribute('class');
                 if (clString.indexOf('play') < 0) { // has the stop button
-                    clString = clString.replace('stop', 'play');
+                    clString = clString.replace('pause', 'play');
                 } else {
-                    clString = clString.replace('play', 'stop');
+                    clString = clString.replace('play', 'pause');
                 }
                 playButton.setAttribute('class', clString);
             }
