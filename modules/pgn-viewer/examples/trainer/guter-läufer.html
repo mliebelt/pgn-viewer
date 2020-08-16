@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Wer hat den guten Läufer?</title>
+    <script>__globalCustomDomain = 'https://mliebelt.github.io/PgnViewerJS/js/';</script>
+    <script src="https://mliebelt.github.io/PgnViewerJS/js/pgnv.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://mliebelt.github.io/PgnViewerJS/dist/css/pgnvjs.css">
+
+    <style>
+        body {
+            font-size: 22px;
+        }
+        .row2 {
+            display: flex;
+        }
+
+        article {
+            flex: 1;
+            padding: 10px;
+            /*padding-bottom: 10px;*/
+        }
+
+        article > p {
+            /*margin-bottom: 3em;*/
+        }
+        span.half {
+            display: inline-block;
+            width: 5em;
+        }
+    </style>
+</head>
+<body class='merida zeit'>
+<h3>Wer hat den guten Läufer?</h3>
+<p>Finde heraus, ob Weiß oder Schwarz den guten Läufer hat.</p>
+<div class="row2">
+    <article>
+    <div id="board1"></div>
+        <p>Weiß oder Schwarz: </p>
+    </article>
+
+    <article>
+    <div id="board2"></div>
+        <p>Weiß oder Schwarz: </p>
+    </article>
+
+</div>
+<div class="row2">
+
+    <article>
+    <div id="board3"></div>
+        <p>Weiß oder Schwarz: </p>
+    </article>
+
+    <article>
+        <div id="board4"></div>
+        <p>Weiß oder Schwarz: </p>
+    </article>
+
+</div>
+
+<div class="row2">
+
+    <article>
+    <div id="board5"></div>
+        <p>Weiß oder Schwarz: </p>
+    </article>
+
+    <article>
+        <div id="board6"></div>
+        <p>Weiß oder Schwarz: </p>
+    </article>
+
+</div>
+
+<script>
+    let cfg = { showNotation: true, boardSize: '240px' };
+    PGNV.pgnBoard('board1', Object.assign({position: '8/1p1b2k1/p1pPp1p1/P3P3/1P3K1P/3B4/8/8 w - - 0 1'}, cfg));
+    PGNV.pgnBoard('board2', Object.assign({position: '1b6/8/1B6/5p2/p1p1k3/PpP5/1P2PK2/8 w - - 0 1'}, cfg));
+    PGNV.pgnBoard('board3', Object.assign({position: '8/8/pp2bk2/2p3p1/5pPp/P1P1pP1P/1PK1P3/8 w - - 0 1'}, cfg));
+    PGNV.pgnBoard('board4', Object.assign({position: '3b4/p2kp3/3p2pp/2pP4/2P3P1/1P3K1P/PB6/8 w - - 0 1'}, cfg));
+    PGNV.pgnBoard('board5', Object.assign({position: '8/8/p2kb1p1/Pp3pP1/1P1K1P2/8/8/3B4 w - - 0 1'}, cfg));
+    PGNV.pgnBoard('board6', Object.assign({position: '2b5/8/1p6/1Pp1k3/2P4p/4K2P/8/5B2 w - - 0 1'}, cfg));
+
+</script>
+</body>
+</html>

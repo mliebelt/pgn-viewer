@@ -9,6 +9,27 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [1.3.1]() 2020-08-16
+
+I worked for some time on the refactoring of the whole: splitting the  application in 2 modules, and one separate project; versioning the whole with NPM (only); refactor the layout; ... and many more. So the following list is exhaustive.
+
+### Changed
+
+* [#148](https://github.com/mliebelt/PgnViewerJS/issues/148) Extracted pgn-parser as a separate project. See https://github.com/mliebelt/pgn-parser and the tickets there for the features done.
+* [#147](https://github.com/mliebelt/PgnViewerJS/issues/147) Removed Grunt, replaced by NPM. Restructured the whole application to be built with Webpack instead.
+* [#127](https://github.com/mliebelt/PgnViewerJS/issues/127) The application is now installed by using NPM.
+* [#158](https://github.com/mliebelt/PgnViewerJS/issues/158) Redo the layout as grid layout. Supported are left|right and top|bottom. It is sufficient then to change the size / width, the rest will be computed.
+* [#88](https://github.com/mliebelt/PgnViewerJS/issues/88) Fixed (most of) the edit mode for the 4 layouts.
+* [#135](https://github.com/mliebelt/PgnViewerJS/issues/135) Allow long algebraic notation.
+* [#62](https://github.com/mliebelt/PgnViewerJS/issues/62) Unit tests are now done using Mocha.
+* [#12](https://github.com/mliebelt/PgnViewerJS/issues/12) Allow the display of many games at one place (one of the oldest tickets!).
+
+### Fixed
+
+https://github.com/mliebelt/PgnViewerJS/issues/158
+* [$160](https://github.com/mliebelt/PgnViewerJS/issues/160) Fixed unprintable tags in notation. Reason was, that on Linux, you have to install a Math font to have them.
+* [$129](https://github.com/mliebelt/PgnViewerJS/issues/129) Setup of FEN in the tag section is now recognized.
+
 ## [0.9.8]() 2019-06-10
 
 ### Changed

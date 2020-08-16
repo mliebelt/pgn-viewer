@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Angriffsobject finden</title>
+    <script>__globalCustomDomain = 'https://mliebelt.github.io/PgnViewerJS/js/';</script>
+    <script src="https://mliebelt.github.io/PgnViewerJS/js/pgnv.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://mliebelt.github.io/PgnViewerJS/dist/css/pgnvjs.css">
+
+    <style>
+        body {
+            font-size: 22px;
+        }
+        .row2 {
+            display: flex;
+        }
+
+        article {
+            flex: 1;
+            padding: 10px;
+            /*padding-bottom: 10px;*/
+        }
+
+        article > p {
+            /*margin-bottom: 3em;*/
+        }
+        span.half {
+            display: inline-block;
+            width: 5em;
+        }
+    </style>
+</head>
+<body class='merida zeit'>
+<h3>Angriffsobject finden</h3>
+<p>Welchen schwarzen Bauern sollte sich Weiß schnappen, und wie?</p>
+<div class="row2">
+    <article>
+    <div id="board1"></div>
+        <p>Bauer und Züge: </p>
+    </article>
+
+    <article>
+    <div id="board2"></div>
+        <p>Bauer und Züge: </p>
+    </article>
+
+</div>
+<div class="row2">
+
+    <article>
+    <div id="board3"></div>
+        <p>Bauer und Züge: </p>
+    </article>
+
+    <article>
+        <div id="board4"></div>
+        <p>Bauer und Züge: </p>
+    </article>
+
+</div>
+
+<div class="row2">
+
+    <article>
+    <div id="board5"></div>
+        <p>Bauer und Züge: </p>
+    </article>
+
+    <article>
+        <div id="board6"></div>
+        <p>Bauer und Züge: </p>
+    </article>
+
+</div>
+
+<script>
+    let cfg = { showNotation: true, boardSize: '240px' };
+    PGNV.pgnBoard('board1', Object.assign({position: '8/p2bkp1p/Pp5P/1PpBK1P1/2P5/8/8/8 w - - 0 1'}, cfg));
+    PGNV.pgnBoard('board2', Object.assign({position: '8/pp1bkp2/2p1p1p1/3pP3/3P1P2/P1P1K1Pp/1P5P/1B6 w - - 0 1'}, cfg));
+    PGNV.pgnBoard('board3', Object.assign({position: '8/5pkb/2p1p2p/2PpP1pB/3P1P2/4K1P1/7P/8 w - - 0 1'}, cfg));
+    PGNV.pgnBoard('board4', Object.assign({position: '8/1kb5/p6p/PpK3pP/1P4P1/8/5B2/8 w - - 0 1'}, cfg));
+    PGNV.pgnBoard('board5', Object.assign({position: '8/4k3/p3b1pp/Pp2K3/1P5P/5BP1/8/8 w - - 0 1'}, cfg));
+    PGNV.pgnBoard('board6', Object.assign({position: '8/pp2b2p/4k1p1/BPp3P1/P1P1KP1p/7P/8/8 w - - 0 1'}, cfg));
+
+</script>
+</body>
+</html>
