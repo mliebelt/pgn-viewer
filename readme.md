@@ -76,6 +76,13 @@ There is at the moment no way to save a game that was edited in `pgnEdit` mode. 
 * Copy the files from the directory `modules/pgn-viewer/lib`.
 * Create new HTML files with the corresponding head and body.
 
+### About handling of assets
+
+Due to the fact that Webpack holds the assets under a given directory (in my case, it is `/lib/`). If you deploy the PgnViewerJS under any different root path, you have to define that root path by providing a Javascript line before loading the library:
+
+     <script>__globalCustomDomain = '/PgnViewerJS/js/';</script>
+     <script src="/PgnViewerJS/js/pgnv.js" type="text/javascript"></script>
+
 ### Using the viewer
 
 To use the viewer in an HTML page, you have to do the following steps:
@@ -90,7 +97,6 @@ So a rough template will look like:
     <!DOCTYPE html>
         <head>
             <script src="js/pgnv.js" type="text/javascript" ></script>
-            <script src="https://use.fontawesome.com/4cf2a2bf7b.js"></script>
         </head>
         <body>
             <div id="board"></div>
@@ -115,7 +121,12 @@ If you want to help in implementing something, clone the repository, change what
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/mliebelt/PgnViewerJS/tags).
 
-Because not all people want to build on themselves, I keep the versions available for downloads:
+From the version 1.0.0 on, the whole package can be downloaded / installed by using NPM:
+
+* Download: `npm pack @mliebelt/pgn-viewer` Results in download of a file `mliebelt-pgn-viewer-1.3.0.tgz`, that contains in the directory `package/lib` all resources needed.
+* Install: `npm install @mliebelt/pgn-viewer` as part of some other application. You will find then the files in the directory `node_modules/@mliebelt/pgn-viewer/lib`.
+
+The older versions are available for download from the links below.
 
 * [Version 0.9.8](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.8.zip): Start play parameter, allow arrows and circles from Chessground, color marker for player at move, option for result in PGN notation. 
 * [Version 0.9.7](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.7.zip): UI with Chessground, small improvements, promotion.
