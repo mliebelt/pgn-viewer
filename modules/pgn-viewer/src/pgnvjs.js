@@ -65,6 +65,7 @@ let pgnBase = function (boardId, configuration) {
         return that.configuration.IDs[id];
     }
     that.board = null              // Will be set later, but has to be a known variable
+    that.callback = function () {}
 
     if (that.configuration.locale) {
         that.configuration.locale = that.configuration.locale.replace(/_/g, "-");
@@ -177,6 +178,26 @@ let pgnBase = function (boardId, configuration) {
         const node = element;
         const movesNode = node.parentElement;
         scrollParentToChild(movesNode, node);
+    }
+
+    /**
+     * Can be overwritten by the user to serve as an event listener, for game state change
+     * called when game state updates
+     */
+    function setCallBack (fun) {
+        that.callback = fun;
+    }
+
+    /**
+     * Allows for move to be made programmatically from external javascript
+     * @param san the san formatted move to play
+     */
+    const manualMove = function (san) {
+        const m = game.move(san)
+        if (m === null) return;
+        game.undo();
+        onSnapEnd(m.from, m.to);
+        that.board.set({fen: game.fen()});
     }
 
     /**
@@ -547,7 +568,7 @@ let pgnBase = function (boardId, configuration) {
                 let _movesHeight = parseInt(_boardHeight) / 5 * 3;
                 if (_minMovesHeight < _movesHeight) _movesHeight = _minMovesHeight;
                 if (that.configuration.layout === 'top') {
-                    divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px minmax(0, ${_movesHeight}px)`;
+                    divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px auto minmax(0, ${_movesHeight}px)`;
                 } else if (that.configuration.layout === 'bottom') {
                     divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(0,${_movesHeight}px) minmax(auto,${_boardHeight}) ${_buttonsHeight}px`;
                 }
@@ -758,6 +779,7 @@ let pgnBase = function (boardId, configuration) {
             localBoard(diaID, that.configuration);
         }
         //console.log(`FEN size: ${move.fen.length}`)
+        that.callback();
         return currentCounter;
     };
 
@@ -926,6 +948,7 @@ let pgnBase = function (boardId, configuration) {
         }
         toggleColorMarker();
         updateUI(next);
+        that.callback();
     };
 
     /**
@@ -1277,7 +1300,9 @@ let pgnBase = function (boardId, configuration) {
         generateHTML: generateHTML,
         generateBoard: generateBoard,
         generateMoves: generateMoves,
-        onSnapEnd: onSnapEnd
+        onSnapEnd: onSnapEnd,
+        manualMove: manualMove,
+        setCallBack: setCallBack
     };
 };
 
