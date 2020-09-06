@@ -8,7 +8,11 @@ You will find the detailed documentation about pgn-viewer (formerly named PgnVie
 
 ## How to Build and Test
 
-* `npm build`: Creates a new bundle `lib/pgnv.js` including the necessary `locales` and `pgnv-assets` files copied to that directory.
+* `npm build`: Creates a new bundle `lib/pgnv.js` including the necessary `pgnv-assets` files copied to that directory.
+* If you want to remove some locales, make a custom build by
+  * first adjusting the list of locales in `.npmrc`
+  * call locally first the script `gen_i18n`
+  * then build the distribution
 
 There are currently no UI tests available, I use the top-level directory `examples` to "test" changes in the application. You have to run a web server in the root directory of the module then.
 

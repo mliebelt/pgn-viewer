@@ -96,7 +96,7 @@
 			<p>To start with PgnViewerJS, you have to do the following steps:</p>
             <ul class="square">
                 <li>Download the current sources or the distro from below or build it on you own: `npm install; npm build`.
-                The directory `dist` is what you need.</li>
+                The directory `lib` of the module `pgn-viewer` is what you need.</li>
                 <li>Fill the head of your HTML file with the relevant definitions, examples are included
                 in the distro in the directory <code>examples</code>.</li>
                 <li>Define in the body 2 parts:
@@ -116,16 +116,18 @@
     <div class="container">
         <div class="four columns">
             <h2>Downloads</h2>
+            <p>Currently the PgnViewerJS is provide as NPM library. So the recommended way to get any version is:
+            <code>npm install @mliebelt/pgn-viewer</code>. The following are older versions not available through NPM.</p>
             <ul>
                 <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.8.zip">Version 0.9.8</a></li>
                 <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.7.zip">Version 0.9.7</a></li>
-                <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.6.zip">Version 0.9.6</a></li>
-                <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.5.zip">Version 0.9.5</a> </li>
             </ul>
         </div>
         <div class="four columns">
             <h2>(cont.)</h2>
             <ul>
+                <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.6.zip">Version 0.9.6</a></li>
+                <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.5.zip">Version 0.9.5</a> </li>
                 <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.4.zip">Version 0.9.4</a> </li>
                 <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.3.zip">Version 0.9.3</a> </li>
                 <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.2.zip">Version 0.9.2</a> </li>
@@ -138,10 +140,8 @@
             <ul>
                 <li><a href="https://github.com/jhlywa/chess.js">chess.js</a>: Small chess library widely used</li>
                 <li><a href="https://github.com/ornicar/chessground">chessground</a>: UI for chess.js</li>
-                <li><a href="https://github.com/i18next/i18next">i18next</a>: internationalization (short: i 18 characters
-                n), used with languages en, de, fr</li>
                 <li><a href="http://pegjs.org/">PEG.js</a>: Parser Generator for Javascript, implements reading
-                pgn notation (with some flexibility)</li>
+                    pgn notation (with some flexibility)</li>
             </ul>
         </div>
     </div><!-- container -->

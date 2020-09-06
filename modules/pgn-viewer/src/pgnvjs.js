@@ -1,4 +1,4 @@
-import i18next from 'i18next';
+import i18next from './i18n';
 import {pgnReader, Utils} from '@mliebelt/pgn-reader';
 //import {pgnReader, Utils} from "../../pgn-reader/src/pgn";
 import {Chessground} from 'chessground';
@@ -66,9 +66,20 @@ let pgnBase = function (boardId, configuration) {
     }
     that.board = null              // Will be set later, but has to be a known variable
 
-    if (that.configuration.locale) {
-        that.configuration.locale = that.configuration.locale.replace(/_/g, "-");
-        i18next.loadLanguages(that.configuration.locale);
+    // Initialize locale
+    let locale = that.configuration.locale || "en"
+    that.configuration.i18n = i18next(locale)
+    that.configuration.defaultI18n = i18next("en")
+
+    let t = function (term) {
+        if (that.configuration.i18n) {
+            let ret = that.configuration.i18n(term)
+            if (ret === term) {
+                ret = that.configuration.defaultI18n(term)
+            }
+        return ret
+        }
+        return term.substring(term.indexOf(':') + 1)
     }
 
     if (that.configuration.position) { // Allow early correction
@@ -201,7 +212,6 @@ let pgnBase = function (boardId, configuration) {
                 }
             });
             primMove.promotion = sel;
-            //primMove.promotion = 'q'    // Here a real selection should stand!!
         }
         that.currentMove = that.mypgn.addMove(primMove, cur);
         const move = that.mypgn.getMove(that.currentMove);
@@ -258,12 +268,12 @@ let pgnBase = function (boardId, configuration) {
     // Internationionalize the figures in SAN
     function i18nSan(san) {
         function i18nFig(fig, locale) {
-            return i18next.t("chess:" + fig, { lng: locale});
+            return t("chess:" + fig);
         }
         let locale = that.configuration.locale;
         if (! locale) return san;
         let new_san = san;
-        if ( ! (san.match(/^[a-h]x/) || san.match(/^[a-h]\d/) ) ) {
+        if ( ! (san.match(/^[a-h]?x/) || san.match(/^[a-h]\d/) || san.match(/^O/) ) ) {
             let move_fig = i18nFig(san[0], locale);
             new_san = san.replace(san[0], move_fig);
         }
@@ -283,7 +293,7 @@ let pgnBase = function (boardId, configuration) {
         function addButton(pair, buttonDiv) {
             const l_theme = (['green', 'blue'].indexOf(theme) >= 0) ? theme : 'default';
             const button = createEle("i", id('buttonsId') + pair[0], "button fa " + pair[1], l_theme, buttonDiv);
-            const title = i18next.t("buttons:" + pair[0], {lng: that.configuration.locale});
+            const title = t("buttons:" + pair[0]);
             document.getElementById(id('buttonsId') + pair[0]).setAttribute("title", title);
             return button;
         }
@@ -316,7 +326,7 @@ let pgnBase = function (boardId, configuration) {
                         let i = that.mypgn.NAGS[icon] || '';
                         ele.setAttribute("data-symbol", i);
                         ele.setAttribute("data-value", icon);
-                        ele.textContent = i18next.t('nag:$' + icon + "_menu", {lng: that.configuration.locale});
+                        ele.textContent = t('nag:$' + icon + "_menu");
                     };
                     let myLink = createEle('a', null, null, theme, myDiv);
                     generateIcon(link, myLink);

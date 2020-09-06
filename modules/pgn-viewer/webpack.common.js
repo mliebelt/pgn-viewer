@@ -1,13 +1,14 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WebpackRequireFrom = require("webpack-require-from");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
+//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
     entry: {
         app: './src/index.js'
     },
     plugins: [
+        //new BundleAnalyzerPlugin(),
         new CleanWebpackPlugin(),
         new WebpackRequireFrom({
             // path: 'https://custom.domain',
@@ -15,10 +16,7 @@ module.exports = {
             // methodName: "__globalCustomDomain",
             // replaceSrcMethodName: "__replaceWebpackDynamicImport",
             suppressErrors: true
-        }),
-        new CopyWebpackPlugin([
-            {from: 'src/locales', to: 'locales', toType: 'dir'}
-        ])
+        })
     ],
     output: {
         filename: 'pgnv.js',
