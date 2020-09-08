@@ -1,4 +1,4 @@
-const { I18n } = require('roddeh-i18n')
+require('roddeh-i18n')
 import en from "./locales/en.js"
 import de from "./locales/de.js"
 import fr from "./locales/fr.js"

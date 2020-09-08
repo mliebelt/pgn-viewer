@@ -9,7 +9,7 @@ smoothscroll.polyfill()
 
 // Users of PgnViewerJS may redefine some defaults by defining globally the var `PgnBaseDefaults.
 // This will be merged then with the defaults defined by the app itself.
-if (!window.PgnBaseDefaults) {
+if (window && !window.PgnBaseDefaults) {
     window.PgnBaseDefaults = {}
 }
 

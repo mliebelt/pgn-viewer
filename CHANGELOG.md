@@ -9,7 +9,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
-## [1.3.1]() 2020-08-16
+## [1.4.0]() 2020-09-09
+
+### Changed
+
+* Switched from `i18next` to `roddeh-i18n` and inline the defined locales.
+
+### Fixed
+
+## [1.3.1](https://github.com/mliebelt/PgnViewerJS/compare/v0.9.8...v1.3.1) 2020-08-16
 
 I worked for some time on the refactoring of the whole: splitting the  application in 2 modules, and one separate project; versioning the whole with NPM (only); refactor the layout; ... and many more. So the following list is exhaustive.
 
@@ -30,7 +38,7 @@ https://github.com/mliebelt/PgnViewerJS/issues/158
 * [$160](https://github.com/mliebelt/PgnViewerJS/issues/160) Fixed unprintable tags in notation. Reason was, that on Linux, you have to install a Math font to have them.
 * [$129](https://github.com/mliebelt/PgnViewerJS/issues/129) Setup of FEN in the tag section is now recognized.
 
-## [0.9.8]() 2019-06-10
+## [0.9.8](https://github.com/mliebelt/PgnViewerJS/compare/v.0.9.7...v0.9.8) 2019-06-10
 
 ### Changed
 

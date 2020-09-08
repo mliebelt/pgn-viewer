@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Allow manual moves from the outside</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+</head>
+<body >
+<p><a href="https://github.com/mliebelt/PgnViewerJS/issues/171">Ticket 171 at GitHub</a>.
+    Use the developer tools of the browser to do the following:</p>
+<ol>
+    <li>Set a breakpoint after the pgnView (or pgnEdit).</li>
+    <li>Type into the console: <code>v.base.manualMove(SAN)</code> where SAN is the SAN string for a move
+    that is possible in that position.</li>
+    <li>Then continue, but leave the console open.</li>
+    <li>See how the move is made on the board.</li>
+    <li>Type some more moves the same way.</li>
+</ol>
+<div id="board1"></div>
+<p>Viewer</p>
+<div id="board2" class="green wikipedia"></div>
+<p>Editor</p>
+
+<script>
+let v = PGNV.pgnView("board1", {});
+console.log(v)
+let e = PGNV.pgnEdit("board2", {locale: "de"});
+console.log(e)
+</script>
+</body>
+</html>

@@ -4,7 +4,7 @@ console.log("Env Locales: " + process.env.npm_config_locales)
 const gen_i18n = function(locales) {
     console.log("Will generate i18n with a set of locales")
     let result = ""
-    result += "const { I18n } = require('roddeh-i18n')\n"
+    result += "require('roddeh-i18n')\n"
     for (const locale of locales){
         result += "import " + locale + " from \"./locales/" + locale + ".js\"\n"
     }

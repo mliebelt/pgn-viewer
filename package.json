@@ -1,6 +1,6 @@
 {
   "name": "@mliebelt/PgnViewerJS",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "module": "modules/pgn-viewer/src/index.js",
   "author": "mliebelt",
   "license": "Apache-2.0",

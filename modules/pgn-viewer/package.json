@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@mliebelt/pgn-reader": "^1.1.1",
-    "chessground": "^7.6.14",
+    "chessground": "^7.6.12",
     "mousetrap": "^1.6.5",
     "roddeh-i18n": "^1.2.0",
     "smoothscroll-polyfill": "^0.4.4",
