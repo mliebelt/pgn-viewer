@@ -155,7 +155,7 @@ We use the following libraries in the implementation:
 * [Chessground](https://github.com/ornicar/chessground) The chessboard used by lichess.org
 * [pegjs](https://github.com/pegjs/pegjs) Parser Generator implemented in Javascript.
 * [Mousetrap](https://craig.is/killing/mice) Binds keys to actions in the UI
-* [i18next](https://www.i18next.com/) Internationalization (== i18n) library to translate chess into current 18 languages.
+* [roddeh-i18n](http://i18njs.com//) Internationalization (== i18n) library to translate chess into current 18 languages. Strings are inlined in the library.
 * [Timer.js](https://github.com/fschaefer/Timer.js) Small timer for automatic moves
 * [FontAwesome](http://fontawesome.io/): Nice icon font used for some buttons
 * [PGN Specification](http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm): PGN (Portable Game Notation) specification

@@ -215,47 +215,54 @@ let pgnBase = function (boardId, configuration) {
         const cur = that.currentMove;
         let primMove = {from: from, to: to};
         if ((that.mypgn.game.get(from).type === 'p') && ((to.substring(1, 2) === '8') || (to.substring(1, 2) === '1'))) {
-            let sel = swal("Select the promotion figure", {
+            swal("Select the promotion figure", {
                 buttons: {
                     queen: {text: "Queen", value: 'q'},
                     rook: {text: "Rook", value: 'r'},
                     bishop: {text: "Bishop", value: 'b'},
                     knight: {text: 'Knight', value: 'n'}
                 }
+            }).then((value) => {primMove.promotion = value}).then( () => { onSnapEndFinish() })
+        } else {
+            onSnapEndFinish()
+        }
+
+        function onSnapEndFinish() {
+            that.currentMove = that.mypgn.addMove(primMove, cur);
+            const move = that.mypgn.getMove(that.currentMove);
+            if (primMove.promotion) {
+                let pieces = {};
+                pieces[to] = null;
+                that.board.setPieces(pieces);
+                pieces[to] = {
+                    color: (move.turn == 'w' ? 'white' : 'black'),
+                    role: that.promMappings[primMove.promotion]
+                };
+                that.board.setPieces(pieces);
+            }
+            if (move.notation.ep) {
+                let ep_field = to[0] + from[1];
+                let pieces = {};
+                pieces[ep_field] = null;
+                that.board.setPieces(pieces);
+            }
+            if (moveSpan(that.currentMove) === null) {
+                generateMove(that.currentMove, null, move, move.prev, document.getElementById(id('movesId')), []);
+            }
+            unmarkMark(that.currentMove);
+            updateUI(that.currentMove);
+            let col = move.turn == 'w' ? 'black' : 'white';
+            that.board.set({
+                movable: Object.assign({}, that.board.state.movable, {color: col, dests: possibleMoves(game)}),
+                check: game.in_check()
             });
-            primMove.promotion = sel;
+            //makeMove(null, that.currentMove, move.fen);
+            let fenView = document.getElementById(id('fenId'));
+            if (fenView) {
+                fenView.value = move.fen;
+            }
+            toggleColorMarker();
         }
-        that.currentMove = that.mypgn.addMove(primMove, cur);
-        const move = that.mypgn.getMove(that.currentMove);
-        if (primMove.promotion) {
-            let pieces = {};
-            pieces[to] = null;
-            that.board.setPieces(pieces);
-            pieces[to] = {color: (move.turn == 'w' ? 'white' : 'black'), role: that.promMappings[primMove.promotion]};
-            that.board.setPieces(pieces);
-        }
-        if (move.notation.ep) {
-            let ep_field = to[0] + from[1];
-            let pieces = {};
-            pieces[ep_field] = null;
-            that.board.setPieces(pieces);
-        }
-        if (moveSpan(that.currentMove) === null) {
-            generateMove(that.currentMove, null, move, move.prev, document.getElementById(id('movesId')), []);
-        }
-        unmarkMark(that.currentMove);
-        updateUI(that.currentMove);
-        let col = move.turn == 'w' ? 'black' : 'white';
-        that.board.set({
-            movable: Object.assign({}, that.board.state.movable, {color: col, dests: possibleMoves(game)}),
-            check: game.in_check()
-        });
-        //makeMove(null, that.currentMove, move.fen);
-        let fenView = document.getElementById(id('fenId'));
-        if (fenView) {
-            fenView.value = move.fen;
-        }
-        toggleColorMarker();
     };
 
     // Utility function for generating general HTML elements with id, class (with theme)

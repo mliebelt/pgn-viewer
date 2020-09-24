@@ -9,6 +9,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [1.4.1]() 2020-09-24
+
+### Changed
+
+### Fixed
+
+* [#165](https://github.com/mliebelt/PgnViewerJS/issues/165) Restructured `onSnapEnd` due to use or Promise in swal`.
+
 ## [1.4.0]() 2020-09-09
 
 ### Changed
