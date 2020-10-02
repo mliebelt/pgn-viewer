@@ -1,6 +1,6 @@
-# PgnViewerJS
+# Pgn Viewer JS
 
-PgnViewerJS is a simple JavaScript implementation to show PGN files (Portable Game Notation == Chess)
+Pgn Viewer JS is a simple JavaScript implementation to show PGN files (Portable Game Notation == Chess)
 in a web page. PgnViewerJS does not write everything anew, but it uses the following libraries:
 
 * [chess.js](https://github.com/jhlywa/chess.js) Base library to model chess in JavaScript
