@@ -818,3 +818,15 @@ describe("When working with NAGs", function () {
     });
 });
 
+describe("Working with games with special characters", function () {
+    it("should ignore 1 space at beginning and end", function () {
+        let my_pgn = pgnReader({pgn: " 1. d4 e5"})
+        should(my_pgn.getMoves().length).equal(2)
+    })
+
+    it("should ignore more spaces at beginning and end", function () {
+        let my_pgn = pgnReader({pgn: "     1. d4 e5"})
+        should(my_pgn.getMoves().length).equal(2)
+    })
+})
+

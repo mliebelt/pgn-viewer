@@ -1178,7 +1178,11 @@ const pgnReader = function (configuration) {
         if (typeof that.moves != 'undefined') {
             return that.moves;
         } else {
-            load_pgn();
+            try {
+                load_pgn();
+            } catch (e) {
+                return []
+            }
             return that.moves;
         }
     }
@@ -1190,7 +1194,11 @@ const pgnReader = function (configuration) {
         if (typeof that.tags != 'undefined') {
             return that.tags;
         } else {
-            load_pgn();
+            try {
+                load_pgn();
+            } catch (e) {
+                return []
+            }
             return that.tags;
         }
     }
@@ -1202,7 +1210,11 @@ const pgnReader = function (configuration) {
         if (typeof that.games != 'undefined') {
             return that.games;
         } else {
-            load_pgn();
+            try {
+                load_pgn();
+            } catch (e) {
+                return []
+            }
             return that.games;
         }
     }
