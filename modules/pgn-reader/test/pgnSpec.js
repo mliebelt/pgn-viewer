@@ -828,5 +828,13 @@ describe("Working with games with special characters", function () {
         let my_pgn = pgnReader({pgn: "     1. d4 e5"})
         should(my_pgn.getMoves().length).equal(2)
     })
+
+    it("should understand a complex example from generated WP site", function () {
+        let my_pgn = pgnReader({ pgn: '  1. e4 e5 2. Nf3 Nc6 3. Bb5 ', position: 'start', orientation: 'white',
+            pieceStyle: 'merida', theme: 'zeit', boardSize: '', width: '', locale: 'en_US',
+            showNotation: true, layout: '', movesHeight: '', colorMarker: '', showResult: '',
+            coordsInner: '1', coordsFactor: '1', startPlay: '', headers: '1'})
+        should(my_pgn.getMoves().length).equal(5)
+    })
 })
 
