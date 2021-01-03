@@ -576,7 +576,7 @@ let pgnBase = function (boardId, configuration) {
                 let _movesHeight = parseInt(_boardHeight) / 5 * 3;
                 if (_minMovesHeight < _movesHeight) _movesHeight = _minMovesHeight;
                 if (that.configuration.layout === 'top') {
-                    divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px auto minmax(0, ${_movesHeight}px)`;
+                    divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px minmax(0, ${_movesHeight}px) auto`;
                 } else if (that.configuration.layout === 'bottom') {
                     divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(0,${_movesHeight}px) minmax(auto,${_boardHeight}) ${_buttonsHeight}px`;
                 }

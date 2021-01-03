@@ -166,11 +166,11 @@ Alekhine's games can be described in one word - Wonderful!. His inexhaustible im
 {
 Alekhine's defence with reversed colours against Alekhine! Reti never repeated this experiment.
 }
-2... e4 3 Nd4 d5 4 d3 ed3 5 Qxd3 Nf6 6 Bg2 Bb4+ 7 Bd2 Bxd2 8 Nxd2 O-O 9 c4 $1 Na6
+2... e4 3 Nd4 d5 4 d3 exd3 5 Qxd3 Nf6 6 Bg2 Bb4+ 7 Bd2 Bxd2 8 Nxd2 O-O 9 c4 $1 Na6
 {
 (9....c5 10. N4b3 is good for White because of Nxc5 and cxd5 threats.)
 }
-10 cd5 Nb4 11 Qc4 Nbd5 12 N2b3 c6 13 O-O Re8 14 Rfd1 Bg4 15 Rd2 Qc8 16 Nc5 Bh3 $1
+10 cxd5 Nb4 11 Qc4 Nbxd5 12 N2b3 c6 13 O-O Re8 14 Rfd1 Bg4 15 Rd2 Qc8 16 Nc5 Bh3 $1
 17 Bf3
 {
 Taking the pawn is always bad because 17. Bxh3 Qxh3 18. Nxb72 Ng4 19. Nf3 Nde3 $3 20. Fxe3 Nxe3 21. Qxf7+ Kh8! 22. Nh4 Rf8 and threat on 'f1' is deadly.
@@ -183,7 +183,7 @@ Giving option of a draw or exchange fianchetto bishop. But Reti chose an inferio
 {
 Keeping an eye on the 'g3' Pawn.
 }
-25 b5 ab5 26 ab5 Re3 $1
+25 b5 axb5 26 axb5 Re3 $1
 {
 This spectacular move not only stops White's attack but puts him into deep trouble. Of course the Rook can't be taken because of ...Qxg3+ and ...Nxe3. Now serious threat is 27...Rxg3+.
 }
@@ -203,11 +203,11 @@ The beginning of a new combination aiming at the 'b7' Knight after a series of 1
 {
 The best defence. If 32. fxe3 Nxd2! Winning an exchange.
 }
-32... Nf2 33 Bg2 Be6 $1
+32... Nxf2 33 Bg2 Be6 $1
 {
 Now Black Knight will occupy 'g4'.
 }
-34 Rcc2 Ng4+ 35 Kh3 Ne5+ 36 Kh2 Rf3 37 Rxe2 Ng4+ 38 Kh3 Ne3+ 39 Kh2 Nxc2 40 Bxf3 Nd4 41 Rf2 Nxf3 42 Rxf3 Bd5 
+34 Rcc2 Ng4+ 35 Kh3 Ne5+ 36 Kh2 Rxf3 37 Rxe2 Ng4+ 38 Kh3 Ne3+ 39 Kh2 Nxc2 40 Bxf3 Nd4 41 Rf2 Nxf3 42 Rxf3 Bd5
 {
 Winning a piece. 
 }
@@ -229,7 +229,7 @@ Brilliancy Prize
 {
 (5. a3? Qf6 -+ typical Marshall trap.)
 }
-5...d5 6 Nc3 f5 7 Nde4 fe4 8 Bf4 O-O 9 e3 c6
+5...d5 6 Nc3 f5 7 Ndxe4 fxe4 8 Bf4 O-O 9 e3 c6
 {
 White was threatening 10. a3 Bd6 11. Bxd6 Qxd6 12. cd5 ed5 13. Nxd5!
 }
@@ -245,7 +245,7 @@ There is hardly anything better for Black.
 {
 Not 23. e6 Nf6 24 e5 Nh7!
 }
-23... a5 24 e6 g6 25 ed7 Bxd7 26 Rf7
+23... a5 24 e6 g6 25 exd7 Bxd7 26 Rf7
 1-0
 
 [Event "?"]
