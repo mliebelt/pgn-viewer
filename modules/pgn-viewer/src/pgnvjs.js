@@ -40,6 +40,7 @@ let pgnBase = function (boardId, configuration) {
         showResult: false,
         timeAnnotation: 'none',
         notation: 'short',
+        notationLayout: 'inline',   // Possible: inline, list, allList
         IDs: {
             bottomHeaderId: boardId + 'BottomHeader',
             topHeaderId: boardId + 'TopHeader',
@@ -471,7 +472,8 @@ let pgnBase = function (boardId, configuration) {
 
         /** Moves Div */
         if (hasMode('print') || hasMode('view') || hasMode('edit')) {
-            const movesDiv = createEle("div", id('movesId'), "moves", null, divBoard);
+            const movesDiv = createEle("div", id('movesId'), "moves " + that.configuration.notationLayout,
+                null, divBoard);
         }
 
         /** Edit Divs TODO Redo those */
@@ -691,74 +693,103 @@ let pgnBase = function (boardId, configuration) {
          * possible for them.
          * @param comment the comment to render as span
          * @param clazz class parameter appended to differentiate different comments
-         * @returns {HTMLElement} the new created span with the comment as text
+         * @returns {HTMLElement} the new created span with the comment as text, or null, if text is null
          */
         const generateCommentSpan = function (comment, clazz) {
-            const span = createEle('span', null, "comment " + clazz);
             if (comment && (typeof comment == "string")) {
-                span.appendChild(document.createTextNode(" " + comment + " "));
+                const span =  createEle('span', null, "comment " + clazz)
+                span.appendChild(document.createTextNode(" " + comment + " "))
+                return span
             }
-            return span;
-        };
+            return null
+        }
 
-        const append_to_current_div = function (index, span, movesDiv, varStack) {
-            if (varStack.length == 0) {
-                if (typeof index == "number") {
-                    insertAfter(span, moveSpan(index));
-                } else {
-                    movesDiv.appendChild(span);
+        function createFiller(span) {
+            const filler = createEle('span', null, "move filler")
+            filler.appendChild(document.createTextNode("... "))
+            span.appendChild(filler)
+        }
+
+        const appendCommentSpan = function (span, comment, clazz, fillNeeded) {
+            let cSpan = generateCommentSpan(comment, clazz)
+            if (cSpan) {
+                if (fillNeeded) {
+                    createFiller(span);
                 }
-            } else {
-                varStack[varStack.length - 1].appendChild(span);
+                span.appendChild(cSpan)
+                return fillNeeded
             }
-        };
+            return false
+        }
+
+        function appendVariation(div, move) {
+            if (! movesDiv.lastChild.classList.contains("variations")) {
+                movesDiv.appendChild(createEle('div', null, "variations", null, movesDiv))
+            } 
+            if (move.variationLevel > 1) {
+                insertAfter(div, moveSpan(move.prev))
+            } else {
+                movesDiv.lastChild.appendChild(div)
+            }
+        }
+
         function localBoard(id, configuration) {
             let base = pgnBase(id, Object.assign({headers: false, mode: 'board', boardSize: '200px'}, configuration));
             base.generateHTML();
             base.generateBoard();
         }
+        function createMoveNumberSpan(currentMove, spanOrDiv, additionalClass) {
+            const mn = currentMove.moveNumber
+            const clazz = additionalClass ? "moveNumber " + additionalClass : "moveNumber"
+            const num = createEle('span', null, clazz, null, spanOrDiv)
+            num.appendChild(document.createTextNode("" + mn + ((currentMove.turn == 'w' || additionalClass) ? ". " : "... ")))
+        }
+        function lastEntryFillerOrVariation(div) {
+            const childs = div.children
+            if (childs.length < 2) return false
+            return childs[childs.length - 2].classList.contains("filler") || childs[childs.length - 1].classList.contains("variations")
+        }
+
+        function isVariant() { return varStack.length > 0 }
+        function isMain() { return ! isVariant() }
+        function currentFather() {
+            return isMain() ? movesDiv : varStack[varStack.length - 1]
+        }
+
         // Ignore null moves
         if (move === null || (move === undefined)) {
             return prevCounter;
         }
-        let clAttr = "move";
+        let clAttr = "move"
         if (move.variationLevel > 0) {
-            clAttr = clAttr + " var var" + move.variationLevel;
+            clAttr = clAttr + " var var" + move.variationLevel
         }
         if (move.turn == 'w') {
-            clAttr = clAttr + " white";
+            clAttr = clAttr + " white"
         }
         const span = createEle("span", id('movesId') + currentCounter, clAttr);
         if (that.mypgn.startVariation(move)) {
-            const varDiv = createEle("div", null, "variation");
-            if (varStack.length == 0) {
-                // This is the head of the current variation
-                let varHead = null;
-                if (typeof move.prev == "number") {
-                    varHead = that.mypgn.getMove(move.prev).next;
-                } else {
-                    varHead = 0;
-                }
-                moveSpan(varHead).appendChild(varDiv);
-                // movesDiv.appendChild(varDiv);
-            } else {
-                varStack[varStack.length - 1].appendChild(varDiv);
-            }
-            varStack.push(varDiv);
-            //span.appendChild(document.createTextNode(" ( "));
+            /* if ( (move.turn == 'w') ) {
+                createFiller(movesDiv)
+            } */
+            const varDiv = createEle("div", null, "variation")
+            appendVariation(varDiv, move)
+            varStack.push(varDiv)
         }
-        span.appendChild(generateCommentSpan(move.commentMove, "moveComment"));
-        if ((move.turn == 'w') || (that.mypgn.startMainLine(move)) || (that.mypgn.startVariation(move)) || (that.mypgn.afterMoveWithVariation(move))) {
-            const mn = move.moveNumber;
-            const num = createEle('span', null, "moveNumber", null, span);
-            num.appendChild(document.createTextNode("" + mn + ((move.turn == 'w') ? ". " : "... ")));
+        appendCommentSpan(currentFather(), move.commentMove, "moveComment")
+
+
+        if ((move.turn == 'w') || (that.mypgn.startMainLine(move)) ) {
+            createMoveNumberSpan(move, currentFather())
+        } else if ( (that.mypgn.startVariation(move)) ) {
+            createMoveNumberSpan(move, varStack[varStack.length - 1])
+        } else if ( (move.turn == 'b') && (varStack.length == 0) && lastEntryFillerOrVariation(movesDiv)) {
+            createMoveNumberSpan(move, movesDiv, "filler")
+            createFiller(movesDiv)
         }
-        span.appendChild(generateCommentSpan(move.commentBefore, "beforeComment"));
-        const link = createEle('a', null, null, null, span);
-        const san = i18nSan(that.mypgn.sanWithNags(move));
-        const text = document.createTextNode(san);
+        const link = createEle('a', null, null, null, span)
+        const text = document.createTextNode(i18nSan(that.mypgn.sanWithNags(move)))
         link.appendChild(text);
-        span.appendChild(document.createTextNode(" "));
         if (that.configuration.timeAnnotation != 'none' && move.commentDiag && move.commentDiag.clock) {
             let cl_time = move.commentDiag.clock.value;
             let cl_class = that.configuration.timeAnnotation.class || 'timeNormal';
@@ -768,9 +799,10 @@ let pgnBase = function (boardId, configuration) {
             }
             span.appendChild(clock_span);
         }
-        span.appendChild(generateCommentSpan(move.commentAfter, "afterComment"));
-        append_to_current_div(move.prev, span, movesDiv, varStack);
-        //movesDiv.appendChild(span);
+        currentFather().appendChild(span)
+
+        appendCommentSpan(currentFather(), move.commentAfter, "afterComment", move.turn == 'w')
+
         if (that.mypgn.endVariation(move)) {
             //span.appendChild(document.createTextNode(" ) "));
             varStack.pop();
@@ -1287,7 +1319,7 @@ let pgnBase = function (boardId, configuration) {
                 // find the result from the header
                 let endGame = that.mypgn.getEndGame();
                 // Insert it as new span
-                let span = createEle("span", id('movesId') + "Result", "move", theme,
+                let span = createEle("span", id('movesId') + "Result", "move result", theme,
                     document.getElementById(id('movesId')));
                 span.innerHTML = endGame ? endGame : "*";
 

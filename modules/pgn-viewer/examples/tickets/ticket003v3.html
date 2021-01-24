@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Different layouts for notation</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+</head>
+<body class='merida zeit'>
+<p><a href="https://github.com/mliebelt/PgnViewerJS/issues/3">Ticket 3 at GitHub</a>.
+Show different layouts for notation.
+</p>
+<div id="board" style="width: 600px"></div>
+<div id="board2" style="width: 600px"></div>
+
+<script>
+    let cfg = { notationLayout: 'inline', pgnFile: '../pgn/moscow64.pgn', manyGames: true, layout: 'left', showResult: true };
+    let cfg2 = { notationLayout: 'list', pgnFile: '../pgn/moscow64.pgn', manyGames: true, layout: 'left', showResult: true };
+    let board = PGNV.pgnView('board', cfg);
+    let board2 = PGNV.pgnView('board2', cfg2);
+</script>
+</body>
+</html>

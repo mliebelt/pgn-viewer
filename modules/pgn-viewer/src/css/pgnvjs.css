@@ -325,6 +325,40 @@ div.comment > textarea.comment {
     padding: 2px;
 }
 
+.moves.inline .filler {
+    display: none;
+}
+
+.moves.list {
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-start;
+}
+
+.moves.list > .move.result {
+    justify-content: center;
+    flex: 0 0 100%;
+}
+
+.moves.list > .move {
+    flex: 0 0 35%;
+    display: flex;
+    /*padding: 0 0.3em;*/
+    white-space: nowrap;
+}
+
+.variation, .variation > .moveNumber, .variation > .move.var {
+    white-space: normal;
+}
+
+.moves.list > .moveNumber {
+    flex: 0 0 15%;
+    justify-content: center;
+    display: flex;
+    border-right: 1px solid var(--gray-300);
+    background: var(--gray-100);
+}
+
 .moves a {
     text-decoration: underline;
 }
@@ -337,37 +371,48 @@ div.comment > textarea.comment {
 
 .moves .move a {
     text-decoration: none;
-    border: 1px solid transparent;
+    padding: 0 0.2rem;
 }
 
 .moves .move a:hover {
-    border: 1px yellow dotted;
+    /*border: 1px yellow dotted;*/
     background-color: var(--highlight);
     cursor: crosshair;
 }
 
 .moves, select.games {
-    font-size: 16px;
+    /* font-size: 16px; */
     /*font-family: Georgia, "Bitstream Charter", serif;;*/
     color: black;
     font-weight: 700;
-    line-height: 24px;
+    /* line-height: 24px; */
+    line-height: normal;
 }
 
-.moves .variation .move.var {
+.moves .variation .move.var, .moves .variation .moveNumber {
     font-size: 97%;
     font-weight: 500;
 }
 
-.moves .variation .variation .move.var {
+.moves .variation .variation .move.var, .moves .variation .variation .moveNumber {
     font-size: 95%;
     font-weight: 300;
 }
 
-.moves .variation {
-    display: block;
-    padding: 5px;
+.moves .variation, .moves.list .variation {
+    display: inline-block;
+    margin: 0 6px;
 }
+
+.moves.list .variations {
+    flex: 0 0 100%;
+    display: flex;
+    margin: 0;
+    background: var(--gray-100);
+    border-top: 1px solid var(--gray-300);
+    border-bottom: 1px solid var(--gray-300);
+}
+
 .moves .variation:before {
     content: ' ( ';
 }
@@ -377,8 +422,7 @@ div.comment > textarea.comment {
 }
 
 .moves .variation .variation {
-    padding-left: 10px;
-    padding-right: 10px;
+    margin: 0 6px;
 }
 
 .moves .variation .variation:after {
@@ -393,9 +437,19 @@ div.comment > textarea.comment {
     display: inline;
 }
 
-.moves .move .comment {
+.moves .comment, .moves.list > .variation > .comment {
     color: var(--gray-800);
     font-weight: 500;
+    display: inline;
+}
+
+.moves.list > .comment {
+    flex: 0 0 100%;
+    display: flex;
+    background: var(--gray-100);
+    border-top: 1px solid var(--gray-300);
+    border-bottom: 1px solid var(--gray-300);
+    /* padding: 5px; */
 }
 
 /*.moves .move .comment.timeTiny {*/
