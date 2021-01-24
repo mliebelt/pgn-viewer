@@ -29,7 +29,7 @@
     "gen_i18n": "node ./bin/gen-i18n.js"
   },
   "dependencies": {
-    "@mliebelt/pgn-reader": "^1.1.5",
+    "@mliebelt/pgn-reader": "^1.1.6",
     "chessground": "^7.6.12",
     "mousetrap": "^1.6.5",
     "roddeh-i18n": "^1.2.0",
