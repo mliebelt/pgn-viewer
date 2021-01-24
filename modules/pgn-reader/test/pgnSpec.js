@@ -302,6 +302,11 @@ describe("When reading PGN with variations", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 ( 1... d5 )"});
         should(my_pgn.getMove(1).variations[0].notation.notation).equal("d5");
     })
+
+    it ("should know about variations in syntax for variants including results", function() {
+        my_pgn = pgnReader({pgn: "1. e4 e5 ( 1... d5 ) 1-0"});
+        should(my_pgn.getMove(1).variations[0].notation.notation).equal("d5");
+    })
 });
 
 describe("When reading variations with comments", function() {
