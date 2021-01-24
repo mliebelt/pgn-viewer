@@ -20,9 +20,6 @@
     "type": "git",
     "url": "https://github.com/mliebelt/PgnViewerJS.git"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "scripts": {
     "build": "../../node_modules/.bin/webpack --config webpack.prod.js",
     "start": "../../node_modules/.bin/webpack-dev-server --open --config webpack.dev.js",
