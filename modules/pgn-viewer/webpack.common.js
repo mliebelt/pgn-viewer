@@ -23,7 +23,7 @@ module.exports = {
         path: path.resolve(__dirname, 'lib'),
         publicPath: '/lib/',
         library: 'PGNV',
-        libraryTarget: "var",
+        libraryTarget: 'umd',
     },
     module: {
         rules: [
