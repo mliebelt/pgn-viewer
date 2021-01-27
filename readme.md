@@ -76,13 +76,6 @@ There is at the moment no way to save a game that was edited in `pgnEdit` mode. 
 * Copy the files from the directory `modules/pgn-viewer/lib`.
 * Create new HTML files with the corresponding head and body.
 
-### About handling of assets
-
-Due to the fact that Webpack holds the assets under a given directory (in my case, it is `/lib/`). If you deploy the PgnViewerJS under any different root path, you have to define that root path by providing a Javascript line before loading the library:
-
-     <script>__globalCustomDomain = '/PgnViewerJS/js/';</script>
-     <script src="/PgnViewerJS/js/pgnv.js" type="text/javascript"></script>
-
 ### Using the viewer
 
 To use the viewer in an HTML page, you have to do the following steps:
