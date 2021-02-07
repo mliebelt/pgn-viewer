@@ -637,23 +637,43 @@ let pgnBase = function (boardId, configuration) {
         boardConfiguration.width = "" + smallerWidth +"px";*/
         that.board = Chessground(el, boardConfiguration);
         function resizeBoard() {
-            that.board.redrawAll();
+            computeFontSize()
+            that.board.redrawAll()
         }
         window.addEventListener("resize", resizeBoard);
-        //console.log("Board width: " + board.width);
-        if (boardConfiguration.width) {
+
+        function computeFontSize() {
+            function computeFontSizeInPixel() {
+                let _widthNumber = parseInt(boardConfiguration.width)
+                let _unit = boardConfiguration.width.slice(('' + _widthNumber).length - boardConfiguration.width.length)
+                let _sizeInPixel = 0
+                if (_unit == 'px') {
+                    _sizeInPixel = parseInt(_widthNumber) / 28 * boardConfiguration.coordsFactor
+                } else if (_unit == 'vw') {
+                    _sizeInPixel = window.innerWidth / 100 * parseInt(_widthNumber) / 28 * boardConfiguration.coordsFactor
+                } else if (_unit == 'vh') {
+                    _sizeInPixel = window.innerHeight / 100 * parseInt(_widthNumber) / 28 * boardConfiguration.coordsFactor
+                } else if (_unit == 'vmin') {
+                    _sizeInPixel = (Math.min(window.innerWidth, window.innerHeight)) / 100 * parseInt(_widthNumber) / 28 * boardConfiguration.coordsFactor
+                }
+                return Math.max(8, _sizeInPixel);
+            }
+            if (boardConfiguration.width) {
             el.style.width = boardConfiguration.width;
             el.style.height = boardConfiguration.width;
-            let fontSize = null;
-            if (boardConfiguration.rankFontSize) {
-                fontSize = boardConfiguration.rankFontSize;
-            } else {
-                // Set the font size related to the board (factor 28), ensure at least 8px font
-                fontSize = Math.max(8, Math.round(parseInt(boardConfiguration.width.slice(0, -2)) / 28 * boardConfiguration.coordsFactor));
+                let fontSize = null;
+                if (boardConfiguration.rankFontSize) {
+                    fontSize = boardConfiguration.rankFontSize;
+                } else {
+                    fontSize = computeFontSizeInPixel();
+                }
+                el.style.fontSize = `${fontSize}px`;
+                document.body.dispatchEvent(new Event('chessground.resize'));
             }
-            el.style.fontSize = `${fontSize}px`;
-            document.body.dispatchEvent(new Event('chessground.resize'));
         }
+
+//console.log("Board width: " + board.width);
+        computeFontSize();
         if (boardConfiguration.coordsInner) {
             el.classList.add('coords-inner');
         }
