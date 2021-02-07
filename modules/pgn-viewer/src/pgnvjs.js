@@ -304,6 +304,101 @@ let pgnBase = function (boardId, configuration) {
         return new_san;
     }
 
+    function computeFontSize(_configuration) {
+        function computeFontSizeInPixel(_boardWidth, _coordsFactor) {
+            let _widthNumber = parseInt(_boardWidth)
+            let _unit = _boardWidth.slice(('' + _widthNumber).length - _boardWidth.length)
+            let _sizeInPixel = 0
+            if (_unit == 'px') {
+                _sizeInPixel = parseInt(_widthNumber) / 28 * _coordsFactor
+            } else if (_unit == 'vw') {
+                _sizeInPixel = window.innerWidth / 100 * parseInt(_widthNumber) / 28 * _coordsFactor
+            } else if (_unit == 'vh') {
+                _sizeInPixel = window.innerHeight / 100 * parseInt(_widthNumber) / 28 * _coordsFactor
+            } else if (_unit == 'vmin') {
+                _sizeInPixel = (Math.min(window.innerWidth, window.innerHeight)) / 100 * parseInt(_widthNumber) / 28 * _coordsFactor
+            }
+            return Math.max(8, _sizeInPixel);
+        }
+        if (_configuration.width) {
+            /*
+                            el.style.width = boardConfiguration.width;
+                            el.style.height = boardConfiguration.width;
+            */
+            let fontSize = null;
+            if (_configuration.rankFontSize) {
+                fontSize = _configuration.rankFontSize;
+            } else {
+                fontSize = computeFontSizeInPixel(_configuration.width, _configuration.coordsFactor);
+            }
+            document.getElementById(id('innerBoardId')).style.fontSize = `${fontSize}px`;
+            document.body.dispatchEvent(new Event('chessground.resize'));
+        }
+    }
+
+    function computeBoardSize(_boardSize) {
+        let _widthNumber = parseInt(_boardSize)
+        let _unit = _boardSize.slice(('' + _widthNumber).length - _boardSize.length)
+        let _sizeInPixel = 0
+        if (_unit == 'px') {
+            _sizeInPixel = parseInt(_widthNumber)
+        } else if (_unit == 'vw') {
+            _sizeInPixel = window.innerWidth / 100 * parseInt(_widthNumber)
+        } else if (_unit == 'vh') {
+            _sizeInPixel = window.innerHeight / 100 * parseInt(_widthNumber)
+        } else if (_unit == 'vmin') {
+            _sizeInPixel = (Math.min(window.innerWidth, window.innerHeight)) / 100 * parseInt(_widthNumber)
+        }
+        return _sizeInPixel
+    }
+
+    function computeRoundedBoardSize(_boardSize) {
+        return `${Math.round(computeBoardSize(_boardSize) / 8) * 8}px`
+    }
+
+    const computeAndSetBoardSize = function() {
+        const setBoardSizeAndWidth = function (boardSize, width) {
+            /*if (! that.configuration.boardSizeOrig) { that.configuration.boardSizeOrig = that.configuration.boardSize }
+            if (! that.configuration.widthOrig) { that.configuration.widthOrig = that.configuration.width }
+            that.configuration.boardSize = boardSize;
+            that.configuration.width = width;
+            divBoard.style.width = width;*/
+        }
+        let _boardSize = that.configuration.boardSize;
+        let _width =  that.configuration.width || document.getElementById(boardId).style.width;
+
+        if (that.configuration.layout === 'top' || that.configuration.layout === 'bottom') {
+            if (_boardSize) {
+                let _rounded = computeRoundedBoardSize(_boardSize);
+                setBoardSizeAndWidth(_rounded, _rounded)
+                return _boardSize;
+            } else {
+                _width = _width || '320px';
+                _width = computeRoundedBoardSize(_width);
+                setBoardSizeAndWidth(_width, _width);
+                return _width;
+            }
+        }
+        // Layout left or right, more complex combinations possible
+        if (_boardSize && _width) {
+            _boardSize = computeRoundedBoardSize(_boardSize)
+            setBoardSizeAndWidth(_boardSize, _width)
+            return _boardSize
+        } else if (! _boardSize) {
+            _boardSize = computeRoundedBoardSize(parseInt(_width) / 8 * 5)
+            setBoardSizeAndWidth(_boardSize, _width)
+            return _boardSize
+        } else {
+            _width = computeRoundedBoardSize(_boardSize)
+            setBoardSizeAndWidth(_boardSize, _boardSize)
+            return _boardSize
+        }
+    }
+
+    const hasHeaders = function () {
+        return that.configuration.headers && (Object.keys(that.mypgn.getTags()).length > 0)
+    }
+
     /**
      * Generates all HTML elements needed for display of the (playing) board and
      * the moves. Generates that in dependence of the theme
@@ -390,9 +485,6 @@ let pgnBase = function (boardId, configuration) {
             createEle("textarea", null, "comment", theme, commentDiv);
         };
 
-        const hasHeaders = function () {
-            return that.configuration.headers && (Object.keys(that.mypgn.getTags()).length > 0)
-        }
 
         const divBoard = document.getElementById(boardId);
         if (divBoard == null) {
@@ -498,96 +590,80 @@ let pgnBase = function (boardId, configuration) {
             };
         }
 
-        const computeBoardSize = function() {
-            const setBoardSizeAndWidth = function (boardSize, width) {
-                that.configuration.boardSize = boardSize;
-                that.configuration.width = width;
-                divBoard.style.width = width;
-            }
-            let _boardSize = that.configuration.boardSize;
-            let _width =  that.configuration.width || divBoard.style.width;
 
-            function getRoundedBoardSize(_boardSize) {
-                // return `${Math.round(parseInt(_boardSize) / 8) * 8}px`;
-                return _boardSize
-            }
+        let _boardWidth = computeAndSetBoardSize();
 
-            if (that.configuration.layout === 'top' || that.configuration.layout === 'bottom') {
-                if (_boardSize) {
-                    let rounded = getRoundedBoardSize(_boardSize);
-                    setBoardSizeAndWidth(rounded, rounded)
-                    return _boardSize;
-                } else {
-                    _width = _width || '320px';
-                    _width = getRoundedBoardSize(_width);
-                    setBoardSizeAndWidth(_width, _width);
-                    return _width;
-                }
-            }
-            // Layout left or right, more complex combinations possible
-            if (_boardSize && _width) {
-                _boardSize = getRoundedBoardSize(_boardSize)
-                setBoardSizeAndWidth(_boardSize, _width)
-                return _boardSize
-            } else if (! _boardSize) {
-                _boardSize = getRoundedBoardSize(parseInt(_width) / 8 * 5);
-                setBoardSizeAndWidth(_boardSize, _width)
-                return _boardSize
-            } else {
-                _width = `${parseInt(_boardSize) / 5 * 8}px`
-                setBoardSizeAndWidth(_boardSize, _width)
-                return _boardSize
-            }
+        resizeLayout(_boardWidth)
+    };
+
+    function resizeBoard(_configuration) {
+        computeFontSize(_configuration)
+        resizeLayout(computeAndSetBoardSize())
+        that.board.redrawAll()
+    }
+
+    const resizeLayout = function (_myComputedBoardWidth) {
+        console.log("Start computing layout")
+
+        function setBoardWidth(_myBoardWidth) {
+            let _innerBoard = document.getElementById(id("innerBoardId"))
+            let _rounded = computeRoundedBoardSize(_myBoardWidth)
+            _innerBoard.style.width = _rounded
+            _innerBoard.style.height = _rounded
+            return
         }
 
-        let _boardHeight = computeBoardSize();
-        let _boardWidth = _boardHeight;
-        let _buttonFontSize = `${Math.max(10, parseInt(_boardHeight) / 24)}px`;
+        if (hasMode('board')) {
+            if (document.getElementById(id('colorMarkerId'))) {
+                document.getElementById(id('colorMarkerId')).style.marginLeft = 'auto';
+            }
+            let _whole = document.getElementById(boardId)
+            _whole.style.width = _myComputedBoardWidth
+            _whole.style.height = _myComputedBoardWidth
+            setBoardWidth(_myComputedBoardWidth)
+            return
+        }
+        if (hasMode('print')) return
+
+        let _buttonFontSize = `${Math.max(10, parseInt(computeBoardSize(_myComputedBoardWidth)) / 24)}px`;
         if (document.getElementById(id('buttonsId'))) {
             document.getElementById(id('buttonsId')).style.fontSize = _buttonFontSize;
         }
 
-        const resizeLayout = function () {
-            console.log("Start computing layout")
-            if (hasMode('board')) {
-                if (document.getElementById(id('colorMarkerId'))) {
-                    document.getElementById(id('colorMarkerId')).style.marginLeft = 'auto';
-                }
-                return;
-            }
-            if (hasMode('print')) return;
-            if (that.configuration.showFen) {
-                let _fenHeight = document.getElementById(id('fenId')).offsetHeight;
-                _boardHeight = `${parseInt(_boardHeight) + _fenHeight}px`;
-            }
-            if (hasHeaders()) {
-                _boardHeight = `${parseInt(_boardHeight) + 40}px`;
-            }
-            let _buttonsHeight = document.getElementById(id('buttonsId')).offsetHeight;
-            let _gamesHeight = that.configuration.manyGames ? '40px' : '0'
-            if (that.configuration.layout === 'left' || that.configuration.layout === 'right') {
-                divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px`;
-                let _movesWidth = `${parseInt(that.configuration.width) - parseInt(_boardWidth)}px`;
-                if (that.configuration.layout === 'left') {
-                    divBoard.style.gridTemplateColumns = _boardWidth + " " + _movesWidth;
-                } else {
-                    divBoard.style.gridTemplateColumns = _movesWidth + " " + _boardWidth;
-                }
-            } else {
-                let _movesCount = that.mypgn.getMoves().length;
-                let _minMovesHeight = (_movesCount + 7) / 7 * 30;
-                let _movesHeight = parseInt(_boardHeight) / 5 * 3;
-                if (_minMovesHeight < _movesHeight) _movesHeight = _minMovesHeight;
-                if (that.configuration.layout === 'top') {
-                    divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px minmax(0, ${_movesHeight}px) auto`;
-                } else if (that.configuration.layout === 'bottom') {
-                    divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(0,${_movesHeight}px) minmax(auto,${_boardHeight}) ${_buttonsHeight}px`;
-                }
-                divBoard.style.gridTemplateColumns = _boardWidth
-            }
+        let _boardHeight = _myComputedBoardWidth
+        let _divBoard = document.getElementById(boardId)
+        setBoardWidth(_myComputedBoardWidth)
+        if (that.configuration.showFen) {
+            let _fenHeight = document.getElementById(id('fenId')).offsetHeight;
+            _boardHeight = `${parseInt(_myComputedBoardWidth) + _fenHeight}px`;
         }
-        resizeLayout()
-    };
+        if (hasHeaders()) {
+            _boardHeight = `${parseInt(_boardHeight) + 40}px`;
+        }
+        let _buttonsHeight = document.getElementById(id('buttonsId')).offsetHeight;
+        let _gamesHeight = that.configuration.manyGames ? '40px' : '0'
+        if (that.configuration.layout === 'left' || that.configuration.layout === 'right') {
+            _divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_myComputedBoardWidth}) ${_buttonsHeight}px`;
+            let _movesWidth = `${parseInt(that.configuration.width) - parseInt(_myComputedBoardWidth)}px`;
+            if (that.configuration.layout === 'left') {
+                _divBoard.style.gridTemplateColumns = _myComputedBoardWidth + " " + _movesWidth;
+            } else {
+                _divBoard.style.gridTemplateColumns = _movesWidth + " " + _myComputedBoardWidth;
+            }
+        } else {
+            let _movesCount = that.mypgn.getMoves().length;
+            let _minMovesHeight = (_movesCount + 7) / 7 * 30;
+            let _movesHeight = parseInt(_myComputedBoardWidth) / 5 * 3;
+            if (_minMovesHeight < _myComputedBoardWidth) _movesHeight = _minMovesHeight;
+            if (that.configuration.layout === 'top') {
+                _divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px minmax(0, ${_movesHeight}px) auto`;
+            } else if (that.configuration.layout === 'bottom') {
+                _divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(0,${_movesHeight}px) minmax(auto,${_boardHeight}) ${_buttonsHeight}px`;
+            }
+            _divBoard.style.gridTemplateColumns = _myComputedBoardWidth
+        }
+    }
+
 
     /**
      * Generate the board that uses the unique id('innerBoardId') and the part of the configuration
@@ -636,44 +712,11 @@ let pgnBase = function (boardId, configuration) {
         // Ensure that boardWidth is a multiply of 8
         boardConfiguration.width = "" + smallerWidth +"px";*/
         that.board = Chessground(el, boardConfiguration);
-        function resizeBoard() {
-            computeFontSize()
-            that.board.redrawAll()
-        }
-        window.addEventListener("resize", resizeBoard);
+        window.addEventListener("resize", (boardConfiguration) => { resizeBoard(boardConfiguration)});
 
-        function computeFontSize() {
-            function computeFontSizeInPixel() {
-                let _widthNumber = parseInt(boardConfiguration.width)
-                let _unit = boardConfiguration.width.slice(('' + _widthNumber).length - boardConfiguration.width.length)
-                let _sizeInPixel = 0
-                if (_unit == 'px') {
-                    _sizeInPixel = parseInt(_widthNumber) / 28 * boardConfiguration.coordsFactor
-                } else if (_unit == 'vw') {
-                    _sizeInPixel = window.innerWidth / 100 * parseInt(_widthNumber) / 28 * boardConfiguration.coordsFactor
-                } else if (_unit == 'vh') {
-                    _sizeInPixel = window.innerHeight / 100 * parseInt(_widthNumber) / 28 * boardConfiguration.coordsFactor
-                } else if (_unit == 'vmin') {
-                    _sizeInPixel = (Math.min(window.innerWidth, window.innerHeight)) / 100 * parseInt(_widthNumber) / 28 * boardConfiguration.coordsFactor
-                }
-                return Math.max(8, _sizeInPixel);
-            }
-            if (boardConfiguration.width) {
-            el.style.width = boardConfiguration.width;
-            el.style.height = boardConfiguration.width;
-                let fontSize = null;
-                if (boardConfiguration.rankFontSize) {
-                    fontSize = boardConfiguration.rankFontSize;
-                } else {
-                    fontSize = computeFontSizeInPixel();
-                }
-                el.style.fontSize = `${fontSize}px`;
-                document.body.dispatchEvent(new Event('chessground.resize'));
-            }
-        }
 
 //console.log("Board width: " + board.width);
-        computeFontSize();
+        computeFontSize(boardConfiguration);
         if (boardConfiguration.coordsInner) {
             el.classList.add('coords-inner');
         }
