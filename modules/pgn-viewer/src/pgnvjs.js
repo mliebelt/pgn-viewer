@@ -508,7 +508,8 @@ let pgnBase = function (boardId, configuration) {
             let _width =  that.configuration.width || divBoard.style.width;
 
             function getRoundedBoardSize(_boardSize) {
-                return `${Math.round(parseInt(_boardSize) / 8) * 8}px`;
+                // return `${Math.round(parseInt(_boardSize) / 8) * 8}px`;
+                return _boardSize
             }
 
             if (that.configuration.layout === 'top' || that.configuration.layout === 'bottom') {
@@ -629,12 +630,16 @@ let pgnBase = function (boardId, configuration) {
         if (boardConfiguration.boardSize) {
             boardConfiguration.width = boardConfiguration.boardSize;
         }
-        let currentWidth = parseInt(boardConfiguration.width);
+        /*let currentWidth = parseInt(boardConfiguration.width);
         let moduloWidth = currentWidth % 8;
         let smallerWidth = currentWidth - moduloWidth;
         // Ensure that boardWidth is a multiply of 8
-        boardConfiguration.width = "" + smallerWidth +"px";
+        boardConfiguration.width = "" + smallerWidth +"px";*/
         that.board = Chessground(el, boardConfiguration);
+        function resizeBoard() {
+            that.board.redrawAll();
+        }
+        window.addEventListener("resize", resizeBoard);
         //console.log("Board width: " + board.width);
         if (boardConfiguration.width) {
             el.style.width = boardConfiguration.width;
