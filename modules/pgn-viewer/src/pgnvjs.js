@@ -15,7 +15,8 @@ import swal from 'sweetalert';
  */
 let pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
-    let that = {};
+    let that = {}
+    that.userConfiguration = configuration
     let utils = new Utils();
     // Sets the default parameters for all modes. See individual functions for individual overwrites
     let defaults = {
@@ -472,8 +473,11 @@ let pgnBase = function (boardId, configuration) {
 
         /** Moves Div */
         if (hasMode('print') || hasMode('view') || hasMode('edit')) {
-            const movesDiv = createEle("div", id('movesId'), "moves " + that.configuration.notationLayout,
+            createEle("div", id('movesId'), "moves " + that.configuration.notationLayout,
                 null, divBoard);
+            if (hasMode('print')) {
+                return
+            }
         }
 
         /** Edit Divs TODO Redo those */
@@ -734,7 +738,7 @@ let pgnBase = function (boardId, configuration) {
         }
 
         function localBoard(id, configuration) {
-            let base = pgnBase(id, Object.assign({headers: false, mode: 'board', boardSize: '200px'}, configuration));
+            let base = pgnBase(id, Object.assign({boardSize: '200px'}, configuration, {headers: false, mode: 'board'}));
             base.generateHTML();
             base.generateBoard();
         }
@@ -815,8 +819,8 @@ let pgnBase = function (boardId, configuration) {
             const diaID = boardId + "dia" + currentCounter;
             const diaDiv = createEle('div', diaID);
             span.appendChild(diaDiv);
-            that.configuration.position = move.fen;
-            localBoard(diaID, that.configuration);
+            that.userConfiguration.position = move.fen;
+            localBoard(diaID, that.userConfiguration);
         }
         //console.log(`FEN size: ${move.fen.length}`)
         return currentCounter;
