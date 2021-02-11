@@ -26,7 +26,6 @@ const gen_examples = function() {
         buf += '<title>' + ex.name + '</title>' + "\r\n";
         buf += '<link rel="stylesheet" href="../css/prettify.css" />' + "\r\n";
         buf += '<link rel="stylesheet" href="../css/layout.css" />' + "\r\n";
-        buf += '<script>__globalCustomDomain = "/PgnViewerJS/js/";</script>' + "\r\n";
         buf += '<script src="../js/pgnv.js" type="text/javascript" ></script>' + "\r\n";
         buf += '<script src="../js/prettify.js" type="text/javascript" ></script>' + "\r\n";
         buf += '</head>' + "\r\n";

@@ -1,6 +1,5 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const WebpackRequireFrom = require("webpack-require-from");
 const CompressionPlugin = require('compression-webpack-plugin');
 //const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -12,13 +11,6 @@ module.exports = {
         //new BundleAnalyzerPlugin(),
         new CleanWebpackPlugin(),
         new CompressionPlugin(),
-        new WebpackRequireFrom({
-            // path: 'https://custom.domain',
-            variableName: "__globalCustomDomain",
-            // methodName: "__globalCustomDomain",
-            // replaceSrcMethodName: "__replaceWebpackDynamicImport",
-            suppressErrors: true
-        })
     ],
     output: {
         filename: 'pgnv.js',
