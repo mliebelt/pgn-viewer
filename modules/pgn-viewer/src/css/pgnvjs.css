@@ -185,6 +185,10 @@
     width: 110%;
 }
 
+.whole.printMode > .outerBoard {
+    display: none;
+}
+
 /** Board mode */
 .whole.layout-top.boardMode {
     gap: 0;
