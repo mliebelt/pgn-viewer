@@ -8,7 +8,7 @@ You will find the detailed documentation about pgn-viewer (formerly named PgnVie
 
 ## How to Build and Test
 
-* `npm build`: Creates a new bundle `lib/pgnv.js` including the necessary `pgnv-assets` files copied to that directory.
+* `npm build`: Creates a new bundle `lib/pgnv.js` including a compressed version of it.
 * If you want to remove some locales, make a custom build by
   * first adjusting the list of locales in `.npmrc`
   * call locally first the script `gen_i18n`

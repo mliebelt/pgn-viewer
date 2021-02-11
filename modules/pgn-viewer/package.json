@@ -9,8 +9,7 @@
   "version": "1.4.4",
   "main": "lib/pgnv.js",
   "files": [
-    "lib/pgnv-assets/**",
-    "lib/locales/**",
+    "lib/**",
     "README.md"
   ],
   "module": "modules/pgn-viewer/src/index.js",
