@@ -60,13 +60,13 @@ examples["1020"] = {
     }
 };
 examples["1021"] = {
-    desc: "ChessBoard pieceStyle 'merida-svg', 'case', 'wikipedia', 'alpha', 'uscf', 'condal', 'maya', and 'leipzig'.",
+    desc: "ChessBoard pieceStyle 'merida', 'case', 'wikipedia', 'alpha', 'uscf', 'condal', 'maya', and 'leipzig'.",
     html: 'Merida <div id="board"></div> Case <div id="board2"></div> Wikipedia <div id="board3"></div> Alpha <div id="board4"></div>' + 
     ' USCF <div id="board5"></div>  Condal <div id="board7"></div> Maya <div id="board8"></div> Leipzig <div id="board9"></div>',
     name: "Piece Styles",
-    jsStr: "var board = PGNV.pgnBoard('board', {pieceStyle: 'merida-svg', boardSize: '400px'});\nvar board2 = PGNV.pgnBoard('board2', {pieceStyle: 'case', boardSize: '400px'});\nvar board3 = PGNV.pgnBoard('board3', {pieceStyle: 'wikipedia', boardSize: '400px'});\nvar board4 = PGNV.pgnBoard('board4', {pieceStyle: 'alpha',  boardSize: '400px'});\nvar board5 = PGNV.pgnBoard('board5', {pieceStyle: 'uscf',  boardSize: '400px'});\nvar board7 = PGNV.pgnBoard('board7', {pieceStyle: 'condal', boardSize: '400px'});\nvar board8 = PGNV.pgnBoard('board8', {pieceStyle: 'maya',  boardSize: '400px'});\nvar board9 = PGNV.pgnBoard('board9', {pieceStyle: 'leipzig', boardSize: '400px'});",
+    jsStr: "var board = PGNV.pgnBoard('board', {pieceStyle: 'merida', boardSize: '400px'});\nvar board2 = PGNV.pgnBoard('board2', {pieceStyle: 'case', boardSize: '400px'});\nvar board3 = PGNV.pgnBoard('board3', {pieceStyle: 'wikipedia', boardSize: '400px'});\nvar board4 = PGNV.pgnBoard('board4', {pieceStyle: 'alpha',  boardSize: '400px'});\nvar board5 = PGNV.pgnBoard('board5', {pieceStyle: 'uscf',  boardSize: '400px'});\nvar board7 = PGNV.pgnBoard('board7', {pieceStyle: 'condal', boardSize: '400px'});\nvar board8 = PGNV.pgnBoard('board8', {pieceStyle: 'maya',  boardSize: '400px'});\nvar board9 = PGNV.pgnBoard('board9', {pieceStyle: 'leipzig', boardSize: '400px'});",
     jsFn: function() {
-        var board = PGNV.pgnBoard('board', {pieceStyle: 'merida-svg', boardSize: '400px'});
+        var board = PGNV.pgnBoard('board', {pieceStyle: 'merida', boardSize: '400px'});
         var board2 = PGNV.pgnBoard('board2', {pieceStyle: 'case', boardSize: '400px'});
         var board3 = PGNV.pgnBoard('board3', {pieceStyle: 'wikipedia', boardSize: '400px'});
         var board4 = PGNV.pgnBoard('board4', {pieceStyle: 'alpha',  boardSize: '400px'});

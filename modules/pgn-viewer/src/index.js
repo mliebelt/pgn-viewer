@@ -39,7 +39,7 @@ let pgnView = function (boardId, configuration) {
  *  orientation: 'black' or 'white' (default)
  *  showCoords: false or true (default)
  *  pieceStyle: some of alpha, uscf, wikipedia (from chessboardjs) or
- *              merida-svg (default), case, leipzip, maya, condal (from ChessTempo)
+ *              merida (default), case, leipzip, maya, condal (from ChessTempo)
  *              or chesscom (from chess.com) (as string)
  *  pieceTheme: allows to adapt the path to the pieces, default is 'img/chesspieces/alpha/{piece}.png'
  *          Normally not changed by clients
