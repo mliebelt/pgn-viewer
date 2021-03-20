@@ -372,6 +372,7 @@ const pgnReader = function (configuration) {
         let _game = typeof game === 'number' ? that.games[game] : game
         that.tags = _game.tags;
         that.moves = _game.moves;
+        that.gameComment = _game.gameComment
         interpretHeaders();
         readMoves(_game.moves);
         if (that.configuration.startPlay && that.configuration.hideMovesBefore) {
@@ -731,12 +732,12 @@ const pgnReader = function (configuration) {
             sb.append("}");
         };
 
+        const write_game_comment = function (sb) {
+            write_comment(getGameComment(), sb)
+        }
+
         const write_comment_move = function(move, sb) {
             write_comment(move.commentMove, sb);
-        };
-
-        const write_comment_before = function(move, sb) {
-            write_comment(move.commentBefore, sb);
         };
 
         const write_comment_after = function(move, sb) {
@@ -830,7 +831,6 @@ const pgnReader = function (configuration) {
             }
             write_comment_move(move, sb);
             write_move_number(move, sb);
-            write_comment_before(move, sb);
             write_notation(move, sb);
             //write_check_or_mate(move, sb);    // not necessary if san from chess.src is used
             write_NAGs(move, sb);
@@ -849,10 +849,10 @@ const pgnReader = function (configuration) {
         };
 
         const write_pgn2 = function(move, _sb) {
-
-            write_move(move, _sb);
-            write_end_game(_sb);
-            return _sb.toString();
+            write_game_comment(sb)
+            write_move(move, _sb)
+            write_end_game(_sb)
+            return _sb.toString()
         };
         const sb = StringBuilder("");
         let indexFirstMove = 0;
@@ -1204,6 +1204,13 @@ const pgnReader = function (configuration) {
     }
 
     /**
+     * Return the game comment, if there.
+     */
+    function getGameComment() {
+        return that.gameComment ? that.gameComment.comment : undefined
+    }
+
+    /**
      * Returns the games. Ensures that pgn is already read.
      */
     function getGames() {
@@ -1257,6 +1264,7 @@ const pgnReader = function (configuration) {
         getOrderedMoves: getOrderedMoves,
         getMove: getMove,
         getEndGame: getEndGame,
+        getGameComment: getGameComment,
         getTags: getTags,
         getGames: getGames,
         load_one: load_one,

@@ -206,10 +206,9 @@ describe("When reading pgn with wrong headers", function() {
 describe("When reading PGN with comments", function() {
     var my_pgn;
     it("should read all sorts of comments", function() {
-        my_pgn = pgnReader({pgn: "{Before move} 1. {Before number} e4 {After move} {[%csl Ya4, Gb4]}"});
+        my_pgn = pgnReader({pgn: "{Before move} 1. e4 {After move} {[%csl Ya4, Gb4]}"});
         var first = my_pgn.getMove(0);
-        should(first.commentMove).equal("Before move");
-        should(first.commentBefore).equal("Before number");
+        should(my_pgn.getGameComment()).equal("Before move");
         should(first.commentAfter).equal("After move");
         should(first.commentDiag.colorFields.length).equal(2);
     });
@@ -265,7 +264,7 @@ describe("When reading PGN with variations", function() {
     });
 
     it("should understand all variations for black and white with different move number formats", function () {
-        my_pgn = pgnReader({pgn: "1. e4 (1... c4?) e5 (1. .. d5 2 exd5 2... Qxd5)"});
+        my_pgn = pgnReader({pgn: "1. e4 (1... c4?) e5 (1... d5 2 exd5 2... Qxd5)"});
         should(my_pgn.getMove(0).variations.length).equal(1);
         should(my_pgn.getMove(1).variations.length).equal(0);
         should(my_pgn.getMove(2).variations[0].notation.notation).equal("d5");
@@ -312,19 +311,18 @@ describe("When reading PGN with variations", function() {
 describe("When reading variations with comments", function() {
     var my_pgn;
 
-    it("should understand move, before and after comment in principle", function() {
-        my_pgn = pgnReader({pgn: "{START} 1. {BEFORE} d4 {AFTER} e5"});
-        should(my_pgn.getMove(0).commentMove).equal("START");
-        should(my_pgn.getMove(0).commentBefore).equal("BEFORE");
-        should(my_pgn.getMove(0).commentAfter).equal("AFTER");
-        should(my_pgn.getMove(0).notation.notation).equal("d4");
+    it("should understand game comment and after comment in principle", function() {
+        my_pgn = pgnReader({pgn: "{START} 1. d4 {AFTER} e5"});
+        let move = my_pgn.getMove(0);
+        should(my_pgn.getGameComment()).equal("START");
+        should(move.commentAfter).equal("AFTER");
+        should(move.notation.notation).equal("d4");
     });
 
     it("should understand comments for variation with white", function() {
-        my_pgn = pgnReader({pgn: "1. d4 ({START} 1. {BEFORE} e4 {AFTER} e5) 1... d5"});
+        my_pgn = pgnReader({pgn: "1. d4 ({START} 1. e4 {AFTER} e5) 1... d5"});
         var var_first = my_pgn.getMove(0).variations[0];
         should(var_first.commentMove).equal("START");
-        should(var_first.commentBefore).equal("BEFORE");
         should(var_first.commentAfter).equal("AFTER");
         should(var_first.notation.notation).equal("e4");
     })
@@ -530,9 +528,9 @@ describe("Writing PGN like", function() {
     });
 
     it("should write the notation for a main line including comments", function () {
-        var my_pgn = pgnReader({pgn: "{FIRST} 1. {SECOND} e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5"});
+        var my_pgn = pgnReader({pgn: "{FIRST} 1. e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5"});
         var res = my_pgn.write_pgn();
-        should(res).equal("{FIRST} 1. {SECOND} e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5");
+        should(res).equal("{FIRST} 1. e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5");
     });
 
     it("should write all NAGs in their known parts", function () {
