@@ -22,7 +22,7 @@
   "scripts": {
     "build": "../../node_modules/.bin/webpack --config webpack.prod.js",
     "start": "../../node_modules/.bin/webpack-dev-server --open --config webpack.dev.js",
-    "gen_i18n": "node ./bin/gen-i18n.js"
+    "gen_i18n": "./bin/gen-i18n.js"
   },
   "dependencies": {
     "@mliebelt/pgn-reader": "^1.1.6",

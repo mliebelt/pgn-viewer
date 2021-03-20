@@ -125,7 +125,7 @@ function PGNViewer(props) {
         showResult: true,
         boardSize: '340',
         showFen: true,
-        pieceStyle: 'chesscom'
+        pieceStyle: 'merida'
       }
     )
   })

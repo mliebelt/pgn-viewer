@@ -18,7 +18,7 @@ at will.</div>
     <ol>
         <li>piecestyle: leipzig, theme: green</li>
         <li>piecestyle: maya, theme: blue</li>
-        <li>piecestyle: chesscom, theme: zeit</li>
+        <li>piecestyle: case, theme: zeit</li>
         <li>piecestyle: beyer, theme: beyer</li>
         <li>piecestyle: wikipedia, theme: informator</li>
         <li>piecestyle: merida, theme: falken</li>
@@ -39,7 +39,7 @@ at will.</div>
     var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0";
     pgnv = PGNV.pgnView("board", {pgn: pgn, position: "start", pieceStyle: 'leipzig', theme: 'green', timerTime: 200});
     pgnv = PGNV.pgnView("board1", {pgn: pgn, position: "start", pieceStyle: 'maya', theme: 'blue', orientation: 'black', timerTime: 1200});
-    pgnv = PGNV.pgnView("board2", {pgn: pgn, position: "start", pieceStyle: 'chesscom', theme: 'zeit'});
+    pgnv = PGNV.pgnView("board2", {pgn: pgn, position: "start", pieceStyle: 'case', theme: 'zeit'});
     let pgn2 = "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O b5 6. Bb3 Be7 7. Re1 O-O";
     PGNV.pgnView('b3', {pgn: pgn2, pieceStyle: 'beyer', theme: 'beyer'});
     PGNV.pgnView('b4', {pgn: pgn2, pieceStyle: 'wikipedia', theme: 'informator'});

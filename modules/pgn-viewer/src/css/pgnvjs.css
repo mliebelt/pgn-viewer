@@ -469,67 +469,6 @@ div.comment > textarea.comment {
 /*    font-size: 80%;*/
 /*}*/
 
-/* Pattern of the Chess.com similar */
-/* board */
-/*.chesscom.whole {*/
-/*    !*    border: 2px solid #404040; *!*/
-/*    border: 2px gray solid;*/
-/*    display: flex;*/
-/*    flex-flow: row wrap;*/
-/*}*/
-
-/*.chesscom .headers {*/
-/*    font-family: "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif;*/
-/*    font-size: 18px;*/
-/*!*    padding: 15px;*!*/
-/*    background-color: #f3f3f3;*/
-/*    font-weight: bold;*/
-/*    flex: 1 100%;*/
-/*}*/
-
-/*.chesscom .headers > .whiteHeader:before {*/
-/*    content: "";*/
-/*}*/
-
-/*.chesscom .headers > .whiteHeader {*/
-/*    display: inline-block;*/
-/*    padding-top: 10px;*/
-/*    padding-left: 10px;*/
-/*}*/
-
-/*.chesscom .headers > .blackHeader:before {*/
-/*    content: "  vs. ";*/
-/*}*/
-
-/*.chesscom .headers > .blackHeader {*/
-/*    display: inline-block;*/
-/*    padding-top: 10px;*/
-/*    padding-left: 10px;*/
-/*}*/
-/*.chesscom .headers > .restHeader {*/
-/*    display: block;*/
-/*    padding-left: 10px;*/
-/*    padding-bottom: 10px;*/
-/*    font-weight: 500;*/
-/*    font-size: 80%;*/
-/*}*/
-
-/*.chesscom .players {*/
-/*    font-weight: 900;*/
-/*}*/
-
-/*.chesscom .outerBoard {*/
-/*    !* float: left; *!*/
-/*    width: 388px;*/
-/*}*/
-
-/*.chesscom .endBoard {*/
-/*    clear: both;*/
-/*}*/
-/*.chesscom .moves a {*/
-/*    text-decoration: none;*/
-/*}*/
-
 /**
   CHESSGROUND changes.
   */

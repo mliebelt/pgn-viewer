@@ -10,9 +10,6 @@
 .zeit .cg-wrap {
   background-image: url(../img/board/zeit.svg);
 }
-.chesscom .cg-wrap {
-  background-image: url(../img/board/chesscom.svg);
-}
 .informator .cg-wrap {
   background-image: url(../img/board/informator.svg);
 }
@@ -33,115 +30,115 @@
  * Board
  */
 .merida  cg-board piece.pawn.white {
-  background-image: url('../img/chesspieces/merida-svg/wP.svg');
+  background-image: url('../img/chesspieces/merida/wP.svg');
 }
 .merida  cg-board piece.bishop.white {
-  background-image: url('../img/chesspieces/merida-svg/wB.svg');
+  background-image: url('../img/chesspieces/merida/wB.svg');
 }
 .merida  cg-board piece.knight.white {
-  background-image: url('../img/chesspieces/merida-svg/wN.svg');
+  background-image: url('../img/chesspieces/merida/wN.svg');
 }
 .merida  cg-board piece.rook.white {
-  background-image: url('../img/chesspieces/merida-svg/wR.svg');
+  background-image: url('../img/chesspieces/merida/wR.svg');
 }
 .merida  cg-board piece.queen.white {
-  background-image: url('../img/chesspieces/merida-svg/wQ.svg');
+  background-image: url('../img/chesspieces/merida/wQ.svg');
 }
 .merida  cg-board piece.king.white {
-  background-image: url('../img/chesspieces/merida-svg/wK.svg');
+  background-image: url('../img/chesspieces/merida/wK.svg');
 }
 .merida  cg-board piece.pawn.black {
-  background-image: url('../img/chesspieces/merida-svg/bP.svg');
+  background-image: url('../img/chesspieces/merida/bP.svg');
 }
 .merida  cg-board piece.bishop.black {
-  background-image: url('../img/chesspieces/merida-svg/bB.svg');
+  background-image: url('../img/chesspieces/merida/bB.svg');
 }
 .merida  cg-board piece.knight.black {
-  background-image: url('../img/chesspieces/merida-svg/bN.svg');
+  background-image: url('../img/chesspieces/merida/bN.svg');
 }
 .merida  cg-board piece.rook.black {
-  background-image: url('../img/chesspieces/merida-svg/bR.svg');
+  background-image: url('../img/chesspieces/merida/bR.svg');
 }
 .merida  cg-board piece.queen.black {
-  background-image: url('../img/chesspieces/merida-svg/bQ.svg');
+  background-image: url('../img/chesspieces/merida/bQ.svg');
 }
 .merida  cg-board piece.king.black {
-  background-image: url('../img/chesspieces/merida-svg/bK.svg');
+  background-image: url('../img/chesspieces/merida/bK.svg');
 }
 
 /* Wikipedia */
 .wikipedia  cg-board piece.pawn.white {
-  background-image: url('../img/chesspieces/wikipedia/wP.png');
+  background-image: url('../img/chesspieces/wikipedia/wP.svg');
 }
 .wikipedia  cg-board piece.bishop.white {
-  background-image: url('../img/chesspieces/wikipedia/wB.png');
+  background-image: url('../img/chesspieces/wikipedia/wB.svg');
 }
 .wikipedia  cg-board piece.knight.white {
-  background-image: url('../img/chesspieces/wikipedia/wN.png');
+  background-image: url('../img/chesspieces/wikipedia/wN.svg');
 }
 .wikipedia  cg-board piece.rook.white {
-  background-image: url('../img/chesspieces/wikipedia/wR.png');
+  background-image: url('../img/chesspieces/wikipedia/wR.svg');
 }
 .wikipedia  cg-board piece.queen.white {
-  background-image: url('../img/chesspieces/wikipedia/wQ.png');
+  background-image: url('../img/chesspieces/wikipedia/wQ.svg');
 }
 .wikipedia cg-board piece.king.white {
-  background-image: url('../img/chesspieces/wikipedia/wK.png');
+  background-image: url('../img/chesspieces/wikipedia/wK.svg');
 }
 .wikipedia cg-board piece.pawn.black {
-  background-image: url('../img/chesspieces/wikipedia/bP.png');
+  background-image: url('../img/chesspieces/wikipedia/bP.svg');
 }
 .wikipedia cg-board piece.bishop.black {
-  background-image: url('../img/chesspieces/wikipedia/bB.png');
+  background-image: url('../img/chesspieces/wikipedia/bB.svg');
 }
 .wikipedia cg-board piece.knight.black {
-  background-image: url('../img/chesspieces/wikipedia/bN.png');
+  background-image: url('../img/chesspieces/wikipedia/bN.svg');
 }
 .wikipedia cg-board piece.rook.black {
-  background-image: url('../img/chesspieces/wikipedia/bR.png');
+  background-image: url('../img/chesspieces/wikipedia/bR.svg');
 }
 .wikipedia cg-board piece.queen.black {
-  background-image: url('../img/chesspieces/wikipedia/bQ.png');
+  background-image: url('../img/chesspieces/wikipedia/bQ.svg');
 }
 .wikipedia cg-board piece.king.black {
-  background-image: url('../img/chesspieces/wikipedia/bK.png');
+  background-image: url('../img/chesspieces/wikipedia/bK.svg');
 }
 /* Alpha */
 .alpha cg-board piece.pawn.white {
-  background-image: url('../img/chesspieces/alpha/wP.png');
+  background-image: url('../img/chesspieces/alpha/wP.svg');
 }
 .alpha cg-board piece.bishop.white {
-  background-image: url('../img/chesspieces/alpha/wB.png');
+  background-image: url('../img/chesspieces/alpha/wB.svg');
 }
 .alpha cg-board piece.knight.white {
-  background-image: url('../img/chesspieces/alpha/wN.png');
+  background-image: url('../img/chesspieces/alpha/wN.svg');
 }
 .alpha cg-board piece.rook.white {
-  background-image: url('../img/chesspieces/alpha/wR.png');
+  background-image: url('../img/chesspieces/alpha/wR.svg');
 }
 .alpha cg-board piece.queen.white {
-  background-image: url('../img/chesspieces/alpha/wQ.png');
+  background-image: url('../img/chesspieces/alpha/wQ.svg');
 }
 .alpha cg-board piece.king.white {
-  background-image: url('../img/chesspieces/alpha/wK.png');
+  background-image: url('../img/chesspieces/alpha/wK.svg');
 }
 .alpha cg-board piece.pawn.black {
-  background-image: url('../img/chesspieces/alpha/bP.png');
+  background-image: url('../img/chesspieces/alpha/bP.svg');
 }
 .alpha cg-board piece.bishop.black {
-  background-image: url('../img/chesspieces/alpha/bB.png');
+  background-image: url('../img/chesspieces/alpha/bB.svg');
 }
 .alpha  cg-board piece.knight.black {
-  background-image: url('../img/chesspieces/alpha/bN.png');
+  background-image: url('../img/chesspieces/alpha/bN.svg');
 }
 .alpha  cg-board piece.rook.black {
-  background-image: url('../img/chesspieces/alpha/bR.png');
+  background-image: url('../img/chesspieces/alpha/bR.svg');
 }
 .alpha  cg-board piece.queen.black {
-  background-image: url('../img/chesspieces/alpha/bQ.png');
+  background-image: url('../img/chesspieces/alpha/bQ.svg');
 }
 .alpha  cg-board piece.king.black {
-  background-image: url('../img/chesspieces/alpha/bK.png');
+  background-image: url('../img/chesspieces/alpha/bK.svg');
 }
 /* Beyer */
 .beyer  cg-board piece.pawn.white {
@@ -182,78 +179,42 @@
 }
 /* Case */
 .case  cg-board piece.pawn.white {
-  background-image: url('../img/chesspieces/case/wP.png');
+  background-image: url('../img/chesspieces/case/wP.svg');
 }
 .case  cg-board piece.bishop.white {
-  background-image: url('../img/chesspieces/case/wB.png');
+  background-image: url('../img/chesspieces/case/wB.svg');
 }
 .case  cg-board piece.knight.white {
-  background-image: url('../img/chesspieces/case/wN.png');
+  background-image: url('../img/chesspieces/case/wN.svg');
 }
 .case  cg-board piece.rook.white {
-  background-image: url('../img/chesspieces/case/wR.png');
+  background-image: url('../img/chesspieces/case/wR.svg');
 }
 .case  cg-board piece.queen.white {
-  background-image: url('../img/chesspieces/case/wQ.png');
+  background-image: url('../img/chesspieces/case/wQ.svg');
 }
 .case  cg-board piece.king.white {
-  background-image: url('../img/chesspieces/case/wK.png');
+  background-image: url('../img/chesspieces/case/wK.svg');
 }
 .case  cg-board piece.pawn.black {
-  background-image: url('../img/chesspieces/case/bP.png');
+  background-image: url('../img/chesspieces/case/bP.svg');
 }
 .case  cg-board piece.bishop.black {
-  background-image: url('../img/chesspieces/case/bB.png');
+  background-image: url('../img/chesspieces/case/bB.svg');
 }
 .case  cg-board piece.knight.black {
-  background-image: url('../img/chesspieces/case/bN.png');
+  background-image: url('../img/chesspieces/case/bN.svg');
 }
 .case  cg-board piece.rook.black {
-  background-image: url('../img/chesspieces/case/bR.png');
+  background-image: url('../img/chesspieces/case/bR.svg');
 }
 .case  cg-board piece.queen.black {
-  background-image: url('../img/chesspieces/case/bQ.png');
+  background-image: url('../img/chesspieces/case/bQ.svg');
 }
 .case  cg-board piece.king.black {
-  background-image: url('../img/chesspieces/case/bK.png');
+  background-image: url('../img/chesspieces/case/bK.svg');
 }
-/* Chesscom */
-.chesscom  cg-board piece.pawn.white {
-  background-image: url('../img/chesspieces/chesscom/wp.png');
-}
-.chesscom  cg-board piece.bishop.white {
-  background-image: url('../img/chesspieces/chesscom/wb.png');
-}
-.chesscom  cg-board piece.knight.white {
-  background-image: url('../img/chesspieces/chesscom/wn.png');
-}
-.chesscom  cg-board piece.rook.white {
-  background-image: url('../img/chesspieces/chesscom/wr.png');
-}
-.chesscom  cg-board piece.queen.white {
-  background-image: url('../img/chesspieces/chesscom/wq.png');
-}
-.chesscom  cg-board piece.king.white {
-  background-image: url('../img/chesspieces/chesscom/wk.png');
-}
-.chesscom  cg-board piece.pawn.black {
-  background-image: url('../img/chesspieces/chesscom/bp.png');
-}
-.chesscom  cg-board piece.bishop.black {
-  background-image: url('../img/chesspieces/chesscom/bb.png');
-}
-.chesscom  cg-board piece.knight.black {
-  background-image: url('../img/chesspieces/chesscom/bn.png');
-}
-.chesscom  cg-board piece.rook.black {
-  background-image: url('../img/chesspieces/chesscom/br.png');
-}
-.chesscom  cg-board piece.queen.black {
-  background-image: url('../img/chesspieces/chesscom/bq.png');
-}
-.chesscom  cg-board piece.king.black {
-  background-image: url('../img/chesspieces/chesscom/bk.png');
-}
+
 /* Condal */
 .condal  cg-board piece.pawn.white {
   background-image: url('../img/chesspieces/condal/wP.png');
@@ -293,77 +254,77 @@
 }
 /* Leipzig */
 .leipzig  cg-board piece.pawn.white {
-  background-image: url('../img/chesspieces/leipzig/wP.png');
+  background-image: url('../img/chesspieces/leipzig/wP.svg');
 }
 .leipzig  cg-board piece.bishop.white {
-  background-image: url('../img/chesspieces/leipzig/wB.png');
+  background-image: url('../img/chesspieces/leipzig/wB.svg');
 }
 .leipzig  cg-board piece.knight.white {
-  background-image: url('../img/chesspieces/leipzig/wN.png');
+  background-image: url('../img/chesspieces/leipzig/wN.svg');
 }
 .leipzig  cg-board piece.rook.white {
-  background-image: url('../img/chesspieces/leipzig/wR.png');
+  background-image: url('../img/chesspieces/leipzig/wR.svg');
 }
 .leipzig  cg-board piece.queen.white {
-  background-image: url('../img/chesspieces/leipzig/wQ.png');
+  background-image: url('../img/chesspieces/leipzig/wQ.svg');
 }
 .leipzig  cg-board piece.king.white {
-  background-image: url('../img/chesspieces/leipzig/wK.png');
+  background-image: url('../img/chesspieces/leipzig/wK.svg');
 }
 .leipzig  cg-board piece.pawn.black {
-  background-image: url('../img/chesspieces/leipzig/bP.png');
+  background-image: url('../img/chesspieces/leipzig/bP.svg');
 }
 .leipzig  cg-board piece.bishop.black {
-  background-image: url('../img/chesspieces/leipzig/bB.png');
+  background-image: url('../img/chesspieces/leipzig/bB.svg');
 }
 .leipzig  cg-board piece.knight.black {
-  background-image: url('../img/chesspieces/leipzig/bN.png');
+  background-image: url('../img/chesspieces/leipzig/bN.svg');
 }
 .leipzig  cg-board piece.rook.black {
-  background-image: url('../img/chesspieces/leipzig/bR.png');
+  background-image: url('../img/chesspieces/leipzig/bR.svg');
 }
 .leipzig  cg-board piece.queen.black {
-  background-image: url('../img/chesspieces/leipzig/bQ.png');
+  background-image: url('../img/chesspieces/leipzig/bQ.svg');
 }
 .leipzig  cg-board piece.king.black {
-  background-image: url('../img/chesspieces/leipzig/bK.png');
+  background-image: url('../img/chesspieces/leipzig/bK.svg');
 }
 /* Maya */
 .maya  cg-board piece.pawn.white {
-  background-image: url('../img/chesspieces/maya/wP.png');
+  background-image: url('../img/chesspieces/maya/wP.svg');
 }
 .maya  cg-board piece.bishop.white {
-  background-image: url('../img/chesspieces/maya/wB.png');
+  background-image: url('../img/chesspieces/maya/wB.svg');
 }
 .maya  cg-board piece.knight.white {
-  background-image: url('../img/chesspieces/maya/wN.png');
+  background-image: url('../img/chesspieces/maya/wN.svg');
 }
 .maya  cg-board piece.rook.white {
-  background-image: url('../img/chesspieces/maya/wR.png');
+  background-image: url('../img/chesspieces/maya/wR.svg');
 }
 .maya  cg-board piece.queen.white {
-  background-image: url('../img/chesspieces/maya/wQ.png');
+  background-image: url('../img/chesspieces/maya/wQ.svg');
 }
 .maya  cg-board piece.king.white {
-  background-image: url('../img/chesspieces/maya/wK.png');
+  background-image: url('../img/chesspieces/maya/wK.svg');
 }
 .maya  cg-board piece.pawn.black {
-  background-image: url('../img/chesspieces/maya/bP.png');
+  background-image: url('../img/chesspieces/maya/bP.svg');
 }
 .maya  cg-board piece.bishop.black {
-  background-image: url('../img/chesspieces/maya/bB.png');
+  background-image: url('../img/chesspieces/maya/bB.svg');
 }
 .maya  cg-board piece.knight.black {
-  background-image: url('../img/chesspieces/maya/bN.png');
+  background-image: url('../img/chesspieces/maya/bN.svg');
 }
 .maya  cg-board piece.rook.black {
-  background-image: url('../img/chesspieces/maya/bR.png');
+  background-image: url('../img/chesspieces/maya/bR.svg');
 }
 .maya  cg-board piece.queen.black {
-  background-image: url('../img/chesspieces/maya/bQ.png');
+  background-image: url('../img/chesspieces/maya/bQ.svg');
 }
 .maya  cg-board piece.king.black {
-  background-image: url('../img/chesspieces/maya/bK.png');
+  background-image: url('../img/chesspieces/maya/bK.svg');
 }
 /* USCF */
 .uscf  cg-board piece.pawn.white {

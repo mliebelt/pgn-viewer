@@ -137,11 +137,11 @@ examples["1050"] = {
     html: "<div id=\"b1\"><\/div>",
     name: "Complete game in Chess.com style",
     jsStr: "pgn = '[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"] 1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0';" +
-        "\nPGNV.pgnView('b1', {pgn: pgn, theme: 'chesscom', layout: 'left', width: '390px', boardSize: '200px',  movesWidth: '180px', scrollable: true, movesHeight: '220px'});",
+        "\nPGNV.pgnView('b1', {pgn: pgn, theme: 'brown', layout: 'left', width: '390px', boardSize: '200px',  movesWidth: '180px', scrollable: true, movesHeight: '220px'});",
     jsFn: function() {
         pgn = '[White "Anderssen, Adolf"][Black "Dufresne, Jean"]' +
             ' 1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0';
-        PGNV.pgnView('b1', {pgn: pgn, theme: 'chesscom',layout: 'left', width: '390px', boardSize: '200px', movesWidth: '180px', scrollable: true, movesHeight: "220px"});
+        PGNV.pgnView('b1', {pgn: pgn, theme: 'brown',layout: 'left', width: '390px', boardSize: '200px', movesWidth: '180px', scrollable: true, movesHeight: "220px"});
     }
 };
 examples["1051"] = {
@@ -305,10 +305,10 @@ examples["1150"] = {
     desc: "Here is an config game in the style of chess.com",
     html: '<div id="board2" style="width: 300px;margin-right: 25px"></div>',
     name: "Themes: Chess.com",
-    jsStr: "var pgn = \"1. e4 e5 2. Nf3 Nc6  ...  24. Bxe7# 1:0\"\;\npgnv = PGNV.pgnView(\"board2\", {pgn: pgn, position: \"start\", pieceStyle: 'chesscom', theme: 'zeit'});",
+    jsStr: "var pgn = \"1. e4 e5 2. Nf3 Nc6  ...  24. Bxe7# 1:0\"\;\npgnv = PGNV.pgnView(\"board2\", {pgn: pgn, position: \"start\", pieceStyle: 'case', theme: 'zeit'});",
     jsFn: function() {
         var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1:0";
-        pgnv = PGNV.pgnView("board2", {pgn: pgn, position: "start", pieceStyle: 'chesscom', theme: 'zeit'});
+        pgnv = PGNV.pgnView("board2", {pgn: pgn, position: "start", pieceStyle: 'case', theme: 'zeit'});
     }
 };
 examples["1151"] = {
