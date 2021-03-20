@@ -378,11 +378,6 @@ let pgnBase = function (boardId, configuration) {
             mc.value = "move";
             mc.name = "radio";
             createEle("label", null, "labelMoveComment", theme, radio).appendChild(document.createTextNode("Move"));
-            const mb = createEle("input", null, "beforeComment", theme, radio);
-            mb.type = "radio";
-            mb.value = "before";
-            mb.name = "radio";
-            createEle("label", null, "labelBeforeComment", theme, radio).appendChild(document.createTextNode("Before"));
             const ma = createEle("input", null, "afterComment", theme, radio);
             ma.type = "radio";
             ma.value = "after";
@@ -894,9 +889,6 @@ let pgnBase = function (boardId, configuration) {
             if (myMove.commentAfter) {
                 document.querySelector('#' + boardId + " input.afterComment").checked = true;
                 document.querySelector('#' + boardId + " textarea.comment").value = myMove.commentAfter;
-            } else if (myMove.commentBefore) {
-                document.querySelector('#' + boardId + " input.beforeComment").checked = true;
-                document.querySelector('#' + boardId + " textarea.comment").value = myMove.commentBefore;
             } else if (myMove.commentMove) {
                 document.querySelector('#' + boardId + " input.moveComment").checked = true;
                 document.querySelector('#' + boardId + " textarea.comment").value = myMove.commentMove;
@@ -1224,16 +1216,26 @@ let pgnBase = function (boardId, configuration) {
                     let text = commentText();
                     let checked = document.querySelector('#' + "comment" + id('buttonsId') + " :checked");
                     checked = checked ? checked.value : "after";
-                    moveSpan(that.currentMove).querySelector("." + checked + "Comment").textContent = text;
+                    let currentEle = moveSpan(that.currentMove)
+                    let nextEle = currentEle.nextElementSibling
+                    if (! nextEle) {
+                        const span =  createEle('span', null, "comment " + checked)
+                        span.appendChild(document.createTextNode(" " + text + " "))
+                        currentEle.parentNode.appendChild(span)
+                    } else if (nextEle.classList.length > 0 && nextEle.classList[0] == "comment") {
+                        nextEle.textContent = text
+                    } else {
+                        const span =  createEle('span', null, "comment " + checked)
+                        span.appendChild(document.createTextNode(" " + text + " "))
+                        nextEle.parentNode.insertBefore(span, nextEle)
+                    }
                     if (checked === "after") {
                         that.mypgn.getMove(that.currentMove).commentAfter = text;
-                    } else if (checked === "before") {
-                        that.mypgn.getMove(that.currentMove).commentBefore = text;
                     } else if (checked === "move") {
                         that.mypgn.getMove(that.currentMove).commentMove = text;
                     }
                 };
-                const rad = ["moveComment", "beforeComment", "afterComment"];
+                const rad = ["moveComment", "afterComment"];
                 const prevComment = null;
                 for (let i = 0; i < rad.length; i++) {
                     document.querySelector('#' + 'comment' + id('buttonsId') + " ." + rad[i]).onclick = function () {
@@ -1241,8 +1243,6 @@ let pgnBase = function (boardId, configuration) {
                         let text;
                         if (checked === "after") {
                             text = that.mypgn.getMove(that.currentMove).commentAfter;
-                        } else if (checked === "before") {
-                            text = that.mypgn.getMove(that.currentMove).commentBefore;
                         } else if (checked === "move") {
                             text = that.mypgn.getMove(that.currentMove).commentMove;
                         }
