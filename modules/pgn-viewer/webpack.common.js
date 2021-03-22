@@ -23,19 +23,15 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader', 'postcss-loader'],
+                use: ['style-loader', 'css-loader'],
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,
-                use: [
-                    {
-                        loader: 'url-loader'
-                    }
-                ]
+                type: 'asset/inline'
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: [ 'url-loader'],
+                type: 'asset/inline'
             },
         ],
     },
