@@ -6,7 +6,7 @@
     "pgn",
     "viewer"
   ],
-  "version": "1.5.0",
+  "version": "1.5.1",
   "main": "lib/pgnv.js",
   "files": [
     "lib/**",
@@ -25,15 +25,12 @@
     "gen_i18n": "./bin/gen-i18n.js"
   },
   "dependencies": {
-    "@mliebelt/pgn-reader": "^1.2.0",
-    "chessground": "^7.6.12",
+    "@mliebelt/pgn-reader": "^1.2.1",
+    "chessground": "^7.11.1",
     "mousetrap": "^1.6.5",
     "roddeh-i18n": "^1.2.0",
     "smoothscroll-polyfill": "^0.4.4",
     "sweetalert": "^2.1.2"
   },
-  "devDependencies": {
-    "webpack-bundle-analyzer": "^3.8.0",
-    "webpack-dev-server": "^3.11.2"
-  }
+  "devDependencies": {}
 }

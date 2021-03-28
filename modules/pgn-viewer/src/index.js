@@ -1,6 +1,5 @@
 import smoothscroll from 'smoothscroll-polyfill'
 import pgnBase from "./pgnvjs"
-import './css/chessground.css'
 import './css/theme.css'
 import './css/pgnvjs.css'
 

@@ -17,7 +17,7 @@
 <script>
     var pgn = "";
     var cfg = { locale: 'en', position: 'start', pgn: pgn };
-    pgnView('board', cfg).then(function (response) {
+    PGNV.pgnView('board', cfg).then(function (response) {
         var board = response;
     })
     var move = function (from, to) {

@@ -1,7 +1,8 @@
 import i18next from './i18n';
 import {pgnReader, Utils} from '@mliebelt/pgn-reader';
-//import {pgnReader, Utils} from "../../pgn-reader/src/pgn";
 import {Chessground} from 'chessground';
+import 'chessground/assets/chessground.base.css'
+import 'chessground/assets/chessground.brown.css'
 import Timer from './Timer';
 import Mousetrap from 'mousetrap';
 import swal from 'sweetalert';
@@ -61,7 +62,7 @@ let pgnBase = function (boardId, configuration) {
         return that.configuration.mode === mode;
     };
     const possibleMoves = function () {
-        return that.mypgn.possibleMoves(game);
+        return new Map(Object.entries(that.mypgn.possibleMoves(game)));
     };
     const id = function (id) {
         return that.configuration.IDs[id];
@@ -233,7 +234,7 @@ let pgnBase = function (boardId, configuration) {
             that.currentMove = that.mypgn.addMove(primMove, cur);
             const move = that.mypgn.getMove(that.currentMove);
             if (primMove.promotion) {
-                let pieces = {};
+                let pieces = new Map();
                 pieces[to] = null;
                 that.board.setPieces(pieces);
                 pieces[to] = {
@@ -244,7 +245,7 @@ let pgnBase = function (boardId, configuration) {
             }
             if (move.notation.ep) {
                 let ep_field = to[0] + from[1];
-                let pieces = {};
+                let pieces = new Map();
                 pieces[ep_field] = null;
                 that.board.setPieces(pieces);
             }
@@ -255,7 +256,8 @@ let pgnBase = function (boardId, configuration) {
             updateUI(that.currentMove);
             let col = move.turn == 'w' ? 'black' : 'white';
             that.board.set({
-                movable: Object.assign({}, that.board.state.movable, {color: col, dests: possibleMoves(game)}),
+                movable: Object.assign({}, that.board.state.movable,
+                    {color: col, dests: possibleMoves(game), showDests: true}),
                 check: game.in_check()
             });
             //makeMove(null, that.currentMove, move.fen);
@@ -645,7 +647,23 @@ let pgnBase = function (boardId, configuration) {
                 // Set the font size related to the board (factor 28), ensure at least 8px font
                 fontSize = Math.max(8, Math.round(parseInt(boardConfiguration.width.slice(0, -2)) / 28 * boardConfiguration.coordsFactor));
             }
-            el.style.fontSize = `${fontSize}px`;
+            // Adjust the ranks right if necessary
+            //el.style.fontSize = `${fontSize}px`;
+            el.querySelectorAll("coords").forEach(element => {
+                element.style.fontSize = `${fontSize}px`
+                })
+            if (boardConfiguration.coordinates) {
+                let right = (fontSize - 13) / 2.5 - 2
+                if (! boardConfiguration.coordsInner) { right -= fontSize / 1.5 + 2 }
+                el.querySelector("coords.ranks").style.right = `${right}px`
+                let bottom = (fontSize - 13)
+                if (! boardConfiguration.coordsInner) {
+                    bottom -= fontSize + 2
+                    let left = parseFloat(getComputedStyle(el.querySelector(".cg-wrap coords.files")).getPropertyValue("left"))
+                    el.querySelector("coords.files").style.left = `${left - (fontSize / 1.5)}px`
+                }
+                el.querySelector("coords.files").style.bottom = `${bottom}px`
+            }
             document.body.dispatchEvent(new Event('chessground.resize'));
         }
         if (boardConfiguration.coordsInner) {
@@ -655,7 +673,8 @@ let pgnBase = function (boardId, configuration) {
             game.load(boardConfiguration.position);
             let toMove = (game.turn() == 'w') ? 'white' : 'black';
             that.board.set({
-                movable: Object.assign({}, that.board.state.movable, {color: toMove, dests: possibleMoves(game)}),
+                movable: Object.assign({}, that.board.state.movable,
+                    {color: toMove, dests: possibleMoves(game), showDests: true}),
                 turnColor: toMove, check: game.in_check()
             });
         }
@@ -789,8 +808,8 @@ let pgnBase = function (boardId, configuration) {
         const link = createEle('a', null, null, null, span)
         const text = document.createTextNode(i18nSan(that.mypgn.sanWithNags(move)))
         link.appendChild(text);
-        if (that.configuration.timeAnnotation != 'none' && move.commentDiag && move.commentDiag.clock) {
-            let cl_time = move.commentDiag.clock.value;
+        if (that.configuration.timeAnnotation != 'none' && move.commentDiag && move.commentDiag.clk) {
+            let cl_time = move.commentDiag.clk;
             let cl_class = that.configuration.timeAnnotation.class || 'timeNormal';
             let clock_span = generateCommentSpan(cl_time, cl_class);
             if (that.configuration.timeAnnotation.colorClass) {
@@ -901,7 +920,7 @@ let pgnBase = function (boardId, configuration) {
             if (!aMove) return;
             if (aMove.notation.promotion) {
                 let promPiece = aMove.notation.promotion.substring(1, 2).toLowerCase();
-                let pieces = {};
+                let pieces = new Map();
                 pieces[aMove.to] =
                     {
                         role: that.mypgn.PROMOTIONS[promPiece],
@@ -964,7 +983,7 @@ let pgnBase = function (boardId, configuration) {
         if (hasMode('edit')) {
             let col = game.turn() == 'w' ? 'white' : 'black';
             that.board.set({
-                movable: Object.assign({}, that.board.state.movable, {color: col, dests: possibleMoves(game)}),
+                movable: Object.assign({}, that.board.state.movable, {color: col, dests: possibleMoves(game), showDests: true}),
                 turnColor: col, check: game.in_check()
             });
             if (next) {

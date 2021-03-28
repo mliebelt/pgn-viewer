@@ -456,41 +456,47 @@ div.comment > textarea.comment {
     /* padding: 5px; */
 }
 
-/*.moves .move .comment.timeTiny {*/
-/*    font-weight: 300;*/
-/*    font-size: 60%;*/
-/*}*/
+.moves .move .comment.timeTiny {
+    font-weight: 300;
+    font-size: 60%;
+}
 
-/*.moves .move .comment.timeLarge {*/
-/*}*/
+.moves .move .comment.timeLarge {
+}
 
-/*.moves .move .timeNormal {*/
-/*    font-weight: 400;*/
-/*    font-size: 80%;*/
-/*}*/
+.moves .move .timeNormal {
+    font-weight: 400;
+    font-size: 80%;
+}
 
 /**
   CHESSGROUND changes.
   */
- 
-.cg-wrap.coords-inner {
-    margin-bottom: 0;
-    margin-right: 0;
+
+.cg-wrap coords.ranks {
+    top: -8px;
+    right: -4px;
+    left: initial;
 }
-.cg-wrap {
-    margin-bottom: 15px;
-    margin-right: 15px;
+
+/*
+.cg-wrap coords {
+    font-size: 16px;
 }
-.cg-wrap.coords-inner coords.ranks {
-    right: -2px;
-}
-.cg-wrap.coords-inner coords.files {
-    bottom: 2px;
-    left: 2px;
-    text-align: left;
-}
+*/
+
 .cg-wrap coords.files {
-    text-transform: none;
+    bottom: 2px;
+    left: 16px;
+    /*text-transform: initial;*/
+}
+
+.cg-wrap.orientation-white coords.ranks coord:nth-child(2n), .cg-wrap.orientation-white coords.files coord:nth-child(2n), .cg-wrap.orientation-black coords.ranks coord:nth-child(2n + 1), .cg-wrap.orientation-black coords.files coord:nth-child(2n + 1) {
+    color: initial;
+}
+
+.cg-wrap.orientation-black coords.ranks coord:nth-child(2n), .cg-wrap.orientation-black coords.files coord:nth-child(2n), .cg-wrap.orientation-white coords.ranks coord:nth-child(2n + 1), .cg-wrap.orientation-white coords.files coord:nth-child(2n + 1) {
+    color: initial;
 }
 
 /* board and colorMarker */

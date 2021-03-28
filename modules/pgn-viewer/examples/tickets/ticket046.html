@@ -27,12 +27,12 @@
 <div id="board6" style="width: 400px"></div> Parameter startPlay == move notation, hideMovesBefore == true
 <script>
     let pgn = "1. e4 e5 2. Nf3 (2. f4 d5 3. exd5 e4) 2... Nc6 3. Bc4 Nf6";
-    pgnView('board1', { pgn: pgn});
-    pgnView('board2', {pgn: pgn, startPlay: 5});
-    pgnView('board3', {pgn: pgn, startPlay: 'Bc4'});
-    pgnView('board4', {pgn: pgn, startPlay: 'exd5'}); // Variation
-    pgnView('board5', {pgn: pgn, startPlay: 'rnbqkbnr/ppp2ppp/8/3pp3/4PP2/8/PPPP2PP/RNBQKBNR w KQkq'}); // Variation
-    pgnView('board6', {pgn: "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6", startPlay: 1, hideMovesBefore: true});
+    PGNV.pgnView('board1', { pgn: pgn});
+    PGNV.pgnView('board2', {pgn: pgn, startPlay: 5});
+    PGNV.pgnView('board3', {pgn: pgn, startPlay: 'Bc4'});
+    PGNV.pgnView('board4', {pgn: pgn, startPlay: 'exd5'}); // Variation
+    PGNV.pgnView('board5', {pgn: pgn, startPlay: 'rnbqkbnr/ppp2ppp/8/3pp3/4PP2/8/PPPP2PP/RNBQKBNR w KQkq'}); // Variation
+    PGNV.pgnView('board6', {pgn: "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6", startPlay: 1, hideMovesBefore: true});
 </script>
 </body>
 </html>

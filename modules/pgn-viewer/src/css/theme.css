@@ -1,33 +1,33 @@
 /*
  * Board
  */
-.blue .cg-wrap {
+.blue cg-board {
   background-image: url(../img/board/blue.svg);
 }
-.brown .cg-wrap {
+.brown cg-board {
   background-image: url(../img/board/brown.svg);
 }
-.zeit .cg-wrap {
+.zeit cg-board {
   background-image: url(../img/board/zeit.svg);
 }
-.informator .cg-wrap {
+.informator cg-board {
   background-image: url(../img/board/informator.svg);
 }
-.sportverlag .cg-wrap {
+.sportverlag cg-board {
   background-image: url(../img/board/sportverlag.svg);
 }
-.beyer .cg-wrap {
+.beyer cg-board {
   background-image: url(../img/board/beyer.svg);
 }
-.falken .cg-wrap {
+.falken cg-board {
   background-image: url(../img/board/falken.svg);
 }
-.green .cg-wrap {
+.green cg-board {
   background-image: url(../img/board/green.svg);
 }
 
 /*
- * Board
+ * Merida
  */
 .merida  cg-board piece.pawn.white {
   background-image: url('../img/chesspieces/merida/wP.svg');

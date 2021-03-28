@@ -43,6 +43,15 @@ no showCoords set (== default)
 showCoords == false
 <div id="board7" style="width: 350px; margin-right: 25px"></div>
 
+rankFontSize == 24px
+<div id="board8" style="width: 350px; margin-right: 25px"></div>
+
+rankFontSize == 32px, bigger board
+<div id="board9" style="width: 500px; margin-right: 25px"></div>
+
+rankFontSize == 24px, bigger board, showCoords ==false
+<div id="board10" style="width: 500px; margin-right: 25px"></div>
+
 <script>
     let pgnView = PGNV.pgnView;
     var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4";
@@ -54,6 +63,9 @@ showCoords == false
     pgnv = pgnView("board5", {pgn: pgn, coordsFactor: 1.5});
     pgnv = pgnView("board6", {pgn: pgn});
     pgnv = pgnView("board7", {pgn: pgn, showCoords: false});
+    pgnv = pgnView("board8", {pgn: pgn, rankFontSize: 24});
+    pgnv = pgnView("board9", {pgn: pgn, rankFontSize: 32});
+    pgnv = pgnView("board10", {pgn: pgn, rankFontSize: 24, coordsInner: false});
 </script>
 
 

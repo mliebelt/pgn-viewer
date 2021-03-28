@@ -30,7 +30,7 @@
 Here an example how to mix chess moves with more than one diagram, where the board is <b>not</b> playable. I have used some additional styling to layout the moves in columns.
 </p>
 <script>
-    var pgn = '[Result "1-0"][ECO "C52"][Site "Berlin"][Date "1852"]1. e4 e5 2. Nf3 Nc6 3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3D Qh5 { now the whole idea unfolds } 17.Nf6+$3 gxf6 18.exf6 Rg8 19.Rad1! {This move sets a deep trap, which Black falls into. } (19. {Lasker and others have suggested that } Be4 {was objectively stronger; however, after the forcing line} Qh3 20.g3 Rxg3+ 21.hxg3 Qxg3+ 22. Kh1 Bxf2 23. Bxe7 Qh3+ 24. Nh2 Bxe1 25. Rxe1 Qh4 26. Qd1 Nxe7 27. Bxb7 Qxf6 {it is unclear whether White is winning}) Qxf3?D 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7#D 1:0';
+    var pgn = '[Result "1-0"][ECO "C52"][Site "Berlin"][Date "1852"]1. e4 e5 2. Nf3 Nc6 3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3D Qh5 { now the whole idea unfolds } 17.Nf6+$3 gxf6 18.exf6 Rg8 19.Rad1! {This move sets a deep trap, which Black falls into. } ({Lasker and others have suggested that } 19. Be4 {was objectively stronger; however, after the forcing line} Qh3 20.g3 Rxg3+ 21.hxg3 Qxg3+ 22. Kh1 Bxf2 23. Bxe7 Qh3+ 24. Nh2 Bxe1 25. Rxe1 Qh4 26. Qd1 Nxe7 27. Bxb7 Qxf6 {it is unclear whether White is winning}) Qxf3?D 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7#D 1:0';
     PGNV.pgnPrint("board", {pgn: pgn, showCoords: false, boardSize: '150px'});
 
 </script>
