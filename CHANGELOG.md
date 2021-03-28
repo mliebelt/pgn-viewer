@@ -9,21 +9,62 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
-## [1.4.1]() 2020-09-24
+## [1.5.1]() 2021-03-28
 
 ### Changed
 
+* [#97](https://github.com/mliebelt/PgnViewerJS/issues/97) Implemented all commentary according to the spec
+
 ### Fixed
 
-* [#165](https://github.com/mliebelt/PgnViewerJS/issues/165) Restructured `onSnapEnd` due to use or Promise in swal`.
+* [#198](https://github.com/mliebelt/PgnViewerJS/issues/198) Fixed (some) problems with comments in edit mode
+* [#201](https://github.com/mliebelt/PgnViewerJS/issues/201) Upgraded to version 7.11.1 of chessground
+* [#203](https://github.com/mliebelt/PgnViewerJS/issues/203) Allow eval actions in commments, ignore unknown actions
+
+## [1.5.0]() 2021-03-20
+
+### Changed
+
+* [#194](https://github.com/mliebelt/PgnViewerJS/issues/194) Updated grammar to version 1.2.0 of pgn-parser
+
+
+### Fixed
+
+* [#195](https://github.com/mliebelt/PgnViewerJS/issues/195) Error fixed with 2 annotations in a row
+* [#191](https://github.com/mliebelt/PgnViewerJS/issues/191) Made available again Merida with SVG
+
+## [1.4.4]() 2021-02-11
+
+### Changed
+
+* [#180](https://github.com/mliebelt/PgnViewerJS/issues/180) All images now packaged in Javascript, no separat assets
+
+### Fixed
+
+* [#170](https://github.com/mliebelt/PgnViewerJS/issues/170) Assets shown on examples in mobile browser (Chrome)
+* [#189](https://github.com/mliebelt/PgnViewerJS/issues/189) Theme brown available again
+ 
+### Fixed
+
+## [1.4.2]() 2021-01-24
+
+### Changed
+
+* [#3](https://github.com/mliebelt/PgnViewerJS/issues/3) First try `notationLayout == list` (not fully working)
+
+### Fixed
+
+* [#182](https://github.com/mliebelt/PgnViewerJS/issues/182) First fix layout in edit mode
 
 ## [1.4.0]() 2020-09-09
 
 ### Changed
 
-* Switched from `i18next` to `roddeh-i18n` and inline the defined locales.
+* [#177](https://github.com/mliebelt/PgnViewerJS/issues/177) Switched from `i18next` to `roddeh-i18n` and inline the defined locales. 
 
 ### Fixed
+
+* [#165](https://github.com/mliebelt/PgnViewerJS/issues/165) Restructured `onSnapEnd` due to use or Promise in swal`.
 
 ## [1.3.1](https://github.com/mliebelt/PgnViewerJS/compare/v0.9.8...v1.3.1) 2020-08-16
 
