@@ -246,7 +246,7 @@ let pgnBase = function (boardId, configuration) {
             if (move.notation.ep) {
                 let ep_field = to[0] + from[1];
                 let pieces = new Map();
-                pieces[ep_field] = null;
+                pieces.set(ep_field, null);
                 that.board.setPieces(pieces);
             }
             if (moveSpan(that.currentMove) === null) {
