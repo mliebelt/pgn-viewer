@@ -965,7 +965,7 @@ const pgnReader = function (configuration) {
      * @param {*} game the chess to use
      */
     let possibleMoves = function(game) {
-        const dests = {};
+        const dests = new Map();
         game.SQUARES.forEach(s => {
           const ms = game.moves({square: s, verbose: true});
           if (ms.length) dests[s] = ms.map(m => m.to);
