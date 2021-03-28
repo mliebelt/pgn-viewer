@@ -126,7 +126,7 @@ describe("When using all kind of notation", function() {
         should(my_pgn.getMoves().length).equal(13);
         //should(my_pgn.getMoves()[10].notation.notation).equal("Bxf7+");
         should(my_pgn.getMoves()[10].notation.check).equal('+');
-        var res = my_pgn.write_pgn();
+        let res = my_pgn.write_pgn();
         should(res).equal("1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7+ Ke7 7. Nd5#");
     })
 
@@ -134,7 +134,7 @@ describe("When using all kind of notation", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7+ Ke7 7. Nd5"})
         should(my_pgn.getMoves().length).equal(13);
         should(my_pgn.getMoves()[12].notation.check).equal('#');
-        var res = my_pgn.write_pgn();
+        let res = my_pgn.write_pgn();
         should(res).equal("1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7+ Ke7 7. Nd5#");
     })
 });
@@ -184,7 +184,7 @@ describe("When reading PGN with headers", function() {
 
 describe("When reading pgn with wrong headers", function() {
     beforeEach(function() {
-        var pgn_string = ['["Event" "Casual Game"]',
+        let pgn_string = ['["Event" "Casual Game"]',
             '["Site" "Berlin GER"]',
             '["Date" "1852.??.??"]',
             '["EventDate" "?"]',
@@ -195,26 +195,26 @@ describe("When reading pgn with wrong headers", function() {
             '[a "Hallo"]',
             '[b "Hallo"]',
             '1. e2 e4 2. Nf3 Nc6'];
-        var my_pgn = pgnReader({pgn: pgn_string.join(" ")});
+        let my_pgn = pgnReader({pgn: pgn_string.join(" ")});
     });
     xit("should ignore wrong headers", function() { // is now a syntax error, not ignored
-        var h = my_pgn.getTags();
+        let h = my_pgn.getTags();
         should.not.exist(h["a"]);  // Because that is not an allowed key
     });
 });
 
 describe("When reading PGN with comments", function() {
-    var my_pgn;
+    let my_pgn;
     it("should read all sorts of comments", function() {
         my_pgn = pgnReader({pgn: "{Before move} 1. e4 {After move} {[%csl Ya4, Gb4]}"});
-        var first = my_pgn.getMove(0);
+        let first = my_pgn.getMove(0);
         should(my_pgn.getGameComment()).equal("Before move");
         should(first.commentAfter).equal("After move");
         should(first.commentDiag.colorFields.length).equal(2);
     });
     it ("should understand format of diagram circles", function() {
         my_pgn = pgnReader({pgn: "1. e4 {[%csl Ya4, Gb4,Rc4]}"});
-        var first = my_pgn.getMove(0);
+        let first = my_pgn.getMove(0);
         should(first.commentDiag.colorFields.length).equal(3);
         should(first.commentDiag.colorFields[0]).equal("Ya4");
         should(first.commentDiag.colorFields[1]).equal("Gb4");
@@ -222,7 +222,7 @@ describe("When reading PGN with comments", function() {
     })
     it ("should understand format of diagram arrows", function() {
         my_pgn = pgnReader({pgn: "1. e4 {[%cal Ya4b2, Gb4h8,Rc4c8]}"});
-        var first = my_pgn.getMove(0);
+        let first = my_pgn.getMove(0);
         should(first.commentDiag.colorArrows.length).equal(3);
         should(first.commentDiag.colorArrows[0]).equal("Ya4b2");
         should(first.commentDiag.colorArrows[1]).equal("Gb4h8");
@@ -230,14 +230,22 @@ describe("When reading PGN with comments", function() {
     })
     it ("should understand both circles and arrows", function() {
         my_pgn = pgnReader({pgn: "e4 {[%csl Yf4,Gg5,Gd4,Rc4,Bb4,Ya4][%cal Gg1f3,Rf1c4,Gh2h4,Rg2g4,Bf2f4,Ye2e4]}"});
-        var first = my_pgn.getMove(0);
+        let first = my_pgn.getMove(0);
         should(first.commentDiag.colorArrows.length).equal(6);
         should(first.commentDiag.colorFields.length).equal(6);
+    })
+    it("should ignore empty comments #211", function () {
+        my_pgn = pgnReader({pgn: "e4 { [%csl Gf6] }"})
+        let move = my_pgn.getMove(0)
+        should.exist(move)
+        should(move.commentDiag.colorFields.length).equal(1)
+        should(move.commentDiag.colorFields[0]).equal("Gf6")
+        should(move.commentAfter).undefined()
     })
 });
 
 describe("When reading PGN with variations", function() {
-    var my_pgn;
+    let my_pgn;
 
     it("should understand one variation for white", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6) exf4"});
@@ -309,7 +317,7 @@ describe("When reading PGN with variations", function() {
 });
 
 describe("When reading variations with comments", function() {
-    var my_pgn;
+    let my_pgn;
 
     it("should understand game comment and after comment in principle", function() {
         my_pgn = pgnReader({pgn: "{START} 1. d4 {AFTER} e5"});
@@ -321,7 +329,7 @@ describe("When reading variations with comments", function() {
 
     it("should understand comments for variation with white", function() {
         my_pgn = pgnReader({pgn: "1. d4 ({START} 1. e4 {AFTER} e5) 1... d5"});
-        var var_first = my_pgn.getMove(0).variations[0];
+        let var_first = my_pgn.getMove(0).variations[0];
         should(var_first.commentMove).equal("START");
         should(var_first.commentAfter).equal("AFTER");
         should(var_first.notation.notation).equal("e4");
@@ -329,12 +337,12 @@ describe("When reading variations with comments", function() {
 });
 
 describe("When iterating over moves", function() {
-    var moves;
+    let moves;
     beforeEach(function () {
         moves = [];
     });
-    var flatMoves = function (pgn) {
-        var my_pgn = pgnReader({pgn: pgn});
+    let flatMoves = function (pgn) {
+        let my_pgn = pgnReader({pgn: pgn});
         moves = my_pgn.getMoves();
     };
     it("should find the main line", function () {
@@ -387,7 +395,7 @@ describe("When iterating over moves", function() {
 
     it("should know its indices", function () {
         flatMoves("1. e4 e5 (1... d5 2. exd5) 2. d4");
-        for (var i = 0; i < moves.length; i++) {
+        for (let i = 0; i < moves.length; i++) {
             should(moves[i].index).equal(i);
         }
     });
@@ -429,10 +437,10 @@ describe("When iterating over moves", function() {
 });
 
 describe("Default a new read algorithm for PGN", function() {
-    var my_pgn;
+    let my_pgn;
     it ("should read the main line", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 2. Nf3"});
-        var moves = my_pgn.getMoves();
+        let moves = my_pgn.getMoves();
         should(moves.length).equal(3);
         should.not.exist(moves[0].prev);
         should(moves[0].next).equal(1);
@@ -444,7 +452,7 @@ describe("Default a new read algorithm for PGN", function() {
 
     it ("should read one variation for black", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 (1... d5 2. Nf3)"});
-        var moves = my_pgn.getMoves();
+        let moves = my_pgn.getMoves();
         should(moves.length).equal(4);
         should.not.exist(moves[0].prev);
         should(moves[0].next).equal(1);
@@ -458,7 +466,7 @@ describe("Default a new read algorithm for PGN", function() {
 
     it ("should read one variation for white", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6)"});
-        var moves = my_pgn.getMoves();
+        let moves = my_pgn.getMoves();
         should(moves.length).equal(5);
         should.not.exist(moves[0].prev);
         should(moves[0].next).equal(1);
@@ -475,7 +483,7 @@ describe("Default a new read algorithm for PGN", function() {
     it ("should read one variation for white with move after", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6) 2... exf4 3. Nf3"});
         
-        var moves = my_pgn.getMoves();
+        let moves = my_pgn.getMoves();
         should(moves.length).equal(7);
         should.not.exist(moves[0].prev);
         should(moves[0].next).equal(1);
@@ -496,8 +504,8 @@ describe("Default a new read algorithm for PGN", function() {
 
 describe("Additional notations like", function() {
     it("should read all notation symbols in the standard notation", function() {
-        var my_pgn = pgnReader({pgn: "1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?"});
-        var moves = my_pgn.getMoves();
+        let my_pgn = pgnReader({pgn: "1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?"});
+        let moves = my_pgn.getMoves();
         should(moves.length).equal(6);
         should(moves[0].nag).deepEqual(["$1"]);
         should(moves[1].nag).deepEqual(["$2"]);
@@ -510,93 +518,93 @@ describe("Additional notations like", function() {
 
 describe("Writing PGN like", function() {
     it("should write an empty PGN string", function() {
-        var my_pgn = pgnReader({pgn: ""});
-        var res = my_pgn.write_pgn();
+        let my_pgn = pgnReader({pgn: ""});
+        let res = my_pgn.write_pgn();
         should(res).equal("");
     });
 
     it("should write the normalized notation of the main line with only one move", function() {
-        var my_pgn = pgnReader({pgn: "1. e4"});
-        var res = my_pgn.write_pgn();
+        let my_pgn = pgnReader({pgn: "1. e4"});
+        let res = my_pgn.write_pgn();
         should(res).equal("1. e4");
     });
 
     it("should write the normalized notation of the main line", function() {
-        var my_pgn = pgnReader({pgn: "1. e4 e5 2. Nf3 Nc6 3. Bb5"});
-        var res = my_pgn.write_pgn();
+        let my_pgn = pgnReader({pgn: "1. e4 e5 2. Nf3 Nc6 3. Bb5"});
+        let res = my_pgn.write_pgn();
         should(res).equal("1. e4 e5 2. Nf3 Nc6 3. Bb5");
     });
 
     it("should write the notation for a main line including comments", function () {
-        var my_pgn = pgnReader({pgn: "{FIRST} 1. e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5"});
-        var res = my_pgn.write_pgn();
+        let my_pgn = pgnReader({pgn: "{FIRST} 1. e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5"});
+        let res = my_pgn.write_pgn();
         should(res).equal("{FIRST} 1. e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5");
     });
 
     it("should write all NAGs in their known parts", function () {
-        var my_pgn = pgnReader({pgn: "1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?"});
-        var res = my_pgn.write_pgn();
+        let my_pgn = pgnReader({pgn: "1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?"});
+        let res = my_pgn.write_pgn();
         should(res).equal("1. e4$1 e5$2 2. Nf3$3 Nc6$4 3. Bb5$6 a6$5");
     });
 
     it("should write the notation for a main line with one variation", function () {
-        var my_pgn = pgnReader({pgn: "1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) 2. Nf3"});
-        var res = my_pgn.write_pgn();
+        let my_pgn = pgnReader({pgn: "1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) 2. Nf3"});
+        let res = my_pgn.write_pgn();
         should(res).equal("1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) 2. Nf3");
     });
 
     it("should write the notation for a main line with several variations", function () {
-        var my_pgn = pgnReader({pgn: "1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) ( 1... c5 2. Nf3 d6 ) 2. Nf3"});
-        var res = my_pgn.write_pgn();
+        let my_pgn = pgnReader({pgn: "1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) ( 1... c5 2. Nf3 d6 ) 2. Nf3"});
+        let res = my_pgn.write_pgn();
         should(res).equal("1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) ( 1... c5 2. Nf3 d6 ) 2. Nf3");
     });
 
     it("should write the notation for a main line with stacked variations", function () {
-        var my_pgn = pgnReader({pgn: "1. e4 e5 ( 1... c5 2. Nf3 d6 ( 2... Nc6 3. d4) 3. d4 ) 2. Nf3"});
-        var res = my_pgn.write_pgn();
+        let my_pgn = pgnReader({pgn: "1. e4 e5 ( 1... c5 2. Nf3 d6 ( 2... Nc6 3. d4) 3. d4 ) 2. Nf3"});
+        let res = my_pgn.write_pgn();
         should(res).equal("1. e4 e5 ( 1... c5 2. Nf3 d6 ( 2... Nc6 3. d4 ) 3. d4 ) 2. Nf3");
     });
     it("should write the end of the game", function () {
-        var my_pgn = pgnReader({pgn: "1. e4 e5 0-1"});
+        let my_pgn = pgnReader({pgn: "1. e4 e5 0-1"});
         should(my_pgn.write_pgn()).equal("1. e4 e5 0-1");
     });
     it("should write the end of the game, understand all results: 1-0", function () {
-        var my_pgn = pgnReader({pgn: "1. e4 e5 1-0"});
+        let my_pgn = pgnReader({pgn: "1. e4 e5 1-0"});
         should(my_pgn.write_pgn()).equal("1. e4 e5 1-0");
     });
     it("should write the end of the game, understand all results: *", function () {
-        var my_pgn = pgnReader({pgn: "1. e4 e5 *"});
+        let my_pgn = pgnReader({pgn: "1. e4 e5 *"});
         should(my_pgn.write_pgn()).equal("1. e4 e5 *");
     });
     it("should write the end of the game, understand all results: 1/2-1/2", function () {
-        var my_pgn = pgnReader({pgn: "1. e4 e5 1/2-1/2"});
+        let my_pgn = pgnReader({pgn: "1. e4 e5 1/2-1/2"});
         should(my_pgn.write_pgn()).equal("1. e4 e5 1/2-1/2");
     });
     it("should write the end of the game as part of tags", function () {
-        var my_pgn = pgnReader({pgn: '[Result "0-1"] 1. e4 e5'});
+        let my_pgn = pgnReader({pgn: '[Result "0-1"] 1. e4 e5'});
         should(my_pgn.write_pgn()).equal("1. e4 e5 0-1");
     });
     it("should write the end of the game as part of tags, understand all results: *", function () {
-        var my_pgn = pgnReader({pgn: '[Result "*"] 1. e4 e5'});
+        let my_pgn = pgnReader({pgn: '[Result "*"] 1. e4 e5'});
         should(my_pgn.write_pgn()).equal("1. e4 e5 *");
     });
     it("should write the end of the game as part of tags, understand all results: 1/2-1/2", function () {
-        var my_pgn = pgnReader({pgn: '[Result "1/2-1/2"] 1. e4 e5'});
+        let my_pgn = pgnReader({pgn: '[Result "1/2-1/2"] 1. e4 e5'});
         should(my_pgn.write_pgn()).equal("1. e4 e5 1/2-1/2");
     });
     it("should write the end of the game as part of tags, understand all results: 1-0", function () {
-        var my_pgn = pgnReader({pgn: '[Result "1-0"] 1. e4 e5'});
+        let my_pgn = pgnReader({pgn: '[Result "1-0"] 1. e4 e5'});
         should(my_pgn.write_pgn()).equal("1. e4 e5 1-0");
     });
     it("should write promotion correct", function () {
-        var my_pgn = pgnReader({position: '8/6P1/8/2k5/8/8/8/7K w - - 0 1', pgn: '1. g8=R'});
+        let my_pgn = pgnReader({position: '8/6P1/8/2k5/8/8/8/7K w - - 0 1', pgn: '1. g8=R'});
         should(my_pgn.write_pgn()).equal("1. g8=R");
     });
 });
 
 describe("When reading a PGN game", function () {
     it ("should have the fen stored with each move", function () {
-        var my_pgn = pgnReader({pgn: "1. d4 e5"});
+        let my_pgn = pgnReader({pgn: "1. d4 e5"});
         should(my_pgn.getMoves().length).equal(2);
         should.exist(my_pgn.getMoves()[0].fen);
         should.exist(my_pgn.getMoves()[1].fen);
@@ -604,7 +612,7 @@ describe("When reading a PGN game", function () {
 });
 
 describe("When making moves in PGN", function() {
-    var empty, my_pgn;
+    let empty, my_pgn;
     beforeEach(function () {
         my_pgn = pgnReader({pgn: "1. d4 e5"});
         empty = pgnReader({pgn: ""});
@@ -750,7 +758,7 @@ describe("When deleting lines" , function () {
 });
 
 describe("When upvoting lines", function () {
-    var pgn = "1. e4 e5 2. Nf3 (2. f4 exf4) (2. d4 exd4)";
+    let pgn = "1. e4 e5 2. Nf3 (2. f4 exf4) (2. d4 exd4)";
 
     it("should upvote the second line as first line", function () {
         my_pgn = pgnReader({pgn: pgn});
@@ -787,7 +795,7 @@ describe("When upvoting lines", function () {
 });
 
 describe("When working with NAGs", function () {
-    var my_pgn;
+    let my_pgn;
     beforeEach(function () {
         my_pgn = pgnReader({pgn: "1. d4 e5"});
     });
