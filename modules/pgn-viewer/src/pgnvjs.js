@@ -235,12 +235,12 @@ let pgnBase = function (boardId, configuration) {
             const move = that.mypgn.getMove(that.currentMove);
             if (primMove.promotion) {
                 let pieces = new Map();
-                pieces[to] = null;
                 that.board.setPieces(pieces);
-                pieces[to] = {
+                pieces.set(to,{
                     color: (move.turn == 'w' ? 'white' : 'black'),
-                    role: that.promMappings[primMove.promotion]
-                };
+                    role: that.promMappings[primMove.promotion],
+                    promoted: true
+                });
                 that.board.setPieces(pieces);
             }
             if (move.notation.ep) {
