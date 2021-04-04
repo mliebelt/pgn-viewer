@@ -25,172 +25,172 @@
 }
 
 /** Reset / Set defaults */
-.whole {
+.pgnvjs {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell, sans-serif;
     margin: 0;
 }
-.whole ul, .whole ol {
+.pgnvjs ul, .pgnvjs ol {
     list-style: none;
     margin: 0;
     padding: 0;
 }
-/*.whole > * {*/
+/*.pgnvjs > * {*/
 /*    padding: var(--space-xs);*/
 /*}*/
-.whole:focus {
+.pgnvjs:focus {
     /* The following suppresses the outline of the element that has the focus. Only when
        that focus is set, the keyboard mappings work. You may of course enable the outline
        for debugging purposes. */
     outline: 0;
 }
-/*.whole {*/
+/*.pgnvjs {*/
 /*    margin: var(--space-xs);*/
 /*}*/
 
-.whole .moves {
+.pgnvjs .moves {
     overflow: auto;
 }
 
-.whole .buttons {
+.pgnvjs .buttons {
     display: flex;
 }
 
 /** Layout styles: View */
-.whole.layout-left .games, .whole.layout-right .games {
+.pgnvjs.layout-left .games, .pgnvjs.layout-right .games {
     grid-column: 1 / 3;
 }
 
-.whole.layout-left, .whole.layout-right {
+.pgnvjs.layout-left, .pgnvjs.layout-right {
     display: grid;
     gap: 0.5em;
     grid-template-columns: auto auto;
     grid-template-rows: 40px auto minmax(auto,1fr) 50px;
 }
 
-.whole.layout-left .error, .whole.layout-right .error {
+.pgnvjs.layout-left .error, .pgnvjs.layout-right .error {
     grid-column: 1 / 3;
     grid-row: 2 / 3;
 }
 
-.whole.layout-left .outerBoard, .whole.layout-left .outerBoard {
+.pgnvjs.layout-left .outerBoard, .pgnvjs.layout-left .outerBoard {
     grid-row: 3 / 4;
 }
 
-.whole.layout-left .outerBoard {
+.pgnvjs.layout-left .outerBoard {
     grid-column: 1 / 2;
 }
 
-.whole.layout-right .outerBoard {
+.pgnvjs.layout-right .outerBoard {
     grid-column: 2 / 3;
 }
 
-.whole.layout-left .buttons, .whole.layout-right .buttons {
+.pgnvjs.layout-left .buttons, .pgnvjs.layout-right .buttons {
     place-self: center;
     grid-row: 4 / 5;
 }
 
-.whole.viewMode.layout-left .buttons, .whole.editMode.layout-right .buttons {
+.pgnvjs.viewMode.layout-left .buttons, .pgnvjs.editMode.layout-right .buttons {
     grid-column: 1 / 2;
 }
 
-.whole.viewMode.layout-right .buttons, .whole.editMode.layout-left .buttons {
+.pgnvjs.viewMode.layout-right .buttons, .pgnvjs.editMode.layout-left .buttons {
     grid-column: 2 / 3;
 }
 
-.whole.viewMode.layout-left .moves, .whole.viewMode.layout-right .moves {
+.pgnvjs.viewMode.layout-left .moves, .pgnvjs.viewMode.layout-right .moves {
     grid-row: 3 / 5;
     overflow: auto;
 }
 
-.whole.editMode.layout-left .moves, .whole.editMode.layout-right .moves {
+.pgnvjs.editMode.layout-left .moves, .pgnvjs.editMode.layout-right .moves {
     grid-row: 3/4;
     overflow: auto;
 }
 
-.whole.editMode.layout-left .edit {
+.pgnvjs.editMode.layout-left .edit {
     grid-column: 1 / 2;
     grid-row: 4 / 5;
 }
 
-.whole.editMode.layout-top .edit {
+.pgnvjs.editMode.layout-top .edit {
     grid-column: 1 / 2;
     grid-row: 6 / 7;
 }
 
-.whole.layout-left .moves {
+.pgnvjs.layout-left .moves {
     grid-column: 2 / 3;
 }
 
-.whole.layout-right .moves {
+.pgnvjs.layout-right .moves {
     grid-column: 1 / 2;
 }
 
 /* layout top / bottom */
-.whole.layout-top {
+.pgnvjs.layout-top {
     display: grid;
     gap: 0.5em;
     grid-template-columns: auto;
     grid-template-rows: auto minmax(auto,1fr) 50px auto;
 }
 
-.whole.layout-bottom {
+.pgnvjs.layout-bottom {
     display: grid;
     gap: 0.5em;
     grid-template-columns: auto;
     grid-template-rows: auto auto minmax(auto,400px) 50px;
 }
 
-.whole.layout-top .error, .whole.layout-bottom .error {
+.pgnvjs.layout-top .error, .pgnvjs.layout-bottom .error {
     grid-row: 2/3;
 }
 
-.whole.layout-top .outerBoard {
+.pgnvjs.layout-top .outerBoard {
     grid-row: 3/4;
 }
 
-.whole.layout-bottom .outerBoard {
+.pgnvjs.layout-bottom .outerBoard {
     grid-row: 4/5;
 }
 
-.whole.layout-top .buttons {
+.pgnvjs.layout-top .buttons {
     place-self: center;
     grid-row: 4/5;
 }
 
-.whole.layout-bottom .buttons {
+.pgnvjs.layout-bottom .buttons {
     place-self: center;
     grid-row: 5/6;
 }
 
-.whole.layout-top .moves, .whole.layout-bottom .moves {
+.pgnvjs.layout-top .moves, .pgnvjs.layout-bottom .moves {
     overflow: auto;
 }
 
-.whole.layout-top .moves {
+.pgnvjs.layout-top .moves {
     grid-row: 5/6;
 }
 
-.whole.layout-bottom .moves {
+.pgnvjs.layout-bottom .moves {
     grid-row: 3/4;
 }
 
 /** Print mode */
-.whole.layout-top.printMode {
+.pgnvjs.layout-top.printMode {
     gap: 0;
     grid-template-columns: auto;
     grid-template-rows: auto;
 }
 
-.whole.layout-top.printMode .moves {
+.pgnvjs.layout-top.printMode .moves {
     width: 110%;
 }
 
-.whole.printMode > .outerBoard {
+.pgnvjs.printMode > .outerBoard {
     display: none;
 }
 
 /** Board mode */
-.whole.layout-top.boardMode {
+.pgnvjs.layout-top.boardMode {
     gap: 0;
     grid-template-columns: auto;
     grid-template-rows: auto;
@@ -198,7 +198,7 @@
 
 /** Other styling ... */
 
-.fen {
+.pgnvjs.fen {
     width: calc(100% - 8px);
     height: 35px;
     margin: 0;
@@ -206,11 +206,11 @@
     font-family: monospace;
 }
 
-div.error {
+.pgnvjs div.error {
     color: red;
 }
 
-div.buttons > i.button, div.edit > i.button {
+.pgnvjs div.buttons > i.button, div.edit > i.button {
     color: var(--gray-600);
     background-color: var(--gray-100);
     margin: 0.24rem;
@@ -219,35 +219,35 @@ div.buttons > i.button, div.edit > i.button {
     border-radius: 4px;
 }
 
-div.buttons > i.button.selected, div.edit > i.button.selected, .nagMenu.selected {
+.pgnvjs div.buttons > i.button.selected, div.edit > i.button.selected, .nagMenu.selected {
     color: var(--gray-100);
     background-color: var(--gray-700);
 }
 
-div.buttons > i.button:hover,div.edit > i.button:hover  {
+.pgnvjs div.buttons > i.button:hover,div.edit > i.button:hover  {
     cursor: pointer;
     border: solid dimgrey 1px;
 }
 
-div.nagMenu {
+.pgnvjs div.nagMenu {
     border: 1px grey dotted;
     display: none;
     width: 500px;
 }
 
-div.nagMenu a {
+.pgnvjs div.nagMenu a {
     text-decoration: none;
     /*text-align: center;*/
 }
 
-div.nagMove, div.nagObservation, div.nagPosition {
+.pgnvjs div.nagMove, div.nagObservation, div.nagPosition {
     display: flex;
     flex-direction: column;
     flex-basis: 33.3%;
     /*text-align: left;*/
     flex-wrap: wrap;
 }
-.nagMove i, .nagPosition i, .nagObservation i {
+.pgnvjs .nagMove i, .nagPosition i, .nagObservation i {
     display: flex;
     cursor: pointer;
     align-items: center;
@@ -255,7 +255,7 @@ div.nagMove, div.nagObservation, div.nagPosition {
     margin: var(--space-xss);
 }
 
-.nagMove i::before, .nagPosition i::before, .nagObservation i::before {
+.pgnvjs .nagMove i::before, .nagPosition i::before, .nagObservation i::before {
     content: attr(data-symbol);
     font-style: normal;
     width: var(--space-md);
@@ -265,17 +265,17 @@ div.nagMove, div.nagObservation, div.nagPosition {
 }
 
 
-a.active i::before {
+.pgnvjs a.active i::before {
     background: var(--gray-700) !important;
     color: var(--gray-100)!important;
 }
 
-a.active i::before i:hover {
+.pgnvjs a.active i::before i:hover {
     background: var(--gray-100) !important;
     color: var(--gray-700)!important;
 }
 
-.nagMove i:hover, .nagPosition i:hover, .nagObservation i:hover {
+.pgnvjs .nagMove i:hover, .nagPosition i:hover, .nagObservation i:hover {
     background: var(--gray-700);
     color: var(--gray-100);
 }
@@ -319,43 +319,43 @@ textarea.pgn {
     font-size: 1em;
 }
 
-div.commentRadio label {
+.pgnvjs div.commentRadio label {
     display: inline;
 }
-div.comment > textarea.comment {
+.pgnvjs div.comment > textarea.comment {
     font-family: monospace;
     width: 96%;
     height: 50px;
     padding: 2px;
 }
 
-.moves.inline .filler {
+.pgnvjs .moves.inline .filler {
     display: none;
 }
 
-.moves.list {
+.pgnvjs .moves.list {
     display: flex;
     flex-flow: row wrap;
     align-content: flex-start;
 }
 
-.moves.list > .move.result {
+.pgnvjs .moves.list > .move.result {
     justify-content: center;
     flex: 0 0 100%;
 }
 
-.moves.list > .move {
+.pgnvjs .moves.list > .move {
     flex: 0 0 35%;
     display: flex;
     /*padding: 0 0.3em;*/
     white-space: nowrap;
 }
 
-.variation, .variation > .moveNumber, .variation > .move.var {
+.pgnvjs .variation, .variation > .moveNumber, .pgnvjs .variation > .move.var {
     white-space: normal;
 }
 
-.moves.list > .moveNumber {
+.pgnvjs .moves.list > .moveNumber {
     flex: 0 0 15%;
     justify-content: center;
     display: flex;
@@ -363,28 +363,28 @@ div.comment > textarea.comment {
     background: var(--gray-100);
 }
 
-.moves a {
+.pgnvjs .moves a {
     text-decoration: underline;
 }
 
-.moves .move a.yellow {
+.pgnvjs .moves .move a.yellow {
     /*background-color: rgba(255, 255, 153, 1.0);*/
     color: var(--gray-800);
     background-color: var(--highlight);
 }
 
-.moves .move a {
+.pgnvjs .moves .move a {
     text-decoration: none;
     padding: 0 0.2rem;
 }
 
-.moves .move a:hover {
+.pgnvjs .moves .move a:hover {
     /*border: 1px yellow dotted;*/
     background-color: var(--highlight);
     cursor: crosshair;
 }
 
-.moves, select.games {
+.pgnvjs .moves, .pgnvjs select.games {
     /* font-size: 16px; */
     /*font-family: Georgia, "Bitstream Charter", serif;;*/
     color: black;
@@ -393,22 +393,22 @@ div.comment > textarea.comment {
     line-height: normal;
 }
 
-.moves .variation .move.var, .moves .variation .moveNumber {
+.pgnvjs .moves .variation .move.var, .pgnvjs .moves .variation .moveNumber {
     font-size: 97%;
     font-weight: 500;
 }
 
-.moves .variation .variation .move.var, .moves .variation .variation .moveNumber {
+.pgnvjs .moves .variation .variation .move.var, .pgnvjs .moves .variation .variation .moveNumber {
     font-size: 95%;
     font-weight: 300;
 }
 
-.moves .variation, .moves.list .variation {
+.pgnvjs.moves .variation, .pgnvjs .moves.list .variation {
     display: inline-block;
     margin: 0 6px;
 }
 
-.moves.list .variations {
+.pgnvjs .moves.list .variations {
     flex: 0 0 100%;
     display: flex;
     margin: 0;
@@ -417,37 +417,37 @@ div.comment > textarea.comment {
     border-bottom: 1px solid var(--gray-300);
 }
 
-.moves .variation:before {
+.pgnvjs .moves .variation:before {
     content: ' ( ';
 }
 
-.moves .variation .variation:before {
+.pgnvjs .moves .variation .variation:before {
     content: ' ( ';
 }
 
-.moves .variation .variation {
+.pgnvjs .moves .variation .variation {
     margin: 0 6px;
 }
 
-.moves .variation .variation:after {
+.pgnvjs .moves .variation .variation:after {
     content: ' ) ';
 }
 
-.moves .variation:after {
+.pgnvjs .moves .variation:after {
     content: ' ) ';
 }
 
-.moves > .varblock .white:before {
+.pgnvjs .moves > .varblock .white:before {
     display: inline;
 }
 
-.moves .comment, .moves.list > .variation > .comment {
+.pgnvjs .moves .comment, .pgnvjs .moves.list > .variation > .comment {
     color: var(--gray-800);
     font-weight: 500;
     display: inline;
 }
 
-.moves.list > .comment {
+.pgnvjs .moves.list > .comment {
     flex: 0 0 100%;
     display: flex;
     background: var(--gray-100);
@@ -456,15 +456,15 @@ div.comment > textarea.comment {
     /* padding: 5px; */
 }
 
-.moves .move .comment.timeTiny {
+.pgnvjs .moves .move .comment.timeTiny {
     font-weight: 300;
     font-size: 60%;
 }
 
-.moves .move .comment.timeLarge {
+.pgnvjs .moves .move .comment.timeLarge {
 }
 
-.moves .move .timeNormal {
+.pgnvjs .moves .move .timeNormal {
     font-weight: 400;
     font-size: 80%;
 }
@@ -473,7 +473,7 @@ div.comment > textarea.comment {
   CHESSGROUND changes.
   */
 
-.cg-wrap coords.ranks {
+.pgnvjs .cg-wrap coords.ranks {
     top: -8px;
     right: -4px;
     left: initial;
@@ -485,23 +485,23 @@ div.comment > textarea.comment {
 }
 */
 
-.cg-wrap coords.files {
+.pgnvjs .cg-wrap coords.files {
     bottom: 2px;
     left: 16px;
     /*text-transform: initial;*/
 }
 
-.cg-wrap.orientation-white coords.ranks coord:nth-child(2n), .cg-wrap.orientation-white coords.files coord:nth-child(2n), .cg-wrap.orientation-black coords.ranks coord:nth-child(2n + 1), .cg-wrap.orientation-black coords.files coord:nth-child(2n + 1) {
+.pgnvjs .cg-wrap.orientation-white coords.ranks coord:nth-child(2n), .pgnvjs .cg-wrap.orientation-white coords.files coord:nth-child(2n), .pgnvjs .cg-wrap.orientation-black coords.ranks coord:nth-child(2n + 1), .pgnvjs .cg-wrap.orientation-black coords.files coord:nth-child(2n + 1) {
     color: initial;
 }
 
-.cg-wrap.orientation-black coords.ranks coord:nth-child(2n), .cg-wrap.orientation-black coords.files coord:nth-child(2n), .cg-wrap.orientation-white coords.ranks coord:nth-child(2n + 1), .cg-wrap.orientation-white coords.files coord:nth-child(2n + 1) {
+.pgnvjs .cg-wrap.orientation-black coords.ranks coord:nth-child(2n), .pgnvjs .cg-wrap.orientation-black coords.files coord:nth-child(2n), .pgnvjs .cg-wrap.orientation-white coords.ranks coord:nth-child(2n + 1), .pgnvjs .cg-wrap.orientation-white coords.files coord:nth-child(2n + 1) {
     color: initial;
 }
 
 /* board and colorMarker */
 
-.colorMarker {
+.pgnvjs .colorMarker {
     width: 20px; height: 20px;
     border-color: black;
     border-width: 2px;
@@ -510,32 +510,32 @@ div.comment > textarea.comment {
     align-self: center;
 }
 
-.colorMarker.circle {
+.pgnvjs .colorMarker.circle {
     border-radius: 10px;
 }
 
-.colorMarker.circle-big {
+.pgnvjs .colorMarker.circle-big {
     border-radius: 20px;
     width: 40px; height: 40px;
 }
 
-.colorMarker.circle-small {
+.pgnvjs .colorMarker.circle-small {
     border-radius: 5px;
     width: 10px; height: 10px;
 }
 
-.cm-black {
+.pgnvjs .cm-black {
     background-color: black;
 }
 
-.cm-white {
+.pgnvjs .cm-white {
     background-color: white;
 }
 
-.cm-big {
+.pgnvjs .cm-big {
     width: 40px; height: 40px;   
 }
 
-.cm-small {
+.pgnvjs .cm-small {
     width: 10px; height: 10px;
 }

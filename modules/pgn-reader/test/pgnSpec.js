@@ -154,21 +154,21 @@ describe("When reading PGN with headers", function() {
             '[Black "Jean Dufresne"]',
             '[SetUp "0"]',
             '1. e4 e5 2. Nf3 Nc6'];
-        pgn_string2 = ['[SetUp "1"]', '[FEN "8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57"]'];
+        pgn_string2 = ['[SetUp "1"]', '[FEN "8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57"]', '*'];
         my_pgn = pgnReader({pgn: pgn_string.join(" ")});
         my_pgn2 = pgnReader({pgn: pgn_string2.join(" ")});
     });
 
     it("should have these headers read", function() {
-        should(Object.keys(my_pgn.getTags()).length).equal(8); // EventDate is not valid
+        should(Object.keys(my_pgn.getTags()).length).equal(8);
         should(my_pgn.getTags().Site).equal("Berlin GER");
-        should(my_pgn.getTags().Date).equal("1852.12.31");
+        should(my_pgn.getTags().Date.value).equal("1852.12.31");
         should(my_pgn.getTags().SetUp).equal("0");
         should(my_pgn.configuration.position).equal("start");
     });
 
     it("should have header mapped to FEN", function() {
-        should(Object.keys(my_pgn2.getTags()).length).equal(2); // EventDate is not valid
+        should(Object.keys(my_pgn2.getTags()).length).equal(2);
         should(my_pgn2.getTags().SetUp).equal("1");
         should(my_pgn2.configuration.position).equal("8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57");
     });
@@ -615,7 +615,7 @@ describe("When making moves in PGN", function() {
     let empty, my_pgn;
     beforeEach(function () {
         my_pgn = pgnReader({pgn: "1. d4 e5"});
-        empty = pgnReader({pgn: ""});
+        empty = pgnReader({pgn: "*"});
     });
 
     it("should have no moves with an empty PGN string", function () {

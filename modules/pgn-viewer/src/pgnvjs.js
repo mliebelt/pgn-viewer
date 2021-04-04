@@ -402,7 +402,7 @@ let pgnBase = function (boardId, configuration) {
             }
         }
         divBoard.classList.add(theme);
-        divBoard.classList.add('whole');
+        divBoard.classList.add('pgnvjs');   // Is used as class for everything included.
         divBoard.classList.add(that.configuration.mode + 'Mode');
         divBoard.setAttribute('tabindex', '0');
         // Add layout for class if configured
@@ -670,7 +670,7 @@ let pgnBase = function (boardId, configuration) {
             el.classList.add('coords-inner');
         }
         if (hasMode('edit')) {
-            setGameToPosition(boardConfiguration.position);
+            setGameToPosition(configuration.position);
             let toMove = (game.turn() == 'w') ? 'white' : 'black';
             that.board.set({
                 movable: Object.assign({}, that.board.state.movable,
@@ -1005,7 +1005,7 @@ let pgnBase = function (boardId, configuration) {
     };
 
     function setGameToPosition(pos) {
-        if (pos == 'start') {
+        if (pos == 'start' | typeof pos === 'undefined') {
             game.reset();
         } else {
             game.load(pos);

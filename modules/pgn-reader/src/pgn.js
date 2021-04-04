@@ -353,7 +353,7 @@ const pgnReader = function (configuration) {
     };
 
     let load_many = function () {
-        that.games = that.games = parser.parse(that.configuration.pgn, {startRule: 'games'});
+        that.games = parser.parse(that.configuration.pgn, {startRule: 'games'});
     }
     let load_one = function (game) {
         const interpretHeaders = function () {
@@ -1051,7 +1051,7 @@ const pgnReader = function (configuration) {
             //console.log("handle variation: prev == " + prev + " next == " + next);
             let prevMove = getMove(prev);
             if (prevMove === undefined) { // special case: variation on first move
-                if (next === 0) return; // First move
+                if (next <= 0) return; // First move
                 getMove(0).variations.push(move);
                 move.variationLevel = 1;
                 return;
@@ -1175,7 +1175,7 @@ const pgnReader = function (configuration) {
      * Returns the moves, ensures that the pgn string is read.
      */
     function getMoves() {
-        if (typeof that.moves != 'undefined') {
+        if (typeof that.moves !== 'undefined') {
             return that.moves;
         } else {
             try {
