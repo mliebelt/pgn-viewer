@@ -670,7 +670,7 @@ let pgnBase = function (boardId, configuration) {
             el.classList.add('coords-inner');
         }
         if (hasMode('edit')) {
-            game.load(boardConfiguration.position);
+            setGameToPosition(boardConfiguration.position);
             let toMove = (game.turn() == 'w') ? 'white' : 'black';
             that.board.set({
                 movable: Object.assign({}, that.board.state.movable,
@@ -1004,6 +1004,14 @@ let pgnBase = function (boardId, configuration) {
         updateUI(next);
     };
 
+    function setGameToPosition(pos) {
+        if (pos == 'start') {
+            game.reset();
+        } else {
+            game.load(pos);
+        }
+    }
+
     /**
      * Generates the HTML (for the given moves). Includes the following: move number,
      * link to FEN (position after move)
@@ -1053,11 +1061,7 @@ let pgnBase = function (boardId, configuration) {
             }
         }
         let myMoves = that.mypgn.getMoves();
-        if (that.configuration.position == 'start') {
-            game.reset();
-        } else {
-            game.load(that.configuration.position);
-        }
+        setGameToPosition(that.configuration.position);
         if (that.board) {
             that.board.set({fen: game.fen()});
         }
