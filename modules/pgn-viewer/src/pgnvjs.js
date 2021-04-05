@@ -1136,14 +1136,16 @@ let pgnBase = function (boardId, configuration) {
             const nextMove = function () {
                 let fen = null;
                 if ((typeof that.currentMove == 'undefined') || (that.currentMove === null)) {
+                    if (that.mypgn.getMoves().length === 0) return false;   // no next move
                     fen = that.mypgn.getMove(0).fen;
                     makeMove(null, 0, fen);
                 } else {
                     const next = that.mypgn.getMove(that.currentMove).next;
-                    if (typeof next == 'undefined') return;
+                    if (typeof next == 'undefined') return false;
                     fen = that.mypgn.getMove(next).fen;
                     makeMove(that.currentMove, next, fen);
                 }
+                return true
             };
             const prevMove = function () {
                 let fen = null;
@@ -1182,8 +1184,8 @@ let pgnBase = function (boardId, configuration) {
                 firstMove();
             });
             addEventListener(id('buttonsId') + 'last', 'click', function () {
-                const fen = that.mypgn.getMove(that.mypgn.getMoves().length - 1).fen;
-                makeMove(that.currentMove, that.mypgn.getMoves().length - 1, fen);
+                let moved = false
+                do { moved = nextMove() } while (moved)
             });
             let togglePgn = function () {
                 const pgnButton = document.getElementById(id('buttonsId') + "pgn");
