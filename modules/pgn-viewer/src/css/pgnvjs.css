@@ -198,7 +198,7 @@
 
 /** Other styling ... */
 
-.pgnvjs.fen {
+.pgnvjs .fen {
     width: calc(100% - 8px);
     height: 35px;
     margin: 0;

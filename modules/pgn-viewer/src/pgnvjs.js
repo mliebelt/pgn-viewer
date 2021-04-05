@@ -315,7 +315,7 @@ let pgnBase = function (boardId, configuration) {
         // Utility function for generating buttons divs
         function addButton(pair, buttonDiv) {
             const l_theme = (['green', 'blue'].indexOf(theme) >= 0) ? theme : 'default';
-            const button = createEle("i", id('buttonsId') + pair[0], "button fa " + pair[1], l_theme, buttonDiv);
+            const button = createEle("i", id('buttonsId') + pair[0], "button fa " + pair[0] + " " + pair[1], l_theme, buttonDiv);
             const title = t("buttons:" + pair[0]);
             document.getElementById(id('buttonsId') + pair[0]).setAttribute("title", title);
             return button;
@@ -858,19 +858,20 @@ let pgnBase = function (boardId, configuration) {
      * Check which buttons should be grayed out
      */
     const updateUI = function (next) {
-        let elements = document.querySelectorAll("i.button.gray");
+        const divBoard = document.getElementById(boardId);
+        let elements = divBoard.querySelectorAll("i.button.gray");
         utils.pvEach(elements, function (ele) {
             removeClass(ele, 'gray');
         });
         const move = that.mypgn.getMove(next);
         if (next === null) {
             ["prev", "first"].forEach(function (name) {
-                addClass(document.querySelector("i#boardButton" + name), 'gray');
+                addClass(divBoard.querySelector("div.buttons ." + name), 'gray');
             });
         }
         if ((next !== null) && (typeof move.next != "number")) {
             ["next", "play", "last"].forEach(function (name) {
-                addClass(document.querySelector("i#boardButton" + name), 'gray');
+                addClass(divBoard.querySelector("div.buttons ." + name), 'gray');
             });
         }
         // Update the drop-down for NAGs
@@ -879,12 +880,12 @@ let pgnBase = function (boardId, configuration) {
                 return;
             }
             let nagMenu = document.querySelector('#nagMenu' + id('buttonsId'));
-            document.querySelectorAll('#nagMenu' + id('buttonsId') + ' a.active').forEach(function (act) {
+            divBoard.querySelectorAll('#nagMenu' + id('buttonsId') + ' a.active').forEach(function (act) {
                 act.classList.toggle('active');
             });
             let nags = move.nag || [];
             nags.forEach(function (eachNag) {
-                document.querySelector('#nagMenu' + id('buttonsId') + ' [data-value="' + eachNag.substring(1) + '"]')
+                divBoard.querySelector('#nagMenu' + id('buttonsId') + ' [data-value="' + eachNag.substring(1) + '"]')
                     .parentNode.classList.toggle('active');
             });
         } catch (err) {
