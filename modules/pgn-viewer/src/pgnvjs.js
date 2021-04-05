@@ -857,19 +857,19 @@ let pgnBase = function (boardId, configuration) {
      * Check which buttons should be grayed out
      */
     const updateUI = function (next) {
-        let elements = document.querySelectorAll("div.buttons .gray");
+        let elements = document.querySelectorAll("i.button.gray");
         utils.pvEach(elements, function (ele) {
             removeClass(ele, 'gray');
         });
         const move = that.mypgn.getMove(next);
         if (next === null) {
             ["prev", "first"].forEach(function (name) {
-                addClass(document.querySelector("div.buttons ." + name), 'gray');
+                addClass(document.querySelector("i#boardButton" + name), 'gray');
             });
         }
         if ((next !== null) && (typeof move.next != "number")) {
             ["next", "play", "last"].forEach(function (name) {
-                addClass(document.querySelector("div.buttons ." + name), 'gray');
+                addClass(document.querySelector("i#boardButton" + name), 'gray');
             });
         }
         // Update the drop-down for NAGs

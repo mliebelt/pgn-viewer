@@ -235,6 +235,12 @@
     width: 500px;
 }
 
+.pgnvjs div.buttons > i.button.gray, div.buttons > i.button.gray:hover {
+    opacity: 0.5;
+    cursor: default;
+    border: solid var(--gray-300) 1px;
+}
+
 .pgnvjs div.nagMenu a {
     text-decoration: none;
     /*text-align: center;*/
