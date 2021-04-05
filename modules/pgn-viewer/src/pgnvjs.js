@@ -859,6 +859,10 @@ let pgnBase = function (boardId, configuration) {
      */
     const updateUI = function (next) {
         const divBoard = document.getElementById(boardId);
+        const pgnEmpty = function () {
+            let pgn = that.mypgn.write_pgn()
+            return (typeof pgn === 'undefined') || (pgn === null) || (pgn.length === 0)
+        }
         let elements = divBoard.querySelectorAll("i.button.gray");
         utils.pvEach(elements, function (ele) {
             removeClass(ele, 'gray');
@@ -869,7 +873,7 @@ let pgnBase = function (boardId, configuration) {
                 addClass(divBoard.querySelector("div.buttons ." + name), 'gray');
             });
         }
-        if ((next !== null) && (typeof move.next != "number")) {
+        if (((next !== null) && (typeof move.next != "number")) || (pgnEmpty())) {
             ["next", "play", "last"].forEach(function (name) {
                 addClass(divBoard.querySelector("div.buttons ." + name), 'gray');
             });
