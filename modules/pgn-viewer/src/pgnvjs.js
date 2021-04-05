@@ -446,6 +446,7 @@ let pgnBase = function (boardId, configuration) {
                 createEle("div", id('colorMarkerId'), 'colorMarker' + " " + that.configuration.colorMarker, theme, topInnerBoardDiv);
             }
         }
+        updateUI(null)
 
         /** Fen */
         if ((hasMode('edit') || hasMode('view')) && (that.configuration.showFen)) {

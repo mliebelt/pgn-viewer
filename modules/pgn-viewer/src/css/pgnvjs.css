@@ -210,7 +210,7 @@
     color: red;
 }
 
-.pgnvjs div.buttons > i.button, div.edit > i.button {
+.pgnvjs div.buttons > i.button, .pgnvjs div.edit > i.button {
     color: var(--gray-600);
     background-color: var(--gray-100);
     margin: 0.24rem;
@@ -219,12 +219,12 @@
     border-radius: 4px;
 }
 
-.pgnvjs div.buttons > i.button.selected, div.edit > i.button.selected, .nagMenu.selected {
+.pgnvjs div.buttons > i.button.selected, .pgnvjs div.edit > i.button.selected, .pgnvjs .nagMenu.selected {
     color: var(--gray-100);
     background-color: var(--gray-700);
 }
 
-.pgnvjs div.buttons > i.button:hover,div.edit > i.button:hover  {
+.pgnvjs div.buttons > i.button:hover, .pgnvjs div.edit > i.button:hover  {
     cursor: pointer;
     border: solid dimgrey 1px;
 }
@@ -235,7 +235,7 @@
     width: 500px;
 }
 
-.pgnvjs div.buttons > i.button.gray, div.buttons > i.button.gray:hover {
+.pgnvjs div.buttons > i.button.gray, .pgnvjs div.buttons > i.button.gray:hover {
     opacity: 0.5;
     cursor: default;
     border: solid var(--gray-300) 1px;
@@ -246,14 +246,14 @@
     /*text-align: center;*/
 }
 
-.pgnvjs div.nagMove, div.nagObservation, div.nagPosition {
+.pgnvjs div.nagMove, .pgnvjs div.nagObservation, .pgnvjs div.nagPosition {
     display: flex;
     flex-direction: column;
     flex-basis: 33.3%;
     /*text-align: left;*/
     flex-wrap: wrap;
 }
-.pgnvjs .nagMove i, .nagPosition i, .nagObservation i {
+.pgnvjs .nagMove i, .pgnvjs .nagPosition i, .pgnvjs .nagObservation i {
     display: flex;
     cursor: pointer;
     align-items: center;
@@ -261,7 +261,7 @@
     margin: var(--space-xss);
 }
 
-.pgnvjs .nagMove i::before, .nagPosition i::before, .nagObservation i::before {
+.pgnvjs .nagMove i::before, .pgnvjs .nagPosition i::before, .pgnvjs .nagObservation i::before {
     content: attr(data-symbol);
     font-style: normal;
     width: var(--space-md);
@@ -281,26 +281,26 @@
     color: var(--gray-700)!important;
 }
 
-.pgnvjs .nagMove i:hover, .nagPosition i:hover, .nagObservation i:hover {
+.pgnvjs .nagMove i:hover, .pgnvjs .nagPosition i:hover, .pgnvjs .nagObservation i:hover {
     background: var(--gray-700);
     color: var(--gray-100);
 }
 
 /*Necessary fixes for examples*/
-button.ui-multiselect {
-    background-image: none;
-    background-color: white;
-}
+/*button.ui-multiselect {*/
+/*    background-image: none;*/
+/*    background-color: white;*/
+/*}*/
 
-ul.ui-multiselect-checkboxes > li {
-    margin-bottom: 0;
-}
+/*ul.ui-multiselect-checkboxes > li {*/
+/*    margin-bottom: 0;*/
+/*}*/
 
-select.nag {
-    width: 40px;
-}
+/*select.nag {*/
+/*    width: 40px;*/
+/*}*/
 
-textarea.pgn {
+.pgnvjs textarea.pgn {
     padding: 2px;
     border: 1px solid grey;
     width: 96%;
@@ -357,7 +357,7 @@ textarea.pgn {
     white-space: nowrap;
 }
 
-.pgnvjs .variation, .variation > .moveNumber, .pgnvjs .variation > .move.var {
+.pgnvjs .variation, .pgnvjs .variation > .moveNumber, .pgnvjs .variation > .move.var {
     white-space: normal;
 }
 
