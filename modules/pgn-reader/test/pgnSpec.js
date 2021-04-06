@@ -174,11 +174,21 @@ describe("When reading PGN with headers", function() {
     });
 
     it("should accept variations of case in header", function() {
-        let pgn_string = ['[Setup "1"]', '[feN "8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57"]'];
-        my_pgn = pgnReader({pgn: pgn_string.join(" ")});
-        should(Object.keys(my_pgn2.getTags()).length).equal(2);
-        should(my_pgn2.getTags().SetUp).equal("1");
-        should(my_pgn2.configuration.position).equal("8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57");
+        let pgn = pgnReader({pgn: '[Setup "1"] [fen "8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57"] *'});
+        should(Object.keys(pgn.getTags()).length).equal(2);
+        should(pgn.getTags().SetUp).equal("1");
+        should(pgn.configuration.position).equal("8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57");
+    })
+
+    it("should understand unknown tags and record them", function () {
+        let pgn = pgnReader({pgn: '[PuzzleCategory "Material"] [PuzzleEngine "Stockfish 13"] ' +
+                '[PuzzleMakerVersion "0.5"] [PuzzleWinner "White"] *'})
+        let tags = pgn.getTags()
+        should(Object.keys(tags).length).equal(4)
+        should(tags.PuzzleCategory).equal("Material")
+        should(tags.PuzzleEngine).equal("Stockfish 13")
+        should(tags.PuzzleMakerVersion).equal("0.5")
+        should(tags.PuzzleWinner).equal("White")
     })
 });
 
