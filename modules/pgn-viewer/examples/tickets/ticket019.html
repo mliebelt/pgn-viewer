@@ -15,8 +15,7 @@
 <div id="board"></div>
 
 <script>
-    var pgn = "";
-    var cfg = { locale: 'en', position: 'start', pgn: pgn };
+    let cfg = { locale: 'en', position: 'start' };
     PGNV.pgnView('board', cfg).then(function (response) {
         var board = response;
     })

@@ -1,5 +1,6 @@
 import i18next from './i18n';
-import {pgnReader, Utils} from '@mliebelt/pgn-reader';
+//import {pgnReader} from '@mliebelt/pgn-reader';
+import {pgnReader} from '../../pgn-reader/src/pgn';
 import {Chessground} from 'chessground';
 import 'chessground/assets/chessground.base.css'
 import 'chessground/assets/chessground.brown.css'
@@ -18,7 +19,6 @@ let pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
     let that = {}
     that.userConfiguration = configuration
-    let utils = new Utils();
     // Sets the default parameters for all modes. See individual functions for individual overwrites
     let defaults = {
         theme: "blue",
@@ -67,6 +67,9 @@ let pgnBase = function (boardId, configuration) {
     const id = function (id) {
         return that.configuration.IDs[id];
     }
+    const isElement = function(obj) {
+        return !!(obj && obj.nodeType === 1)
+    }
     that.board = null              // Will be set later, but has to be a known variable
 
     // Initialize locale
@@ -108,7 +111,7 @@ let pgnBase = function (boardId, configuration) {
      * Adds a class to an element.
      */
     function addClass(elementOrId, className) {
-        let ele = utils.pvIsElement(elementOrId) ? elementOrId : document.getElementById(elementOrId);
+        let ele = isElement(elementOrId) ? elementOrId : document.getElementById(elementOrId);
         if (!ele) return;
         if (ele.classList) {
             ele.classList.add(className);
@@ -121,7 +124,7 @@ let pgnBase = function (boardId, configuration) {
      * Remove a class from an element.
      */
     function removeClass(elementOrId, className) {
-        let ele = utils.pvIsElement(elementOrId) ? elementOrId : document.getElementById(elementOrId);
+        let ele = isElement(elementOrId) ? elementOrId : document.getElementById(elementOrId);
         if (ele === null) return;
         if (ele.classList) {
             ele.classList.remove(className);
@@ -148,7 +151,7 @@ let pgnBase = function (boardId, configuration) {
      * Adds an event listener to the DOM element.
      */
     function addEventListener(elementOrId, event, func) {
-        let ele = utils.pvIsElement(elementOrId) ? elementOrId : document.getElementById(elementOrId);
+        let ele = isElement(elementOrId) ? elementOrId : document.getElementById(elementOrId);
         if (ele === null) return;
         ele.addEventListener(event, func);
     }
@@ -597,11 +600,11 @@ let pgnBase = function (boardId, configuration) {
      */
     const generateBoard = function () {
         function copyBoardConfiguration(source, target, keys) {
-            utils.pvEach(keys, function (key) {
+            keys.forEach(function (key) {
                 if (typeof source[key] != "undefined") {
-                    target[key] = source[key];
+                    target[key] = source[key]
                 }
-            });
+            })
         }
 
         // Default values of the board, if not overwritten by the given configuration
@@ -616,7 +619,7 @@ let pgnBase = function (boardId, configuration) {
         copyBoardConfiguration(that.configuration, boardConfiguration,
             ['position', 'orientation', 'showCoords', 'pieceTheme', 'draggable',
                 'coordsInner', 'coordsFactor', 'width', 'movable', 'viewOnly', 'highlight', 'boardSize',
-                'rankFontSize']);
+                'coordsFontSize']);
         // board = new ChessBoard(id('innerBoardId'), boardConfiguration);
         // Allow Chessground to be resizable
         boardConfiguration.resizable = true;
@@ -642,8 +645,8 @@ let pgnBase = function (boardId, configuration) {
             el.style.width = boardConfiguration.width;
             el.style.height = boardConfiguration.width;
             let fontSize = null;
-            if (boardConfiguration.rankFontSize) {
-                fontSize = boardConfiguration.rankFontSize;
+            if (boardConfiguration.coordsFontSize) {
+                fontSize = boardConfiguration.coordsFontSize;
             } else {
                 // Set the font size related to the board (factor 28), ensure at least 8px font
                 fontSize = Math.max(8, Math.round(parseInt(boardConfiguration.width.slice(0, -2)) / 28 * boardConfiguration.coordsFactor));
@@ -864,7 +867,7 @@ let pgnBase = function (boardId, configuration) {
             return (typeof pgn === 'undefined') || (pgn === null) || (pgn.length === 0)
         }
         let elements = divBoard.querySelectorAll("i.button.gray");
-        utils.pvEach(elements, function (ele) {
+        elements.forEach(function (ele) {
             removeClass(ele, 'gray');
         });
         const move = that.mypgn.getMove(next);
@@ -1072,7 +1075,7 @@ let pgnBase = function (boardId, configuration) {
             that.board.set({fen: game.fen()});
         }
         let fenField = document.getElementById(id('fenId'));
-        if (utils.pvIsElement(fenField)) {
+        if (isElement(fenField)) {
             fenField.value = game.fen();
         }
 
@@ -1084,7 +1087,7 @@ let pgnBase = function (boardId, configuration) {
             let tags = that.mypgn.getTags();
             let whd = document.getElementById(id('bottomHeaderId'));
             let bhd = document.getElementById(id('topHeaderId'));
-            if (that.configuration.headers == false || (utils.pvIsEmpty(tags))) {
+            if (that.configuration.headers == false || (tags.size === 0)) {
                 whd.parentNode.removeChild(whd);
                 bhd.parentNode.removeChild(bhd);
                 return;

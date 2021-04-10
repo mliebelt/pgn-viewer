@@ -43,13 +43,13 @@ no showCoords set (== default)
 showCoords == false
 <div id="board7" style="width: 350px; margin-right: 25px"></div>
 
-rankFontSize == 24px
+coordsFontSize == 24px
 <div id="board8" style="width: 350px; margin-right: 25px"></div>
 
-rankFontSize == 32px, bigger board
+coordsFontSize == 32px, bigger board
 <div id="board9" style="width: 500px; margin-right: 25px"></div>
 
-rankFontSize == 24px, bigger board, showCoords ==false
+coordsFontSize == 24px, bigger board, showCoords ==false
 <div id="board10" style="width: 500px; margin-right: 25px"></div>
 
 <script>
@@ -63,9 +63,9 @@ rankFontSize == 24px, bigger board, showCoords ==false
     pgnv = pgnView("board5", {pgn: pgn, coordsFactor: 1.5});
     pgnv = pgnView("board6", {pgn: pgn});
     pgnv = pgnView("board7", {pgn: pgn, showCoords: false});
-    pgnv = pgnView("board8", {pgn: pgn, rankFontSize: 24});
-    pgnv = pgnView("board9", {pgn: pgn, rankFontSize: 32});
-    pgnv = pgnView("board10", {pgn: pgn, rankFontSize: 24, coordsInner: false});
+    pgnv = pgnView("board8", {pgn: pgn, coordsFontSize: 24});
+    pgnv = pgnView("board9", {pgn: pgn, coordsFontSize: 32});
+    pgnv = pgnView("board10", {pgn: pgn, coordsFontSize: 24, coordsInner: false});
 </script>
 
 

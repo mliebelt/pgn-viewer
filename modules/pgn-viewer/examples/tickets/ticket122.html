@@ -9,18 +9,16 @@
 <body class='merida zeit'>
 <a href="https://github.com/mliebelt/PgnViewerJS/issues/122">Ticket 122 at GitHub</a>.
 
+<p>Shows 4 variants of the same game, where clock annotations are:
+<ol>
+    <li>timeNormal</li>
+    <li>timeTiny, color blue</li>
+    <li>timeLarge, color redish</li>
+    <li>default: none</li>
+</ol></p>
 <div id="board1"></div>
-
-<hr/>
-
 <div id="board2"></div>
-
-<hr/>
-
 <div id="board3"></div>
-
-<hr/>
-
 <div id="board4"></div>
 
 <script>
@@ -47,7 +45,8 @@
         "{[%clk 1:17:40]} h6 {[%clk 0:47:30]} 33. Kf2 {[%clk 1:17:40]} Ra2+\n" +
         "{[%clk 0:47:30]} 34. Kf3 {[%clk 1:17:40]} Ra8 {[%clk 0:47:30]} 35. Kf2\n" +
         "{[%clk 1:17:40]} Ra2+ {[%clk 0:47:30]} 36. Kf3 {[%clk 1:17:40]} Ra8 1/2-1/2";
-    var cfg1 = { layout: "left", pgn: pgn, boardSize: '200px', size: '400px', movesHeight: '220px', timeAnnotation: { class: 'timeNormal'}};
+    var cfg1 = { layout: "left", pgn: pgn, boardSize: '200px', size: '400px', movesHeight: '220px',
+        timeAnnotation: { class: 'timeNormal'}};
     var board1 = PGNV.pgnView('board1', cfg1);
     var cfg2 = { layout: "left", pgn: pgn, boardSize: '200px', size: '400px', movesHeight: '220px',
         timeAnnotation: {class: 'timeTiny', colorClass: 'blue'}};
