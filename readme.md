@@ -9,7 +9,9 @@ in a web page. PgnViewerJS does not write everything anew, but it uses the follo
 
 See the section Acknowledgments for more supporting libraries.
 
-See the working examples on my new GitHub Pages site [PgnViewerJS](http://mliebelt.github.io/PgnViewerJS/), especially the [Configuration Builder](http://mliebelt.github.io/PgnViewerJS/config/config.html) that demonstrates all parameters in a running example.
+See the working examples on my new GitHub Pages site [PgnViewerJS](http://mliebelt.github.io/PgnViewerJS/),
+especially the [Configuration Builder](http://mliebelt.github.io/PgnViewerJS/config/config.html) 
+that demonstrates all parameters in a running example.
 
 ## Getting Started
 
@@ -25,25 +27,19 @@ The following are example screenshots with the configuration set below, to show 
 
 The screenshots show from left to right:
 
-* `mode: board; theme: sportverlag; pieceStyle: uscf`
-* `mode: edit; orientation: black; locale: de` with comments
-* `mode: view; layout: 'left'` with comments
+* `mode: board; theme: sportverlag`
+* `mode: edit; headers: false; theme: 'brown'` with comments
+* `mode: view; layout: 'left'; pieceStyle: 'leipzig'; notationLayout: 'list'` with comments
 
-Go to the [github.io pages](http://mliebelt.github.io/PgnViewerJS/) (documentation), where the current (and former) versions are available.
+Go to the [github.io pages](http://mliebelt.github.io/PgnViewerJS/) (documentation), where the viewer is documented and shown.
 
 ### Features
 
 This implementation has the following features:
 
-* Allows to show one chess game complete, with a lot of different styles, themes, tuning, ...
+* Allows to show one or many chess games complete, with a lot of different styles, themes, tuning, ...
 * Allows to play through the games forward and backward, including variations.
-* Allows to play from a legal position only legal moves, and adds these moves to the notation (in a different style)
-* Allows to play through by
-  * clicking on moves
-  * clicking on next and previous button
-  * clicking on play button
-  * using cursor left and right on the keyboard
-* Allows to add moves to a game, when in the right 'mode'.
+* Allows to play from a legal position only legal moves.
 * Knows all PGN notation elements, and knows how to render them.
 
 ### UI modes
@@ -51,7 +47,7 @@ This implementation has the following features:
 There are four different kind of usages:
 
 * `PGNV.pgnView` renders the whole game, and allows to play it through, jump to any position.
-* `PGNV.pgnEdit` is a superset of pgnView, that allows to additional add variations, change the order of main line and variations, and allows all other kind of interactions that are possible: adding comments, PGN notation elements, whatever.
+* `PGNV.pgnEdit` is a superset of pgnView, that allows to additional add variations, change the order of main line and variations, and other kind of interactions like adding comments, PGN notation elements, ...
 * `PGNV.pgnBoard` will just show a position without any interaction possible.
 * `PGNV.pgnPrint` will just show a whole chess game, without any interaction possible.
 
@@ -59,7 +55,12 @@ There is at the moment no way to save a game that was edited in `pgnEdit` mode. 
 
 ## Running the tests
 
-* Run `npm test`. This runs the tests for the module `pgn-reader`.
+* Run `npm test` in directory `modules/pgn-reader`. This runs the tests for the module `pgn-reader`.
+
+## Running the examples
+
+* Start a local webserver (like `http-server`) inside directory `modules/pgn-viewer`, and visit the page `http://localhost:<port>/examples`. 
+* Browse through the many examples in the sub-directories, or visit the configuration builder in directory `examples/configuration/config.html`. 
 
 ## Deployment
 
@@ -103,56 +104,7 @@ So a rough template will look like:
 </html>
 ```
 
-#### ReactJS
-
-```jsx
-import React, {useLayoutEffect} from 'react'
-import Children from 'react-children-utilities'
-import * as uuid from 'uuid'
-import { pgnView } from '@mliebelt/pgn-viewer'
-
-function PGNViewer(props) {
-  const gameDecription = Children.onlyText(props.children)
-  const id = 'board-' + uuid.v4()
-
-  useLayoutEffect(() => {
-    pgnView(id,
-      {
-        pgn: gameDecription,
-        timerTime: '1',
-        locale: 'pl',
-        startPlay: 1,
-        showResult: true,
-        boardSize: '340',
-        showFen: true,
-        pieceStyle: 'merida'
-      }
-    )
-  })
-
-  return (
-    <div id={id}></div>
-  )
-}
-
-// Usage
-
-<PGNViewer>
-[Event "F/S Return Match"]
-[Site "Belgrade"]
-[Date "1992.11.04"]
-[Round "29"]
-[White "Fischer, Robert J."]
-[Black "Spassky, Boris V."]
-[Result "1/2-1/2"]
-
-1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 d6 8. c3 O-O 9. h3 Nb8  10. d4 Nbd7
-11. c4 c6 12. cxb5 axb5 13. Nc3 Bb7 14. Bg5 b4 15. Nb1 h6 16. Bh4 c5 17. dxe5 Nxe4 18. Bxe7 Qxe7 19. exd6 Qf6 
-20. Nbd2 Nxd6 21. Nc4 Nxc4 22. Bxc4 Nb6 23. Ne5 Rae8 24. Bxf7+ Rxf7 25. Nxf7 Rxe1+ 26. Qxe1 Kxf7 27. Qe3 Qg5 
-28. Qxg5 hxg5 29. b3 Ke6 30. a3 Kd6 31. axb4 cxb4 32. Ra5 Nd5 33. f3 Bc8 34. Kf2 Bf5 35. Ra7 g6 36. Ra6+ Kc5 
-37. Ke1 Nf4 38. g3 Nxh3 39. Kd2 Kb5 40. Rd6 Kc5 41. Ra6 Nf2 42. g4 Bd3 43. Re6 1/2-1/2
-</PGNViewer>
-```
+See the example in [react.md](react.md) how to run the viewer in a react application.
 
 ## Built With
 
@@ -174,19 +126,6 @@ From the version 1.0.0 on, the whole package can be downloaded / installed by us
 * Download: `npm pack @mliebelt/pgn-viewer` Results in download of a file `mliebelt-pgn-viewer-1.3.0.tgz`, that contains in the directory `package/lib` all resources needed.
 * Install: `npm install @mliebelt/pgn-viewer` as part of some other application. You will find then the files in the directory `node_modules/@mliebelt/pgn-viewer/lib`.
 
-The older versions are available for download from the links below.
-
-* [Version 0.9.8](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.8.zip): Start play parameter, allow arrows and circles from Chessground, color marker for player at move, option for result in PGN notation. 
-* [Version 0.9.7](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.7.zip): UI with Chessground, small improvements, promotion.
-* [Version 0.9.6](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.6.zip): A lot of fixes, multi-line notation, stability.
-* [Version 0.9.5](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.5.zip): Some more fixes, stability.
-* [Version 0.9.4](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.4.zip): Finished edit mode, cleanup, some more fixes.
-* [Version 0.9.3](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.3.zip): Allows special markup, some more bug fixes.
-* [Version 0.9.2](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.2.zip): Some more bug fixes, examples to all issues at [GitHub](https://github.com/mliebelt/PgnViewerJS/issues), added Changelog.md, started restructuring the sources.
-* [Version 0.9.1](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.1.zip): Some bug fixes, examples to all issues at [GitHub](https://github.com/mliebelt/PgnViewerJS/issues),
-  some additional examples and a lot of fixes in the documentation.
-* [Version 0.9.0](https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.0.zip): Nearly feature complete, roughly documented, stable enough to play with it.
-
 ## Authors
 
 * Markus Liebelt - [mliebelt](https://github.com/mliebelt)
@@ -203,11 +142,12 @@ We use the following libraries in the implementation:
 * [Chessground](https://github.com/ornicar/chessground) The chessboard used by lichess.org
 * [pegjs](https://github.com/pegjs/pegjs) Parser Generator implemented in Javascript.
 * [Mousetrap](https://craig.is/killing/mice) Binds keys to actions in the UI
-* [roddeh-i18n](http://i18njs.com//) Internationalization (== i18n) library to translate chess into current 18 languages. Strings are inlined in the library.
+* [roddeh-i18n](http://i18njs.com) Internationalization (== i18n) library to translate chess into current 18 languages. Strings are inlined in the library.
 * [Timer.js](https://github.com/fschaefer/Timer.js) Small timer for automatic moves
-* [FontAwesome](http://fontawesome.io/): Nice icon font used for some buttons
-* [PGN Specification](http://www.saremba.de/chessgml/standards/pgn/pgn-complete.htm): PGN (Portable Game Notation) specification
+* [FontAwesome](http://fontawesome.io/) Nice icon font used for some buttons
+* [PGN Specification](https://github.com/mliebelt/pgn-spec-commented/blob/main/pgn-specification.md) PGN (Portable Game Notation) specification
 * [NAG Specification](http://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs) Definition of the NAGs (Numeric Annotation Glyphs)
+* [PGN Specification  Supplement](https://github.com/mliebelt/pgn-spec-commented/blob/main/pgn-spec-supplement.md) Addition for adding graphical elements, clock values, eval, ...
 
 Thank you a lot to all contributors of issues.
 
