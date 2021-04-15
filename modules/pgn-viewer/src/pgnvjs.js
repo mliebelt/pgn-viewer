@@ -392,7 +392,7 @@ let pgnBase = function (boardId, configuration) {
         };
 
         const hasHeaders = function () {
-            return that.configuration.headers && (Object.keys(that.mypgn.getTags()).length > 0)
+            return that.configuration.headers && (that.mypgn.getTags().size > 0)
         }
 
         const divBoard = document.getElementById(boardId);
@@ -487,7 +487,7 @@ let pgnBase = function (boardId, configuration) {
             generateEditButtons(editButtonsBoardDiv);
             let nagMenu = createEle('div', 'nagMenu' + id('buttonsId'), 'nagMenu', theme, editButtonsBoardDiv);
             generateNagMenu(nagMenu);
-            const pgnDiv = createEle("textarea", "pgn" + id('buttonsId'), "pgn", theme, editButtonsBoardDiv);
+            const pgnDiv = createEle("textarea", "textpgn" + id('buttonsId'), "textpgn", theme, editButtonsBoardDiv);
             const commentBoardDiv = createEle("div", "comment" + id('buttonsId'), "comment", theme, editButtonsBoardDiv);
             generateCommentDiv(commentBoardDiv);
             // Bind the paste key ...
@@ -496,7 +496,7 @@ let pgnBase = function (boardId, configuration) {
                 e.preventDefault();
                 e.target.select();
             });
-            document.getElementById("pgn" + id('buttonsId')).onpaste = function (e) {
+            document.getElementById("textpgn" + id('buttonsId')).onpaste = function (e) {
                 const pastedData = e.originalEvent.clipboardData.getData('text');
                 that.configuration.pgn = pastedData;
                 pgnEdit(boardId, that.configuration);
@@ -579,7 +579,7 @@ let pgnBase = function (boardId, configuration) {
                 }
             } else {
                 let _movesCount = that.mypgn.getMoves().length;
-                let _minMovesHeight = (_movesCount + 7) / 7 * 30;
+                let _minMovesHeight = (_movesCount + 20) / 7 * 15;
                 let _movesHeight = parseInt(_boardHeight) / 5 * 3;
                 if (_minMovesHeight < _movesHeight) _movesHeight = _minMovesHeight;
                 if (that.configuration.layout === 'top') {
@@ -1092,14 +1092,14 @@ let pgnBase = function (boardId, configuration) {
                 bhd.parentNode.removeChild(bhd);
                 return;
             }
-            if (tags.White) {
+            if (tags.get("White")) {
                 whd.innerHTML = ''
-                whd.appendChild(document.createTextNode(tags.White + " "))
+                whd.appendChild(document.createTextNode(tags.get("White") + " "))
             }
             //div_h.appendChild(document.createTextNode(" - "));
-            if (tags.Black) {
+            if (tags.get("Black")) {
                 bhd.innerHTML = ''
-                bhd.appendChild(document.createTextNode(" " + tags.Black));
+                bhd.appendChild(document.createTextNode(" " + tags.get("Black")));
             }
             // let rest = "";
             // const appendHeader = function (result, header, separator) {
@@ -1192,14 +1192,14 @@ let pgnBase = function (boardId, configuration) {
             });
             let togglePgn = function () {
                 const pgnButton = document.getElementById(id('buttonsId') + "pgn");
-                const pgnText = document.getElementById(boardId + " .outerpgn");
+                const pgnText = document.getElementById(boardId + " .textpgn");
                 document.getElementById(id('buttonsId') + "pgn").classList.toggle('selected');
                 if (document.getElementById(id('buttonsId') + "pgn").classList.contains('selected')) {
                     const str = computePgn();
                     showPgn(str);
-                    document.querySelector("#" + boardId + " .pgn").style.display = 'block'; //slideDown(700, "linear");
+                    document.querySelector("#" + boardId + " .textpgn").style.display = 'block'; //slideDown(700, "linear");
                 } else {
-                    document.querySelector("#" + boardId + " .pgn").style.display = 'none';
+                    document.querySelector("#" + boardId + " .textpgn").style.display = 'none';
                 }
             };
             let toggleNagMenu = function () {
@@ -1241,7 +1241,7 @@ let pgnBase = function (boardId, configuration) {
                     let fen = that.mypgn.getMove(curr).fen;
                     makeMove(null, that.currentMove, fen);
                 });
-                document.querySelector('#' + boardId + ' .pgn').style.display = 'none';
+                document.querySelector('#' + boardId + ' .textpgn').style.display = 'none';
                 document.querySelector('#comment' + id('buttonsId') + " textarea.comment").onchange = function () {
                     function commentText() {
                         return " " + document.querySelector('#' + 'comment' + id('buttonsId') + " textarea.comment").value + " ";
@@ -1315,7 +1315,7 @@ let pgnBase = function (boardId, configuration) {
         };
 
         const showPgn = function (val) {
-            document.getElementById('pgn' + id('buttonsId')).textContent = val;
+            document.getElementById('textpgn' + id('buttonsId')).textContent = val;
         };
 
         /**

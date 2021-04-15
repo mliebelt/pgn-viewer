@@ -33,9 +33,6 @@
     <!-- Favicons
     ================================================== -->
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
 
 </head>
 <body>
@@ -94,7 +91,7 @@
             <td>yes</td>
             <td>-</td>
             <td>ID of the container for board, moves, and buttons. Has to be unique on that HTML page.</td>
-            <td>See all examples on the page <a href="examples.html">examples</a> .</td>
+            <td><a href="examples.html">All examples</a> </td>
         </tr>
         <tr>
             <td><code class="js plain">mode</code></td>
@@ -107,14 +104,6 @@
             <td>-</td>
         </tr>
         <tr>
-            <td><code class="js plain">position</code>
-                <p><code class="js string">'start'</code> or FEN string</p></td>
-            <td>no</td>
-            <td><code class="js string">'start'</code></td>
-            <td>Defines the position of the board, or where the game starts.</td>
-            <td>See <a href="examples.html#1022">Position</a> how to show different positions.</td>
-        </tr>
-        <tr>
             <td><code class="js plain">pgn</code></td>
             <td>no</td>
             <td>-</td>
@@ -122,35 +111,22 @@
                 should be shown. The moves are then shown in a container
                 that may be additionally styled by the theme selected.
             </td>
-            <td>See the <a href="examples.html#1051">Games Examples</a> how to do that.</td>
+            <td><a href="examples.html#1051">Game Examples</a></td>
         </tr>
         <tr>
             <td><code class="js plain">pgnFile</code></td>
             <td>no</td>
             <td>-</td>
             <td>The moves of the game denoted by an URL. Reads the content depending on the URL.</td>
-            <td>See the <a href="examples.html#1051">Games Examples</a> how to do that.</td>
+            <td><a href="examples.html#1051">Game Examples</a></td>
         </tr>
         <tr>
-            <td><code class="js plain">showCoords</code></td>
+            <td><code class="js plain">position</code>
+                <p><code class="js string">'start'</code> or FEN string</p></td>
             <td>no</td>
-            <td>true</td>
-            <td>Defines if the columns and rows should be show the coordinates
-                a to h (for the columns) and 1 to 8 (for the rows). If shown,
-                it could be styled by CSS.
-            <td>See the <a href="examples.html#1023">second board</a> of the examples.</td>
-        </tr>
-        <tr>
-            <td><code class="js plain">orientation</code>
-                <p>Possible values are <code class="js string">'white'</code> and <code
-                        class="js string">'black'</code></p></td>
-            <td>no</td>
-            <td><code class="js string">'white'</code></td>
-            <td>Defines if the board has 'white' at the bottom or 'black'.
-                May be switched at any time, if the buttons are rendered, that
-                include an orientation-switch button.
-            </td>
-            <td>See the <a href="examples.html#1023">first board</a> of the examples.</td>
+            <td><code class="js string">'start'</code></td>
+            <td>Defines the position of the board, or where the game starts.</td>
+            <td><a href="examples.html#1022">Position examples</a></td>
         </tr>
         <tr>
             <td><code class="js plain">theme</code></td>
@@ -162,9 +138,7 @@
                 And you may of course add your own themes. Current themese are: green, zeit, informator,
                 sportverlag, beyer, falken, blue.
             </td>
-            <td>See <a href="examples.html#1021">Piece Styles</a> for different figures and the <a
-                    href="examples.html#1050">
-                Themes and Styles</a>.
+            <td><a href="examples.html#1050">Theme and Style Examples</a>.
             </td>
         </tr>
         <tr>
@@ -184,47 +158,7 @@
             <td>Defines the piece style to take. These are all PNG files,
                 that are then scaled by the browser.
             </td>
-            <td></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">timerTime</code></td>
-            <td>no</td>
-            <td>700 milliseconds</td>
-            <td>Time in milliseconds, when a game is shown by autoplay.</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">locale</code>
-                <p>Currently supported are <code class="js string">cs, da, de, en, es, et, fi,
-                    fr, hu, is, it, nb, nl, pl, pt, ro, sv</code></p></td>
-            <td>no</td>
-            <td><code class="js string">'en'</code></td>
-            <td>Locale used for rendering figure symbols, PEG notation, ...</td>
-            <td>See the ticket about <a href="examples.html#1204">locales</a> for examples.</td>
-        </tr>
-        <tr>
-            <td><code class="js plain">boardSize</code>
-                <p>Size of the board (in CSS terms like '300px') </p></td>
-            <td>no</td>
-            <td>-</td>
-            <td>Size of the board that is set on the DIV for the board.</td>
-            <td>.</td>
-        </tr>
-        <tr>
-            <td><code class="js plain">showFen</code>
-                <p>If fen should be displayed.</p></td>
-            <td>no</td>
-            <td>true in edit mode, else false</td>
-            <td>If fen text widget should be shown. Writable in edit mode, else readable.</td>
-            <td>.</td>
-        </tr>
-        <tr>
-            <td><code class="js plain">width</code>
-                <p>Width of the whole div.</p></td>
-            <td>no</td>
-            <td>-</td>
-            <td>Denotes the width of the div widget.</td>
-            <td>.</td>
+            <td><a href="examples.html#1021">Piece Style Examples</a></td>
         </tr>
         <tr>
             <td><code class="js plain">layout</code>
@@ -234,7 +168,23 @@
             <td>Denotes the layout of the board relevant to the moves. top is board over moves, left is board on the left,
                 and moves on the right ...
             </td>
-            <td>.</td>
+            <td>NOT THERE</td>
+        </tr>
+        <tr>
+            <td><code class="js plain">width</code>
+                <p>Width of the whole div.</p></td>
+            <td>no</td>
+            <td>-</td>
+            <td>Denotes the width of the div widget.</td>
+            <td>NOT THERE</td>
+        </tr>
+        <tr>
+            <td><code class="js plain">boardSize</code>
+                <p>Size of the board (in CSS terms like '300px') </p></td>
+            <td>no</td>
+            <td>-</td>
+            <td>Size of the board that is set on the DIV for the board.</td>
+            <td>NOT THERE</td>
         </tr>
         <tr>
             <td><code class="js plain">movesWidth</code>
@@ -244,7 +194,7 @@
             <td>Set the width of the moves div. Is relevant depending on the layout, and the size the
                 whole div takes.
             </td>
-            <td>.</td>
+            <td>NOT THERE</td>
         </tr>
         <tr>
             <td><code class="js plain">movesHeight</code>
@@ -254,16 +204,63 @@
             <td>Set the height of the moves div. Automatic computed with layout left and right, only relevant
                 for layout top and bottom.
             </td>
-            <td>.</td>
+            <td>NOT THERE</td>
+        </tr>
+        <tr>
+            <td><code class="js plain">notationLayout</code>
+                <p>The layout of the notation in the moves section.</p></td>
+            <td>no</td>
+            <td>inline</td>
+            <td>Select the layout of the moves section. Available are: inline, list. Default is inline.
+            </td>
+            <td>NOT THERE</td>
+        </tr>
+        <tr>
+            <td><code class="js plain">timerTime</code></td>
+            <td>no</td>
+            <td>700 milliseconds</td>
+            <td>Time in milliseconds, when a game is shown by autoplay.</td>
+            <td>NOT THERE</td>
+        </tr>
+        <tr>
+            <td><code class="js plain">orientation</code>
+                <p>Possible values are <code class="js string">'white'</code> and <code
+                        class="js string">'black'</code></p></td>
+            <td>no</td>
+            <td><code class="js string">'white'</code></td>
+            <td>Defines if the board has 'white' at the bottom or 'black'.
+                May be switched at any time, if the buttons are rendered, that
+                include an orientation-switch button.
+            </td>
+            <td><a href="examples.html#1023">First board</a> of the examples</td>
+        </tr>
+        <tr>
+            <td><code class="js plain">notation</code>
+                <p>Possible values are <code class="js string">'short'</code> and <code
+                        class="js string">'long'</code></p></td>
+            <td>no</td>
+            <td><code class="js string">'short'</code></td>
+            <td>To show moves in short or long notation.
+            </td>
+            <td>NOT THERE</td>
         </tr>
         <tr>
             <td><code class="js plain">headers</code>
-                <p>false if headers should not be shown.</p></td>
+                </td>
+            <td>no</td>
+            <td><code class="js string">false</code></td>
+            <td>To show the tags if available. Default is false.
+            </td>
+            <td>NOT THERE</td>
+        </tr>
+        <tr>
+            <td><code class="js plain">showCoords</code></td>
             <td>no</td>
             <td>true</td>
-            <td>Set to false, if headers should not be shown. Default is true.
-            </td>
-            <td>.</td>
+            <td>Defines if the columns and rows should be show the coordinates
+                a to h (for the columns) and 1 to 8 (for the rows). If shown,
+                it could be styled by CSS.
+            <td><a href="examples.html#1023">Second board</a> of the examples</td>
         </tr>
         <tr>
             <td><code class="js plain">coordsInner</code>
@@ -272,7 +269,7 @@
             <td>true</td>
             <td>Set to false, if coords should be shown on the outside. Default is true.
             </td>
-            <td>.</td>
+            <td>NOT THERE</td>
         </tr>
         <tr>
             <td><code class="js plain">coordsFactor</code>
@@ -281,8 +278,44 @@
             <td>1.0</td>
             <td>Factor by which the coords font size should be multiplied. Default is 1.0.
             </td>
-            <td>.</td>
+            <td>NOT THERE</td>
         </tr>
+        <tr>
+            <td><code class="js plain">coordsFontSize</code>
+                <p>The font size for the coordinates (in pixels).</p></td>
+            <td>no</td>
+            <td>-</td>
+            <td>The font size to set for coordinates. Overwrites the defaults, and <code class="js plain">coordsFactor</code>.
+            </td>
+            <td>NOT THERE</td>
+        </tr>
+        <tr>
+            <td><code class="js plain">showFen</code>
+                <p>If fen should be displayed.</p></td>
+            <td>no</td>
+            <td>true in edit mode, else false</td>
+            <td>If fen text widget should be shown. Writable in edit mode, else readable.</td>
+            <td>NOT THERE</td>
+        </tr>
+        <tr>
+            <td><code class="js plain">colorMarker</code>
+                <p>Show a mark for the player that has the next move.</p></td>
+            <td>no</td>
+            <td>-</td>
+            <td>Color marker who has the next move. Available are: anything (will be square), circle, additional size:
+                small, big (default is medium).</td>
+            <td>NOT THERE</td>
+        </tr>
+        <tr>
+            <td><code class="js plain">locale</code>
+                <p>Currently supported are <code class="js string">cs, da, de, en, es, et, fi,
+                    fr, hu, is, it, nb, nl, pl, pt, ro, sv</code></p></td>
+            <td>no</td>
+            <td><code class="js string">'en'</code></td>
+            <td>Locale used for rendering figure symbols, NAG notation, ...</td>
+            <td><a href="examples.html#1204">Locale Examples</a> NOT THERE</td>
+        </tr>
+
         <tr>
             <td><code class="js plain">startPlay</code>
                 <p>Move where the positions should be shown (only view and edit mode)</p></td>
@@ -291,7 +324,15 @@
             <td>Move where the position should be shown. Possibilities are: FEN, move number (half move), or
                 the move itself.
             </td>
-            <td>.</td>
+            <td>NOT THERE</td>
+        </tr>
+        <tr>
+            <td><code class="js plain">hideMovesBefore</code></td>
+            <td>no</td>
+            <td>false</td>
+            <td>True, if move before <code class="js plain">startPlay</code> should be hidden.
+            </td>
+            <td>NOT THERE</td>
         </tr>
         <tr>
             <td><code class="js plain">showResult</code>
@@ -301,7 +342,7 @@
             <td>True, if the result of the game shoujld be shown at the end of the pgn notation.
                 Default is false
             </td>
-            <td>.</td>
+            <td>NOT THERE</td>
         </tr>
         </tbody>
     </table>
@@ -325,7 +366,7 @@
             <td>ID, position</td>
             <td>theme, pieceStyle, orientation, showCoords, width, boardSize, coordsInner, coordsFactor</td>
             <td>Displays (only) a board, in the size given by the container.</td>
-            <td>See the page <a href="examples.html#1021">boards</a> for some examples.</td>
+            <td> <a href="examples.html#1021">Board Examples</a> </td>
         </tr>
         <tr>
             <td><code class="js plain">pgnPrint</code></td>
@@ -335,7 +376,7 @@
                 magazines or books. Does <strong>not</strong> allow to
                 play the game interactively.
             </td>
-            <td>See the page <a href="examples.html#1002">print</a> for a small example.</td>
+            <td> <a href="examples.html#1002">Print Example</a> </td>
         </tr>
         <tr>
             <td><code class="js plain">pgnView</code></td>
@@ -346,7 +387,7 @@
                 There are some key bindings, so by pressing LEFT or RIGHT,
                 the moves are played forth and back.
             </td>
-            <td>See the page <a href="examples.html#1001">viewer</a> for a minimal example.</td>
+            <td><a href="examples.html#1001">Viewer Example</a></td>
         </tr>
         <tr>
             <td><code class="js plain">pgnEdit</code></td>
@@ -356,13 +397,13 @@
                 automatically recorded and shown. By pressing the PGN button,
                 the reader gets a text script that may be later used.
             </td>
-            <td>See the page <a href="examples.html#1003">edit</a> for an empty example.</td>
+            <td><a href="examples.html#1003">Edit Example</a> </td>
         </tr>
         </tbody>
     </table>
 
 </div><!-- container -->
-
+</div>
 
 <!-- End Document
 ================================================== -->

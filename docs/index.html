@@ -2,7 +2,8 @@
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en" xmlns="http://www.w3.org/1999/html"> <!--<![endif]-->
 <head>
 
 	<!-- Basic Page Needs
@@ -76,12 +77,12 @@
 			<h3>Implementation</h3>
 			<p>The implementation contains the following parts:</p>
 			<ul class="square">
-				<li><strong>Chess.js</strong>: Small JavaScript library that provides the
+                <li><strong><a href="https://github.com/jhlywa/chess.js">Chess.js</a></strong>: Small JavaScript library that provides the
                     base functionality for playing chess (but without a board).</li>
-				<li><strong>Chessground</strong>: Builds the missing building blocks for
+                <li><strong><a href="https://github.com/ornicar/chessground">Chessground</a></strong>: Builds the missing building blocks for
                     displaying a chess board, with some functions: Moving pieces, some
                 animations, ... This board was developed for lichess.org.</li>
-				<li><strong>PEG.js</strong>: Parser Generator for JavaScript to read pgn notation.</li>
+				<li><strong><a href="http://pegjs.org/">PEG.js</a></strong>: Parser Generator for JavaScript to read pgn notation.</li>
 				<li><strong>PgnViewerJS</strong>:
                     <ul>
                         <li><strong>pgn-parser</strong>: module to parse the games.</li>
@@ -114,34 +115,19 @@
 		</div>
     </div>
     <div class="container">
-        <div class="four columns">
+        <div class="eight columns">
             <h2>Downloads</h2>
-            <p>Currently the PgnViewerJS is provide as NPM library. So the recommended way to get any version is:
-            <code>npm install @mliebelt/pgn-viewer</code>. The following are older versions not available through NPM.</p>
-            <ul>
-                <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.8.zip">Version 0.9.8</a></li>
-                <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.7.zip">Version 0.9.7</a></li>
-            </ul>
+            <p>Currently the PgnViewerJS is provide as NPM library. So the recommended way to get any version is:<br/>
+            <code>npm install @mliebelt/pgn-viewer</code>. </p>
         </div>
-        <div class="four columns">
-            <h2>(cont.)</h2>
-            <ul>
-                <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.6.zip">Version 0.9.6</a></li>
-                <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.5.zip">Version 0.9.5</a> </li>
-                <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.4.zip">Version 0.9.4</a> </li>
-                <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.3.zip">Version 0.9.3</a> </li>
-                <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.2.zip">Version 0.9.2</a> </li>
-                <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.1.zip">Version 0.9.1</a> </li>
-                <li><a href="https://s3.eu-central-1.amazonaws.com/pgnviewerjs/releases/PgnViewerJS-0.9.0.zip">Version 0.9.0</a> </li>
-            </ul>
-        </div>
+
         <div class="eight columns">
             <h2>References</h2>
             <ul>
-                <li><a href="https://github.com/jhlywa/chess.js">chess.js</a>: Small chess library widely used</li>
-                <li><a href="https://github.com/ornicar/chessground">chessground</a>: UI for chess.js</li>
-                <li><a href="http://pegjs.org/">PEG.js</a>: Parser Generator for Javascript, implements reading
-                    pgn notation (with some flexibility)</li>
+                <li><a href="https://github.com/mliebelt/pgn-spec-commented/blob/main/pgn-specification.md">
+                    Standard: Portable Game Notation Specification and Implementation Guide</a> The original specification</li>
+                <li><a href="https://github.com/mliebelt/pgn-spec-commented/blob/main/pgn-spec-supplement.md">
+                    PGN Specification Supplement</a> The additional supplement with extensions used widely</li>
             </ul>
         </div>
     </div><!-- container -->

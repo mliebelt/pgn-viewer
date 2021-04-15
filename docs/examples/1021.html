@@ -6,34 +6,34 @@
 <title>Piece Styles</title>
 <link rel="stylesheet" href="../css/prettify.css" />
 <link rel="stylesheet" href="../css/layout.css" />
-<script src="../js/pgnv.js" type="text/javascript" ></script>
+<script src="../lib/pgnv.js" type="text/javascript" ></script>
 <script src="../js/prettify.js" type="text/javascript" ></script>
 </head>
 <body class="merida zeit">
 <h2>Piece Styles</h2>
 <h3>Javascript part</h3>
-<pre class="prettyprint lang-js">var board = PGNV.pgnBoard('board', {pieceStyle: 'merida', boardSize: '400px'});
-var board2 = PGNV.pgnBoard('board2', {pieceStyle: 'case', boardSize: '400px'});
-var board3 = PGNV.pgnBoard('board3', {pieceStyle: 'wikipedia', boardSize: '400px'});
-var board4 = PGNV.pgnBoard('board4', {pieceStyle: 'alpha',  boardSize: '400px'});
-var board5 = PGNV.pgnBoard('board5', {pieceStyle: 'uscf',  boardSize: '400px'});
-var board7 = PGNV.pgnBoard('board7', {pieceStyle: 'condal', boardSize: '400px'});
-var board8 = PGNV.pgnBoard('board8', {pieceStyle: 'maya',  boardSize: '400px'});
-var board9 = PGNV.pgnBoard('board9', {pieceStyle: 'leipzig', boardSize: '400px'});</pre>
+<pre class="prettyprint lang-js">var board = PGNV.pgnBoard('board', {pieceStyle: 'merida', boardSize: '340px'});
+var board2 = PGNV.pgnBoard('board2', {pieceStyle: 'case', boardSize: '340px'});
+var board3 = PGNV.pgnBoard('board3', {pieceStyle: 'wikipedia', boardSize: '340px'});
+var board4 = PGNV.pgnBoard('board4', {pieceStyle: 'alpha',  boardSize: '340px'});
+var board5 = PGNV.pgnBoard('board5', {pieceStyle: 'uscf',  boardSize: '340px'});
+var board7 = PGNV.pgnBoard('board7', {pieceStyle: 'condal', boardSize: '340px'});
+var board8 = PGNV.pgnBoard('board8', {pieceStyle: 'maya',  boardSize: '340px'});
+var board9 = PGNV.pgnBoard('board9', {pieceStyle: 'leipzig', boardSize: '340px'});</pre>
 <h3>HTML part</h3>
-<pre class="prettyprint lang-html">Merida &lt;div id=&quot;board&quot;&gt;&lt;&#x2F;div&gt; Case &lt;div id=&quot;board2&quot;&gt;&lt;&#x2F;div&gt; Wikipedia &lt;div id=&quot;board3&quot;&gt;&lt;&#x2F;div&gt; Alpha &lt;div id=&quot;board4&quot;&gt;&lt;&#x2F;div&gt; USCF &lt;div id=&quot;board5&quot;&gt;&lt;&#x2F;div&gt;  Condal &lt;div id=&quot;board7&quot;&gt;&lt;&#x2F;div&gt; Maya &lt;div id=&quot;board8&quot;&gt;&lt;&#x2F;div&gt; Leipzig &lt;div id=&quot;board9&quot;&gt;&lt;&#x2F;div&gt;</pre>
+<pre class="prettyprint lang-html">&lt;p&gt;Merida Case Wikipedia Alpha USCF Condal Maya Leipzig &lt;&#x2F;p&gt;&lt;div id=&quot;board&quot; style=&quot;float: left; margin: 20px&quot;&gt;&lt;&#x2F;div&gt;  &lt;div id=&quot;board2&quot; style=&quot;float: left; margin: 20px&quot;&gt;&lt;&#x2F;div&gt;  &lt;div id=&quot;board3&quot; style=&quot;float: left; margin: 20px&quot;&gt;&lt;&#x2F;div&gt;  &lt;div id=&quot;board4&quot; style=&quot;float: left; margin: 20px&quot;&gt;&lt;&#x2F;div&gt;  &lt;div id=&quot;board5&quot; style=&quot;float: left; margin: 20px&quot;&gt;&lt;&#x2F;div&gt;   &lt;div id=&quot;board7&quot; style=&quot;float: left; margin: 20px&quot;&gt;&lt;&#x2F;div&gt;  &lt;div id=&quot;board8&quot; style=&quot;float: left; margin: 20px&quot;&gt;&lt;&#x2F;div&gt;  &lt;div id=&quot;board9&quot; style=&quot;float: left; margin: 20px&quot;&gt;&lt;&#x2F;div&gt;</pre>
 <p>See the <a href="../examples.html#1021">back link</a> to the original examples page.</p>
 <div>ChessBoard pieceStyle 'merida', 'case', 'wikipedia', 'alpha', 'uscf', 'condal', 'maya', and 'leipzig'.</div>
-Merida <div id="board"></div> Case <div id="board2"></div> Wikipedia <div id="board3"></div> Alpha <div id="board4"></div> USCF <div id="board5"></div>  Condal <div id="board7"></div> Maya <div id="board8"></div> Leipzig <div id="board9"></div>
+<p>Merida Case Wikipedia Alpha USCF Condal Maya Leipzig </p><div id="board" style="float: left; margin: 20px"></div>  <div id="board2" style="float: left; margin: 20px"></div>  <div id="board3" style="float: left; margin: 20px"></div>  <div id="board4" style="float: left; margin: 20px"></div>  <div id="board5" style="float: left; margin: 20px"></div>   <div id="board7" style="float: left; margin: 20px"></div>  <div id="board8" style="float: left; margin: 20px"></div>  <div id="board9" style="float: left; margin: 20px"></div>
 <script>
-var board = PGNV.pgnBoard('board', {pieceStyle: 'merida', boardSize: '400px'});
-var board2 = PGNV.pgnBoard('board2', {pieceStyle: 'case', boardSize: '400px'});
-var board3 = PGNV.pgnBoard('board3', {pieceStyle: 'wikipedia', boardSize: '400px'});
-var board4 = PGNV.pgnBoard('board4', {pieceStyle: 'alpha',  boardSize: '400px'});
-var board5 = PGNV.pgnBoard('board5', {pieceStyle: 'uscf',  boardSize: '400px'});
-var board7 = PGNV.pgnBoard('board7', {pieceStyle: 'condal', boardSize: '400px'});
-var board8 = PGNV.pgnBoard('board8', {pieceStyle: 'maya',  boardSize: '400px'});
-var board9 = PGNV.pgnBoard('board9', {pieceStyle: 'leipzig', boardSize: '400px'});
+var board = PGNV.pgnBoard('board', {pieceStyle: 'merida', boardSize: '340px'});
+var board2 = PGNV.pgnBoard('board2', {pieceStyle: 'case', boardSize: '340px'});
+var board3 = PGNV.pgnBoard('board3', {pieceStyle: 'wikipedia', boardSize: '340px'});
+var board4 = PGNV.pgnBoard('board4', {pieceStyle: 'alpha',  boardSize: '340px'});
+var board5 = PGNV.pgnBoard('board5', {pieceStyle: 'uscf',  boardSize: '340px'});
+var board7 = PGNV.pgnBoard('board7', {pieceStyle: 'condal', boardSize: '340px'});
+var board8 = PGNV.pgnBoard('board8', {pieceStyle: 'maya',  boardSize: '340px'});
+var board9 = PGNV.pgnBoard('board9', {pieceStyle: 'leipzig', boardSize: '340px'});
 </script>
 <script>prettyPrint();</script>
 </body>

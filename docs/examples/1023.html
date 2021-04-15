@@ -6,7 +6,7 @@
 <title>Additional parameters</title>
 <link rel="stylesheet" href="../css/prettify.css" />
 <link rel="stylesheet" href="../css/layout.css" />
-<script src="../js/pgnv.js" type="text/javascript" ></script>
+<script src="../lib/pgnv.js" type="text/javascript" ></script>
 <script src="../js/prettify.js" type="text/javascript" ></script>
 </head>
 <body class="merida zeit">
@@ -15,12 +15,12 @@
 <pre class="prettyprint lang-js">PGNV.pgnBoard('b1', {orientation: 'black'});
 PGNV.pgnBoard('b2', {showCoords: false});</pre>
 <h3>HTML part</h3>
-<pre class="prettyprint lang-html">&lt;div id=&quot;b1&quot; style=&quot;width: 300px; margin: 20px&quot;&gt;&lt;&#x2F;div&gt;
-&lt;div id=&quot;b2&quot; style=&quot;width: 300px; margin: 20px&quot;&gt;&lt;&#x2F;div&gt;</pre>
+<pre class="prettyprint lang-html">&lt;div id=&quot;b1&quot; style=&quot;width: 300px; margin: 20px;float: left&quot;&quot;&gt;&lt;&#x2F;div&gt;
+&lt;div id=&quot;b2&quot; style=&quot;width: 300px; margin: 20px;float: left&quot;&quot;&gt;&lt;&#x2F;div&gt;</pre>
 <p>See the <a href="../examples.html#1023">back link</a> to the original examples page.</p>
 <div>ChessBoard with different additional configuration parameters. Used are here orientation and showCoords.</div>
-<div id="b1" style="width: 300px; margin: 20px"></div>
-<div id="b2" style="width: 300px; margin: 20px"></div>
+<div id="b1" style="width: 300px; margin: 20px;float: left""></div>
+<div id="b2" style="width: 300px; margin: 20px;float: left""></div>
 <script>
 PGNV.pgnBoard('b1', {orientation: 'black'});
 PGNV.pgnBoard('b2', {showCoords: false});

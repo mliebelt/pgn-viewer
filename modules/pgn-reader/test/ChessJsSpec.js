@@ -8,6 +8,7 @@ xdescribe("Chess Game", function() {
     chess = new Chess();
   });
 
+
   it("should be able instantiate a chess game", function() {
     should(chess.fen()).equal("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
     should(chess.turn()).equal("w");

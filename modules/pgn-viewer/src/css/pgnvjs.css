@@ -128,14 +128,14 @@
 /* layout top / bottom */
 .pgnvjs.layout-top {
     display: grid;
-    gap: 0.5em;
+    /*gap: 0.5em;   Why should I use a gap all the time? At least at the top of the board it is strange ...*/
     grid-template-columns: auto;
     grid-template-rows: auto minmax(auto,1fr) 50px auto;
 }
 
 .pgnvjs.layout-bottom {
     display: grid;
-    gap: 0.5em;
+    /*gap: 0.5em;*/
     grid-template-columns: auto;
     grid-template-rows: auto auto minmax(auto,400px) 50px;
 }
@@ -300,7 +300,7 @@
 /*    width: 40px;*/
 /*}*/
 
-.pgnvjs textarea.pgn {
+.pgnvjs textarea.textpgn {
     padding: 2px;
     border: 1px solid grey;
     width: 96%;
