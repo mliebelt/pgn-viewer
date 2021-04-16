@@ -14,7 +14,7 @@ Wilhelm Steinitz, the great German Chess Master was officially recognized as the
 1. e4 e6 2. d4 d5 3. Nc3 Nf6 4. e5 Nfd7 5. f4 c5 6. dxc5 Bxc5 7. Nf3 a6 8. Bd3 Nc6 9. Qe2 Nb4 10. Bd2 b5 11. Nd1 Nxd3+ 12. cxd3 Qb6
 13. b4 $1 Be7
 {
-If 13. ... Bd4, 14. Rb1 Qa7 (To provide a flight-square for the Bishop.) 15. Nxd4 Qxd4 16. Be3 and black loses his Queen.
+If 13... Bd4, 14. Rb1 Qa7 (To provide a flight-square for the Bishop.) 15. Nxd4 Qxd4 16. Be3 and black loses his Queen.
 }
 14. a3 f5 $2  
 {
@@ -26,13 +26,13 @@ To prevent 19. g4. But this move weakens Black's Pawn structure.
 }
 19. Nc3 Kf7 20. Nb1 g6 
 {
-Black wants to move his knight from the passive position. But if 20. ...Nd7, Nxf5 exf5 e6+!. But after Black's move all his Pawns are on white squares. So Black has very weak black squares, defended by his Bishop.
+Black wants to move his knight from the passive position. But if 20...Nd7, Nxf5 exf5 e6+!. But after Black's move all his Pawns are on white squares. So Black has very weak black squares, defended by his Bishop.
 }
 21. Nd2 Nd7 22. N2b3 Rc8 23. Na5 $1 
 {
 A remarkable Knight tour. The Knight is headed for c6, to remove Black's only defender of his weak dark squares. 
 }
-23. ...Ba8 
+23..Ba8 
 {
 Now Steinitz gives a valuable lesson in exploiting square weaknesses, effective use of open file and Rook on the 7th rank.
 }
@@ -42,9 +42,9 @@ To prevent penetration to the 7th rank.
 }
 27. Nac6 
 {
-Steinitz wants to eliminate Black's only defender of dark squares-the Bishop on d8.  For that he allows a chance to exchange his bad Bishop on a8.  Now if 27. ...Bxc6 28. Qxc6 Nf8 29. Nxe6! Nxe6 30. Qd7+ Be7 31. Rc6! Nf8 32. Rf6+ and White wins.
+Steinitz wants to eliminate Black's only defender of dark squares-the Bishop on d8.  For that he allows a chance to exchange his bad Bishop on a8.  Now if 27...Bxc6 28. Qxc6 Nf8 29. Nxe6! Nxe6 30. Qd7+ Be7 31. Rc6! Nf8 32. Rf6+ and White wins.
 }
-27. ...Qb7 28. Nxd8+ Rxd8 29. Qc7 $1 Qb8 30. Bf2 $1 Qb6 
+27..Qb7 28. Nxd8+ Rxd8 29. Qc7 $1 Qb8 30. Bf2 $1 Qb6 
 {
 To prevent 31. Bh4.
 }
@@ -52,7 +52,7 @@ To prevent 31. Bh4.
 {
 White controls the 7th rank which is Rook, his Knight is headed for g5, and his Bishop controls all the Black squares. Black cannot move his Knight because of the Pin, his Rook is tied down to the defence of the Knight and his Bishop has no safe square.  Black must meet the threat of 33. Bh4.
 }
-32. ...Ke8 33. Ng5 Nf8 34. Bc5 Nd7 
+32...Ke8 33. Ng5 Nf8 34. Bc5 Nd7 
 {
 To prevent 35. Re7#
 }
@@ -425,7 +425,7 @@ Not a wee of a chance did Smyslov give to his opponent after 7)...b5 ?! . The mo
 [Round "?"]
 [White "Smyslov, V"]
 [Black "Uhlmann"]
-[Result "1-0"]
+[Result "0-1"]
 [Annotator "Ravishankar, D"]
 
 {
@@ -530,7 +530,7 @@ It was not possible to play 12...Nfd5 due to 13. exd Bc3 14. bxc Re2 15. cxb
 Forced. Since after 14. Bd3 Nd3 15 Qd3 Be4 Black remains a Pawn up.
 Black has compensation since he will get another Pawn on d5 with a tempo and also White pieces are in a cramped position. Practically it is difficult for White to find the best path.
 }
-14. ... Nd5 15. Bd6
+14... Nd5 15. Bd6
 ({Many alternatives were available at this stage.}
 15. Be3 Ne3 16. fxe3 d5 17. Rf5 dxe4 18. Rc5 Qd2 $1 {and the Pawn on e3 is lost with a winning position for Black.}) 
 (15. Bg5 Qd7 $1 (15...f6 16. Bc4) 16. Bf3 (17. f3 h6 18. Bh4 Nf4 { with the idea 19. -- d5}) 16...h6 17. Bh4 Nb4 18. a3 Nc6 {with many threats -... g5 - g4,... d5 and... Nd4. })

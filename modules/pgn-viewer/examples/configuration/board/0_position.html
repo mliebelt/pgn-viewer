@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>position parameter</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+</head>
+<body class='merida blue'>
+<h3>Postion parameter</h3>
+
+<div>The position parameter defines the starting position of the game. It is relevant
+    in all modes. It defaults to the start position.</div>
+
+<div id="board2" style="width: 300px; margin-right: 25px"></div>
+
+<script>
+    PGNV.pgnView("board2", {pgn: "5... Be7 6. Re1 O-O", position: "r1bqkb1r/1ppp1ppp/p1n2n2/4p3/B3P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 3 5"});
+</script>
+
+
+</body>
+</html>
