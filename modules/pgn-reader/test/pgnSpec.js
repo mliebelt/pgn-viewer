@@ -190,6 +190,15 @@ describe("When reading PGN with headers", function() {
         should(tags.get("PuzzleMakerVersion")).equal("0.5")
         should(tags.get("PuzzleWinner")).equal("White")
     })
+
+    it("should read unusual spacing of tags", function () {
+        let pgn = pgnReader({pgn: '[  White    "Me"   ]  [  Black  "Magnus"   ] 1. e4'})
+        should.exist(pgn)
+        let tags = pgn.getTags()
+        should.exist(tags)
+        should(tags.get('White')).equal("Me")
+
+    })
 });
 
 describe("When reading pgn with wrong headers", function() {
