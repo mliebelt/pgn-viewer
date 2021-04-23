@@ -868,3 +868,17 @@ describe("Working with games with special characters", function () {
     })
 })
 
+describe("should handle errors in PGN by throwing errors", function () {
+    it("should read wrong chess moves in PGN by matching", function () {
+        // try {
+        //     pgnReader({pgn: 'd5'}).load_pgn()
+        // } catch (err) {
+        //     should.exist(err)
+        // }
+        (function () { pgnReader({pgn: 'd5'}).load_pgn() } ).should.throw('No legal move: d5')
+    })
+    it("should read syntactically wrong PGN by throwing SyntaxError", function () {
+
+        (function() {pgnReader({pgn: 'ddd3'}).load_pgn()}).should.throw('Expected [1-8] but "d" found.')
+    })
+})
