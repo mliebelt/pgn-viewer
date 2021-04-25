@@ -21,6 +21,7 @@ let pgnBase = function (boardId, configuration) {
     that.userConfiguration = configuration
     // Sets the default parameters for all modes. See individual functions for individual overwrites
     let defaults = {
+        lazyLoad: true,
         theme: "blue",
         pieceStyle: 'merida',
         //width: '320px',
@@ -56,13 +57,13 @@ let pgnBase = function (boardId, configuration) {
     that.promMappings = {q: 'queen', r: 'rook', b: 'bishop', n: 'knight'};
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration);
     that.mypgn = pgnReader(that.configuration);
-    let game = that.mypgn.game;     // Use the same instance from chess.src
+    let chess = that.mypgn.chess;     // Use the same instance from chess.src
     let theme = that.configuration.theme || 'default';
     const hasMode = function (mode) {
         return that.configuration.mode === mode;
     };
     const possibleMoves = function () {
-        return new Map(Object.entries(that.mypgn.possibleMoves(game)));
+        return new Map(Object.entries(that.mypgn.possibleMoves(chess)));
     };
     const id = function (id) {
         return that.configuration.IDs[id];
@@ -201,11 +202,11 @@ let pgnBase = function (boardId, configuration) {
      * @param san the san formatted move to play
      */
     const manualMove = function (san) {
-        const m = game.move(san)
+        const m = chess.move(san)
         if (m === null) return
-        game.undo()
+        chess.undo()
         onSnapEnd(m.from, m.to)
-        that.board.set({fen: game.fen()})
+        that.board.set({fen: chess.fen()})
     }
 
     /**
@@ -220,7 +221,7 @@ let pgnBase = function (boardId, configuration) {
         //board.set({fen: game.fen()});
         const cur = that.currentMove;
         let primMove = {from: from, to: to};
-        if ((that.mypgn.game.get(from).type === 'p') && ((to.substring(1, 2) === '8') || (to.substring(1, 2) === '1'))) {
+        if ((that.mypgn.chess.get(from).type === 'p') && ((to.substring(1, 2) === '8') || (to.substring(1, 2) === '1'))) {
             swal("Select the promotion figure", {
                 buttons: {
                     queen: {text: "Queen", value: 'q'},
@@ -260,8 +261,8 @@ let pgnBase = function (boardId, configuration) {
             let col = move.turn == 'w' ? 'black' : 'white';
             that.board.set({
                 movable: Object.assign({}, that.board.state.movable,
-                    {color: col, dests: possibleMoves(game), showDests: true}),
-                check: game.in_check()
+                    {color: col, dests: possibleMoves(chess), showDests: true}),
+                check: chess.in_check()
             });
             //makeMove(null, that.currentMove, move.fen);
             let fenView = document.getElementById(id('fenId'));
@@ -675,11 +676,11 @@ let pgnBase = function (boardId, configuration) {
         }
         if (hasMode('edit')) {
             setGameToPosition(configuration.position);
-            let toMove = (game.turn() == 'w') ? 'white' : 'black';
+            let toMove = (chess.turn() == 'w') ? 'white' : 'black';
             that.board.set({
                 movable: Object.assign({}, that.board.state.movable,
-                    {color: toMove, dests: possibleMoves(game), showDests: true}),
-                turnColor: toMove, check: game.in_check()
+                    {color: toMove, dests: possibleMoves(chess), showDests: true}),
+                turnColor: toMove, check: chess.in_check()
             });
         }
         if (that.configuration.colorMarker) {
@@ -863,7 +864,7 @@ let pgnBase = function (boardId, configuration) {
     const updateUI = function (next) {
         const divBoard = document.getElementById(boardId);
         const pgnEmpty = function () {
-            let pgn = that.mypgn.write_pgn()
+            let pgn = that.mypgn.writePgn()
             return (typeof pgn === 'undefined') || (pgn === null) || (pgn.length === 0)
         }
         let elements = divBoard.querySelectorAll("i.button.gray");
@@ -983,26 +984,26 @@ let pgnBase = function (boardId, configuration) {
         if (myMove) {
             that.board.setShapes(getShapes(myMove.commentDiag));
         }
-        game.load(myFen);
+        chess.load(myFen);
         unmarkMark(next);
         that.currentMove = next;
         if (next) {
             scrollToView(moveSpan(next));
         }
         if (hasMode('edit')) {
-            let col = game.turn() == 'w' ? 'white' : 'black';
+            let col = chess.turn() == 'w' ? 'white' : 'black';
             that.board.set({
-                movable: Object.assign({}, that.board.state.movable, {color: col, dests: possibleMoves(game), showDests: true}),
-                turnColor: col, check: game.in_check()
+                movable: Object.assign({}, that.board.state.movable, {color: col, dests: possibleMoves(chess), showDests: true}),
+                turnColor: col, check: chess.in_check()
             });
             if (next) {
                 fillComment(next);
             }
         } else if (hasMode('view')) {
-            let col = game.turn() == 'w' ? 'white' : 'black';
+            let col = chess.turn() == 'w' ? 'white' : 'black';
             that.board.set({
                 movable: Object.assign({}, that.board.state.movable, {color: col}),
-                turnColor: col, check: game.in_check()
+                turnColor: col, check: chess.in_check()
             });
         }
         let fenView = document.getElementById(id('fenId'));
@@ -1015,9 +1016,9 @@ let pgnBase = function (boardId, configuration) {
 
     function setGameToPosition(pos) {
         if (pos == 'start' | typeof pos === 'undefined') {
-            game.reset();
+            chess.reset();
         } else {
-            game.load(pos);
+            chess.load(pos);
         }
     }
 
@@ -1028,11 +1029,12 @@ let pgnBase = function (boardId, configuration) {
     const generateMoves = function () {
         /** Create something printable from the tags for the list. */
         function printTags(game) {
-            if (Object.keys(game.tags).length === 0) {
-                return "Should print somehow the moves of the game"
+            if (game.tags.size === 0) {
+                return "Should print somehow the moves of the game" //TODO: What is the idea here? No clue ...
             }
             let _t = game.tags
-            return `[${_t.Event}] ${_t.Round}: ${_t.White} - ${_t.Black} (${_t.Date})`
+            let _date = _t.Date ? _t.Date.value : "?"
+            return `[${_t.Event}] ${_t.Round}: ${_t.White} - ${_t.Black} (${_date})`
         }
         /** Fill the drop down with loaded game. */
         function fillGamesDropDown() {
@@ -1046,7 +1048,7 @@ let pgnBase = function (boardId, configuration) {
                 _select.add(_el)
             }
             _select.addEventListener('change', function (ev) {
-                that.mypgn.load_one(parseInt(ev.currentTarget.value))
+                that.mypgn.loadOne(parseInt(ev.currentTarget.value))
                 regenerateMoves(that.mypgn.getMoves())
                 // bindFunctions();
                 generateHeaders()
@@ -1054,7 +1056,7 @@ let pgnBase = function (boardId, configuration) {
             })
         }
         try {
-            that.mypgn.load_pgn();
+            that.mypgn.loadPgn();
             fillGamesDropDown();
         } catch (err) {
             if (typeof err.location != "undefined") {
@@ -1072,11 +1074,11 @@ let pgnBase = function (boardId, configuration) {
         let myMoves = that.mypgn.getMoves();
         setGameToPosition(that.configuration.position);
         if (that.board) {
-            that.board.set({fen: game.fen()});
+            that.board.set({fen: chess.fen()});
         }
         let fenField = document.getElementById(id('fenId'));
         if (isElement(fenField)) {
-            fenField.value = game.fen();
+            fenField.value = chess.fen();
         }
 
         /**
@@ -1311,7 +1313,7 @@ let pgnBase = function (boardId, configuration) {
         };
 
         const computePgn = function () {
-            return that.mypgn.write_pgn();
+            return that.mypgn.writePgn();
         };
 
         const showPgn = function (val) {
@@ -1331,7 +1333,7 @@ let pgnBase = function (boardId, configuration) {
             for (let i = firstMove; i < myMoves.length; i++) {
                 if (!that.mypgn.isDeleted(i)) {
                     const move = myMoves[i];
-                    prev = generateMove(move.index, game, move, prev, movesDiv, varStack);
+                    prev = generateMove(move.index, chess, move, prev, movesDiv, varStack);
                 }
             }
         };
@@ -1362,13 +1364,14 @@ let pgnBase = function (boardId, configuration) {
                 span.innerHTML = endGame ? endGame : "*";
 
             }
+            updateUI(null)
         }
 
         postGenerateMoves();
     };
     return {
         // PUBLIC API
-        chess: game,
+        chess: chess,
         board: that.board,
         getPgn: function () {
             return that.mypgn;

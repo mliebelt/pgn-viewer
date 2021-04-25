@@ -118,7 +118,7 @@ describe("When using all kind of notation", function() {
     it ("should know all special symbols normally needed (promotion, check, mate)", function() {
         my_pgn = pgnReader({pgn: "1. f3 e5 2. g4 Qh4#"});
         should(my_pgn.getMoves().length).equal(4);
-        my_pgn = pgnReader({pgn: "1. e7+ d2 2. e8=Q d1=R#"});
+        my_pgn = pgnReader({pgn: "1. e7 d2 2. e8=Q d1=R+", position: "5rk1/8/4P3/8/8/3p4/5R2/6K1 w - - 0 1"});
     })
 
     it ("should be robust with missing symbols (check)", function () {
@@ -126,7 +126,7 @@ describe("When using all kind of notation", function() {
         should(my_pgn.getMoves().length).equal(13);
         //should(my_pgn.getMoves()[10].notation.notation).equal("Bxf7+");
         should(my_pgn.getMoves()[10].notation.check).equal('+');
-        let res = my_pgn.write_pgn();
+        let res = my_pgn.writePgn();
         should(res).equal("1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7+ Ke7 7. Nd5#");
     })
 
@@ -134,7 +134,7 @@ describe("When using all kind of notation", function() {
         my_pgn = pgnReader({pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7+ Ke7 7. Nd5"})
         should(my_pgn.getMoves().length).equal(13);
         should(my_pgn.getMoves()[12].notation.check).equal('#');
-        let res = my_pgn.write_pgn();
+        let res = my_pgn.writePgn();
         should(res).equal("1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7+ Ke7 7. Nd5#");
     })
 });
@@ -538,86 +538,86 @@ describe("Additional notations like", function() {
 describe("Writing PGN like", function() {
     xit("should write an empty PGN string", function() {
         let my_pgn = pgnReader({pgn: ""});
-        let res = my_pgn.write_pgn();
+        let res = my_pgn.writePgn();
         should(res).equal("");
     });
 
     it("should write the normalized notation of the main line with only one move", function() {
         let my_pgn = pgnReader({pgn: "1. e4"});
-        let res = my_pgn.write_pgn();
+        let res = my_pgn.writePgn();
         should(res).equal("1. e4");
     });
 
     it("should write the normalized notation of the main line", function() {
         let my_pgn = pgnReader({pgn: "1. e4 e5 2. Nf3 Nc6 3. Bb5"});
-        let res = my_pgn.write_pgn();
+        let res = my_pgn.writePgn();
         should(res).equal("1. e4 e5 2. Nf3 Nc6 3. Bb5");
     });
 
     it("should write the notation for a main line including comments", function () {
         let my_pgn = pgnReader({pgn: "{FIRST} 1. e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5"});
-        let res = my_pgn.write_pgn();
+        let res = my_pgn.writePgn();
         should(res).equal("{FIRST} 1. e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5");
     });
 
     it("should write all NAGs in their known parts", function () {
         let my_pgn = pgnReader({pgn: "1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?"});
-        let res = my_pgn.write_pgn();
+        let res = my_pgn.writePgn();
         should(res).equal("1. e4$1 e5$2 2. Nf3$3 Nc6$4 3. Bb5$6 a6$5");
     });
 
     it("should write the notation for a main line with one variation", function () {
         let my_pgn = pgnReader({pgn: "1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) 2. Nf3"});
-        let res = my_pgn.write_pgn();
+        let res = my_pgn.writePgn();
         should(res).equal("1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) 2. Nf3");
     });
 
     it("should write the notation for a main line with several variations", function () {
         let my_pgn = pgnReader({pgn: "1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) ( 1... c5 2. Nf3 d6 ) 2. Nf3"});
-        let res = my_pgn.write_pgn();
+        let res = my_pgn.writePgn();
         should(res).equal("1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) ( 1... c5 2. Nf3 d6 ) 2. Nf3");
     });
 
     it("should write the notation for a main line with stacked variations", function () {
         let my_pgn = pgnReader({pgn: "1. e4 e5 ( 1... c5 2. Nf3 d6 ( 2... Nc6 3. d4) 3. d4 ) 2. Nf3"});
-        let res = my_pgn.write_pgn();
+        let res = my_pgn.writePgn();
         should(res).equal("1. e4 e5 ( 1... c5 2. Nf3 d6 ( 2... Nc6 3. d4 ) 3. d4 ) 2. Nf3");
     });
     it("should write the end of the game", function () {
         let my_pgn = pgnReader({pgn: "1. e4 e5 0-1"});
-        should(my_pgn.write_pgn()).equal("1. e4 e5 0-1");
+        should(my_pgn.writePgn()).equal("1. e4 e5 0-1");
     });
     it("should write the end of the game, understand all results: 1-0", function () {
         let my_pgn = pgnReader({pgn: "1. e4 e5 1-0"});
-        should(my_pgn.write_pgn()).equal("1. e4 e5 1-0");
+        should(my_pgn.writePgn()).equal("1. e4 e5 1-0");
     });
     it("should write the end of the game, understand all results: *", function () {
         let my_pgn = pgnReader({pgn: "1. e4 e5 *"});
-        should(my_pgn.write_pgn()).equal("1. e4 e5 *");
+        should(my_pgn.writePgn()).equal("1. e4 e5 *");
     });
     it("should write the end of the game, understand all results: 1/2-1/2", function () {
         let my_pgn = pgnReader({pgn: "1. e4 e5 1/2-1/2"});
-        should(my_pgn.write_pgn()).equal("1. e4 e5 1/2-1/2");
+        should(my_pgn.writePgn()).equal("1. e4 e5 1/2-1/2");
     });
     it("should write the end of the game as part of tags", function () {
         let my_pgn = pgnReader({pgn: '[Result "0-1"] 1. e4 e5'});
-        should(my_pgn.write_pgn()).equal("1. e4 e5 0-1");
+        should(my_pgn.writePgn()).equal("1. e4 e5 0-1");
     });
     it("should write the end of the game as part of tags, understand all results: *", function () {
         let my_pgn = pgnReader({pgn: '[Result "*"] 1. e4 e5'});
-        should(my_pgn.write_pgn()).equal("1. e4 e5 *");
+        should(my_pgn.writePgn()).equal("1. e4 e5 *");
     });
     it("should write the end of the game as part of tags, understand all results: 1/2-1/2", function () {
         let my_pgn = pgnReader({pgn: '[Result "1/2-1/2"] 1. e4 e5'});
-        should(my_pgn.write_pgn()).equal("1. e4 e5 1/2-1/2");
+        should(my_pgn.writePgn()).equal("1. e4 e5 1/2-1/2");
     });
     it("should write the end of the game as part of tags, understand all results: 1-0", function () {
         let my_pgn = pgnReader({pgn: '[Result "1-0"] 1. e4 e5'});
-        should(my_pgn.write_pgn()).equal("1. e4 e5 1-0");
+        should(my_pgn.writePgn()).equal("1. e4 e5 1-0");
     });
     it("should write promotion correct", function () {
         let my_pgn = pgnReader({position: '8/6P1/8/2k5/8/8/8/7K w - - 0 1', pgn: '1. g8=R'});
-        should(my_pgn.write_pgn()).equal("1. g8=R");
+        should(my_pgn.writePgn()).equal("1. g8=R");
     });
 });
 
