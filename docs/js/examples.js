@@ -103,31 +103,67 @@ examples["1022"] = {
 };
 
 examples["1023"] = {
-    desc: "ChessBoard with different additional configuration parameters. Used are here orientation and showCoords.",
-    html: "<div id=\"b1\" style=\"width: 300px; margin: 20px;float: left\"\"><\/div>" +
-        "\n<div id=\"b2\" style=\"width: 300px; margin: 20px;float: left\"\"><\/div>",
-    name: "Additional parameters",
-    jsStr: "PGNV.pgnBoard('b1', {orientation: 'black'});" +
-        "\nPGNV.pgnBoard('b2', {showCoords: false});",
+    desc: "ChessBoard with orientation set to black.",
+    html: "<div id=\"b1\" style=\"width: 300px; margin: 20px;float: left\"\"><\/div>",
+    name: "Set orientation to black",
+    jsStr: "PGNV.pgnBoard('b1', {orientation: 'black'});",
     jsFn: function() {
-        PGNV.pgnBoard('b1', {orientation: 'black'});
-        PGNV.pgnBoard('b2', {showCoords: false});
+        PGNV.pgnBoard('b1', {orientation: 'black'})
     }
 };
 
 examples["1024"] = {
-    desc: "ChessBoard with different board sizes.",
+    desc: "ChessBoard with showCoords set to false.",
+    html: "<div id=\"b1\" style=\"width: 300px; margin: 20px;float: left\"\"><\/div>",
+    name: "Don't show coordinates",
+    jsStr: "PGNV.pgnBoard('b1', {showCoords: false});",
+    jsFn: function() {
+        PGNV.pgnBoard('b1', {showCoords: false});
+    }
+};
+
+examples["1025"] = {
+    desc: "ChessBoard with different sizes for coordinates: default, coordFactor: 1.8, coordsSize.",
     html: "<div id='b1'></div><br/>" +
         "\n<div id='b2'></div><br/>" +
         "\n<div id='b3'></div>",
-    name: "Different board sizes  set in the configuration",
-    jsStr: "PGNV.pgnBoard('b1', {width: '200px'});" +
-        "\nPGNV.pgnBoard('b2', {width: '350px'});" +
-        "\nPGNV.pgnBoard('b3', {width: '500px'});",
+    name: "Different coordinates font sizes in the configuration",
+    jsStr: "PGNV.pgnBoard('b1', {});" +
+        "\nPGNV.pgnBoard('b2', {coordsFactor: 1.8});" +
+        "\nPGNV.pgnBoard('b3', {coordsFontSize: 24});",
     jsFn: function() {
-        PGNV.pgnBoard('b1', {width: '200px'});
-        PGNV.pgnBoard('b2', {width: '350px'});
-        PGNV.pgnBoard('b3', {width: '500px'});
+        PGNV.pgnBoard('b1', {});
+        PGNV.pgnBoard('b2', {coordsFactor: 1.8});
+        PGNV.pgnBoard('b3', {coordsFontSize: 24});
+    }
+};
+
+examples["1026"] = {
+    desc: "ChessBoard with the two options for coordinates layout: coordsInner: true (default); coordsInner: false.",
+    html: "<div id='b1'></div><br/>" +
+        "\n<div id='b2'></div><br/>",
+    name: "Different coordinate layouts in the configuration",
+    jsStr: "PGNV.pgnBoard('b1', {});" +
+        "\nPGNV.pgnBoard('b2', {coordsInner: false});",
+    jsFn: function() {
+        PGNV.pgnBoard('b1', {});
+        PGNV.pgnBoard('b2', {coordsInner: false});
+    }
+};
+
+examples["1027"] = {
+    desc: "ChessBoard with the 3 different sizes.",
+    html: "<div id='b1'></div><br/>" +
+        "\n<div id='b2'></div><br/>" +
+        "\n<div id='b3'></div><br/>",
+    name: "Different board sizes  set in the configuration",
+    jsStr: "PGNV.pgnBoard('b1', {width: '250px'});" +
+        "\nPGNV.pgnBoard('b2', {});" +
+        "\nPGNV.pgnBoard('b3', {width: '400px'});",
+    jsFn: function() {
+        PGNV.pgnBoard('b1', {width: '250px'});
+        PGNV.pgnBoard('b2', {});
+        PGNV.pgnBoard('b3', {width: '400px'});
     }
 };
 
@@ -135,12 +171,9 @@ examples["1051"] = {
     desc: "An config for a normal game, with the standard style. Try to use the buttons, and play the game forth and back. You may set any position in the game by just clicking on the move.",
     html: "<div id=\"b1\" style=\"width: 500px\"><\/div>",
     name: "Normal Game",
-    jsStr: "var pgn = '[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"][Result \"1-0\"][ECO \"C52\"][Site \"Berlin\"][Date \"1852.12.31\"] 1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0';\n pgnv = PGNV.pgnView('b1', {pgn: pgn});",
+    jsStr: "var pgn = '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0';\n pgnv = PGNV.pgnView('b1', {pgn: pgn});",
     jsFn: function() {
-        var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
-            '[Result "1-0"][ECO "C52"]',
-            '[Site "Berlin"][Date "1852.12.31"]',
-            '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
+        var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
         pgnv = PGNV.pgnView("b1", {pgn: pgn});
     }
 };
@@ -148,12 +181,9 @@ examples["1052"] = {
     desc: "The same game in a more traditional style",
     html: "<div id=\"b1\" style=\"width: 500px\"><\/div>",
     name: "Falken Style",
-    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852.12.31\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'falken'});",
+    jsStr: "var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'falken'});",
     jsFn: function() {
-        var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
-            '[Result "1-0"][ECO "C52"]',
-            '[Site "Berlin"][Date "1852.12.31"]',
-            '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
+        var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
         pgnv = PGNV.pgnView("b1", {pgn: pgn, theme: 'falken'});
     }
 };
@@ -161,12 +191,9 @@ examples["1053"] = {
     desc: "The same game in green style",
     html: "<div id=\"b1\" style=\"width: 500px\"><\/div>",
     name: "Green Style",
-    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852.12.31\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'green'});",
+    jsStr: "var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'green'});",
     jsFn: function() {
-        var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
-            '[Result "1-0"][ECO "C52"]',
-            '[Site "Berlin"][Date "1852.12.31"]',
-            '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
+        var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
         pgnv = PGNV.pgnView("b1", {pgn: pgn, theme: 'green'});
     }
 };
@@ -174,12 +201,9 @@ examples["1054"] = {
     desc: "The same game in Zeit style",
     html: "<div id=\"b1\" style=\"width: 500px\"><\/div>",
     name: "Zeit Style",
-    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852.12.31\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'zeit'});",
+    jsStr: "var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'zeit'});",
     jsFn: function() {
-        var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
-            '[Result "1-0"][ECO "C52"]',
-            '[Site "Berlin"][Date "1852.12.31"]',
-            '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
+        var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
         pgnv = PGNV.pgnView("b1", {pgn: pgn, theme: 'zeit'});
     }
 };
@@ -187,12 +211,9 @@ examples["1055"] = {
     desc: "The same game in informator style",
     html: "<div id=\"b1\" style=\"width: 500px\"><\/div>",
     name: "Informator Style",
-    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852.12.31\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'informator'});",
+    jsStr: "var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'informator'});",
     jsFn: function() {
-        var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
-            '[Result "1-0"][ECO "C52"]',
-            '[Site "Berlin"][Date "1852.12.31"]',
-            '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
+        var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
         pgnv = PGNV.pgnView("b1", {pgn: pgn, theme: 'informator'});
     }
 };
@@ -200,12 +221,9 @@ examples["1056"] = {
     desc: "The same game in sportverlag style",
     html: "<div id=\"b1\" style=\"width: 500px\"><\/div>",
     name: "Sportverlag Style",
-    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852.12.31\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'sportverlag'});",
+    jsStr: "var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'sportverlag'});",
     jsFn: function() {
-        var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
-            '[Result "1-0"][ECO "C52"]',
-            '[Site "Berlin"][Date "1852.12.31"]',
-            '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
+        var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
         pgnv = PGNV.pgnView("b1", {pgn: pgn, theme: 'sportverlag'});
     }
 };
@@ -213,12 +231,9 @@ examples["1057"] = {
     desc: "The same game in beyer style",
     html: "<div id=\"b1\" style=\"width: 500px\"><\/div>",
     name: "Beyer Style",
-    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852.12.31\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'beyer'});",
+    jsStr: "var pgn = [''1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'beyer'});",
     jsFn: function() {
-        var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
-            '[Result "1-0"][ECO "C52"]',
-            '[Site "Berlin"][Date "1852.12.31"]',
-            '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
+        var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
         pgnv = PGNV.pgnView("b1", {pgn: pgn, theme: 'beyer'});
     }
 };
@@ -226,12 +241,9 @@ examples["1058"] = {
     desc: "The same game in a blue style",
     html: "<div id=\"b1\" style=\"width: 500px\"><\/div>",
     name: "Blue Style",
-    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852.12.31\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'blue'});",
+    jsStr: "var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'blue'});",
     jsFn: function() {
-        var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
-            '[Result "1-0"][ECO "C52"]',
-            '[Site "Berlin"][Date "1852.12.31"]',
-            '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
+        var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
         pgnv = PGNV.pgnView("b1", {pgn: pgn, theme: 'blue'});
     }
 };
@@ -239,37 +251,26 @@ examples["1059"] = {
     desc: "The same game in a brown style",
     html: "<div id=\"b1\" style=\"width: 500px\"><\/div>",
     name: "Brown Style",
-    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852.12.31\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'brown'});",
+    jsStr: "var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnView('b1', {pgn: pgn, theme: 'brown'});",
     jsFn: function() {
-        var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
-            '[Result "1-0"][ECO "C52"]',
-            '[Site "Berlin"][Date "1852.12.31"]',
-            '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
+        var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
         pgnv = PGNV.pgnView("b1", {pgn: pgn, theme: 'brown'});
     }
 };
 examples["1100"] = {
-    desc: "This is an config of a chess game, where the moves are not only shown, but can be " +
-        "changed. Try to play on the board, use the move, before and after comments, switch " +
-        "between them. Insert new moves, and see the display changing. " +
-        "Try to find the PGN button, and refresh the display when you have changed " +
-        "a comment.",
+    desc: "A short chess game with the standard configuration.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Edit game",
-    jsStr: "var pgn = ['[White \"Anderssen, Adolf\"][Black \"Dufresne, Jean\"]', \n '[Result \"1-0\"][ECO \"C52\"]', \n '[Site \"Berlin\"][Date \"1852.12.31\"]',\n '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnEdit('b1', {pgn: pgn});",
+    jsStr: "var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnEdit('b1', {pgn: pgn});",
     jsFn: function() {
-        var pgn = ['[White "Anderssen, Adolf"][Black "Dufresne, Jean"]',
-            '[Result "1-0"][ECO "C52"]',
-            '[Site "Berlin"][Date "1852.12.31"]',
-            '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
-        pgnv = PGNV.pgnEdit("b1", {pgn: pgn});
+        var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
+        pgnv = PGNV.pgnView("b1", {pgn: pgn});
     }
 };
 examples["1101"] = {
     desc: "Here the normal layout of the moves, with some special characters, the so called NAGs. PNGViewerJS knows the NAGs, and " +
         "translates them in the correct notation. The following game " +
-        "is not really correct commented, but it shows the different options.\nNot all characters are available in all fonts, so we should " +
-        "check that ....",
+        "is not really correct commented, but it shows the different options.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Annotated moves",
     jsStr: "var pgn = '1. e4$1 e5$2 2. Nf3$3 Nc6$4 3. Bb5$5 a6$6 4. Ba4$7 Nf6$10 5. O-O$13 Be7$14 6. Re1$15 b5$16 7. Bb3$17 O-O$18 8. c3$19 d5$3';\nPGNV.pgnView('b1', {pgn: pgn});",
@@ -282,48 +283,157 @@ examples["1102"] = {
     desc: "Here a game with a lot of variations, sometimes two or more levels deep. This is part of my opening repertoire as white.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Variations in Moves",
+    jsStr: "var pgn = '1. e4 e5 {the standard open game} 2. d4 {tries to open as early as possible} d6? {that is a bad idea now ...} 3. dxe5 {and now black should not take back, to not loose casteling option}'\nPGNV.pgnView('b1', {pgn: pgn});",
+    jsFn: function() {
+        var pgn = '1. e4 e5 {the standard open game} 2. d4 {tries to open as early as possible} d6? {that is a bad idea now ...} 3. dxe5 {and now black should not take back, to not loose casteling option}'
+        PGNV.pgnView('b1', {pgn: pgn});
+    }
+};
+
+examples["1103"] = {
+    desc: "Here a game with a lot of variations, some two or more levels deep.",
+    html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
+    name: "Variations in Moves",
     jsStr: "var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'\nPGNV.pgnView('b1', {pgn: pgn});",
     jsFn: function() {
         var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'
         PGNV.pgnView('b1', {pgn: pgn});
     }
 };
-examples["1150"] = {
-    desc: "Here is an config game in the style of chess.com",
-    html: '<div id="board2" style="width: 300px;margin-right: 25px"></div>',
-    name: "Themes: Chess.com",
-    jsStr: "var pgn = \"1. e4 e5 2. Nf3 Nc6  ...  24. Bxe7# 1-0\"\;\npgnv = PGNV.pgnView(\"board2\", {pgn: pgn, position: \"start\", pieceStyle: 'case', theme: 'zeit'});",
+
+examples["1104"] = {
+    desc: "The game is shown in inline notation, compare with the list notation below.",
+    html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
+    name: "Variations in Moves",
+    jsStr: "var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'\nPGNV.pgnView('b1', {pgn: pgn});",
+    jsFn: function() {
+        var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'
+        PGNV.pgnView('b1', {pgn: pgn});
+    }
+};
+
+examples["1105"] = {
+    desc: "The game is shown in inline notation, compare with the list notation below.",
+    html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
+    name: "Variations in Moves",
+    jsStr: "var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'\nPGNV.pgnView('b1', {pgn: pgn, notationLayout: 'list'});",
+    jsFn: function() {
+        var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'
+        PGNV.pgnView('b1', {pgn: pgn, notationLayout: 'list'});
+    }
+};
+
+examples["1106"] = {
+    desc: "The game is shown in long notation, compare with the default short notation above.",
+    html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
+    name: "Variations in Moves",
+    jsStr: "var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'\nPGNV.pgnView('b1', {pgn: pgn, notation: 'long'});",
+    jsFn: function() {
+        var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'
+        PGNV.pgnView('b1', {pgn: pgn, notation: 'long'});
+    }
+};
+
+examples["1107"] = {
+    desc: "Shows the same game with default languages: en (default), de, and fr. Look at the SAN notation, and hover over the buttons to see the tooltips.",
+    html: '<div id="b1" style="width: 360px"><\/div>' +
+        '<div id="b2" style="width: 360px"></div>' +
+        '<div id="b3" style="width: 360px"></div>',
+    name: "Variations in Moves",
+    jsStr: "var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'\nPGNV.pgnView('b1', {pgn: pgn});\nPGNV.pgnView('b2', {pgn: pgn, locale: 'de'});\nPGNV.pgnView('b3', {pgn: pgn, locale: 'fr'});",
+    jsFn: function() {
+        var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'
+        PGNV.pgnView('b1', {pgn: pgn});
+        PGNV.pgnView('b2', {pgn: pgn, locale: 'de'});
+        PGNV.pgnView('b3', {pgn: pgn, locale: 'fr'});
+    }
+};
+
+examples["1200"] = {
+    desc: "Shows a game in default layout top",
+    html: '<div id="board2" style="width: 300px"></div>',
+    name: "Default layout top",
+    jsStr: "var pgn = \"1. e4 e5 2. Nf3 Nc6  ...  24. Bxe7# 1-0\"\;\npgnv = PGNV.pgnView(\"board2\", {pgn: pgn});",
     jsFn: function() {
         var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0";
-        pgnv = PGNV.pgnView("board2", {pgn: pgn, position: "start", pieceStyle: 'case', theme: 'zeit'});
+        pgnv = PGNV.pgnView("board2", {pgn: pgn});
     }
 };
-examples["1151"] = {
-    desc: "Here the style green for the start position.",
-    html: '<div id="board" style="width: 400px; margin-right: 25px">',
-    name: "Themes: Green",
-    jsStr: "var cfg = { showCoords: false, theme: 'green' };\nvar board = PGNV.pgnBoard('board', cfg);",
+
+examples["1201"] = {
+    desc: "Shows a game in default layout top in edit mode",
+    html: '<div id="board2" style="width: 300px"></div>',
+    name: "Default layout top in edit mode",
+    jsStr: "var pgn = \"1. e4 e5 2. Nf3 Nc6  ...  24. Bxe7# 1-0\"\;\npgnv = PGNV.pgnEdit(\"board2\", {pgn: pgn});",
     jsFn: function() {
-        var cfg = { showCoords: false, position: 'start', theme: 'green' };
-        var board = PGNV.pgnBoard('board', cfg);
+        var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0";
+        pgnv = PGNV.pgnEdit("board2", {pgn: pgn});
     }
 };
-examples["1152"] = {
-    desc: "",
-    html: '<div id="board2" style="width: 400px"></div>',
-    name: "Themes: Zeit",
-    jsStr: "cfg = { pieceStyle: 'uscf', orientation: 'black', position: 'start', theme: 'zeit'};\nvar board2 = PGNV.pgnBoard('board2', cfg);",
+
+examples["1202"] = {
+    desc: "Shows a game in layout left",
+    html: '<div id="board2" style="width: 500px"></div>',
+    name: "Layout left",
+    jsStr: "var pgn = \"1. e4 e5 2. Nf3 Nc6  ...  24. Bxe7# 1-0\"\;\npgnv = PGNV.pgnView(\"board2\", {pgn: pgn, layout: 'left'});",
     jsFn: function() {
-        cfg = { pieceStyle: 'uscf', orientation: 'black', position: 'start', theme: 'zeit'};
-        var board2 = PGNV.pgnBoard("board2", cfg);    }
-};
-examples["1153"] = {
-    desc: "Chess board in the informator style",
-    html: '<div id="board" style="width: 400px">',
-    name: "Themes: Informator",
-    jsStr: "var cfg = { showCoords: false, position: 'start', theme: 'informator' };\nvar board = PGNV.pgnBoard('board', cfg);",
-    jsFn: function() {
-        var cfg = { showCoords: false, position: 'start', theme: 'informator' };
-        var board = PGNV.pgnBoard('board', cfg);
+        var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0";
+        pgnv = PGNV.pgnView("board2", {pgn: pgn, layout: 'left'});
     }
 };
+
+examples["1203"] = {
+    desc: "Shows a game in default layout top in edit mode",
+    html: '<div id="board2" style="width: 500px"></div>',
+    name: "Default layout top in edit mode",
+    jsStr: "var pgn = \"1. e4 e5 2. Nf3 Nc6  ...  24. Bxe7# 1-0\"\;\npgnv = PGNV.pgnEdit(\"board2\", {pgn: pgn, layout: 'left'});",
+    jsFn: function() {
+        var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0";
+        pgnv = PGNV.pgnEdit("board2", {pgn: pgn, layout: 'left'});
+    }
+};
+
+examples["1204"] = {
+    desc: "Shows a game in layout bottom",
+    html: '<div id="board2" style="width: 300px"></div>',
+    name: "Default layout top",
+    jsStr: "var pgn = \"1. e4 e5 2. Nf3 Nc6  ...  24. Bxe7# 1-0\"\;\npgnv = PGNV.pgnView(\"board2\", {pgn: pgn, layout: 'bottom'});",
+    jsFn: function() {
+        var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0";
+        pgnv = PGNV.pgnView("board2", {pgn: pgn, layout: 'bottom'});
+    }
+};
+
+examples["1205"] = {
+    desc: "Shows a game in layout right",
+    html: '<div id="board2" style="width: 500px"></div>',
+    name: "Layout right",
+    jsStr: "var pgn = \"1. e4 e5 2. Nf3 Nc6  ...  24. Bxe7# 1-0\"\;\npgnv = PGNV.pgnView(\"board2\", {pgn: pgn, layout: 'right'});",
+    jsFn: function() {
+        var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0";
+        pgnv = PGNV.pgnView("board2", {pgn: pgn, layout: 'right'});
+    }
+};
+
+examples["1206"] = {
+    desc: "Shows how to change sizes depending on the layout",
+    html: '<div id="board2" style="width: 700px"></div>',
+    name: "Layout sizes adjusted",
+    jsStr: "var pgn = \"1. e4 e5 2. Nf3 Nc6  ...  24. Bxe7# 1-0\"\;\npgnv = PGNV.pgnView(\"board2\", {pgn: pgn, layout: 'left', boardSize: '200px'});",
+    jsFn: function() {
+        var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0";
+        pgnv = PGNV.pgnView("board2", {pgn: pgn, layout: 'left', boardSize: '200px'});
+    }
+};
+
+examples["1207"] = {
+    desc: "Shows a change in layout with headers shown.",
+    html: '<div id="board2" style="width: 500px"></div>',
+    name: "Layout sizes adjusted",
+    jsStr: "var pgn = '[White \"Anderssen\"] [Black \"Dufresne\"] 1. e4 e5 2. Nf3 Nc6  ...  24. Bxe7# 1-0';\npgnv = PGNV.pgnView(\"board2\", {pgn: pgn, layout: 'left'});",
+    jsFn: function() {
+        var pgn = "[White \"Anderssen\"] [Black \"Dufresne\"] 1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0";
+        pgnv = PGNV.pgnView("board2", {pgn: pgn, layout: 'left'});
+    }
+};
+
