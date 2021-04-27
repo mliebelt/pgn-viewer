@@ -393,6 +393,18 @@ examples["1109"] = {
         pgnv = PGNV.pgnView("board2", {pgn: pgn, showFen: true});
     }
 };
+
+examples["1110"] = {
+    desc: "Shows the result of the game in the PGN notation",
+    html: '<div id="board2" style="width: 450px"></div>',
+    name: "Show FEN in text field",
+    jsStr: "var pgn = \"1. f4 e6 g4 Qh4# 0-1\"\;\npgnv = PGNV.pgnView(\"board2\", {pgn: pgn, showResult: true});",
+    jsFn: function() {
+        var pgn = "1. f4 e6 g4 Qh4# 0-1";
+        pgnv = PGNV.pgnView("board2", {pgn: pgn, showResult: true});
+    }
+};
+
 examples["1200"] = {
     desc: "Shows a game in default layout top",
     html: '<div id="board2" style="width: 300px"></div>',
