@@ -24,8 +24,8 @@ if (window && !window.PgnBaseDefaults) {
 let pgnView = function (boardId, configuration) {
     let base = pgnBase(boardId, Object.assign({mode: 'view'}, configuration))
     base.generateHTML()
-    let board = base.generateBoard()
     base.generateMoves()
+    let board = base.generateBoard()
     return {base, board}
 }
 
@@ -47,6 +47,7 @@ let pgnView = function (boardId, configuration) {
 let pgnBoard = function (boardId, configuration) {
     let base = pgnBase(boardId, Object.assign({headers: false, mode: 'board'}, configuration))
     base.generateHTML()
+    base.resizeLayout()
     let board = base.generateBoard()
     return { base, board }
 }
@@ -79,8 +80,8 @@ let pgnEdit = function (boardId, configuration) {
         },
         configuration))
     base.generateHTML()
-    let board = base.generateBoard()
     base.generateMoves()
+    let board = base.generateBoard()
     return {base, board}
 }
 

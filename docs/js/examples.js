@@ -167,6 +167,22 @@ examples["1027"] = {
     }
 };
 
+examples["1028"] = {
+    desc: "Different color markers.",
+    html: "<div id='b1'></div><br/>" +
+        "\n<div id='b2'></div><br/>" +
+        "\n<div id='b3'></div><br/>",
+    name: "Different color markers",
+    jsStr: "PGNV.pgnBoard('b1', {width: '250px', colorMarker: true});" +
+        "\nPGNV.pgnBoard('b2', {width: '250px', colorMarker: 'cm'});" +
+        "\nPGNV.pgnBoard('b3', {width: '250px', colorMarker: 'circle'});",
+    jsFn: function() {
+        PGNV.pgnView('b1', {width: '250px', colorMarker: true, pgn: 'e4 e5 Nf3 Nc6 Bb5'});
+        PGNV.pgnBoard('b2', {width: '250px', colorMarker: 'cm', position: 'r1bq1b1r/pppn1kp1/5n2/3pPPQ1/5Pp1/8/PPP1B2P/RNB1K1NR b KQ - 3 12'});
+        PGNV.pgnBoard('b3', {width: '250px', colorMarker: 'circle'});
+    }
+};
+
 examples["1051"] = {
     desc: "An config for a normal game, with the standard style. Try to use the buttons, and play the game forth and back. You may set any position in the game by just clicking on the move.",
     html: "<div id=\"b1\" style=\"width: 500px\"><\/div>",
@@ -349,6 +365,34 @@ examples["1107"] = {
     }
 };
 
+examples["1108"] = {
+    desc: "Set the timer to 3 different values: 200ms, 1200ms and 700ms (default). Just press the play button, and watch the difference.",
+    html: '<div id="board" style="width: 250px; float: left; margin-right: 10px"><\/div>\n' +
+        '<div id="board1" style="width: 250px; float: left; margin-right: 10px"></div>\n' +
+        '<div id="board2" style="width: 250px; float: left"></div>',
+    name: "Variations in Moves",
+    jsStr: "var pgn = \"1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0\";\n" +
+        "PGNV.pgnView(\"board\", {pgn: pgn,  timerTime: 200});\n" +
+        "PGNV.pgnView(\"board1\", {pgn: pgn, timerTime: 1200});\n" +
+        "PGNV.pgnView(\"board2\", {pgn: pgn});",
+    jsFn: function() {
+        var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0";
+        PGNV.pgnView("board", {pgn: pgn,  timerTime: 200});
+        PGNV.pgnView("board1", {pgn: pgn, timerTime: 1200});
+        PGNV.pgnView("board2", {pgn: pgn});
+    }
+};
+
+examples["1109"] = {
+    desc: "Shows a game in viewer with FEN text field",
+    html: '<div id="board2" style="width: 450px"></div>',
+    name: "Show FEN in text field",
+    jsStr: "var pgn = \"1. e4 e5 2. Nf3 Nc6  ...  24. Bxe7# 1-0\"\;\npgnv = PGNV.pgnView(\"board2\", {pgn: pgn});",
+    jsFn: function() {
+        var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0";
+        pgnv = PGNV.pgnView("board2", {pgn: pgn, showFen: true});
+    }
+};
 examples["1200"] = {
     desc: "Shows a game in default layout top",
     html: '<div id="board2" style="width: 300px"></div>',
@@ -427,6 +471,17 @@ examples["1206"] = {
 };
 
 examples["1207"] = {
+    desc: "Shows how to change sizes depending on the layout. Here moves height (relevant for top / bottom layouts).",
+    html: '<div id="board2" style="width: 500px"></div>',
+    name: "Layout sizes adjusted",
+    jsStr: "var pgn = \"1. e4 e5 2. Nf3 Nc6  ...  24. Bxe7# 1-0\"\;\npgnv = PGNV.pgnView(\"board2\", {pgn: pgn, layout: 'top', movesHeight: '400px'});",
+    jsFn: function() {
+        var pgn = "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1 Qxf3 20.Rxe7+ Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0";
+        pgnv = PGNV.pgnView("board2", {pgn: pgn, layout: 'top', movesHeight: '400px'});
+    }
+};
+
+examples["1208"] = {
     desc: "Shows a change in layout with headers shown.",
     html: '<div id="board2" style="width: 500px"></div>',
     name: "Layout sizes adjusted",
