@@ -405,6 +405,30 @@ examples["1110"] = {
     }
 };
 
+examples["1111"] = {
+    desc: "Starts play from a different move than the first one",
+    html: '<div id="board1" style="width: 250px; float: left; margin-right: 10px"></div>' +
+        '\n<div id="board2" style="width: 250px; float: left; margin-right: 10px"></div>' +
+        '\n<div id="board3" style="width: 250px; float: left; margin-right: 10px"></div>' +
+        '\n<div id="board4" style="width: 250px; float: left; margin-right: 10px"></div>' +
+        '\n<div id="board5" style="width: 250px; float: left; margin-right: 10px"></div>',
+    name: "Start play set explicit",
+    jsStr: "var pgn = \"1. e4 e5 2. Nf3 (2. f4 d5 3. exd5 e4) 2... Nc6 3. Bc4 Nf6\";\n" +
+        "PGNV.pgnView('board1', { pgn: pgn});\n" +
+        "PGNV.pgnView('board2', {pgn: pgn, startPlay: 5});\n" +
+        "PGNV.pgnView('board3', {pgn: pgn, startPlay: 'Bc4'});\n" +
+        "PGNV.pgnView('board4', {pgn: pgn, startPlay: 'exd5'});\n" +
+        "PGNV.pgnView('board5', {pgn: pgn, startPlay: 'rnbqkbnr/ppp2ppp/8/3pp3/4PP2/8/PPPP2PP/RNBQKBNR w KQkq'});",
+    jsFn: function() {
+        var pgn = "1. e4 e5 2. Nf3 (2. f4 d5 3. exd5 e4) 2... Nc6 3. Bc4 Nf6";
+        PGNV.pgnView('board1', { pgn: pgn});
+        PGNV.pgnView('board2', {pgn: pgn, startPlay: 5});
+        PGNV.pgnView('board3', {pgn: pgn, startPlay: 'Bc4'});
+        PGNV.pgnView('board4', {pgn: pgn, startPlay: 'exd5'});
+        PGNV.pgnView('board5', {pgn: pgn, startPlay: 'rnbqkbnr/ppp2ppp/8/3pp3/4PP2/8/PPPP2PP/RNBQKBNR w KQkq'});
+    }
+};
+
 examples["1200"] = {
     desc: "Shows a game in default layout top",
     html: '<div id="board2" style="width: 300px"></div>',

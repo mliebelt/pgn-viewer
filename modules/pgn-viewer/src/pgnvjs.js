@@ -520,6 +520,18 @@ let pgnBase = function (boardId, configuration) {
             })
         }
 
+        function postGenerateBoard() {
+            if (that.configuration.startPlay && !that.configuration.hideMovesBefore) {
+                let move = that.mypgn.findMove(that.configuration.startPlay)
+                if (move === undefined) {
+                    logError('Could not find startPlay: ' + that.configuration.startPlay)
+                    return
+                }
+                makeMove(move.prev, move.index, move.fen)
+                unmarkMark(move.index)
+            }
+        }
+
         // Default values of the board, if not overwritten by the given configuration
         let boardConfig = {coordsInner: true, coordsFactor: 1.0, disableContextMenu: true,
             drawable: {
@@ -602,6 +614,7 @@ let pgnBase = function (boardId, configuration) {
                 }
             }
         }
+        postGenerateBoard()
         return that.board
     }
 
@@ -1256,15 +1269,6 @@ let pgnBase = function (boardId, configuration) {
          * Allows to add functions after having generated the moves. Used currently for setting start position.
          */
         function postGenerateMoves() {
-            if (that.configuration.startPlay && !that.configuration.hideMovesBefore) {
-                let move = that.mypgn.findMove(that.configuration.startPlay)
-                if (move === undefined) {
-                    logError('Could not find startPlay: ' + that.configuration.startPlay)
-                    return
-                }
-                makeMove(move.prev, move.index, move.fen)
-                unmarkMark(move.index)
-            }
 
             if (that.configuration.showResult) {
                 // find the result from the header
