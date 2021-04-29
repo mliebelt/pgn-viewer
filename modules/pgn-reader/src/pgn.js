@@ -1111,7 +1111,7 @@ const pgnReader = function (configuration) {
     }
 
     function getEndGame() {
-        return that.games[that.currentGameIndex].endGame;
+        return that.endGame;
     }
 
     function setShapes(move, shapes) {
