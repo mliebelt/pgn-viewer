@@ -213,7 +213,11 @@ const pgnReader = function (configuration) {
         const mate = notation.mate ? notation.mate : '';
         const prom = notation.promotion ? '=' + getFig(notation.promotion.substring(1,2)) : '';
         if (that.configuration.notation === 'short') {
-            return fig + disc + strike + notation.col + notation.row + prom + check + mate;
+            if (notation.notation) {
+                return notation.notation + prom + check + mate;
+            } else {
+                return fig + disc + strike + notation.col + notation.row + prom + check + mate;
+            }
         } else if (that.configuration.notation === 'long') {
             return fig + move.from + (notation.strike ? strike : '-') + move.to + prom + check + mate;
         }
