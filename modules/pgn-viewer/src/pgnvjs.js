@@ -757,7 +757,7 @@ let pgnBase = function (boardId, configuration) {
             makeMove(that.currentMove, currentCounter, move.fen)
             event.stopPropagation()
         })
-        if (that.mypgn.has_diagram_nag(move)) {
+        if (that.mypgn.hasDiagramNag(move)) {
             const diaID = boardId + "dia" + currentCounter
             const diaDiv = createEle('div', diaID)
             span.appendChild(diaDiv)
@@ -996,6 +996,8 @@ let pgnBase = function (boardId, configuration) {
             }
         }
         let myMoves = that.mypgn.getMoves()
+        // Due to possible change in that.mypgn.configuration ...
+        that.configuration.position = that.mypgn.configuration.position
         setGameToPosition(that.configuration.position)
         if (that.board) {
             that.board.set({fen: chess.fen()})
