@@ -1118,7 +1118,7 @@ let pgnBase = function (boardId, configuration) {
                 let moved = false
                 do { moved = nextMove() } while (moved)
             })
-            let togglePgn = function () {
+            function togglePgn () {
                 const pgnButton = document.getElementById(id('buttonsId') + "pgn")
                 const pgnText = document.getElementById(boardId + " .textpgn")
                 document.getElementById(id('buttonsId') + "pgn").classList.toggle('selected')
@@ -1130,7 +1130,7 @@ let pgnBase = function (boardId, configuration) {
                     document.querySelector("#" + boardId + " .textpgn").style.display = 'none'
                 }
             }
-            let toggleNagMenu = function () {
+            function toggleNagMenu () {
                 let nagMenu = document.getElementById(id('buttonsId') + 'nags').classList.toggle('selected')
                 if (document.getElementById(id('buttonsId') + 'nags').classList.contains('selected')) {
                     document.getElementById('nagMenu' + id('buttonsId')).style.display = 'flex'
@@ -1262,16 +1262,6 @@ let pgnBase = function (boardId, configuration) {
                     prev = generateMove(move.index, chess, move, prev, movesDiv, varStack)
                 }
             }
-        }
-        regenerateMoves(myMoves)
-        bindFunctions()
-        generateHeaders()
-
-        /**
-         * Allows to add functions after having generated the moves. Used currently for setting start position.
-         */
-        function postGenerateMoves() {
-
             if (that.configuration.showResult) {
                 // find the result from the header
                 let endGame = that.mypgn.getEndGame()
@@ -1281,7 +1271,15 @@ let pgnBase = function (boardId, configuration) {
                 span.innerHTML = endGame ? endGame : "*"
 
             }
+        }
+        regenerateMoves(myMoves)
+        bindFunctions()
+        generateHeaders()
 
+        /**
+         * Allows to add functions after having generated the moves. Used currently for setting start position.
+         */
+        function postGenerateMoves() {
             updateUI(null)
         }
         postGenerateMoves()
