@@ -6,7 +6,7 @@
     "pgn",
     "viewer"
   ],
-  "version": "1.5.1",
+  "version": "1.5.2",
   "main": "lib/pgnv.js",
   "files": [
     "lib/**",
@@ -25,7 +25,7 @@
     "gen_i18n": "./bin/gen-i18n.js"
   },
   "dependencies": {
-    "@mliebelt/pgn-reader": "^1.2.4",
+    "@mliebelt/pgn-reader": "^1.2.6",
     "chessground": "^7.11.1",
     "mousetrap": "^1.6.5",
     "roddeh-i18n": "^1.2.0",

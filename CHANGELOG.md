@@ -9,6 +9,30 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [1.5.2]() 2021-05-02
+
+Upgraded to newest versions of `pgn-parser`, `pgn-reader`, `Chessground` and some more libraries.
+
+### Changed
+
+* [#131](https://github.com/mliebelt/PgnViewerJS/issues/131)  All CSS rules are now namespaced by class `pgnvjs`
+* [#212](https://github.com/mliebelt/PgnViewerJS/issues/212)  Restructured examples, documentation, api, ...
+* [#217](https://github.com/mliebelt/PgnViewerJS/issues/217)  Rework on exception handling, to allow reader to be used from viewer and as library somewhere else
+
+### Fixed
+
+* [#30](https://github.com/mliebelt/PgnViewerJS/issues/30) [#165](https://github.com/mliebelt/PgnViewerJS/issues/165) [#206](https://github.com/mliebelt/PgnViewerJS/issues/206) fixed underpromotion in edit mode (again)
+* [#108](https://github.com/mliebelt/PgnViewerJS/issues/108) fixed en passend on Chessground
+* [#185](https://github.com/mliebelt/PgnViewerJS/issues/185) showResult with many games fixed
+* [#205](https://github.com/mliebelt/PgnViewerJS/issues/205)  fixed king in chess in start position (when the last move was a check or mate)
+* [#209](https://github.com/mliebelt/PgnViewerJS/issues/209)  combination hideMovesBefore == true, startPlay now works as expected
+* [#213](https://github.com/mliebelt/PgnViewerJS/issues/213)  fixed state of move buttons depending on the current move (thx to @Bebul)
+* [#214](https://github.com/mliebelt/PgnViewerJS/issues/214)  fixed
+* [#215](https://github.com/mliebelt/PgnViewerJS/issues/215)  fixed
+* [#216](https://github.com/mliebelt/PgnViewerJS/issues/216)  fixed error in layout, that hided the print button
+* [#220](https://github.com/mliebelt/PgnViewerJS/issues/220)  ensure that discriminator is added all the time for pawn paptures 
+* [#221](https://github.com/mliebelt/PgnViewerJS/issues/221)  fixed lookup of endGame (when showResult == true)
+
 ## [1.5.1]() 2021-03-28
 
 ### Changed

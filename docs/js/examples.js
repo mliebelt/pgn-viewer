@@ -429,6 +429,18 @@ examples["1111"] = {
     }
 };
 
+examples["1112"] = {
+    desc: "Starts play from a different move than the first one, hide the moves before that first move",
+    html: '<div id="board2" style="width: 250px; float: left; margin-right: 10px"></div>',
+    name: "Start play combined with hide moves before",
+    jsStr: "var pgn = \"1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6\";\n" +
+        "PGNV.pgnView('board2', {pgn: pgn, startPlay: 3, hideMovesBefore: true});",
+    jsFn: function() {
+        var pgn = "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6";
+        PGNV.pgnView('board2', {pgn: pgn, startPlay: 3, hideMovesBefore: true});
+    }
+};
+
 examples["1200"] = {
     desc: "Shows a game in default layout top",
     html: '<div id="board2" style="width: 300px"></div>',

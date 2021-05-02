@@ -1,6 +1,6 @@
 import i18next from './i18n'
-//import {pgnReader} from '@mliebelt/pgn-reader'
-import {pgnReader} from '../../pgn-reader/src/pgn'
+import {pgnReader} from '@mliebelt/pgn-reader'
+// import {pgnReader} from '../../pgn-reader/src/pgn'
 import {Chessground} from 'chessground'
 import 'chessground/assets/chessground.base.css'
 import 'chessground/assets/chessground.brown.css'
