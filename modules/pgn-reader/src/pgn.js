@@ -190,9 +190,9 @@ const pgnReader = function (configuration) {
      */
     function getFig (fig) {
         if (fig === 'P') {
-            return '';
+            return ''
         }
-        return fig;
+        return fig
     }
 
     /**
@@ -204,22 +204,22 @@ const pgnReader = function (configuration) {
         let notation = move.notation;
         if (typeof notation.row === 'undefined') {
             return notation.notation; // move like O-O and O-O-O
+            // TODO What if the move has a NAG? This will be ignored here?
         }
-        const fig = notation.fig ? getFig(notation.fig) : '';
-        const disc = notation.disc ? notation.disc : '';
-        const strike = notation.strike ? notation.strike : '';
+        const fig = notation.fig ? getFig(notation.fig) : ''
+        let disc = notation.disc ? notation.disc : ''
+        const strike = notation.strike ? notation.strike : ''
         // Pawn moves with capture need the col as "discriminator"
-        const check = notation.check ? notation.check : '';
-        const mate = notation.mate ? notation.mate : '';
-        const prom = notation.promotion ? '=' + getFig(notation.promotion.substring(1,2)) : '';
+        if (strike && !fig) { // Pawn capture
+            disc = move.from.substring(0,1)
+        }
+        const check = notation.check ? notation.check : ''
+        const mate = notation.mate ? notation.mate : ''
+        const prom = notation.promotion ? '=' + getFig(notation.promotion.substring(1,2)) : ''
         if (that.configuration.notation === 'short') {
-            if (notation.notation) {
-                return notation.notation + prom + check + mate;
-            } else {
-                return fig + disc + strike + notation.col + notation.row + prom + check + mate;
-            }
+            return fig + disc + strike + notation.col + notation.row + prom + check + mate
         } else if (that.configuration.notation === 'long') {
-            return fig + move.from + (notation.strike ? strike : '-') + move.to + prom + check + mate;
+            return fig + move.from + (notation.strike ? strike : '-') + move.to + prom + check + mate
         }
     }
 
