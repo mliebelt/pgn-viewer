@@ -210,7 +210,7 @@
     color: red;
 }
 
-.pgnvjs div.buttons > i.button, .pgnvjs div.edit > i.button {
+.pgnvjs div.buttons > i.pgnvbutton, .pgnvjs div.edit > i.pgnvbutton {
     color: var(--gray-600);
     background-color: var(--gray-100);
     margin: 0.24rem;
