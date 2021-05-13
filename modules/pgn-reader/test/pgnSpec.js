@@ -218,7 +218,7 @@ describe("When reading pgn with wrong headers", function() {
     });
     xit("should ignore wrong headers", function() { // is now a syntax error, not ignored
         let h = my_pgn.getTags();
-        should.not.exist(h["a"]);  // Because that is not an allowed key
+        should.not.exist(h.get("a"));  // Because that is not an allowed key
     });
 });
 
@@ -716,13 +716,13 @@ describe("When making moves in PGN", function() {
 
 describe("When deleting lines" , function () {
     it("should delete the whole main line", function() {
-        my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 Nc6"});
+        let my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 Nc6"});
         my_pgn.deleteMove(0);
         my_pgn.isDeleted(0).should.be.true();
     });
 
     it("should delete the rest of the line (without variation)", function () {
-        my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 Nc6"});
+        let my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 Nc6"});
         my_pgn.deleteMove(2);
         should(my_pgn.isDeleted(0)).not.be.ok();
         should(my_pgn.isDeleted(1)).not.be.ok();
@@ -731,7 +731,7 @@ describe("When deleting lines" , function () {
     });
 
     it("should delete the rest of the line, replace it by the first variation", function () {
-        my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 (2. f4 exf4) Nc6"});
+        let my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 (2. f4 exf4) Nc6"});
         should(my_pgn.getMove(3).variationLevel).equal(1);
         my_pgn.deleteMove(2);
         should(my_pgn.isDeleted(0)).not.be.ok();
@@ -744,7 +744,7 @@ describe("When deleting lines" , function () {
     });
 
     it("should delete the whole variation with the first move", function () {
-        my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 (2. f4 exf4) (2. d4 exd4) Nc6"});
+        let my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 (2. f4 exf4) (2. d4 exd4) Nc6"});
         should(my_pgn.getMove(3).variationLevel).equal(1);
         my_pgn.deleteMove(3);
         should(my_pgn.isDeleted(0)).not.be.ok();
@@ -758,7 +758,7 @@ describe("When deleting lines" , function () {
     });
 
     it("should delete the rest of a variation (including the move)", function () {
-        my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 (2. f4 exf4 3. Nf3 d6) (2. d4 exd4) Nc6"});
+        let my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 (2. f4 exf4 3. Nf3 d6) (2. d4 exd4) Nc6"});
         should(my_pgn.getMove(3).variationLevel).equal(1);
         my_pgn.deleteMove(4);
         should(my_pgn.isDeleted(3)).not.be.ok();
@@ -766,7 +766,7 @@ describe("When deleting lines" , function () {
     });
 
     it("should delete the moves before (without the move)", function () {
-        my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 Nc6"});
+        let my_pgn = pgnReader({pgn: "1. e4 e5  2. Nf3 Nc6"});
         my_pgn.deleteMovesBefore(0);
         should(my_pgn.getMoves().length).equal(4);
         my_pgn.deleteMovesBefore(1);
@@ -780,7 +780,7 @@ describe("When upvoting lines", function () {
     let pgn = "1. e4 e5 2. Nf3 (2. f4 exf4) (2. d4 exd4)";
 
     it("should upvote the second line as first line", function () {
-        my_pgn = pgnReader({pgn: pgn});
+        let my_pgn = pgnReader({pgn: pgn});
         should(my_pgn.getMove(3).variationLevel).equal(1);
         should(my_pgn.getMove(2).variations[0].index).equal(3);
         should(my_pgn.getMove(2).variations[1].index).equal(5);
@@ -790,7 +790,7 @@ describe("When upvoting lines", function () {
     });
 
     it("should upvote the first line as main line", function () {
-        my_pgn = pgnReader({pgn: pgn});
+        let my_pgn = pgnReader({pgn: pgn});
         should(my_pgn.getMove(3).variationLevel).equal(1);
         should(my_pgn.getMove(2).variations[0].index).equal(3);
         should(my_pgn.getMove(2).variations[1].index).equal(5);
@@ -801,7 +801,7 @@ describe("When upvoting lines", function () {
     });
 
     it("should ignore upvoting the main line", function () {
-        my_pgn = pgnReader({pgn: pgn});
+        let my_pgn = pgnReader({pgn: pgn});
         should(my_pgn.getMove(3).variationLevel).equal(1);
         should(my_pgn.getMove(2).variations[0].index).equal(3);
         should(my_pgn.getMove(2).variations[1].index).equal(5);
