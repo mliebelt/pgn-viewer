@@ -1336,9 +1336,9 @@ let pgnBase = function (boardId, configuration) {
         console.log("Start computing layout")
         let _boardHeight = computeBoardSize()
         let _boardWidth = _boardHeight
-        let _buttonFontSize = `${Math.max(10, parseInt(_boardHeight) / 24)}px`
+        let _buttonFontSize = Math.max(10, parseInt(_boardHeight) / 24)
         if (document.getElementById(id('buttonsId'))) {
-            document.getElementById(id('buttonsId')).style.fontSize = _buttonFontSize
+            document.getElementById(id('buttonsId')).style.fontSize = `${_buttonFontSize}px`
         }
         if (hasMode('board')) {
             if (document.getElementById(id('colorMarkerId'))) {
@@ -1354,10 +1354,9 @@ let pgnBase = function (boardId, configuration) {
         if (hasHeaders()) {
             _boardHeight = `${parseInt(_boardHeight) + 40}px`
         }
-        let _buttonsHeight = document.getElementById(id('buttonsId')).offsetHeight
         let _gamesHeight = that.configuration.manyGames ? '40px' : '0'
         if (that.configuration.layout === 'left' || that.configuration.layout === 'right') {
-            divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px`
+            divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) auto`
             let _movesWidth = `${parseInt(that.configuration.width) - parseInt(_boardWidth)}px`
             if (that.configuration.layout === 'left') {
                 divBoard.style.gridTemplateColumns = _boardWidth + " " + _movesWidth
@@ -1370,9 +1369,9 @@ let pgnBase = function (boardId, configuration) {
             let _movesHeight = parseInt(_boardHeight) / 5 * 3
             if (_minMovesHeight < _movesHeight) _movesHeight = _minMovesHeight
             if (that.configuration.layout === 'top') {
-                divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px minmax(0, ${_movesHeight}px) auto`
+                divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) auto minmax(0, ${_movesHeight}px) auto`
             } else if (that.configuration.layout === 'bottom') {
-                divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(0,${_movesHeight}px) minmax(auto,${_boardHeight}) ${_buttonsHeight}px`
+                divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(0,${_movesHeight}px) minmax(auto,${_boardHeight}) auto`
             }
             divBoard.style.gridTemplateColumns = _boardWidth
         }
