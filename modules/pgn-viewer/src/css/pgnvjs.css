@@ -1,4 +1,4 @@
-/*@import "../fontawesome/css/all.css";*/
+@import "../fontawesome/css/all.css";
 
 :root {
     --space-xss: 0.25rem;
@@ -210,8 +210,7 @@
     color: red;
 }
 
-.pgnvjs div.buttons > i.pgnvbutton, .pgnvjs div.edit > i.pgnvbutton,
-.pgnvjs div.buttons > svg.pgnvbutton, .pgnvjs div.edit > svg.pgnvbutton {
+.pgnvjs div.buttons > .pgnvbutton, .pgnvjs div.edit > .pgnvbutton {
     color: var(--gray-600);
     background-color: var(--gray-100);
     margin: 0.24rem;

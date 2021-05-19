@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Layout top: one typical example</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+</head>
+<body>
+
+<p>Set width with the div only, no additional sizes, default layout, many moves. The moves height is currently
+3/5 of the board size.</p>
+<div id="board1"></div>
+
+<script>
+    let pgn = '1. e4 e5 2. Nf3 Nf6 3. Nc3 { C42 Russian Game: Three Knights Game } Bb4 4. a3 Bxc3 5. bxc3 d6 6. d4 O-O 7. Bg5 Nbd7 8. Bd3 b6 9. O-O Bb7 10. Re1 Qe8';
+    PGNV.pgnView("board1", {pgn: pgn, layout: 'top', width: '600px', boardSize: '400px'});
+</script>
+</body>
+</html>

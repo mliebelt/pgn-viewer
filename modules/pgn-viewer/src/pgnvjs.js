@@ -319,8 +319,10 @@ let pgnBase = function (boardId, configuration) {
         // Utility function for generating buttons divs
         function addButton(pair, buttonDiv) {
             const l_theme = (['green', 'blue'].indexOf(theme) >= 0) ? theme : 'default'
-            const button = createEle("i", id('buttonsId') + pair[0],
-                "pgnvbutton fa " + pair[0] + " " + pair[1], l_theme, buttonDiv)
+            const button = createEle("span", id('buttonsId') + pair[0],
+                "pgnvbutton", l_theme, buttonDiv)
+            const faButton = createEle("i", null,
+                "fa " + pair[0] + " " + pair[1], l_theme, button)
             const title = t("buttons:" + pair[0])
             document.getElementById(id('buttonsId') + pair[0]).setAttribute("title", title)
             return button
