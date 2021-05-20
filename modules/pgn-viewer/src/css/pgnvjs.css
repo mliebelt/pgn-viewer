@@ -217,6 +217,7 @@
     padding: 4px;
     border: solid var(--gray-300) 1px;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .pgnvjs div.buttons > i.button.selected, .pgnvjs div.edit > i.button.selected, .pgnvjs .nagMenu.selected {
