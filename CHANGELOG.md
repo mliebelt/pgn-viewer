@@ -5,7 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-viewer@1.5.2` to get the "release" directly from NPM.
 
-## Unreleased
+## 1.5.4 2021-05-21
 
 ### Changed
 
