@@ -1320,6 +1320,9 @@ let pgnBase = function (boardId, configuration) {
                 }
             }
             // Layout left or right, more complex combinations possible
+            if (!_boardSize && !_width) {
+                _boardSize = '320px'
+            }
             if (_boardSize && _width) {
                 _boardSize = getRoundedBoardSize(_boardSize)
                 setBoardSizeAndWidth(_boardSize, _width)
@@ -1379,8 +1382,10 @@ let pgnBase = function (boardId, configuration) {
             } else {
                 let _movesCount = that.mypgn.getMoves().length
                 let _minMovesHeight = (_movesCount + 20) / 7 * 15
-                let _movesHeight = parseInt(_boardHeight) / 5 * 3
-                if (_minMovesHeight < _movesHeight) _movesHeight = _minMovesHeight
+                _movesHeight = parseInt(_boardHeight) / 5 * 3
+                if (_movesHeight < _minMovesHeight) {
+                    _movesHeight = _minMovesHeight
+                }
             }
 
             if (that.configuration.layout === 'top') {
