@@ -1222,13 +1222,13 @@ let pgnBase = function (boardId, configuration) {
                     timer.start()
                 }
                 const playButton = document.getElementById(id('buttonsId') + 'play')
-                let clString = playButton.getAttribute('class')
+                let clString = playButton.childNodes[0].getAttribute('class')
                 if (clString.indexOf('play') < 0) { // has the stop button
-                    clString = clString.replace('pause', 'play')
+                    clString = clString.replaceAll('pause', 'play')
                 } else {
-                    clString = clString.replace('play', 'pause')
+                    clString = clString.replaceAll('play', 'pause')
                 }
-                playButton.setAttribute('class', clString)
+                playButton.childNodes[0].setAttribute('class', clString)
             }
 
             bind_key("left", prevMove)

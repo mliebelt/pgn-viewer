@@ -3,13 +3,28 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-viewer@1.5.2` to get the "release" directly from NPM.
+
 ## Unreleased
 
 ### Changed
 
 ### Fixed
 
-## [1.5.2]() 2021-05-02
+* [#234](https://github.com/mliebelt/PgnViewerJS/issues/234) Fixes bug with player names switched with orientation == black
+
+## 1.5.4 2021-05-20
+
+### Changed
+
+### Fixed
+
+* [#225](https://github.com/mliebelt/PgnViewerJS/issues/225) Fixes bug in Wordpress with Theme twenty-twenty-one
+* [#226](https://github.com/mliebelt/PgnViewerJS/issues/226) Buttons are rendered correct when using Fontawesome with SVG
+* [#230](https://github.com/mliebelt/PgnViewerJS/issues/230) Buttons are functional when using Fontawesome with SVG
+* [#231](https://github.com/mliebelt/PgnViewerJS/issues/231) Hand cursor when hoovering over buttons
+
+## 1.5.2 2021-05-02
 
 Upgraded to newest versions of `pgn-parser`, `pgn-reader`, `Chessground` and some more libraries.
 
@@ -33,7 +48,7 @@ Upgraded to newest versions of `pgn-parser`, `pgn-reader`, `Chessground` and som
 * [#220](https://github.com/mliebelt/PgnViewerJS/issues/220)  ensure that discriminator is added all the time for pawn paptures 
 * [#221](https://github.com/mliebelt/PgnViewerJS/issues/221)  fixed lookup of endGame (when showResult == true)
 
-## [1.5.1]() 2021-03-28
+## 1.5.1 2021-03-28
 
 ### Changed
 
@@ -45,7 +60,7 @@ Upgraded to newest versions of `pgn-parser`, `pgn-reader`, `Chessground` and som
 * [#201](https://github.com/mliebelt/PgnViewerJS/issues/201) Upgraded to version 7.11.1 of chessground
 * [#203](https://github.com/mliebelt/PgnViewerJS/issues/203) Allow eval actions in commments, ignore unknown actions
 
-## [1.5.0]() 2021-03-20
+## 1.5.0 2021-03-20
 
 ### Changed
 
@@ -57,7 +72,7 @@ Upgraded to newest versions of `pgn-parser`, `pgn-reader`, `Chessground` and som
 * [#195](https://github.com/mliebelt/PgnViewerJS/issues/195) Error fixed with 2 annotations in a row
 * [#191](https://github.com/mliebelt/PgnViewerJS/issues/191) Made available again Merida with SVG
 
-## [1.4.4]() 2021-02-11
+## 1.4.4 2021-02-11
 
 ### Changed
 
