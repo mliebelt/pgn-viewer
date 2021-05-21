@@ -1339,6 +1339,8 @@ let pgnBase = function (boardId, configuration) {
         let _boardHeight = computeBoardSize()
         let _boardWidth = _boardHeight
         let _buttonFontSize = Math.max(10, parseInt(_boardHeight) / 24)
+        let _buttonsHeight = document.getElementById(id('buttonsId')).offsetHeight
+        if (_buttonsHeight < 20) { _buttonsHeight += _buttonFontSize }
         if (document.getElementById(id('buttonsId'))) {
             document.getElementById(id('buttonsId')).style.fontSize = `${_buttonFontSize}px`
         }
@@ -1358,8 +1360,13 @@ let pgnBase = function (boardId, configuration) {
         }
         let _gamesHeight = that.configuration.manyGames ? '40px' : '0'
         if (that.configuration.layout === 'left' || that.configuration.layout === 'right') {
-            divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) auto`
-            let _movesWidth = `${parseInt(that.configuration.width) - parseInt(_boardWidth)}px`
+            divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px`
+            let _movesWidth = 0
+            if (that.configuration.movesWidth) {
+                _movesWidth = that.configuration.movesWidth
+            } else {
+                _movesWidth = `${parseInt(that.configuration.width) - parseInt(_boardWidth)}px`
+            }
             if (that.configuration.layout === 'left') {
                 divBoard.style.gridTemplateColumns = _boardWidth + " " + _movesWidth
             } else {
