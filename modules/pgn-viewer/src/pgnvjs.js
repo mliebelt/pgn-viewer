@@ -1015,8 +1015,10 @@ let pgnBase = function (boardId, configuration) {
          */
         function generateHeaders () {
             let tags = that.mypgn.getTags()
-            let whd = document.getElementById(id('bottomHeaderId'))
-            let bhd = document.getElementById(id('topHeaderId'))
+            let whd = that.configuration.orientation === 'white' ? document.getElementById(id('bottomHeaderId')) :
+                document.getElementById(id('topHeaderId'))
+            let bhd = that.configuration.orientation === 'white' ? document.getElementById(id('topHeaderId')) :
+                document.getElementById(id('bottomHeaderId'))
             if (that.configuration.headers == false || (tags.size === 0)) {
                 whd.parentNode.removeChild(whd)
                 bhd.parentNode.removeChild(bhd)
