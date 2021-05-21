@@ -427,12 +427,10 @@ let pgnBase = function (boardId, configuration) {
         const outerInnerBoardDiv = createEle("div", null, "outerBoard", null, divBoard)
         let boardAndDiv = createEle('div', null, 'boardAnd', theme, outerInnerBoardDiv)
 
-        /** topInner for headers / time of Black. TODO: Orientation should switch that then. **/
         let topInnerBoardDiv = createEle("div", null, "topInnerBoard", theme, boardAndDiv)
         let blackHeader = createEle('div', id('topHeaderId'), "blackHeader", theme, boardAndDiv)
         let topTime = createEle("span", null, "topTime", theme, topInnerBoardDiv)
         const innerBoardDiv = createEle("div", id('innerBoardId'), "board", theme, boardAndDiv)
-        /** bottomInner for headers / time of White. TODO: Orientation should switch that then. **/
         let bottomInnerBoardDiv = createEle("div", null, "bottomInnerBoard", theme, boardAndDiv)
         let whiteHeader = createEle('div', id('bottomHeaderId'), "whiteHeader", theme, boardAndDiv)
         let bottomTime = createEle("div", null, "bottomTime", theme, bottomInnerBoardDiv)
