@@ -11,8 +11,9 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Fixed
 
-* [#219](https://github.com/mliebelt/PgnViewerJS/issues/219) Toggle for play/pause works again
-* [#228](https://github.com/mliebelt/PgnViewerJS/issues/228) Toggle for play/pause works again
+* [#219](https://github.com/mliebelt/PgnViewerJS/issues/219) Fix layout (again)
+* [#227](https://github.com/mliebelt/PgnViewerJS/issues/227) Set default boardSize if needed
+* [#229](https://github.com/mliebelt/PgnViewerJS/issues/229) Use movesHeight if there on layout top|bottom
 * [#232](https://github.com/mliebelt/PgnViewerJS/issues/232) Toggle for play/pause works again
 * [#234](https://github.com/mliebelt/PgnViewerJS/issues/234) Fixes bug with player names switched with orientation == black
 
