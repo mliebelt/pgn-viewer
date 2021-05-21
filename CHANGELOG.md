@@ -11,6 +11,7 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Fixed
 
+* [#232](https://github.com/mliebelt/PgnViewerJS/issues/232) Toggle for play/pause works again
 * [#234](https://github.com/mliebelt/PgnViewerJS/issues/234) Fixes bug with player names switched with orientation == black
 
 ## 1.5.4 2021-05-20

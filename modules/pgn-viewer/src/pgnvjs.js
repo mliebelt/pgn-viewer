@@ -1366,10 +1366,16 @@ let pgnBase = function (boardId, configuration) {
                 divBoard.style.gridTemplateColumns = _movesWidth + " " + _boardWidth
             }
         } else {
-            let _movesCount = that.mypgn.getMoves().length
-            let _minMovesHeight = (_movesCount + 20) / 7 * 15
-            let _movesHeight = parseInt(_boardHeight) / 5 * 3
-            if (_minMovesHeight < _movesHeight) _movesHeight = _minMovesHeight
+            let _movesHeight = 0
+            if (that.configuration.movesHeight) {
+                _movesHeight = parseInt(that.configuration.movesHeight)
+            } else {
+                let _movesCount = that.mypgn.getMoves().length
+                let _minMovesHeight = (_movesCount + 20) / 7 * 15
+                let _movesHeight = parseInt(_boardHeight) / 5 * 3
+                if (_minMovesHeight < _movesHeight) _movesHeight = _minMovesHeight
+            }
+
             if (that.configuration.layout === 'top') {
                 divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) auto minmax(0, ${_movesHeight}px) auto`
             } else if (that.configuration.layout === 'bottom') {
