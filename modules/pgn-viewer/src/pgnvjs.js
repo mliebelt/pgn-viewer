@@ -790,7 +790,7 @@ let pgnBase = function (boardId, configuration) {
             let pgn = that.mypgn.writePgn()
             return (typeof pgn === 'undefined') || (pgn === null) || (pgn.length === 0)
         }
-        let elements = divBoard.querySelectorAll("i.button.gray")
+        let elements = divBoard.querySelectorAll(".pgnvbutton > .gray")
         elements.forEach(function (ele) {
             removeClass(ele, 'gray')
         })

@@ -236,7 +236,7 @@
     width: 500px;
 }
 
-.pgnvjs div.buttons > i.button.gray, .pgnvjs div.buttons > i.button.gray:hover {
+.pgnvjs div.buttons > .pgnvbutton > .gray, .pgnvjs div.buttons > .pgnvbutton > .gray:hover {
     opacity: 0.5;
     cursor: default;
     border: solid var(--gray-300) 1px;
