@@ -5,7 +5,26 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-viewer@1.5.2` to get the "release" directly from NPM.
 
-## 1.5.4 2021-05-21
+## Unknown version
+
+### Changed
+
+### Fixed
+
+## 1.5.6 2021-05-22
+
+### Changed
+
+### Fixed
+
+* [#213](https://github.com/mliebelt/PgnViewerJS/issues/213) Fix CSS for grayed buttons (again)
+* [#229](https://github.com/mliebelt/PgnViewerJS/issues/229) Adjust moves height not over max value
+* [#236](https://github.com/mliebelt/PgnViewerJS/issues/236) Fixed layout problem for boards
+* [#238](https://github.com/mliebelt/PgnViewerJS/issues/238) Ensure correct headers with orientation == black and manyGames == true
+* [#239](https://github.com/mliebelt/PgnViewerJS/issues/239) Fixed layout problem for layout right
+* [#240](https://github.com/mliebelt/PgnViewerJS/issues/240) Set color mark all the time correct
+
+## 1.5.5 2021-05-21
 
 ### Changed
 
@@ -89,7 +108,7 @@ Upgraded to newest versions of `pgn-parser`, `pgn-reader`, `Chessground` and som
  
 ### Fixed
 
-## [1.4.2]() 2021-01-24
+## 1.4.2 2021-01-24
 
 ### Changed
 
@@ -99,7 +118,7 @@ Upgraded to newest versions of `pgn-parser`, `pgn-reader`, `Chessground` and som
 
 * [#182](https://github.com/mliebelt/PgnViewerJS/issues/182) First fix layout in edit mode
 
-## [1.4.0]() 2020-09-09
+## 1.4.0 2020-09-09
 
 ### Changed
 
