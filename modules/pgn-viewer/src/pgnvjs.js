@@ -1379,16 +1379,13 @@ let pgnBase = function (boardId, configuration) {
                 divBoard.style.gridTemplateColumns = _movesWidth + " " + _boardWidth
             }
         } else {
-            let _movesHeight = 0
+            let _movesHeight
             if (that.configuration.movesHeight) {
                 _movesHeight = parseInt(that.configuration.movesHeight)
             } else {
                 let _movesCount = that.mypgn.getMoves().length
-                let _minMovesHeight = (_movesCount + 20) / 7 * 15
-                _movesHeight = parseInt(_boardHeight) / 5 * 3
-                if (_movesHeight < _minMovesHeight) {
-                    _movesHeight = _minMovesHeight
-                }
+                let _maxMovesHeight = parseInt(_boardHeight) / 5 * 3
+                _movesHeight = Math.min((_movesCount + 20) / 7 * 19, _maxMovesHeight)
             }
 
             if (that.configuration.layout === 'top') {
