@@ -1341,12 +1341,7 @@ let pgnBase = function (boardId, configuration) {
         console.log("Start computing layout")
         let _boardHeight = computeBoardSize()
         let _boardWidth = _boardHeight
-        let _buttonFontSize = Math.max(10, parseInt(_boardHeight) / 24)
-        let _buttonsHeight = document.getElementById(id('buttonsId')).offsetHeight
-        if (_buttonsHeight < 20) { _buttonsHeight += _buttonFontSize }
-        if (document.getElementById(id('buttonsId'))) {
-            document.getElementById(id('buttonsId')).style.fontSize = `${_buttonFontSize}px`
-        }
+
         if (hasMode('board')) {
             if (document.getElementById(id('colorMarkerId'))) {
                 document.getElementById(id('colorMarkerId')).style.marginLeft = 'auto'
@@ -1354,6 +1349,14 @@ let pgnBase = function (boardId, configuration) {
             return
         }
         if (hasMode('print')) return
+
+        // View and edit mode
+        let _buttonFontSize = Math.max(10, parseInt(_boardHeight) / 24)
+        let _buttonsHeight = document.getElementById(id('buttonsId')).offsetHeight
+        if (_buttonsHeight < 20) { _buttonsHeight += _buttonFontSize }
+        if (document.getElementById(id('buttonsId'))) {
+            document.getElementById(id('buttonsId')).style.fontSize = `${_buttonFontSize}px`
+        }
         if (that.configuration.showFen) {
             let _fenHeight = document.getElementById(id('fenId')).offsetHeight
             _boardHeight = `${parseInt(_boardHeight) + _fenHeight}px`
