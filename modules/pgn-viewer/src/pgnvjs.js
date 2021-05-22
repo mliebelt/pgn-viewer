@@ -157,12 +157,12 @@ let pgnBase = function (boardId, configuration) {
         ele.addEventListener(event, func)
     }
 
-    function toggleColorMarker() {
+    function toggleColorMarker(nextColor) {
         let ele = document.getElementById(id('colorMarkerId'))
         if (!ele) return
-        if (ele.classList.contains('cm-black')) {
+        if (ele.classList.contains('cm-black') && nextColor === 'w') {
             ele.classList.remove('cm-black')
-        } else {
+        } else if (nextColor === 'b') {
             ele.classList.add('cm-black')
         }
     }
@@ -269,7 +269,7 @@ let pgnBase = function (boardId, configuration) {
             if (fenView) {
                 fenView.value = move.fen
             }
-            toggleColorMarker()
+            toggleColorMarker(move.turn)
         }
     }
 
@@ -933,7 +933,7 @@ let pgnBase = function (boardId, configuration) {
         if (fenView) {
             fenView.value = fen
         }
-        toggleColorMarker()
+        toggleColorMarker(chess.turn())
         updateUI(next)
     }
 
