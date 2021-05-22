@@ -1012,10 +1012,13 @@ let pgnBase = function (boardId, configuration) {
          * that just works.
          */
         function generateHeaders () {
+            function orientation() {
+                return that.board ? that.board.state.orientation : that.configuration.orientation
+            }
             let tags = that.mypgn.getTags()
-            let whd = that.configuration.orientation === 'white' ? document.getElementById(id('bottomHeaderId')) :
+            let whd = orientation() === 'white' ? document.getElementById(id('bottomHeaderId')) :
                 document.getElementById(id('topHeaderId'))
-            let bhd = that.configuration.orientation === 'white' ? document.getElementById(id('topHeaderId')) :
+            let bhd = orientation() === 'white' ? document.getElementById(id('topHeaderId')) :
                 document.getElementById(id('bottomHeaderId'))
             if (that.configuration.headers == false || (tags.size === 0)) {
                 whd.parentNode.removeChild(whd)
