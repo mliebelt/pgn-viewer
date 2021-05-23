@@ -6,7 +6,7 @@
     "pgn",
     "viewer"
   ],
-  "version": "1.5.7",
+  "version": "1.5.8",
   "main": "lib/pgnv.js",
   "files": [
     "lib/**",
