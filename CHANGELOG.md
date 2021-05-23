@@ -11,6 +11,16 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Fixed
 
+## 1.5.7 2021-05-23
+
+### Changed
+
+* Toggle orientation changed fonts of coords (why?), so ensure that it is not changing.
+
+### Fixed
+
+* [#213](https://github.com/mliebelt/PgnViewerJS/issues/213) Corrected wrong borders for gray buttons
+
 ## 1.5.6 2021-05-22
 
 ### Changed

@@ -320,7 +320,7 @@ let pgnBase = function (boardId, configuration) {
         function addButton(pair, buttonDiv) {
             const l_theme = (['green', 'blue'].indexOf(theme) >= 0) ? theme : 'default'
             const button = createEle("span", id('buttonsId') + pair[0],
-                "pgnvbutton", l_theme, buttonDiv)
+                "pgnvbutton " + pair[0], l_theme, buttonDiv)
             const faButton = createEle("i", null,
                 "fa " + pair[0] + " " + pair[1], l_theme, button)
             const title = t("buttons:" + pair[0])
@@ -790,19 +790,19 @@ let pgnBase = function (boardId, configuration) {
             let pgn = that.mypgn.writePgn()
             return (typeof pgn === 'undefined') || (pgn === null) || (pgn.length === 0)
         }
-        let elements = divBoard.querySelectorAll(".pgnvbutton > .gray")
+        let elements = divBoard.querySelectorAll(".pgnvbutton.gray")
         elements.forEach(function (ele) {
             removeClass(ele, 'gray')
         })
         const move = that.mypgn.getMove(next)
         if (next === null) {
             ["prev", "first"].forEach(function (name) {
-                addClass(divBoard.querySelector("div.buttons ." + name), 'gray')
+                addClass(divBoard.querySelector("div.buttons > ." + name), 'gray')
             })
         }
         if (((next !== null) && (typeof move.next != "number")) || (pgnEmpty())) {
             ["next", "play", "last"].forEach(function (name) {
-                addClass(divBoard.querySelector("div.buttons ." + name), 'gray')
+                addClass(divBoard.querySelector("div.buttons > ." + name), 'gray')
             })
         }
         // Update the drop-down for NAGs
@@ -1107,7 +1107,13 @@ let pgnBase = function (boardId, configuration) {
                 nextMove()
             })
             addEventListener(id('buttonsId') + 'flipper', 'click', function () {
+                // TODO The following is a hack to keep the fontSize of the coords.  There is no option in Chessground
+                //  to set the font size of coords. See generateBoard for the original setting of font size
+                let fs = document.querySelector("#" + boardId).querySelector("coords").style.fontSize
                 that.board.toggleOrientation()
+                document.querySelector("#" + boardId).querySelectorAll("coords").forEach(element => {
+                    element.style.fontSize = fs
+                })
                 switchHeaderValues()
             })
             addEventListener(id('buttonsId') + 'next', 'click', function () {

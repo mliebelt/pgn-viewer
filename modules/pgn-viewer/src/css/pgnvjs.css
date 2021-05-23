@@ -226,7 +226,7 @@
 
 .pgnvjs div.buttons > .pgnvbutton:hover, .pgnvjs div.edit > .pgnvbutton:hover  {
     cursor: pointer;
-    border: solid dimgrey 1px;
+    border: solid var(--gray-700) 1px;
 }
 
 .pgnvjs div.nagMenu {
@@ -235,7 +235,7 @@
     width: 500px;
 }
 
-.pgnvjs div.buttons > .pgnvbutton > .gray, .pgnvjs div.buttons > .pgnvbutton > .gray:hover {
+.pgnvjs div.buttons > .pgnvbutton.gray, .pgnvjs div.buttons > .pgnvbutton.gray:hover {
     opacity: 0.5;
     cursor: default;
     border: solid var(--gray-300) 1px;
