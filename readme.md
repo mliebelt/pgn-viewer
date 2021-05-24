@@ -1,3 +1,4 @@
+
 # PgnViewerJS
 
 PgnViewerJS is a simple JavaScript implementation to show PGN files (Portable Game Notation == Chess)
@@ -66,14 +67,14 @@ There is at the moment no way to save a game that was edited in `pgnEdit` mode. 
 
 ### From Release
 
-* Copy the files from directory `lib` into a web server.
+* Copy the files from directory `modules/pgn-viewer/lib` into a web server.
 * Create new HTML files with the corresponding head and body.
 
 ### From Clone
 
 * Clone the repository.
-* Run `npm install` from the root, to ensure are tools are installed.
-* Run `npm build` to both modules (first pgn-reader, then pgn-viewer) build a distribution.
+* Run `npm install` from the root, to ensure that all tools are installed.
+* Run `npm run-script build` to both modules (first `pgn-reader`, then `pgn-viewer`) to build a distribution.
 * Copy the files from the directory `modules/pgn-viewer/lib`.
 * Create new HTML files with the corresponding head and body.
 
@@ -83,8 +84,7 @@ There is at the moment no way to save a game that was edited in `pgnEdit` mode. 
 
 To use the viewer in an HTML page, you have to do the following steps:
 
-* Include the necessary library `pgnv.js` and the corresponding resources `locales` and `pgnv-assets`.
-* Have Fontawesome referenced.
+* Include the necessary library `pgnv.js`.
 * Include the necessary div container for rendering of the  board and the moves.
 * Include JavaScript code inside your HTML page to call the viewer.
 
@@ -93,7 +93,7 @@ So a rough template will look like:
 ```html
 <!DOCTYPE html>
     <head>
-        <script src="js/pgnv.js" type="text/javascript" ></script>
+        <script src="lib/pgnv.js" type="text/javascript" ></script>
     </head>
     <body>
         <div id="board"></div>
@@ -123,8 +123,8 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 From the version 1.0.0 on, the whole package can be downloaded / installed by using NPM:
 
-* Download: `npm pack @mliebelt/pgn-viewer` Results in download of a file `mliebelt-pgn-viewer-1.3.0.tgz`, that contains in the directory `package/lib` all resources needed.
-* Install: `npm install @mliebelt/pgn-viewer` as part of some other application. You will find then the files in the directory `node_modules/@mliebelt/pgn-viewer/lib`.
+* Download: `npm pack @mliebelt/pgn-viewer@1.5.8` Results in download of a file `mliebelt-pgn-viewer-1.5.8.tgz`, that contains in the directory `package/lib` all resources needed.
+* Install: `npm install @mliebelt/pgn-viewer@1.5.8` as part of some other application. You will find then the files in the directory `node_modules/@mliebelt/pgn-viewer/lib`.
 
 ## Authors
 
