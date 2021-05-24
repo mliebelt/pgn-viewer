@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Mixing viewer with Fontawesome icons (loading before)</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+</head>
+<body class='merida zeit'>
+<h3>Having additional library integrated of Fontawesome</h3>
+<p>Now with some icons <i class="fas fa-6x fa-chess logo" id="logo"></i> </p>
+
+<div id="board0"></div>
+
+<script>
+    let pgn = '[White "Me"] [Black "You"] 1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 ';
+    pgnv = PGNV.pgnView("board0", {pgn: pgn});
+</script>
+
+</body>
+</html>
