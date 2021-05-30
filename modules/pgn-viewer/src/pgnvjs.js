@@ -951,6 +951,7 @@ let pgnBase = function (boardId, configuration) {
      */
     function generateMoves () {
 
+
         /** Create something printable from the tags for the list. */
         function printTags(game) {
             if (game.tags.size === 0) {
@@ -958,7 +959,7 @@ let pgnBase = function (boardId, configuration) {
             }
             let _t = game.tags
             let _date = _t.Date ? _t.Date.value : "?"
-            return `[${_t.Event}] ${_t.Round}: ${_t.White} - ${_t.Black} (${_date})`
+            return `[${_t.Event}]: ${_t.White} - ${_t.Black} (${_date}) ${_t.Result}`
         }
         /** Fill the drop down with loaded game. */
         function fillGamesDropDown() {
@@ -1109,11 +1110,17 @@ let pgnBase = function (boardId, configuration) {
             addEventListener(id('buttonsId') + 'flipper', 'click', function () {
                 // TODO The following is a hack to keep the fontSize of the coords.  There is no option in Chessground
                 //  to set the font size of coords. See generateBoard for the original setting of font size
-                let fs = document.querySelector("#" + boardId).querySelector("coords").style.fontSize
+                let coordsComp = document.querySelector("#" + boardId).querySelector("coords")
+                let fs
+                if (coordsComp) {
+                    fs = coordsComp.style.fontSize
+                }
                 that.board.toggleOrientation()
-                document.querySelector("#" + boardId).querySelectorAll("coords").forEach(element => {
-                    element.style.fontSize = fs
-                })
+                if (coordsComp) {
+                    document.querySelector("#" + boardId).querySelectorAll("coords").forEach(element => {
+                        element.style.fontSize = fs
+                    })
+                }
                 switchHeaderValues()
             })
             addEventListener(id('buttonsId') + 'next', 'click', function () {
