@@ -506,6 +506,21 @@ let pgnBase = function (boardId, configuration) {
 
     }
 
+    function adjustFontForCoords(fontSize, boardConfig, el) {
+        let right = (fontSize - 13) / 2.5 - 2
+        if (!boardConfig.coordsInner) {
+            right -= fontSize / 1.5 + 2
+        }
+        el.querySelector("coords.ranks").style.right = `${right}px`
+        let bottom = (fontSize - 13)
+        if (!boardConfig.coordsInner) {
+            bottom -= fontSize + 2
+            let left = parseFloat(getComputedStyle(el.querySelector(".cg-wrap coords.files")).getPropertyValue("left"))
+            el.querySelector("coords.files").style.left = `${left - (fontSize / 1.5)}px`
+        }
+        el.querySelector("coords.files").style.bottom = `${bottom}px`
+    }
+
     /**
      * Generate the board that uses the unique id('innerBoardId') and the part of the configuration
      * that is for the board only. Returns the resulting object (as reference for others).
@@ -580,16 +595,7 @@ let pgnBase = function (boardId, configuration) {
                 element.style.fontSize = `${fontSize}px`
                 })
             if (boardConfig.coordinates) {
-                let right = (fontSize - 13) / 2.5 - 2
-                if (! boardConfig.coordsInner) { right -= fontSize / 1.5 + 2 }
-                el.querySelector("coords.ranks").style.right = `${right}px`
-                let bottom = (fontSize - 13)
-                if (! boardConfig.coordsInner) {
-                    bottom -= fontSize + 2
-                    let left = parseFloat(getComputedStyle(el.querySelector(".cg-wrap coords.files")).getPropertyValue("left"))
-                    el.querySelector("coords.files").style.left = `${left - (fontSize / 1.5)}px`
-                }
-                el.querySelector("coords.files").style.bottom = `${bottom}px`
+                adjustFontForCoords(fontSize, boardConfig, el);
             }
             //document.body.dispatchEvent(new Event('chessground.resize'))
         }
@@ -1120,6 +1126,7 @@ let pgnBase = function (boardId, configuration) {
                     document.querySelector("#" + boardId).querySelectorAll("coords").forEach(element => {
                         element.style.fontSize = fs
                     })
+                    adjustFontForCoords(parseInt(fs), that.configuration, document.querySelector("#" + boardId))
                 }
                 switchHeaderValues()
             })

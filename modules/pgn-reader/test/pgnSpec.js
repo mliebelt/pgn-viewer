@@ -160,7 +160,7 @@ describe("When reading PGN with headers", function() {
     });
 
     it("should have these headers read", function() {
-        should(my_pgn.getTags().size).equal(8);
+        should(my_pgn.getTags().size).equal(9);
         should(my_pgn.getTags().get("Site")).equal("Berlin GER");
         should(my_pgn.getTags().get("Date").value).equal("1852.12.31");
         should(my_pgn.getTags().get("SetUp")).equal("0");
@@ -168,14 +168,14 @@ describe("When reading PGN with headers", function() {
     });
 
     it("should have header mapped to FEN", function() {
-        should(my_pgn2.getTags().size).equal(2);
+        should(my_pgn2.getTags().size).equal(3);
         should(my_pgn2.getTags().get("SetUp")).equal("1");
         should(my_pgn2.configuration.position).equal("8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57");
     });
 
     it("should accept variations of case in header", function() {
         let pgn = pgnReader({pgn: '[Setup "1"] [fen "8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57"] *'});
-        should(pgn.getTags().size).equal(2);
+        should(pgn.getTags().size).equal(3);
         should(pgn.getTags().get("SetUp")).equal("1");
         should(pgn.configuration.position).equal("8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57");
     })
@@ -184,7 +184,7 @@ describe("When reading PGN with headers", function() {
         let pgn = pgnReader({pgn: '[PuzzleCategory "Material"] [PuzzleEngine "Stockfish 13"] ' +
                 '[PuzzleMakerVersion "0.5"] [PuzzleWinner "White"] *'})
         let tags = pgn.getTags()
-        should(tags.size).equal(4)
+        should(tags.size).equal(5)
         should(tags.get("PuzzleCategory")).equal("Material")
         should(tags.get("PuzzleEngine")).equal("Stockfish 13")
         should(tags.get("PuzzleMakerVersion")).equal("0.5")
