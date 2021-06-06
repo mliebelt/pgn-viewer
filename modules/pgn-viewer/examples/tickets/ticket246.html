@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Demonstrates that O-O (and O-O-O) are not split by line break</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+</head>
+<body class='merida zeit'>
+<h3>Demonstrates that O-O (and O-O-O) are not split by line break</h3>
+
+Just play around with the dots, to see different line breaks, but O-O will not be split any more.
+<div id="board0"></div>
+
+<script>
+    let pgn = '1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. g3  O-O 5. Bg2 c6 6. e3 d6 {.......} 7. Nge2  e5 8. O-O Nbd7';
+    pgnv = PGNV.pgnView("board0", {pgn: pgn});
+</script>
+
+</body>
+</html>

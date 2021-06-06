@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Correct list layout for complex variations</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+</head>
+<body class='merida zeit'>
+<h3>Correct list layout for complex variations</h3>
+
+<div id="board0"></div>
+
+<script>
+    let pgn = '1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. g3 O-O 5. Bg2 c6 6. e3 d6 7. Nge2 e5 8. O-O Nbd7 9. b4 Rb8 10. d5 c5 11. a3 a6 12. b5 Nb6 13. Qb3 Bf5 14. e4 Bg4 (14...   Bd7 15. Rb1 {dans idee b6 sur Cb6 bouge} (15. Bg5 axb5 16. Nxb5) 15... axb5 (15... a5 16. Bd2 {pression sur a5})16. Nxb5) (14... axb5 15. Qxb5 Bd7 16. Qb3) 15. f3 Bd7 1-0';
+    pgnv = PGNV.pgnView("board0", {pgn: pgn, notationLayout: 'list'});
+</script>
+
+</body>
+</html>

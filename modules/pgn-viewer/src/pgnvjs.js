@@ -679,7 +679,7 @@ let pgnBase = function (boardId, configuration) {
                 movesDiv.appendChild(createEle('div', null, "variations", null, movesDiv))
             } 
             if (move.variationLevel > 1) {
-                insertAfter(div, moveSpan(move.prev))
+                insertAfter(div, moveSpan(that.mypgn.getMove(move.prev).next))
             } else {
                 movesDiv.lastChild.appendChild(div)
             }
@@ -690,11 +690,12 @@ let pgnBase = function (boardId, configuration) {
             base.generateHTML()
             base.generateBoard()
         }
-        function createMoveNumberSpan(currentMove, spanOrDiv, additionalClass) {
+        function createMoveNumberSpan(currentMove, spanOrDiv, isVariation, additionalClass) {
             const mn = currentMove.moveNumber
             const clazz = additionalClass ? "moveNumber " + additionalClass : "moveNumber"
             const num = createEle('span', null, clazz, null, spanOrDiv)
-            num.appendChild(document.createTextNode("" + mn + ((currentMove.turn == 'w' || additionalClass) ? ". " : "... ")))
+            const isList = that.configuration.notationLayout === 'list'
+            num.appendChild(document.createTextNode("" + mn + ((currentMove.turn == 'w' || (isList && !isVariation)) ? ". " : "... ")))
         }
         function lastEntryFillerOrVariation(div) {
             const childs = div.children
@@ -732,11 +733,11 @@ let pgnBase = function (boardId, configuration) {
 
 
         if ((move.turn == 'w') || (that.mypgn.startMainLine(move)) ) {
-            createMoveNumberSpan(move, currentFather())
+            createMoveNumberSpan(move, currentFather(), (varStack.length !== 0))
         } else if ( (that.mypgn.startVariation(move)) ) {
-            createMoveNumberSpan(move, varStack[varStack.length - 1])
+            createMoveNumberSpan(move, varStack[varStack.length - 1], true)
         } else if ( (move.turn == 'b') && (varStack.length == 0) && lastEntryFillerOrVariation(movesDiv)) {
-            createMoveNumberSpan(move, movesDiv, "filler")
+            createMoveNumberSpan(move, movesDiv, false, "filler")
             createFiller(movesDiv)
         }
         const link = createEle('a', null, null, null, span)
@@ -753,7 +754,7 @@ let pgnBase = function (boardId, configuration) {
         }
         currentFather().appendChild(span)
 
-        appendCommentSpan(currentFather(), move.commentAfter, "afterComment", move.turn == 'w')
+        appendCommentSpan(currentFather(), move.commentAfter, "afterComment", (move.turn == 'w') && (move.variationLevel == 0))
 
         if (that.mypgn.endVariation(move)) {
             //span.appendChild(document.createTextNode(" ) "))

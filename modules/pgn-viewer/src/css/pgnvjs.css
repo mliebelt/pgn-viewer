@@ -326,6 +326,10 @@
     display: none;
 }
 
+.pgnvjs .moves.inline .moveNumber.filler {
+    display: inline;
+}
+
 .pgnvjs .moves.list {
     display: flex;
     flex-flow: row wrap;
@@ -342,6 +346,10 @@
     display: flex;
     /*padding: 0 0.3em;*/
     white-space: nowrap;
+}
+
+.pgnvjs .moves > .move {
+    display: inline-block;
 }
 
 .pgnvjs .variation, .pgnvjs .variation > .moveNumber, .pgnvjs .variation > .move.var {
@@ -396,18 +404,25 @@
     font-weight: 300;
 }
 
-.pgnvjs.moves .variation, .pgnvjs .moves.list .variation {
+.pgnvjs.moves .variation {
     display: inline-block;
     margin: 0 6px;
 }
 
 .pgnvjs .moves.list .variations {
     flex: 0 0 100%;
+    flex-wrap: wrap;
     display: flex;
     margin: 0;
     background: var(--gray-100);
     border-top: 1px solid var(--gray-300);
     border-bottom: 1px solid var(--gray-300);
+}
+
+.pgnvjs .moves.list .variation {
+    flex: 0 0 90%;
+    display: block;
+    margin: 0 20px;
 }
 
 .pgnvjs .moves .variation:before {
@@ -428,10 +443,6 @@
 
 .pgnvjs .moves .variation:after {
     content: ' ) ';
-}
-
-.pgnvjs .moves > .varblock .white:before {
-    display: inline;
 }
 
 .pgnvjs .moves .comment, .pgnvjs .moves.list > .variation > .comment {
