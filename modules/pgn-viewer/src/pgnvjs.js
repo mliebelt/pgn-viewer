@@ -694,8 +694,8 @@ let pgnBase = function (boardId, configuration) {
             const mn = currentMove.moveNumber
             const clazz = additionalClass ? "moveNumber " + additionalClass : "moveNumber"
             const num = createEle('span', null, clazz, null, spanOrDiv)
-            const isList = that.configuration.notationLayout === 'list'
-            num.appendChild(document.createTextNode("" + mn + ((currentMove.turn == 'w' || (isList && !isVariation)) ? ". " : "... ")))
+            const isList = that.configuration.notationLayout === 'list' && !isVariation
+            num.appendChild(document.createTextNode("" + mn + ((currentMove.turn == 'w' || (isList)) ? ". " : "... ")))
         }
         function lastEntryFillerOrVariation(div) {
             const childs = div.children
@@ -714,6 +714,7 @@ let pgnBase = function (boardId, configuration) {
             return prevCounter
         }
         let clAttr = "move"
+        let lastMoveHadComment = false
         if (move.variationLevel > 0) {
             clAttr = clAttr + " var var" + move.variationLevel
         }
@@ -739,6 +740,8 @@ let pgnBase = function (boardId, configuration) {
         } else if ( (move.turn == 'b') && (varStack.length == 0) && lastEntryFillerOrVariation(movesDiv)) {
             createMoveNumberSpan(move, movesDiv, false, "filler")
             createFiller(movesDiv)
+        } else if (currentFather().lastElementChild.classList.toString().match('comment')) {
+            createMoveNumberSpan(move, currentFather(), varStack.length > 0)
         }
         const link = createEle('a', null, null, null, span)
         const text = document.createTextNode(i18nSan(that.mypgn.sanWithNags(move)))
@@ -755,10 +758,11 @@ let pgnBase = function (boardId, configuration) {
         currentFather().appendChild(span)
 
         appendCommentSpan(currentFather(), move.commentAfter, "afterComment", (move.turn == 'w') && (move.variationLevel == 0))
+        if (move.commentAfter){ lastMoveHadComment = true}
 
         if (that.mypgn.endVariation(move)) {
-            //span.appendChild(document.createTextNode(" ) "))
             varStack.pop()
+            lastMoveHadComment = false
         }
         addEventListener(moveSpan(currentCounter), 'click', function (event) {
             makeMove(that.currentMove, currentCounter, move.fen)
