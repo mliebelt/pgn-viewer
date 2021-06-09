@@ -1,6 +1,6 @@
 import i18next from './i18n'
-import {pgnReader} from '@mliebelt/pgn-reader'
-// import {pgnReader} from '../../pgn-reader/src/pgn'
+//import {pgnReader} from '@mliebelt/pgn-reader'
+import {pgnReader} from '../../pgn-reader/src/pgn'
 import {Chessground} from 'chessground'
 import 'chessground/assets/chessground.base.css'
 import 'chessground/assets/chessground.brown.css'
@@ -44,6 +44,7 @@ let pgnBase = function (boardId, configuration) {
         timeAnnotation: 'none',
         notation: 'short',
         notationLayout: 'inline',   // Possible: inline, list, allList
+        figurine: null,
         IDs: {
             bottomHeaderId: boardId + 'BottomHeader',
             topHeaderId: boardId + 'TopHeader',
@@ -298,7 +299,8 @@ let pgnBase = function (boardId, configuration) {
             return t("chess:" + fig)
         }
         let locale = that.configuration.locale
-        if (! locale) return san
+        let figurine = that.configuration.figurine
+        if (! locale || figurine) return san
         let new_san = san
         if ( ! (san.match(/^[a-h]?x/) || san.match(/^[a-h]\d/) || san.match(/^O/) ) ) {
             let move_fig = i18nFig(san[0], locale)
@@ -743,7 +745,8 @@ let pgnBase = function (boardId, configuration) {
         } else if (currentFather().lastElementChild.classList.toString().match('comment')) {
             createMoveNumberSpan(move, currentFather(), varStack.length > 0)
         }
-        const link = createEle('a', null, null, null, span)
+        let figclass = that.configuration.figurine ? "figurine " + that.configuration.figurine : null
+        const link = createEle('a', null, figclass, null, span)
         const text = document.createTextNode(i18nSan(that.mypgn.sanWithNags(move)))
         link.appendChild(text)
         if (that.configuration.timeAnnotation != 'none' && move.commentDiag && move.commentDiag.clk) {

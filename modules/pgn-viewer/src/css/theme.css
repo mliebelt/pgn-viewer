@@ -1,3 +1,19 @@
+@font-face {
+  font-family: Lichess;
+  src: url('./lichess.chess.woff') format('woff');
+}
+@font-face {
+  font-family: Alpha;
+  src: url('./chessalphanew-webfont.vers1.woff') format("woff");
+}
+
+.move a.figurine {
+  font-family: Alpha;
+}
+.move a.figurine.lichess {
+  font-family: Lichess;
+}
+
 /*
  * Board
  */

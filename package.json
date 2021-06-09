@@ -14,7 +14,6 @@
     "css-loader": "^5.2.4",
     "html-webpack-plugin": "^5.3.1",
     "mocha": "^7.1.2",
-    "node-sass": "^6.0.0",
     "nps": "^5.9.12",
     "should": "^13.2.3",
     "style-loader": "^2.0.0",
