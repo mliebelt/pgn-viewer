@@ -22,12 +22,11 @@
   "scripts": {
     "build": "../../node_modules/.bin/webpack --config webpack.prod.js",
     "start": "../../node_modules/.bin/webpack serve --config webpack.dev.js",
-    "gen_i18n": "./bin/gen-i18n.js",
-    "prepare": "npm run build"
+    "gen_i18n": "./bin/gen-i18n.js"
   },
   "dependencies": {
     "@mliebelt/pgn-reader": "^1.2.6",
-    "chessground": "^7.11.1",
+    "chessground": "7.11.1",
     "mousetrap": "^1.6.5",
     "roddeh-i18n": "^1.2.0",
     "smoothscroll-polyfill": "^0.4.4",
