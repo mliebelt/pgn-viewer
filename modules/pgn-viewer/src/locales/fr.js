@@ -1,5 +1,3 @@
-export default fr
-
 let fr = {
    "values": {
       "chess:q": "D",
@@ -279,4 +277,6 @@ let fr = {
       "nag:$146":       "Nouveauté",
       "nag:$146_menu":  "Nouveauté"
    }
-};
+}
+
+export default fr

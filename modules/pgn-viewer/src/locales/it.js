@@ -1,5 +1,3 @@
-import de from "./de";
-
 let it = {
     "values": {
         "buttons:flipper" : "Capovolgere i lati del bordo",

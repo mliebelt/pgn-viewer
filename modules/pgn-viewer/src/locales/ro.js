@@ -1,5 +1,3 @@
-import de from "./de";
-
 let ro = {
     "values": {
         "buttons:flipper" : "Flip părțile laterale ale plăcii",

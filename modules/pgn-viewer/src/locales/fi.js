@@ -1,5 +1,3 @@
-import de from "./de";
-
 let fi = {
     "values": {
         "buttons:flipper" : "Flip puolin hallituksen",

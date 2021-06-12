@@ -1,5 +1,3 @@
-import de from "./de";
-
 let pt = {
     "values": {
         "buttons:flipper" : "Virar os lados da placa",

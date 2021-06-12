@@ -1,5 +1,3 @@
-import de from "./de";
-
 let hu = {
     "values": {
         "buttons:flipper" : "Flip oldalán a tábla",

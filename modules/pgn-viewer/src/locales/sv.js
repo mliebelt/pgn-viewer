@@ -1,5 +1,3 @@
-import de from "./de";
-
 let sv = {
     "values": {
         "buttons:flipper" : "Vänd sidorna av styrelsen",
