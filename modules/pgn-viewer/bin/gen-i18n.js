@@ -1,4 +1,5 @@
-let fs = require('fs')
+#! /usr/bin/env node
+const fs = require('fs')
 console.log("Env Locales: " + process.env.npm_config_locales)
 
 const gen_i18n = function(locales) {
