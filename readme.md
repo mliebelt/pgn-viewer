@@ -74,7 +74,8 @@ There is at the moment no way to save a game that was edited in `pgnEdit` mode. 
 
 * Clone the repository.
 * Run `npm install` from the root, to ensure that all tools are installed.
-* Run `npm run-script build` to both modules (first `pgn-reader`, then `pgn-viewer`) to build a distribution.
+* Run `npm install` in `modules/pgn-viewer` directory.  
+* Run `npm run build` in `modules/pgn-viewer`) directory.
 * Copy the files from the directory `modules/pgn-viewer/lib`.
 * Create new HTML files with the corresponding head and body.
 
