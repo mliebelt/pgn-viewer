@@ -11,6 +11,14 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Fixed
 
+## 1.5.10 2021-06-13
+
+### Changed
+
+### Fixed
+
+* [#259](https://github.com/mliebelt/PgnViewerJS/issues/259) Fixed broken combination `locale != en && figurine` set
+
 ## 1.5.9 2021-06-13
 
 ### Changed

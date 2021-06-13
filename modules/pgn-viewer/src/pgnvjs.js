@@ -751,7 +751,9 @@ let pgnBase = function (boardId, configuration) {
         const link = createEle('san', null, null, null, span)
         let san = ""
         if (move.notation && move.notation.fig) {
-            const fig = t("chess:" + move.notation.fig, that.configuration.locale)
+            const locale = that.configuration.locale
+            const figurine = that.configuration.figurine
+            const fig = (! locale || figurine) ? move.notation.fig : t("chess:" + move.notation.fig, locale)
             const figele = createEle('fig', null, figclass, null, link)
             figele.appendChild(document.createTextNode(fig))
             san = that.mypgn.san(move).substring(1)
