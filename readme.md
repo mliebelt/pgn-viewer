@@ -124,8 +124,8 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 From the version 1.0.0 on, the whole package can be downloaded / installed by using NPM:
 
-* Download: `npm pack @mliebelt/pgn-viewer@1.5.8` Results in download of a file `mliebelt-pgn-viewer-1.5.8.tgz`, that contains in the directory `package/lib` all resources needed.
-* Install: `npm install @mliebelt/pgn-viewer@1.5.8` as part of some other application. You will find then the files in the directory `node_modules/@mliebelt/pgn-viewer/lib`.
+* Download: `npm pack @mliebelt/pgn-viewer@1.5.9` Results in download of a file `mliebelt-pgn-viewer-1.5.9.tgz`, that contains in the directory `package/lib` all resources needed.
+* Install: `npm install @mliebelt/pgn-viewer@1.5.9` as part of some other application. You will find then the files in the directory `node_modules/@mliebelt/pgn-viewer/lib`.
 
 ## Authors
 

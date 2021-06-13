@@ -1,17 +1,31 @@
 @font-face {
-  font-family: Lichess;
-  src: url('./lichess.chess.woff2') format('woff2');
+  font-family: Alpha;
+  src: url('./ChessAlpha.woff') format("woff");
 }
 @font-face {
-  font-family: Alpha;
-  src: url('./chessalphanew-webfont.vers1.woff') format("woff");
+  font-family: Merida;
+  src: url('./ChessMerida.woff') format("woff");
+}
+@font-face {
+  font-family: Berlin;
+  src: url('./ChessBerlin.woff') format("woff");
+}
+@font-face {
+  font-family: NotoSans;
+  src: url('./NotoSans.woff') format("woff");
 }
 
-.move a.figurine {
+move fig.figurine {
   font-family: Alpha;
 }
-.move a.figurine.lichess {
-  font-family: Lichess;
+move fig.figurine.merida {
+  font-family: Merida;
+}
+move fig.figurine.berlin {
+  font-family: Berlin;
+}
+move fig.figurine.noto {
+  font-family: NotoSans;
 }
 
 /*

@@ -8,16 +8,20 @@
 <body class='merida zeit'>
 <h3>Show figurine notation</h3>
 
-On the left, font from Lichess, on the right, font from Alpha
+From the left: Alpha, Merida, Berlin, NotoSans fonts.
 <br/>
-<div id="board0" style="width: 300px; float: left; margin-right: 25px"></div>
 <div id="board1" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board2" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board3" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board4" style="width: 300px; float: left; margin-right: 25px"></div>
 
 <script>
     let pgnView = PGNV.pgnView;
     let pgn = "1. e4! e5? 2. Nf3$3 Nc6$4 3. Bb5$5 a6$6 4. Ba4$7 Nf6$8 5. O-O$9 b5$10 6. Re1 Be7 Qe2 O-O Kh1";
-    pgnView("board0", {pgn: pgn, figurine: "lichess"});
     pgnView("board1", {pgn: pgn, figurine: "alpha"});
+    pgnView("board2", {pgn: pgn, figurine: "merida"});
+    pgnView("board3", {pgn: pgn, figurine: "berlin"});
+    pgnView("board4", {pgn: pgn, figurine: "noto"});
 </script>
 
 </body>

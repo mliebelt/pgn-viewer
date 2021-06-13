@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-viewer@1.5.2` to get the "release" directly from NPM.
+I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-viewer@1.5.9` to get the "release" directly from NPM.
 
 ## Unknown version
 
@@ -11,7 +11,25 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Fixed
 
-## 1.5.7 2021-05-23
+## 1.5.9 2021-06-13
+
+### Changed
+
+* [#248](https://github.com/mliebelt/PgnViewerJS/issues/248) Adds figurine notation: alpha (default), merida, berlin, noto
+* [#254](https://github.com/mliebelt/PgnViewerJS/issues/254) French translation completed (thx @braoult)
+* [#257](https://github.com/mliebelt/PgnViewerJS/issues/257) Add title attribute for NAGs
+
+### Fixed
+
+* [#235](https://github.com/mliebelt/PgnViewerJS/issues/235) Shows how FontAwesome may be used
+* [#241](https://github.com/mliebelt/PgnViewerJS/issues/241) CoordsInner == false kept when switching orientation
+* [#242](https://github.com/mliebelt/PgnViewerJS/issues/242) Fixed
+* [#244](https://github.com/mliebelt/PgnViewerJS/issues/244) Fixed notation layout problems
+* [#245](https://github.com/mliebelt/PgnViewerJS/issues/245) Fixed notation layout problems
+* [#246](https://github.com/mliebelt/PgnViewerJS/issues/246) Fixed CSS problem
+* [#255](https://github.com/mliebelt/PgnViewerJS/issues/255) Script is working again
+
+## 1.5.8 2021-05-23
 
 ### Changed
 

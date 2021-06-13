@@ -286,7 +286,7 @@ examples["1100"] = {
 examples["1101"] = {
     desc: "Here the normal layout of the moves, with some special characters, the so called NAGs. PNGViewerJS knows the NAGs, and " +
         "translates them in the correct notation. The following game " +
-        "is not really correct commented, but it shows the different options.",
+        "is not really correct commented, but it shows the different options. Hover with the mouse over the NAGs, to see the meaning",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Annotated moves",
     jsStr: "var pgn = '1. e4$1 e5$2 2. Nf3$3 Nc6$4 3. Bb5$5 a6$6 4. Ba4$7 Nf6$10 5. O-O$13 Be7$14 6. Re1$15 b5$16 7. Bb3$17 O-O$18 8. c3$19 d5$3';\nPGNV.pgnView('b1', {pgn: pgn});",
@@ -351,6 +351,23 @@ examples["1106"] = {
 };
 
 examples["1107"] = {
+    desc: "Shows different figurine notations: alpha, merida, berlin, noto.",
+    html: '<div id="b1" style="width: 240px;float: left;margin-right: 25px"></div>' +
+        '<div id="b2" style="width: 240px;float: left;margin-right: 25px"></div>' +
+        '<div id="b3" style="width: 240px;float: left;margin-right: 25px"></div>' +
+        '<div id="b4" style="width: 240px"></div>',
+    name: "Figurine notations",
+    jsStr: "var pgn = '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6';\nPGNV.pgnView('b1', {pgn: pgn, figurine: true});\nPGNV.pgnView('b2', {pgn: pgn, figurine: 'merida'});\nPGNV.pgnView('b3', {pgn: pgn, figurine: 'berlin'});\nPGNV.pgnView('b4', {pgn: pgn, figurine: 'noto'});",
+    jsFn: function() {
+        var pgn = '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6';
+        PGNV.pgnView('b1', {pgn: pgn, figurine: true});
+        PGNV.pgnView('b2', {pgn: pgn, figurine: 'merida'});
+        PGNV.pgnView('b3', {pgn: pgn, figurine: 'berlin'});
+        PGNV.pgnView('b4', {pgn: pgn, figurine: 'noto'});
+    }
+};
+
+examples["1108"] = {
     desc: "Shows the same game with default languages: en (default), de, and fr. Look at the SAN notation, and hover over the buttons to see the tooltips.",
     html: '<div id="b1" style="width: 360px"><\/div>' +
         '<div id="b2" style="width: 360px"></div>' +
@@ -365,7 +382,7 @@ examples["1107"] = {
     }
 };
 
-examples["1108"] = {
+examples["1109"] = {
     desc: "Set the timer to 3 different values: 200ms, 1200ms and 700ms (default). Just press the play button, and watch the difference.",
     html: '<div id="board" style="width: 250px; float: left; margin-right: 10px"><\/div>\n' +
         '<div id="board1" style="width: 250px; float: left; margin-right: 10px"></div>\n' +
@@ -383,7 +400,7 @@ examples["1108"] = {
     }
 };
 
-examples["1109"] = {
+examples["1110"] = {
     desc: "Shows a game in viewer with FEN text field",
     html: '<div id="board2" style="width: 450px"></div>',
     name: "Show FEN in text field",
@@ -394,7 +411,7 @@ examples["1109"] = {
     }
 };
 
-examples["1110"] = {
+examples["1111"] = {
     desc: "Shows the result of the game in the PGN notation",
     html: '<div id="board2" style="width: 450px"></div>',
     name: "Show FEN in text field",
@@ -405,7 +422,7 @@ examples["1110"] = {
     }
 };
 
-examples["1111"] = {
+examples["1112"] = {
     desc: "Starts play from a different move than the first one",
     html: '<div id="board1" style="width: 250px; float: left; margin-right: 10px"></div>' +
         '\n<div id="board2" style="width: 250px; float: left; margin-right: 10px"></div>' +
@@ -429,7 +446,7 @@ examples["1111"] = {
     }
 };
 
-examples["1112"] = {
+examples["1113"] = {
     desc: "Starts play from a different move than the first one, hide the moves before that first move",
     html: '<div id="board2" style="width: 250px; float: left; margin-right: 10px"></div>',
     name: "Start play combined with hide moves before",
@@ -438,6 +455,20 @@ examples["1112"] = {
     jsFn: function() {
         var pgn = "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6";
         PGNV.pgnView('board2', {pgn: pgn, startPlay: 3, hideMovesBefore: true});
+    }
+};
+
+examples["1114"] = {
+    desc: "Shows time annotations, different examples: normal, tiny (with different colors)",
+    html: '<div id="board1" style="width: 250px; float: left; margin-right: 10px"></div><div id="board2" style="width: 250px;"></div>',
+    name: "Show time annotations",
+    jsStr: "var pgn = \"c4 {[%clk 2:10:30]} Nf6 {[%clk 2:10:30]} 2. Nc3 {[%clk 2:10:30]}\";\n" +
+        "PGNV.pgnView('board1', {pgn: pgn, timeAnnotation: { class: 'timeNormal'}});\n" +
+        "PGNV.pgnView('board2', {pgn: pgn, timeAnnotation: {class: 'timeTiny', colorClass: 'blue'}});",
+    jsFn: function() {
+        var pgn = "c4 {[%clk 2:10:30]} Nf6 {[%clk 2:10:30]} 2. Nc3 {[%clk 2:10:30]}";
+        PGNV.pgnView('board1', {pgn: pgn, timeAnnotation: { class: 'timeNormal'}});
+        PGNV.pgnView('board2', {pgn: pgn, timeAnnotation: {class: 'timeTiny', colorClass: 'blue'}});
     }
 };
 

@@ -7,8 +7,8 @@
     <meta name="author" content="Markus Liebelt">
 
 <!--   Workaround: 2 definitions, depending on the context  -->
-<!--    <script src="../js/pgnv.js" type="text/javascript"></script>-->
     <script src="../lib/pgnv.js" type="text/javascript"></script>
+<!--    <script src="/lib/pgnv.js" type="text/javascript"></script>-->
     <style>
         body {
         }
@@ -121,7 +121,8 @@
             <br/>
         </div>
 
-        <div class="section"><!-- Theme: zeit, blue, green, default -->
+        <div class="section">
+            <!-- Theme: zeit, blue, green, default -->
             <label for="theme">Theme</label>
             <select id="theme">
                 <option value="default">default</option>
@@ -146,7 +147,17 @@
                 <option value="merida">merida</option>
                 <option value="leipzig">leipzig</option>
                 <option value="beyer">beyer</option>
-            </select></div>
+            </select>
+            <!-- figurine: -->
+            <label for="figurine">Figurine</label>
+            <select id="figurine">
+                <option value="">none</option>
+                <option value="alpha">alpha (default)</option>
+                <option value="merida">merida</option>
+                <option value="berlin">berlin</option>
+                <option value="noto">noto</option>
+            </select>
+        </div>
 
         <div class="section">
             <label for="layout">Layout</label>
@@ -330,6 +341,7 @@
         document.getElementById('orientation').value = true;
         var theme = document.getElementById('theme').value;
         var pieceStyle = document.getElementById('pieceStyle').value;
+        var figurine = document.getElementById('figurine').value;
         var locale = document.getElementById('locale').value;
         var timerTime = document.getElementById('timerTime').value;
         var coordsFactor = document.getElementById('coordsFactor').value;
@@ -376,6 +388,7 @@
         configuration['notation'] = notation;
         configuration['notationLayout'] = notationLayout;
         configuration['pieceStyle'] = pieceStyle;
+        configuration['figurine'] = figurine;
         configuration['locale'] = locale;
         configuration['timerTime'] = timerTime;
         configuration['coordsFactor'] = coordsFactor;
@@ -416,7 +429,7 @@
             "<script>\n" +
             "config = {";
         var props = ['pgn', 'position', 'showCoords', 'orientation', 'theme',
-            'pieceStyle', 'locale', 'timerTime', 'width', 'boardSize', 'layout',
+            'pieceStyle', 'figurine', 'locale', 'timerTime', 'width', 'boardSize', 'layout',
             'movesWidth', 'movesHeight', 'showFen', 'coordsInner', 'headers',
             'coordsFactor', 'coordsFontSize', 'colorMarker', 'startPlay', 'hideMovesBefore', 'notation', 'notationLayout'];
         for (property of props) {
@@ -447,6 +460,7 @@
         document.getElementById('notation').onchange = changedSomething;
         document.getElementById('notationLayout').onchange = changedSomething;
         document.getElementById('pieceStyle').onchange = changedSomething;
+        document.getElementById('figurine').onchange = changedSomething;
         document.getElementById('locale').onchange = changedSomething;
         document.getElementById('timerTime').oninput = changedSomething;
         document.getElementById('coordsFactor').oninput = changedSomething;

@@ -1,12 +1,13 @@
 import i18next from './i18n'
-//import {pgnReader} from '@mliebelt/pgn-reader'
-import {pgnReader} from '../../pgn-reader/src/pgn'
+import {pgnReader} from '@mliebelt/pgn-reader'
+// import {pgnReader} from '../../pgn-reader/src/pgn'
 import {Chessground} from 'chessground'
 import 'chessground/assets/chessground.base.css'
 import 'chessground/assets/chessground.brown.css'
 import Timer from './Timer'
 import Mousetrap from 'mousetrap'
 import swal from 'sweetalert'
+import {createEl} from "chessground/util";
 
 /**
  * This implements the base function that is used to display a board, a whole game
@@ -694,8 +695,9 @@ let pgnBase = function (boardId, configuration) {
         }
         function createMoveNumberSpan(currentMove, spanOrDiv, isVariation, additionalClass) {
             const mn = currentMove.moveNumber
-            const clazz = additionalClass ? "moveNumber " + additionalClass : "moveNumber"
-            const num = createEle('span', null, clazz, null, spanOrDiv)
+            const clazz = additionalClass ? additionalClass : ""
+            const num = createEle('move-number', null, clazz, null, spanOrDiv)
+            num.setAttribute('data-value', mn)
             const isList = that.configuration.notationLayout === 'list' && !isVariation
             num.appendChild(document.createTextNode("" + mn + ((currentMove.turn == 'w' || (isList)) ? ". " : "... ")))
         }
@@ -715,7 +717,7 @@ let pgnBase = function (boardId, configuration) {
         if (move === null || (move === undefined)) {
             return prevCounter
         }
-        let clAttr = "move"
+        let clAttr = ""
         let lastMoveHadComment = false
         if (move.variationLevel > 0) {
             clAttr = clAttr + " var var" + move.variationLevel
@@ -723,7 +725,7 @@ let pgnBase = function (boardId, configuration) {
         if (move.turn == 'w') {
             clAttr = clAttr + " white"
         }
-        const span = createEle("span", id('movesId') + currentCounter, clAttr)
+        const span = createEle("move", id('movesId') + currentCounter, clAttr)
         if (that.mypgn.startVariation(move)) {
             /* if ( (move.turn == 'w') ) {
                 createFiller(movesDiv)
@@ -746,9 +748,34 @@ let pgnBase = function (boardId, configuration) {
             createMoveNumberSpan(move, currentFather(), varStack.length > 0)
         }
         let figclass = that.configuration.figurine ? "figurine " + that.configuration.figurine : null
-        const link = createEle('a', null, figclass, null, span)
-        const text = document.createTextNode(i18nSan(that.mypgn.sanWithNags(move)))
-        link.appendChild(text)
+        const link = createEle('san', null, null, null, span)
+        let san = ""
+        if (move.notation && move.notation.fig) {
+            const fig = t("chess:" + move.notation.fig, that.configuration.locale)
+            const figele = createEle('fig', null, figclass, null, link)
+            figele.appendChild(document.createTextNode(fig))
+            san = that.mypgn.san(move).substring(1)
+        } else {
+            san = that.mypgn.san(move)
+        }
+        link.appendChild(document.createTextNode(san))
+        if (move.nag) {
+            move.nag.forEach(function(nag) {
+                let nagInt = parseInt(nag.substring(1))
+                let nagClass = ""
+                if (nagInt < 10)
+                    { nagClass = "move" }
+                else if (nagInt > 9 && nagInt < 136)
+                    { nagClass = "position"}
+                else if
+                    (nagInt > 135 && nagInt < 140) { nagClass = "time"}
+                let nagele = createEle('nag', null, nagClass, null, link)
+                nagele.setAttribute('data-value', nag)
+                nagele.setAttribute('title', t('nag:' + nag))
+                nagele.appendChild(document.createTextNode(that.mypgn.nagToSymbol([nag])))
+            })
+        }
+
         if (that.configuration.timeAnnotation != 'none' && move.commentDiag && move.commentDiag.clk) {
             let cl_time = move.commentDiag.clk
             let cl_class = that.configuration.timeAnnotation.class || 'timeNormal'

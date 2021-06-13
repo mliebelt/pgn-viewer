@@ -26,7 +26,7 @@
 
 /** Reset / Set defaults */
 .pgnvjs {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell, sans-serif;
+    font-family: "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell, sans-serif;
     margin: 0;
 }
 .pgnvjs ul, .pgnvjs ol {
@@ -326,7 +326,7 @@
     display: none;
 }
 
-.pgnvjs .moves.inline .moveNumber.filler {
+.pgnvjs .moves.inline move-number.filler {
     display: inline;
 }
 
@@ -336,27 +336,27 @@
     align-content: flex-start;
 }
 
-.pgnvjs .moves.list > .move.result {
+.pgnvjs .moves.list > move.result {
     justify-content: center;
     flex: 0 0 100%;
 }
 
-.pgnvjs .moves.list > .move {
+.pgnvjs .moves.list > move, .pgnvjs .moves.list .move.filler {
     flex: 0 0 35%;
     display: flex;
     /*padding: 0 0.3em;*/
     white-space: nowrap;
 }
 
-.pgnvjs .moves > .move {
+.pgnvjs .moves > move {
     display: inline-block;
 }
 
-.pgnvjs .variation, .pgnvjs .variation > .moveNumber, .pgnvjs .variation > .move.var {
+.pgnvjs .variation, .pgnvjs .variation > .moveNumber, .pgnvjs .variation > move.var {
     white-space: normal;
 }
 
-.pgnvjs .moves.list > .moveNumber {
+.pgnvjs .moves.list > move-number {
     flex: 0 0 15%;
     justify-content: center;
     display: flex;
@@ -368,18 +368,18 @@
     text-decoration: underline;
 }
 
-.pgnvjs .moves .move a.yellow {
+.pgnvjs .moves move san.yellow {
     /*background-color: rgba(255, 255, 153, 1.0);*/
     color: var(--gray-800);
     background-color: var(--highlight);
 }
 
-.pgnvjs .moves .move a {
+.pgnvjs .moves move san {
     text-decoration: none;
     padding: 0 0.2rem;
 }
 
-.pgnvjs .moves .move a:hover {
+.pgnvjs .moves move san:hover {
     /*border: 1px yellow dotted;*/
     background-color: var(--highlight);
     cursor: crosshair;
@@ -394,12 +394,12 @@
     line-height: normal;
 }
 
-.pgnvjs .moves .variation .move.var, .pgnvjs .moves .variation .moveNumber {
+.pgnvjs .moves .variation move.var, .pgnvjs .moves .variation move-number {
     font-size: 97%;
     font-weight: 500;
 }
 
-.pgnvjs .moves .variation .variation .move.var, .pgnvjs .moves .variation .variation .moveNumber {
+.pgnvjs .moves .variation .variation move.var, .pgnvjs .moves .variation .variation move-number {
     font-size: 95%;
     font-weight: 300;
 }
@@ -446,7 +446,7 @@
 }
 
 .pgnvjs .moves .comment, .pgnvjs .moves.list > .variation > .comment {
-    color: var(--gray-800);
+    color: var(--gray-600);
     font-weight: 500;
     display: inline;
 }
@@ -460,15 +460,15 @@
     /* padding: 5px; */
 }
 
-.pgnvjs .moves .move .comment.timeTiny {
+.pgnvjs .moves move .comment.timeTiny {
     font-weight: 300;
     font-size: 60%;
 }
 
-.pgnvjs .moves .move .comment.timeLarge {
+.pgnvjs .moves move .comment.timeLarge {
 }
 
-.pgnvjs .moves .move .timeNormal {
+.pgnvjs .moves move .timeNormal {
     font-weight: 400;
     font-size: 80%;
 }

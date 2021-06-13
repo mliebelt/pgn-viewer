@@ -1176,6 +1176,7 @@ const pgnReader = function (configuration) {
         NAGS: NAGs,
         san: san,
         sanWithNags: sanWithNags,
+        nagToSymbol: nagToSymbol,
         chess: chess,
         loadPgn: loadPgn,
         possibleMoves: possibleMoves,
