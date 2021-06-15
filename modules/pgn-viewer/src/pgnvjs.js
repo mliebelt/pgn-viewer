@@ -701,16 +701,14 @@ let pgnBase = function (boardId, configuration) {
             const isList = that.configuration.notationLayout === 'list' && !isVariation
             num.appendChild(document.createTextNode("" + mn + ((currentMove.turn == 'w' || (isList)) ? ". " : "... ")))
         }
-        function lastEntryFillerOrVariation(div) {
-            const childs = div.children
-            if (childs.length < 2) return false
-            return childs[childs.length - 2].classList.contains("filler") || childs[childs.length - 1].classList.contains("variations")
-        }
 
         function isVariant() { return varStack.length > 0 }
-        function isMain() { return ! isVariant() }
         function currentFather() {
-            return isMain() ? movesDiv : varStack[varStack.length - 1]
+            return isVariant() ? varStack[varStack.length - 1] : movesDiv
+        }
+        function preMoveHasVariation(move) {
+            let prev = that.mypgn.getMove(move.prev)
+            return prev && prev.variations.length > 0
         }
 
         // Ignore null moves
@@ -736,16 +734,22 @@ let pgnBase = function (boardId, configuration) {
         }
         appendCommentSpan(currentFather(), move.commentMove, "moveComment")
 
-
+        // When to add a move number
+        // Whites move, or at the begin of the main line
         if ((move.turn == 'w') || (that.mypgn.startMainLine(move)) ) {
-            createMoveNumberSpan(move, currentFather(), (varStack.length !== 0))
+            createMoveNumberSpan(move, currentFather(), isVariant())
+        // At the beginning of a variation
         } else if ( (that.mypgn.startVariation(move)) ) {
             createMoveNumberSpan(move, varStack[varStack.length - 1], true)
-        } else if ( (move.turn == 'b') && (varStack.length == 0) && lastEntryFillerOrVariation(movesDiv)) {
-            createMoveNumberSpan(move, movesDiv, false, "filler")
-            createFiller(movesDiv)
+        // After the end of a variation, with black to move
+        } else if ( (move.turn == 'b') && preMoveHasVariation(move)) {
+            createMoveNumberSpan(move, currentFather(), move.variationLevel > 0)
+            if (move.variationLevel == 0) {
+                createFiller(currentFather())
+            }
+        // After a comment
         } else if (currentFather().lastElementChild.classList.toString().match('comment')) {
-            createMoveNumberSpan(move, currentFather(), varStack.length > 0)
+            createMoveNumberSpan(move, currentFather(), isVariant())
         }
         let figclass = that.configuration.figurine ? "figurine " + that.configuration.figurine : null
         const link = createEle('san', null, null, null, span)
