@@ -34,18 +34,12 @@
     margin: 0;
     padding: 0;
 }
-/*.pgnvjs > * {*/
-/*    padding: var(--space-xs);*/
-/*}*/
 .pgnvjs:focus {
     /* The following suppresses the outline of the element that has the focus. Only when
        that focus is set, the keyboard mappings work. You may of course enable the outline
        for debugging purposes. */
     outline: 0;
 }
-/*.pgnvjs {*/
-/*    margin: var(--space-xs);*/
-/*}*/
 
 .pgnvjs .moves {
     overflow: auto;
@@ -286,20 +280,6 @@
     color: var(--gray-100);
 }
 
-/*Necessary fixes for examples*/
-/*button.ui-multiselect {*/
-/*    background-image: none;*/
-/*    background-color: white;*/
-/*}*/
-
-/*ul.ui-multiselect-checkboxes > li {*/
-/*    margin-bottom: 0;*/
-/*}*/
-
-/*select.nag {*/
-/*    width: 40px;*/
-/*}*/
-
 .pgnvjs textarea.textpgn {
     padding: 2px;
     border: 1px solid grey;
@@ -385,12 +365,17 @@
     cursor: crosshair;
 }
 
+.pgnvjs .moves move nag::before {
+    content: attr(data-value);
+}
+
+/*.pgnvjs .moves move nag[data-value="$11"]::before {*/
+/*    content: "=";*/
+/*}*/
+
 .pgnvjs .moves, .pgnvjs select.games {
-    /* font-size: 16px; */
-    /*font-family: Georgia, "Bitstream Charter", serif;;*/
     color: black;
     font-weight: 700;
-    /* line-height: 24px; */
     line-height: normal;
 }
 

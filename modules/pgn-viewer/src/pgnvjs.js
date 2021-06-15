@@ -780,7 +780,10 @@ let pgnBase = function (boardId, configuration) {
                 let nagele = createEle('nag', null, nagClass, null, link)
                 nagele.setAttribute('data-value', nag)
                 nagele.setAttribute('title', t('nag:' + nag))
-                nagele.appendChild(document.createTextNode(that.mypgn.nagToSymbol([nag])))
+                let nagtext = that.mypgn.nagToSymbol([nag])
+                if (nagtext != nag) {
+                    nagele.appendChild(document.createTextNode(nagtext))
+                }
             })
         }
 
