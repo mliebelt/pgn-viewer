@@ -513,6 +513,10 @@ let pgnBase = function (boardId, configuration) {
         let right = (fontSize - 13) / 2.5 - 2
         if (!boardConfig.coordsInner) {
             right -= fontSize / 1.5 + 2
+            let moves = document.getElementById(id('movesId'))
+            if (that.configuration.layout === 'left') {
+                moves.style.marginLeft = `${fontSize / 1.5}px`
+            }
         }
         el.querySelector("coords.ranks").style.right = `${right}px`
         let bottom = (fontSize - 13)
@@ -520,6 +524,8 @@ let pgnBase = function (boardId, configuration) {
             bottom -= fontSize + 2
             let left = parseFloat(getComputedStyle(el.querySelector(".cg-wrap coords.files")).getPropertyValue("left"))
             el.querySelector("coords.files").style.left = `${left - (fontSize / 1.5)}px`
+            let buttons = document.getElementById(id('buttonsId'))
+            buttons.style.marginTop = `${fontSize * 1.5}px`
         }
         el.querySelector("coords.files").style.bottom = `${bottom}px`
     }
@@ -587,7 +593,7 @@ let pgnBase = function (boardId, configuration) {
             el.style.height = boardConfig.width
             let fontSize = null
             if (boardConfig.coordsFontSize) {
-                fontSize = boardConfig.coordsFontSize
+                fontSize = Number.parseInt(boardConfig.coordsFontSize)
             } else {
                 // Set the font size related to the board (factor 28), ensure at least 8px font
                 fontSize = Math.max(8, Math.round(parseInt(boardConfig.width.slice(0, -2)) / 28 * boardConfig.coordsFactor))
