@@ -789,6 +789,7 @@ let pgnBase = function (boardId, configuration) {
                 let nagtext = that.mypgn.nagToSymbol([nag])
                 if (nagtext != nag) {
                     nagele.appendChild(document.createTextNode(nagtext))
+                    nagele.classList.add('hideaddcontent')
                 }
             })
         }

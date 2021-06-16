@@ -369,6 +369,11 @@
     content: attr(data-value);
 }
 
+.pgnvjs .moves move nag.hideaddcontent::before {
+    content: "";
+}
+
+
 /*.pgnvjs .moves move nag[data-value="$11"]::before {*/
 /*    content: "=";*/
 /*}*/
