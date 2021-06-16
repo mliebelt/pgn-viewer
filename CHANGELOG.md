@@ -11,6 +11,18 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Fixed
 
+## 1.5.10 2021-06-16
+
+### Changed
+
+* [#247](https://github.com/mliebelt/PgnViewerJS/issues/247) Allow additional CSS to define display of NAGs
+
+### Fixed
+
+* [#224](https://github.com/mliebelt/PgnViewerJS/issues/224) innerCoors == false working with different font sizes and layouts
+* [#261](https://github.com/mliebelt/PgnViewerJS/issues/261) Corrections to different flaws of move numbers
+* [#262](https://github.com/mliebelt/PgnViewerJS/issues/262) Fixed highlighting of moves
+
 ## 1.5.10 2021-06-13
 
 ### Changed
