@@ -7,7 +7,6 @@ import 'chessground/assets/chessground.brown.css'
 import Timer from './Timer'
 import Mousetrap from 'mousetrap'
 import swal from 'sweetalert'
-import {createEl} from "chessground/util";
 
 /**
  * This implements the base function that is used to display a board, a whole game
@@ -314,6 +313,12 @@ let pgnBase = function (boardId, configuration) {
         return new_san
     }
 
+    function clearChilds(htmlElement) {
+        while (htmlElement.childNodes.length > 0) {
+            htmlElement.removeChild(htmlElement.childNodes[0])
+        }
+    }
+
     /**
      * Generates all HTML elements needed for display of the (playing) board and
      * the moves. Generates that in dependence of the theme
@@ -365,9 +370,11 @@ let pgnBase = function (boardId, configuration) {
                     generateIcon(link, myLink)
                     myLink.addEventListener("click", function () {
                         function updateMoveSAN(moveIndex) {
-                            let move = that.mypgn.getMove(moveIndex)
-                            let san = i18nSan(that.mypgn.sanWithNags(move))
-                            document.querySelector("#" + id('movesId') + moveIndex + " > a").textContent = san
+                            let _move = that.mypgn.getMove(moveIndex)
+                            let _moveSpan = document.querySelector('#' + id('movesId') + moveIndex)
+                            clearChilds(_moveSpan)
+                            regenerateMoveSpan(_moveSpan, _move)
+                            unmarkMark(moveIndex)
                         }
 
                         this.classList.toggle("active")
@@ -404,9 +411,7 @@ let pgnBase = function (boardId, configuration) {
             return
         } else {
             // ensure that the board is empty before filling it
-            while (divBoard.childNodes.length > 0) {
-                divBoard.removeChild(divBoard.childNodes[0])
-            }
+            clearChilds(divBoard);
         }
         divBoard.classList.add(theme)
         divBoard.classList.add('pgnvjs')   // Is used as class for everything included.
@@ -637,6 +642,46 @@ let pgnBase = function (boardId, configuration) {
         return document.getElementById(id('movesId') + i)
     }
 
+    function regenerateMoveSpan(_moveSpan, move) {
+        // Creating the move SAN including everything (may be recreated later)
+        let figclass = that.configuration.figurine ? "figurine " + that.configuration.figurine : null
+        const _linkEle = createEle('san', null, null, null, _moveSpan)
+        let _san = ""
+        if (move.notation && move.notation.fig) {
+            const locale = that.configuration.locale
+            const figurine = that.configuration.figurine
+            const fig = (!locale || figurine) ? move.notation.fig : t("chess:" + move.notation.fig, locale)
+            const figele = createEle('fig', null, figclass, null, _linkEle)
+            figele.appendChild(document.createTextNode(fig))
+            _san = that.mypgn.san(move).substring(1)
+        } else {
+            _san = that.mypgn.san(move)
+        }
+        _linkEle.appendChild(document.createTextNode(_san))
+        if (move.nag) {
+            move.nag.forEach(function (nag) {
+                let nagInt = parseInt(nag.substring(1))
+                let nagClass = ""
+                if (nagInt < 10) {
+                    nagClass = "move"
+                } else if (nagInt > 9 && nagInt < 136) {
+                    nagClass = "position"
+                } else if
+                (nagInt > 135 && nagInt < 140) {
+                    nagClass = "time"
+                }
+                let nagele = createEle('nag', null, nagClass, null, _linkEle)
+                nagele.setAttribute('data-value', nag)
+                nagele.setAttribute('title', t('nag:' + nag))
+                let nagtext = that.mypgn.nagToSymbol([nag])
+                if (nagtext != nag) {
+                    nagele.appendChild(document.createTextNode(nagtext))
+                    nagele.classList.add('hideaddcontent')
+                }
+            })
+        }
+    }
+
     /**
      * Generates one move from the current position.
      * @param currentCounter the current move counter (should be redundant, because
@@ -658,9 +703,9 @@ let pgnBase = function (boardId, configuration) {
          */
         function generateCommentSpan (comment, clazz) {
             if (comment && (typeof comment == "string")) {
-                const span =  createEle('span', null, "comment " + clazz)
-                span.appendChild(document.createTextNode(" " + comment + " "))
-                return span
+                const commentSpan =  createEle('span', null, "comment " + clazz)
+                commentSpan.appendChild(document.createTextNode(" " + comment + " "))
+                return commentSpan
             }
             return null
         }
@@ -728,7 +773,7 @@ let pgnBase = function (boardId, configuration) {
         if (move.turn == 'w') {
             clAttr = clAttr + " white"
         }
-        const span = createEle("move", id('movesId') + currentCounter, clAttr)
+        const _moveSpan = createEle("move", id('movesId') + currentCounter, clAttr)
         if (that.mypgn.startVariation(move)) {
             /* if ( (move.turn == 'w') ) {
                 createFiller(movesDiv)
@@ -759,40 +804,7 @@ let pgnBase = function (boardId, configuration) {
                 createFiller(currentFather())
             }
         }
-        let figclass = that.configuration.figurine ? "figurine " + that.configuration.figurine : null
-        const link = createEle('san', null, null, null, span)
-        let san = ""
-        if (move.notation && move.notation.fig) {
-            const locale = that.configuration.locale
-            const figurine = that.configuration.figurine
-            const fig = (! locale || figurine) ? move.notation.fig : t("chess:" + move.notation.fig, locale)
-            const figele = createEle('fig', null, figclass, null, link)
-            figele.appendChild(document.createTextNode(fig))
-            san = that.mypgn.san(move).substring(1)
-        } else {
-            san = that.mypgn.san(move)
-        }
-        link.appendChild(document.createTextNode(san))
-        if (move.nag) {
-            move.nag.forEach(function(nag) {
-                let nagInt = parseInt(nag.substring(1))
-                let nagClass = ""
-                if (nagInt < 10)
-                    { nagClass = "move" }
-                else if (nagInt > 9 && nagInt < 136)
-                    { nagClass = "position"}
-                else if
-                    (nagInt > 135 && nagInt < 140) { nagClass = "time"}
-                let nagele = createEle('nag', null, nagClass, null, link)
-                nagele.setAttribute('data-value', nag)
-                nagele.setAttribute('title', t('nag:' + nag))
-                let nagtext = that.mypgn.nagToSymbol([nag])
-                if (nagtext != nag) {
-                    nagele.appendChild(document.createTextNode(nagtext))
-                    nagele.classList.add('hideaddcontent')
-                }
-            })
-        }
+        regenerateMoveSpan(_moveSpan, move);
 
         if (that.configuration.timeAnnotation != 'none' && move.commentDiag && move.commentDiag.clk) {
             let cl_time = move.commentDiag.clk
@@ -801,9 +813,9 @@ let pgnBase = function (boardId, configuration) {
             if (that.configuration.timeAnnotation.colorClass) {
                 clock_span.style = "color: " + that.configuration.timeAnnotation.colorClass
             }
-            span.appendChild(clock_span)
+            _moveSpan.appendChild(clock_span)
         }
-        currentFather().appendChild(span)
+        currentFather().appendChild(_moveSpan)
 
         appendCommentSpan(currentFather(), move.commentAfter, "afterComment", (move.turn == 'w') && (move.variationLevel == 0))
 
@@ -817,7 +829,7 @@ let pgnBase = function (boardId, configuration) {
         if (that.mypgn.hasDiagramNag(move)) {
             const diaID = boardId + "dia" + currentCounter
             const diaDiv = createEle('div', diaID)
-            span.appendChild(diaDiv)
+            _moveSpan.appendChild(diaDiv)
             that.userConfiguration.position = move.fen
             localBoard(diaID, that.userConfiguration)
         }

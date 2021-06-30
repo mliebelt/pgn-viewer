@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Show known tags</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+</head>
+<body class='merida zeit'>
+<h3>Show figurine notation</h3>
+
+<br/>
+<div id="board0" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board1" style="width: 300px; float: left; margin-right: 25px"></div>
+
+<script>
+    let pgn = "Nf3$1 Nf6$2 Ng1$3 Ng8$4 Nf3$5 Nf6$6 Ng1$7 Ng8$8 Nf3$9 Nf6$10 Ng1$11 Ng8$12 Nf3$13 Nf6$14 Ng1$15 Ng8$16 Nf3$17 Nf6$18 Ng1$19 Ng8$20 Nf3$21 Nf6$22 Ng1$23 Ng8$24 Nf3$32 Nf6$33 Ng1$36 Ng8$37 Nf3$40 Nf6$41 Ng1$44 Ng8$132 Nf3$133 Nf6$136 Ng1$140 Ng8$146 ";
+    PGNV.pgnView("board0", {pgn: pgn});
+    PGNV.pgnEdit("board1", {pgn: pgn});
+</script>
+
+</body>
+</html>
