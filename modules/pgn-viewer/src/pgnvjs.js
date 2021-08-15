@@ -1,6 +1,6 @@
 import i18next from './i18n'
-import {pgnReader} from '@mliebelt/pgn-reader'
-// import {pgnReader} from '../../pgn-reader/src/pgn'
+//import {pgnReader} from '@mliebelt/pgn-reader'
+import {pgnReader} from '../../pgn-reader/src/pgn'
 import {Chessground} from 'chessground'
 import 'chessground/assets/chessground.base.css'
 import 'chessground/assets/chessground.brown.css'
@@ -147,6 +147,10 @@ let pgnBase = function (boardId, configuration) {
         } else {
             parent.insertBefore(newElement, targetElement.nextSibling)
         }
+    }
+
+    function insertBefore(newElement, targetElement) {
+        targetElement.parentNode.insertBefore(newElement, targetElement)
     }
 
     /**
@@ -729,14 +733,20 @@ let pgnBase = function (boardId, configuration) {
         }
 
         function appendVariation(div, move) {
-            if (! movesDiv.lastChild.classList.contains("variations")) {
-                movesDiv.appendChild(createEle('div', null, "variations", null, movesDiv))
-            } 
-            if (move.variationLevel > 1) {
-                insertAfter(div, moveSpan(that.mypgn.getMove(move.prev).next))
-            } else {
-                movesDiv.lastChild.appendChild(div)
+            // if (! movesDiv.lastChild.classList.contains("variations")) {
+            //     movesDiv.appendChild(createEle('div', null, "variations", null, movesDiv))
+            // }
+            function findLastVariantOfMove(move) {
+                let _ele = moveSpan(that.mypgn.getMove(move.prev).next)
+                let _next = _ele.nextSibling
+                while (_next && (_next.localName !== 'move-number') && (_next.localName !== 'move')){
+                    _ele = _next
+                    _next = _ele.nextSibling
+                }
+                return _ele
             }
+            const preEle = findLastVariantOfMove(move)
+            insertAfter(div, preEle)
         }
 
         function localBoard(id, configuration) {
@@ -766,6 +776,7 @@ let pgnBase = function (boardId, configuration) {
         if (move === null || (move === undefined)) {
             return prevCounter
         }
+
         let clAttr = ""
         if (move.variationLevel > 0) {
             clAttr = clAttr + " var var" + move.variationLevel
@@ -781,6 +792,12 @@ let pgnBase = function (boardId, configuration) {
             const varDiv = createEle("div", null, "variation")
             appendVariation(varDiv, move)
             varStack.push(varDiv)
+        }
+        // Correct varStack, if needed (interactive move)
+        if (varStack.length === 0 && move.variationLevel > 0) {
+            // Must be a second (or later) move, because start of variation is already managed above.
+            // Find the variation div for the previous move (which should be sufficient then)
+            varStack.push(moveSpan(that.mypgn.getMove(move.prev).index).parentNode)
         }
         appendCommentSpan(currentFather(), move.commentMove, "moveComment")
 
