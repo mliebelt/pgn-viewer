@@ -777,17 +777,18 @@ describe("When deleting lines" , function () {
 });
 
 describe("When upvoting lines", function () {
-    let pgn = "1. e4 e5 2. Nf3 (2. f4 exf4) (2. d4 exd4)";
+    let pgn = "1. e4 e5 2. Nf3 (2. f4 exf4) (2. d4 exd4)"
+    let pgn2 = "e4 (d4 d5) (c4 c5) e5"
 
     it("should upvote the second line as first line", function () {
-        let my_pgn = pgnReader({pgn: pgn});
-        should(my_pgn.getMove(3).variationLevel).equal(1);
-        should(my_pgn.getMove(2).variations[0].index).equal(3);
-        should(my_pgn.getMove(2).variations[1].index).equal(5);
-        my_pgn.promoteMove(5);
-        should(my_pgn.getMove(2).variations[0].index).equal(5);
-        should(my_pgn.getMove(2).variations[1].index).equal(3);
-    });
+        let my_pgn = pgnReader({pgn: pgn})
+        should(my_pgn.getMove(3).variationLevel).equal(1)
+        should(my_pgn.getMove(2).variations[0].index).equal(3)
+        should(my_pgn.getMove(2).variations[1].index).equal(5)
+        my_pgn.promoteMove(5)
+        should(my_pgn.getMove(2).variations[0].index).equal(5)
+        should(my_pgn.getMove(2).variations[1].index).equal(3)
+    })
 
     it("should upvote the first line as main line", function () {
         let my_pgn = pgnReader({pgn: pgn});
@@ -808,7 +809,25 @@ describe("When upvoting lines", function () {
         my_pgn.promoteMove(2);
         should(my_pgn.getMove(2).variations[0].index).equal(3);
         should(my_pgn.getMove(2).variations[1].index).equal(5);
-    });
+    })
+
+    it("should handle first move variations, upvote first line", function () {
+        let my_pgn = pgnReader({pgn: pgn2})
+        should(my_pgn.getMoves().length).equal(6)
+        my_pgn.promoteMove(1)
+        should(my_pgn.getMove(1).variationLevel).equal(0)
+        should(my_pgn.getMove(1).variations[0].index).equal(0)
+        should(my_pgn.getMove(0).variationLevel).equal(1)
+    })
+
+    it("should handle first move variations, upvote second line", function () {
+        let my_pgn = pgnReader({pgn: pgn2})
+        should(my_pgn.getMoves().length).equal(6)
+        my_pgn.promoteMove(3)
+        should(my_pgn.getMove(3).variationLevel).equal(1)
+        should(my_pgn.getMove(0).variations[0].index).equal(3)
+        should(my_pgn.getMove(0).variationLevel).equal(0)
+    })
 
 
 });

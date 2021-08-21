@@ -737,7 +737,7 @@ let pgnBase = function (boardId, configuration) {
             //     movesDiv.appendChild(createEle('div', null, "variations", null, movesDiv))
             // }
             function findLastVariantOfMove(move) {
-                let _ind = move.prev ? that.mypgn.getMove(move.prev).next : 0
+                let _ind = move.prev ? that.mypgn.getMove(move.prev).next : that.mypgn.getFirstMove().index
                 let _ele = moveSpan(_ind)
                 let _next = _ele.nextSibling
                 while (_next && (_next.localName !== 'move-number') && (_next.localName !== 'move')){

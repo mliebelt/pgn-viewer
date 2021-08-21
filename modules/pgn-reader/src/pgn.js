@@ -403,7 +403,7 @@ const pgnReader = function (configuration) {
     function updateVariationLevel (move, varLevel) {
         if (arguments.length === 0) {
             // Workaround: we don't know which is the first move, so that that with index 0
-            const my_move = getMove(0);
+            const my_move = getFirstMove();
             updateVariationLevel(my_move, 0);
         } else {
             move.variationLevel = varLevel;
@@ -552,10 +552,11 @@ const pgnReader = function (configuration) {
          */
         function firstMoveOfVariation (move) {
             if (startVariation(move)) {
-                return move;
+                return move
             }
-            return firstMoveOfVariation(getMove(move.prev));
-        };
+            return firstMoveOfVariation(getMove(move.prev))
+        }
+
         const move = getMove(id);
         // 1. Check that is variation
         if ((typeof move.variationLevel == "undefined") || (move.variationLevel === 0)) {
@@ -566,7 +567,7 @@ const pgnReader = function (configuration) {
         const myFirst = firstMoveOfVariation(move);
 
         // 3. Get the index of that moves variation array
-        const higherVariationMove = getMove(getMove(myFirst.prev).next);
+        const higherVariationMove = (myFirst.prev == null) ? getFirstMove() : getMove(getMove(myFirst.prev).next) ;
         let indexVariation;
         for (let i = 0; i < higherVariationMove.variations.length; i++) {
             if (higherVariationMove.variations[i] === myFirst) {
@@ -580,8 +581,16 @@ const pgnReader = function (configuration) {
             let tmpMove = higherVariationMove.variations[indexVariation-1];
             higherVariationMove.variations[indexVariation-1] = higherVariationMove.variations[indexVariation];
             higherVariationMove.variations[indexVariation] = tmpMove;
+        } else if (higherVariationMove.prev == null) {
+            // 5. Special case: variation has no previous move, switch main line
+            const tmpVariations = higherVariationMove.variations
+            higherVariationMove.variations = myFirst.variations
+            myFirst.variations = tmpVariations
+            myFirst.variations[0] = higherVariationMove
+            // Update the variation level because there will be changes
+            updateVariationLevel(myFirst, 0);
         } else {
-            // 5. Now the most difficult case: create new array from line above, switch that with
+            // 6. Now the most difficult case: create new array from line above, switch that with
             // the variation
             let tmpMove = higherVariationMove;
             const tmpVariations = higherVariationMove.variations;
@@ -590,9 +599,9 @@ const pgnReader = function (configuration) {
             tmpMove.variations = myFirst.variations;
             myFirst.variations = tmpVariations;
             myFirst.variations[0] = tmpMove;
+            updateVariationLevel(myFirst, myFirst.variationLevel - 1)
         }
-        // Update the variation level because there will be changes
-        updateVariationLevel();
+
     };
 
 
@@ -1078,6 +1087,9 @@ const pgnReader = function (configuration) {
      * next move, ...
      */
     function getOrderedMoves (current, returnedMoves) {
+        if (arguments.length === 0) {
+            return getOrderedMoves(getFirstMove(), [])
+        }
         returnedMoves.push(current);
         if (current.variations) {
             for (let i = 0; i < current.variations.length; i++) {
@@ -1093,6 +1105,15 @@ const pgnReader = function (configuration) {
 
     function getMoves() {
         return that.moves ? that.moves : []
+    }
+
+    function getFirstMove() {
+        let _moves = getMoves()
+        for (const _move of _moves) {
+            if (_move.variationLevel == null || _move.variationLevel == 0 && _move.prev == null) {
+                return _move
+            }
+        }
     }
 
     function getTags() {
@@ -1156,6 +1177,7 @@ const pgnReader = function (configuration) {
         getMoves: getMoves,
         getOrderedMoves: getOrderedMoves,
         getMove: getMove,
+        getFirstMove: getFirstMove,
         getEndGame: getEndGame,
         getGameComment: getGameComment,
         getTags: getTags,
