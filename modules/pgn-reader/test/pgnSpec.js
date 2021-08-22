@@ -829,6 +829,24 @@ describe("When upvoting lines", function () {
         should(my_pgn.getMove(0).variationLevel).equal(0)
     })
 
+    it("should handle non-first move variations, upvote of any line", function () {
+        let my_pgn = pgnReader({pgn: pgn2})
+        should(my_pgn.getMoves().length).equal(6)
+        my_pgn.promoteMove(2)
+        should(my_pgn.getMove(1).variationLevel).equal(0)
+        should(my_pgn.getMove(1).variations[0].index).equal(0)
+        should(my_pgn.getMove(0).variationLevel).equal(1)
+    })
+
+    it("should handle non-first move variations, upvote of any line 2", function () {
+        let my_pgn = pgnReader({pgn: pgn})
+        should(my_pgn.getMoves().length).equal(7)
+        my_pgn.promoteMove(4)
+        should(my_pgn.getMove(3).variationLevel).equal(0)
+        should(my_pgn.getMove(3).variations[0].index).equal(2)
+        should(my_pgn.getMove(2).variationLevel).equal(1)
+        should(my_pgn.getMove(0).variationLevel).equal(0)
+    })
 
 });
 
