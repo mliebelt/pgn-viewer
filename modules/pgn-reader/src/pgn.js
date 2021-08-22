@@ -1,4 +1,4 @@
-import parser from '@mliebelt/pgn-parser';
+import { parser } from '@mliebelt/pgn-parser';
 import Chess from 'chess.js';
 
 // Initializes a new instance of the StringBuilder class
