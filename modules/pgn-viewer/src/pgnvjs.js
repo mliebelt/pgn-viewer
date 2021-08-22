@@ -275,6 +275,7 @@ let pgnBase = function (boardId, configuration) {
                 fenView.value = move.fen
             }
             toggleColorMarker(move.turn)
+            resizeLayout()
         }
     }
 
@@ -1021,6 +1022,7 @@ let pgnBase = function (boardId, configuration) {
             fenView.value = fen
         }
         toggleColorMarker(chess.turn())
+        resizeLayout()
         updateUI(next)
     }
 
