@@ -1,9 +1,8 @@
 {
   "name": "@mliebelt/PgnViewerJS",
-  "version": "1.4.4",
+  "version": "1.5.0",
   "module": "modules/pgn-viewer/src/index.js",
   "author": "mliebelt",
-  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/mliebelt/PgnViewerJS.git"

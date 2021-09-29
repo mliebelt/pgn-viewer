@@ -3,13 +3,42 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-viewer@1.5.9` to get the "release" directly from NPM.
+I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-viewer@1.5.12` to get the "release" directly from NPM.
 
 ## Unknown version
 
 ### Changed
 
 ### Fixed
+
+## 1.5.12 2021-09-29
+
+### Changed
+
+* [#183](https://github.com/mliebelt/PgnViewerJS/issues/183) Resize of layout on every entered move
+* [#267](https://github.com/mliebelt/PgnViewerJS/issues/267) More unit tests for promoteMove (and fixes)
+* [#271](https://github.com/mliebelt/PgnViewerJS/issues/271) Switch license to GPL due to dependency on Chessground
+
+### Fixed
+
+* [#111](https://github.com/mliebelt/PgnViewerJS/issues/111) Promote variation of first move works
+* [#247](https://github.com/mliebelt/PgnViewerJS/issues/247) Allow to define strings for NAGs fixed
+* [#263](https://github.com/mliebelt/PgnViewerJS/issues/263) NAG editing broken fixed
+* [#265](https://github.com/mliebelt/PgnViewerJS/issues/265) Adding moves in variations fixed (mostly)
+
+## 1.5.11 2021-06-21
+
+### Changed
+
+* [#247](https://github.com/mliebelt/PgnViewerJS/issues/247) Allow to define strings for NAGs
+
+
+### Fixed
+
+* [#224](https://github.com/mliebelt/PgnViewerJS/issues/224) Fix layout for coordsInner == false, and big factor
+* [#259](https://github.com/mliebelt/PgnViewerJS/issues/259) Combination locale != en && figurine set fixed
+* [#261](https://github.com/mliebelt/PgnViewerJS/issues/261) Fix missing number after end of variation
+* [#262](https://github.com/mliebelt/PgnViewerJS/issues/262) Highlight again current move
 
 ## 1.5.10 2021-06-16
 
