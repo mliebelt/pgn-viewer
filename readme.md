@@ -1,12 +1,13 @@
 
 # PgnViewerJS
 
-PgnViewerJS is a simple JavaScript implementation to show PGN files (Portable Game Notation == Chess)
+PgnViewerJS (as npm package named `pgn-viewer`) is a simple JavaScript implementation to show PGN files (Portable Game Notation == Chess)
 in a web page. PgnViewerJS does not write everything anew, but it uses the following libraries:
 
 * [chess.js](https://github.com/jhlywa/chess.js) Base library to model chess in JavaScript
 * [Chessground](https://github.com/ornicar/chessground) The chessboard used by lichess.org
-* [pegjs](https://github.com/pegjs/pegjs) Parser Generator implemented in Javascript.
+* [pgn-reader](https://www.npmjs.com/package/@mliebelt/pgn-reader) Backend for the viewer (part of this repository, but separately published)
+* [pgn-parser](https://github.com/mliebelt/pgn-parser) My own parser based on [peggy](https://github.com/peggyjs/peggy) (formerly pegjs)
 
 See the section Acknowledgments for more supporting libraries.
 
@@ -133,7 +134,10 @@ From the version 1.0.0 on, the whole package can be downloaded / installed by us
 
 ## License
 
-PgnViewerJS is licensed under the Apache license 2.0, see the [LICENSE.md](LICENSE.md) file for details.
+pgn-viewer is distributed under the **GPL-3.0 license** (or any later version, at your option), due to its use of [Chessground](https://github.com/ornicar/chessground).
+When you use pgn-viewer for your website, your combined work may be distributed only under the GPL. **You must release your source code** to the users of your website.
+
+Please read more about GPL for JavaScript on [greendrake.info/#nfy0](http://greendrake.info/#nfy0).
 
 ## Acknowledgments
 
@@ -141,7 +145,6 @@ We use the following libraries in the implementation:
 
 * [chess.js](https://github.com/jhlywa/chess.js) Base library to model chess in JavaScript
 * [Chessground](https://github.com/ornicar/chessground) The chessboard used by lichess.org
-* [pegjs](https://github.com/pegjs/pegjs) Parser Generator implemented in Javascript.
 * [Mousetrap](https://craig.is/killing/mice) Binds keys to actions in the UI
 * [roddeh-i18n](http://i18njs.com) Internationalization (== i18n) library to translate chess into current 18 languages. Strings are inlined in the library.
 * [Timer.js](https://github.com/fschaefer/Timer.js) Small timer for automatic moves
