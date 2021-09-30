@@ -3,6 +3,7 @@
   "version": "1.5.0",
   "module": "modules/pgn-viewer/src/index.js",
   "author": "mliebelt",
+  "license": "GPL-3.0-or-later",
   "repository": {
     "type": "git",
     "url": "https://github.com/mliebelt/PgnViewerJS.git"
