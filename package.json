@@ -9,7 +9,7 @@
     "url": "https://github.com/mliebelt/PgnViewerJS.git"
   },
   "devDependencies": {
-    "clean-webpack-plugin": "^3.0.0",
+    "clean-webpack-plugin": "^4.0.0",
     "compression-webpack-plugin": "^7.1.2",
     "css-loader": "^5.2.4",
     "html-webpack-plugin": "^5.3.1",
