@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Missing current move highlight</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+</head>
+<body class='merida zeit'>
+<h3>Missing current move highlight</h3>
+
+
+<div id="board"></div>
+
+<script>
+    let pgn = "[White \"Fiore\"][Black \"Borgia\"][Result \"0-1\"] 1.e4 d6 2.d4 Nf6 3.Nc3 g6 4.Bg5 Bg7 5.f4 c6 6.Nf3 Bg4 7.Be2 Nbd7 8.O-O Qc7 9.e5 Nd5 10.Nxd5 cxd5 11.h3 Bxf3 12.Bxf3 Nb6 13.exd6 Qxd6 \n" +
+        "\t\t\t 14.Re1 f6  15.Bh4 Qxf4 {il Re Nero e al centro con arrocchi non più sicuri, ma non ho rinunciato lo stesso al pedone} 16.Qe2 Qd6 \n" +
+        "\t\t\t 17.Bg3 Qd7 18.a4 a5 19.c3 Kf7 20.Bg4 f5 21.Bf3 Rhe8 22.h4 e6 23.h5 g5 24.h6 Bf6 {nell’analisi avevo pensato di giocare ora \n" +
+        "\t\t\t 24... g4 25.hxg7 gxf3 26.Dxf3 Tg8 ma, non  più convinto, ho “rischiato” la qualità confidando nella maggioranza dei pedoni ad est \n" +
+        "\t\t\t e nella valorizzazione del cavallo, vista la posizione non troppo aperta} 25.Bh5+ Ke7 26.Bxe8 Rxe8 27.Be5 Nc4 28.Bxf6 Kxf6 29.b3?\n" +
+        "\t\t\t {mossa sprecata} 4...Nd6! {avrei comunque giocato questa} 30.Qe5+ Kg6 31.Qh2 Ne4! {ecco Varenne!} 32.Re3 f4 33.Rxe4 {il male minore viste le molteplici minacce tattiche del forte Cavallo}\n" +
+        "\t\t\t  33...dxe4 34.Re1 e3 35.Qh3 Qd5 36.g3 e5!-+ 37.gxf4 exf4 38.Qf1 Qe4 39.Qc4 f3! {minaccia matto in due mosse con Dg4+. Se 40. D1 f2+ guadagna la Torre. Il Bianco abbandona 0-1}"
+    PGNV.pgnView('board', config = {pgn: pgn, position: 'start',
+        showCoords: false, orientation: 'white', theme: 'default', pieceStyle: 'wikipedia',
+        figurine: '', locale: 'it', timerTime: '', width: '100%', boardSize: '400px', layout: 'left',
+        showFen: false, coordsInner: true, headers: true, coordsFactor: '1.0', coordsFontSize: '',
+        colorMarker: '', startPlay: '', hideMovesBefore: true, notation: 'short', notationLayout: 'inline', });
+</script>
+
+</body>
+</html>
