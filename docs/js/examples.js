@@ -50,6 +50,29 @@ examples["1003"] = {
     }
 };
 
+examples["1004"] = {
+    desc: 'Define global defaults for all usages on one page, and override some of them locally.' +
+        '\nBe aware that this only works in the generated link <a href="/docs/examples/1004.html">New Window</a>',
+    html: '<div id="board1"></div><div id="board2"></div><div id="board3"></div><div id="board4"></div>',
+    name: "Use global defaults",
+    jsStr: "let pgn = \"1. e4 e5 2. Nf3 (2. f4 d5 3. exd5 e4) 2... Nc6 3. Bc4 Nf6\";\n" +
+        "    const PgnBaseDefaults = { locale: 'fr', width: '400px', pieceStyle: 'alpha' }\n" +
+        "    PGNV.pgnView('board1', { pgn: pgn});\n" +
+        "    PGNV.pgnView('board2', {pgn: pgn, locale: 'de'});\n" +
+        "    PGNV.pgnView('board3', {pgn: pgn, locale: 'en', pieceStyle: 'merida'});\n" +
+        "    PGNV.pgnView('board4', {pgn: pgn, width: '300px'});",
+    jsFn: function() {
+        var pgn = "1. e4 e5 2. Nf3 (2. f4 d5 3. exd5 e4) 2... Nc6 3. Bc4 Nf6";
+        var PgnBaseDefaults = { locale: 'fr', width: '400px', pieceStyle: 'alpha' }
+        PGNV.pgnView('board1', { pgn: pgn});
+        PGNV.pgnView('board2', {pgn: pgn, locale: 'de'});
+        PGNV.pgnView('board3', {pgn: pgn, locale: 'en', pieceStyle: 'merida'});
+        PGNV.pgnView('board4', {pgn: pgn, width: '300px'});
+        //var PgnBaseDefaults = {};
+    }
+};
+
+
 examples["1020"] = {
     desc: "ChessBoard initializes to the starting position on board with an empty configuration.",
     html: "<div id=\"board\" style=\"width: 400px\"><\/div>",

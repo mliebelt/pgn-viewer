@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>Use global defaults</title>
+<link rel="stylesheet" href="../css/prettify.css" />
+<link rel="stylesheet" href="../css/layout.css" />
+<script src="../lib/pgnv.js" type="text/javascript" ></script>
+<script src="../js/prettify.js" type="text/javascript" ></script>
+</head>
+<body class="merida zeit">
+<h2>Use global defaults</h2>
+<h3>Javascript part</h3>
+<pre class="prettyprint lang-js">let pgn = "1. e4 e5 2. Nf3 (2. f4 d5 3. exd5 e4) 2... Nc6 3. Bc4 Nf6";
+    const PgnBaseDefaults = { locale: 'fr', width: '400px', pieceStyle: 'alpha' }
+    PGNV.pgnView('board1', { pgn: pgn});
+    PGNV.pgnView('board2', {pgn: pgn, locale: 'de'});
+    PGNV.pgnView('board3', {pgn: pgn, locale: 'en', pieceStyle: 'merida'});
+    PGNV.pgnView('board4', {pgn: pgn, width: '300px'});</pre>
+<h3>HTML part</h3>
+<pre class="prettyprint lang-html">&lt;div id=&quot;board1&quot;&gt;&lt;&#x2F;div&gt;&lt;div id=&quot;board2&quot;&gt;&lt;&#x2F;div&gt;&lt;div id=&quot;board3&quot;&gt;&lt;&#x2F;div&gt;&lt;div id=&quot;board4&quot;&gt;&lt;&#x2F;div&gt;</pre>
+<p>See the <a href="../examples.html#1004">back link</a> to the original examples page.</p>
+<div>Define global defaults for all usages on one page, and override some of them locally.
+Be aware that this only works in the generated link <a href="/docs/examples/1004.html">New Window</a></div>
+<div id="board1"></div><div id="board2"></div><div id="board3"></div><div id="board4"></div>
+<script>
+let pgn = "1. e4 e5 2. Nf3 (2. f4 d5 3. exd5 e4) 2... Nc6 3. Bc4 Nf6";
+    const PgnBaseDefaults = { locale: 'fr', width: '400px', pieceStyle: 'alpha' }
+    PGNV.pgnView('board1', { pgn: pgn});
+    PGNV.pgnView('board2', {pgn: pgn, locale: 'de'});
+    PGNV.pgnView('board3', {pgn: pgn, locale: 'en', pieceStyle: 'merida'});
+    PGNV.pgnView('board4', {pgn: pgn, width: '300px'});
+</script>
+<script>prettyPrint();</script>
+</body>
+</html>
