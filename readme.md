@@ -159,3 +159,4 @@ Thank you a lot to all contributors of issues.
 
 * [PgnJS](https://github.com/xeyownt/mwpgnjs) Plugin for Mediawiki that uses PgnViewerJS to display  chess games.
 * [PgnViewerJS-WP](https://github.com/mliebelt/PgnViewerJS-WP) Plugin for Wordpress to show games with the help of PgnViewerJS
+* [The Chess Centre](https://github.com/chess-centre/platform#special-thanks-) Replaying games produced by DGT live boards following OTB events.
