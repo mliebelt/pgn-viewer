@@ -14,6 +14,14 @@
   font-family: NotoSans;
   src: url('./NotoSans.woff') format("woff");
 }
+@font-face {
+  font-family: "CAChess";
+  src: url('./CAChess-min.woff') format("woff");
+}
+@font-face {
+  font-family: "CAChessFig";
+  src: url('./CAChess-fig.woff') format("woff");
+}
 
 move fig.figurine {
   font-family: Alpha;
@@ -27,6 +35,63 @@ move fig.figurine.berlin {
 move fig.figurine.noto {
   font-family: NotoSans;
 }
+
+move san nag {
+  font-family: CAChess;
+}
+
+/* Don't show diagram nags in the notation. */
+.pgnvjs .moves move  nag[data-value="$220"]::before {
+  content: "";
+}
+
+.pgnvjs .moves move  nag[data-value="$221"]::before {
+  content: "";
+}
+
+/* CA Chess Font symbols */
+.pgnvjs .moves move  nag[data-value="$246"]::before {
+  content: "\00A8";
+}
+
+.pgnvjs .moves move  nag[data-value="$247"]::before {
+  content: "\00AE";
+}
+
+.pgnvjs .moves move  nag[data-value="$248"]::before {
+  content: "\00AF";
+}
+
+.pgnvjs .moves move  nag[data-value="$252"]::before {
+  content: "\045B";
+}
+
+.pgnvjs .moves move  nag[data-value="$254"]::before {
+  content: "\00AA";
+}
+
+.pgnvjs .moves move  nag[data-value="$255"]::before {
+  content: "\0454";
+}
+
+/* Additional CA Chess Font symbols (drawn myself) */
+.pgnvjs .moves move  nag[data-value="$251"]::before {
+  content: "\00DE";
+}
+
+.pgnvjs .moves move  nag[data-value="$249"]::before {
+  content: "\00DF";
+}
+
+.pgnvjs .moves move  nag[data-value="$250"]::before {
+  content: "\00E0";
+}
+
+.pgnvjs .moves move  nag[data-value="$253"]::before {
+  content: "\00E1";
+}
+
+
 
 /*
  * Board

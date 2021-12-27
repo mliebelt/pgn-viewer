@@ -1,4 +1,5 @@
-import { parser } from '@mliebelt/pgn-parser';
+import { parse, split } from '@mliebelt/pgn-parser';
+//import parser from './lib/pgn-parser'
 import Chess from 'chess.js';
 
 // Initializes a new instance of the StringBuilder class
@@ -119,7 +120,7 @@ const pgnReader = function (configuration) {
      * For a complete index, see https://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs
      * @type {Array} the array with the (english) explanations.
      */
-    const NAGs = new Array(220);
+    const NAGs = new Array(256);
     NAGs[1]=    "!";    // 1
     NAGs[2]=    "?";    // 2
     NAGs[3]=    "‼";   // 3
@@ -137,20 +138,37 @@ const pgnReader = function (configuration) {
     NAGs[19]=    "-+";    // 19
     NAGs[22]=    "⨀";
     NAGs[23]=    "⨀";
+    NAGs[26]=    "○";
+    NAGs[27]=    "○";
     NAGs[32]=    "⟳";
     NAGs[33]=    "⟳";
-    NAGs[36]=    "→";
-    NAGs[37]=    "→";
-    NAGs[40]=    "↑";
-    NAGs[41]=    "↑";
+    NAGs[36]=    "↑";
+    NAGs[37]=    "↑";
+    NAGs[40]=    "→";
+    NAGs[41]=    "→";
     NAGs[44]=    "=∞";
+    NAGs[45]=    "=∞";
     NAGs[132]=   "⇆";
     NAGs[133]=   "⇆";
-    NAGs[136]=   "⊕";
+    NAGs[138]=   "⊕";
+    NAGs[139]=   "⊕";
     NAGs[140]=   "∆";
+    NAGs[141]=   "∇";
+    NAGs[142]=   "⌓";
+    NAGs[143]=   "<=";
+    NAGs[144]=   "==";
+    NAGs[145]=   "RR";
     NAGs[146]=   "N";
-    NAGs[220]=   "D";
-    NAGs[221]=   "D";
+    NAGs[220]=   "⬒";
+    NAGs[221]=   "⬓";
+    NAGs[238]=   "○";
+    NAGs[239]=   "⇔";
+    NAGs[240]=   "⇗";
+    NAGs[241]=   "⊞";
+    NAGs[242]=   "⟫";
+    NAGs[243]=   "⟪";
+    NAGs[244]=   "✕";
+    NAGs[245]=   "⊥";
 
     const PGN_NAGS = {};
 
@@ -176,7 +194,7 @@ const pgnReader = function (configuration) {
         }
         for (let i = 0; i < array.length; i++) {
             const number = parseInt(array[i].substring(1));
-            if (number !== 220) { // Don't add diagrams to notation
+            if ((number !== 220) && (number !== 221)) { // Don't add diagrams to notation
                 const ret = NAGs[number];
                 ret_string += (typeof ret != 'undefined') ? ret : "$"+number;
             }
@@ -260,14 +278,14 @@ const pgnReader = function (configuration) {
             loadOne(that.games[0])
             return that
         }
-        let _mgame = parser.parse(that.configuration.pgn, {startRule: 'game'})
+        let _mgame = parse(that.configuration.pgn, {startRule: 'game'})
         that.games = [_mgame]
         loadOne(_mgame)
         return that
     }
 
     function loadMany () {
-        that.games = parser.parse(that.configuration.pgn, {startRule: 'games'});
+        that.games = parse(that.configuration.pgn, {startRule: 'games'});
     }
     function loadOne (game) {
         function interpretHeaders (_game) {
@@ -782,14 +800,14 @@ const pgnReader = function (configuration) {
     };
 
     /**
-     * Return true if the diagram NAG (== $220) is found.
+     * Return true if the diagram NAG (== $220||$221) is found.
      * @param move
      */
     function hasDiagramNag (move) {
-        if (typeof move.nag == "undefined") return false;
-        if (move.nag == null) return false;
-        return move.nag.indexOf('$220') > -1;
-    };
+        if (typeof move.nag == "undefined") return false
+        if (move.nag == null) return false
+        return (move.nag.indexOf('$220') > -1) || (move.nag.indexOf('$221') > -1)
+    }
 
     function setToStart () {
         if (that.configuration.position === 'start') {

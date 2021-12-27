@@ -22,7 +22,7 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-    "@mliebelt/pgn-parser": "^1.3.5",
+    "@mliebelt/pgn-parser": "^1.4.0",
     "chess.js": "^0.10.3"
   }
 }

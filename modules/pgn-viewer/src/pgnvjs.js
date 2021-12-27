@@ -1,6 +1,6 @@
 import i18next from './i18n'
-import {pgnReader} from '@mliebelt/pgn-reader'
-//import {pgnReader} from '../../pgn-reader/src/pgn'
+// import {pgnReader} from '@mliebelt/pgn-reader'
+import {pgnReader} from '../../pgn-reader/src/pgn'
 import {Chessground} from 'chessground'
 import 'chessground/assets/chessground.base.css'
 import 'chessground/assets/chessground.brown.css'
@@ -679,7 +679,7 @@ let pgnBase = function (boardId, configuration) {
                 nagele.setAttribute('data-value', nag)
                 nagele.setAttribute('title', t('nag:' + nag))
                 let nagtext = that.mypgn.nagToSymbol([nag])
-                if (nagtext != nag) {
+                if ( (nagtext != nag) && nagtext) {
                     nagele.appendChild(document.createTextNode(nagtext))
                     nagele.classList.add('hideaddcontent')
                 }
@@ -751,8 +751,10 @@ let pgnBase = function (boardId, configuration) {
             insertAfter(div, preEle)
         }
 
-        function localBoard(id, configuration) {
-            let base = pgnBase(id, Object.assign({boardSize: '200px'}, configuration, {headers: false, mode: 'board'}))
+        function localBoard(id, configuration, blackPerspective) {
+            let base = pgnBase(id,
+                Object.assign({boardSize: '200px'}, configuration,
+                    {headers: false, mode: 'board', orientation: (blackPerspective ? 'black' : 'white'), showCoords: false}))
             base.generateHTML()
             base.generateBoard()
         }
@@ -850,7 +852,7 @@ let pgnBase = function (boardId, configuration) {
             const diaDiv = createEle('div', diaID)
             _moveSpan.appendChild(diaDiv)
             that.userConfiguration.position = move.fen
-            localBoard(diaID, that.userConfiguration)
+            localBoard(diaID, that.userConfiguration, move.nag.indexOf('$221') > -1)
         }
         //console.log(`FEN size: ${move.fen.length}`)
         return currentCounter
