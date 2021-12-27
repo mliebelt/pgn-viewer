@@ -35,6 +35,9 @@ move fig.figurine.berlin {
 move fig.figurine.noto {
   font-family: NotoSans;
 }
+move fig.figurine.cachess {
+  font-family: CAChessFig;
+}
 
 move san nag {
   font-family: CAChess;

@@ -8,12 +8,13 @@
 <body class='merida zeit'>
 <h3>Show figurine notation</h3>
 
-From the left: Alpha, Merida, Berlin, NotoSans fonts.
+From the left: Alpha, Merida, Berlin, NotoSans fonts, CA Chess fonts.
 <br/>
 <div id="board1" style="width: 300px; float: left; margin-right: 25px"></div>
 <div id="board2" style="width: 300px; float: left; margin-right: 25px"></div>
 <div id="board3" style="width: 300px; float: left; margin-right: 25px"></div>
 <div id="board4" style="width: 300px; float: left; margin-right: 25px"></div>
+<div id="board5" style="width: 300px; float: left; margin-right: 25px"></div>
 
 <script>
     let pgnView = PGNV.pgnView;
@@ -22,6 +23,7 @@ From the left: Alpha, Merida, Berlin, NotoSans fonts.
     pgnView("board2", {pgn: pgn, figurine: "merida"});
     pgnView("board3", {pgn: pgn, figurine: "berlin"});
     pgnView("board4", {pgn: pgn, figurine: "noto"});
+    pgnView("board5", {pgn: pgn, figurine: "cachess"});
 </script>
 
 </body>

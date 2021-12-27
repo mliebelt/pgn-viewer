@@ -374,19 +374,21 @@ examples["1106"] = {
 };
 
 examples["1107"] = {
-    desc: "Shows different figurine notations: alpha, merida, berlin, noto.",
+    desc: "Shows different figurine notations: alpha, merida, berlin, noto, cachess.",
     html: '<div id="b1" style="width: 240px;float: left;margin-right: 25px"></div>' +
         '<div id="b2" style="width: 240px;float: left;margin-right: 25px"></div>' +
         '<div id="b3" style="width: 240px;float: left;margin-right: 25px"></div>' +
-        '<div id="b4" style="width: 240px"></div>',
+        '<div id="b4" style="width: 240px;float: left;margin-right: 25px"></div>' +
+        '<div id="b5" style="width: 240px"></div>',
     name: "Figurine notations",
-    jsStr: "var pgn = '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6';\nPGNV.pgnView('b1', {pgn: pgn, figurine: true});\nPGNV.pgnView('b2', {pgn: pgn, figurine: 'merida'});\nPGNV.pgnView('b3', {pgn: pgn, figurine: 'berlin'});\nPGNV.pgnView('b4', {pgn: pgn, figurine: 'noto'});",
+    jsStr: "var pgn = '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6';\nPGNV.pgnView('b1', {pgn: pgn, figurine: true});\nPGNV.pgnView('b2', {pgn: pgn, figurine: 'merida'});\nPGNV.pgnView('b3', {pgn: pgn, figurine: 'berlin'});\nPGNV.pgnView('b4', {pgn: pgn, figurine: 'noto';\nPGNV.pgnView('b4', {pgn: pgn, figurine: 'cachess'});",
     jsFn: function() {
         var pgn = '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6';
         PGNV.pgnView('b1', {pgn: pgn, figurine: true});
         PGNV.pgnView('b2', {pgn: pgn, figurine: 'merida'});
         PGNV.pgnView('b3', {pgn: pgn, figurine: 'berlin'});
         PGNV.pgnView('b4', {pgn: pgn, figurine: 'noto'});
+        PGNV.pgnView('b4', {pgn: pgn, figurine: 'cachess'});
     }
 };
 
