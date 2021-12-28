@@ -1146,7 +1146,7 @@ const pgnReader = function (configuration) {
      */
     function getGameComment() {
         if (! that.games) { return undefined }
-        return that.games[that.currentGameIndex].gameComment ? that.games[that.currentGameIndex].gameComment.comment : undefined
+        return that.games[that.currentGameIndex].gameComment ? that.games[that.currentGameIndex].gameComment : undefined
     }
 
     function getGames() {

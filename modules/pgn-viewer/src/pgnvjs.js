@@ -639,6 +639,11 @@ let pgnBase = function (boardId, configuration) {
                 }
             }
         }
+        let gc = that.mypgn.getGameComment()
+        if (gc) {
+            that.board.setShapes(getShapes(gc))
+        }
+
         postGenerateBoard()
         return that.board
     }
@@ -915,6 +920,34 @@ let pgnBase = function (boardId, configuration) {
 
     }
 
+    function getShapes(commentDiag) {
+        function colOfDiag(color) {
+            const colors = {Y: 'yellow', R: 'red', B: 'blue', G: 'green'}
+            return colors[color]
+        }
+
+        let arr = []
+        if ((commentDiag !== undefined) && (commentDiag !== null)) {
+            if (commentDiag.colorArrows) {
+                for (let i = 0; i < commentDiag.colorArrows.length; i++) {
+                    let comm = commentDiag.colorArrows[i]
+                    arr.push({
+                        orig: comm.substring(1, 3),
+                        dest: comm.substring(3, 5),
+                        brush: colOfDiag(comm.substring(0, 1))
+                    })
+                }
+            }
+            if (commentDiag.colorFields) {
+                for (let i = 0; i < commentDiag.colorFields.length; i++) {
+                    let comm = commentDiag.colorFields[i]
+                    arr.push({orig: comm.substring(1, 3), brush: colOfDiag(comm.substring(0, 1))})
+                }
+            }
+        }
+        return arr
+    }
+
     /**
      * Plays the move that is already in the notation on the board.
      * @param curr the current move number
@@ -953,34 +986,6 @@ let pgnBase = function (boardId, configuration) {
             }
         }
 
-        function getShapes(commentDiag) {
-            function colOfDiag(color) {
-                const colors = {Y: 'yellow', R: 'red', B: 'blue', G: 'green'}
-                return colors[color]
-            }
-
-            let arr = []
-            if ((commentDiag !== undefined) && (commentDiag !== null)) {
-                if (commentDiag.colorArrows) {
-                    for (let i = 0; i < commentDiag.colorArrows.length; i++) {
-                        let comm = commentDiag.colorArrows[i]
-                        arr.push({
-                            orig: comm.substring(1, 3),
-                            dest: comm.substring(3, 5),
-                            brush: colOfDiag(comm.substring(0, 1))
-                        })
-                    }
-                }
-                if (commentDiag.colorFields) {
-                    for (let i = 0; i < commentDiag.colorFields.length; i++) {
-                        let comm = commentDiag.colorFields[i]
-                        arr.push({orig: comm.substring(1, 3), brush: colOfDiag(comm.substring(0, 1))})
-                    }
-                }
-            }
-            return arr
-        }
-
         //console.log("Marke move: Curr " + curr + " Next " + next + " FEN " + fen)
         //board.set({fen: fen})
         let myMove = that.mypgn.getMove(next)
@@ -996,6 +1001,12 @@ let pgnBase = function (boardId, configuration) {
         handlePromotion(myMove)
         if (myMove) {
             that.board.setShapes(getShapes(myMove.commentDiag))
+        } else {
+            let gc = that.mypgn.getGameComment()
+            if (gc) {
+                that.board.setShapes(getShapes(gc))
+            }
+
         }
         chess.load(myFen)
         unmarkMark(next)
