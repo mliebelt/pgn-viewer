@@ -672,7 +672,9 @@ const pgnReader = function (configuration) {
         };
 
         function write_game_comment (sb) {
-            write_comment(getGameComment(), sb)
+            let gc = getGameComment()
+            gc = gc ? gc.comment : undefined
+            write_comment(gc, sb)
         }
 
         function write_comment_move (move, sb) {

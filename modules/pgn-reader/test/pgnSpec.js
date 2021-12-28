@@ -224,7 +224,7 @@ describe("When reading PGN with comments", function() {
     it("should read all sorts of comments", function() {
         my_pgn = pgnReader({pgn: "{Before move} 1. e4 {After move} {[%csl Ya4, Gb4]}"});
         let first = my_pgn.getMove(0);
-        should(my_pgn.getGameComment()).equal("Before move");
+        should(my_pgn.getGameComment().comment).equal("Before move");
         should(first.commentAfter).equal("After move");
         should(first.commentDiag.colorFields.length).equal(2);
     });
@@ -338,7 +338,7 @@ describe("When reading variations with comments", function() {
     it("should understand game comment and after comment in principle", function() {
         my_pgn = pgnReader({pgn: "{START} 1. d4 {AFTER} e5"});
         let move = my_pgn.getMove(0);
-        should(my_pgn.getGameComment()).equal("START");
+        should(my_pgn.getGameComment().comment).equal("START");
         should(move.commentAfter).equal("AFTER");
         should(move.notation.notation).equal("d4");
     });
