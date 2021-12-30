@@ -1,0 +1,40 @@
+cg-resize {
+    display: block;
+    position: absolute;
+    right: -9px;
+    bottom: -9px;
+    width: 22px;
+    height: 22px;
+    cursor: nwse-resize;
+    z-index: 10;
+}
+
+cg-resize::before, cg-resize::after {
+    background: #000;
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 1px;
+}
+
+cg-resize::after {
+    transform: translate(1px, 6px) rotate(
+            -45deg);
+}
+
+cg-resize::before {
+    width: 5px;
+    transform: translate(7px, 8px) rotate(
+            -45deg);
+}
+
+cg-resize::before {
+    width: 5px;
+    transform: translate(7px, 8px) rotate(
+            -45deg);
+}
+
+cg-resize.resizing {
+    border-radius: 50%;
+    background: lightsalmon;
+}

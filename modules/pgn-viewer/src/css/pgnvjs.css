@@ -1,4 +1,5 @@
 @import "../fontawesome/css/all.css";
+@import "resize.css";
 
 :root {
     --space-xss: 0.25rem;

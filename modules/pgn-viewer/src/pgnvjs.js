@@ -7,6 +7,7 @@ import 'chessground/assets/chessground.brown.css'
 import Timer from './Timer'
 import Mousetrap from 'mousetrap'
 import swal from 'sweetalert'
+import resizeHandle from "./resize";
 
 /**
  * This implements the base function that is used to display a board, a whole game
@@ -595,8 +596,9 @@ let pgnBase = function (boardId, configuration) {
         let moduloWidth = currentWidth % 8
         let smallerWidth = currentWidth - moduloWidth
         // Ensure that boardWidth is a multiply of 8
-        boardConfig.width = "" + smallerWidth +"px"
+        // boardConfig.width = "" + smallerWidth +"px"
         that.board = Chessground(el, boardConfig)
+        resizeHandle(that, el.firstChild, smallerWidth, resizeLayout)
         //console.log("Board width: " + board.width)
         if (boardConfig.width) {
             el.style.width = boardConfig.width
@@ -1460,6 +1462,7 @@ let pgnBase = function (boardId, configuration) {
         console.log("Start computing layout")
         let _boardHeight = computeBoardSize()
         let _boardWidth = _boardHeight
+        console.log("Board size: " + _boardWidth)
 
         if (hasMode('board')) {
             if (document.getElementById(id('colorMarkerId'))) {
@@ -1513,6 +1516,9 @@ let pgnBase = function (boardId, configuration) {
                 divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(0,${_movesHeight}px) minmax(auto,${_boardHeight}) auto`
             }
             divBoard.style.gridTemplateColumns = _boardWidth
+        }
+        if (that.board) {
+            that.board.redrawAll()
         }
     }
 
