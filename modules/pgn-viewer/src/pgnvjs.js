@@ -598,7 +598,7 @@ let pgnBase = function (boardId, configuration) {
         // Ensure that boardWidth is a multiply of 8
         // boardConfig.width = "" + smallerWidth +"px"
         that.board = Chessground(el, boardConfig)
-        resizeHandle(that, el.firstChild, smallerWidth, resizeLayout)
+        resizeHandle(that, el, el.firstChild, smallerWidth, resizeLayout)
         //console.log("Board width: " + board.width)
         if (boardConfig.width) {
             el.style.width = boardConfig.width
@@ -1459,10 +1459,10 @@ let pgnBase = function (boardId, configuration) {
             }
         }
 
-        console.log("Start computing layout")
+        // console.log("Start computing layout")
         let _boardHeight = computeBoardSize()
         let _boardWidth = _boardHeight
-        console.log("Board size: " + _boardWidth)
+        // console.log("Board size: " + _boardWidth)
 
         if (hasMode('board')) {
             if (document.getElementById(id('colorMarkerId'))) {

@@ -4,7 +4,7 @@ import * as cg from 'chessground/types';
  * Original source taken from: https://github.com/ornicar/lila/blob/master/ui/common/src/resize.ts
  * @param els ??
  */
-export default function resizeHandle(that, els, _width, resizeFunction) {
+export default function resizeHandle(that, outer, els, _width, resizeFunction) {
     const el = document.createElement('cg-resize');
     els.appendChild(el);
 
@@ -19,23 +19,24 @@ export default function resizeHandle(that, els, _width, resizeFunction) {
 
         const resize = (move) => {
             const pos = eventPosition(move);
-            const delta = pos[0] - startPos[0] + pos[1] - startPos[1];
-            if (delta < 16) { return }
-            console.log("Delta: " + delta)
+            const delta = pos[0] - startPos[0];
+            // if (delta < 16) { return }
+            // console.log("Delta: " + delta)
 
             width = initialWidth + delta;
 
             that.configuration.boardSize = width
-            console.log("Width: " + width)
+            // console.log("Width: " + width)
             resizeFunction.call()
             els.style.width = width + 'px'
             els.style.height = width + 'px'
-            els.lastChild.style.width = width + 'px'
-            els.lastChild.style.height = width + 'px'
-            els.style.display = 'none';
-            els.style.display = 'block';
+            outer.style.width = width + 'px'
+            outer.style.height = width + 'px'
+            // els.style.display = 'none';
+            // els.style.display = 'block';
+            // window.getComputedStyle(outer)
             // that.board.set({ width: width + 'px'})
-            window.dispatchEvent(new Event('resize'));
+            // window.dispatchEvent(new Event('resize'));
             // window.dispatchEvent(new Event('chessground.resize'));
 
         };
