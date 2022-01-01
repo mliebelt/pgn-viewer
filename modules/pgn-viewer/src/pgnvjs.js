@@ -541,6 +541,29 @@ let pgnBase = function (boardId, configuration) {
         el.querySelector("coords.files").style.bottom = `${bottom}px`
     }
 
+    function recomputeCoordsFonts(boardConfig, el) {
+        if (boardConfig && that.configuration.boardSize) {
+            el.style.width = that.configuration.boardSize
+            el.style.height = that.configuration.boardSize
+            let fontSize = null
+            if (boardConfig.coordsFontSize) {
+                fontSize = Number.parseInt(boardConfig.coordsFontSize)
+            } else {
+                // Set the font size related to the board (factor 28), ensure at least 8px font
+                fontSize = Math.max(8, Math.round(parseInt(that.configuration.boardSize.slice(0, -2)) / 28 * boardConfig.coordsFactor))
+            }
+            // Adjust the ranks right if necessary
+            //el.style.fontSize = `${fontSize}px`
+            el.querySelectorAll("coords").forEach(element => {
+                element.style.fontSize = `${fontSize}px`
+            })
+            if (boardConfig.coordinates) {
+                adjustFontForCoords(fontSize, boardConfig, el);
+            }
+            //document.body.dispatchEvent(new Event('chessground.resize'))
+        }
+    }
+
     /**
      * Generate the board that uses the unique id('innerBoardId') and the part of the configuration
      * that is for the board only. Returns the resulting object (as reference for others).
@@ -568,14 +591,14 @@ let pgnBase = function (boardId, configuration) {
         }
 
         // Default values of the board, if not overwritten by the given configuration
-        let boardConfig = {coordsInner: true, coordsFactor: 1.0, disableContextMenu: true,
+        that.boardConfig = {coordsInner: true, coordsFactor: 1.0, disableContextMenu: true,
             drawable: {
                 onChange: (shapes) => {
                     let move = that.mypgn.getMove(that.currentMove)
                     that.mypgn.setShapes(move, shapes)
                 }
             }}
-
+        let boardConfig = that.boardConfig
         copyBoardConfiguration(that.configuration, boardConfig,
             ['position', 'orientation', 'showCoords', 'pieceTheme', 'draggable',
                 'coordsInner', 'coordsFactor', 'width', 'movable', 'viewOnly', 'highlight', 'boardSize',
@@ -604,26 +627,7 @@ let pgnBase = function (boardId, configuration) {
         that.board = Chessground(el, boardConfig)
         // resizeHandle(that, el, el.firstChild, smallerWidth, resizeLayout)
         //console.log("Board width: " + board.width)
-        if (boardConfig.width) {
-            el.style.width = boardConfig.width
-            el.style.height = boardConfig.width
-            let fontSize = null
-            if (boardConfig.coordsFontSize) {
-                fontSize = Number.parseInt(boardConfig.coordsFontSize)
-            } else {
-                // Set the font size related to the board (factor 28), ensure at least 8px font
-                fontSize = Math.max(8, Math.round(parseInt(boardConfig.width.slice(0, -2)) / 28 * boardConfig.coordsFactor))
-            }
-            // Adjust the ranks right if necessary
-            //el.style.fontSize = `${fontSize}px`
-            el.querySelectorAll("coords").forEach(element => {
-                element.style.fontSize = `${fontSize}px`
-                })
-            if (boardConfig.coordinates) {
-                adjustFontForCoords(fontSize, boardConfig, el);
-            }
-            //document.body.dispatchEvent(new Event('chessground.resize'))
-        }
+        recomputeCoordsFonts(boardConfig, el);
         if (boardConfig.coordsInner) {
             el.classList.add('coords-inner')
         }
@@ -1521,9 +1525,7 @@ let pgnBase = function (boardId, configuration) {
             }
             divBoard.style.gridTemplateColumns = _boardWidth
         }
-        if (that.board) {
-            that.board.redrawAll()
-        }
+        recomputeCoordsFonts(that.boardConfig, document.getElementById(id('innerBoardId')))
     }
 
     return {
