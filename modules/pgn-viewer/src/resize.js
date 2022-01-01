@@ -34,7 +34,7 @@ export default function resizeHandle(that, outer, els, _width, resizeFunction) {
             outer.style.height = width + 'px'
             // els.style.display = 'none';
             // els.style.display = 'block';
-            // window.getComputedStyle(outer)
+            window.getComputedStyle(outer)
             // that.board.set({ width: width + 'px'})
             // window.dispatchEvent(new Event('resize'));
             // window.dispatchEvent(new Event('chessground.resize'));
@@ -50,6 +50,7 @@ export default function resizeHandle(that, outer, els, _width, resizeFunction) {
             () => {
                 document.removeEventListener(mousemoveEvent, resize);
                 document.body.classList.remove('resizing');
+                // resizeHandle(that, outer, els, width, resizeFunction)
             },
             { once: true }
         );

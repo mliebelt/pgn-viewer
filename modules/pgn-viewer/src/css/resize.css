@@ -34,7 +34,7 @@ cg-resize::before {
             -45deg);
 }
 
-cg-resize.resizing {
+cg-resize:hover, .resizing cg-resize {
     border-radius: 50%;
-    background: lightsalmon;
+    background: rgba(214,79,0,0.5);
 }

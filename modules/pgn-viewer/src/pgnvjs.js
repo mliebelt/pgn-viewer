@@ -595,10 +595,14 @@ let pgnBase = function (boardId, configuration) {
         let currentWidth = parseInt(boardConfig.width)
         let moduloWidth = currentWidth % 8
         let smallerWidth = currentWidth - moduloWidth
+        boardConfig.events = { insert(elements) {
+                resizeHandle(that, el, el.firstChild, smallerWidth, resizeLayout)
+            }
+        }
         // Ensure that boardWidth is a multiply of 8
         // boardConfig.width = "" + smallerWidth +"px"
         that.board = Chessground(el, boardConfig)
-        resizeHandle(that, el, el.firstChild, smallerWidth, resizeLayout)
+        // resizeHandle(that, el, el.firstChild, smallerWidth, resizeLayout)
         //console.log("Board width: " + board.width)
         if (boardConfig.width) {
             el.style.width = boardConfig.width
