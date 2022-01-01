@@ -11,10 +11,25 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Fixed
 
+## 1.5.13 2022-01-xx
+
+### Changed
+
+* [#45](https://github.com/mliebelt/PgnViewerJS/issues/45) Added example
+* [#126](https://github.com/mliebelt/PgnViewerJS/issues/126) Add resize for boards in pgnView/pgnEdit/pbnBoard mode
+* [#218](https://github.com/mliebelt/PgnViewerJS/issues/218) Allow circles and arrows at the beginning of the game
+* [#303](https://github.com/mliebelt/PgnViewerJS/issues/303) Examples for usage of global defaults
+* [#315](https://github.com/mliebelt/PgnViewerJS/issues/315) Added more NAGs, including needed fonts
+
+### Fixed
+
+* [#253](https://github.com/mliebelt/PgnViewerJS/issues/253) Upgrade of Chessground to version 8.1.7
+
 ## 1.5.12 2021-09-29
 
 ### Changed
 
+* [#183](https://github.com/mliebelt/PgnViewerJS/issues/183) Resize of layout on every entered move
 * [#183](https://github.com/mliebelt/PgnViewerJS/issues/183) Resize of layout on every entered move
 * [#267](https://github.com/mliebelt/PgnViewerJS/issues/267) More unit tests for promoteMove (and fixes)
 * [#271](https://github.com/mliebelt/PgnViewerJS/issues/271) Switch license to GPL due to dependency on Chessground
