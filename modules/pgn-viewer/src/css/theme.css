@@ -93,6 +93,12 @@ move san nag {
 .pgnvjs .moves move  nag[data-value="$253"]::before {
   content: "\00E1";
 }
+.pgnvjs .moves move  nag[data-value="$254"]::before {
+  content: "\00AA";
+}
+.pgnvjs .moves move  nag[data-value="$255"]::before {
+  content: "\00BA";
+}
 
 
 
