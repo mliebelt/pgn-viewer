@@ -1,7 +1,7 @@
 {
   "name": "@mliebelt/pgn-reader",
   "description": "A pgn reader (backend only) to read, understand and play chess games. Used mainly by pgn-viewer.",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "main": "lib/pgn.js",
   "files": [
     "README.md",
@@ -22,7 +22,7 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-    "@mliebelt/pgn-parser": "^1.4.0",
+    "@mliebelt/pgn-parser": "^1.4.1",
     "chess.js": "^0.10.3"
   }
 }

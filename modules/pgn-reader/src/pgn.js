@@ -1,5 +1,4 @@
 import { parse, split } from '@mliebelt/pgn-parser';
-//import parser from './lib/pgn-parser'
 import Chess from 'chess.js';
 
 // Initializes a new instance of the StringBuilder class
