@@ -46,6 +46,7 @@ let pgnBase = function (boardId, configuration) {
         notation: 'short',
         notationLayout: 'inline',   // Possible: inline, list, allList
         figurine: null,
+        resizable: true,
         IDs: {
             bottomHeaderId: boardId + 'BottomHeader',
             topHeaderId: boardId + 'TopHeader',
@@ -618,8 +619,11 @@ let pgnBase = function (boardId, configuration) {
         let currentWidth = parseInt(boardConfig.width)
         let moduloWidth = currentWidth % 8
         let smallerWidth = currentWidth - moduloWidth
-        boardConfig.events = { insert(elements) {
-                resizeHandle(that, el, el.firstChild, smallerWidth, resizeLayout)
+        if (that.configuration.resizable) {
+            boardConfig.events = {
+                insert(elements) {
+                    resizeHandle(that, el, el.firstChild, smallerWidth, resizeLayout)
+                }
             }
         }
         // Ensure that boardWidth is a multiply of 8
@@ -768,7 +772,7 @@ let pgnBase = function (boardId, configuration) {
 
         function localBoard(id, configuration, blackPerspective) {
             let base = pgnBase(id,
-                Object.assign({boardSize: '200px'}, configuration,
+                Object.assign({boardSize: '200px', resizable: false}, configuration,
                     {headers: false, mode: 'board', orientation: (blackPerspective ? 'black' : 'white'), showCoords: false}))
             base.generateHTML()
             base.generateBoard()
