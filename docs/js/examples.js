@@ -206,6 +206,19 @@ examples["1028"] = {
     }
 };
 
+examples["1029"] = {
+    desc: "(Default) board resizable, or set to false.",
+    html: "<div id='b1'></div><br/>" +
+        "\n<div id='b2'></div><br/>",
+    name: "Resizable board",
+    jsStr: "PGNV.pgnView('b1', {width: '500px', layout: 'left', pgn: 'e4 e5 Nf3 Nc6 Bb5'});" +
+        "\nPGNV.pgnBoard('b2', {width: '500px', layout: 'left', resizable: false});",
+    jsFn: function() {
+        PGNV.pgnView('b1', {width: '500px', layout: 'left', pgn: 'e4 e5 Nf3 Nc6 Bb5'});
+        PGNV.pgnBoard('b2', {width: '500px', layout: 'left', resizable: false});
+    }
+};
+
 examples["1051"] = {
     desc: "An config for a normal game, with the standard style. Try to use the buttons, and play the game forth and back. You may set any position in the game by just clicking on the move.",
     html: "<div id=\"b1\" style=\"width: 500px\"><\/div>",

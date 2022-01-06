@@ -195,7 +195,7 @@ let de = {
     "nag:$146": "Neuheit",
     "nag:$146_menu": "Neuheit",
     "nag:$220": "Diagramm (Perspektive Weiß)",
-    "nag:$221": "Diagramm ({erspektive Schwarz)",
+    "nag:$221": "Diagramm (Perspektive Schwarz)",
     "nag:$238": "Platzvorteil",
     "nag:$239": "Reihe",
     "nag:$240": "Diagonale",

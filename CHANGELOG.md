@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-viewer@1.5.12` to get the "release" directly from NPM.
+I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-viewer@1.5.13` to get the "release" directly from NPM.
 
 ## Unknown version
 
@@ -11,7 +11,7 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Fixed
 
-## 1.5.13 2022-01-xx
+## 1.5.13 2022-01-06
 
 ### Changed
 
@@ -20,6 +20,7 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 * [#218](https://github.com/mliebelt/PgnViewerJS/issues/218) Allow circles and arrows at the beginning of the game
 * [#303](https://github.com/mliebelt/PgnViewerJS/issues/303) Examples for usage of global defaults
 * [#315](https://github.com/mliebelt/PgnViewerJS/issues/315) Added more NAGs, including needed fonts
+* [#318](https://github.com/mliebelt/PgnViewerJS/issues/318) Adjusted ranks files for resizing on coordsInner == false
 
 ### Fixed
 

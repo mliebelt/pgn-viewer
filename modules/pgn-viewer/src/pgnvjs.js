@@ -536,7 +536,9 @@ let pgnBase = function (boardId, configuration) {
             bottom -= fontSize + 2
             el.querySelector("coords.files").style.left = '0px'
             let buttons = document.getElementById(id('buttonsId'))
-            buttons.style.marginTop = `${fontSize * 1.5}px`
+            if (buttons) {
+                buttons.style.marginTop = `${fontSize * 1.5}px`
+            }
         }
         el.querySelector("coords.files").style.bottom = `${bottom}px`
     }
