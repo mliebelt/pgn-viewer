@@ -534,8 +534,7 @@ let pgnBase = function (boardId, configuration) {
         let bottom = (fontSize - 13)
         if (!boardConfig.coordsInner) {
             bottom -= fontSize + 2
-            let left = parseFloat(getComputedStyle(el.querySelector(".cg-wrap coords.files")).getPropertyValue("left"))
-            el.querySelector("coords.files").style.left = `${left - (fontSize / 1.5)}px`
+            el.querySelector("coords.files").style.left = '0px'
             let buttons = document.getElementById(id('buttonsId'))
             buttons.style.marginTop = `${fontSize * 1.5}px`
         }
