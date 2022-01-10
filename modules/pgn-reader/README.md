@@ -8,7 +8,7 @@ pgn-reader is up to now only used by pgn-viewer. You will find the detailed docu
 
 ## How to Build and Test
 
-* `npm build`: Creates a new bundle `lib/pgn.js`.
+* `npm build`: Creates a new bundle `lib/pgn.ts`.
 * `npm test`: Runs the whole test suite to check the whole API.
 
 ## How to Use
