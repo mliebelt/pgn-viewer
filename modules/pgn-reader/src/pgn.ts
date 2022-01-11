@@ -3,8 +3,7 @@ import {ParseTreeOrArray, ParseTree, PgnMove} from '@mliebelt/pgn-parser/lib/typ
 import { Chess } from 'chess.js'
 import * as types from './types'
 import * as nag from './nag'
-import {StringBuilder} from "./sb";
-import {PgnReaderMove} from "./types";
+import {StringBuilder} from "./sb"
 
 
 /**
@@ -14,14 +13,14 @@ import {PgnReaderMove} from "./types";
  * @param {*} configuration Given values this are relevant for reading and working with PGN
  */
 export class PgnReader {
-    configuration: object
+    configuration: types.PgnReaderConfiguration
     games: ParseTree[]
-    moves: PgnReaderMove[]
+    moves: types.PgnReaderMove[]
     chess: Chess
     currentGameIndex: number
     endGame: any
 
-    constructor(configuration) {
+    constructor(configuration: types.PgnReaderConfiguration) {
         function initializeConfiguration (configuration) {
             function readPgnFromFile (url) {
                 const request = new XMLHttpRequest()
@@ -58,7 +57,7 @@ export class PgnReader {
      * @param move given move in JSON notation
      * @return {*} the SAN string created from the move
      */
-    san(move) {
+    san(move: types.PgnReaderMove) {
         function getFig (fig) {
             if (fig === 'P') {
                 return ''
@@ -78,13 +77,11 @@ export class PgnReader {
             disc = move.from.substring(0,1)
         }
         const check = notation.check ? notation.check : ''
-        const mate = notation.mate ? notation.mate : ''
         const prom = notation.promotion ? '=' + getFig(notation.promotion.substring(1,2)) : ''
         if (this.configuration.notation === 'short') {
-            return fig + disc + strike + notation.col + notation.row + prom + check + mate
-        } else if (this.configuration.notation === 'long') {
-            return fig + move.from + (notation.strike ? strike : '-') + move.to + prom + check + mate
+            return fig + disc + strike + notation.col + notation.row + prom + check
         }
+        return fig + move.from + (notation.strike ? strike : '-') + move.to + prom + check
     }
 
     sanWithNags (move) {
@@ -113,7 +110,7 @@ export class PgnReader {
     loadMany () {
         this.games = parse(this.configuration.pgn, {startRule: 'games'}) as ParseTree[];
     }
-    loadOne (game:ParseTree) {
+    loadOne (game:ParseTreeOrArray) {
         let interpretHeaders = (_game): void => {
             if (_game.tags.SetUp) {
                 const setup = _game.tags.SetUp
@@ -129,7 +126,7 @@ export class PgnReader {
         }
 
         this.currentGameIndex = typeof game === 'number' ? game : 0
-        let _game = typeof game === 'number' ? this.games[game] : game
+        let _game: ParseTree = typeof game === 'number' ? this.games[game] : game as ParseTree
         interpretHeaders(_game)
         this.readMoves(_game.moves)
         if (this.configuration.startPlay && this.configuration.hideMovesBefore) {
@@ -203,7 +200,7 @@ export class PgnReader {
         return this.getMoves() ? this.getMoves()[id] : undefined
     }
     deleteMove (id): void {
-        let removeFromArray = (array, index): PgnReaderMove => {
+        let removeFromArray = (array, index): types.PgnReaderMove => {
             const ret = array[index]
             array.splice(index, 1)
             return ret
@@ -223,7 +220,7 @@ export class PgnReader {
         if (this.startVariation(current)) {
             const vars = this.getMove(this.getMove(current.prev).next).variations
             for (let i = 0; vars.length; i++) {
-                if (vars[i][0] === current) {
+                if (vars[i] === current) {
                     removeFromArray(vars, i)
                     if (current.next !== undefined) {
                         this.deleteMove(current.next)
@@ -293,16 +290,22 @@ export class PgnReader {
     }
     deleteMovesBefore (id) {
         // Inner function, this really deletes
-        let deleteMovesBeforeIncluding = function (id) {
+        let deleteMovesBeforeIncluding = (id) => {
             let my_fen = this.moves[id].fen
             this.moves[id] = null;
             if (id <= 0) return my_fen;
             deleteMovesBeforeIncluding(id - 1);
             return my_fen;
         };
-        if (id === undefined) return;
-        if (id === null) return;
-        if (id <= 0) return;
+        if (id === undefined) {
+            return "";
+        }
+        if (id === null) {
+            return "";
+        }
+        if (id <= 0) {
+            return "";
+        }
         let my_fen = deleteMovesBeforeIncluding(id - 1);
         this.getMove(id).prev = null;
         return my_fen // Need position to start game here
@@ -311,7 +314,7 @@ export class PgnReader {
         /**
          * Returns the first move of a variation.
          */
-        function firstMoveOfVariation(move) {
+        let firstMoveOfVariation = (move) => {
             if (this.startVariation(move)) {
                 return move
             }
@@ -376,7 +379,7 @@ export class PgnReader {
     afterMoveWithVariation (move): boolean {
         return this.getMoves()[move.prev] && (this.getMoves()[move.prev].variations.length > 0)
     }
-    writePgn (): void {
+    writePgn (): string {
 
         // Prepend a space if necessary
         function prepend_space(sb) {
@@ -395,62 +398,62 @@ export class PgnReader {
             sb.append("}");
         };
 
-        function write_game_comment (sb) {
+        let write_game_comment = (sb) => {
             let gc = this.getGameComment()
-            gc = gc ? gc.comment : undefined
-            write_comment(gc, sb)
+            let gc1 = gc ? gc.comment : undefined
+            write_comment(gc1, sb)
         }
 
         function write_comment_move (move, sb) {
-            write_comment(move.commentMove, sb);
-        };
+            write_comment(move.commentMove, sb)
+        }
 
         function write_comment_after (move, sb) {
-            write_comment(move.commentAfter, sb);
-        };
+            write_comment(move.commentAfter, sb)
+        }
 
         function write_comment_diag (move, sb) {
             let has_diags = (move) => {
                 return move.commentDiag &&
                     ( ( move.commentDiag.colorArrows && move.commentDiag.colorArrows.length > 0 ) ||
                         ( move.commentDiag.colorFields && move.commentDiag.colorFields.length > 0 )
-                    );
+                    )
             }
-            let arrows = (move) => { return move.commentDiag.colorArrows || []; }
-            let fields = (move) => { return move.commentDiag.colorFields || []; }
+            let arrows = (move) => { return move.commentDiag.colorArrows || [] }
+            let fields = (move) => { return move.commentDiag.colorFields || [] }
 
             if (has_diags(move)) {
-                let sbdiags: StringBuilder = new StringBuilder("");
+                let sbdiags: StringBuilder = new StringBuilder("")
                 let first = true
                 sbdiags.append("[%csl ")
                 fields(move).forEach( (field) => {
-                    ! first ? sbdiags.append(",") : sbdiags.append("");
-                    first = false;
-                    sbdiags.append(field);
-                });
-                sbdiags.append("]");
+                    ! first ? sbdiags.append(",") : sbdiags.append("")
+                    first = false
+                    sbdiags.append(field)
+                })
+                sbdiags.append("]")
                 first = true
                 sbdiags.append("[%cal ")
                 arrows(move).forEach( (arrow) => {
                     ! first ? sbdiags.append(",") : sbdiags.append("")
-                    first = false;
-                    sbdiags.append(arrow);
-                });
-                sbdiags.append("]");
-                write_comment(sbdiags.toString(), sb);
+                    first = false
+                    sbdiags.append(arrow)
+                })
+                sbdiags.append("]")
+                write_comment(sbdiags.toString(), sb)
             }
         }
 
-        function write_move_number (move, sb) {
-            prepend_space(sb);
+        let write_move_number = (move, sb) => {
+            prepend_space(sb)
             if (move.turn === "w") {
-                sb.append("" + move.moveNumber);
-                sb.append(".");
+                sb.append("" + move.moveNumber)
+                sb.append(".")
             } else if (this.startVariation(move)) {
-                sb.append("" + move.moveNumber);
-                sb.append("...");
+                sb.append("" + move.moveNumber)
+                sb.append("...")
             }
-        };
+        }
 
         function write_notation (move, sb) {
             prepend_space(sb);
@@ -479,7 +482,7 @@ export class PgnReader {
             }
         };
 
-        function get_next_move (move) {
+        let get_next_move = (move) => {
             return move.next ? this.getMove(move.next) : null;
         };
 
@@ -506,14 +509,14 @@ export class PgnReader {
             write_move(next, sb);
         };
 
-        function write_end_game (_sb) {
+        let write_end_game = (_sb) => {
             if (this.endGame) {
                 _sb.append(" ");
                 _sb.append(this.endGame);
             }
         };
 
-        function write_pgn2 (move, _sb) {
+        function write_pgn2 (move, _sb): string {
             write_game_comment(sb)
             write_move(move, _sb)
             write_end_game(_sb)
@@ -534,7 +537,7 @@ export class PgnReader {
     eachMove (movesMainLine) {
         this.moves = [];
         let current = -1;
-        let findPrevMove = (level, index): PgnReaderMove => {
+        let findPrevMove = (level, index): types.PgnReaderMove => {
             while (index >= 0) {
                 if (this.moves[index].variationLevel === level) {
                     return this.moves[index]
@@ -609,7 +612,7 @@ export class PgnReader {
         eachMoveVariation(movesMainLine, 0, null)
     }
     addMove (move, moveNumber) {
-        let getTurn = (moveNumber): string => {
+        let getTurn = (moveNumber): types.Color => {
             return this.getMove(moveNumber).turn === "w" ? 'b' : "w"
         }
 
@@ -691,7 +694,7 @@ export class PgnReader {
         let curr = existingMove(move, moveNumber);
         if (typeof curr == 'number') return curr;
         // @ts-ignore
-        let real_move: PgnReaderMove = { "notation": {}};
+        let real_move: types.PgnReaderMove = { "notation": {}};
         real_move.from = move.from;
         real_move.to = move.to;
         real_move.variations = [];

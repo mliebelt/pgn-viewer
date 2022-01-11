@@ -12,3 +12,12 @@ describe("ambiguator or variations of formats", function() {
         should(my_pgn.sanWithNags(my_pgn.getMove(0))).equal('dxe5')
     })
 })
+
+describe("should handle variations well", function () {
+    let reader
+
+    it("should handle variations one depth well", function () {
+        reader = new PgnReader({ pgn: "e4 e5 (d5 exd5) (c5 Nf3) Nf3"})
+        should(reader.getMoves().length).equal(7)
+    })
+})

@@ -1,7 +1,7 @@
 
 // const should = require('should');
 import * as should from "should"
-import {PgnReader} from "../lib/pgn";
+import {PgnReader} from "../lib";
 // const pgnReader = require('../lib/pgn').pgnReader;
 
 
@@ -891,10 +891,10 @@ describe("should handle errors in PGN by throwing errors", function () {
         // } catch (err) {
         //     should.exist(err)
         // }
-        (function () { new PgnReader({pgn: 'd5'}).load_pgn() } ).should.throw('No legal move: d5')
+        (function () { new PgnReader({pgn: 'd5'}).loadPgn() } ).should.throw('No legal move: d5')
     })
     it("should read syntactically wrong PGN by throwing SyntaxError", function () {
 
-        (function() {new PgnReader({pgn: 'ddd3'}).load_pgn()}).should.throw('Expected [1-8] but "d" found.')
+        (function() {new PgnReader({pgn: 'ddd3'}).loadPgn()}).should.throw('Expected [1-8] but "d" found.')
     })
 })
