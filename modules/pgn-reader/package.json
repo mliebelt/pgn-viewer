@@ -15,15 +15,12 @@
     "url": "https://github.com/mliebelt/PgnViewerJS.git"
   },
   "scripts": {
-    "build": "npm run mjs && npm run cjs && npm run umd && npm run wp",
-    "mjs": "tsc -d && mv lib/pgn.js lib/pgn.mjs && mv lib/types.js lib/types.mjs",
+    "build": "npm run mjs && npm run cjs && npm run umd",
+    "mjs": "tsc -d && mv lib/index.js lib/index.mjs && mv lib/pgn.js lib/pgn.mjs && mv lib/types.js lib/types.mjs",
     "cjs": "tsc -m commonjs",
     "umd": "rollup -i lib/index.mjs -o lib/index.umd.js -f umd -n index",
-    "wp": "../../node_modules/.bin/webpack --config webpack.prod.js",
-    "start": "../../node_modules/.bin/webpack-dev-server --open --config webpack.dev.js",
-    "test": "cd ../../ && ./node_modules/.bin/mocha ./modules/pgn-reader/test/*.js",
-    "test-interactive": "cd ../../ && ./node_modules/.bin/mocha -w  ./modules/pgn-reader/test/*.js",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "test": "mocha --require ts-node/register ./test/*.ts"
   },
   "devDependencies": {
     "@types/mocha": "^9.0.0",
