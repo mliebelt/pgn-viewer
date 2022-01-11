@@ -1,6 +1,6 @@
 import i18next from './i18n'
 // import {pgnReader} from '@mliebelt/pgn-reader'
-import {pgnReader} from '../../pgn-reader/src/pgn'
+import { PgnReader} from '../../pgn-reader/lib/pgn'
 import {Chessground} from 'chessground'
 import 'chessground/assets/chessground.base.css'
 import 'chessground/assets/chessground.brown.css'
@@ -59,7 +59,7 @@ let pgnBase = function (boardId, configuration) {
     }
     that.promMappings = {q: 'queen', r: 'rook', b: 'bishop', n: 'knight'}
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration)
-    that.mypgn = pgnReader(that.configuration)
+    that.mypgn = new PgnReader(that.configuration)
     let chess = that.mypgn.chess     // Use the same instance from chess.src
     let theme = that.configuration.theme || 'default'
     function hasMode (mode) {
