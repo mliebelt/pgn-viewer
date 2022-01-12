@@ -13,21 +13,20 @@ export type File = typeof files[number];
 export type Rank = typeof ranks[number];
 export type Field = 'a0' | `${File}${Rank}`;
 
-type GameComment = { comment?: string, colorArrows?: string[], colorFields?: string[], clk?: string, eval?: string }
+export type GameComment = { comment?: string, colorArrows?: string[], colorFields?: string[], clk?: string, eval?: string }
 export type Color = 'w' | 'b'
 
 export type PgnReaderMove = {
-    drawOffer: boolean;
-    moveNumber: number,
-    notation: { fig?: string | null, strike?: 'x' | null, col: string, row: string, check?: string,
-        promotion: string | null, notation: string, disc?: string, drop?: boolean },
+    drawOffer?: boolean;
+    moveNumber?: number,
+    notation?: { fig?: string | null, strike?: 'x' | null, col?: string, row?: string, check?: string,
+        promotion?: string | null, notation?: string, disc?: string, drop?: boolean },
     variations: PgnReaderMove[],
     nag: string[],
-    commentDiag: GameComment,
+    commentDiag?: GameComment,
     commentMove?: string,
     commentAfter?: string,
-    turn: Color
-    real_move: {};
+    turn?: Color
     from?: Field,
     to?: Field,
     fen?: string,
@@ -37,6 +36,11 @@ export type PgnReaderMove = {
     variationLevel?: number
 }
 
+export type PrimitiveMove = {
+    from: Field,
+    to: Field
+}
+
 export type PgnReaderConfiguration = {
     notation?: 'short' | 'long',
     position?: 'start' | string,
@@ -44,7 +48,9 @@ export type PgnReaderConfiguration = {
     lazyLoad?: boolean,
     manyGames?: boolean,
     pgn?: string,
+    pgnFile?: string,
     startPlay?: number | string,
     hideMovesBefore?: boolean
 }
 
+export type Message = { key: string, value: string, message: string }

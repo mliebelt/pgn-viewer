@@ -1,9 +1,10 @@
 import { parse, split } from '@mliebelt/pgn-parser'
-import {ParseTreeOrArray, ParseTree, PgnMove} from '@mliebelt/pgn-parser/lib/types'
+import {ParseTreeOrArray, ParseTree, PgnMove, Tags, PgnDate, PgnTime, TimeControl} from '@mliebelt/pgn-parser/lib/types'
 import { Chess } from 'chess.js'
 import * as types from './types'
 import * as nag from './nag'
 import {StringBuilder} from "./sb"
+import {PgnReaderMove, PrimitiveMove} from "./types";
 
 
 /**
@@ -18,11 +19,11 @@ export class PgnReader {
     moves: types.PgnReaderMove[]
     chess: Chess
     currentGameIndex: number
-    endGame: any
+    endGame: string
 
     constructor(configuration: types.PgnReaderConfiguration) {
-        function initializeConfiguration (configuration) {
-            function readPgnFromFile (url) {
+        function initializeConfiguration (configuration: types.PgnReaderConfiguration) {
+            function readPgnFromFile (url: string) {
                 const request = new XMLHttpRequest()
                 request.open('GET', url, false)
                 request.send()
@@ -50,15 +51,14 @@ export class PgnReader {
         if (! this.configuration.lazyLoad) {
             this.loadPgn()
         }
-
     }
     /**
      * Returns the real notation from the move (excluding NAGs).
      * @param move given move in JSON notation
      * @return {*} the SAN string created from the move
      */
-    san(move: types.PgnReaderMove) {
-        function getFig (fig) {
+    san(move: types.PgnReaderMove): string {
+        function getFig (fig: string) {
             if (fig === 'P') {
                 return ''
             }
@@ -84,7 +84,7 @@ export class PgnReader {
         return fig + move.from + (notation.strike ? strike : '-') + move.to + prom + check
     }
 
-    sanWithNags (move) {
+    sanWithNags (move: types.PgnReaderMove): string {
         let _san = this.san(move);
         if (move.nag) {
             _san += nag.nagToSymbol(move.nag);
@@ -92,7 +92,7 @@ export class PgnReader {
         return _san;
     }
 
-    loadPgn() {
+    loadPgn():PgnReader {
         let hasManyGames = (): boolean => {
             return this.configuration.manyGames
         }
@@ -101,8 +101,8 @@ export class PgnReader {
             this.loadOne(this.games[0])
             return this
         }
-        let _mgame = parse(this.configuration.pgn, {startRule: 'game'})
-        this.games = [_mgame as ParseTree]
+        let _mgame = parse(this.configuration.pgn, {startRule: 'game'}) as ParseTree
+        this.games = [_mgame]
         this.loadOne(_mgame)
         return this
     }
@@ -110,7 +110,7 @@ export class PgnReader {
     loadMany () {
         this.games = parse(this.configuration.pgn, {startRule: 'games'}) as ParseTree[];
     }
-    loadOne (game:ParseTreeOrArray) {
+    loadOne (game:ParseTree|number) {
         let interpretHeaders = (_game): void => {
             if (_game.tags.SetUp) {
                 const setup = _game.tags.SetUp
@@ -139,15 +139,15 @@ export class PgnReader {
             this.loadPgn()
         }
     }
-    possibleMoves(game) {
+    possibleMoves(chess: Chess) {
         const dests = new Map();
-        game.SQUARES.forEach(s => {
-            const ms = game.moves({square: s, verbose: true})
+        chess.SQUARES.forEach(s => {
+            const ms = chess.moves({square: s, verbose: true})
             if (ms.length) dests[s] = ms.map(m => m.to)
         })
         return dests
     }
-    readMoves(moves) {
+    readMoves(moves: PgnMove[]) {
         let correctVariations = (): void => {
             this.getMoves().forEach(function(move) {
                 for (let i = 0; i < move.variations.length; i++) {
@@ -181,10 +181,10 @@ export class PgnReader {
         correctTurn();
         correctVariations();
     };
-    isMove(id) {
+    isMove(id: number): boolean {
         return this.getMoves().length > id;
     };
-    isDeleted (id) {
+    isDeleted (id: number): boolean {
         if (! this.isMove(id))
             return true // Every non-existing moves is "deleted"
         const current = this.getMoves()[id]
@@ -196,10 +196,10 @@ export class PgnReader {
         }
         return false // default
     }
-    getMove (id) {
+    getMove (id: number): PgnReaderMove|undefined {
         return this.getMoves() ? this.getMoves()[id] : undefined
     }
-    deleteMove (id): void {
+    deleteMove (id: number): void {
         let removeFromArray = (array, index): types.PgnReaderMove => {
             const ret = array[index]
             array.splice(index, 1)
@@ -251,7 +251,7 @@ export class PgnReader {
             this.updateVariationLevel(variationMove, varLevel - 1)
         }
     }
-    updateVariationLevel (move, varLevel) {
+    updateVariationLevel (move: PgnReaderMove, varLevel: number): void {
         if (arguments.length === 0) {
             // Workaround: we don't know which is the first move, so this this with index 0
             const my_move = this.getFirstMove();
@@ -268,71 +268,69 @@ export class PgnReader {
             }
         }
     }
-    findMove(moveRep) {
-        if (!isNaN(moveRep)) {   // the following goes only over the main line, move number cannot denote a variation
-            moveRep = moveRep - 1;
-            let move = this.getMove(0);
-            while (moveRep > 0) {
-                moveRep = moveRep - 1;
-                move = this.getMove(move.next);
+    findMove(moveRep: number|string): PgnReaderMove|undefined {
+        if (!isNaN(moveRep as number)) {   // the following goes only over the main line, move number cannot denote a variation
+            let moveNum = moveRep as number - 1
+            let move = this.getMove(0)
+            while (moveNum > 0) {
+                moveNum = moveNum - 1
+                move = this.getMove(move.next)
             }
-            return move;
+            return move
         }
         let moves = this.getMoves();
         for (let move of moves) {
-            if (move.fen.startsWith(moveRep)) {
-                return move;
+            if (move.fen.startsWith(moveRep as string)) {
+                return move
             } else if (move.notation.notation === moveRep) {
-                return move;
+                return move
             }
         }
-        return undefined;
+        return undefined
     }
-    deleteMovesBefore (id) {
+    deleteMovesBefore (moveRep: number|string): string {
         // Inner function, this really deletes
         let deleteMovesBeforeIncluding = (id) => {
             let my_fen = this.moves[id].fen
-            this.moves[id] = null;
-            if (id <= 0) return my_fen;
-            deleteMovesBeforeIncluding(id - 1);
-            return my_fen;
-        };
-        if (id === undefined) {
-            return "";
+            this.moves[id] = null
+            if (id <= 0) return my_fen
+            deleteMovesBeforeIncluding(id - 1)
+            return my_fen
         }
-        if (id === null) {
-            return "";
+        let move = this.findMove(moveRep)
+        if (move === undefined) {
+            return ""
         }
-        if (id <= 0) {
-            return "";
+        if (move.index <= 0) {
+            return ""
         }
-        let my_fen = deleteMovesBeforeIncluding(id - 1);
-        this.getMove(id).prev = null;
+        let my_fen = deleteMovesBeforeIncluding(move.index - 1)
+        this.getMove(move.index).prev = null
         return my_fen // Need position to start game here
-    };
-    promoteMove (id) {
+    }
+    promoteMove (id: number) {
         /**
          * Returns the first move of a variation.
          */
-        let firstMoveOfVariation = (move) => {
+        let firstMoveOfVariation = (move: PgnReaderMove): PgnReaderMove => {
             if (this.startVariation(move)) {
                 return move
             }
             return firstMoveOfVariation(this.getMove(move.prev))
         }
 
-        const move = this.getMove(id);
+        const move: PgnReaderMove = this.getMove(id);
         // 1. Check this is variation
         if ((typeof move.variationLevel == "undefined") || (move.variationLevel === 0)) {
             return;
         }
 
         // 2. Get the first move of the variation
-        const myFirst = firstMoveOfVariation(move);
+        const myFirst: PgnReaderMove = firstMoveOfVariation(move);
 
         // 3. Get the index of this moves variation array
         const higherVariationMove = (myFirst.prev == null) ? this.getFirstMove() : this.getMove(this.getMove(myFirst.prev).next)
-        let indexVariation;
+        let indexVariation: number;
         for (let i = 0; i < higherVariationMove.variations.length; i++) {
             if (higherVariationMove.variations[i] === myFirst) {
                 indexVariation = i
@@ -366,17 +364,17 @@ export class PgnReader {
             this.updateVariationLevel(myFirst, myFirst.variationLevel - 1)
         }
     }
-    startMainLine(move): boolean  {
+    startMainLine(move: PgnReaderMove): boolean  {
         return  move.variationLevel === 0 && (typeof move.prev !== "number")
     }
-    startVariation (move): boolean {
+    startVariation (move: PgnReaderMove): boolean {
         return  move.variationLevel > 0 &&
             ( (typeof move.prev != "number") || (this.getMoves()[move.prev].next !== move.index))
     }
-    endVariation (move):boolean {
+    endVariation (move: PgnReaderMove):boolean {
         return move.variationLevel > 0 && ! move.next
     }
-    afterMoveWithVariation (move): boolean {
+    afterMoveWithVariation (move: PgnReaderMove): boolean {
         return this.getMoves()[move.prev] && (this.getMoves()[move.prev].variations.length > 0)
     }
     writePgn (): string {
@@ -384,18 +382,18 @@ export class PgnReader {
         // Prepend a space if necessary
         function prepend_space(sb) {
             if ( (!sb.isEmpty()) && (sb.lastChar() !== " ")) {
-                sb.append(" ");
+                sb.append(" ")
             }
         }
 
         function write_comment (comment, sb) {
             if (comment === undefined || comment === null) {
-                return;
+                return
             }
-            prepend_space(sb);
-            sb.append("{");
-            sb.append(comment);
-            sb.append("}");
+            prepend_space(sb)
+            sb.append("{")
+            sb.append(comment)
+            sb.append("}")
         };
 
         let write_game_comment = (sb) => {
@@ -456,35 +454,35 @@ export class PgnReader {
         }
 
         function write_notation (move, sb) {
-            prepend_space(sb);
-            sb.append(move.notation.notation);
-        };
+            prepend_space(sb)
+            sb.append(move.notation.notation)
+        }
 
         function write_NAGs (move, sb) {
             if (move.nag) {
                 move.nag.forEach(function(ele) {
-                    sb.append(ele);
-                });
+                    sb.append(ele)
+                })
             }
-        };
+        }
 
         function write_variation (move, sb) {
-            prepend_space(sb);
-            sb.append("(");
-            write_move(move, sb);
-            prepend_space(sb);
-            sb.append(")");
-        };
+            prepend_space(sb)
+            sb.append("(")
+            write_move(move, sb)
+            prepend_space(sb)
+            sb.append(")")
+        }
 
         function write_variations (move, sb) {
             for (let i = 0; i < move.variations.length; i++) {
                 write_variation(move.variations[i], sb);
             }
-        };
+        }
 
         let get_next_move = (move) => {
-            return move.next ? this.getMove(move.next) : null;
-        };
+            return move.next ? this.getMove(move.next) : null
+        }
 
         /**
          * Write the normalised notation: comment move, move number (if necessary),
@@ -495,38 +493,38 @@ export class PgnReader {
          */
         function write_move (move, sb) {
             if (move === null || move === undefined) {
-                return;
+                return
             }
-            write_comment_move(move, sb);
-            write_move_number(move, sb);
-            write_notation(move, sb);
+            write_comment_move(move, sb)
+            write_move_number(move, sb)
+            write_notation(move, sb)
             //write_check_or_mate(move, sb);    // not necessary if san from chess.src is used
-            write_NAGs(move, sb);
-            write_comment_after(move, sb);
-            write_comment_diag(move, sb);
-            write_variations(move, sb);
-            const next = get_next_move(move);
-            write_move(next, sb);
-        };
+            write_NAGs(move, sb)
+            write_comment_after(move, sb)
+            write_comment_diag(move, sb)
+            write_variations(move, sb)
+            const next = get_next_move(move)
+            write_move(next, sb)
+        }
 
         let write_end_game = (_sb) => {
             if (this.endGame) {
-                _sb.append(" ");
-                _sb.append(this.endGame);
+                _sb.append(" ")
+                _sb.append(this.endGame)
             }
-        };
+        }
 
         function write_pgn2 (move, _sb): string {
             write_game_comment(sb)
             write_move(move, _sb)
             write_end_game(_sb)
             return _sb.toString()
-        };
-        const sb: StringBuilder = new StringBuilder("");
-        let indexFirstMove = 0;
+        }
+        const sb: StringBuilder = new StringBuilder("")
+        let indexFirstMove = 0
         while (this.getMove(indexFirstMove) === null) { indexFirstMove += 1; }
-        return write_pgn2(this.getMove(indexFirstMove), sb);
-    };
+        return write_pgn2(this.getMove(indexFirstMove), sb)
+    }
     setToStart (): void {
         if (this.configuration.position === 'start') {
             this.chess.reset()
@@ -534,10 +532,10 @@ export class PgnReader {
             this.chess.load(this.configuration.position)
         }
     }
-    eachMove (movesMainLine) {
-        this.moves = [];
-        let current = -1;
-        let findPrevMove = (level, index): types.PgnReaderMove => {
+    eachMove (movesMainLine: PgnMove[]) {
+        this.moves = []
+        let current = -1
+        let findPrevMove = (level: number, index: number): types.PgnReaderMove => {
             while (index >= 0) {
                 if (this.moves[index].variationLevel === level) {
                     return this.moves[index]
@@ -546,63 +544,65 @@ export class PgnReader {
             }
             return null
         }
-        let eachMoveVariation = (moveArray, level, prev): void => {
+        let eachMoveVariation = (moveArray: PgnMove[], level, prev): void => {
             function wireMoves(current, prev, currentMove, prevMove) {
                 if (prevMove != null) {
-                    currentMove.prev = prev;
+                    currentMove.prev = prev
                     if (! prevMove.next) { // only set, if not set already
-                        prevMove.next = current;
+                        prevMove.next = current
                     }
                 }
-                currentMove.index = current;
-            };
-            function getMoveNumberFromPosition (fen) {
+                currentMove.index = current
+            }
+            function getMoveNumberFromPosition (fen: string) {
                 const tokens = fen.split(/\s+/)
                 const move_number = parseInt(tokens[5], 10)
                 return (tokens[1] === 'b') ? move_number : move_number - 1
             }
             let prevMove = (prev != null ? this.moves[prev] : null)
             moveArray.forEach( (move, i) => {
-                current++;
-                move.variationLevel = level;
-                this.moves.push(move);
+                current++
+                // PgnMove and PgnReaderMove are similar, but different. The following is a hack to convert one to the other.
+                let _move: PgnReaderMove = move as unknown as PgnReaderMove
+                _move.variationLevel = level
+                this.moves.push(_move)
                 if (i > 0) {
                     if (this.moves[current - 1].variationLevel > level) {
-                        prevMove = findPrevMove(level, current -1);
-                        prev = prevMove.index;
+                        prevMove = findPrevMove(level, current -1)
+                        prev = prevMove.index
                     } else {
-                        prev = current - 1;
-                        prevMove = this.moves[prev];
+                        prev = current - 1
+                        prevMove = this.moves[prev]
                     }
                 }
-                wireMoves(current, prev, move, prevMove);
+                wireMoves(current, prev, _move, prevMove);
                 // Checks the move on a real board, and hold the fen
                 // TODO: Use the position from the configuration, to ensure, this games
                 // could be played not starting at the start position.
-                if (typeof move.prev == "number") {
-                    this.chess.load(this.getMove(move.prev).fen);
+                if (typeof _move.prev == "number") {
+                    this.chess.load(this.getMove(_move.prev).fen);
                 } else {
                     this.setToStart();
                 }
-                let pgn_move = this.chess.move(move.notation.notation, {'sloppy' : true});
+                let pgn_move = this.chess.move(_move.notation.notation, {'sloppy' : true});
                 if (pgn_move === null) {
-                    throw new Error("No legal move: " + move.notation.notation)
+                    throw new Error("No legal move: " + _move.notation.notation)
                 }
                 let fen = this.chess.fen();
-                move.fen = fen;
-                move.from = pgn_move.from;
-                move.to = pgn_move.to;
-                move.notation.notation = pgn_move.san;
+                _move.fen = fen;
+                _move.from = pgn_move.from;
+                _move.to = pgn_move.to;
+                _move.notation.notation = pgn_move.san;
 
                 if (pgn_move.flags === 'c') {
-                    move.notation.strike = 'x';
+                    _move.notation.strike = 'x';
                 }
                 if (this.chess.in_checkmate()) {
-                    move.notation.check = '#';
+                    _move.notation.check = '#';
                 } else if (this.chess.in_check()) {
-                    move.notation.check = '+';
+                    _move.notation.check = '+';
                 }
-                move.moveNumber = getMoveNumberFromPosition(fen);
+                _move.moveNumber = getMoveNumberFromPosition(fen);
 
                 move.variations.forEach(function(variation) {
                     eachMoveVariation(variation, level + 1, prev);
@@ -611,7 +611,7 @@ export class PgnReader {
         };
         eachMoveVariation(movesMainLine, 0, null)
     }
-    addMove (move, moveNumber) {
+    addMove (move: PrimitiveMove, moveNumber: number): number {
         let getTurn = (moveNumber): types.Color => {
             return this.getMove(moveNumber).turn === "w" ? 'b' : "w"
         }
@@ -647,7 +647,7 @@ export class PgnReader {
 
         // Returns the existing move number or null
         // Should include all variations as well
-        let existingMove = (move, moveNumber) => {
+        let existingMove = (move, moveNumber): number|null => {
             if (moveNumber == null) return existingFirstMove(move);
             let prevMove = this.getMove(moveNumber);
             if (typeof prevMove == "undefined") return null;
@@ -693,60 +693,62 @@ export class PgnReader {
 
         let curr = existingMove(move, moveNumber);
         if (typeof curr == 'number') return curr;
-        // @ts-ignore
-        let real_move: types.PgnReaderMove = { "notation": {}};
-        real_move.from = move.from;
-        real_move.to = move.to;
-        real_move.variations = [];
+        let realMove: types.PgnReaderMove = {
+            variations: [],
+            nag: [],
+            notation: {}
+        }
         if (moveNumber == null) {
             this.setToStart();
-            real_move.turn = this.chess.turn();
-            real_move.moveNumber = 1;
+            realMove.turn = this.chess.turn();
+            realMove.moveNumber = 1;
         } else {
             this.chess.load(this.getMove(moveNumber).fen);
-            real_move.turn = getTurn(moveNumber);
-            if (real_move.turn === "w") {
-                real_move.moveNumber = this.getMove(moveNumber).moveNumber + 1;
+            realMove.turn = getTurn(moveNumber);
+            if (realMove.turn === "w") {
+                realMove.moveNumber = this.getMove(moveNumber).moveNumber + 1;
             } else {
-                real_move.moveNumber = this.getMove(moveNumber).moveNumber;
+                realMove.moveNumber = this.getMove(moveNumber).moveNumber;
             }
         }
         let pgn_move = this.chess.move(move);
-        real_move.fen = this.chess.fen();
+        realMove.fen = this.chess.fen();
+        realMove.from = pgn_move.from;
+        realMove.to = pgn_move.to;
         // san is the real notation, in case of O-O is this O-O.
         // to is the to field, in case of (white) O-O is this g1.
         if (pgn_move.san.substring(0,1) !== "O") {
-            real_move.notation.notation = pgn_move.san;
-            real_move.notation.col = pgn_move.to.substring(0,1);
-            real_move.notation.row = pgn_move.to.substring(1,2);
+            realMove.notation.notation = pgn_move.san;
+            realMove.notation.col = pgn_move.to.substring(0,1);
+            realMove.notation.row = pgn_move.to.substring(1,2);
             if (pgn_move.piece !== "p") {
-                real_move.notation.fig = pgn_move.piece.charAt(0).toUpperCase();
+                realMove.notation.fig = pgn_move.piece.charAt(0).toUpperCase();
             }
             if (pgn_move.promotion) {
-                real_move.notation.promotion = '=' + pgn_move.promotion.toUpperCase();
+                realMove.notation.promotion = '=' + pgn_move.promotion.toUpperCase();
             }
             if (pgn_move.flags.includes(this.chess.FLAGS.CAPTURE) || (pgn_move.flags.includes(this.chess.FLAGS.EP_CAPTURE))) {
-                real_move.notation.strike = 'x';
+                realMove.notation.strike = 'x';
             }
             // real_move.notation.ep = pgn_move.flags.includes(this.chess.FLAGS.EP_CAPTURE)
             if (this.chess.in_check()) {
                 if (this.chess.in_checkmate()) {
-                    real_move.notation.check = '#';
+                    realMove.notation.check = '#';
                 } else {
-                    real_move.notation.check = '+';
+                    realMove.notation.check = '+';
                 }
             }
         } else {
-            real_move.notation.notation = pgn_move.san;
+            realMove.notation.notation = pgn_move.san;
         }
-        this.getMoves().push(real_move);
-        real_move.prev = moveNumber;
+        this.getMoves().push(realMove);
+        realMove.prev = moveNumber;
         let next = this.getMoves().length - 1;
-        real_move.index = next;
-        handleVariation(real_move, moveNumber, next);
+        realMove.index = next;
+        handleVariation(realMove, moveNumber, next);
         return next;
     };
-    changeNag (_nag, moveNumber, added) {
+    changeNag (_nag: string, moveNumber: number, added: boolean) {
         let move = this.getMove(moveNumber)
         if (move.nag == null) {
             move.nag = []
@@ -763,11 +765,11 @@ export class PgnReader {
             }
         }
     }
-    clearNags (moveNumber) {
+    clearNags (moveNumber: number) {
         let move = this.getMove(moveNumber)
         move.nag = []
     }
-    getOrderedMoves (current, returnedMoves) {
+    getOrderedMoves (current: PgnReaderMove, returnedMoves: PgnReaderMove[]): PgnReaderMove[] {
         if (arguments.length === 0) {
             return this.getOrderedMoves(this.getFirstMove(), [])
         }
@@ -783,10 +785,10 @@ export class PgnReader {
             return returnedMoves;
         }
     }
-    getMoves() {
+    getMoves(): PgnReaderMove[] {
         return this.moves ? this.moves : []
     }
-    getFirstMove() {
+    getFirstMove(): PgnReaderMove|null {
         let _moves = this.getMoves()
         for (const _move of _moves) {
             if (_move.variationLevel == null || _move.variationLevel == 0 && _move.prev == null) {
@@ -795,19 +797,19 @@ export class PgnReader {
         }
         return null
     }
-    getTags() {
+    getTags(): Map<string, string | types.Message[] | PgnDate | PgnTime | TimeControl> {
         if (! this.games) { return new Map() }
         let _tags = this.games[this.currentGameIndex].tags
         return new Map(Object.entries(_tags))
     }
-    getGameComment() {
+    getGameComment(): types.GameComment {
         if (! this.games) { return undefined }
         return this.games[this.currentGameIndex].gameComment ? this.games[this.currentGameIndex].gameComment : undefined
     }
-    getGames() {
+    getGames(): ParseTree[] {
         return this.games
     }
-    getEndGame() {
+    getEndGame(): string {
         return this.endGame;
     }
     setShapes(move, shapes) {
@@ -830,52 +832,4 @@ export class PgnReader {
             }
         })
     }
-
-
-
 }
-const pgnReader = function (configuration) {
-
-    // Ensure this at least one game (or the only game) is loaded
-
-    // This defines the public API of the pgn function.
-    return {
-        configuration: this.configuration,
-        deleteMove: this.deleteMove,
-        deleteMovesBefore: this.deleteMovesBefore,
-        isDeleted: this.isDeleted,
-        promoteMove: this.promoteMove,
-        readMoves: this.readMoves,
-        findMove: this.findMove,
-        getMoves: this.getMoves,
-        getOrderedMoves: this.getOrderedMoves,
-        getMove: this.getMove,
-        getFirstMove: this.getFirstMove,
-        getEndGame: this.getEndGame,
-        getGameComment: this.getGameComment,
-        getTags: this.getTags,
-        getGames: this.getGames,
-        loadOne: this.loadOne,
-        // getParser: () => parser,
-        writePgn: this.writePgn,
-        startVariation: this.startVariation,
-        startMainLine: this.startMainLine,
-        endVariation: this.endVariation,
-        afterMoveWithVariation: this.afterMoveWithVariation,
-        changeNag: this.changeNag,
-        clearNags: this.clearNags,
-        addMove: this.addMove,
-        hasDiagramNag: nag.hasDiagramNag,
-        PGN_NAGS: nag.PGN_NAGS,
-        PROMOTIONS: types.PROMOTIONS,
-        NAGS: nag.NAGs,
-        san: this.san,
-        sanWithNags: this.sanWithNags,
-        nagToSymbol: nag.nagToSymbol,
-        chess: this.chess,
-        loadPgn: this.loadPgn,
-        possibleMoves: this.possibleMoves,
-        setShapes: this.setShapes
-    };
-};
-
