@@ -1,10 +1,38 @@
 import * as should from "should"
 import {PgnReader} from "../lib"
+import {describe} from "mocha";
 
 /**
- * Checks all functionality for reading and interpreting a spec.
+ * Checks all functionality for reading and interpreting a configuration for the reader.
  */
 
+describe("Base functionality of the reader without any configuration", function () {
+    let reader
+    it("should be able to read a main line", function () {
+
+    })
+    it("should be able to read a main line with one variant", function (){
+
+    })
+    it("should be able to read a main line with many variants on different levels", function () {
+
+    })
+    it("should be able to read a main line with comments", function () {
+
+    })
+    it("should be able to read a game comment including arrows and circles", function () {
+
+    })
+    it ("should be able to read additional tags and keep them", function () {
+
+    })
+    it ("should read 3 games and hold them", function () {
+        // Define 3 games (very short)
+        // Read them at once
+        // Set the current game
+        // Get for each game some information (# moves, players, move notation, ...)
+    })
+})
 
 describe("ambiguator or variations of formats", function() {
     let my_pgn

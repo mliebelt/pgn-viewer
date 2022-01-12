@@ -391,9 +391,7 @@ export class PgnReader {
                 return
             }
             prepend_space(sb)
-            sb.append("{")
-            sb.append(comment)
-            sb.append("}")
+            sb.append("{").append(comment).append("}")
         };
 
         let write_game_comment = (sb) => {
@@ -445,11 +443,9 @@ export class PgnReader {
         let write_move_number = (move, sb) => {
             prepend_space(sb)
             if (move.turn === "w") {
-                sb.append("" + move.moveNumber)
-                sb.append(".")
+                sb.append("" + move.moveNumber).append(".")
             } else if (this.startVariation(move)) {
-                sb.append("" + move.moveNumber)
-                sb.append("...")
+                sb.append("" + move.moveNumber).append("...")
             }
         }
 
@@ -509,8 +505,7 @@ export class PgnReader {
 
         let write_end_game = (_sb) => {
             if (this.endGame) {
-                _sb.append(" ")
-                _sb.append(this.endGame)
+                _sb.append(" ").append(this.endGame)
             }
         }
 
