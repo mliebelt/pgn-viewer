@@ -4,10 +4,11 @@ export class StringBuilder {
         this.append(value)
     }
     // Appends the given value to the end of this instance.
-    append(value): void {
+    append(value): StringBuilder {
         if (value) {
             this.strings.push(value)
         }
+        return this
     }
     isEmpty(): boolean {
         for (let i = 0; i < this.strings.length; i++) {
