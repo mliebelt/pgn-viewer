@@ -764,6 +764,8 @@ export class PgnReader {
         let move = this.getMove(moveNumber)
         move.nag = []
     }
+    // TODO This function is only used once in the whole system, can we get rid of it.
+    // And it is only used in the viewer, perhaps it should go to there ...
     getOrderedMoves (current: PgnReaderMove, returnedMoves: PgnReaderMove[]): PgnReaderMove[] {
         if (arguments.length === 0) {
             return this.getOrderedMoves(this.getFirstMove(), [])

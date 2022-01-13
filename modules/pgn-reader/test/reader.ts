@@ -17,12 +17,60 @@ describe("Base functionality of the reader without any configuration", function 
     it("should be able to read a main line with many variants on different levels", function () {
 
     })
-    it("should be able to read a main line with comments", function () {
-
+    it("should understand game comment and after comment in principle", function() {
+        reader = new PgnReader({pgn: "{START} 1. d4 {AFTER} e5"})
+        let move = reader.getMove(0)
+        should(reader.getGameComment().comment).equal("START")
+        should(move.commentAfter).equal("AFTER")
+        should(move.notation.notation).equal("d4")
     })
-    it("should be able to read a game comment including arrows and circles", function () {
 
+    it("should understand comments for variation with white", function() {
+        reader = new PgnReader({pgn: "1. d4 ({START} 1. e4 {AFTER} e5) 1... d5"})
+        let var_first = reader.getMove(0).variations[0]
+        should(var_first.commentMove).equal("START")
+        should(var_first.commentAfter).equal("AFTER")
+        should(var_first.notation.notation).equal("e4")
     })
+
+    it("should read all sorts of comments", function() {
+        reader = new PgnReader({pgn: "{Before move} 1. e4 {After move}"})
+        let first = reader.getMove(0)
+        should(reader.getGameComment().comment).equal("Before move")
+        should(first.commentAfter).equal("After move")
+    })
+    it("should ignore empty comments #211", function () {
+        reader = new PgnReader({pgn: "e4 { [%csl Gf6] }"})
+        let move = reader.getMove(0)
+        should.exist(move)
+        should(move.commentDiag.colorFields.length).equal(1)
+        should(move.commentDiag.colorFields[0]).equal("Gf6")
+        should(move.commentAfter).undefined()
+    })
+
+    it ("should understand format of diagram circles", function() {
+        reader = new PgnReader({pgn: "1. e4 {[%csl Ya4, Gb4,Rc4]}"})
+        let first = reader.getMove(0)
+        should(first.commentDiag.colorFields.length).equal(3)
+        should(first.commentDiag.colorFields[0]).equal("Ya4")
+        should(first.commentDiag.colorFields[1]).equal("Gb4")
+        should(first.commentDiag.colorFields[2]).equal("Rc4")
+    })
+    it ("should understand format of diagram arrows", function() {
+        reader = new PgnReader({pgn: "1. e4 {[%cal Ya4b2, Gb4h8,Rc4c8]}"})
+        let first = reader.getMove(0)
+        should(first.commentDiag.colorArrows.length).equal(3)
+        should(first.commentDiag.colorArrows[0]).equal("Ya4b2")
+        should(first.commentDiag.colorArrows[1]).equal("Gb4h8")
+        should(first.commentDiag.colorArrows[2]).equal("Rc4c8")
+    })
+    it ("should understand both circles and arrows", function() {
+        reader = new PgnReader({pgn: "e4 {[%csl Yf4,Gg5,Gd4,Rc4,Bb4,Ya4][%cal Gg1f3,Rf1c4,Gh2h4,Rg2g4,Bf2f4,Ye2e4]}"})
+        let first = reader.getMove(0)
+        should(first.commentDiag.colorArrows.length).equal(6)
+        should(first.commentDiag.colorFields.length).equal(6)
+    })
+
     it ("should be able to read additional tags and keep them", function () {
 
     })
@@ -32,9 +80,38 @@ describe("Base functionality of the reader without any configuration", function 
         // Set the current game
         // Get for each game some information (# moves, players, move notation, ...)
     })
+    it("should read nags", function() {
+        reader = new PgnReader({pgn: "1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?"})
+        let moves = reader.getMoves()
+        should(moves.length).equal(6)
+        should(moves[0].nag).deepEqual(["$1"])
+        should(moves[1].nag).deepEqual(["$2"])
+        should(moves[2].nag).deepEqual(["$3"])
+        should(moves[3].nag).deepEqual(["$4"])
+        should(moves[4].nag).deepEqual(["$6"])
+        should(moves[5].nag).deepEqual(["$5"])
+    })
+    it ("should have the fen stored with each move", function () {
+        reader = new PgnReader({pgn: "1. d4 e5"})
+        should(reader.getMoves().length).equal(2)
+        should.exist(reader.getMoves()[0].fen)
+        should.exist(reader.getMoves()[1].fen)
+    })
+
 })
 
-describe("ambiguator or variations of formats", function() {
+describe("When using all kind of configuration in the reader", function () {
+    it("should ensure that short notation is written")
+    it("should ensure that long notation is written")
+    it("should ensure that different positions are understood")
+    it("should ensure that lazyLoad works")
+    it("should ensure that configuring manyGames works")
+    it("should ensure that pgnFile works")
+    it("should ensure that startPlay works")
+    it("should ensure that hideMovesBefore works")
+})
+
+describe("When reading various formats", function() {
     let my_pgn
     // Not a real disambiguator, because when pawns are captured, the column has to be used.
     xit ("should read and remember disambiguator", function() {
@@ -54,7 +131,7 @@ describe("ambiguator or variations of formats", function() {
 
     // chess.src does not allow to leave out the strike symbol, or I have to have more in the long notation
     // even with the long variation, the move Nf6-e4 is not accepted, even not in sloppy mode
-    xit ("should understand that Long Algebraic Notation can leave out strike symbol", function() {
+    it ("should understand that Long Algebraic Notation can leave out strike symbol", function() {
         my_pgn = new PgnReader({pgn: '4... Nf6e4', position: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 5 4'})
         should(my_pgn.sanWithNags(my_pgn.getMove(0))).equal("Nxe4")
     })
@@ -166,7 +243,7 @@ describe("When using all kind of notation", function() {
     })
 })
 
-describe("When reading PGN with headers", function() {
+describe("When reading pgn with tags", function() {
     let pgn_string = null
     let pgn_string2 = null
     let my_pgn = null
@@ -186,7 +263,7 @@ describe("When reading PGN with headers", function() {
         my_pgn2 = new PgnReader({pgn: pgn_string2.join(" ")})
     })
 
-    it("should have these headers read", function() {
+    it("should have these tags read", function() {
         should(my_pgn.getTags().size).equal(9)
         should(my_pgn.getTags().get("Site")).equal("Berlin GER")
         should(my_pgn.getTags().get("Date").value).equal("1852.12.31")
@@ -194,12 +271,12 @@ describe("When reading PGN with headers", function() {
         should(my_pgn.configuration.position).equal("start")
     })
 
-    it("should have header mapped to FEN", function() {
+    it("should have tag mapped to FEN", function() {
         should(my_pgn2.getTags().get("SetUp")).equal("1")
         should(my_pgn2.configuration.position).equal("8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57")
     })
 
-    it("should accept variations of case in header", function() {
+    it("should accept variations of case in tags", function() {
         let pgn = new PgnReader({pgn: '[Setup "1"] [fen "8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57"] *'})
         should(pgn.getTags().get("SetUp")).equal("1")
         should(pgn.configuration.position).equal("8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57")
@@ -225,48 +302,7 @@ describe("When reading PGN with headers", function() {
     })
 })
 
-describe("When reading PGN with comments", function() {
-    let my_pgn
-    it("should read all sorts of comments", function() {
-        my_pgn = new PgnReader({pgn: "{Before move} 1. e4 {After move} {[%csl Ya4, Gb4]}"})
-        let first = my_pgn.getMove(0)
-        should(my_pgn.getGameComment().comment).equal("Before move")
-        should(first.commentAfter).equal("After move")
-        should(first.commentDiag.colorFields.length).equal(2)
-    })
-    it ("should understand format of diagram circles", function() {
-        my_pgn = new PgnReader({pgn: "1. e4 {[%csl Ya4, Gb4,Rc4]}"})
-        let first = my_pgn.getMove(0)
-        should(first.commentDiag.colorFields.length).equal(3)
-        should(first.commentDiag.colorFields[0]).equal("Ya4")
-        should(first.commentDiag.colorFields[1]).equal("Gb4")
-        should(first.commentDiag.colorFields[2]).equal("Rc4")
-    })
-    it ("should understand format of diagram arrows", function() {
-        my_pgn = new PgnReader({pgn: "1. e4 {[%cal Ya4b2, Gb4h8,Rc4c8]}"})
-        let first = my_pgn.getMove(0)
-        should(first.commentDiag.colorArrows.length).equal(3)
-        should(first.commentDiag.colorArrows[0]).equal("Ya4b2")
-        should(first.commentDiag.colorArrows[1]).equal("Gb4h8")
-        should(first.commentDiag.colorArrows[2]).equal("Rc4c8")
-    })
-    it ("should understand both circles and arrows", function() {
-        my_pgn = new PgnReader({pgn: "e4 {[%csl Yf4,Gg5,Gd4,Rc4,Bb4,Ya4][%cal Gg1f3,Rf1c4,Gh2h4,Rg2g4,Bf2f4,Ye2e4]}"})
-        let first = my_pgn.getMove(0)
-        should(first.commentDiag.colorArrows.length).equal(6)
-        should(first.commentDiag.colorFields.length).equal(6)
-    })
-    it("should ignore empty comments #211", function () {
-        my_pgn = new PgnReader({pgn: "e4 { [%csl Gf6] }"})
-        let move = my_pgn.getMove(0)
-        should.exist(move)
-        should(move.commentDiag.colorFields.length).equal(1)
-        should(move.commentDiag.colorFields[0]).equal("Gf6")
-        should(move.commentAfter).undefined()
-    })
-})
-
-describe("When reading PGN with variations", function() {
+describe("When reading pgn with variations", function() {
     let my_pgn
 
     it("should understand one variation for white", function() {
@@ -335,26 +371,6 @@ describe("When reading PGN with variations", function() {
     it ("should know about variations in syntax for variants including results", function() {
         my_pgn = new PgnReader({pgn: "1. e4 e5 ( 1... d5 ) 1-0"})
         should(my_pgn.getMove(1).variations[0].notation.notation).equal("d5")
-    })
-})
-
-describe("When reading variations with comments", function() {
-    let my_pgn
-
-    it("should understand game comment and after comment in principle", function() {
-        my_pgn = new PgnReader({pgn: "{START} 1. d4 {AFTER} e5"})
-        let move = my_pgn.getMove(0)
-        should(my_pgn.getGameComment().comment).equal("START")
-        should(move.commentAfter).equal("AFTER")
-        should(move.notation.notation).equal("d4")
-    })
-
-    it("should understand comments for variation with white", function() {
-        my_pgn = new PgnReader({pgn: "1. d4 ({START} 1. e4 {AFTER} e5) 1... d5"})
-        let var_first = my_pgn.getMove(0).variations[0]
-        should(var_first.commentMove).equal("START")
-        should(var_first.commentAfter).equal("AFTER")
-        should(var_first.notation.notation).equal("e4")
     })
 })
 
@@ -524,22 +540,8 @@ describe("Default a new read algorithm for PGN", function() {
     })
 })
 
-describe("Additional notations like", function() {
-    it("should read all notation symbols in the standard notation", function() {
-        let my_pgn = new PgnReader({pgn: "1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?"})
-        let moves = my_pgn.getMoves()
-        should(moves.length).equal(6)
-        should(moves[0].nag).deepEqual(["$1"])
-        should(moves[1].nag).deepEqual(["$2"])
-        should(moves[2].nag).deepEqual(["$3"])
-        should(moves[3].nag).deepEqual(["$4"])
-        should(moves[4].nag).deepEqual(["$6"])
-        should(moves[5].nag).deepEqual(["$5"])
-    })
-})
-
-describe("Writing PGN like", function() {
-    xit("should write an empty PGN string", function() {
+describe("When writing pgn for a game", function() {
+    xit("should write an empty pgn string", function() {
         let my_pgn = new PgnReader({pgn: ""})
         let res = my_pgn.writePgn()
         should(res).equal("")
@@ -563,7 +565,7 @@ describe("Writing PGN like", function() {
         should(res).equal("{FIRST} 1. e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5")
     })
 
-    it("should write all NAGs in their known parts", function () {
+    it("should write all NAGs in the $<NUMBER> format", function () {
         let my_pgn = new PgnReader({pgn: "1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?"})
         let res = my_pgn.writePgn()
         should(res).equal("1. e4$1 e5$2 2. Nf3$3 Nc6$4 3. Bb5$6 a6$5")
@@ -624,16 +626,28 @@ describe("Writing PGN like", function() {
     })
 })
 
-describe("When reading a PGN game", function () {
-    it ("should have the fen stored with each move", function () {
-        let my_pgn = new PgnReader({pgn: "1. d4 e5"})
-        should(my_pgn.getMoves().length).equal(2)
-        should.exist(my_pgn.getMoves()[0].fen)
-        should.exist(my_pgn.getMoves()[1].fen)
-    })
+describe("When reading game with an end", function () {
+    it("should return the correct result with getEndGame")
+    it("should return null with getEndGame if there was no end game noted")
+    it("should return the correct result with getEndGame, if the game was finished by mate or stalemate")
 })
 
-describe("When making moves in PGN", function() {
+describe("When using san and sanWithNags", function () {
+    it("should get correct san independent of the source format")
+    it("should get correct san with NAGs in the right order??")
+})
+
+describe("When reading many games", function () {
+    it("should ensure switching games works")
+    it("should ensure lazyLoad and loadOne works")
+})
+
+describe("When having a game loaded", function () {
+    it("should compute possibleMoves in all positions")
+    it("should compute possibleMoves for a given position")
+})
+
+describe("When making moves in pgn", function() {
     let empty, my_pgn
     beforeEach(function () {
         my_pgn = new PgnReader({pgn: "1. d4 e5"})
@@ -854,6 +868,22 @@ describe("When upvoting lines", function () {
 
 })
 
+describe("When searching moves", function () {
+    it("should find an existing move based on san")
+    it("should find an existing move based on the index of the move")
+})
+
+describe("When having read a game with variation", function () {
+    it("should ensure that startMainLine works")
+    it("should ensure that startVariation works")
+    it("should ensure that endVariation works")
+    it("should ensure that afterMoveWithVariation works")
+})
+
+describe("!!When using setToStart", function () {
+    it("should ensure that this can be used everywhere (how about navigating, and then using setToStart??)")
+})
+
 describe("When working with NAGs", function () {
     let my_pgn
     beforeEach(function () {
@@ -889,34 +919,29 @@ describe("When working with NAGs", function () {
     })
 })
 
+describe("When having a game and wanting to add arrows and circles", function () {
+    it("should understand how to set arrows")
+    it("should understand how to set circles")
+    it("should understand how to set arrows andcircles")
+})
+
 describe("Working with games with special characters", function () {
     it("should ignore 1 space at beginning and end", function () {
-        let my_pgn = new PgnReader({pgn: " 1. d4 e5"})
+        let my_pgn = new PgnReader({pgn: " 1. d4 e5  "})
         should(my_pgn.getMoves().length).equal(2)
     })
 
     it("should ignore more spaces at beginning and end", function () {
-        let my_pgn = new PgnReader({pgn: "     1. d4 e5"})
+        let my_pgn = new PgnReader({pgn: "     1. d4 e5   "})
         should(my_pgn.getMoves().length).equal(2)
-    })
-
-    it("should understand a complex example from generated WP site", function () {
-        let my_pgn = new PgnReader({ pgn: '  1. e4 e5 2. Nf3 Nc6 3. Bb5 ', position: 'start', locale: 'en_US'})
-        should(my_pgn.getMoves().length).equal(5)
     })
 })
 
-describe("should handle errors in PGN by throwing errors", function () {
+describe("When pgn notation has errors", function () {
     it("should read wrong chess moves in PGN by matching", function () {
-        // try {
-        //     new PgnReader({pgn: 'd5'}).load_pgn()
-        // } catch (err) {
-        //     should.exist(err)
-        // }
         (function () { new PgnReader({pgn: 'd5'}).loadPgn() } ).should.throw('No legal move: d5')
     })
     it("should read syntactically wrong PGN by throwing SyntaxError", function () {
-
         (function() {new PgnReader({pgn: 'ddd3'}).loadPgn()}).should.throw('Expected [1-8] but "d" found.')
     })
 })
