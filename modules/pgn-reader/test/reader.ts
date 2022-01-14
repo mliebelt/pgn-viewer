@@ -1,21 +1,47 @@
 import * as should from "should"
 import {PgnReader} from "../lib"
-import {describe} from "mocha";
+import {describe} from "mocha"
+import * as path from "path"
 
 /**
  * Checks all functionality for reading and interpreting a configuration for the reader.
  */
 
+
 describe("Base functionality of the reader without any configuration", function () {
     let reader
     it("should be able to read a main line", function () {
-
+        reader = new PgnReader({ pgn: 'e4 e5 Nf3 Nc6'})
+        should(reader.getMoves().length).equal(4)
+        should(reader.writePgn()).equal("1. e4 e5 2. Nf3 Nc6")
     })
     it("should be able to read a main line with one variant", function (){
-
+        reader = new PgnReader({ pgn: 'e4 e5 Nf3 Nc6 (Nf6 d4 exd4)'})
+        should(reader.getMoves().length).equal(7)
+        should(reader.writePgn()).equal("1. e4 e5 2. Nf3 Nc6 ( 2... Nf6 3. d4 exd4 )")
+        let move = reader.findMove("Nf6")
+        should.exist(move)
+        should(move.moveNumber).equal(2)
+        should(move.turn).equal('b')
+        should(move.notation.notation).equal("Nf6")
+        should(move.variationLevel).equal(1)
+        let prev = reader.getMove(move.prev)
+        should(prev.moveNumber).equal(2)
+        should(reader.san(prev)).equal("Nf3")
+        should(prev.turn).equal('w')
     })
     it("should be able to read a main line with many variants on different levels", function () {
-
+        reader = new PgnReader({pgn: 'e4 (d4 d5)(c4) e5 Nf3 (f4 d5 (Nc6))'})
+        should(reader.getMoves().length).equal(9)
+        should(reader.getMove(0).variations.length).equal(2)
+        let m3 = reader.getMove(3)
+        should(m3.variations.length).equal(0)
+        should(reader.startVariation(m3))
+        should(reader.endVariation(m3))
+        let m8 = reader.getMove(8)
+        should(m8.variationLevel).equal(2)
+        let prev8 = reader.getMove(m8.prev)
+        should(prev8.variationLevel).equal(1)
     })
     it("should understand game comment and after comment in principle", function() {
         reader = new PgnReader({pgn: "{START} 1. d4 {AFTER} e5"})
@@ -72,6 +98,11 @@ describe("Base functionality of the reader without any configuration", function 
     })
 
     it ("should be able to read additional tags and keep them", function () {
+        reader = new PgnReader({ pgn: '[White "Me"] [Black "Magnus"] e4 e5'})
+        should(reader.getMoves().length).equal(2)
+        let tags = reader.getTags()
+        should(tags.get('White')).equal("Me")
+        should(tags.get('Black')).equal("Magnus")
 
     })
     it ("should read 3 games and hold them", function () {
@@ -97,148 +128,196 @@ describe("Base functionality of the reader without any configuration", function 
         should.exist(reader.getMoves()[0].fen)
         should.exist(reader.getMoves()[1].fen)
     })
-
 })
 
 describe("When using all kind of configuration in the reader", function () {
-    it("should ensure that short notation is written")
-    it("should ensure that long notation is written")
-    it("should ensure that different positions are understood")
-    it("should ensure that lazyLoad works")
-    it("should ensure that configuring manyGames works")
-    it("should ensure that pgnFile works")
-    it("should ensure that startPlay works")
-    it("should ensure that hideMovesBefore works")
+    it("should ensure that short notation is written", function () {
+        let reader = new PgnReader({ pgn: 'e4 e5 Nf3 Nc6', notation: 'short'})
+        should(reader.getMoves().length).equal(4)
+        should(reader.writePgn()).equal('1. e4 e5 2. Nf3 Nc6')
+    })
+    it("should ensure that long notation is written", function (){
+        let reader = new PgnReader({ pgn: 'e4 e5 Nf3 Nc6', notation: 'long'})
+        should(reader.getMoves().length).equal(4)
+        should(reader.writePgn()).equal('1. e2-e4 e7-e5 2. Ng1-f3 Nb8-c6')
+    })
+    it("should ensure that different positions are understood", function () {
+        let reader = new PgnReader({pgn: 'e4', position: 'start'})
+        should.exist(reader)
+        should(reader.getMoves().length).equal(1)
+        should(reader.getPosition(null)).startWith('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')
+        reader = new PgnReader({ pgn: 'e5', position: 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1'})
+        should(reader.getMoves().length).equal(1)
+        should(reader.getPosition(0)).startWith('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR')
+
+    })
+    it("should ensure that configuring manyGames works", function () {
+        let reader = new PgnReader({manyGames: true, pgn: "e4 e5 *\n\nd4 d5 *"})
+        should.exist(reader)
+        should(reader.getMoves().length).equal(2)
+        should(reader.getGames().length).equal(2)
+    })
+    it("should emmit an error when reading many games with `manyGames == true`", function () {
+        (function() {new PgnReader({pgn: 'e4 e5 *\n\nd4 d5 *'})}).should.throw('Expected end of input or whitespace but "d" found.')
+    })
+    it("should ensure that lazyLoad works", function () {
+        let reader = new PgnReader({lazyLoad: true, manyGames: true, pgn: "e4 e5 *\n\nd4 d5 *"})
+        should.exist(reader)
+        should(reader.getMoves()).is.empty()
+        should(reader.getGames()).is.undefined()
+        reader.loadPgn()
+        should(reader.getGames().length).equal(2)
+        should(reader.getMoves().length).equal(2)
+        should(reader.getMove(0).notation.notation).equal('e4')
+    })
+    it("should ensure that pgnFile works", function () {
+        let reader = new PgnReader({pgnFile: 'file://' + path.resolve(__dirname, './2games.pgn'), manyGames: true})
+        should(reader.getGames().length).equal(2)
+    })
+    it("should ensure that error is thrown if file is not found / could not be read", function () {
+        (function () { new PgnReader({pgnFile: '2games-missing.pgn', manyGames: true}) } ).should.throw('File not found or could not read: 2games-missing.pgn')
+    })
+    it("should ensure that startPlay works", function () {
+        let reader = new PgnReader({pgn: 'e4 e5 Nf3 Nc6', startPlay: 3, hideMovesBefore: false})
+        should(reader.getMoves().length).equal(4)
+        should(reader.getMove(0).notation.notation).equal('e4')
+    })
+    it("should ensure that hideMovesBefore works", function () {
+        let reader = new PgnReader({pgn: 'e4 e5 Nf3 Nc6', startPlay: 3, hideMovesBefore: true})
+        should(reader.getMoves().length).equal(2)
+        should(reader.san(reader.getMove(0))).equal('Nf3')
+    })
 })
 
 describe("When reading various formats", function() {
-    let my_pgn
+    let reader
     // Not a real disambiguator, because when pawns are captured, the column has to be used.
     xit ("should read and remember disambiguator", function() {
-        my_pgn = new PgnReader({pgn: "4. dxe5", position: "rnbqkbnr/ppp3pp/8/3ppp2/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 0 4"})
-        should(my_pgn.getMoves()[0].notation.disc).equal('d')
+        reader = new PgnReader({pgn: "4. dxe5", position: "rnbqkbnr/ppp3pp/8/3ppp2/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 0 4"})
+        should(reader.getMoves()[0].notation.disc).equal('d')
     })
 
     it("should use disambiguator on output", function() {
-        my_pgn = new PgnReader({pgn: "4. dxe5", position: "rnbqkbnr/ppp3pp/8/3ppp2/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 0 4"})
-        should(my_pgn.sanWithNags(my_pgn.getMove(0))).equal('dxe5')
+        reader = new PgnReader({pgn: "4. dxe5", position: "rnbqkbnr/ppp3pp/8/3ppp2/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 0 4"})
+        should(reader.sanWithNags(reader.getMove(0))).equal('dxe5')
     })
 
     it ("should understand that Long Algebraic Notation can be used when strike", function() {
-        my_pgn = new PgnReader({pgn: '4... Nf6xe4', position: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 5 4'})
-        should(my_pgn.sanWithNags(my_pgn.getMove(0))).equal("Nxe4")
+        reader = new PgnReader({pgn: '4... Nf6xe4', position: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 5 4'})
+        should(reader.sanWithNags(reader.getMove(0))).equal("Nxe4")
     })
 
     // chess.src does not allow to leave out the strike symbol, or I have to have more in the long notation
     // even with the long variation, the move Nf6-e4 is not accepted, even not in sloppy mode
     it ("should understand that Long Algebraic Notation can leave out strike symbol", function() {
-        my_pgn = new PgnReader({pgn: '4... Nf6e4', position: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 5 4'})
-        should(my_pgn.sanWithNags(my_pgn.getMove(0))).equal("Nxe4")
+        reader = new PgnReader({pgn: '4... Nf6e4', position: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 b kq - 5 4'})
+        should(reader.sanWithNags(reader.getMove(0))).equal("Nxe4")
     })
 
     it ("should understand that Long Algebraic Notation can be used", function() {
-        my_pgn = new PgnReader({pgn: '1. e2-e4 e7-e5'})
-        should(my_pgn.sanWithNags(my_pgn.getMove(0))).equal("e4")
-        should(my_pgn.sanWithNags(my_pgn.getMove(1))).equal("e5")
+        reader = new PgnReader({pgn: '1. e2-e4 e7-e5'})
+        should(reader.sanWithNags(reader.getMove(0))).equal("e4")
+        should(reader.sanWithNags(reader.getMove(1))).equal("e5")
     })
 
     it ("should understand that disambiguator is needed here", function() {
-        my_pgn = new PgnReader({pgn: 'fxe5', position: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 1 4'})
-        should(my_pgn.sanWithNags(my_pgn.getMove(0))).equal("fxe5")
+        reader = new PgnReader({pgn: 'fxe5', position: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 1 4'})
+        should(reader.sanWithNags(reader.getMove(0))).equal("fxe5")
     })
     
     xit ("should understand optional pawn symbols", function () {
-        my_pgn = new PgnReader({pgn: '1. Pe4 Pe5 2. Pd4 Pexd4'})
-        should(my_pgn.getMoves().length).equal(4)
-        should(my_pgn.sanWithNags(my_pgn.getMove(0))).equal("e4")
-        should(my_pgn.sanWithNags(my_pgn.getMove(1))).equal("e5")
-        should(my_pgn.sanWithNags(my_pgn.getMove(2))).equal("d4")
-        should(my_pgn.sanWithNags(my_pgn.getMove(3))).equal("exd4")
+        reader = new PgnReader({pgn: '1. Pe4 Pe5 2. Pd4 Pexd4'})
+        should(reader.getMoves().length).equal(4)
+        should(reader.sanWithNags(reader.getMove(0))).equal("e4")
+        should(reader.sanWithNags(reader.getMove(1))).equal("e5")
+        should(reader.sanWithNags(reader.getMove(2))).equal("d4")
+        should(reader.sanWithNags(reader.getMove(3))).equal("exd4")
     })
 })
 
 describe("When working with different PGN beginnings and endings", function() {
-    let my_pgn
+    let reader
 
     it("should work with no moves at all", function() {
-        my_pgn = new PgnReader({pgn: ""})
-        should(my_pgn.getMoves().length).equal(0)
+        reader = new PgnReader({pgn: ""})
+        should(reader.getMoves().length).equal(0)
+        should(reader.getGames().length).equal(1)
     })
 
-    it("should work with white's first   move only", function() {
-        my_pgn = new PgnReader({pgn: "1. e4"})
-        should(my_pgn.getMoves().length).equal(1)
-        should(my_pgn.getMoves()[0].notation.notation).equal("e4")
-        should(my_pgn.getMoves()[0].moveNumber).equal(1)
+    it("should work with white's first move only", function() {
+        reader = new PgnReader({pgn: "1. e4"})
+        should(reader.getMoves().length).equal(1)
+        should(reader.getMoves()[0].notation.notation).equal("e4")
+        should(reader.getMoves()[0].moveNumber).equal(1)
     })
 
     it ("should work with black's first move only", function() {
-        my_pgn = new PgnReader({pgn: "1... e5", position: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"})
-        should(my_pgn.getMoves().length).equal(1)
-        should(my_pgn.getMoves()[0].notation.notation).equal("e5")
-        should(my_pgn.getMoves()[0].turn).equal("b")
-        should(my_pgn.getMoves()[0].moveNumber).equal(1)
+        reader = new PgnReader({pgn: "1... e5", position: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"})
+        should(reader.getMoves().length).equal(1)
+        should(reader.getMoves()[0].notation.notation).equal("e5")
+        should(reader.getMoves()[0].turn).equal("b")
+        should(reader.getMoves()[0].moveNumber).equal(1)
     })
 
     it ("should work with white beginning and black ending", function() {
-        my_pgn = new PgnReader({pgn: "1. e4 e5 2. d4 exd4"})
-        should(my_pgn.getMoves().length).equal(4)
-        should(my_pgn.getMoves()[0].notation.notation).equal("e4")
-        should(my_pgn.getMoves()[0].turn).equal("w")
-        should(my_pgn.getMoves()[0].moveNumber).equal(1)
-        should(my_pgn.getMoves()[3].notation.notation).equal("exd4")
-        should(my_pgn.getMoves()[3].turn).equal("b")
-        //should(my_pgn.getMoves()[3].moveNumber).toBeUndefined()
+        reader = new PgnReader({pgn: "1. e4 e5 2. d4 exd4"})
+        should(reader.getMoves().length).equal(4)
+        should(reader.getMoves()[0].notation.notation).equal("e4")
+        should(reader.getMoves()[0].turn).equal("w")
+        should(reader.getMoves()[0].moveNumber).equal(1)
+        should(reader.getMoves()[3].notation.notation).equal("exd4")
+        should(reader.getMoves()[3].turn).equal("b")
+        //should(reader.getMoves()[3].moveNumber).toBeUndefined()
     })
 
     it ("should work with black beginning and white ending", function() {
-        my_pgn = new PgnReader({pgn: "1... e5 2. d4 exd4 3. c3", position: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"})
-        should(my_pgn.getMoves().length).equal(4)
-        should(my_pgn.getMoves()[0].notation.notation).equal("e5")
-        should(my_pgn.getMoves()[0].turn).equal("b")
-        should(my_pgn.getMoves()[0].moveNumber).equal(1)
-        should(my_pgn.getMoves()[1].notation.notation).equal("d4")
-        should(my_pgn.getMoves()[1].turn).equal("w")
-        should(my_pgn.getMoves()[1].moveNumber).equal(2)
-        should(my_pgn.getMoves()[2].notation.notation).equal("exd4")
-        should(my_pgn.getMoves()[2].turn).equal("b")
-        //should(my_pgn.getMoves()[2].moveNumber).toBeUndefined()
+        reader = new PgnReader({pgn: "1... e5 2. d4 exd4 3. c3", position: "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"})
+        should(reader.getMoves().length).equal(4)
+        should(reader.getMoves()[0].notation.notation).equal("e5")
+        should(reader.getMoves()[0].turn).equal("b")
+        should(reader.getMoves()[0].moveNumber).equal(1)
+        should(reader.getMoves()[1].notation.notation).equal("d4")
+        should(reader.getMoves()[1].turn).equal("w")
+        should(reader.getMoves()[1].moveNumber).equal(2)
+        should(reader.getMoves()[2].notation.notation).equal("exd4")
+        should(reader.getMoves()[2].turn).equal("b")
+        //should(reader.getMoves()[2].moveNumber).toBeUndefined()
     })
 })
 
 describe("When using all kind of notation", function() {
-    let my_pgn
+    let reader
     it ("should know how to move all kind of figures", function() {
-        my_pgn = new PgnReader({pgn: "1. e4 Nf6 2. Bb5 c6 3. Ba4 Qa5 4. Nf3 d5 5. O-O e6 6. Re1 "})
-        should(my_pgn.getMoves().length).equal(11)
+        reader = new PgnReader({pgn: "1. e4 Nf6 2. Bb5 c6 3. Ba4 Qa5 4. Nf3 d5 5. O-O e6 6. Re1 "})
+        should(reader.getMoves().length).equal(11)
     })
 
     it ("should know different variants of strikes", function() {
-        my_pgn = new PgnReader({pgn: "1. e4 d5 2. exd5 Nc6 3. dxc6 bxc6"})
-        should(my_pgn.getMoves().length).equal(6)
-        should(my_pgn.getMoves()[2].notation.notation).equal("exd5")
+        reader = new PgnReader({pgn: "1. e4 d5 2. exd5 Nc6 3. dxc6 bxc6"})
+        should(reader.getMoves().length).equal(6)
+        should(reader.getMoves()[2].notation.notation).equal("exd5")
     })
 
     it ("should know all special symbols normally needed (promotion, check, mate)", function() {
-        my_pgn = new PgnReader({pgn: "1. f3 e5 2. g4 Qh4#"})
-        should(my_pgn.getMoves().length).equal(4)
-        my_pgn = new PgnReader({pgn: "1. e7 d2 2. e8=Q d1=R+", position: "5rk1/8/4P3/8/8/3p4/5R2/6K1 w - - 0 1"})
+        reader = new PgnReader({pgn: "1. f3 e5 2. g4 Qh4#"})
+        should(reader.getMoves().length).equal(4)
+        reader = new PgnReader({pgn: "1. e7 d2 2. e8=Q d1=R+", position: "5rk1/8/4P3/8/8/3p4/5R2/6K1 w - - 0 1"})
     })
 
     it ("should be robust with missing symbols (check)", function () {
-        my_pgn = new PgnReader({pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5#"})
-        should(my_pgn.getMoves().length).equal(13)
-        //should(my_pgn.getMoves()[10].notation.notation).equal("Bxf7+")
-        should(my_pgn.getMoves()[10].notation.check).equal('+')
-        let res = my_pgn.writePgn()
+        reader = new PgnReader({pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7 Ke7 7. Nd5#"})
+        should(reader.getMoves().length).equal(13)
+        //should(reader.getMoves()[10].notation.notation).equal("Bxf7+")
+        should(reader.getMoves()[10].notation.check).equal('+')
+        let res = reader.writePgn()
         should(res).equal("1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7+ Ke7 7. Nd5#")
     })
 
     it ("should be robust with missing symbols (mate)", function () {
-        my_pgn = new PgnReader({pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7+ Ke7 7. Nd5"})
-        should(my_pgn.getMoves().length).equal(13)
-        should(my_pgn.getMoves()[12].notation.check).equal('#')
-        let res = my_pgn.writePgn()
+        reader = new PgnReader({pgn: "1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7+ Ke7 7. Nd5"})
+        should(reader.getMoves().length).equal(13)
+        should(reader.getMoves()[12].notation.check).equal('#')
+        let res = reader.writePgn()
         should(res).equal("1. e4 e5 2. Nf3 d6 3. Bc4 Bg4 4. Nc3 h6 5. Nxe5 Bxd1 6. Bxf7+ Ke7 7. Nd5#")
     })
 })
@@ -246,8 +325,8 @@ describe("When using all kind of notation", function() {
 describe("When reading pgn with tags", function() {
     let pgn_string = null
     let pgn_string2 = null
-    let my_pgn = null
-    let my_pgn2 = null
+    let reader = null
+    let reader2 = null
     beforeEach(function() {
         pgn_string = ['[Event "Casual Game"]',
             '[Site "Berlin GER"]',
@@ -259,21 +338,21 @@ describe("When reading pgn with tags", function() {
             '[SetUp "0"]',
             '1. e4 e5 2. Nf3 Nc6']
         pgn_string2 = ['[SetUp "1"]', '[FEN "8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57"]', '*']
-        my_pgn = new PgnReader({pgn: pgn_string.join(" ")})
-        my_pgn2 = new PgnReader({pgn: pgn_string2.join(" ")})
+        reader = new PgnReader({pgn: pgn_string.join(" ")})
+        reader2 = new PgnReader({pgn: pgn_string2.join(" ")})
     })
 
     it("should have these tags read", function() {
-        should(my_pgn.getTags().size).equal(9)
-        should(my_pgn.getTags().get("Site")).equal("Berlin GER")
-        should(my_pgn.getTags().get("Date").value).equal("1852.12.31")
-        should(my_pgn.getTags().get("SetUp")).equal("0")
-        should(my_pgn.configuration.position).equal("start")
+        should(reader.getTags().size).equal(9)
+        should(reader.getTags().get("Site")).equal("Berlin GER")
+        should(reader.getTags().get("Date").value).equal("1852.12.31")
+        should(reader.getTags().get("SetUp")).equal("0")
+        should(reader.configuration.position).equal("start")
     })
 
     it("should have tag mapped to FEN", function() {
-        should(my_pgn2.getTags().get("SetUp")).equal("1")
-        should(my_pgn2.configuration.position).equal("8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57")
+        should(reader2.getTags().get("SetUp")).equal("1")
+        should(reader2.configuration.position).equal("8/p6p/P5p1/8/4p1K1/6q1/5k2/8 w - - 12 57")
     })
 
     it("should accept variations of case in tags", function() {
@@ -303,74 +382,74 @@ describe("When reading pgn with tags", function() {
 })
 
 describe("When reading pgn with variations", function() {
-    let my_pgn
+    let reader
 
     it("should understand one variation for white", function() {
-        my_pgn = new PgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6) exf4"})
-        should(my_pgn.getMove(0).variations.length).equal(0)
-        should(my_pgn.getMove(1).variations.length).equal(0)
-        should(my_pgn.getMove(2).variations.length).equal(1)
-        should(my_pgn.getMove(3).variations.length).equal(0)
-        should(my_pgn.getMove(2).variations[0].notation.notation).equal("Nf3")
-        should(my_pgn.getMove(my_pgn.getMove(2).variations[0].next).notation.notation).equal("Nc6")
-        should(my_pgn.getMove(3).prev).equal(1)
-        should(my_pgn.getMove(1).next).equal(2)
-        should(my_pgn.getMove(3).next).equal(4)
-        should(my_pgn.getMove(4).prev).equal(3)
-        should(my_pgn.getMove(5).prev).equal(2)
+        reader = new PgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6) exf4"})
+        should(reader.getMove(0).variations.length).equal(0)
+        should(reader.getMove(1).variations.length).equal(0)
+        should(reader.getMove(2).variations.length).equal(1)
+        should(reader.getMove(3).variations.length).equal(0)
+        should(reader.getMove(2).variations[0].notation.notation).equal("Nf3")
+        should(reader.getMove(reader.getMove(2).variations[0].next).notation.notation).equal("Nc6")
+        should(reader.getMove(3).prev).equal(1)
+        should(reader.getMove(1).next).equal(2)
+        should(reader.getMove(3).next).equal(4)
+        should(reader.getMove(4).prev).equal(3)
+        should(reader.getMove(5).prev).equal(2)
     })
 
     it("should understand one variation for black with move number", function () {
-        my_pgn = new PgnReader({pgn: "1. e4 e5 (1... d5 2. exd5 Qxd5)"})
-        should(my_pgn.getMove(1).variations.length).equal(1)
-        should(my_pgn.getMove(0).variations.length).equal(0)
-        should(my_pgn.getMove(1).variations[0].notation.notation).equal("d5")
-        should(my_pgn.getMove(2).prev).equal(0)
-        should(my_pgn.getMove(3).prev).equal(2)
+        reader = new PgnReader({pgn: "1. e4 e5 (1... d5 2. exd5 Qxd5)"})
+        should(reader.getMove(1).variations.length).equal(1)
+        should(reader.getMove(0).variations.length).equal(0)
+        should(reader.getMove(1).variations[0].notation.notation).equal("d5")
+        should(reader.getMove(2).prev).equal(0)
+        should(reader.getMove(3).prev).equal(2)
     })
 
     it("should understand all variations for black and white with different move number formats", function () {
-        my_pgn = new PgnReader({pgn: "1. e4 (1... c4?) e5 (1... d5 2 exd5 2... Qxd5)"})
-        should(my_pgn.getMove(0).variations.length).equal(1)
-        should(my_pgn.getMove(1).variations.length).equal(0)
-        should(my_pgn.getMove(2).variations[0].notation.notation).equal("d5")
-        should(my_pgn.getMove(3).prev).equal(0)
-        should(my_pgn.getMove(4).prev).equal(3)
+        reader = new PgnReader({pgn: "1. e4 (1... c4?) e5 (1... d5 2 exd5 2... Qxd5)"})
+        should(reader.getMove(0).variations.length).equal(1)
+        should(reader.getMove(1).variations.length).equal(0)
+        should(reader.getMove(2).variations[0].notation.notation).equal("d5")
+        should(reader.getMove(3).prev).equal(0)
+        should(reader.getMove(4).prev).equal(3)
     })
 
     it("should understand one variation for black without move number", function () {
-        my_pgn = new PgnReader({pgn: "1. e4 e5 (d5 2. exd5 Qxd5)"})
-        should(my_pgn.getMove(1).variations.length).equal(1)
-        should(my_pgn.getMove(0).variations.length).equal(0)
-        should(my_pgn.getMove(1).variations[0].notation.notation).equal("d5")
-        should(my_pgn.getMove(2).prev).equal(0)
-        should(my_pgn.getMove(3).prev).equal(2)
+        reader = new PgnReader({pgn: "1. e4 e5 (d5 2. exd5 Qxd5)"})
+        should(reader.getMove(1).variations.length).equal(1)
+        should(reader.getMove(0).variations.length).equal(0)
+        should(reader.getMove(1).variations[0].notation.notation).equal("d5")
+        should(reader.getMove(2).prev).equal(0)
+        should(reader.getMove(3).prev).equal(2)
     })
 
     it("should understand nested variations", function() {
-        my_pgn = new PgnReader({pgn: "1. e4 e5 (d5 2. exd5 Qxd5 (2... Nf6))"})
-        should(my_pgn.getMove(1).variations[0].notation.notation).equal("d5")
-        should(my_pgn.getMove(4).variations.length).equal(1)
-        should(my_pgn.getMove(4).variations[0].notation.notation).equal("Nf6")
-        should(my_pgn.getMove(2).prev).equal(0)
-        should(my_pgn.getMove(5).prev).equal(3)
+        reader = new PgnReader({pgn: "1. e4 e5 (d5 2. exd5 Qxd5 (2... Nf6))"})
+        should(reader.getMove(1).variations[0].notation.notation).equal("d5")
+        should(reader.getMove(4).variations.length).equal(1)
+        should(reader.getMove(4).variations[0].notation.notation).equal("Nf6")
+        should(reader.getMove(2).prev).equal(0)
+        should(reader.getMove(5).prev).equal(3)
     })
 
     it ("should know how to handle variation of the first move", function () {
-        my_pgn = new PgnReader({pgn: "1. e4 ( 1. d4 d5 ) e5"})
-        should(my_pgn.getMove(1).prev).equal(undefined)
-        should(my_pgn.getMove(my_pgn.getMove(0).next).notation.notation).equal("e5")
-        should(my_pgn.getMove(my_pgn.getMove(1).next).notation.notation).equal("d5")
+        reader = new PgnReader({pgn: "1. e4 ( 1. d4 d5 ) e5"})
+        should(reader.getMove(1).prev).equal(undefined)
+        should(reader.getMove(reader.getMove(0).next).notation.notation).equal("e5")
+        should(reader.getMove(reader.getMove(1).next).notation.notation).equal("d5")
     })
 
     it ("should know about variations in syntax for variants", function() {
-        my_pgn = new PgnReader({pgn: "1. e4 e5 ( 1... d5 )"})
-        should(my_pgn.getMove(1).variations[0].notation.notation).equal("d5")
+        reader = new PgnReader({pgn: "1. e4 e5 ( 1... d5 )"})
+        should(reader.getMove(1).variations[0].notation.notation).equal("d5")
     })
 
     it ("should know about variations in syntax for variants including results", function() {
-        my_pgn = new PgnReader({pgn: "1. e4 e5 ( 1... d5 ) 1-0"})
-        should(my_pgn.getMove(1).variations[0].notation.notation).equal("d5")
+        reader = new PgnReader({pgn: "1. e4 e5 ( 1... d5 ) 1-0"})
+        should(reader.getMove(1).variations[0].notation.notation).equal("d5")
     })
 })
 
@@ -380,8 +459,8 @@ describe("When iterating over moves", function() {
         moves = []
     })
     let flatMoves = function (pgn) {
-        let my_pgn = new PgnReader({pgn: pgn})
-        moves = my_pgn.getMoves()
+        let reader = new PgnReader({pgn: pgn})
+        moves = reader.getMoves()
     }
     it("should find the main line", function () {
         flatMoves("1. e4 e5")
@@ -475,10 +554,10 @@ describe("When iterating over moves", function() {
 })
 
 describe("Default a new read algorithm for PGN", function() {
-    let my_pgn
+    let reader
     it ("should read the main line", function() {
-        my_pgn = new PgnReader({pgn: "1. e4 e5 2. Nf3"})
-        let moves = my_pgn.getMoves()
+        reader = new PgnReader({pgn: "1. e4 e5 2. Nf3"})
+        let moves = reader.getMoves()
         should(moves.length).equal(3)
         should.not.exist(moves[0].prev)
         should(moves[0].next).equal(1)
@@ -489,8 +568,8 @@ describe("Default a new read algorithm for PGN", function() {
     })
 
     it ("should read one variation for black", function() {
-        my_pgn = new PgnReader({pgn: "1. e4 e5 (1... d5 2. Nf3)"})
-        let moves = my_pgn.getMoves()
+        reader = new PgnReader({pgn: "1. e4 e5 (1... d5 2. Nf3)"})
+        let moves = reader.getMoves()
         should(moves.length).equal(4)
         should.not.exist(moves[0].prev)
         should(moves[0].next).equal(1)
@@ -503,8 +582,8 @@ describe("Default a new read algorithm for PGN", function() {
     })
 
     it ("should read one variation for white", function() {
-        my_pgn = new PgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6)"})
-        let moves = my_pgn.getMoves()
+        reader = new PgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6)"})
+        let moves = reader.getMoves()
         should(moves.length).equal(5)
         should.not.exist(moves[0].prev)
         should(moves[0].next).equal(1)
@@ -519,9 +598,9 @@ describe("Default a new read algorithm for PGN", function() {
     })
 
     it ("should read one variation for white with move after", function() {
-        my_pgn = new PgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6) 2... exf4 3. Nf3"})
+        reader = new PgnReader({pgn: "1. e4 e5 2. f4 (2. Nf3 Nc6) 2... exf4 3. Nf3"})
         
-        let moves = my_pgn.getMoves()
+        let moves = reader.getMoves()
         should(moves.length).equal(7)
         should.not.exist(moves[0].prev)
         should(moves[0].next).equal(1)
@@ -542,87 +621,87 @@ describe("Default a new read algorithm for PGN", function() {
 
 describe("When writing pgn for a game", function() {
     xit("should write an empty pgn string", function() {
-        let my_pgn = new PgnReader({pgn: ""})
-        let res = my_pgn.writePgn()
+        let reader = new PgnReader({pgn: ""})
+        let res = reader.writePgn()
         should(res).equal("")
     })
 
     it("should write the normalized notation of the main line with only one move", function() {
-        let my_pgn = new PgnReader({pgn: "1. e4"})
-        let res = my_pgn.writePgn()
+        let reader = new PgnReader({pgn: "1. e4"})
+        let res = reader.writePgn()
         should(res).equal("1. e4")
     })
 
     it("should write the normalized notation of the main line", function() {
-        let my_pgn = new PgnReader({pgn: "1. e4 e5 2. Nf3 Nc6 3. Bb5"})
-        let res = my_pgn.writePgn()
+        let reader = new PgnReader({pgn: "1. e4 e5 2. Nf3 Nc6 3. Bb5"})
+        let res = reader.writePgn()
         should(res).equal("1. e4 e5 2. Nf3 Nc6 3. Bb5")
     })
 
     it("should write the notation for a main line including comments", function () {
-        let my_pgn = new PgnReader({pgn: "{FIRST} 1. e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5"})
-        let res = my_pgn.writePgn()
+        let reader = new PgnReader({pgn: "{FIRST} 1. e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5"})
+        let res = reader.writePgn()
         should(res).equal("{FIRST} 1. e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5")
     })
 
     it("should write all NAGs in the $<NUMBER> format", function () {
-        let my_pgn = new PgnReader({pgn: "1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?"})
-        let res = my_pgn.writePgn()
+        let reader = new PgnReader({pgn: "1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?"})
+        let res = reader.writePgn()
         should(res).equal("1. e4$1 e5$2 2. Nf3$3 Nc6$4 3. Bb5$6 a6$5")
     })
 
     it("should write the notation for a main line with one variation", function () {
-        let my_pgn = new PgnReader({pgn: "1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) 2. Nf3"})
-        let res = my_pgn.writePgn()
+        let reader = new PgnReader({pgn: "1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) 2. Nf3"})
+        let res = reader.writePgn()
         should(res).equal("1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) 2. Nf3")
     })
 
     it("should write the notation for a main line with several variations", function () {
-        let my_pgn = new PgnReader({pgn: "1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) ( 1... c5 2. Nf3 d6 ) 2. Nf3"})
-        let res = my_pgn.writePgn()
+        let reader = new PgnReader({pgn: "1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) ( 1... c5 2. Nf3 d6 ) 2. Nf3"})
+        let res = reader.writePgn()
         should(res).equal("1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) ( 1... c5 2. Nf3 d6 ) 2. Nf3")
     })
 
     it("should write the notation for a main line with stacked variations", function () {
-        let my_pgn = new PgnReader({pgn: "1. e4 e5 ( 1... c5 2. Nf3 d6 ( 2... Nc6 3. d4) 3. d4 ) 2. Nf3"})
-        let res = my_pgn.writePgn()
+        let reader = new PgnReader({pgn: "1. e4 e5 ( 1... c5 2. Nf3 d6 ( 2... Nc6 3. d4) 3. d4 ) 2. Nf3"})
+        let res = reader.writePgn()
         should(res).equal("1. e4 e5 ( 1... c5 2. Nf3 d6 ( 2... Nc6 3. d4 ) 3. d4 ) 2. Nf3")
     })
     it("should write the end of the game", function () {
-        let my_pgn = new PgnReader({pgn: "1. e4 e5 0-1"})
-        should(my_pgn.writePgn()).equal("1. e4 e5 0-1")
+        let reader = new PgnReader({pgn: "1. e4 e5 0-1"})
+        should(reader.writePgn()).equal("1. e4 e5 0-1")
     })
     it("should write the end of the game, understand all results: 1-0", function () {
-        let my_pgn = new PgnReader({pgn: "1. e4 e5 1-0"})
-        should(my_pgn.writePgn()).equal("1. e4 e5 1-0")
+        let reader = new PgnReader({pgn: "1. e4 e5 1-0"})
+        should(reader.writePgn()).equal("1. e4 e5 1-0")
     })
     it("should write the end of the game, understand all results: *", function () {
-        let my_pgn = new PgnReader({pgn: "1. e4 e5 *"})
-        should(my_pgn.writePgn()).equal("1. e4 e5 *")
+        let reader = new PgnReader({pgn: "1. e4 e5 *"})
+        should(reader.writePgn()).equal("1. e4 e5 *")
     })
     it("should write the end of the game, understand all results: 1/2-1/2", function () {
-        let my_pgn = new PgnReader({pgn: "1. e4 e5 1/2-1/2"})
-        should(my_pgn.writePgn()).equal("1. e4 e5 1/2-1/2")
+        let reader = new PgnReader({pgn: "1. e4 e5 1/2-1/2"})
+        should(reader.writePgn()).equal("1. e4 e5 1/2-1/2")
     })
     it("should write the end of the game as part of tags", function () {
-        let my_pgn = new PgnReader({pgn: '[Result "0-1"] 1. e4 e5'})
-        should(my_pgn.writePgn()).equal("1. e4 e5 0-1")
+        let reader = new PgnReader({pgn: '[Result "0-1"] 1. e4 e5'})
+        should(reader.writePgn()).equal("1. e4 e5 0-1")
     })
     it("should write the end of the game as part of tags, understand all results: *", function () {
-        let my_pgn = new PgnReader({pgn: '[Result "*"] 1. e4 e5'})
-        should(my_pgn.writePgn()).equal("1. e4 e5 *")
+        let reader = new PgnReader({pgn: '[Result "*"] 1. e4 e5'})
+        should(reader.writePgn()).equal("1. e4 e5 *")
     })
     it("should write the end of the game as part of tags, understand all results: 1/2-1/2", function () {
-        let my_pgn = new PgnReader({pgn: '[Result "1/2-1/2"] 1. e4 e5'})
-        should(my_pgn.writePgn()).equal("1. e4 e5 1/2-1/2")
+        let reader = new PgnReader({pgn: '[Result "1/2-1/2"] 1. e4 e5'})
+        should(reader.writePgn()).equal("1. e4 e5 1/2-1/2")
     })
     it("should write the end of the game as part of tags, understand all results: 1-0", function () {
-        let my_pgn = new PgnReader({pgn: '[Result "1-0"] 1. e4 e5'})
-        should(my_pgn.writePgn()).equal("1. e4 e5 1-0")
+        let reader = new PgnReader({pgn: '[Result "1-0"] 1. e4 e5'})
+        should(reader.writePgn()).equal("1. e4 e5 1-0")
     })
     it("should write promotion correct", function () {
-        let my_pgn = new PgnReader({position: '8/6P1/8/2k5/8/8/8/7K w - - 0 1', pgn: '1. g8=R'})
-        should(my_pgn.writePgn()).equal("1. g8=R")
+        let reader = new PgnReader({position: '8/6P1/8/2k5/8/8/8/7K w - - 0 1', pgn: '1. g8=R'})
+        should(reader.writePgn()).equal("1. g8=R")
     })
 })
 
@@ -648,9 +727,9 @@ describe("When having a game loaded", function () {
 })
 
 describe("When making moves in pgn", function() {
-    let empty, my_pgn
+    let empty, reader
     beforeEach(function () {
-        my_pgn = new PgnReader({pgn: "1. d4 e5"})
+        reader = new PgnReader({pgn: "1. d4 e5"})
         empty = new PgnReader({pgn: "*"})
     })
 
@@ -665,132 +744,132 @@ describe("When making moves in pgn", function() {
     })
 
     it("should write a move in the position with white on turn", function () {
-        my_pgn.addMove("e4", 1)
-        should(my_pgn.getMoves().length).equal(3)
-        should(my_pgn.getMove(2).turn).equal("w")
+        reader.addMove("e4", 1)
+        should(reader.getMoves().length).equal(3)
+        should(reader.getMove(2).turn).equal("w")
     })
 
     it("should write a move in the position with black on turn", function () {
-        my_pgn = new PgnReader({pgn: "1. d4 e5 2. e4"})
-        my_pgn.addMove("exd4", 2)
-        should(my_pgn.getMoves().length).equal(4)
-        should(my_pgn.getMove(3).turn).equal("b")
+        reader = new PgnReader({pgn: "1. d4 e5 2. e4"})
+        reader.addMove("exd4", 2)
+        should(reader.getMoves().length).equal(4)
+        should(reader.getMove(3).turn).equal("b")
     })
 
     it("should use the existing move in the main line", function () {
-        my_pgn = new PgnReader({pgn: "1. e4 e5 2. Nf3 Nc6"})
-        my_pgn.addMove("Nf3", 1)
-        should(my_pgn.getMoves().length).equal(4)
-        should(my_pgn.getMove(2).turn).equal("w")
-        should(my_pgn.getMove(2).notation.notation).equal("Nf3")
+        reader = new PgnReader({pgn: "1. e4 e5 2. Nf3 Nc6"})
+        reader.addMove("Nf3", 1)
+        should(reader.getMoves().length).equal(4)
+        should(reader.getMove(2).turn).equal("w")
+        should(reader.getMove(2).notation.notation).equal("Nf3")
     })
 
     it("should start new variation in the middle of the main line", function () {
-        my_pgn = new PgnReader({pgn: "1. e4 e5 2. Nf3 Nc6"})
-        my_pgn.addMove("f4", 1)
-        should(my_pgn.getMoves().length).equal(5)
-        should(my_pgn.getMove(4).turn).equal("w")
-        should(my_pgn.getMove(4).notation.notation).equal("f4")
-        should(my_pgn.getMove(2).variations.length).equal(1)
-        should(my_pgn.getMove(2).variations[0].notation.notation).equal("f4")
+        reader = new PgnReader({pgn: "1. e4 e5 2. Nf3 Nc6"})
+        reader.addMove("f4", 1)
+        should(reader.getMoves().length).equal(5)
+        should(reader.getMove(4).turn).equal("w")
+        should(reader.getMove(4).notation.notation).equal("f4")
+        should(reader.getMove(2).variations.length).equal(1)
+        should(reader.getMove(2).variations[0].notation.notation).equal("f4")
     })
 
     it("should start a second variation in the middle of the main line, when the current move has already a variation", function () {
-        my_pgn = new PgnReader({pgn: "1. e4 e5 2. Nf3 Nc6"})
-        my_pgn.addMove("f4", 1) // first variation
-        my_pgn.addMove("d4", 1) // second variation to the same FEN
-        should(my_pgn.getMoves().length).equal(6)
-        should(my_pgn.getMove(5).turn).equal("w")
-        should(my_pgn.getMove(5).notation.notation).equal("d4")
-        should(my_pgn.getMove(2).variations.length).equal(2)
-        should(my_pgn.getMove(2).variations[0].notation.notation).equal("f4")
-        should(my_pgn.getMove(2).variations[1].notation.notation).equal("d4")
+        reader = new PgnReader({pgn: "1. e4 e5 2. Nf3 Nc6"})
+        reader.addMove("f4", 1) // first variation
+        reader.addMove("d4", 1) // second variation to the same FEN
+        should(reader.getMoves().length).equal(6)
+        should(reader.getMove(5).turn).equal("w")
+        should(reader.getMove(5).notation.notation).equal("d4")
+        should(reader.getMove(2).variations.length).equal(2)
+        should(reader.getMove(2).variations[0].notation.notation).equal("f4")
+        should(reader.getMove(2).variations[1].notation.notation).equal("d4")
     })
 
     it("should use the existing move in the variation", function () {
-        my_pgn = new PgnReader({pgn: "1. e4 e5 2. Nf3 Nc6"})
-        my_pgn.addMove("Nf3", 1) // first main line
-        my_pgn.addMove("Nc6", 2) // second main line
-        should(my_pgn.getMoves().length).equal(4)
-        should(my_pgn.getMove(2).turn).equal("w")
-        should(my_pgn.getMove(2).notation.notation).equal("Nf3")
-        should(my_pgn.getMove(3).turn).equal("b")
-        should(my_pgn.getMove(3).notation.notation).equal("Nc6")
+        reader = new PgnReader({pgn: "1. e4 e5 2. Nf3 Nc6"})
+        reader.addMove("Nf3", 1) // first main line
+        reader.addMove("Nc6", 2) // second main line
+        should(reader.getMoves().length).equal(4)
+        should(reader.getMove(2).turn).equal("w")
+        should(reader.getMove(2).notation.notation).equal("Nf3")
+        should(reader.getMove(3).turn).equal("b")
+        should(reader.getMove(3).notation.notation).equal("Nc6")
     })
 
     it("should know how to  notate castling", function() {
-        my_pgn = new PgnReader({pgn: "1. e4 e5 2. Nf3 Nf6 3. Bc4 Bc5"})
-        my_pgn.addMove("O-O", 5)
-        should(my_pgn.getMoves().length).equal(7)
-        should(my_pgn.getMove(6).turn).equal("w")
-        should(my_pgn.getMove(6).notation.notation).equal("O-O")
-        my_pgn.addMove("O-O", 6)
-        should(my_pgn.getMoves().length).equal(8)
-        should(my_pgn.getMove(7).turn).equal("b")
-        should(my_pgn.getMove(7).notation.notation).equal("O-O")
+        reader = new PgnReader({pgn: "1. e4 e5 2. Nf3 Nf6 3. Bc4 Bc5"})
+        reader.addMove("O-O", 5)
+        should(reader.getMoves().length).equal(7)
+        should(reader.getMove(6).turn).equal("w")
+        should(reader.getMove(6).notation.notation).equal("O-O")
+        reader.addMove("O-O", 6)
+        should(reader.getMoves().length).equal(8)
+        should(reader.getMove(7).turn).equal("b")
+        should(reader.getMove(7).notation.notation).equal("O-O")
     })
 })
 
 describe("When deleting lines" , function () {
     it("should delete the whole main line", function() {
-        let my_pgn = new PgnReader({pgn: "1. e4 e5  2. Nf3 Nc6"})
-        my_pgn.deleteMove(0)
-        my_pgn.isDeleted(0).should.be.true()
+        let reader = new PgnReader({pgn: "1. e4 e5  2. Nf3 Nc6"})
+        reader.deleteMove(0)
+        reader.isDeleted(0).should.be.true()
     })
 
     it("should delete the rest of the line (without variation)", function () {
-        let my_pgn = new PgnReader({pgn: "1. e4 e5  2. Nf3 Nc6"})
-        my_pgn.deleteMove(2)
-        should(my_pgn.isDeleted(0)).not.be.ok()
-        should(my_pgn.isDeleted(1)).not.be.ok()
-        my_pgn.isDeleted(2).should.be.true()
-        my_pgn.isDeleted(3).should.be.true()
+        let reader = new PgnReader({pgn: "1. e4 e5  2. Nf3 Nc6"})
+        reader.deleteMove(2)
+        should(reader.isDeleted(0)).not.be.ok()
+        should(reader.isDeleted(1)).not.be.ok()
+        reader.isDeleted(2).should.be.true()
+        reader.isDeleted(3).should.be.true()
     })
 
     it("should delete the rest of the line, replace it by the first variation", function () {
-        let my_pgn = new PgnReader({pgn: "1. e4 e5  2. Nf3 (2. f4 exf4) Nc6"})
-        should(my_pgn.getMove(3).variationLevel).equal(1)
-        my_pgn.deleteMove(2)
-        should(my_pgn.isDeleted(0)).not.be.ok()
-        should(my_pgn.isDeleted(1)).not.be.ok()
-        my_pgn.isDeleted(2).should.be.true()
-        my_pgn.isDeleted(5).should.be.true()
-        should(my_pgn.getMove(3).variationLevel).equal(0)
-        should(my_pgn.getMove(4).variationLevel).equal(0)
-        should(my_pgn.getMove(1).next).equal(3)
+        let reader = new PgnReader({pgn: "1. e4 e5  2. Nf3 (2. f4 exf4) Nc6"})
+        should(reader.getMove(3).variationLevel).equal(1)
+        reader.deleteMove(2)
+        should(reader.isDeleted(0)).not.be.ok()
+        should(reader.isDeleted(1)).not.be.ok()
+        reader.isDeleted(2).should.be.true()
+        reader.isDeleted(5).should.be.true()
+        should(reader.getMove(3).variationLevel).equal(0)
+        should(reader.getMove(4).variationLevel).equal(0)
+        should(reader.getMove(1).next).equal(3)
     })
 
     it("should delete the whole variation with the first move", function () {
-        let my_pgn = new PgnReader({pgn: "1. e4 e5  2. Nf3 (2. f4 exf4) (2. d4 exd4) Nc6"})
-        should(my_pgn.getMove(3).variationLevel).equal(1)
-        my_pgn.deleteMove(3)
-        should(my_pgn.isDeleted(0)).not.be.ok()
-        should(my_pgn.isDeleted(1)).not.be.ok()
-        should(my_pgn.isDeleted(2)).not.be.ok()
-        my_pgn.isDeleted(3).should.be.true()
-        my_pgn.isDeleted(4).should.be.true()
-        should(my_pgn.getMove(2).variationLevel).equal(0)
-        should(my_pgn.getMove(5).variationLevel).equal(1)
-        should(my_pgn.getMove(6).variationLevel).equal(1)
+        let reader = new PgnReader({pgn: "1. e4 e5  2. Nf3 (2. f4 exf4) (2. d4 exd4) Nc6"})
+        should(reader.getMove(3).variationLevel).equal(1)
+        reader.deleteMove(3)
+        should(reader.isDeleted(0)).not.be.ok()
+        should(reader.isDeleted(1)).not.be.ok()
+        should(reader.isDeleted(2)).not.be.ok()
+        reader.isDeleted(3).should.be.true()
+        reader.isDeleted(4).should.be.true()
+        should(reader.getMove(2).variationLevel).equal(0)
+        should(reader.getMove(5).variationLevel).equal(1)
+        should(reader.getMove(6).variationLevel).equal(1)
     })
 
     it("should delete the rest of a variation (including the move)", function () {
-        let my_pgn = new PgnReader({pgn: "1. e4 e5  2. Nf3 (2. f4 exf4 3. Nf3 d6) (2. d4 exd4) Nc6"})
-        should(my_pgn.getMove(3).variationLevel).equal(1)
-        my_pgn.deleteMove(4)
-        should(my_pgn.isDeleted(3)).not.be.ok()
-        my_pgn.isDeleted(4).should.be.true()
+        let reader = new PgnReader({pgn: "1. e4 e5  2. Nf3 (2. f4 exf4 3. Nf3 d6) (2. d4 exd4) Nc6"})
+        should(reader.getMove(3).variationLevel).equal(1)
+        reader.deleteMove(4)
+        should(reader.isDeleted(3)).not.be.ok()
+        reader.isDeleted(4).should.be.true()
     })
 
     // The following test case is wrong, and should be rewritten: what does the move number denote? why deleting 2 times?
     // Asserts have to be useful (like what is the resulting pgn then) 
     xit("should delete the moves before (without the move)", function () {
-        let my_pgn = new PgnReader({pgn: "1. e4 e5  2. Nf3 Nc6"})
-        my_pgn.deleteMovesBefore(0)
-        should(my_pgn.getMoves().length).equal(4)
-        my_pgn.deleteMovesBefore(1)
-        should(my_pgn.getMoves().length).equal(4)
-        my_pgn.isDeleted(0).should.be.true()
+        let reader = new PgnReader({pgn: "1. e4 e5  2. Nf3 Nc6"})
+        reader.deleteMovesBefore(0)
+        should(reader.getMoves().length).equal(4)
+        reader.deleteMovesBefore(1)
+        should(reader.getMoves().length).equal(4)
+        reader.isDeleted(0).should.be.true()
     })
 })
 
@@ -799,71 +878,71 @@ describe("When upvoting lines", function () {
     let pgn2 = "e4 (d4 d5) (c4 c5) e5"
 
     it("should upvote the second line as first line", function () {
-        let my_pgn = new PgnReader({pgn: pgn})
-        should(my_pgn.getMove(3).variationLevel).equal(1)
-        should(my_pgn.getMove(2).variations[0].index).equal(3)
-        should(my_pgn.getMove(2).variations[1].index).equal(5)
-        my_pgn.promoteMove(5)
-        should(my_pgn.getMove(2).variations[0].index).equal(5)
-        should(my_pgn.getMove(2).variations[1].index).equal(3)
+        let reader = new PgnReader({pgn: pgn})
+        should(reader.getMove(3).variationLevel).equal(1)
+        should(reader.getMove(2).variations[0].index).equal(3)
+        should(reader.getMove(2).variations[1].index).equal(5)
+        reader.promoteMove(5)
+        should(reader.getMove(2).variations[0].index).equal(5)
+        should(reader.getMove(2).variations[1].index).equal(3)
     })
 
     it("should upvote the first line as main line", function () {
-        let my_pgn = new PgnReader({pgn: pgn})
-        should(my_pgn.getMove(3).variationLevel).equal(1)
-        should(my_pgn.getMove(2).variations[0].index).equal(3)
-        should(my_pgn.getMove(2).variations[1].index).equal(5)
-        my_pgn.promoteMove(3)
-        my_pgn.startVariation(my_pgn.getMove(2)).should.be.true()
-        should(my_pgn.getMove(2).variationLevel).equal(1)
-        should(my_pgn.getMove(3).variationLevel).equal(0)
+        let reader = new PgnReader({pgn: pgn})
+        should(reader.getMove(3).variationLevel).equal(1)
+        should(reader.getMove(2).variations[0].index).equal(3)
+        should(reader.getMove(2).variations[1].index).equal(5)
+        reader.promoteMove(3)
+        reader.startVariation(reader.getMove(2)).should.be.true()
+        should(reader.getMove(2).variationLevel).equal(1)
+        should(reader.getMove(3).variationLevel).equal(0)
     })
 
     it("should ignore upvoting the main line", function () {
-        let my_pgn = new PgnReader({pgn: pgn})
-        should(my_pgn.getMove(3).variationLevel).equal(1)
-        should(my_pgn.getMove(2).variations[0].index).equal(3)
-        should(my_pgn.getMove(2).variations[1].index).equal(5)
-        my_pgn.promoteMove(2)
-        should(my_pgn.getMove(2).variations[0].index).equal(3)
-        should(my_pgn.getMove(2).variations[1].index).equal(5)
+        let reader = new PgnReader({pgn: pgn})
+        should(reader.getMove(3).variationLevel).equal(1)
+        should(reader.getMove(2).variations[0].index).equal(3)
+        should(reader.getMove(2).variations[1].index).equal(5)
+        reader.promoteMove(2)
+        should(reader.getMove(2).variations[0].index).equal(3)
+        should(reader.getMove(2).variations[1].index).equal(5)
     })
 
     it("should handle first move variations, upvote first line", function () {
-        let my_pgn = new PgnReader({pgn: pgn2})
-        should(my_pgn.getMoves().length).equal(6)
-        my_pgn.promoteMove(1)
-        should(my_pgn.getMove(1).variationLevel).equal(0)
-        should(my_pgn.getMove(1).variations[0].index).equal(0)
-        should(my_pgn.getMove(0).variationLevel).equal(1)
+        let reader = new PgnReader({pgn: pgn2})
+        should(reader.getMoves().length).equal(6)
+        reader.promoteMove(1)
+        should(reader.getMove(1).variationLevel).equal(0)
+        should(reader.getMove(1).variations[0].index).equal(0)
+        should(reader.getMove(0).variationLevel).equal(1)
     })
 
     it("should handle first move variations, upvote second line", function () {
-        let my_pgn = new PgnReader({pgn: pgn2})
-        should(my_pgn.getMoves().length).equal(6)
-        my_pgn.promoteMove(3)
-        should(my_pgn.getMove(3).variationLevel).equal(1)
-        should(my_pgn.getMove(0).variations[0].index).equal(3)
-        should(my_pgn.getMove(0).variationLevel).equal(0)
+        let reader = new PgnReader({pgn: pgn2})
+        should(reader.getMoves().length).equal(6)
+        reader.promoteMove(3)
+        should(reader.getMove(3).variationLevel).equal(1)
+        should(reader.getMove(0).variations[0].index).equal(3)
+        should(reader.getMove(0).variationLevel).equal(0)
     })
 
     it("should handle non-first move variations, upvote of any line", function () {
-        let my_pgn = new PgnReader({pgn: pgn2})
-        should(my_pgn.getMoves().length).equal(6)
-        my_pgn.promoteMove(2)
-        should(my_pgn.getMove(1).variationLevel).equal(0)
-        should(my_pgn.getMove(1).variations[0].index).equal(0)
-        should(my_pgn.getMove(0).variationLevel).equal(1)
+        let reader = new PgnReader({pgn: pgn2})
+        should(reader.getMoves().length).equal(6)
+        reader.promoteMove(2)
+        should(reader.getMove(1).variationLevel).equal(0)
+        should(reader.getMove(1).variations[0].index).equal(0)
+        should(reader.getMove(0).variationLevel).equal(1)
     })
 
     it("should handle non-first move variations, upvote of any line 2", function () {
-        let my_pgn = new PgnReader({pgn: pgn})
-        should(my_pgn.getMoves().length).equal(7)
-        my_pgn.promoteMove(4)
-        should(my_pgn.getMove(3).variationLevel).equal(0)
-        should(my_pgn.getMove(3).variations[0].index).equal(2)
-        should(my_pgn.getMove(2).variationLevel).equal(1)
-        should(my_pgn.getMove(0).variationLevel).equal(0)
+        let reader = new PgnReader({pgn: pgn})
+        should(reader.getMoves().length).equal(7)
+        reader.promoteMove(4)
+        should(reader.getMove(3).variationLevel).equal(0)
+        should(reader.getMove(3).variations[0].index).equal(2)
+        should(reader.getMove(2).variationLevel).equal(1)
+        should(reader.getMove(0).variationLevel).equal(0)
     })
 
 })
@@ -885,37 +964,37 @@ describe("!!When using setToStart", function () {
 })
 
 describe("When working with NAGs", function () {
-    let my_pgn
+    let reader
     beforeEach(function () {
-        my_pgn = new PgnReader({pgn: "1. d4 e5"})
+        reader = new PgnReader({pgn: "1. d4 e5"})
     })
 
     it ("should add selected NAG as first when empty", function () {
-        my_pgn.changeNag("??", 1, true)
-        should(my_pgn.getMove(1).nag[0]).equal("$4")
-        my_pgn.changeNag("!!", 0, true)
-        should(my_pgn.getMove(0).nag[0]).equal("$3")
+        reader.changeNag("??", 1, true)
+        should(reader.getMove(1).nag[0]).equal("$4")
+        reader.changeNag("!!", 0, true)
+        should(reader.getMove(0).nag[0]).equal("$3")
     })
 
     it("should add selected NAG as last when already some", function () {
-        my_pgn.changeNag("??", 1, true)
-        my_pgn.changeNag("!!", 1, true)
-        should(my_pgn.getMove(1).nag[1]).equal("$3")
-        should(my_pgn.getMove(1).nag[0]).equal("$4")
+        reader.changeNag("??", 1, true)
+        reader.changeNag("!!", 1, true)
+        should(reader.getMove(1).nag[1]).equal("$3")
+        should(reader.getMove(1).nag[0]).equal("$4")
     })
 
     it("should clear all NAGs", function () {
-        my_pgn.changeNag("??", 1, true)
-        should(my_pgn.getMove(1).nag[0]).equal("$4")
-        my_pgn.clearNags(1)
-        should(my_pgn.getMove(1).nag.length).equal(0)
+        reader.changeNag("??", 1, true)
+        should(reader.getMove(1).nag[0]).equal("$4")
+        reader.clearNags(1)
+        should(reader.getMove(1).nag.length).equal(0)
     })
 
     it("should ignore clear when no NAGs", function () {
-        my_pgn.clearNags(1)
-        should(my_pgn.getMove(1).nag.length).equal(0)
-        my_pgn.clearNags(1)
-        should(my_pgn.getMove(1).nag.length).equal(0)
+        reader.clearNags(1)
+        should(reader.getMove(1).nag.length).equal(0)
+        reader.clearNags(1)
+        should(reader.getMove(1).nag.length).equal(0)
     })
 })
 
@@ -927,13 +1006,13 @@ describe("When having a game and wanting to add arrows and circles", function ()
 
 describe("Working with games with special characters", function () {
     it("should ignore 1 space at beginning and end", function () {
-        let my_pgn = new PgnReader({pgn: " 1. d4 e5  "})
-        should(my_pgn.getMoves().length).equal(2)
+        let reader = new PgnReader({pgn: " 1. d4 e5  "})
+        should(reader.getMoves().length).equal(2)
     })
 
     it("should ignore more spaces at beginning and end", function () {
-        let my_pgn = new PgnReader({pgn: "     1. d4 e5   "})
-        should(my_pgn.getMoves().length).equal(2)
+        let reader = new PgnReader({pgn: "     1. d4 e5   "})
+        should(reader.getMoves().length).equal(2)
     })
 })
 

@@ -1,23 +1,27 @@
 import { parse, split } from '@mliebelt/pgn-parser'
 import {ParseTreeOrArray, ParseTree, PgnMove, Tags, PgnDate, PgnTime, TimeControl} from '@mliebelt/pgn-parser/lib/types'
-import { Chess } from 'chess.js'
+import {Chess, ChessInstance} from 'chess.js'
 import * as types from './types'
 import * as nag from './nag'
 import {StringBuilder} from "./sb"
-import {PgnReaderMove, PrimitiveMove} from "./types";
+import {PgnReaderMove, PrimitiveMove} from "./types"
+import { XMLHttpRequest } from 'xmlhttprequest-ts'
 
 
 /**
  * Defines the base functionality for reading and working with PGN.
- * The configuration is the part of the configuration given to the PgnViewer this is relevant
+ * The configuration is the part of the configuration given to the PgnViewer that is relevant
  * for the reader.
+ * The reader is an abstraction that just knows the current games, and handles changes by keeping the change
+ * in the state of the game. So all local storage in the reader should be avoided besides `configuration`, `games`
+ * and `currentGameIndex`.
  * @param {*} configuration Given values this are relevant for reading and working with PGN
  */
 export class PgnReader {
     configuration: types.PgnReaderConfiguration
     games: ParseTree[]
     moves: types.PgnReaderMove[]
-    chess: Chess
+    chess: ChessInstance
     currentGameIndex: number
     endGame: string
 
@@ -30,7 +34,7 @@ export class PgnReader {
                 if (request.status === 200) {
                     return request.responseText
                 }
-                return ""
+                throw new Error("File not found or could not read: " + url)
             }
             let defaults = {
                 notation: 'short',
@@ -139,10 +143,10 @@ export class PgnReader {
             this.loadPgn()
         }
     }
-    possibleMoves(chess: Chess) {
+    possibleMoves() {
         const dests = new Map();
-        chess.SQUARES.forEach(s => {
-            const ms = chess.moves({square: s, verbose: true})
+        this.chess.SQUARES.forEach(s => {
+            const ms = this.chess.moves({square: s, verbose: true})
             if (ms.length) dests[s] = ms.map(m => m.to)
         })
         return dests
@@ -449,9 +453,9 @@ export class PgnReader {
             }
         }
 
-        function write_notation (move, sb) {
+        let write_notation = (move, sb) => {
             prepend_space(sb)
-            sb.append(move.notation.notation)
+            sb.append(this.san(move))
         }
 
         function write_NAGs (move, sb) {
@@ -579,6 +583,8 @@ export class PgnReader {
                 } else {
                     this.setToStart();
                 }
+                // TODO: It is not possible to use here `san` instead of  the ugly `notation.notation`. In case of `Pe4`
+                // chess.js spits an error. No solution for this yet.
                 let pgn_move = this.chess.move(_move.notation.notation, {'sloppy' : true});
                 if (pgn_move === null) {
                     throw new Error("No legal move: " + _move.notation.notation)
@@ -706,7 +712,7 @@ export class PgnReader {
                 realMove.moveNumber = this.getMove(moveNumber).moveNumber;
             }
         }
-        let pgn_move = this.chess.move(move);
+        let pgn_move = this.chess.move(move as unknown as string);
         realMove.fen = this.chess.fen();
         realMove.from = pgn_move.from;
         realMove.to = pgn_move.to;
@@ -808,6 +814,15 @@ export class PgnReader {
     }
     getEndGame(): string {
         return this.endGame;
+    }
+    getPosition(index:number|null) {
+        if (index === null) {
+            this.chess.reset()
+            return this.chess.fen()
+        } else {
+            return this.getMove(index).fen
+        }
+        return null
     }
     setShapes(move, shapes) {
         if (! move.commentDiag) {
