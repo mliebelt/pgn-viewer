@@ -15,7 +15,8 @@
     "url": "https://github.com/mliebelt/PgnViewerJS.git"
   },
   "scripts": {
-    "build": "npm run mjs && npm run cjs && npm run umd",
+    "clean": "rm lib/*",
+    "build": "npm run cjs",
     "mjs": "tsc -d && mv lib/index.js lib/index.mjs && mv lib/pgn.js lib/pgn.mjs && mv lib/types.js lib/types.mjs",
     "cjs": "tsc -m commonjs",
     "umd": "rollup -i lib/index.mjs -o lib/index.umd.js -f umd -n index",

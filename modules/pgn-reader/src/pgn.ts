@@ -5,7 +5,6 @@ import * as types from './types'
 import * as nag from './nag'
 import {StringBuilder} from "./sb"
 import {PgnReaderMove, PrimitiveMove} from "./types"
-import { XMLHttpRequest } from 'xmlhttprequest-ts'
 
 
 /**
@@ -21,7 +20,7 @@ export class PgnReader {
     configuration: types.PgnReaderConfiguration
     games: ParseTree[]
     moves: types.PgnReaderMove[]
-    chess: ChessInstance
+    chess: any
     currentGameIndex: number
     endGame: string
 
@@ -35,6 +34,7 @@ export class PgnReader {
                     return request.responseText
                 }
                 throw new Error("File not found or could not read: " + url)
+                // return ''
             }
             let defaults = {
                 notation: 'short',

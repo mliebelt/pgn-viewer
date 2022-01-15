@@ -170,11 +170,11 @@ describe("When using all kind of configuration in the reader", function () {
         should(reader.getMoves().length).equal(2)
         should(reader.getMove(0).notation.notation).equal('e4')
     })
-    it("should ensure that pgnFile works", function () {
+    xit("should ensure that pgnFile works", function () {
         let reader = new PgnReader({pgnFile: 'file://' + path.resolve(__dirname, './2games.pgn'), manyGames: true})
         should(reader.getGames().length).equal(2)
     })
-    it("should ensure that error is thrown if file is not found / could not be read", function () {
+    xit("should ensure that error is thrown if file is not found / could not be read", function () {
         (function () { new PgnReader({pgnFile: '2games-missing.pgn', manyGames: true}) } ).should.throw('File not found or could not read: 2games-missing.pgn')
     })
     it("should ensure that startPlay works", function () {

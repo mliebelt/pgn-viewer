@@ -87,7 +87,7 @@ export function nagToSymbol (array): string {
  */
 export function symbolToNag (string): string {
     const nag = PGN_NAGS[string]
-    if (nag === "undefined") {
+    if (nag === undefined) {
         return null
     } else {
         return "$" + nag
