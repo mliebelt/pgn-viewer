@@ -131,18 +131,19 @@ describe("Base functionality of the reader without any configuration", function 
 })
 
 describe("When using all kind of configuration in the reader", function () {
+    let reader
     it("should ensure that short notation is written", function () {
-        let reader = new PgnReader({ pgn: 'e4 e5 Nf3 Nc6', notation: 'short'})
+        reader = new PgnReader({ pgn: 'e4 e5 Nf3 Nc6', notation: 'short'})
         should(reader.getMoves().length).equal(4)
         should(reader.writePgn()).equal('1. e4 e5 2. Nf3 Nc6')
     })
     it("should ensure that long notation is written", function (){
-        let reader = new PgnReader({ pgn: 'e4 e5 Nf3 Nc6', notation: 'long'})
+        reader = new PgnReader({ pgn: 'e4 e5 Nf3 Nc6', notation: 'long'})
         should(reader.getMoves().length).equal(4)
         should(reader.writePgn()).equal('1. e2-e4 e7-e5 2. Ng1-f3 Nb8-c6')
     })
     it("should ensure that different positions are understood", function () {
-        let reader = new PgnReader({pgn: 'e4', position: 'start'})
+        reader = new PgnReader({pgn: 'e4', position: 'start'})
         should.exist(reader)
         should(reader.getMoves().length).equal(1)
         should(reader.getPosition(null)).startWith('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR')
@@ -152,7 +153,7 @@ describe("When using all kind of configuration in the reader", function () {
 
     })
     it("should ensure that configuring manyGames works", function () {
-        let reader = new PgnReader({manyGames: true, pgn: "e4 e5 *\n\nd4 d5 *"})
+        reader = new PgnReader({manyGames: true, pgn: "e4 e5 *\n\nd4 d5 *"})
         should.exist(reader)
         should(reader.getMoves().length).equal(2)
         should(reader.getGames().length).equal(2)
@@ -161,7 +162,7 @@ describe("When using all kind of configuration in the reader", function () {
         (function() {new PgnReader({pgn: 'e4 e5 *\n\nd4 d5 *'})}).should.throw('Expected end of input or whitespace but "d" found.')
     })
     it("should ensure that lazyLoad works", function () {
-        let reader = new PgnReader({lazyLoad: true, manyGames: true, pgn: "e4 e5 *\n\nd4 d5 *"})
+        reader = new PgnReader({lazyLoad: true, manyGames: true, pgn: "e4 e5 *\n\nd4 d5 *"})
         should.exist(reader)
         should(reader.getMoves()).is.empty()
         should(reader.getGames()).is.undefined()
@@ -172,19 +173,19 @@ describe("When using all kind of configuration in the reader", function () {
     })
     it("should ensure that pgnFile works (workaround)", function () {
         let content = readFile('test/2games.pgn')
-        let reader = new PgnReader({pgn: content, manyGames: true})
+        reader = new PgnReader({pgn: content, manyGames: true})
         should(reader.getGames().length).equal(2)
     })
     it("should ensure that error is thrown if file is not found / could not be read (workaround)", function () {
         (function () { readFile( '2games-missing.pgn') }).should.throw('File not found or could not read: 2games-missing.pgn')
     })
     it("should ensure that startPlay works", function () {
-        let reader = new PgnReader({pgn: 'e4 e5 Nf3 Nc6', startPlay: 3, hideMovesBefore: false})
+        reader = new PgnReader({pgn: 'e4 e5 Nf3 Nc6', startPlay: 3, hideMovesBefore: false})
         should(reader.getMoves().length).equal(4)
         should(reader.getMove(0).notation.notation).equal('e4')
     })
     it("should ensure that hideMovesBefore works", function () {
-        let reader = new PgnReader({pgn: 'e4 e5 Nf3 Nc6', startPlay: 3, hideMovesBefore: true})
+        reader = new PgnReader({pgn: 'e4 e5 Nf3 Nc6', startPlay: 3, hideMovesBefore: true})
         should(reader.getMoves().length).equal(2)
         should(reader.san(reader.getMove(0))).equal('Nf3')
     })
@@ -225,7 +226,8 @@ describe("When reading various formats", function() {
         reader = new PgnReader({pgn: 'fxe5', position: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 1 4'})
         should(reader.sanWithNags(reader.getMove(0))).equal("fxe5")
     })
-    
+    // TODO This is not possible at the moment, because chess.js does not allow notation that includes the pawn symbol.
+    // So if that should be implemented, the logic of reading the game has to be changed.
     xit ("should understand optional pawn symbols", function () {
         reader = new PgnReader({pgn: '1. Pe4 Pe5 2. Pd4 Pexd4'})
         should(reader.getMoves().length).equal(4)
@@ -621,110 +623,182 @@ describe("Default a new read algorithm for PGN", function() {
 })
 
 describe("When writing pgn for a game", function() {
+    let reader
+    let res
     xit("should write an empty pgn string", function() {
-        let reader = new PgnReader({pgn: ""})
-        let res = reader.writePgn()
+        reader = new PgnReader({pgn: ""})
+        res = reader.writePgn()
         should(res).equal("")
     })
 
     it("should write the normalized notation of the main line with only one move", function() {
-        let reader = new PgnReader({pgn: "1. e4"})
-        let res = reader.writePgn()
+        reader = new PgnReader({pgn: "1. e4"})
+        res = reader.writePgn()
         should(res).equal("1. e4")
     })
 
     it("should write the normalized notation of the main line", function() {
-        let reader = new PgnReader({pgn: "1. e4 e5 2. Nf3 Nc6 3. Bb5"})
-        let res = reader.writePgn()
+        reader = new PgnReader({pgn: "1. e4 e5 2. Nf3 Nc6 3. Bb5"})
+        res = reader.writePgn()
         should(res).equal("1. e4 e5 2. Nf3 Nc6 3. Bb5")
     })
 
     it("should write the notation for a main line including comments", function () {
-        let reader = new PgnReader({pgn: "{FIRST} 1. e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5"})
-        let res = reader.writePgn()
+        reader = new PgnReader({pgn: "{FIRST} 1. e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5"})
+        res = reader.writePgn()
         should(res).equal("{FIRST} 1. e4 {THIRD} e5 {FOURTH} 2. Nf3 Nc6 3. Bb5")
     })
 
     it("should write all NAGs in the $<NUMBER> format", function () {
-        let reader = new PgnReader({pgn: "1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?"})
-        let res = reader.writePgn()
+        reader = new PgnReader({pgn: "1. e4! e5? 2. Nf3!! Nc6?? 3. Bb5?! a6!?"})
+        res = reader.writePgn()
         should(res).equal("1. e4$1 e5$2 2. Nf3$3 Nc6$4 3. Bb5$6 a6$5")
     })
 
     it("should write the notation for a main line with one variation", function () {
-        let reader = new PgnReader({pgn: "1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) 2. Nf3"})
-        let res = reader.writePgn()
+        reader = new PgnReader({pgn: "1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) 2. Nf3"})
+        res = reader.writePgn()
         should(res).equal("1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) 2. Nf3")
     })
 
     it("should write the notation for a main line with several variations", function () {
-        let reader = new PgnReader({pgn: "1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) ( 1... c5 2. Nf3 d6 ) 2. Nf3"})
-        let res = reader.writePgn()
+        reader = new PgnReader({pgn: "1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) ( 1... c5 2. Nf3 d6 ) 2. Nf3"})
+        res = reader.writePgn()
         should(res).equal("1. e4 e5 ( 1... d5 2. exd5 Qxd5 ) ( 1... c5 2. Nf3 d6 ) 2. Nf3")
     })
 
     it("should write the notation for a main line with stacked variations", function () {
-        let reader = new PgnReader({pgn: "1. e4 e5 ( 1... c5 2. Nf3 d6 ( 2... Nc6 3. d4) 3. d4 ) 2. Nf3"})
-        let res = reader.writePgn()
+        reader = new PgnReader({pgn: "1. e4 e5 ( 1... c5 2. Nf3 d6 ( 2... Nc6 3. d4) 3. d4 ) 2. Nf3"})
+        res = reader.writePgn()
         should(res).equal("1. e4 e5 ( 1... c5 2. Nf3 d6 ( 2... Nc6 3. d4 ) 3. d4 ) 2. Nf3")
     })
     it("should write the end of the game", function () {
-        let reader = new PgnReader({pgn: "1. e4 e5 0-1"})
+        reader = new PgnReader({pgn: "1. e4 e5 0-1"})
         should(reader.writePgn()).equal("1. e4 e5 0-1")
     })
     it("should write the end of the game, understand all results: 1-0", function () {
-        let reader = new PgnReader({pgn: "1. e4 e5 1-0"})
+        reader = new PgnReader({pgn: "1. e4 e5 1-0"})
         should(reader.writePgn()).equal("1. e4 e5 1-0")
     })
     it("should write the end of the game, understand all results: *", function () {
-        let reader = new PgnReader({pgn: "1. e4 e5 *"})
+        reader = new PgnReader({pgn: "1. e4 e5 *"})
         should(reader.writePgn()).equal("1. e4 e5 *")
     })
     it("should write the end of the game, understand all results: 1/2-1/2", function () {
-        let reader = new PgnReader({pgn: "1. e4 e5 1/2-1/2"})
+        reader = new PgnReader({pgn: "1. e4 e5 1/2-1/2"})
         should(reader.writePgn()).equal("1. e4 e5 1/2-1/2")
     })
     it("should write the end of the game as part of tags", function () {
-        let reader = new PgnReader({pgn: '[Result "0-1"] 1. e4 e5'})
+        reader = new PgnReader({pgn: '[Result "0-1"] 1. e4 e5'})
         should(reader.writePgn()).equal("1. e4 e5 0-1")
     })
     it("should write the end of the game as part of tags, understand all results: *", function () {
-        let reader = new PgnReader({pgn: '[Result "*"] 1. e4 e5'})
+        reader = new PgnReader({pgn: '[Result "*"] 1. e4 e5'})
         should(reader.writePgn()).equal("1. e4 e5 *")
     })
     it("should write the end of the game as part of tags, understand all results: 1/2-1/2", function () {
-        let reader = new PgnReader({pgn: '[Result "1/2-1/2"] 1. e4 e5'})
+        reader = new PgnReader({pgn: '[Result "1/2-1/2"] 1. e4 e5'})
         should(reader.writePgn()).equal("1. e4 e5 1/2-1/2")
     })
     it("should write the end of the game as part of tags, understand all results: 1-0", function () {
-        let reader = new PgnReader({pgn: '[Result "1-0"] 1. e4 e5'})
+        reader = new PgnReader({pgn: '[Result "1-0"] 1. e4 e5'})
         should(reader.writePgn()).equal("1. e4 e5 1-0")
     })
     it("should write promotion correct", function () {
-        let reader = new PgnReader({position: '8/6P1/8/2k5/8/8/8/7K w - - 0 1', pgn: '1. g8=R'})
+        reader = new PgnReader({position: '8/6P1/8/2k5/8/8/8/7K w - - 0 1', pgn: '1. g8=R'})
         should(reader.writePgn()).equal("1. g8=R")
     })
 })
 
 describe("When reading game with an end", function () {
-    it("should return the correct result with getEndGame")
-    it("should return null with getEndGame if there was no end game noted")
-    it("should return the correct result with getEndGame, if the game was finished by mate or stalemate")
+    let reader
+    it("should return the correct result with getEndGame", function (){
+        reader = new PgnReader({pgn: 'e4 *'})
+        should(reader.getEndGame()).equal('*')
+        reader = new PgnReader({pgn: 'e4 1-0'})
+        should(reader.getEndGame()).equal('1-0')
+    })
+    it("should return null with getEndGame if there was no end game noted", function (){
+        reader = new PgnReader({pgn: 'e4'})
+        should(reader.getGames().length).equal(1)
+        should(reader.getMoves().length).equal(1)
+        should(reader.getEndGame()).is.undefined()
+    })
+    it("should return the correct end game if switching games", function () {
+        reader = new PgnReader({pgn: 'e4 e5 *\n\nd4 d5 1-0\n\nc4', manyGames: true})
+        should(reader.getGames().length).equal(3)
+        should(reader.getEndGame()).equal('*')
+        reader.loadOne(1)
+        should(reader.getMove(0).notation.notation).equal('d4')
+        should(reader.getEndGame()).equal('1-0')
+        reader.loadOne(2)
+        should(reader.getMove(0).notation.notation).equal('c4')
+        should(reader.getEndGame()).is.undefined()
+    })
+    // TODO See ticket #223 for the context
+    xit("should return the correct result with getEndGame, if the game was finished by mate or stalemate", function (){
+        reader = new PgnReader({pgn: 'f4 e6 g4 Qh4#'})
+        should(reader.getGames().length).equal(1)
+        should(reader.getEndGame()).equal('0-1')
+    })
 })
 
 describe("When using san and sanWithNags", function () {
-    it("should get correct san independent of the source format")
-    it("should get correct san with NAGs in the right order??")
+    let reader: PgnReader
+    it("should get correct san independent of the source format", function (){
+        reader = new PgnReader({pgn: 'e2-e4'})
+        should(reader.san(reader.getMove(0))).equal('e4')
+        reader = new PgnReader({pgn: 'e4'})
+        should(reader.san(reader.getMove(0))).equal('e4')
+        reader = new PgnReader({pgn: 'e4', notation: 'long'})
+        should(reader.san(reader.getMove(0))).equal('e2-e4')
+    })
+    it("should get correct san with NAGs", function () {
+        reader = new PgnReader({pgn: 'e4!?$13$27'})
+        should(reader.sanWithNags(reader.getMove(0))).equal('e4⁉∞○')
+        should(reader.writePgn()).equal('1. e4$5$13$27')
+    })
 })
 
 describe("When reading many games", function () {
-    it("should ensure switching games works")
-    it("should ensure lazyLoad and loadOne works")
+    let reader: PgnReader
+    it("should ensure switching games works", function () {
+        reader = new PgnReader({pgn: 'e4 * d4 * c4 *', manyGames: true})
+        should(reader.getGames().length).equal(3)
+        should(reader.san(reader.getMove(0))).equal('e4')
+        reader.loadOne(1)
+        should(reader.san(reader.getMove(0))).equal('d4')
+        reader.loadOne(2)
+        should(reader.san(reader.getMove(0))).equal('c4')
+    })
+    it("should ensure lazyLoad and loadOne works", function (){
+        reader = new PgnReader({pgn: 'e4 * d4 * c4 *', manyGames: true, lazyLoad: true})
+        should(reader.getGames()).is.undefined()
+        reader.loadMany()
+        should(reader.getGames().length).equal(3)
+        reader.loadOne(0)
+        should(reader.san(reader.getMove(0))).equal('e4')
+        reader.loadOne(2)
+        should(reader.san(reader.getMove(0))).equal('c4')
+    })
 })
 
-describe("When having a game loaded", function () {
-    it("should compute possibleMoves in all positions")
-    it("should compute possibleMoves for a given position")
+describe("When wanting to get possible next moves", function () {
+    let reader: PgnReader
+    it("should compute possibleMoves in postion after 4 moves", function () {
+        reader = new PgnReader({pgn: 'e4 e5 Nf3 Nc6'})
+        should(reader.getMoves().length).equal(4)
+        let moves = reader.possibleMoves(3)
+        should.exist(moves)
+        should(moves.get('f3').length).equal(5)
+    })
+    it("should compute possibleMoves for a given position (nearly mate)", function () {
+        reader = new PgnReader({position: '3k3R/8/4K3/8/8/8/8/8 b - - 0 1'})
+        let moves = reader.possibleMoves('3k3R/8/4K3/8/8/8/8/8 b - - 0 1')
+        should.exist(moves)
+        should(moves.get('d8').length).equal(1)
+        should(moves.get('d8')[0]).equal('c7')
+    })
 })
 
 describe("When making moves in pgn", function() {

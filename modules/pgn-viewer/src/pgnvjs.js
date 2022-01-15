@@ -65,8 +65,8 @@ let pgnBase = function (boardId, configuration) {
     function hasMode (mode) {
         return that.configuration.mode === mode
     }
-    function possibleMoves () {
-        return new Map(Object.entries(that.mypgn.possibleMoves(chess)))
+    function possibleMoves (fen) {
+        return new Map(Object.entries(that.mypgn.possibleMoves(fen)))
     }
     function id (id) {
         return that.configuration.IDs[id]
@@ -268,7 +268,7 @@ let pgnBase = function (boardId, configuration) {
             let col = move.turn == 'w' ? 'black' : 'white'
             that.board.set({
                 movable: Object.assign({}, that.board.state.movable,
-                    {color: col, dests: possibleMoves(chess), showDests: true}),
+                    {color: col, dests: possibleMoves(move.fen), showDests: true}),
                 check: chess.in_check()
             })
             //makeMove(null, that.currentMove, move.fen)
@@ -641,7 +641,7 @@ let pgnBase = function (boardId, configuration) {
             let toMove = (chess.turn() == 'w') ? 'white' : 'black'
             that.board.set({
                 movable: Object.assign({}, that.board.state.movable,
-                    {color: toMove, dests: possibleMoves(chess), showDests: true}),
+                    {color: toMove, dests: possibleMoves(configuration.position), showDests: true}),
                 turnColor: toMove, check: chess.in_check()
             })
         }
@@ -1023,7 +1023,6 @@ let pgnBase = function (boardId, configuration) {
             }
 
         }
-        chess.load(myFen)
         unmarkMark(next)
         that.currentMove = next
         if (next) {
@@ -1032,7 +1031,7 @@ let pgnBase = function (boardId, configuration) {
         if (hasMode('edit')) {
             let col = chess.turn() == 'w' ? 'white' : 'black'
             that.board.set({
-                movable: Object.assign({}, that.board.state.movable, {color: col, dests: possibleMoves(chess), showDests: true}),
+                movable: Object.assign({}, that.board.state.movable, {color: col, dests: possibleMoves(myFen), showDests: true}),
                 turnColor: col, check: chess.in_check()
             })
             if (next) {

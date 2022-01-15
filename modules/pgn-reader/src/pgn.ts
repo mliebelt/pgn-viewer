@@ -1,12 +1,12 @@
 import { parse, split } from '@mliebelt/pgn-parser'
 import {ParseTreeOrArray, ParseTree, PgnMove, Tags, PgnDate, PgnTime, TimeControl} from '@mliebelt/pgn-parser/lib/types'
 import {Chess, ChessInstance} from 'chess.js'
-import * as types from './types'
 import * as nag from './nag'
 import {StringBuilder} from "./sb"
-import {PgnReaderMove, PrimitiveMove} from "./types"
+import {Color, Field, GameComment, Message, PgnReaderConfiguration, PgnReaderMove, PrimitiveMove} from "./types"
 
 let isBrowser=new Function("try {return this===window;}catch(e){ return false;}")
+
 
 /**
  * Defines the base functionality for reading and working with PGN.
@@ -18,15 +18,15 @@ let isBrowser=new Function("try {return this===window;}catch(e){ return false;}"
  * @param {*} configuration Given values this are relevant for reading and working with PGN
  */
 export class PgnReader {
-    configuration: types.PgnReaderConfiguration
+    configuration: PgnReaderConfiguration
     games: ParseTree[]
-    moves: types.PgnReaderMove[]
+    moves: PgnReaderMove[]
     chess: any
     currentGameIndex: number
     endGame: string
 
-    constructor(configuration: types.PgnReaderConfiguration) {
-        function initializeConfiguration (configuration: types.PgnReaderConfiguration) {
+    constructor(configuration: PgnReaderConfiguration) {
+        function initializeConfiguration (configuration: PgnReaderConfiguration) {
             function browserReadFromURL(url: string) {
                 const request = new XMLHttpRequest()
                 request.open('GET', url, false)
@@ -62,7 +62,7 @@ export class PgnReader {
      * @param move given move in JSON notation
      * @return {*} the SAN string created from the move
      */
-    san(move: types.PgnReaderMove): string {
+    san(move: PgnReaderMove): string {
         function getFig (fig: string) {
             if (fig === 'P') {
                 return ''
@@ -89,7 +89,7 @@ export class PgnReader {
         return fig + move.from + (notation.strike ? strike : '-') + move.to + prom + check
     }
 
-    sanWithNags (move: types.PgnReaderMove): string {
+    sanWithNags (move: PgnReaderMove): string {
         let _san = this.san(move);
         if (move.nag) {
             _san += nag.nagToSymbol(move.nag);
@@ -127,6 +127,8 @@ export class PgnReader {
             }
             if (_game.tags.Result) {
                 this.endGame = _game.tags.Result
+            } else {
+                this.endGame = undefined
             }
         }
 
@@ -144,11 +146,15 @@ export class PgnReader {
             this.loadPgn()
         }
     }
-    possibleMoves() {
+    possibleMoves(move: number|string): Map<Field, Field[]> {
+        let _fen = typeof move === 'number' ? this.getMove(move as undefined as number).fen : move
         const dests = new Map();
+        if (! this.chess.load(_fen)) { // Not a valid position, no move possible
+            return dests
+        }
         this.chess.SQUARES.forEach(s => {
             const ms = this.chess.moves({square: s, verbose: true})
-            if (ms.length) dests[s] = ms.map(m => m.to)
+            if (ms.length) dests.set(s, ms.map(m => m.to))
         })
         return dests
     }
@@ -205,7 +211,7 @@ export class PgnReader {
         return this.getMoves() ? this.getMoves()[id] : undefined
     }
     deleteMove (id: number): void {
-        let removeFromArray = (array, index): types.PgnReaderMove => {
+        let removeFromArray = (array, index): PgnReaderMove => {
             const ret = array[index]
             array.splice(index, 1)
             return ret
@@ -535,7 +541,7 @@ export class PgnReader {
     eachMove (movesMainLine: PgnMove[]) {
         this.moves = []
         let current = -1
-        let findPrevMove = (level: number, index: number): types.PgnReaderMove => {
+        let findPrevMove = (level: number, index: number): PgnReaderMove => {
             while (index >= 0) {
                 if (this.moves[index].variationLevel === level) {
                     return this.moves[index]
@@ -614,7 +620,7 @@ export class PgnReader {
         eachMoveVariation(movesMainLine, 0, null)
     }
     addMove (move: PrimitiveMove, moveNumber: number): number {
-        let getTurn = (moveNumber): types.Color => {
+        let getTurn = (moveNumber): Color => {
             return this.getMove(moveNumber).turn === "w" ? 'b' : "w"
         }
 
@@ -695,7 +701,7 @@ export class PgnReader {
 
         let curr = existingMove(move, moveNumber);
         if (typeof curr == 'number') return curr;
-        let realMove: types.PgnReaderMove = {
+        let realMove: PgnReaderMove = {
             variations: [],
             nag: [],
             notation: {}
@@ -801,12 +807,12 @@ export class PgnReader {
         }
         return null
     }
-    getTags(): Map<string, string | types.Message[] | PgnDate | PgnTime | TimeControl> {
+    getTags(): Map<string, string | Message[] | PgnDate | PgnTime | TimeControl> {
         if (! this.games) { return new Map() }
         let _tags = this.games[this.currentGameIndex].tags
         return new Map(Object.entries(_tags))
     }
-    getGameComment(): types.GameComment {
+    getGameComment(): GameComment {
         if (! this.games) { return undefined }
         return this.games[this.currentGameIndex].gameComment ? this.games[this.currentGameIndex].gameComment : undefined
     }
