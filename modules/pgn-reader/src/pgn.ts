@@ -6,6 +6,7 @@ import * as nag from './nag'
 import {StringBuilder} from "./sb"
 import {PgnReaderMove, PrimitiveMove} from "./types"
 
+let isBrowser=new Function("try {return this===window;}catch(e){ return false;}")
 
 /**
  * Defines the base functionality for reading and working with PGN.
@@ -26,15 +27,14 @@ export class PgnReader {
 
     constructor(configuration: types.PgnReaderConfiguration) {
         function initializeConfiguration (configuration: types.PgnReaderConfiguration) {
-            function readPgnFromFile (url: string) {
+            function browserReadFromURL(url: string) {
                 const request = new XMLHttpRequest()
                 request.open('GET', url, false)
                 request.send()
                 if (request.status === 200) {
                     return request.responseText
                 }
-                throw new Error("File not found or could not read: " + url)
-                // return ''
+                throw new Error("URL not found or could not read: " + url)
             }
             let defaults = {
                 notation: 'short',
@@ -45,7 +45,8 @@ export class PgnReader {
                 if (typeof configuration.pgnFile === 'undefined') {
                     configuration.pgn = '*'
                 } else {
-                    configuration.pgn = readPgnFromFile(configuration.pgnFile)
+                    // the following only works in the browser
+                    configuration.pgn = isBrowser() ? browserReadFromURL(configuration.pgnFile) : '*'
                 }
             }
             return Object.assign(defaults, configuration)

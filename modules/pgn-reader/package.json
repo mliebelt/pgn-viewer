@@ -37,6 +37,6 @@
   "dependencies": {
     "@mliebelt/pgn-parser": "^1.4.1",
     "chess.js": "^0.10.3",
-    "xmlhttprequest-ts": "^1.0.1"
+    "sync-fetch": "^0.3.1"
   }
 }

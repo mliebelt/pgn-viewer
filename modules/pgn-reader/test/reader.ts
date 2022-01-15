@@ -1,7 +1,7 @@
 import * as should from "should"
 import {PgnReader} from "../lib"
 import {describe} from "mocha"
-import * as path from "path"
+import {readFile} from "../lib/fetch"
 
 /**
  * Checks all functionality for reading and interpreting a configuration for the reader.
@@ -170,12 +170,13 @@ describe("When using all kind of configuration in the reader", function () {
         should(reader.getMoves().length).equal(2)
         should(reader.getMove(0).notation.notation).equal('e4')
     })
-    xit("should ensure that pgnFile works", function () {
-        let reader = new PgnReader({pgnFile: 'file://' + path.resolve(__dirname, './2games.pgn'), manyGames: true})
+    it("should ensure that pgnFile works (workaround)", function () {
+        let content = readFile('test/2games.pgn')
+        let reader = new PgnReader({pgn: content, manyGames: true})
         should(reader.getGames().length).equal(2)
     })
-    xit("should ensure that error is thrown if file is not found / could not be read", function () {
-        (function () { new PgnReader({pgnFile: '2games-missing.pgn', manyGames: true}) } ).should.throw('File not found or could not read: 2games-missing.pgn')
+    it("should ensure that error is thrown if file is not found / could not be read (workaround)", function () {
+        (function () { readFile( '2games-missing.pgn') }).should.throw('File not found or could not read: 2games-missing.pgn')
     })
     it("should ensure that startPlay works", function () {
         let reader = new PgnReader({pgn: 'e4 e5 Nf3 Nc6', startPlay: 3, hideMovesBefore: false})
