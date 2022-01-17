@@ -3,7 +3,16 @@ import {ParseTreeOrArray, ParseTree, PgnMove, Tags, PgnDate, PgnTime, TimeContro
 import {Chess, ChessInstance} from 'chess.js'
 import * as nag from './nag'
 import {StringBuilder} from "./sb"
-import {Color, Field, GameComment, Message, PgnReaderConfiguration, PgnReaderMove, PrimitiveMove} from "./types"
+import {
+    Color,
+    Field,
+    GameComment,
+    Message,
+    PgnReaderConfiguration,
+    PgnReaderMove,
+    PrimitiveMove,
+    Shape
+} from "./types"
 
 let isBrowser=new Function("try {return this===window;}catch(e){ return false;}")
 
@@ -831,7 +840,7 @@ export class PgnReader {
         }
         return null
     }
-    setShapes(move, shapes) {
+    setShapes(move:PgnReaderMove, shapes: Shape[]) {
         if (! move.commentDiag) {
             move.commentDiag = {};
         }

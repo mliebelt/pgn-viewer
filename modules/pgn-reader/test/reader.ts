@@ -1,5 +1,5 @@
 import * as should from "should"
-import {PgnReader} from "../lib"
+import {PgnReader, Shape} from "../lib"
 import {describe} from "mocha"
 import {readFile} from "../lib/fetch"
 
@@ -193,8 +193,7 @@ describe("When using all kind of configuration in the reader", function () {
 
 describe("When reading various formats", function() {
     let reader
-    // Not a real disambiguator, because when pawns are captured, the column has to be used.
-    xit ("should read and remember disambiguator", function() {
+    it ("should read and remember disambiguator", function() {
         reader = new PgnReader({pgn: "4. dxe5", position: "rnbqkbnr/ppp3pp/8/3ppp2/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 0 4"})
         should(reader.getMoves()[0].notation.disc).equal('d')
     })
@@ -625,10 +624,10 @@ describe("Default a new read algorithm for PGN", function() {
 describe("When writing pgn for a game", function() {
     let reader
     let res
-    xit("should write an empty pgn string", function() {
+    it("should write only a result if an empty pgn string is given", function() {
         reader = new PgnReader({pgn: ""})
         res = reader.writePgn()
-        should(res).equal("")
+        should(res.trim()).equal("*")
     })
 
     it("should write the normalized notation of the main line with only one move", function() {
@@ -1023,15 +1022,39 @@ describe("When upvoting lines", function () {
 })
 
 describe("When searching moves", function () {
-    it("should find an existing move based on san")
-    it("should find an existing move based on the index of the move")
+    let reader: PgnReader
+    it("should find an existing move based on san", function () {
+        reader = new PgnReader({pgn: 'e4 e5 (d5 exd5)'})
+        let move = reader.findMove('d5')
+        should.exist(move)
+        should(move.variationLevel).equal(1)
+        should(reader.san(move)).equal('d5')
+    })
+    it("should find an existing move based on the index of the move", function () {
+        reader = new PgnReader({pgn: 'e4 e5 Nf3 Nc6 Bc4 Bc5'})
+        let move = reader.findMove(1)   // index starts with 1
+        should(reader.san(move)).equal('e4')
+        move = reader.findMove(3)
+        should(reader.san(move)).equal('Nf3')
+        move =reader.findMove(6)
+        should(reader.san(move)).equal('Bc5')
+    })
 })
 
 describe("When having read a game with variation", function () {
-    it("should ensure that startMainLine works")
-    it("should ensure that startVariation works")
-    it("should ensure that endVariation works")
-    it("should ensure that afterMoveWithVariation works")
+    let reader:PgnReader = new PgnReader({pgn: 'e4 e5 (d5 exd5 Qxd5) Nf3'})
+    it("should ensure that startMainLine works", function (){
+        should(reader.startMainLine(reader.getMove(0))).is.true()
+    })
+    it("should ensure that startVariation works", function () {
+        should(reader.startVariation(reader.findMove('d5'))).is.true()
+    })
+    it("should ensure that endVariation works", function () {
+        should(reader.endVariation(reader.findMove('Qxd5'))).is.true()
+    })
+    it("should ensure that afterMoveWithVariation works", function () {
+        should(reader.afterMoveWithVariation(reader.findMove('Nf3'))).is.true()
+    })
 })
 
 describe("!!When using setToStart", function () {
@@ -1074,9 +1097,27 @@ describe("When working with NAGs", function () {
 })
 
 describe("When having a game and wanting to add arrows and circles", function () {
-    it("should understand how to set arrows")
-    it("should understand how to set circles")
-    it("should understand how to set arrows andcircles")
+    let reader: PgnReader = new PgnReader({pgn: 'e4'})
+    let move = reader.getMove(0)
+    let arrows:Shape[] = [{ brush: 'g', orig: 'g1', dest: 'f3'}, { brush: 'Y', orig: 'e2', dest: 'e4'}]
+    let circles:Shape[] = [{ brush: 'r', orig: 'f1'}]
+    it("should understand how to set arrows", function (){
+        should(reader.san(move)).equal('e4')
+        reader.setShapes(move, arrows)
+        should.deepEqual(move.commentDiag.colorArrows, ['Gg1f3', 'Ye2e4'])
+    })
+    it("should understand how to set circles", function (){
+        reader.setShapes(move, circles)
+        should.deepEqual(move.commentDiag.colorFields, ['Rf1'])
+    })
+    it("should understand how to set arrows andcircles", function (){
+        reader = new PgnReader({pgn: 'e4'})
+        move = reader.getMove(0)
+        // @ts-ignore
+        reader.setShapes(move, arrows.concat(circles))
+        should.deepEqual(move.commentDiag.colorFields, ['Rf1'])
+        should.deepEqual(move.commentDiag.colorArrows, ['Gg1f3', 'Ye2e4'])
+    })
 })
 
 describe("Working with games with special characters", function () {
