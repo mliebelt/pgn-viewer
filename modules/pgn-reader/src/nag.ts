@@ -85,7 +85,7 @@ export function nagToSymbol (array): string {
  * @param string the NAG in the chess notation
  * @returns {*} the symbold like $0, $3, ...
  */
-export function symbolToNag (string): string {
+export function symbolToNag (string): string|null {
     const nag = PGN_NAGS[string]
     if (nag === undefined) {
         return null
@@ -99,4 +99,5 @@ export function hasDiagramNag (move): boolean {
     if (move.nag == null) return false
     return (move.nag.indexOf('$220') > -1) || (move.nag.indexOf('$221') > -1)
 }
+
 

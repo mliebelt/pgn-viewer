@@ -1,6 +1,8 @@
 import i18next from './i18n'
 // import {pgnReader} from '@mliebelt/pgn-reader'
-import { PgnReader} from '../../pgn-reader/lib'
+import { PgnReader} from '../../pgn-reader/lib/index.umd'
+// var PgnReader = require('../../pgn-reader/lib/index.umd').PgnReader
+import {hasDiagramNag, nagToSymbol} from '../../pgn-reader/lib/nag'
 import {Chessground} from 'chessground'
 import 'chessground/assets/chessground.base.css'
 import 'chessground/assets/chessground.brown.css'
@@ -698,7 +700,7 @@ let pgnBase = function (boardId, configuration) {
                 let nagele = createEle('nag', null, nagClass, null, _linkEle)
                 nagele.setAttribute('data-value', nag)
                 nagele.setAttribute('title', t('nag:' + nag))
-                let nagtext = that.mypgn.nagToSymbol([nag])
+                let nagtext = nagToSymbol([nag])
                 if ( (nagtext != nag) && nagtext) {
                     nagele.appendChild(document.createTextNode(nagtext))
                     nagele.classList.add('hideaddcontent')
@@ -867,7 +869,7 @@ let pgnBase = function (boardId, configuration) {
             makeMove(that.currentMove, currentCounter, move.fen)
             event.stopPropagation()
         })
-        if (that.mypgn.hasDiagramNag(move)) {
+        if (hasDiagramNag(move)) {
             const diaID = boardId + "dia" + currentCounter
             const diaDiv = createEle('div', diaID)
             _moveSpan.appendChild(diaDiv)

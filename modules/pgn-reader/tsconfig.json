@@ -1,15 +1,19 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "baseUrl": ".",
+    "target": "ES2015",
     "outDir": "lib",
     "declaration": true,
+    "sourceMap": true,
     "declarationMap": true,
     "module": "CommonJS",
     "allowJs": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": false,
+    "allowSyntheticDefaultImports": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": true,
     "moduleResolution": "Node"
   },
-  "include": ["src"]
+  "files": ["./src/fetch.ts", "./src/index.ts", "./src/nag.ts", "./src/pgn.ts", "./src/pgn.ts", "./src/types.ts"]
 }

@@ -1,5 +1,6 @@
 import * as should from "should"
-import {PgnReader, Shape} from "../lib"
+import {PgnReader} from "../lib/pgn.js"
+import {Shape} from '../lib/types.js'
 import {describe} from "mocha"
 import {readFile} from "../lib/fetch"
 

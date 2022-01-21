@@ -20,16 +20,16 @@ export type Shape = { brush: string, orig: Field, dest?: Field }
 export type PgnReaderMove = {
     drawOffer?: boolean;
     moveNumber?: number,
-    notation?: { fig?: string | null, strike?: 'x' | null, col?: string, row?: string, check?: string,
-        promotion?: string | null, notation?: string, disc?: string, drop?: boolean },
+    notation: { fig?: string | null, strike?: 'x' | null, col?: string, row?: string, check?: string,
+        promotion?: string | null, notation: string, disc?: string, drop?: boolean },
     variations: PgnReaderMove[],
     nag: string[],
     commentDiag?: GameComment,
     commentMove?: string,
     commentAfter?: string,
     turn?: Color
-    from?: Field,
-    to?: Field,
+    from: Field,
+    to: Field,
     fen?: string,
     index?: number,
     prev?: number,

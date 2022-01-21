@@ -20,7 +20,7 @@ export class StringBuilder {
     }
     lastChar(): string {
         if (this.strings.length === 0) {
-            return null
+            return ''
         }
         return this.strings[this.strings.length - 1].slice(-1)
     }

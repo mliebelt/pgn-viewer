@@ -1,7 +1,9 @@
-import { parse, split } from '@mliebelt/pgn-parser'
+let parse = require('@mliebelt/pgn-parser').parse
+// import { parse } from '@mliebelt/pgn-parser'
 import {ParseTreeOrArray, ParseTree, PgnMove, Tags, PgnDate, PgnTime, TimeControl} from '@mliebelt/pgn-parser/lib/types'
-import {Chess, ChessInstance} from 'chess.js'
+import {Chess} from 'chess.js'
 import * as nag from './nag'
+export { hasDiagramNag } from './nag'
 import {StringBuilder} from "./sb"
 import {
     Color,
@@ -30,7 +32,7 @@ export class PgnReader {
     configuration: PgnReaderConfiguration
     games: ParseTree[]
     moves: PgnReaderMove[]
-    chess: any
+    chess
     currentGameIndex: number
     endGame: string
 
@@ -60,6 +62,7 @@ export class PgnReader {
             }
             return Object.assign(defaults, configuration)
         }
+
         this.configuration = initializeConfiguration(configuration)
         this.chess = Chess()
         if (! this.configuration.lazyLoad) {
@@ -108,21 +111,21 @@ export class PgnReader {
 
     loadPgn():PgnReader {
         let hasManyGames = (): boolean => {
-            return this.configuration.manyGames
+            return this.configuration.manyGames || (this.configuration.manyGames !== undefined)
         }
         if (hasManyGames()) {
             this.loadMany()
             this.loadOne(this.games[0])
             return this
         }
-        let _mgame = parse(this.configuration.pgn, {startRule: 'game'}) as ParseTree
+        let _mgame = parse(this.configuration.pgn, {startRule: 'game'}) as unknown as ParseTree
         this.games = [_mgame]
         this.loadOne(_mgame)
         return this
     }
 
     loadMany () {
-        this.games = parse(this.configuration.pgn, {startRule: 'games'}) as ParseTree[];
+        this.games = parse(this.configuration.pgn, {startRule: 'games'}) as unknown as ParseTree[];
     }
     loadOne (game:ParseTree|number) {
         let interpretHeaders = (_game): void => {
@@ -713,7 +716,8 @@ export class PgnReader {
         let realMove: PgnReaderMove = {
             variations: [],
             nag: [],
-            notation: {}
+            notation: { notation: null},
+            from: 'a0', to: 'a0'
         }
         if (moveNumber == null) {
             this.setToStart();
