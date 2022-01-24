@@ -13,7 +13,7 @@
     "compression-webpack-plugin": "^9.2.0",
     "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",
-    "mocha": "^9.1.4",
+    "mocha": "^9.2.0",
     "nps": "^5.9.12",
     "should": "^13.2.3",
     "style-loader": "^3.3.1",
