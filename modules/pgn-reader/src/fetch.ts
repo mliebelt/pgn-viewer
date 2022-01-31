@@ -1,15 +1,16 @@
 const fetch = require('sync-fetch')
-const fs = require("fs")
-const path = require("path")
+import { readFileSync } from "fs"
+import path, {dirname, resolve} from "path"
 
 export function readFile(url: string) {
     let data
     try {
-        data = fs.readFileSync(url, 'utf8')
+        data = readFileSync(url, 'utf8')
         return data
     } catch (err) {
         try {
-            data = fs.readFileSync('file://' + path.resolve(url))
+            let fname = resolve(__dirname, '..', url)
+            data = readFileSync('file://' + path.resolve('../' + url))
             return data
         } catch (err2) {
             try {

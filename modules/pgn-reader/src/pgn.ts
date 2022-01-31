@@ -1,6 +1,9 @@
-let parse = require('@mliebelt/pgn-parser').parse
+// let parse = require('@mliebelt/pgn-parser').parse
+import { parse } from '@mliebelt/pgn-parser'
+// let parse = require('../tmp-lib/lib').parse
 // import { parse } from '@mliebelt/pgn-parser'
-import {ParseTreeOrArray, ParseTree, PgnMove, Tags, PgnDate, PgnTime, TimeControl} from '@mliebelt/pgn-parser/lib/types'
+import { ParseTree, PgnMove, PgnDate, PgnTime, TimeControl} from '@mliebelt/pgn-parser'
+// import {ParseTreeOrArray, ParseTree, PgnMove, Tags, PgnDate, PgnTime, TimeControl} from '@mliebelt/pgn-parser'
 import {Chess} from 'chess.js'
 import * as nag from './nag'
 export { hasDiagramNag } from './nag'
@@ -543,12 +546,18 @@ export class PgnReader {
         while (this.getMove(indexFirstMove) === null) { indexFirstMove += 1; }
         return write_pgn2(this.getMove(indexFirstMove), sb)
     }
-    setToStart (): void {
+
+    /**
+     * Sets the position to the start position, depending on the configuration. Returns the resulting position as FEN string.
+     * @return string The position as FEN string
+     */
+    setToStart (): string {
         if (this.configuration.position === 'start') {
             this.chess.reset()
         } else {
             this.chess.load(this.configuration.position)
         }
+        return this.chess.fen()
     }
     eachMove (movesMainLine: PgnMove[]) {
         this.moves = []

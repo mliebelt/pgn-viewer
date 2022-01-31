@@ -2,7 +2,7 @@ import i18next from './i18n'
 // import {pgnReader} from '@mliebelt/pgn-reader'
 import { PgnReader} from '../../pgn-reader/lib/index.umd'
 // var PgnReader = require('../../pgn-reader/lib/index.umd').PgnReader
-import {hasDiagramNag, nagToSymbol} from '../../pgn-reader/lib/nag'
+import {hasDiagramNag, nagToSymbol, NAGs} from '../../pgn-reader/lib/nag'
 import {Chessground} from 'chessground'
 import 'chessground/assets/chessground.base.css'
 import 'chessground/assets/chessground.brown.css'
@@ -68,7 +68,7 @@ let pgnBase = function (boardId, configuration) {
         return that.configuration.mode === mode
     }
     function possibleMoves (fen) {
-        return new Map(Object.entries(that.mypgn.possibleMoves(fen)))
+        return that.mypgn.possibleMoves(fen)
     }
     function id (id) {
         return that.configuration.IDs[id]
@@ -370,7 +370,7 @@ let pgnBase = function (boardId, configuration) {
                 function generateLink(link, nagDiv) {
                     let generateIcon = function (icon, myLink) {
                         let ele = createEle('i', null, null, theme, myLink)
-                        let i = that.mypgn.NAGS[icon] || ''
+                        let i = NAGs[icon] || ''
                         ele.setAttribute("data-symbol", i)
                         ele.setAttribute("data-value", icon)
                         ele.textContent = t('nag:$' + icon + "_menu")
@@ -639,11 +639,11 @@ let pgnBase = function (boardId, configuration) {
             el.classList.add('coords-inner')
         }
         if (hasMode('edit')) {
-            setGameToPosition(configuration.position)
+            let _fen = that.mypgn.setToStart()
             let toMove = (chess.turn() == 'w') ? 'white' : 'black'
             that.board.set({
                 movable: Object.assign({}, that.board.state.movable,
-                    {color: toMove, dests: possibleMoves(configuration.position), showDests: true}),
+                    {color: toMove, dests: possibleMoves(_fen), showDests: true}),
                 turnColor: toMove, check: chess.in_check()
             })
         }

@@ -9,7 +9,11 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Changed
 
+* [#310](https://github.com/mliebelt/PgnViewerJS/issues/310) Implemented pgn-reader in Typescript
+
 ### Fixed
+
+* [#323](https://github.com/mliebelt/PgnViewerJS/issues/323) Splitted reading files from rest
 
 ## 1.5.13 2022-01-06
 

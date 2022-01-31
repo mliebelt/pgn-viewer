@@ -1,5 +1,5 @@
 import * as should from "should"
-import {readFile} from "../lib/fetch"
+import {readFile} from "../src/fetch"
 import {describe} from "mocha"
 
 describe("Base functionality readPgnFromFile", function () {
