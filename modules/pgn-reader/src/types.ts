@@ -5,6 +5,9 @@ export const PROMOTIONS = {
     'n': 'knight'
 }
 
+export const prom_short = ['q', 'r', 'b', 'n']
+export type PROMOTIONS_SHORT = typeof prom_short[number]
+
 export const colors = ['white', 'black'] as const;
 export const files = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'] as const;
 export const ranks = ['1', '2', '3', '4', '5', '6', '7', '8'] as const;
@@ -39,7 +42,8 @@ export type PgnReaderMove = {
 
 export type PrimitiveMove = {
     from: Field,
-    to: Field
+    to: Field,
+    promotion?: PROMOTIONS_SHORT
 }
 
 export type PgnReaderConfiguration = {

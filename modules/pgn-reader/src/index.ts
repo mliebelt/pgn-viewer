@@ -1,2 +1,2 @@
-export * from './pgn'
+export { PgnReader } from './pgn'
 export * from './types'

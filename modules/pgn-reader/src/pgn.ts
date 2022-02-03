@@ -29,7 +29,7 @@ let isBrowser=new Function("try {return this===window;}catch(e){ return false;}"
  * The reader is an abstraction that just knows the current games, and handles changes by keeping the change
  * in the state of the game. So all local storage in the reader should be avoided besides `configuration`, `games`
  * and `currentGameIndex`.
- * @param {*} configuration Given values this are relevant for reading and working with PGN
+ * @param {*} configuration Given values are relevant for reading and working with PGN
  */
 export class PgnReader {
     configuration: PgnReaderConfiguration

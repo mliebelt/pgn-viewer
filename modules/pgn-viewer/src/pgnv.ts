@@ -1,7 +1,6 @@
 import i18next from './i18n'
 // import {pgnReader} from '@mliebelt/pgn-reader'
-import { PgnReader} from '../../pgn-reader/lib/index.umd'
-// var PgnReader = require('../../pgn-reader/lib/index.umd').PgnReader
+import { PgnReader} from '../../pgn-reader/src/pgn'
 import {hasDiagramNag, nagToSymbol, NAGs} from '../../pgn-reader/lib/nag'
 import {Chessground} from 'chessground'
 import 'chessground/assets/chessground.base.css'
@@ -9,7 +8,12 @@ import 'chessground/assets/chessground.brown.css'
 import Timer from './Timer'
 import Mousetrap from 'mousetrap'
 import swal from 'sweetalert'
-import resizeHandle from "./resize";
+import resizeHandle from "./resize"
+import { Base } from "./types"
+import {PrimitiveMove, PROMOTIONS} from "../../pgn-reader/src/types"
+import { pgnEdit } from 'src'
+import {Color} from "chessground/types";
+import {Config} from "chessground/config";
 
 /**
  * This implements the base function that is used to display a board, a whole game
@@ -20,7 +24,7 @@ import resizeHandle from "./resize";
  */
 let pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
-    let that = {}
+    let that:Base = { mypgn: null, board: null }
     that.userConfiguration = configuration
     // Sets the default parameters for all modes. See individual functions for individual overwrites
     let defaults = {
@@ -59,7 +63,7 @@ let pgnBase = function (boardId, configuration) {
             colorMarkerId: boardId + 'ColorMarker'
         }
     }
-    that.promMappings = {q: 'queen', r: 'rook', b: 'bishop', n: 'knight'}
+    // @ts-ignore
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration)
     that.mypgn = new PgnReader(that.configuration)
     let chess = that.mypgn.chess     // Use the same instance from chess.src
@@ -214,7 +218,7 @@ let pgnBase = function (boardId, configuration) {
         const m = chess.move(san)
         if (m === null) return
         chess.undo()
-        onSnapEnd(m.from, m.to)
+        onSnapEnd(m.from, m.to, null)
         that.board.set({fen: chess.fen()})
     }
 
@@ -229,7 +233,7 @@ let pgnBase = function (boardId, configuration) {
         //console.log("Move from: " + from + " To: " + to + " Meta: " + JSON.stringify(meta, null, 2))
         //board.set({fen: game.fen()})
         const cur = that.currentMove
-        let primMove = {from: from, to: to}
+        let primMove:PrimitiveMove = {from: from, to: to}
         if ((that.mypgn.chess.get(from).type === 'p') && ((to.substring(1, 2) === '8') || (to.substring(1, 2) === '1'))) {
             swal("Select the promotion figure", {
                 buttons: {
@@ -251,7 +255,7 @@ let pgnBase = function (boardId, configuration) {
                 that.board.setPieces(pieces)
                 pieces.set(to,{
                     color: (move.turn == 'w' ? 'white' : 'black'),
-                    role: that.promMappings[primMove.promotion],
+                    role: PROMOTIONS[primMove.promotion],
                     promoted: true
                 })
                 that.board.setPieces(pieces)
@@ -274,7 +278,7 @@ let pgnBase = function (boardId, configuration) {
                 check: chess.in_check()
             })
             //makeMove(null, that.currentMove, move.fen)
-            let fenView = document.getElementById(id('fenId'))
+            let fenView = document.getElementById(id('fenId')) as HTMLTextAreaElement
             if (fenView) {
                 fenView.value = move.fen
             }
@@ -284,7 +288,7 @@ let pgnBase = function (boardId, configuration) {
     }
 
     // Utility function for generating general HTML elements with id, class (with theme)
-    function createEle(kind, id, clazz, my_theme, father) {
+    function createEle(kind, id, clazz?, my_theme?, father?) {
         const ele = document.createElement(kind)
         if (id) {
             ele.setAttribute("id", id)
@@ -479,6 +483,7 @@ let pgnBase = function (boardId, configuration) {
             })
             if (hasMode('edit')) {
                 document.getElementById(id('fenId')).onpaste = function (e) {
+                    // @ts-ignore
                     const pastedData = e.originalEvent.clipboardData.getData('text')
                     // console.log(pastedData)
                     that.configuration.position = pastedData
@@ -486,6 +491,7 @@ let pgnBase = function (boardId, configuration) {
                     pgnEdit(boardId, that.configuration)
                 }
             } else {
+                // @ts-ignore
                 document.getElementById(id('fenId')).readonly = true
             }
         }
@@ -515,6 +521,7 @@ let pgnBase = function (boardId, configuration) {
                 e.target.select()
             })
             document.getElementById("textpgn" + id('buttonsId')).onpaste = function (e) {
+                // @ts-ignore
                 const pastedData = e.originalEvent.clipboardData.getData('text')
                 that.configuration.pgn = pastedData
                 pgnEdit(boardId, that.configuration)
@@ -595,7 +602,9 @@ let pgnBase = function (boardId, configuration) {
         }
 
         // Default values of the board, if not overwritten by the given configuration
-        that.boardConfig = {coordsInner: true, coordsFactor: 1.0, disableContextMenu: true,
+        that.boardConfig = { coordsInner: true, coordsFactor: 1.0 }
+        let chessgroundBoardConfig:Config = {
+            disableContextMenu: true,
             drawable: {
                 onChange: (shapes) => {
                     let move = that.mypgn.getMove(that.currentMove)
@@ -609,9 +618,9 @@ let pgnBase = function (boardId, configuration) {
                 'coordsFontSize'])
         boardConfig.resizable = true
         if (typeof boardConfig.showCoords != 'undefined') {
-            boardConfig.coordinates = boardConfig.showCoords
+            chessgroundBoardConfig.coordinates = boardConfig.showCoords
         }
-        boardConfig.fen = boardConfig.position
+        chessgroundBoardConfig.fen = boardConfig.position
         const el = document.getElementById(id('innerBoardId'))
         if (typeof that.configuration.pieceStyle != 'undefined') {
             el.className += " " + that.configuration.pieceStyle
@@ -623,7 +632,7 @@ let pgnBase = function (boardId, configuration) {
         let moduloWidth = currentWidth % 8
         let smallerWidth = currentWidth - moduloWidth
         if (that.configuration.resizable) {
-            boardConfig.events = {
+            chessgroundBoardConfig.events = {
                 insert(elements) {
                     resizeHandle(that, el, el.firstChild, smallerWidth, resizeLayout)
                 }
@@ -631,7 +640,7 @@ let pgnBase = function (boardId, configuration) {
         }
         // Ensure that boardWidth is a multiply of 8
         // boardConfig.width = "" + smallerWidth +"px"
-        that.board = Chessground(el, boardConfig)
+        that.board = Chessground(el, chessgroundBoardConfig)
         // resizeHandle(that, el, el.firstChild, smallerWidth, resizeLayout)
         //console.log("Board width: " + board.width)
         recomputeCoordsFonts(boardConfig, el);
@@ -640,7 +649,7 @@ let pgnBase = function (boardId, configuration) {
         }
         if (hasMode('edit')) {
             let _fen = that.mypgn.setToStart()
-            let toMove = (chess.turn() == 'w') ? 'white' : 'black'
+            let toMove:Color = (chess.turn() == 'w') ? 'white' : 'black'
             that.board.set({
                 movable: Object.assign({}, that.board.state.movable,
                     {color: toMove, dests: possibleMoves(_fen), showDests: true}),
@@ -677,7 +686,7 @@ let pgnBase = function (boardId, configuration) {
         if (move.notation && move.notation.fig) {
             const locale = that.configuration.locale
             const figurine = that.configuration.figurine
-            const fig = (!locale || figurine) ? move.notation.fig : t("chess:" + move.notation.fig, locale)
+            const fig = (!locale || figurine) ? move.notation.fig : t("chess:" + move.notation.fig)
             const figele = createEle('fig', null, figclass, null, _linkEle)
             figele.appendChild(document.createTextNode(fig))
             _san = that.mypgn.san(move).substring(1)
@@ -743,7 +752,7 @@ let pgnBase = function (boardId, configuration) {
             span.appendChild(filler)
         }
 
-        function appendCommentSpan (span, comment, clazz, fillNeeded) {
+        function appendCommentSpan (span, comment, clazz, fillNeeded?) {
             let cSpan = generateCommentSpan(comment, clazz)
             if (cSpan) {
                 if (fillNeeded) {
@@ -763,7 +772,9 @@ let pgnBase = function (boardId, configuration) {
                 let _ind = move.prev ? that.mypgn.getMove(move.prev).next : that.mypgn.getFirstMove().index
                 let _ele = moveSpan(_ind)
                 let _next = _ele.nextSibling
+                // @ts-ignore
                 while (_next && (_next.localName !== 'move-number') && (_next.localName !== 'move')){
+                    // @ts-ignore
                     _ele = _next
                     _next = _ele.nextSibling
                 }
@@ -780,7 +791,7 @@ let pgnBase = function (boardId, configuration) {
             base.generateHTML()
             base.generateBoard()
         }
-        function createMoveNumberSpan(currentMove, spanOrDiv, isVariation, additionalClass) {
+        function createMoveNumberSpan(currentMove, spanOrDiv, isVariation, additionalClass?) {
             const mn = currentMove.moveNumber
             const clazz = additionalClass ? additionalClass : ""
             const num = createEle('move-number', null, clazz, null, spanOrDiv)
@@ -851,7 +862,7 @@ let pgnBase = function (boardId, configuration) {
 
         if (that.configuration.timeAnnotation != 'none' && move.commentDiag && move.commentDiag.clk) {
             let cl_time = move.commentDiag.clk
-            let cl_class = that.configuration.timeAnnotation.class || 'timeNormal'
+            let cl_class = that.configuration.timeAnnotation?.class || 'timeNormal'
             let clock_span = generateCommentSpan(cl_time, cl_class)
             if (that.configuration.timeAnnotation.colorClass) {
                 clock_span.style = "color: " + that.configuration.timeAnnotation.colorClass
@@ -928,8 +939,8 @@ let pgnBase = function (boardId, configuration) {
             })
             let nags = move.nag || []
             nags.forEach(function (eachNag) {
-                divBoard.querySelector('#nagMenu' + id('buttonsId') + ' [data-value="' + eachNag.substring(1) + '"]')
-                    .parentNode.classList.toggle('active')
+                // @ts-ignore
+                divBoard.querySelector('#nagMenu' + id('buttonsId') + ' [data-value="' + eachNag.substring(1) + '"]').parentNode.classList.toggle('active')
             })
         } catch (err) {
 
@@ -979,13 +990,18 @@ let pgnBase = function (boardId, configuration) {
             let myMove = that.mypgn.getMove(moveNumber)
             if (!~myMove) return
             if (myMove.commentAfter) {
-                document.querySelector('#' + boardId + " input.afterComment").checked = true
-                document.querySelector('#' + boardId + " textarea.comment").value = myMove.commentAfter
+                let ac = document.querySelector('#' + boardId + " input.afterComment") as HTMLInputElement
+                ac.checked = true
+                let tac = document.querySelector('#' + boardId + " textarea.comment") as HTMLTextAreaElement
+                tac.value = myMove.commentAfter
             } else if (myMove.commentMove) {
-                document.querySelector('#' + boardId + " input.moveComment").checked = true
-                document.querySelector('#' + boardId + " textarea.comment").value = myMove.commentMove
+                let imc = document.querySelector('#' + boardId + " input.moveComment") as HTMLInputElement
+                imc.checked = true
+                let tac = document.querySelector('#' + boardId + " textarea.comment") as HTMLTextAreaElement
+                tac.value = myMove.commentMove
             } else {
-                document.querySelector('#' + boardId + " textarea.comment").value = ""
+                let tac = document.querySelector('#' + boardId + " textarea.comment") as HTMLTextAreaElement
+                tac.value = ""
             }
         }
 
@@ -996,7 +1012,7 @@ let pgnBase = function (boardId, configuration) {
                 let pieces = new Map()
                 pieces[aMove.to] =
                     {
-                        role: that.mypgn.PROMOTIONS[promPiece],
+                        role: PROMOTIONS[promPiece],
                         color: (aMove.turn == 'w' ? 'white' : 'black')
                     }
                 that.board.setPieces(pieces)
@@ -1031,7 +1047,7 @@ let pgnBase = function (boardId, configuration) {
             scrollToView(moveSpan(next))
         }
         if (hasMode('edit')) {
-            let col = chess.turn() == 'w' ? 'white' : 'black'
+            let col: Color = chess.turn() == 'w' ? 'white' : 'black'
             that.board.set({
                 movable: Object.assign({}, that.board.state.movable, {color: col, dests: possibleMoves(myFen), showDests: true}),
                 turnColor: col, check: chess.in_check()
@@ -1040,13 +1056,13 @@ let pgnBase = function (boardId, configuration) {
                 fillComment(next)
             }
         } else if (hasMode('view')) {
-            let col = chess.turn() == 'w' ? 'white' : 'black'
+            let col: Color = chess.turn() == 'w' ? 'white' : 'black'
             that.board.set({
                 movable: Object.assign({}, that.board.state.movable, {color: col}),
                 turnColor: col, check: chess.in_check()
             })
         }
-        let fenView = document.getElementById(id('fenId'))
+        let fenView:HTMLTextAreaElement = document.getElementById(id('fenId')) as HTMLTextAreaElement
         if (fenView) {
             fenView.value = fen
         }
@@ -1056,7 +1072,7 @@ let pgnBase = function (boardId, configuration) {
     }
 
     function setGameToPosition(pos) {
-        if (pos == 'start' | typeof pos === 'undefined') {
+        if (pos == 'start' || typeof pos === 'undefined') {
             chess.reset()
         } else {
             chess.load(pos)
@@ -1082,15 +1098,16 @@ let pgnBase = function (boardId, configuration) {
         /** Fill the drop down with loaded game. */
         function fillGamesDropDown() {
             let _games = that.mypgn.getGames()
-            let _select = document.getElementById(boardId + 'Games')
+            let _select = document.getElementById(boardId + 'Games') as HTMLSelectElement
             for (let i=0; i < _games.length; i++) {
                 let _el = document.createElement('option')
                 let _game = _games[i]
                 _el.text = printTags(_game)
-                _el.value = i
+                _el.value = '' + i
                 _select.add(_el)
             }
             _select.addEventListener('change', function (ev) {
+                // @ts-ignore
                 that.mypgn.loadOne(parseInt(ev.currentTarget.value))
                 regenerateMoves(that.mypgn.getMoves())
                 // bindFunctions()
@@ -1121,7 +1138,7 @@ let pgnBase = function (boardId, configuration) {
         if (that.board) {
             that.board.set({fen: chess.fen()})
         }
-        let fenField = document.getElementById(id('fenId'))
+        let fenField = document.getElementById(id('fenId')) as HTMLTextAreaElement
         if (isElement(fenField)) {
             fenField.value = chess.fen()
         }
@@ -1228,7 +1245,7 @@ let pgnBase = function (boardId, configuration) {
             addEventListener(id('buttonsId') + 'flipper', 'click', function () {
                 // TODO The following is a hack to keep the fontSize of the coords.  There is no option in Chessground
                 //  to set the font size of coords. See generateBoard for the original setting of font size
-                let coordsComp = document.querySelector("#" + boardId).querySelector("coords")
+                let coordsComp = document.querySelector("#" + boardId).querySelector("coords") as HTMLElement
                 let fs
                 if (coordsComp) {
                     fs = coordsComp.style.fontSize
@@ -1236,7 +1253,7 @@ let pgnBase = function (boardId, configuration) {
                 that.board.toggleOrientation()
                 if (coordsComp) {
                     document.querySelector("#" + boardId).querySelectorAll("coords").forEach(element => {
-                        element.style.fontSize = fs
+                        (element as HTMLElement).style.fontSize = fs
                     })
                     adjustFontForCoords(parseInt(fs), that.configuration, document.querySelector("#" + boardId))
                 }
@@ -1259,12 +1276,13 @@ let pgnBase = function (boardId, configuration) {
                 const pgnButton = document.getElementById(id('buttonsId') + "pgn")
                 const pgnText = document.getElementById(boardId + " .textpgn")
                 document.getElementById(id('buttonsId') + "pgn").classList.toggle('selected')
+                const textPgn = document.querySelector("#" + boardId + " .textpgn") as HTMLElement
                 if (document.getElementById(id('buttonsId') + "pgn").classList.contains('selected')) {
                     const str = computePgn()
                     showPgn(str)
-                    document.querySelector("#" + boardId + " .textpgn").style.display = 'block' //slideDown(700, "linear")
+                    textPgn.style.display = 'block' //slideDown(700, "linear")
                 } else {
-                    document.querySelector("#" + boardId + " .textpgn").style.display = 'none'
+                    textPgn.style.display = 'none'
                 }
             }
             function toggleNagMenu () {
@@ -1306,15 +1324,17 @@ let pgnBase = function (boardId, configuration) {
                     let fen = that.mypgn.getMove(curr).fen
                     makeMove(null, that.currentMove, fen)
                 })
-                document.querySelector('#' + boardId + ' .textpgn').style.display = 'none'
-                document.querySelector('#comment' + id('buttonsId') + " textarea.comment").onchange = function () {
+                let textPgn = document.querySelector('#' + boardId + ' .textpgn') as HTMLElement
+                textPgn.style.display = 'none'
+                let tac = document.querySelector('#comment' + id('buttonsId') + " textarea.comment") as HTMLTextAreaElement
+                tac.onchange = function () {
                     function commentText() {
-                        return " " + document.querySelector('#' + 'comment' + id('buttonsId') + " textarea.comment").value + " "
+                        return " " + tac.value + " "
                     }
 
                     let text = commentText()
-                    let checked = document.querySelector('#' + "comment" + id('buttonsId') + " :checked")
-                    checked = checked ? checked.value : "after"
+                    let checkedElement = document.querySelector('#' + "comment" + id('buttonsId') + " :checked")
+                    let checked = checkedElement ? (checkedElement as HTMLTextAreaElement).value : "after"
                     let currentEle = moveSpan(that.currentMove)
                     let nextEle = currentEle.nextElementSibling
                     if (! nextEle) {
@@ -1337,7 +1357,9 @@ let pgnBase = function (boardId, configuration) {
                 const rad = ["moveComment", "afterComment"]
                 const prevComment = null
                 for (let i = 0; i < rad.length; i++) {
-                    document.querySelector('#' + 'comment' + id('buttonsId') + " ." + rad[i]).onclick = function () {
+                    let cb = document.querySelector('#' + 'comment' + id('buttonsId') + " ." + rad[i]) as HTMLInputElement
+                    cb.onclick = function () {
+                        // @ts-ignore
                         const checked = this.value
                         let text
                         if (checked === "after") {
@@ -1345,7 +1367,8 @@ let pgnBase = function (boardId, configuration) {
                         } else if (checked === "move") {
                             text = that.mypgn.getMove(that.currentMove).commentMove
                         }
-                        document.querySelector('#' + boardId + " textarea.comment").value = text
+                        let btac = document.querySelector('#' + boardId + " textarea.comment") as HTMLTextAreaElement
+                        btac.value = text
                     }
                 }
             }
@@ -1357,12 +1380,14 @@ let pgnBase = function (boardId, configuration) {
                     timer.start()
                 }
                 const playButton = document.getElementById(id('buttonsId') + 'play')
+                // @ts-ignore
                 let clString = playButton.childNodes[0].getAttribute('class')
                 if (clString.indexOf('play') < 0) { // has the stop button
                     clString = clString.replaceAll('pause', 'play')
                 } else {
                     clString = clString.replaceAll('play', 'pause')
                 }
+                // @ts-ignore
                 playButton.childNodes[0].setAttribute('class', clString)
             }
 
@@ -1503,7 +1528,7 @@ let pgnBase = function (boardId, configuration) {
         let _gamesHeight = that.configuration.manyGames ? '40px' : '0'
         if (that.configuration.layout === 'left' || that.configuration.layout === 'right') {
             divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px`
-            let _movesWidth = 0
+            let _movesWidth
             if (that.configuration.movesWidth) {
                 _movesWidth = that.configuration.movesWidth
             } else {
@@ -1550,4 +1575,4 @@ let pgnBase = function (boardId, configuration) {
     }
 }
 
-export default pgnBase
+export { pgnBase}
