@@ -1,7 +1,9 @@
 import i18next from './i18n'
 // import {pgnReader} from '@mliebelt/pgn-reader'
-import { PgnReader} from '../../pgn-reader/src/pgn'
-import {hasDiagramNag, nagToSymbol, NAGs} from '../../pgn-reader/lib/nag'
+import { PgnReader} from '@mliebelt/pgn-reader'
+// import { PgnReader} from '../../pgn-reader/lib/index.umd'
+import {hasDiagramNag, nagToSymbol, NAGs} from '@mliebelt/pgn-reader'
+// import {hasDiagramNag, nagToSymbol, NAGs} from '../../pgn-reader/lib/index.umd'
 import {Chessground} from 'chessground'
 import 'chessground/assets/chessground.base.css'
 import 'chessground/assets/chessground.brown.css'
@@ -9,9 +11,10 @@ import Timer from './Timer'
 import Mousetrap from 'mousetrap'
 import swal from 'sweetalert'
 import resizeHandle from "./resize"
-import { Base } from "./types"
-import {PrimitiveMove, PROMOTIONS} from "../../pgn-reader/src/types"
-import { pgnEdit } from 'src'
+import { Base, PrimitiveMove} from "./types"
+// @ts-ignore
+import {PROMOTIONS} from "@mliebelt/pgn-reader"
+import { pgnEdit } from '.'
 import {Color} from "chessground/types";
 import {Config} from "chessground/config";
 
@@ -1200,10 +1203,10 @@ let pgnBase = function (boardId, configuration) {
             }
             function bind_key (key, to_call) {
                 const form = document.querySelector("#" + boardId + ",#" + boardId + "Moves")
-                Mousetrap(form).bind(key, function (evt) {
-                    to_call()
-                    evt.stopPropagation()
-                })
+                // Mousetrap(form).bind(key, function (evt) {
+                //     to_call()
+                //     evt.stopPropagation()
+                // })
             }
             function nextMove () {
                 let fen = null
@@ -1238,6 +1241,7 @@ let pgnBase = function (boardId, configuration) {
             function firstMove () {
                 makeMove(null, null, null)
             }
+            // @ts-ignore
             const timer = new Timer(10)
             timer.bind(that.configuration.timerTime, function () {
                 nextMove()

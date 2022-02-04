@@ -20,6 +20,12 @@ export type GameComment = { comment?: string, colorArrows?: string[], colorField
 export type Color = 'w' | 'b'
 export type Shape = { brush: string, orig: Field, dest?: Field }
 
+export type PrimitiveMove = {
+    from: Field,
+    to: Field,
+    promotion?: PROMOTIONS_SHORT
+}
+
 export type PgnReaderMove = {
     drawOffer?: boolean;
     moveNumber?: number,
@@ -38,12 +44,6 @@ export type PgnReaderMove = {
     prev?: number,
     next?: number,
     variationLevel?: number
-}
-
-export type PrimitiveMove = {
-    from: Field,
-    to: Field,
-    promotion?: PROMOTIONS_SHORT
 }
 
 export type PgnReaderConfiguration = {

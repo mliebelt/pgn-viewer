@@ -1,10 +1,11 @@
-import smoothscroll from 'smoothscroll-polyfill'
+// import smoothscroll from 'smoothscroll-polyfill'
 import { pgnBase } from "./pgnv"
+import { PgnReader} from "../../pgn-reader/lib/index.umd";
 import './css/theme.css'
 import './css/pgnvjs.css'
 
 // kick off the polyfill!
-smoothscroll.polyfill()
+// smoothscroll.polyfill()
 
 // Users of PgnViewerJS may redefine some defaults by defining globally the var `PgnBaseDefaults.
 // This will be merged then with the defaults defined by the app itself.

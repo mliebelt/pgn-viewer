@@ -1,8 +1,6 @@
-// @ts-ignore
-import { PgnReader } from "../../pgn-reader/lib/index.umd"
 import {Api} from "chessground/api"
-
-export type PgnReader = PgnReader
+import {PgnReader} from "../../pgn-reader/lib/index.umd";
+import {Field, PROMOTIONS_SHORT} from "../../pgn-reader/lib/"
 
 export type Base = {
     userConfiguration?: PgnViewerConfiguration,
@@ -56,4 +54,10 @@ export type PgnViewerConfiguration = {
     i18n:Function,
     defaultI18n:Function,
 
+}
+
+export type PrimitiveMove = {
+    from: Field,
+    to: Field,
+    promotion?: PROMOTIONS_SHORT
 }

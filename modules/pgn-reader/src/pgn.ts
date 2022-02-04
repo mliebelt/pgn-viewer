@@ -6,18 +6,13 @@ import { ParseTree, PgnMove, PgnDate, PgnTime, TimeControl} from '@mliebelt/pgn-
 // import {ParseTreeOrArray, ParseTree, PgnMove, Tags, PgnDate, PgnTime, TimeControl} from '@mliebelt/pgn-parser'
 import {Chess} from 'chess.js'
 import * as nag from './nag'
-export { hasDiagramNag } from './nag'
 import {StringBuilder} from "./sb"
 import {
-    Color,
-    Field,
-    GameComment,
-    Message,
-    PgnReaderConfiguration,
-    PgnReaderMove,
-    PrimitiveMove,
-    Shape
-} from "./types"
+    Color, Field, GameComment, Message, PgnReaderConfiguration, PgnReaderMove, PrimitiveMove,
+    PROMOTIONS, Shape } from "./types"
+
+export { hasDiagramNag, nagToSymbol, NAGs } from './nag'
+export { PROMOTIONS} from './types'
 
 let isBrowser=new Function("try {return this===window;}catch(e){ return false;}")
 

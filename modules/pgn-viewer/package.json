@@ -13,7 +13,7 @@
     "README.md",
     "LICENSE"
   ],
-  "module": "modules/pgn-viewer/src/index.js",
+  "module": "modules/pgn-viewer/src/index.ts",
   "author": "mliebelt",
   "license": "GPL-3.0-or-later",
   "repository": {
@@ -23,7 +23,7 @@
   "scripts": {
     "clean": "rm -fr lib/*",
     "build": "../../node_modules/.bin/webpack --config webpack.prod.js",
-    "cjs": "npm run clean && tsc",
+    "cjs": "npm run clean && tsc && cp -r ./src/img ./lib/pgn-viewer/src/ && cp -r ./src/css ./lib/pgn-viewer/src/ && cp -r ./src/fontawesome ./lib/pgn-viewer/src/",
     "start": "../../node_modules/.bin/webpack serve --config webpack.dev.js",
     "server": "http-server",
     "gen_i18n": "./bin/gen-i18n.js"

@@ -3,18 +3,19 @@
     "baseUrl": ".",
     "target": "ES2015",
     "outDir": "lib",
-    "declaration": true,
-    "declarationMap": true,
+//    "declaration": true,
+//    "declarationMap": true,
     "sourceMap": true,
     "module": "CommonJS",
     "allowJs": true,
-    "noImplicitReturns": true,
+//    "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true,
-    "suppressImplicitAnyIndexErrors": true,
+//    "allowSyntheticDefaultImports": true,
+//    "suppressImplicitAnyIndexErrors": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "Node",
     "skipLibCheck": true
   },
-  "files": ["./src/index.ts", "./src/pgnv.ts", "./src/types.ts"]
+  "files": ["./src/index.ts", "./src/pgnv.ts", "./src/types.ts", "./src/Timer.ts", "./src/resize.ts"],
+  "exclude": ["../pgn-reader/lib/*"]
 }
