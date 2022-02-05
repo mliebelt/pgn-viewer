@@ -13,10 +13,9 @@ let  millisecondsToTicks = function(milliseconds:number, resolution:number) {
 };
 
 
-function Timer(resolution) {
+function Timer(resolution:number):void {
 
     if (this instanceof Timer === false) {
-        // @ts-ignore
         return new Timer(resolution);
     }
 

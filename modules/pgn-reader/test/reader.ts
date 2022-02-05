@@ -1114,7 +1114,6 @@ describe("When having a game and wanting to add arrows and circles", function ()
     it("should understand how to set arrows andcircles", function (){
         reader = new PgnReader({pgn: 'e4'})
         move = reader.getMove(0)
-        // @ts-ignore
         reader.setShapes(move, arrows.concat(circles))
         should.deepEqual(move.commentDiag.colorFields, ['Rf1'])
         should.deepEqual(move.commentDiag.colorArrows, ['Gg1f3', 'Ye2e4'])

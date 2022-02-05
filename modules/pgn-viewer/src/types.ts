@@ -1,11 +1,14 @@
 import {Api} from "chessground/api"
 import {PgnReader} from "../../pgn-reader/lib/index.umd";
 import {Field, PROMOTIONS_SHORT} from "../../pgn-reader/lib/"
+import Mousetrap from "mousetrap-ts";
+import {Config} from "chessground/config";
 
 export type Base = {
     userConfiguration?: PgnViewerConfiguration,
     configuration?: PgnViewerConfiguration,
     mypgn: PgnReader,
+    mousetrap: Mousetrap,
     board: Api,
     errorDiv?:any,
     currentMove?: number,
@@ -49,11 +52,11 @@ export type PgnViewerConfiguration = {
     colorMarker?:string,
     showFen?:boolean,
     manyGames?:boolean,
-    locale:string,
-    position:string,
-    i18n:Function,
-    defaultI18n:Function,
-
+    locale?:string,
+    position?:string,
+    i18n?:Function,
+    defaultI18n?:Function,
+    movable?:Config,
 }
 
 export type PrimitiveMove = {

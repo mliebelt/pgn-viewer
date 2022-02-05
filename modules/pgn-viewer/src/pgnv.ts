@@ -1,18 +1,14 @@
 import i18next from './i18n'
-// import {pgnReader} from '@mliebelt/pgn-reader'
 import { PgnReader} from '@mliebelt/pgn-reader'
-// import { PgnReader} from '../../pgn-reader/lib/index.umd'
 import {hasDiagramNag, nagToSymbol, NAGs} from '@mliebelt/pgn-reader'
-// import {hasDiagramNag, nagToSymbol, NAGs} from '../../pgn-reader/lib/index.umd'
 import {Chessground} from 'chessground'
 import 'chessground/assets/chessground.base.css'
 import 'chessground/assets/chessground.brown.css'
 import Timer from './Timer'
-import Mousetrap from 'mousetrap'
+import Mousetrap from 'mousetrap-ts'
 import swal from 'sweetalert'
 import resizeHandle from "./resize"
 import { Base, PrimitiveMove} from "./types"
-// @ts-ignore
 import {PROMOTIONS} from "@mliebelt/pgn-reader"
 import { pgnEdit } from '.'
 import {Color} from "chessground/types";
@@ -27,7 +23,7 @@ import {Config} from "chessground/config";
  */
 let pgnBase = function (boardId, configuration) {
     // Section defines the variables needed everywhere.
-    let that:Base = { mypgn: null, board: null }
+    let that:Base = { mypgn: null, board: null, mousetrap: null }
     that.userConfiguration = configuration
     // Sets the default parameters for all modes. See individual functions for individual overwrites
     let defaults = {
@@ -66,9 +62,9 @@ let pgnBase = function (boardId, configuration) {
             colorMarkerId: boardId + 'ColorMarker'
         }
     }
-    // @ts-ignore
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration)
     that.mypgn = new PgnReader(that.configuration)
+
     let chess = that.mypgn.chess     // Use the same instance from chess.src
     let theme = that.configuration.theme || 'default'
     function hasMode (mode) {
@@ -420,9 +416,14 @@ let pgnBase = function (boardId, configuration) {
             ma.name = "radio"
             createEle("label", null, "labelAfterComment", theme, radio).appendChild(document.createTextNode("After"))
             createEle("textarea", null, "comment", theme, commentDiv)
+            that.mousetrap.stopCallback = function (e, element) {
+                if (element.localName === 'textarea') { return true }
+                return false
+            }
         }
 
         const divBoard = document.getElementById(boardId)
+        that.mousetrap = new Mousetrap(divBoard)
         if (divBoard == null) {
             return
         } else {
@@ -486,16 +487,15 @@ let pgnBase = function (boardId, configuration) {
             })
             if (hasMode('edit')) {
                 document.getElementById(id('fenId')).onpaste = function (e) {
-                    // @ts-ignore
-                    const pastedData = e.originalEvent.clipboardData.getData('text')
+                    const pastedData = e.clipboardData.getData('text')
                     // console.log(pastedData)
                     that.configuration.position = pastedData
                     that.configuration.pgn = ''
                     pgnEdit(boardId, that.configuration)
                 }
             } else {
-                // @ts-ignore
-                document.getElementById(id('fenId')).readonly = true
+                let fenele = document.getElementById(id('fenId')) as HTMLTextAreaElement
+                fenele.readOnly = true
             }
         }
 
@@ -524,8 +524,7 @@ let pgnBase = function (boardId, configuration) {
                 e.target.select()
             })
             document.getElementById("textpgn" + id('buttonsId')).onpaste = function (e) {
-                // @ts-ignore
-                const pastedData = e.originalEvent.clipboardData.getData('text')
+                const pastedData = e.clipboardData.getData('text')
                 that.configuration.pgn = pastedData
                 pgnEdit(boardId, that.configuration)
             }
@@ -606,8 +605,10 @@ let pgnBase = function (boardId, configuration) {
 
         // Default values of the board, if not overwritten by the given configuration
         that.boardConfig = { coordsInner: true, coordsFactor: 1.0 }
+        // @ts-ignore
         let chessgroundBoardConfig:Config = {
             disableContextMenu: true,
+            movable: that.configuration.movable as Config["movable"],
             drawable: {
                 onChange: (shapes) => {
                     let move = that.mypgn.getMove(that.currentMove)
@@ -655,7 +656,7 @@ let pgnBase = function (boardId, configuration) {
             let toMove:Color = (chess.turn() == 'w') ? 'white' : 'black'
             that.board.set({
                 movable: Object.assign({}, that.board.state.movable,
-                    {color: toMove, dests: possibleMoves(_fen), showDests: true}),
+                    {color: toMove, dests: possibleMoves(_fen), showDests: true, free: false}),
                 turnColor: toMove, check: chess.in_check()
             })
         }
@@ -933,7 +934,7 @@ let pgnBase = function (boardId, configuration) {
         }
         // Update the drop-down for NAGs
         try {
-            if (move === undefined) {
+            if (move === undefined || that.configuration.mode !== 'edit') {
                 return
             }
             let nagMenu = document.querySelector('#nagMenu' + id('buttonsId'))
@@ -942,8 +943,8 @@ let pgnBase = function (boardId, configuration) {
             })
             let nags = move.nag || []
             nags.forEach(function (eachNag) {
-                // @ts-ignore
-                divBoard.querySelector('#nagMenu' + id('buttonsId') + ' [data-value="' + eachNag.substring(1) + '"]').parentNode.classList.toggle('active')
+                let ele = divBoard.querySelector('#nagMenu' + id('buttonsId') + ' [data-value="' + eachNag.substring(1) + '"]').parentNode as HTMLElement
+                ele.classList.toggle('active')
             })
         } catch (err) {
 
@@ -1050,9 +1051,10 @@ let pgnBase = function (boardId, configuration) {
             scrollToView(moveSpan(next))
         }
         if (hasMode('edit')) {
+            chess.load(myFen)
             let col: Color = chess.turn() == 'w' ? 'white' : 'black'
             that.board.set({
-                movable: Object.assign({}, that.board.state.movable, {color: col, dests: possibleMoves(myFen), showDests: true}),
+                movable: Object.assign({}, that.board.state.movable, { color: col, dests: possibleMoves(myFen), showDests: true}),
                 turnColor: col, check: chess.in_check()
             })
             if (next) {
@@ -1110,8 +1112,7 @@ let pgnBase = function (boardId, configuration) {
                 _select.add(_el)
             }
             _select.addEventListener('change', function (ev) {
-                // @ts-ignore
-                that.mypgn.loadOne(parseInt(ev.currentTarget.value))
+                that.mypgn.loadOne(parseInt(_select.value))
                 regenerateMoves(that.mypgn.getMoves())
                 // bindFunctions()
                 generateHeaders()
@@ -1202,11 +1203,13 @@ let pgnBase = function (boardId, configuration) {
                 document.getElementById(id('topHeaderId')).innerText = bottomInner
             }
             function bind_key (key, to_call) {
-                const form = document.querySelector("#" + boardId + ",#" + boardId + "Moves")
-                // Mousetrap(form).bind(key, function (evt) {
-                //     to_call()
-                //     evt.stopPropagation()
-                // })
+                const form = document.querySelector("#" + boardId + ",#" + boardId + "Moves") as HTMLElement
+                that.mousetrap.bind(key, function (evt) {
+                    to_call()
+                    evt.stopPropagation()
+                    return true
+                },
+                    null)
             }
             function nextMove () {
                 let fen = null
@@ -1241,7 +1244,6 @@ let pgnBase = function (boardId, configuration) {
             function firstMove () {
                 makeMove(null, null, null)
             }
-            // @ts-ignore
             const timer = new Timer(10)
             timer.bind(that.configuration.timerTime, function () {
                 nextMove()
@@ -1272,9 +1274,16 @@ let pgnBase = function (boardId, configuration) {
             addEventListener(id('buttonsId') + 'first', 'click', function () {
                 firstMove()
             })
-            addEventListener(id('buttonsId') + 'last', 'click', function () {
+
+            function lastMove() {
                 let moved = false
-                do { moved = nextMove() } while (moved)
+                do {
+                    moved = nextMove()
+                } while (moved)
+            }
+
+            addEventListener(id('buttonsId') + 'last', 'click', function () {
+                lastMove();
             })
             function togglePgn () {
                 const pgnButton = document.getElementById(id('buttonsId') + "pgn")
@@ -1363,8 +1372,7 @@ let pgnBase = function (boardId, configuration) {
                 for (let i = 0; i < rad.length; i++) {
                     let cb = document.querySelector('#' + 'comment' + id('buttonsId') + " ." + rad[i]) as HTMLInputElement
                     cb.onclick = function () {
-                        // @ts-ignore
-                        const checked = this.value
+                        const checked = (this as HTMLInputElement).value
                         let text
                         if (checked === "after") {
                             text = that.mypgn.getMove(that.currentMove).commentAfter
@@ -1384,20 +1392,21 @@ let pgnBase = function (boardId, configuration) {
                     timer.start()
                 }
                 const playButton = document.getElementById(id('buttonsId') + 'play')
-                // @ts-ignore
-                let clString = playButton.childNodes[0].getAttribute('class')
+                let clString = (playButton.childNodes[0] as HTMLElement).getAttribute('class')
                 if (clString.indexOf('play') < 0) { // has the stop button
-                    clString = clString.replaceAll('pause', 'play')
+                    clString = clString.replace(/pause/g, 'play')
                 } else {
-                    clString = clString.replaceAll('play', 'pause')
+                    clString = clString.replace(/play/g, 'pause')
                 }
-                // @ts-ignore
-                playButton.childNodes[0].setAttribute('class', clString)
+                (playButton.childNodes[0] as HTMLElement).setAttribute('class', clString)
             }
 
             bind_key("left", prevMove)
             bind_key("right", nextMove)
-            //bind_key("space", togglePlay)
+            bind_key("home", firstMove)
+            bind_key("end", lastMove)
+            bind_key("space", togglePlay)    // Has to ensure, that in text fields (like comment, potentially others)
+                                                // mousetrap is not active
             addEventListener(id('buttonsId') + 'play', 'click', function () {
                 togglePlay()
             })
