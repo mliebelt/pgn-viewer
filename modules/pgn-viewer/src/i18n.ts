@@ -1,4 +1,4 @@
-require('roddeh-i18n')
+let i18n = require('roddeh-i18n')
 import en from "./locales/en.js"
 import de from "./locales/de.js"
 import fr from "./locales/fr.js"
@@ -15,7 +15,8 @@ import nl from "./locales/nl.js"
 import pt from "./locales/pt.js"
 import ro from "./locales/ro.js"
 import sv from "./locales/sv.js"
-let jsons = {}
+import {SupportedLocales} from "./types";
+let jsons: { [key in SupportedLocales]?: any } = {}
 jsons.en = en
 jsons.de = de
 jsons.fr = fr
@@ -32,5 +33,12 @@ jsons.nl = nl
 jsons.pt = pt
 jsons.ro = ro
 jsons.sv = sv
-const i18next = function (loc) { return i18n.create(jsons[loc]) }
-export default i18next
+let matchLoc = function (loc) {
+    let m = loc.match(/(.{2})_(.{2})/)
+    if (m) { return m[1] }
+    return loc
+}
+const i18next = function (loc) {
+    return i18n.create(jsons[matchLoc(loc)])
+}
+export {i18next}

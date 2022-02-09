@@ -4,9 +4,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 //const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
-    entry: {
-        app: './src/index.js'
-    },
+    entry: './src/index.ts',
     plugins: [
         //new BundleAnalyzerPlugin(),
         new CleanWebpackPlugin(),
@@ -19,8 +17,16 @@ module.exports = {
         library: 'PGNV',
         libraryTarget: 'umd',
     },
+    resolve: {
+        extensions: ['.ts', '.js']
+    },
     module: {
         rules: [
+            {
+                test: /\.tsx?/,
+                use: 'ts-loader',
+                exclude: /node_modules/
+            },
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader'],

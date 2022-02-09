@@ -1,13 +1,18 @@
-import smoothscroll from 'smoothscroll-polyfill'
-import pgnBase from "./pgnvjs"
+import { polyfill } from 'smoothscroll-polyfill'
+import { pgnBase } from "./pgnv"
 import './css/theme.css'
 import './css/pgnvjs.css'
+import {PgnViewerConfiguration} from "./types";
 
 // kick off the polyfill!
-smoothscroll.polyfill()
+polyfill()
 
 // Users of PgnViewerJS may redefine some defaults by defining globally the var `PgnBaseDefaults.
 // This will be merged then with the defaults defined by the app itself.
+declare global {
+    var PgnBaseDefaults: PgnViewerConfiguration;
+}
+
 if (window && !window.PgnBaseDefaults) {
     window.PgnBaseDefaults = {}
 }
@@ -96,7 +101,7 @@ let pgnEdit = function (boardId, configuration) {
 let pgnPrint = function (boardId, configuration) {
     let base = pgnBase(boardId, Object.assign({showCoords: false, mode: 'print'}, configuration))
     base.generateHTML()
-    base.generateMoves(null)
+    base.generateMoves()
     return base
 }
 

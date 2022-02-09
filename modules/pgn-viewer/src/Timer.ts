@@ -8,50 +8,19 @@
  *
  */
 
-let timeStringToMilliseconds = function(timeString) {
-    if (typeof timeString === 'string') {
-
-        if (isNaN(parseInt(timeString, 10))) {
-            timeString = '1' + timeString;
-        }
-
-        var match = timeString
-            .replace(/[^a-z0-9\.]/g, '')
-            .match(/(?:(\d+(?:\.\d+)?)(?:days?|d))?(?:(\d+(?:\.\d+)?)(?:hours?|hrs?|h))?(?:(\d+(?:\.\d+)?)(?:minutes?|mins?|m\b))?(?:(\d+(?:\.\d+)?)(?:seconds?|secs?|s))?(?:(\d+(?:\.\d+)?)(?:milliseconds?|ms))?/);
-
-        if (match[0]) {
-            return parseFloat(match[1] || 0) * 86400000 +  // days
-                parseFloat(match[2] || 0) * 3600000 +   // hours
-                parseFloat(match[3] || 0) * 60000 +     // minutes
-                parseFloat(match[4] || 0) * 1000 +      // seconds
-                parseInt(match[5] || 0, 10);            // milliseconds
-        }
-
-        if (!isNaN(parseInt(timeString, 10))) {
-            return parseInt(timeString, 10);
-        }
-    }
-
-    if (typeof timeString === 'number') {
-        return timeString;
-    }
-
-    return 0;
-};
-
-let  millisecondsToTicks = function(milliseconds, resolution) {
-    return parseInt(milliseconds / resolution, 10) || 1;
+let  millisecondsToTicks = function(milliseconds:number, resolution:number) {
+    return milliseconds / resolution
 };
 
 
-function Timer(resolution) {
+function Timer(resolution:number):void {
 
     if (this instanceof Timer === false) {
         return new Timer(resolution);
     }
 
     this._notifications = [];
-    this._resolution = timeStringToMilliseconds(resolution) || 1000;
+    this._resolution = resolution
     this._running = false;
     this._ticks = 0;
     this._timer = null;
@@ -107,7 +76,7 @@ Timer.prototype = {
     },
     bind: function (when, callback) {
         if (when && callback) {
-            var ticks = millisecondsToTicks(timeStringToMilliseconds(when), this._resolution);
+            var ticks = millisecondsToTicks(when, this._resolution);
             this._notifications.push({
                 ticks: ticks,
                 callback: callback

@@ -5,6 +5,9 @@ export const PROMOTIONS = {
     'n': 'knight'
 }
 
+export const prom_short = ['q', 'r', 'b', 'n']
+export type PROMOTIONS_SHORT = typeof prom_short[number]
+
 export const colors = ['white', 'black'] as const;
 export const files = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'] as const;
 export const ranks = ['1', '2', '3', '4', '5', '6', '7', '8'] as const;
@@ -17,10 +20,16 @@ export type GameComment = { comment?: string, colorArrows?: string[], colorField
 export type Color = 'w' | 'b'
 export type Shape = { brush: string, orig: Field, dest?: Field }
 
+export type PrimitiveMove = {
+    from: Field,
+    to: Field,
+    promotion?: PROMOTIONS_SHORT
+}
+
 export type PgnReaderMove = {
     drawOffer?: boolean;
     moveNumber?: number,
-    notation: { fig?: string | null, strike?: 'x' | null, col?: string, row?: string, check?: string,
+    notation: { fig?: string | null, strike?: 'x' | null, col?: string, row?: string, check?: string, ep?: boolean
         promotion?: string | null, notation: string, disc?: string, drop?: boolean },
     variations: PgnReaderMove[],
     nag: string[],
@@ -35,11 +44,6 @@ export type PgnReaderMove = {
     prev?: number,
     next?: number,
     variationLevel?: number
-}
-
-export type PrimitiveMove = {
-    from: Field,
-    to: Field
 }
 
 export type PgnReaderConfiguration = {

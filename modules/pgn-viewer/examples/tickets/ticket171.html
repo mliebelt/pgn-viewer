@@ -24,6 +24,9 @@
 <script>
 let v = PGNV.pgnView("board1", {});
 console.log(v)
+v.base.manualMove('e4')
+v.base.manualMove('e5')
+v.base.manualMove('Nf3')
 let e = PGNV.pgnEdit("board2", {locale: "de"});
 console.log(e)
 </script>

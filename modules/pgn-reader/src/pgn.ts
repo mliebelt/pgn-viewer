@@ -6,18 +6,13 @@ import { ParseTree, PgnMove, PgnDate, PgnTime, TimeControl} from '@mliebelt/pgn-
 // import {ParseTreeOrArray, ParseTree, PgnMove, Tags, PgnDate, PgnTime, TimeControl} from '@mliebelt/pgn-parser'
 import {Chess} from 'chess.js'
 import * as nag from './nag'
-export { hasDiagramNag } from './nag'
 import {StringBuilder} from "./sb"
 import {
-    Color,
-    Field,
-    GameComment,
-    Message,
-    PgnReaderConfiguration,
-    PgnReaderMove,
-    PrimitiveMove,
-    Shape
-} from "./types"
+    Color, Field, GameComment, Message, PgnReaderConfiguration, PgnReaderMove, PrimitiveMove,
+    PROMOTIONS, Shape } from "./types"
+
+export { hasDiagramNag, nagToSymbol, NAGs } from './nag'
+export { PROMOTIONS} from './types'
 
 let isBrowser=new Function("try {return this===window;}catch(e){ return false;}")
 
@@ -29,7 +24,7 @@ let isBrowser=new Function("try {return this===window;}catch(e){ return false;}"
  * The reader is an abstraction that just knows the current games, and handles changes by keeping the change
  * in the state of the game. So all local storage in the reader should be avoided besides `configuration`, `games`
  * and `currentGameIndex`.
- * @param {*} configuration Given values this are relevant for reading and working with PGN
+ * @param {*} configuration Given values are relevant for reading and working with PGN
  */
 export class PgnReader {
     configuration: PgnReaderConfiguration

@@ -147,7 +147,7 @@ We use the following libraries in the implementation:
 * [Chessground](https://github.com/ornicar/chessground) The chessboard used by lichess.org
 * [Mousetrap](https://craig.is/killing/mice) Binds keys to actions in the UI
 * [roddeh-i18n](http://i18njs.com) Internationalization (== i18n) library to translate chess into current 18 languages. Strings are inlined in the library.
-* [Timer.js](https://github.com/fschaefer/Timer.js) Small timer for automatic moves
+* [Timer.ts](https://github.com/fschaefer/Timer.js) Small timer for automatic moves
 * [FontAwesome](http://fontawesome.io/) Nice icon font used for some buttons
 * [PGN Specification](https://github.com/mliebelt/pgn-spec-commented/blob/main/pgn-specification.md) PGN (Portable Game Notation) specification
 * [NAG Specification](http://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs) Definition of the NAGs (Numeric Annotation Glyphs)
