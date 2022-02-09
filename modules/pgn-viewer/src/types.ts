@@ -1,6 +1,5 @@
 import {Api} from "chessground/api"
-import {PgnReader} from "../../pgn-reader/lib/index.umd";
-import {Field, PROMOTIONS_SHORT} from "../../pgn-reader/lib/"
+import {PgnReader, Field} from "../../pgn-reader/lib/"
 import Mousetrap from "mousetrap-ts";
 import {Config} from "chessground/config";
 
@@ -12,8 +11,11 @@ export type Base = {
     board: Api,
     errorDiv?:any,
     currentMove?: number,
-    boardConfig?: PgnBoardConfiguration
+    boardConfig?: PgnBoardConfiguration,
+    t?: Function
 }
+
+export type  SupportedLocales = 'en' |  'de' |  'fr' |  'es' |  'cs' |  'da' |  'et' |  'fi' |  'hu' |  'is' |  'it' |  'nb' |  'nl' |  'pt' |  'ro' |  'sv'
 export type Layout = 'left'|'right'|'top'|'bottom'
 export type TimeAnnotation = {
     class?: string,
@@ -62,5 +64,5 @@ export type PgnViewerConfiguration = {
 export type PrimitiveMove = {
     from: Field,
     to: Field,
-    promotion?: PROMOTIONS_SHORT
+    promotion?: 'q'|'r'|'b'|'n'
 }

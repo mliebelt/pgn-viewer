@@ -29,7 +29,7 @@ export type PrimitiveMove = {
 export type PgnReaderMove = {
     drawOffer?: boolean;
     moveNumber?: number,
-    notation: { fig?: string | null, strike?: 'x' | null, col?: string, row?: string, check?: string,
+    notation: { fig?: string | null, strike?: 'x' | null, col?: string, row?: string, check?: string, ep?: boolean
         promotion?: string | null, notation: string, disc?: string, drop?: boolean },
     variations: PgnReaderMove[],
     nag: string[],

@@ -1,5 +1,5 @@
-import i18next from './i18n'
-import { PgnReader} from '@mliebelt/pgn-reader'
+import {i18next} from './i18n'
+import { PgnReader, Shape} from '@mliebelt/pgn-reader'
 import {hasDiagramNag, nagToSymbol, NAGs} from '@mliebelt/pgn-reader'
 import {Chessground} from 'chessground'
 import 'chessground/assets/chessground.base.css'
@@ -13,6 +13,7 @@ import {PROMOTIONS} from "@mliebelt/pgn-reader"
 import { pgnEdit } from '.'
 import {Color} from "chessground/types";
 import {Config} from "chessground/config";
+import {DrawShape} from "chessground/draw";
 
 /**
  * This implements the base function that is used to display a board, a whole game
@@ -605,14 +606,13 @@ let pgnBase = function (boardId, configuration) {
 
         // Default values of the board, if not overwritten by the given configuration
         that.boardConfig = { coordsInner: true, coordsFactor: 1.0 }
-        // @ts-ignore
         let chessgroundBoardConfig:Config = {
             disableContextMenu: true,
             movable: that.configuration.movable as Config["movable"],
             drawable: {
                 onChange: (shapes) => {
                     let move = that.mypgn.getMove(that.currentMove)
-                    that.mypgn.setShapes(move, shapes)
+                    that.mypgn.setShapes(move, shapes as Shape[])
                 }
             }}
         let boardConfig = that.boardConfig
@@ -1333,7 +1333,7 @@ let pgnBase = function (boardId, configuration) {
                     while (myNode.firstChild) {
                         myNode.removeChild(myNode.firstChild)
                     }
-                    regenerateMoves(that.mypgn.getOrderedMoves())
+                    regenerateMoves(that.mypgn.getOrderedMoves(that.mypgn.getFirstMove(), []))
                     let fen = that.mypgn.getMove(curr).fen
                     makeMove(null, that.currentMove, fen)
                 })

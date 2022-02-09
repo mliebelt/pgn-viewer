@@ -15,7 +15,8 @@ import nl from "./locales/nl.js"
 import pt from "./locales/pt.js"
 import ro from "./locales/ro.js"
 import sv from "./locales/sv.js"
-let jsons = {}
+import {SupportedLocales} from "./types";
+let jsons: { [key in SupportedLocales]?: any } = {}
 jsons.en = en
 jsons.de = de
 jsons.fr = fr
@@ -40,4 +41,4 @@ let matchLoc = function (loc) {
 const i18next = function (loc) {
     return i18n.create(jsons[matchLoc(loc)])
 }
-export default i18next
+export {i18next}
