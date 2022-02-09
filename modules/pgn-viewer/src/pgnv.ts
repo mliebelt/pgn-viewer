@@ -6,14 +6,13 @@ import 'chessground/assets/chessground.base.css'
 import 'chessground/assets/chessground.brown.css'
 import Timer from './Timer'
 import Mousetrap from 'mousetrap-ts'
-import swal from 'sweetalert'
+const swal = require('sweetalert')
 import resizeHandle from "./resize"
 import { Base, PrimitiveMove} from "./types"
 import {PROMOTIONS} from "@mliebelt/pgn-reader"
 import { pgnEdit } from '.'
 import {Color} from "chessground/types";
 import {Config} from "chessground/config";
-import {DrawShape} from "chessground/draw";
 
 /**
  * This implements the base function that is used to display a board, a whole game
