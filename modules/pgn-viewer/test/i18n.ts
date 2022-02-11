@@ -1,7 +1,7 @@
+import "mocha"
 import * as should from "should"
 let i18n = require('roddeh-i18n')
 import {i18next} from "../src/i18n"
-import {describe} from "mocha"
 import { pgnBase } from "../src/pgnv"
 import {pgnView} from "../src";
 
@@ -10,7 +10,7 @@ describe("When testing i18n functionality", function () {
         let fn = i18n.create({ values: { a: 'A', b: 'B'}})
         should.exist(fn)
         let str = fn('a')
-        should(str).equal('A')
+        should.equal(str, 'A')
     })
     it("should be able to read standard locale and strings", function () {
         // @ts-ignore
@@ -18,15 +18,15 @@ describe("When testing i18n functionality", function () {
         should.exist(fn)
         let str = fn('buttons:flipper')
         should.exist(str)
-        should(str).equal("Tausche die Seiten")
+        should.equal(str,"Tausche die Seiten")
         str = fn('chess:n')
-        should(str).equal("S") // German: Springer
+        should.equal(str,"S") // German: Springer
     })
     it("should return the key if the key does not match anything", function () {
         let fn = i18next('de')
         let str = fn('foo')
         should.exist(str)
-        should(str).equal('foo')
+        should.equal(str,'foo')
     })
 })
 

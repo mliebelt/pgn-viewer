@@ -1,0 +1,20 @@
+{
+  "ts-node": {
+    "files": true,
+    "compilerOptions": {
+      "module": "CommonJS"
+    },
+    "transpileOnly": true
+  },
+  "compilerOptions": {
+    "module": "commonjs",
+    //    "target": "ES6",
+    "sourceMap": false,
+    "inlineSources": false,
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  },
+  "files": [
+    "./i18n.ts"
+  ]
+}
