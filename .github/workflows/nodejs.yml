@@ -27,5 +27,6 @@ jobs:
         cd ../pgn-viewer
         npm install
         npm run build
+        npm run test
       env:
         CI: true

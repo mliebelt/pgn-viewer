@@ -23,5 +23,5 @@
     "suppressImplicitAnyIndexErrors": true,
     "target": "ES6"
   },
-  "files": ["./src/index.ts", "./src/i18n.ts","./src/pgnv.ts", "./src/types.ts", "./src/Timer.ts", "./src/resize.ts", "./src/locales/**/*.ts"]
+  "include": ["./src/*.ts", "./src/locales/*.ts"]
 }
