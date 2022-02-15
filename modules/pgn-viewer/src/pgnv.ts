@@ -6,7 +6,7 @@ import 'chessground/assets/chessground.base.css'
 import 'chessground/assets/chessground.brown.css'
 import Timer from './Timer'
 import Mousetrap from 'mousetrap-ts'
-const swal = require('sweetalert')
+import swal from 'sweetalert'
 import resizeHandle from "./resize"
 import { Base, PrimitiveMove} from "./types"
 import {PROMOTIONS} from "@mliebelt/pgn-reader"

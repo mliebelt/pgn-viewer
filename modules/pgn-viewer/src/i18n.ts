@@ -1,20 +1,20 @@
 let i18n = require('roddeh-i18n')
-import en from "./locales/en.js"
-import de from "./locales/de.js"
-import fr from "./locales/fr.js"
-import es from "./locales/es.js"
-import cs from "./locales/cs.js"
-import da from "./locales/da.js"
-import et from "./locales/et.js"
-import fi from "./locales/fi.js"
-import hu from "./locales/hu.js"
-import is from "./locales/is.js"
-import it from "./locales/it.js"
-import nb from "./locales/nb.js"
-import nl from "./locales/nl.js"
-import pt from "./locales/pt.js"
-import ro from "./locales/ro.js"
-import sv from "./locales/sv.js"
+import en from "./locales/en"
+import de from "./locales/de"
+import fr from "./locales/fr"
+import es from "./locales/es"
+import cs from "./locales/cs"
+import da from "./locales/da"
+import et from "./locales/et"
+import fi from "./locales/fi"
+import hu from "./locales/hu"
+import is from "./locales/is"
+import it from "./locales/it"
+import nb from "./locales/nb"
+import nl from "./locales/nl"
+import pt from "./locales/pt"
+import ro from "./locales/ro"
+import sv from "./locales/sv"
 import {SupportedLocales} from "./types";
 let jsons: { [key in SupportedLocales]?: any } = {}
 jsons.en = en
@@ -33,12 +33,12 @@ jsons.nl = nl
 jsons.pt = pt
 jsons.ro = ro
 jsons.sv = sv
-let matchLoc = function (loc) {
+function matchLoc(loc:string): SupportedLocales {
     let m = loc.match(/(.{2})_(.{2})/)
-    if (m) { return m[1] }
-    return loc
+    if (m) { return m[1] as SupportedLocales }
+    return loc as SupportedLocales
 }
-const i18next = function (loc) {
+const i18next = function (loc:string) {
     return i18n.create(jsons[matchLoc(loc)])
 }
 export {i18next}

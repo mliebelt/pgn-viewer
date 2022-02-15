@@ -1,9 +1,7 @@
-import "mocha"
 import * as should from "should"
 let i18n = require('roddeh-i18n')
 import {i18next} from "../src/i18n"
-import { pgnBase } from "../src/pgnv"
-import {pgnView} from "../src";
+import {describe} from "mocha"
 
 describe("When testing i18n functionality", function () {
     it("should create an i18n function", function (){
@@ -27,13 +25,5 @@ describe("When testing i18n functionality", function () {
         let str = fn('foo')
         should.exist(str)
         should.equal(str,'foo')
-    })
-})
-
-describe("When working on pgnBase", function () {
-    let pb = pgnView("dummy", { locale: "de"})
-    it("should be able to work with internationalized strings", function () {
-        let base = pb.base
-        should.exist(base)
     })
 })

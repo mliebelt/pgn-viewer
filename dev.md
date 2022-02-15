@@ -39,5 +39,5 @@ Do the following steps to have PgnViewerJS build:
 This is only necessary if you want to add a locale, or change the list of locales in `PgnViewerJS/modules/pgn-viewer/.npmrc`.
 
 * Go to the file `.npmrc` and change the list of locales.
-* Ensure that you have created local files named `<locale>.js`. Copy to do that the file `locales/en.js`. Essential are the strings beginning with `chess` for the figure names, and `buttons` for the button title. NAGs are currently only used in the editor.
+* Ensure that you have created local files named `<locale>.ts`. Copy to do that the file `locales/en.ts`. Essential are the strings beginning with `chess` for the figure names, and `buttons` for the button title. NAGs are currently only used in the editor.
 * Run at the end `npm run gen_i18n` in directory `modules/pgn-viewer` before running `npm run build` to create a new version.

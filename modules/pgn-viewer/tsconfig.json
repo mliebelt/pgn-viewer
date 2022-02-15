@@ -1,4 +1,8 @@
 {
+  "ts-node": {
+    "files": true,
+    "transpileOnly": true
+  },
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -19,5 +23,5 @@
     "suppressImplicitAnyIndexErrors": true,
     "target": "ES6"
   },
-  "files": ["./src/index.ts", "./src/pgnv.ts", "./src/types.ts", "./src/Timer.ts", "./src/resize.ts"]
+  "files": ["./src/index.ts", "./src/i18n.ts","./src/pgnv.ts", "./src/types.ts", "./src/Timer.ts", "./src/resize.ts", "./src/locales/**/*.ts"]
 }

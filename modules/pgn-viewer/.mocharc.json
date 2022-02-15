@@ -1,5 +1,5 @@
 {
-  "extension": ["ts"],
+  "extension": ["ts", "tsx"],
   "spec": ["test/**/*.ts"],
-  "require": ["./test/compiler.ts"]
+  "loader": "ts-node/esm"
 }

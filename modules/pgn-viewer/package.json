@@ -25,11 +25,12 @@
     "start": "../../node_modules/.bin/webpack serve --config webpack.dev.js",
     "server": "http-server",
     "gen_i18n": "./bin/gen-i18n.js",
-    "test-broken": "mocha "
+    "test": "mocha ",
+    "buildtsc": "tsc src/**/*.ts"
   },
   "dependencies": {
     "@mliebelt/pgn-reader": "^1.2.11",
-    "chessground": "8.1.9",
+    "chessground": "8.2.0",
     "mousetrap-ts": "^1.0.0",
     "roddeh-i18n": "^1.2.0",
     "smoothscroll-polyfill": "^0.4.4",
