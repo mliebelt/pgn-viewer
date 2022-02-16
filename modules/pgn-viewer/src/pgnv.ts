@@ -624,9 +624,10 @@ let pgnBase = function (boardId, configuration) {
             chessgroundBoardConfig.coordinates = boardConfig.showCoords
         }
         chessgroundBoardConfig.fen = boardConfig.position
-        const el = document.getElementById(boardId)
+        const el = document.getElementById(id('innerBoardId'))
         if (typeof that.configuration.pieceStyle != 'undefined') {
-            el.className += " " + that.configuration.pieceStyle
+            let bel = document.getElementById(boardId)
+            bel.className += " " + that.configuration.pieceStyle
         }
         if (boardConfig.boardSize) {
             boardConfig.width = boardConfig.boardSize
