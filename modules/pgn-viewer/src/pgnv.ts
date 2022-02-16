@@ -4,7 +4,7 @@ import {hasDiagramNag, nagToSymbol, NAGs} from '@mliebelt/pgn-reader'
 import {Chessground} from 'chessground'
 import 'chessground/assets/chessground.base.css'
 import 'chessground/assets/chessground.brown.css'
-import Timer from './Timer'
+import Timer from './timer'
 import Mousetrap from 'mousetrap-ts'
 import swal from 'sweetalert'
 import resizeHandle from "./resize"
@@ -28,10 +28,10 @@ let pgnBase = function (boardId, configuration) {
     // Sets the default parameters for all modes. See individual functions for individual overwrites
     let defaults = {
         lazyLoad: true,
-        theme: "blue",
-        pieceStyle: 'merida',
-        //width: '320px',
-        //boardSize: '320px',
+        // theme: "blue",
+        // pieceStyle: 'merida',
+        // width: '320px',
+        // boardSize: '320px',
         manyGames: false,
         showCoords: true,
         orientation: 'white',
@@ -624,7 +624,7 @@ let pgnBase = function (boardId, configuration) {
             chessgroundBoardConfig.coordinates = boardConfig.showCoords
         }
         chessgroundBoardConfig.fen = boardConfig.position
-        const el = document.getElementById(id('innerBoardId'))
+        const el = document.getElementById(boardId)
         if (typeof that.configuration.pieceStyle != 'undefined') {
             el.className += " " + that.configuration.pieceStyle
         }
