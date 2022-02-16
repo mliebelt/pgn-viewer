@@ -1,5 +1,5 @@
 import {i18next} from './i18n'
-import { PgnReader, Shape} from '@mliebelt/pgn-reader'
+import { PgnReader, Shape, Field} from '@mliebelt/pgn-reader'
 import {hasDiagramNag, nagToSymbol, NAGs} from '@mliebelt/pgn-reader'
 import {Chessground} from 'chessground'
 import 'chessground/assets/chessground.base.css'
@@ -8,7 +8,7 @@ import Timer from './timer'
 import Mousetrap from 'mousetrap-ts'
 import swal from 'sweetalert'
 import resizeHandle from "./resize"
-import { Base, PrimitiveMove} from "./types"
+import {Base, PgnViewerConfiguration, PgnViewerMode, PrimitiveMove, SupportedLocales} from "./types"
 import {PROMOTIONS} from "@mliebelt/pgn-reader"
 import { pgnEdit } from '.'
 import {Color} from "chessground/types";
@@ -21,12 +21,12 @@ import {Config} from "chessground/config";
  * of pgnBase to build new functionality. The configuration here is the super-set
  * of all the configurations of the other functions.
  */
-let pgnBase = function (boardId, configuration) {
+let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     // Section defines the variables needed everywhere.
     let that:Base = { mypgn: null, board: null, mousetrap: null }
     that.userConfiguration = configuration
     // Sets the default parameters for all modes. See individual functions for individual overwrites
-    let defaults = {
+    let defaults: PgnViewerConfiguration = {
         lazyLoad: true,
         // theme: "blue",
         // pieceStyle: 'merida',
@@ -47,7 +47,7 @@ let pgnBase = function (boardId, configuration) {
         hideMovesBefore: false,
         colorMarker: null,
         showResult: false,
-        timeAnnotation: 'none',
+        timeAnnotation: {},
         notation: 'short',
         notationLayout: 'inline',   // Possible: inline, list, allList
         figurine: null,
@@ -67,26 +67,26 @@ let pgnBase = function (boardId, configuration) {
 
     let chess = that.mypgn.chess     // Use the same instance from chess.src
     let theme = that.configuration.theme || 'default'
-    function hasMode (mode) {
+    function hasMode (mode:PgnViewerMode) {
         return that.configuration.mode === mode
     }
-    function possibleMoves (fen) {
+    function possibleMoves (fen): Map<Field, Field[]> {
         return that.mypgn.possibleMoves(fen)
     }
-    function id (id) {
+    function id (id):string {
         return that.configuration.IDs[id]
     }
-    function isElement(obj) {
+    function isElement(obj):boolean {
         return !!(obj && obj.nodeType === 1)
     }
     that.board = null              // Will be set later, but has to be a known variable
 
     // Initialize locale
-    let locale = that.configuration.locale || "en"
+    let locale:SupportedLocales = that.configuration.locale || "en"
     that.configuration.i18n = i18next(locale)
     that.configuration.defaultI18n = i18next("en")
 
-    function t(term) {
+    function t(term:string):string {
         if (that.configuration.i18n) {
             let ret = that.configuration.i18n(term)
             if (ret === term) {
@@ -100,7 +100,7 @@ let pgnBase = function (boardId, configuration) {
     if (that.configuration.position) { // Allow early correction
         if (that.configuration.position !== 'start') {
             let tokens = that.configuration.position.split(/\s+/)
-            if (tokens.length === 4) {
+            if (tokens.length === 4) { // patches the FEN string, if only 4 elements contained
                 that.configuration.position += ' 1 1'
             }
         }

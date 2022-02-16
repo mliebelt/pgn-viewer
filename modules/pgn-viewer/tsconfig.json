@@ -4,7 +4,7 @@
     "transpileOnly": true
   },
   "compilerOptions": {
-    "allowJs": true,
+//    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "declaration": true,
