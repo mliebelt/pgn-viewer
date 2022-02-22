@@ -1,10 +1,10 @@
 {
   "name": "@mliebelt/pgn-reader",
   "description": "A pgn reader (backend only) to read, understand and play chess games. Used mainly by pgn-viewer.",
-  "version": "1.2.12",
-  "module": "./src/index.ts",
+  "version": "1.2.13",
+  "module": "lib/index.umd.js",
   "types": "lib/index.umd.d.ts",
-  "main": "lib/index",
+  "main": "lib/index.umd.js",
   "files": [
     "README.md",
     "LICENSE.md",
