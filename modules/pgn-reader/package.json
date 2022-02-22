@@ -1,12 +1,15 @@
 {
   "name": "@mliebelt/pgn-reader",
   "description": "A pgn reader (backend only) to read, understand and play chess games. Used mainly by pgn-viewer.",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "module": "./src/index.ts",
+  "types": "lib/index.umd.d.ts",
   "main": "lib/index",
   "files": [
     "README.md",
-    "LICENSE.md"
+    "LICENSE.md",
+    "lib/index.umd.js",
+    "lib/index.umd.d.ts"
   ],
   "author": "mliebelt",
   "license": "Apache-2.0",
@@ -16,7 +19,7 @@
   },
   "scripts": {
     "clean": "rm -fr lib/*",
-    "build": "npm run clean && npm run mjs && npm run cjs && npm run umd",
+    "build": "npm run clean && npm run mjs && npm run cjs && npm run umd && npm run dts",
     "buildw": "tsc -w",
     "mjs": "tsc -m es6 --outDir lib-esm",
     "cjs": "tsc",
