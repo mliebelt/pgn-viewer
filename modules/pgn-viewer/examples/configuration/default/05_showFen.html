@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Set showFen in configuration</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+</head>
+<body>
+<h3>Set showFen in configuration</h3>
+
+<div>The following is shown: default (showFen == false); set; not set. Only useful in mode view, shown all the time for edit.
+    Could be hidden in edit mode, is never shown for board (would that be useful?)
+</div>
+
+<div class="zeit merida">
+    <div id="board1" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board2" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board3" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board4" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board5" style="width: 320px; float: left; margin-right: 25px"></div>
+</div>
+
+<script>
+    PGNV.pgnView("board1", {pgn: "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4"})
+    PGNV.pgnEdit("board2", {pgn: "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4"})
+    PGNV.pgnView("board3", {pgn: "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4", showFen: true})
+    PGNV.pgnEdit("board4", {pgn: "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4", showFen: false})
+    PGNV.pgnBoard("board5", {pgn: "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4", showFen: true})
+</script>
+
+</body>
+</html>

@@ -12,31 +12,35 @@ let  millisecondsToTicks = function(milliseconds:number, resolution:number) {
     return milliseconds / resolution
 };
 
+class Timer {
+    private _notifications: any[];
+    private _resolution: number;
+    private _running: boolean;
+    private _ticks: number;
+    private _timer: any;
+    private _drift: number;
+    constructor(resolution:number) {
 
-function Timer(resolution:number):void {
-
-    if (this instanceof Timer === false) {
-        return new Timer(resolution);
+        this._notifications = [];
+        this._resolution = resolution
+        this._running = false;
+        this._ticks = 0;
+        this._timer = null;
+        this._drift = 0;
     }
 
-    this._notifications = [];
-    this._resolution = resolution
-    this._running = false;
-    this._ticks = 0;
-    this._timer = null;
-    this._drift = 0;
-}
-
-Timer.prototype = {
-    start: function () {
-        var self = this;
+    start():Timer {
+        let self = this;
         if (!this._running) {
             this._running = !this._running;
             setTimeout(function loopsyloop() {
                 self._ticks++;
                 for (var i = 0, l = self._notifications.length; i < l; i++) {
                     if (self._notifications[i] && self._ticks % self._notifications[i].ticks === 0) {
-                        self._notifications[i].callback.call(self._notifications[i], { ticks: self._ticks, resolution: self._resolution });
+                        self._notifications[i].callback.call(self._notifications[i], {
+                            ticks: self._ticks,
+                            resolution: self._resolution
+                        });
                     }
                 }
                 if (self._running) {
@@ -47,34 +51,35 @@ Timer.prototype = {
             this._drift = 0;
         }
         return this;
-    },
-    stop: function () {
+    }
+
+    stop() {
         if (this._running) {
             this._running = !this._running;
             clearTimeout(this._timer);
         }
         return this;
-    },
-    reset: function () {
+    }
+
+    reset() {
         this.stop();
         this._ticks = 0;
         return this;
-    },
-    clear: function () {
+    }
+
+    clear() {
         this.reset();
         this._notifications = [];
         return this;
-    },
-    ticks: function () {
-        return this._ticks;
-    },
-    resolution: function () {
-        return this._resolution;
-    },
-    running: function () {
-        return this._running;
-    },
-    bind: function (when, callback) {
+    }
+
+    ticks() { return this._ticks; }
+
+    resolution() { return this._resolution }
+
+    running() { return this._running }
+
+    bind(when:number, callback:any) {
         if (when && callback) {
             var ticks = millisecondsToTicks(when, this._resolution);
             this._notifications.push({
@@ -83,8 +88,9 @@ Timer.prototype = {
             });
         }
         return this;
-    },
-    unbind: function (callback) {
+    }
+
+    unbind(callback:any) {
         if (!callback) {
             this._notifications = [];
         } else {
@@ -95,21 +101,23 @@ Timer.prototype = {
             }
         }
         return this;
-    },
-    drift: function (timeDrift) {
+    }
+
+    drift(timeDrift:number) {
         this._drift = timeDrift;
         return this;
     }
-};
+}
 
-Timer.prototype.every = Timer.prototype.bind;
-Timer.prototype.after = function (when, callback) {
-    var self = this;
-    Timer.prototype.bind.call(self, when, function fn () {
-        Timer.prototype.unbind.call(self, fn);
-        callback.apply(this, arguments);
-    });
-    return this;
-};
+//
+// Timer.prototype.every = Timer.prototype.bind;
+// Timer.prototype.after = function (when, callback) {
+//     var self = this;
+//     Timer.prototype.bind.call(self, when, function fn () {
+//         Timer.prototype.unbind.call(self, fn);
+//         callback.apply(this, arguments);
+//     });
+//     return this;
+// };
 
 export default Timer;

@@ -1,13 +1,15 @@
 import * as cg from 'chessground/types';
+import {Base} from "./types";
 
 /**
  * Original source taken from: https://github.com/ornicar/lila/blob/master/ui/common/src/resize.ts
  * @param els ??
  */
-export default function resizeHandle(that, outer, els, _width, resizeFunction) {
+export default function resizeHandle(that:Base, outer:HTMLElement, els:HTMLElement, _width:number, resizeFunction:Function) {
     const el = document.createElement('cg-resize');
     els.appendChild(el);
 
+    // @ts-ignore
     const startResize = (start) => {
         start.preventDefault();
 
@@ -17,7 +19,7 @@ export default function resizeHandle(that, outer, els, _width, resizeFunction) {
         const initialWidth = _width;
         let width = initialWidth;
 
-        const resize = (move) => {
+        const resize = (move: any) => {
             const pos = eventPosition(move);
             const delta = pos[0] - startPos[0];
             // if (delta < 16) { return }
@@ -25,8 +27,10 @@ export default function resizeHandle(that, outer, els, _width, resizeFunction) {
 
             width = initialWidth + delta;
 
+            // @ts-ignore
             that.configuration.boardSize = width
             // console.log("Width: " + width)
+            // @ts-ignore
             resizeFunction.call()
             els.style.width = width + 'px'
             els.style.height = width + 'px'
@@ -66,7 +70,7 @@ export default function resizeHandle(that, outer, els, _width, resizeFunction) {
     // }
 }
 
-function eventPosition(e) {
+function eventPosition(e:any) {
     if (e.clientX || e.clientX === 0) return [e.clientX, e.clientY];
     if (e.targetTouches[0]) return [e.targetTouches[0].clientX, e.targetTouches[0].clientY];
     return;

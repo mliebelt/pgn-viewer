@@ -19,6 +19,7 @@ export type Base = {
 export type  SupportedLocales = 'en' |  'de' |  'fr' |  'es' |  'cs' |  'da' |  'et' |  'fi' |  'hu' |  'is' |  'it' |  'nb' |  'nl' |  'pt' |  'ro' |  'sv'
 export type Layout = 'left'|'right'|'top'|'bottom'
 export type Color = 'white' | 'black'
+export type ShortColor = 'w' | 'b'
 export type TimeAnnotation = {
     class?: string,
     colorClass?: string
@@ -68,6 +69,10 @@ export type PgnViewerConfiguration = {
     viewOnly?:Config["viewOnly"],
     lazyLoad?:boolean,
     showCoords?:boolean,
+    coordsInner?:boolean,
+    coordsFontSize?: string,
+    coordsFactor?:number,
+    coordinates?:boolean,   // TODO Should be part of Config (only). How to share configuration?
     notation?:'short'|'long'
 }
 

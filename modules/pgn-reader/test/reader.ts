@@ -236,6 +236,20 @@ describe("When reading various formats", function() {
         should(reader.sanWithNags(reader.getMove(2))).equal("d4")
         should(reader.sanWithNags(reader.getMove(3))).equal("exd4")
     })
+    // TODO Does not work either, some of them ok, some not. Reason seems to be, that chess.js does not allow all formats.
+    // Solution could be to try different formats, if the source notation does not work.
+    xit("should understand different notations", function () {
+        reader = new PgnReader({pgn: 'Ng1f3'})  // works
+        should(reader.getMoves().length).equal(1)
+        reader = new PgnReader({pgn: 'Ng1-f3'}) // works
+        should(reader.getMoves().length).equal(1)
+        reader = new PgnReader({pgn: 'Nxf3'})
+        should(reader.getMoves().length).equal(1)
+        reader = new PgnReader({pgn: 'Ngf3'})
+        should(reader.getMoves().length).equal(1)
+        reader = new PgnReader({pgn: 'N1f3'})
+        should(reader.getMoves().length).equal(1)
+    })
 })
 
 describe("When working with different PGN beginnings and endings", function() {

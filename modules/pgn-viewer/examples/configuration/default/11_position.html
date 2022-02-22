@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Set position in configuration</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+</head>
+<body>
+<h3>Set position in configuration</h3>
+
+<div>The following is shown: default (position == 'start'); set to different position.
+    Useful in all modes.
+</div>
+
+<div style="margin: 2em"></div>
+
+<div class="zeit merida">
+    <div id="board1" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board2" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board3" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board4" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board5" style="width: 320px; float: left; margin-right: 25px"></div>
+</div>
+
+<script>
+    PGNV.pgnBoard("board1", {})
+    PGNV.pgnView("board2", {position: 'rnbqkb1r/1p2pppp/p2p1n2/8/3NP3/2N1B3/PPP2PPP/R2QKB1R b KQkq - 0 1', pgn: 'Nc6 Bc4 e6 O-O'})
+    PGNV.pgnEdit("board3", {position: 'rnbqkb1r/1p2pppp/p2p1n2/8/3NP3/2N1B3/PPP2PPP/R2QKB1R b KQkq - 0 1', pgn: 'Nc6 Bc4 e6 O-O'})
+    PGNV.pgnPrint("board4", {position: 'rnbqkb1r/1p2pppp/p2p1n2/8/3NP3/2N1B3/PPP2PPP/R2QKB1R b KQkq - 0 1', pgn: 'Nc6 Bc4 e6 O-OD'})
+</script>
+
+</body>
+</html>

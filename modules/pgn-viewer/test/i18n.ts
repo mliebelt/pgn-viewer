@@ -2,6 +2,7 @@ import * as should from "should"
 let i18n = require('roddeh-i18n')
 import {i18next} from "../src/i18n"
 import {describe} from "mocha"
+// import { pgnBase } from "../lib/pgnv"
 
 describe("When testing i18n functionality", function () {
     it("should create an i18n function", function (){
@@ -26,4 +27,10 @@ describe("When testing i18n functionality", function () {
         should.exist(str)
         should.equal(str,'foo')
     })
+    // Unable to load pgnv in the test context, don't know why. So not able to test pgnBase functionality ...
+    // it("should have defaults working for function t", function (){
+    //     let base = pgnBase('id', { locale: 'de' })
+    //     let str = base.t('dummy')
+    //     should(str).equal('dummy')
+    // })
 })

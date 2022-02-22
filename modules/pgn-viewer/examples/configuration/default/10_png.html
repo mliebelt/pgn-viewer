@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Set pgn in configuration</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+</head>
+<body>
+<h3>Set pgn in configuration</h3>
+
+<div>The following is shown: default (pgn == ''); set to useful notation; use some strange notation, leave out numbers.
+    Only useful in mode view, edit, not for board not for or  print.
+</div>
+
+<div style="margin: 2em"></div>
+
+<div class="zeit merida">
+    <div id="board1" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board2" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board3" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board4" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board5" style="width: 320px; float: left; margin-right: 25px"></div>
+</div>
+
+<script>
+    PGNV.pgnView("board1", {})
+    PGNV.pgnView("board2", {pgn: '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4'})
+    PGNV.pgnView("board3", {pgn: '1. e2e4 e7e5 2. Ngf3 Nb8-c6  3.f1-c4 Bc5 4.b4'})
+    PGNV.pgnBoard("board4", {pgn: '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4', notation: 'long'})
+    PGNV.pgnEdit("board5", {pgn: '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4', notation: 'long'})
+</script>
+
+</body>
+</html>

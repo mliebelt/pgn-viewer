@@ -1,5 +1,5 @@
 import {i18next} from './i18n'
-import { PgnReader, Shape, Field} from '@mliebelt/pgn-reader'
+import {PgnReader, Shape, Field, PgnReaderMove} from '@mliebelt/pgn-reader'
 import {hasDiagramNag, nagToSymbol, NAGs} from '@mliebelt/pgn-reader'
 import {Chessground} from 'chessground'
 import 'chessground/assets/chessground.base.css'
@@ -8,11 +8,12 @@ import Timer from './timer'
 import Mousetrap from 'mousetrap-ts'
 import swal from 'sweetalert'
 import resizeHandle from "./resize"
-import {Base, PgnViewerConfiguration, PgnViewerMode, PrimitiveMove, SupportedLocales} from "./types"
+import {Base, PgnViewerConfiguration, PgnViewerMode, PrimitiveMove, ShortColor, SupportedLocales} from "./types"
 import {PROMOTIONS} from "@mliebelt/pgn-reader"
 import { pgnEdit } from '.'
 import {Color} from "chessground/types";
 import {Config} from "chessground/config";
+import { ParseTree } from '@mliebelt/pgn-parser'
 
 /**
  * This implements the base function that is used to display a board, a whole game
@@ -38,7 +39,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         position: 'start',
         showFen: false,
         layout: 'top',
-        headers: true,
+        headers: false,
         timerTime: 700,
         locale: 'en',
         movable: {free: false},
@@ -70,14 +71,14 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     function hasMode (mode:PgnViewerMode) {
         return that.configuration.mode === mode
     }
-    function possibleMoves (fen): Map<Field, Field[]> {
+    function possibleMoves (fen:string): Map<Field, Field[]> {
         return that.mypgn.possibleMoves(fen)
     }
-    function id (id):string {
+    function id (id:string):string {
         return that.configuration.IDs[id]
     }
-    function isElement(obj):boolean {
-        return !!(obj && obj.nodeType === 1)
+    function isElement(obj:any):boolean {
+        return !!(obj && obj?.nodeType === 1)
     }
     that.board = null              // Will be set later, but has to be a known variable
 
@@ -109,7 +110,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     /**
      * Allow logging of error to HTML.
      */
-    function logError(str) {
+    function logError(str:string) {
         let node = document.createElement("DIV")
         const textnode = document.createTextNode(str)
         node.appendChild(textnode)
@@ -119,8 +120,8 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     /**
      * Adds a class to an element.
      */
-    function addClass(elementOrId, className) {
-        let ele = isElement(elementOrId) ? elementOrId : document.getElementById(elementOrId)
+    function addClass(elementOrId: string|HTMLElement, className:string) {
+        let ele:HTMLElement = isElement(elementOrId) ? elementOrId as HTMLElement : document.getElementById(elementOrId as string)
         if (!ele) return
         if (ele.classList) {
             ele.classList.add(className)
@@ -132,8 +133,8 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     /**
      * Remove a class from an element.
      */
-    function removeClass(elementOrId, className) {
-        let ele = isElement(elementOrId) ? elementOrId : document.getElementById(elementOrId)
+    function removeClass(elementOrId: string|HTMLElement, className: string) {
+        let ele:HTMLElement = isElement(elementOrId) ? elementOrId as HTMLElement : document.getElementById(elementOrId as string)
         if (ele === null) return
         if (ele.classList) {
             ele.classList.remove(className)
@@ -147,7 +148,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
      * @param {*} newElement the element to insert
      * @param {*} targetElement the element after to insert
      */
-    function insertAfter(newElement, targetElement) {
+    function insertAfter(newElement:HTMLElement, targetElement:HTMLElement) {
         const parent = targetElement.parentNode
         if (parent.lastChild === targetElement) {
             parent.appendChild(newElement)
@@ -156,20 +157,20 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         }
     }
 
-    function insertBefore(newElement, targetElement) {
+    function insertBefore(newElement:HTMLElement, targetElement:HTMLElement) {
         targetElement.parentNode.insertBefore(newElement, targetElement)
     }
 
     /**
      * Adds an event listener to the DOM element.
      */
-    function addEventListener(elementOrId, event, func) {
-        let ele = isElement(elementOrId) ? elementOrId : document.getElementById(elementOrId)
+    function addEventListener(elementOrId:string|HTMLElement, event:any, func:any) {
+        let ele:HTMLElement = isElement(elementOrId) ? elementOrId as HTMLElement : document.getElementById(elementOrId as string)
         if (ele === null) return
         ele.addEventListener(event, func)
     }
 
-    function toggleColorMarker(nextColor) {
+    function toggleColorMarker(nextColor:ShortColor) {
         let ele = document.getElementById(id('colorMarkerId'))
         if (!ele) return
         if (ele.classList.contains('cm-black') && nextColor === 'w') {
@@ -183,8 +184,8 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
      * Scroll if element is not visible
      * @param element the element to show by scrolling
      */
-    function scrollToView(element) {
-        function scrollParentToChild(parent, child) {
+    function scrollToView(element:HTMLElement) {
+        function scrollParentToChild(parent:HTMLElement, child:HTMLElement) {
             let parentRect = parent.getBoundingClientRect()
             // What can you see?
             let parentViewableArea = {
@@ -213,7 +214,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
      * Allows for move to be made programmatically from external javascript
      * @param san the san formatted move to play
      */
-    function manualMove(san) {
+    function manualMove(san:string) {
         const m = chess.move(san)
         if (m === null) return
         chess.undo()
@@ -228,7 +229,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
      * @param to the destination
      * @param meta additional parameters (not used at the moment)
      */
-    function onSnapEnd(from, to, meta) {
+    function onSnapEnd(from:Field, to:Field, meta:any) {
         //console.log("Move from: " + from + " To: " + to + " Meta: " + JSON.stringify(meta, null, 2))
         //board.set({fen: game.fen()})
         const cur = that.currentMove
@@ -287,7 +288,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     }
 
     // Utility function for generating general HTML elements with id, class (with theme)
-    function createEle(kind, id, clazz?, my_theme?, father?) {
+    function createEle(kind:keyof HTMLElementTagNameMap, id:string, clazz?:string, my_theme?:string, father?:HTMLElement):HTMLElement {
         const ele = document.createElement(kind)
         if (id) {
             ele.setAttribute("id", id)
@@ -306,8 +307,8 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     }
 
     // Internationionalize the figures in SAN
-    function i18nSan(san) {
-        function i18nFig(fig, locale) {
+    function i18nSan(san:string) {
+        function i18nFig(fig:string, locale:SupportedLocales) {
             return t("chess:" + fig)
         }
         let locale = that.configuration.locale
@@ -325,7 +326,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         return new_san
     }
 
-    function clearChilds(htmlElement) {
+    function clearChilds(htmlElement:HTMLElement) {
         while (htmlElement.childNodes.length > 0) {
             htmlElement.removeChild(htmlElement.childNodes[0])
         }
@@ -337,7 +338,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
      */
     function generateHTML() {
         // Utility function for generating buttons divs
-        function addButton(pair, buttonDiv) {
+        function addButton(pair:[string,string], buttonDiv:HTMLElement) {
             const l_theme = (['green', 'blue'].indexOf(theme) >= 0) ? theme : 'default'
             const button = createEle("span", id('buttonsId') + pair[0],
                 "pgnvbutton " + pair[0], l_theme, buttonDiv)
@@ -349,48 +350,48 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         }
 
         // Generates the view buttons (only)
-        function generateViewButtons(buttonDiv) {
+        function generateViewButtons(buttonDiv:HTMLElement) {
             [["flipper", "fa-adjust"], ["first", "fa-fast-backward"], ["prev", "fa-step-backward"],
-                ["next", "fa-step-forward"], ["play", "fa-play-circle"], ["last", "fa-fast-forward"]].forEach(function (entry) {
+                ["next", "fa-step-forward"], ["play", "fa-play-circle"], ["last", "fa-fast-forward"]].forEach(function (entry:[string,string]) {
                 addButton(entry, buttonDiv)
             })
         }
         // Generates the edit buttons (only)
-        function generateEditButtons (buttonDiv) {
-            [["promoteVar", "fa-hand-point-up"], ["deleteMoves", "fa-cut"]].forEach(function (entry) {
+        function generateEditButtons (buttonDiv:HTMLElement) {
+            [["promoteVar", "fa-hand-point-up"], ["deleteMoves", "fa-cut"]].forEach(function (entry:[string,string]) {
                 addButton(entry, buttonDiv)
                 //but.className = but.className + " gray" // just a test, worked.
                 // only gray out if not usable, check that later.
             });
-            [["pgn", "fa-print"], ['nags', 'fa-cog']].forEach(function (entry) {
+            [["pgn", "fa-print"], ['nags', 'fa-cog']].forEach(function (entry:[string,string]) {
                 addButton(entry, buttonDiv)
             })
         }
 
         // Generate 3 rows, similar to lichess in studies
-        function generateNagMenu(nagEle) {
-            function generateRow(array, rowClass, nagEle) {
-                function generateLink(link, nagDiv) {
-                    let generateIcon = function (icon, myLink) {
+        function generateNagMenu(nagEle:HTMLElement) {
+            function generateRow(array:number[], rowClass:string, nagEle:HTMLElement) {
+                function generateLink(link:number, nagDiv:HTMLElement) {
+                    let generateIcon = function (icon:number, myLink:HTMLElement) {
                         let ele = createEle('i', null, null, theme, myLink)
                         let i = NAGs[icon] || ''
                         ele.setAttribute("data-symbol", i)
-                        ele.setAttribute("data-value", icon)
+                        ele.setAttribute("data-value", String(icon))
                         ele.textContent = t('nag:$' + icon + "_menu")
                     }
                     let myLink = createEle('a', null, null, theme, myDiv)
                     generateIcon(link, myLink)
                     myLink.addEventListener("click", function () {
-                        function updateMoveSAN(moveIndex) {
+                        function updateMoveSAN(moveIndex:number) {
                             let _move = that.mypgn.getMove(moveIndex)
-                            let _moveSpan = document.querySelector('#' + id('movesId') + moveIndex)
+                            let _moveSpan:HTMLElement = document.querySelector('#' + id('movesId') + moveIndex)
                             clearChilds(_moveSpan)
                             regenerateMoveSpan(_moveSpan, _move)
                             unmarkMark(moveIndex)
                         }
 
                         this.classList.toggle("active")
-                        let iNode = this.firstChild
+                        let iNode = this.firstChild as HTMLElement
                         that.mypgn.changeNag('$' + iNode.getAttribute('data-value'), that.currentMove,
                             this.classList.contains('active'))
                         updateMoveSAN(that.currentMove)
@@ -403,14 +404,14 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             generateRow([10, 13, 14, 15, 16, 17, 18, 19], 'nagPosition', nagEle)
             generateRow([22, 40, 36, 132, 136, 32, 44, 140], 'nagObservation', nagEle)
         }
-        function generateCommentDiv(commentDiv) {
+        function generateCommentDiv(commentDiv:HTMLElement) {
             const radio = createEle("div", null, "commentRadio", theme, commentDiv)
-            const mc = createEle("input", null, "moveComment", theme, radio)
+            const mc:HTMLInputElement = createEle("input", null, "moveComment", theme, radio) as HTMLInputElement
             mc.type = "radio"
             mc.value = "move"
             mc.name = "radio"
             createEle("label", null, "labelMoveComment", theme, radio).appendChild(document.createTextNode("Move"))
-            const ma = createEle("input", null, "afterComment", theme, radio)
+            const ma:HTMLInputElement = createEle("input", null, "afterComment", theme, radio) as HTMLInputElement
             ma.type = "radio"
             ma.value = "after"
             ma.name = "radio"
@@ -480,7 +481,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         /** Fen */
         if ((hasMode('edit') || hasMode('view')) && (that.configuration.showFen)) {
             const fenDiv = createEle("textarea", id('fenId'), "fen", theme, outerInnerBoardDiv)
-            addEventListener(id('fenId'), 'mousedown', function (e) {
+            addEventListener(id('fenId'), 'mousedown', function (e:Event) {
                 e = e || window.event
                 e.preventDefault()
                 this.select()
@@ -518,10 +519,10 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             const commentBoardDiv = createEle("div", "comment" + id('buttonsId'), "comment", theme, editButtonsDiv)
             generateCommentDiv(commentBoardDiv)
             // Bind the paste key ...
-            addEventListener("pgn" + id('buttonsId'), 'mousedown', function (e) {
+            addEventListener("pgn" + id('buttonsId'), 'mousedown', function (e:Event) {
                 e = e || window.event
-                e.preventDefault()
-                e.target.select()
+                e.preventDefault();
+                (e.target as HTMLTextAreaElement).select()
             })
             document.getElementById("textpgn" + id('buttonsId')).onpaste = function (e) {
                 const pastedData = e.clipboardData.getData('text')
@@ -532,7 +533,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
 
     }
 
-    function adjustFontForCoords(fontSize, boardConfig, el) {
+    function adjustFontForCoords(fontSize:number, boardConfig:PgnViewerConfiguration, el:HTMLElement) {
         let right = (fontSize - 13) / 2.5 - 2
         if (!boardConfig.coordsInner) {
             right -= fontSize / 1.5 + 2
@@ -541,24 +542,24 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                 moves.style.marginLeft = `${fontSize / 1.5}px`
             }
         }
-        el.querySelector("coords.ranks").style.right = `${right}px`
-        let bottom = (fontSize - 13)
+        (el.querySelector("coords.ranks") as HTMLElement).style.right = `${right}px`
+        let bottom:number = (fontSize - 13)
         if (!boardConfig.coordsInner) {
-            bottom -= fontSize + 2
-            el.querySelector("coords.files").style.left = '0px'
+            bottom -= fontSize + 2;
+            (el.querySelector("coords.files") as HTMLElement).style.left = '0px'
             let buttons = document.getElementById(id('buttonsId'))
             if (buttons) {
                 buttons.style.marginTop = `${fontSize * 1.5}px`
             }
         }
-        el.querySelector("coords.files").style.bottom = `${bottom}px`
+        (el.querySelector("coords.files") as HTMLElement).style.bottom = `${bottom}px`
     }
 
-    function recomputeCoordsFonts(boardConfig, el) {
+    function recomputeCoordsFonts(boardConfig:PgnViewerConfiguration, el:HTMLElement) {
         if (boardConfig && that.configuration.boardSize) {
             el.style.width = that.configuration.boardSize
             el.style.height = that.configuration.boardSize
-            let fontSize = null
+            let fontSize:number = null
             if (boardConfig.coordsFontSize) {
                 fontSize = Number.parseInt(boardConfig.coordsFontSize)
             } else {
@@ -567,10 +568,10 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             }
             // Adjust the ranks right if necessary
             //el.style.fontSize = `${fontSize}px`
-            el.querySelectorAll("coords").forEach(element => {
+            (el.querySelectorAll("coords") as NodeListOf<HTMLElement>).forEach(element => {
                 element.style.fontSize = `${fontSize}px`
             })
-            if (boardConfig.coordinates) {
+            if (boardConfig.showCoords) {
                 adjustFontForCoords(fontSize, boardConfig, el);
             }
             //document.body.dispatchEvent(new Event('chessground.resize'))
@@ -583,8 +584,8 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
      * @returns {Window.ChessBoard} the board object that may play the moves later
      */
     function generateBoard () {
-        function copyBoardConfiguration(source, target, keys) {
-            keys.forEach(function (key) {
+        function copyBoardConfiguration(source:PgnViewerConfiguration, target:PgnViewerConfiguration, keys:string[]) {
+            keys.forEach(function (key:string) {
                 if (typeof source[key] != "undefined") {
                     target[key] = source[key]
                 }
@@ -594,7 +595,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         function postGenerateBoard() {
             if (that.configuration.startPlay && !that.configuration.hideMovesBefore) {
                 let move = that.mypgn.findMove(that.configuration.startPlay)
-                if (move === undefined) {
+                if (! move) {
                     logError('Could not find startPlay: ' + that.configuration.startPlay)
                     return
                 }
@@ -623,6 +624,9 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         if (typeof boardConfig.showCoords != 'undefined') {
             chessgroundBoardConfig.coordinates = boardConfig.showCoords
         }
+        if (that.configuration.orientation) {
+            chessgroundBoardConfig.orientation = that.configuration.orientation
+        }
         chessgroundBoardConfig.fen = boardConfig.position
         const el = document.getElementById(id('innerBoardId'))
         if (typeof that.configuration.pieceStyle != 'undefined') {
@@ -638,7 +642,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         if (that.configuration.resizable) {
             chessgroundBoardConfig.events = {
                 insert(elements) {
-                    resizeHandle(that, el, el.firstChild, smallerWidth, resizeLayout)
+                    resizeHandle(that, el, el.firstChild as HTMLElement, smallerWidth, resizeLayout)
                 }
             }
         }
@@ -671,27 +675,28 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         }
         let gc = that.mypgn.getGameComment()
         if (gc) {
-            that.board.setShapes(getShapes(gc))
+            that.board.setShapes(getShapes(gc as any))
         }
 
         postGenerateBoard()
         return that.board
     }
 
-    function moveSpan (i) {
+    function moveSpan (i:number) {
         return document.getElementById(id('movesId') + i)
     }
 
-    function regenerateMoveSpan(_moveSpan, move) {
+    function regenerateMoveSpan(_moveSpan:HTMLElement, move:PgnReaderMove) {
         // Creating the move SAN including everything (may be recreated later)
         let figclass = that.configuration.figurine ? "figurine " + that.configuration.figurine : null
-        const _linkEle = createEle('san', null, null, null, _moveSpan)
+        // TODO: The 'san' tag is not valid typed, but how to do that for custom elements
+        const _linkEle = createEle('san' as keyof HTMLElementTagNameMap, null, null, null, _moveSpan)
         let _san = ""
         if (move.notation && move.notation.fig) {
             const locale = that.configuration.locale
             const figurine = that.configuration.figurine
             const fig = (!locale || figurine) ? move.notation.fig : t("chess:" + move.notation.fig)
-            const figele = createEle('fig', null, figclass, null, _linkEle)
+            const figele = createEle('fig' as keyof HTMLElementTagNameMap, null, figclass, null, _linkEle)
             figele.appendChild(document.createTextNode(fig))
             _san = that.mypgn.san(move).substring(1)
         } else {
@@ -710,7 +715,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                 (nagInt > 135 && nagInt < 140) {
                     nagClass = "time"
                 }
-                let nagele = createEle('nag', null, nagClass, null, _linkEle)
+                let nagele = createEle('nag' as keyof HTMLElementTagNameMap, null, nagClass, null, _linkEle)
                 nagele.setAttribute('data-value', nag)
                 nagele.setAttribute('title', t('nag:' + nag))
                 let nagtext = nagToSymbol([nag])
@@ -733,7 +738,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
      * @param varStack if empty no current variation (main line), else contains the divs of the variations played currently
      * @return {*} the current counter which may the next prev counter
      */
-    function generateMove (currentCounter, game, move, prevCounter, movesDiv, varStack) {
+    function generateMove (currentCounter:number, game:any, move:PgnReaderMove, prevCounter:number, movesDiv:HTMLElement, varStack:HTMLElement[]) {
         /**
          * Comments are generated inline, there is no special block rendering
          * possible for them.
@@ -741,7 +746,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
          * @param clazz class parameter appended to differentiate different comments
          * @returns {HTMLElement} the new created span with the comment as text, or null, if text is null
          */
-        function generateCommentSpan (comment, clazz) {
+        function generateCommentSpan (comment:string, clazz:string) {
             if (comment && (typeof comment == "string")) {
                 const commentSpan =  createEle('span', null, "comment " + clazz)
                 commentSpan.appendChild(document.createTextNode(" " + comment + " "))
@@ -750,13 +755,13 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             return null
         }
 
-        function createFiller(span) {
+        function createFiller(span:HTMLElement) {
             const filler = createEle('span', null, "move filler")
             filler.appendChild(document.createTextNode("... "))
             span.appendChild(filler)
         }
 
-        function appendCommentSpan (span, comment, clazz, fillNeeded?) {
+        function appendCommentSpan (span:HTMLElement, comment:string, clazz:string, fillNeeded?:boolean) {
             let cSpan = generateCommentSpan(comment, clazz)
             if (cSpan) {
                 if (fillNeeded) {
@@ -768,11 +773,11 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             return false
         }
 
-        function appendVariation(div, move) {
+        function appendVariation(div:HTMLElement, move:PgnReaderMove) {
             // if (! movesDiv.lastChild.classList.contains("variations")) {
             //     movesDiv.appendChild(createEle('div', null, "variations", null, movesDiv))
             // }
-            function findLastVariantOfMove(move) {
+            function findLastVariantOfMove(move:PgnReaderMove) {
                 let _ind = move.prev ? that.mypgn.getMove(move.prev).next : that.mypgn.getFirstMove().index
                 let _ele = moveSpan(_ind)
                 let _next = _ele.nextSibling
@@ -788,18 +793,18 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             insertAfter(div, preEle)
         }
 
-        function localBoard(id, configuration, blackPerspective) {
+        function localBoard(id:string, configuration:PgnViewerConfiguration, blackPerspective:boolean) {
             let base = pgnBase(id,
                 Object.assign({boardSize: '200px', resizable: false}, configuration,
                     {headers: false, mode: 'board', orientation: (blackPerspective ? 'black' : 'white'), showCoords: false}))
             base.generateHTML()
             base.generateBoard()
         }
-        function createMoveNumberSpan(currentMove, spanOrDiv, isVariation, additionalClass?) {
+        function createMoveNumberSpan(currentMove:PgnReaderMove, spanOrDiv:HTMLElement, isVariation:boolean, additionalClass?:string) {
             const mn = currentMove.moveNumber
             const clazz = additionalClass ? additionalClass : ""
-            const num = createEle('move-number', null, clazz, null, spanOrDiv)
-            num.setAttribute('data-value', mn)
+            const num = createEle('move-number' as keyof HTMLElementTagNameMap, null, clazz, null, spanOrDiv)
+            num.setAttribute('data-value', String(mn))
             const isList = that.configuration.notationLayout === 'list' && !isVariation
             num.appendChild(document.createTextNode("" + mn + ((currentMove.turn == 'w' || (isList)) ? ". " : "... ")))
         }
@@ -808,7 +813,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         function currentFather() {
             return isVariant() ? varStack[varStack.length - 1] : movesDiv
         }
-        function preMoveHasVariation(move) {
+        function preMoveHasVariation(move:PgnReaderMove) {
             let prev = that.mypgn.getMove(move.prev)
             return prev && prev.variations.length > 0
         }
@@ -825,7 +830,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         if (move.turn == 'w') {
             clAttr = clAttr + " white"
         }
-        const _moveSpan = createEle("move", id('movesId') + currentCounter, clAttr)
+        const _moveSpan = createEle("move" as keyof HTMLElementTagNameMap, id('movesId') + currentCounter, clAttr)
         if (that.mypgn.startVariation(move)) {
             /* if ( (move.turn == 'w') ) {
                 createFiller(movesDiv)
@@ -838,7 +843,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         if (varStack.length === 0 && move.variationLevel > 0) {
             // Must be a second (or later) move, because start of variation is already managed above.
             // Find the variation div for the previous move (which should be sufficient then)
-            varStack.push(moveSpan(that.mypgn.getMove(move.prev).index).parentNode)
+            varStack.push(moveSpan(that.mypgn.getMove(move.prev).index).parentNode as HTMLElement)
         }
         appendCommentSpan(currentFather(), move.commentMove, "moveComment")
 
@@ -869,7 +874,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             let cl_class = that.configuration.timeAnnotation?.class || 'timeNormal'
             let clock_span = generateCommentSpan(cl_time, cl_class)
             if (that.configuration.timeAnnotation.colorClass) {
-                clock_span.style = "color: " + that.configuration.timeAnnotation.colorClass
+                clock_span.style.color = that.configuration.timeAnnotation.colorClass
             }
             _moveSpan.appendChild(clock_span)
         }
@@ -880,7 +885,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         if (that.mypgn.endVariation(move)) {
             varStack.pop()
         }
-        addEventListener(moveSpan(currentCounter), 'click', function (event) {
+        addEventListener(moveSpan(currentCounter), 'click', function (event:Event) {
             makeMove(that.currentMove, currentCounter, move.fen)
             event.stopPropagation()
         })
@@ -899,37 +904,37 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
      * Unmark all marked moves, mark the next one.
      * @param next the next move number
      */
-    function unmarkMark(next) {
-        function moveASpan (i) {
+    function unmarkMark(next:number) {
+        function moveASpan (i:number):HTMLElement {
             return document.querySelector('#' + id('movesId') + i + '> san')
         }
 
-        removeClass(document.querySelector('#' + id('movesId') + " san.yellow"), 'yellow')
+        removeClass(document.querySelector('#' + id('movesId') + " san.yellow") as HTMLElement, 'yellow')
         addClass(moveASpan(next), 'yellow')
     }
 
     /**
      * Check which buttons should be grayed out
      */
-    function updateUI(next) {
+    function updateUI(next:number) {
         const divBoard = document.getElementById(boardId)
         function pgnEmpty () {
             let pgn = that.mypgn.writePgn()
             return (typeof pgn === 'undefined') || (pgn === null) || (pgn.length === 0)
         }
-        let elements = divBoard.querySelectorAll(".pgnvbutton.gray")
+        let elements: NodeListOf<HTMLElement> = divBoard.querySelectorAll(".pgnvbutton.gray")
         elements.forEach(function (ele) {
             removeClass(ele, 'gray')
         })
         const move = that.mypgn.getMove(next)
         if (next === null) {
             ["prev", "first"].forEach(function (name) {
-                addClass(divBoard.querySelector("div.buttons > ." + name), 'gray')
+                addClass(divBoard.querySelector("div.buttons > ." + name) as HTMLElement, 'gray')
             })
         }
         if (((next !== null) && (typeof move.next != "number")) || (pgnEmpty())) {
             ["next", "play", "last"].forEach(function (name) {
-                addClass(divBoard.querySelector("div.buttons > ." + name), 'gray')
+                addClass(divBoard.querySelector("div.buttons > ." + name) as HTMLElement, 'gray')
             })
         }
         // Update the drop-down for NAGs
@@ -952,8 +957,8 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
 
     }
 
-    function getShapes(commentDiag) {
-        function colOfDiag(color) {
+    function getShapes(commentDiag:{colorArrows: any, colorFields: any}) {
+        function colOfDiag(color: 'Y'|'R'|'B'|'G') {
             const colors = {Y: 'yellow', R: 'red', B: 'blue', G: 'green'}
             return colors[color]
         }
@@ -986,11 +991,11 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
      * @param next the move to take now
      * @param fen the fen of the move to make
      */
-    function makeMove (curr, next, fen) {
+    function makeMove (curr:number, next:number, fen:string) {
         /**
          * Fills the comment field depending on which and if a comment is filled for that move.
          */
-        function fillComment(moveNumber) {
+        function fillComment(moveNumber:number) {
             let myMove = that.mypgn.getMove(moveNumber)
             if (!~myMove) return
             if (myMove.commentAfter) {
@@ -1009,7 +1014,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             }
         }
 
-        function handlePromotion(aMove) {
+        function handlePromotion(aMove:PgnReaderMove) {
             if (!aMove) return
             if (aMove.notation.promotion) {
                 let promPiece = aMove.notation.promotion.substring(1, 2).toLowerCase()
@@ -1037,10 +1042,12 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         }
         handlePromotion(myMove)
         if (myMove) {
+            // @ts-ignore
             that.board.setShapes(getShapes(myMove.commentDiag))
         } else {
             let gc = that.mypgn.getGameComment()
             if (gc) {
+                // @ts-ignore
                 that.board.setShapes(getShapes(gc))
             }
 
@@ -1076,7 +1083,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         updateUI(next)
     }
 
-    function setGameToPosition(pos) {
+    function setGameToPosition(pos:string) {
         if (pos == 'start' || typeof pos === 'undefined') {
             chess.reset()
         } else {
@@ -1092,7 +1099,8 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
 
 
         /** Create something printable from the tags for the list. */
-        function printTags(game) {
+        function printTags(game:ParseTree) {
+            // @ts-ignore
             if (game.tags.size === 0) {
                 return "Should print somehow the moves of the game" //TODO: What is the idea here? No clue ...
             }
@@ -1202,7 +1210,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                 document.getElementById(id('bottomHeaderId')).innerText = topInner
                 document.getElementById(id('topHeaderId')).innerText = bottomInner
             }
-            function bind_key (key, to_call) {
+            function bind_key (key:string, to_call:CallableFunction) {
                 const form = document.querySelector("#" + boardId + ",#" + boardId + "Moves") as HTMLElement
                 that.mousetrap.bind(key, function (evt) {
                     to_call()
@@ -1244,7 +1252,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             function firstMove () {
                 makeMove(null, null, null)
             }
-            const timer = new Timer(10)
+            const timer:Timer = new Timer(10)
             timer.bind(that.configuration.timerTime, function () {
                 nextMove()
             })
@@ -1252,7 +1260,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                 // TODO The following is a hack to keep the fontSize of the coords.  There is no option in Chessground
                 //  to set the font size of coords. See generateBoard for the original setting of font size
                 let coordsComp = document.querySelector("#" + boardId).querySelector("coords") as HTMLElement
-                let fs
+                let fs:string
                 if (coordsComp) {
                     fs = coordsComp.style.fontSize
                 }
@@ -1368,7 +1376,6 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                     }
                 }
                 const rad = ["moveComment", "afterComment"]
-                const prevComment = null
                 for (let i = 0; i < rad.length; i++) {
                     let cb = document.querySelector('#' + 'comment' + id('buttonsId') + " ." + rad[i]) as HTMLInputElement
                     cb.onclick = function () {
@@ -1417,7 +1424,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             return that.mypgn.writePgn()
         }
 
-        function showPgn (val) {
+        function showPgn (val:string) {
             document.getElementById('textpgn' + id('buttonsId')).textContent = val
         }
 
@@ -1425,11 +1432,11 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
          * Regenerate the moves div, may be used the first time (DIV is empty)
          * or later (moves have changed).
          */
-        function regenerateMoves (myMoves) {
+        function regenerateMoves (myMoves:PgnReaderMove[]) {
             const movesDiv = document.getElementById(id('movesId'))
             movesDiv.innerHTML = ''
             let prev = null
-            const varStack = []
+            const varStack: HTMLElement[] = []
             let firstMove = 0
             for (let i = firstMove; i < myMoves.length; i++) {
                 if (!that.mypgn.isDeleted(i)) {
@@ -1468,7 +1475,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
 
 
         function computeBoardSize () {
-            function setBoardSizeAndWidth (boardSize, width) {
+            function setBoardSizeAndWidth (boardSize:string, width:string) {
                 that.configuration.boardSize = boardSize
                 that.configuration.width = width
                 divBoard.style.width = width
@@ -1476,7 +1483,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             let _boardSize = that.configuration.boardSize
             let _width =  that.configuration.width || divBoard.style.width
 
-            function getRoundedBoardSize(_boardSize) {
+            function getRoundedBoardSize(_boardSize:string) {
                 return `${Math.round(parseInt(_boardSize) / 8) * 8}px`
             }
 
@@ -1501,7 +1508,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                 setBoardSizeAndWidth(_boardSize, _width)
                 return _boardSize
             } else if (! _boardSize) {
-                _boardSize = getRoundedBoardSize(parseInt(_width) / 8 * 5)
+                _boardSize = getRoundedBoardSize(String(parseInt(_width) / 8 * 5))
                 setBoardSizeAndWidth(_boardSize, _width)
                 return _boardSize
             } else {
@@ -1584,7 +1591,8 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         generateMoves: generateMoves,
         manualMove: manualMove,
         onSnapEnd: onSnapEnd,
-        resizeLayout: resizeLayout
+        resizeLayout: resizeLayout,
+        t: t
     }
 }
 

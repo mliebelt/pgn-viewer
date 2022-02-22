@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Set locale in configuration</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+</head>
+<body>
+<h3>Set locale in configuration</h3>
+
+<div>The following is shown: default (locale not set == en); set locale == de|fr|es|....; set locale to non-existing one.
+    Useful in all mode view, edit, print, but not for board. Shows the figure notation in the related locale, changes
+    the button tooltips. For non-existing locales, uses default instead.
+</div>
+
+<div class="zeit merida">
+    <div id="board1" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board2" style="width: 320px; float: left; margin-right: 50px"></div>
+    <div id="board3" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board4" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board5" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board6" style="width: 320px; float: left; margin-right: 25px"></div>
+</div>
+
+<script>
+    let pgn = '1. e4 e5 2. Nf3 Nc6 3. Bc4 ( 3. d4 exd4 4. Bc4 { Scotish Gambit } Nf6 5. e5 d5 ) ( 3. Bb5 { is more played nowadays } ) Bc5 4. b4'
+    PGNV.pgnView("board1", {pgn: pgn})
+    PGNV.pgnPrint("board2", {pgn: pgn, locale: 'de'})
+    PGNV.pgnEdit("board3", {pgn: pgn, locale: 'fr'})
+    PGNV.pgnView("board4", {pgn: pgn, notationLayout: 'xx'})
+</script>
+</body>
+</html>

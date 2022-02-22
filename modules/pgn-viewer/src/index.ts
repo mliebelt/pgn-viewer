@@ -26,7 +26,7 @@ if (window && !window.PgnBaseDefaults) {
  *   pgn: the pgn as single string, or empty string (default)
  * @returns {{base}} base: all utility functions available, board: reference to Chessground
  */
-let pgnView = function (boardId, configuration) {
+let pgnView = function (boardId:string, configuration:PgnViewerConfiguration) {
     let base = pgnBase(boardId, Object.assign({mode: 'view'}, configuration))
     base.generateHTML()
     base.generateMoves()
@@ -49,7 +49,7 @@ let pgnView = function (boardId, configuration) {
  *          Normally not changed by clients
  *  theme: (only CSS related) some of zeit, blue, chesscom, ... (as string)
  */
-let pgnBoard = function (boardId, configuration) {
+let pgnBoard = function (boardId:string, configuration:PgnViewerConfiguration) {
     let base = pgnBase(boardId, Object.assign({headers: false, mode: 'board'}, configuration))
     base.generateHTML()
     base.resizeLayout()
@@ -69,14 +69,14 @@ let pgnBoard = function (boardId, configuration) {
  *    allowComments: false or true (default)
  *    allowAnnotations: false or true (default)
  */
-let pgnEdit = function (boardId, configuration) {
+let pgnEdit = function (boardId:string, configuration:PgnViewerConfiguration) {
     let base = pgnBase(boardId, Object.assign(
         {
             showFen: true, mode: 'edit',
             movable: {
                 free: false,
                 events: {
-                    after: function (orig, dest, meta) {
+                    after: function (orig: any, dest: any, meta: any) {
                         base.onSnapEnd(orig, dest, meta)
                     }
                 }
@@ -98,7 +98,7 @@ let pgnEdit = function (boardId, configuration) {
  * @param configuration the configuration, mainly here the board style and position.
  * Rest will be ignored.
  */
-let pgnPrint = function (boardId, configuration) {
+let pgnPrint = function (boardId: string, configuration:PgnViewerConfiguration) {
     let base = pgnBase(boardId, Object.assign({showCoords: false, mode: 'print'}, configuration))
     base.generateHTML()
     base.generateMoves()

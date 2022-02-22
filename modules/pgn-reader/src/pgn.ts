@@ -294,6 +294,9 @@ export class PgnReader {
             let moveNum = moveRep as number - 1
             let move = this.getMove(0)
             while (moveNum > 0) {
+                if (! move.next) {
+                    return null
+                }
                 moveNum = moveNum - 1
                 move = this.getMove(move.next)
             }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Set timeAnnotation in configuration</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+</head>
+<body>
+<h3>Set timeAnnotation in configuration</h3>
+
+<div>Set timeAnnotation in configuration: not set/set to 'none' == don't show time annotations;
+    set class to `timeTiny` == 60% of normal font size;
+    set class to `timeNormal` == 80% of normal font size;
+    set class to `timeLarge` == 100% of normal font size. colorClass may be set independent, default is gray.
+</div>
+
+<div class="zeit merida">
+    <div id="board1" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board2" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board3" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board4" style="width: 320px; float: left; margin-right: 25px"></div>
+</div>
+
+<script>
+    let pgn = "c4 {[%clk 2:10:30]} Nf6 {[%clk 2:10:30]} 2. Nc3 {[%clk 2:10:30]}";
+    PGNV.pgnView('board1', {pgn: pgn, timeAnnotation: {class: 'timeTiny'}});
+    PGNV.pgnView('board2', {pgn: pgn, timeAnnotation: {class: 'timeTiny', colorClass: 'blue'}});
+    PGNV.pgnView('board3', {pgn: pgn, timeAnnotation: {class: 'timeNormal', colorClass: 'grey'}});
+    PGNV.pgnView('board4', {pgn: pgn, timeAnnotation: {class: 'timeLarge', colorClass: 'red'}});
+</script>
+
+</body>
+</html>

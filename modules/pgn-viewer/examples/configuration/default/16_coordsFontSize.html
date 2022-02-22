@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Set coordsFontSize in configuration</title>
+    <script src="/lib/pgnv.js" type="text/javascript"></script>
+</head>
+<body>
+<h3>Set coordsFontSize in configuration</h3>
+
+<div>The following is shown: default (coordsFontSize == 11px); set coordsFontSize == 24px. Useful in all mode view, edit, board, not for print.
+    And only useful if showCoords == true. Can be combined with coordsInner == true/false. When resizing the board (by the user),
+    the coordsFontSize will not be adjusted and remain the same as before. You cannot use any other measure that is allowed in CSS (em, ...)
+    besides px, px is taken all the time.
+</div>
+
+<div class="zeit merida">
+    <div id="board1" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board2" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board3" style="width: 320px; float: left; margin-right: 25px"></div>
+    <div id="board4" style="width: 320px; float: left; margin-right: 25px"></div>
+</div>
+
+<script>
+    PGNV.pgnBoard("board1", {pgn: "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4"})
+    PGNV.pgnView("board2", {pgn: "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4", coordsFontSize: '24px'})
+    PGNV.pgnEdit("board3", {pgn: "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4", coordsFontSize: '8'})
+    PGNV.pgnBoard("board4", {pgn: "1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4", coordsFontSize: '32px', coordsInner: false})
+</script>
+
+</body>
+</html>

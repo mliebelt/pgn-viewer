@@ -7,13 +7,13 @@
 </head>
 <body class="merida">
 
-<p>Set width with the div only, no additional sizes, default layout, many moves. The moves height is currently
-3/5 of the board size.</p>
+<p>Set width and boardSize, with a different ratio as 3/5 (default). Here width is 2 times the boardSize.
+Changing the boardSize by resize keeps the width stable.</p>
 <div id="board1"></div>
 
 <script>
     let pgn = '1. e4 e5 2. Nf3 Nf6 3. Nc3 { C42 Russian Game: Three Knights Game } Bb4 4. a3 Bxc3 5. bxc3 d6 6. d4 O-O 7. Bg5 Nbd7 8. Bd3 b6 9. O-O Bb7 10. Re1 Qe8';
-    PGNV.pgnView("board1", {pgn: pgn, layout: 'top', width: '600px', boardSize: '400px'});
+    PGNV.pgnView("board1", {pgn: pgn, layout: 'left', width: '800px', boardSize: '600px'});
 </script>
 </body>
 </html>

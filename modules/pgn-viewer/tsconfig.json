@@ -15,7 +15,7 @@
     "moduleResolution": "Node",
     //    "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-//    "noImplicitAny": false,
+    "noImplicitAny": true,
     "outDir": "lib",
     "skipLibCheck": true,
     "sourceMap": true,
