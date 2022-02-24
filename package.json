@@ -14,7 +14,6 @@
     "css-loader": "^6.6.0",
     "html-webpack-plugin": "^5.5.0",
     "mocha": "^9.2.1",
-    "nps": "^5.9.12",
     "should": "^13.2.3",
     "style-loader": "^3.3.1",
     "webpack": "^5.69.1",
@@ -23,7 +22,6 @@
     "webpack-merge": "^5.8.0"
   },
   "scripts": {
-    "start": "nps",
-    "gen_examples": "nps gen_examples"
+    "gen_examples": "node ./bin/gen_examples.js"
   }
 }
