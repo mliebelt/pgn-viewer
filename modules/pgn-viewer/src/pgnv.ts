@@ -1068,6 +1068,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                 fillComment(next)
             }
         } else if (hasMode('view')) {
+            chess.load(myFen)
             let col: Color = chess.turn() == 'w' ? 'white' : 'black'
             that.board.set({
                 movable: Object.assign({}, that.board.state.movable, {color: col}),
