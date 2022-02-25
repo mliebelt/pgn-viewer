@@ -10,8 +10,17 @@
 
 <div>Shows how to set the pieceStyle in CSS. First: pieceStyle used from outer HTML element (look at <kbd>body</kbd>
     tag). Second: pieceStyle == merida (which does not work, see <a href="https://github.com/mliebelt/PgnViewerJS/issues/345">#345</a>
-    that shows it. Third: pieceStyle == alpha.
+    that shows it. Third: pieceStyle == wikipedia.
 </div>
+
+<div>The strange thing here is that the order of the pieceStyles in the CSS file decide which one is shown, or can be overwritten.
+I have made some  more examples to show the effect.</div>
+
+<p>Here visible (from left to right):
+<ul><li>wikipedia (default from the outside)</li>
+<li>wikipedia (because later in CSS than merida) ==> not working</li>
+<li>alpha (because later in CSS than wikipedia)</li></ul></p>
+
 
 <div class="wikipedia">
     <div id="board1" style="width: 320px; float: left; margin-right: 25px"></div>
