@@ -139,7 +139,9 @@
                 board, the moves, the buttons, ... It tries to reproduce
                 typical designs used in chess books, online sites, you name it.
                 And you may of course add your own themes. Current themese are: green, zeit, informator,
-                sportverlag, beyer, falken, blue.
+                sportverlag, beyer, falken, blue. The theme can be added to CSS (as class) or as parameter
+                to the configuration: <kbd>theme: 'beyer'</kbd>.<br/>
+                <b>Warning!</b> Don't use both inline CSS and configuration parameter for setting the theme.
             </td>
             <td><a href="examples.html#1050">Theme and Style Examples</a>.
             </td>
@@ -159,7 +161,9 @@
             <td>no</td>
             <td><code class="js string">'wikipedia'</code></td>
             <td>Defines the piece style to take. These are all PNG files,
-                that are then scaled by the browser.
+                that are then scaled by the browser. The piece style can be added to CSS (as class) or as parameter
+                to the configuration: <kbd>pieceStyle: 'merida'</kbd>.<br/>
+                <b>Warning!</b> Don't use both inline CSS and configuration parameter for setting the piece style.
             </td>
             <td><a href="examples.html#1021">Piece Style Examples</a></td>
         </tr>

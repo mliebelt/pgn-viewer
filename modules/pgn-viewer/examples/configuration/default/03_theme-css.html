@@ -13,6 +13,18 @@
     that shows it. Third: theme == green.
 </div>
 
+<div>Demonstrates that the usage of theme in CSS and as parameter is not recommended. Here is the case for the
+boards from left to right:
+<ol>
+    <li>Default taken from CSS only (zeit), works.</li>
+    <li>Default taken from CSS (zeit), even when <kbd>theme: "brown"</kbd> is done in configuration, does not work.</li>
+    <li>Default overridden by configuration, <kbd>theme: "green", works</kbd></li>
+</ol>
+
+What is the difference of themes zeit, brown, and green? The order in the CSS file is: brown, zeit, green. It looks
+like the order in CSS defines which can overwrite what ... (which is strange). Or we have 2 rules matching, and because
+it is the background-image (which can be set multiple times), only the latest / most top is visible.</div>
+
 <div class="zeit merida">
     <div id="board1" style="width: 320px; float: left; margin-right: 25px"></div>
     <div id="board2" style="width: 320px; float: left; margin-right: 25px"></div>
