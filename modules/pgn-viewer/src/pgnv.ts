@@ -1,19 +1,21 @@
-import {i18next} from './i18n'
-import {PgnReader, Shape, Field, PgnReaderMove} from '@mliebelt/pgn-reader'
-import {hasDiagramNag, nagToSymbol, NAGs} from '@mliebelt/pgn-reader'
 import {Chessground} from 'chessground'
-import 'chessground/assets/chessground.base.css'
-import 'chessground/assets/chessground.brown.css'
-import Timer from './timer'
-import Mousetrap from 'mousetrap-ts'
-import swal from 'sweetalert'
-import resizeHandle from "./resize"
-import {Base, PgnViewerConfiguration, PgnViewerMode, PrimitiveMove, ShortColor, SupportedLocales} from "./types"
-import {PROMOTIONS} from "@mliebelt/pgn-reader"
-import { pgnEdit } from '.'
 import {Color} from "chessground/types";
 import {Config} from "chessground/config";
+import 'chessground/assets/chessground.base.css'
+import 'chessground/assets/chessground.brown.css'
+import Mousetrap from 'mousetrap-ts'
+import * as _swal from 'sweetalert'
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = _swal as any;
+import {PgnReader, Shape, Field, PgnReaderMove} from '@mliebelt/pgn-reader'
+import {hasDiagramNag, nagToSymbol, NAGs} from '@mliebelt/pgn-reader'
+import {PROMOTIONS} from "@mliebelt/pgn-reader"
 import { ParseTree } from '@mliebelt/pgn-parser'
+import {i18next} from './i18n'
+import Timer from './timer'
+import resizeHandle from "./resize"
+import {Base, PgnViewerConfiguration, PgnViewerMode, PrimitiveMove, ShortColor, SupportedLocales} from "./types"
+import { pgnEdit } from '.'
 
 /**
  * This implements the base function that is used to display a board, a whole game
@@ -30,7 +32,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     let defaults: PgnViewerConfiguration = {
         lazyLoad: true,
         // theme: "blue",
-        // pieceStyle: 'merida',
+        pieceStyle: 'merida',
         // width: '320px',
         // boardSize: '320px',
         manyGames: false,
@@ -42,9 +44,9 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         headers: false,
         timerTime: 700,
         locale: 'en',
-        movable: {free: false},
-        highlight: {lastMove: true},
-        viewOnly: true,
+        movable: {free: false}, // no documentation
+        highlight: {lastMove: true}, // no documentation
+        viewOnly: true, // no documentation
         hideMovesBefore: false,
         colorMarker: null,
         showResult: false,

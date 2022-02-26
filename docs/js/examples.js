@@ -312,7 +312,7 @@ examples["1059"] = {
 examples["1100"] = {
     desc: "A short chess game with the standard configuration.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
-    name: "Edit game",
+    name: "Short game",
     jsStr: "var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0']\n.join(\" \");\npgnv = PGNV.pgnEdit('b1', {pgn: pgn});",
     jsFn: function() {
         var pgn = ['1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6 9.e5 Qg6 10.Re1 Nge7 11.Ba3 b5 12.Qxb5 Rb8 13.Qa4 Bb6 14.Nbd2 Bb7 15.Ne4 Qf5 16.Bxd3 Qh5 { now the whole idea unfolds } 17.Nf6+ gxf6 18.exf6 Rg8 19.Rad1!  Qxf3? 20.Rxe7+! Nxe7 21.Qxd7+ Kxd7 22.Bf5+ Ke8 23.Bd7+ Kf8 24. Bxe7# 1-0'].join(" ");
@@ -320,6 +320,17 @@ examples["1100"] = {
     }
 };
 examples["1101"] = {
+    desc: "3 short chess games to demonstrate selection between games.",
+    html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
+    name: "Short game",
+    jsStr: "var pgn = ['[White \"Me\"][Black \"You\"] 1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4\\n\\n[White \"You\"][Black \"Magnus\"] d4 Nf6 c4 e6 Nf3 Be7 g3\\n\\n[White \"Magnus\"][Black \"Me\"] e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 a3 '].join(\" \");\n" +
+        "        pgnv = PGNV.pgnView(\"b1\", {pgn: pgn, manyGames: true});",
+    jsFn: function() {
+        var pgn = ['[White "Me"][Black "You"] 1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4\n\n[White "You"][Black "Magnus"] d4 Nf6 c4 e6 Nf3 Be7 g3\n\n[White "Magnus"][Black "Me"] e4 c5 Nf3 d6 d4 cxd4 Nxd4 Nf6 a3 '].join(" ");
+        pgnv = PGNV.pgnView("b1", {pgn: pgn, manyGames: true});
+    }
+};
+examples["1104"] = {
     desc: "Here the normal layout of the moves, with some special characters, the so called NAGs. PNGViewerJS knows the NAGs, and " +
         "translates them in the correct notation. The following game " +
         "is not really correct commented, but it shows the different options. Hover with the mouse over the NAGs, to see the meaning",
@@ -331,7 +342,7 @@ examples["1101"] = {
         PGNV.pgnView('b1', {pgn: pgn});
     }
 };
-examples["1102"] = {
+examples["1107"] = {
     desc: "Here a game with a lot of variations, sometimes two or more levels deep. This is part of my opening repertoire as white.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Variations in Moves",
@@ -342,7 +353,7 @@ examples["1102"] = {
     }
 };
 
-examples["1103"] = {
+examples["1110"] = {
     desc: "Here a game with a lot of variations, some two or more levels deep.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Variations in Moves",
@@ -353,7 +364,7 @@ examples["1103"] = {
     }
 };
 
-examples["1104"] = {
+examples["1114"] = {
     desc: "The game is shown in inline notation, compare with the list notation below.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Variations in Moves",
@@ -364,7 +375,7 @@ examples["1104"] = {
     }
 };
 
-examples["1105"] = {
+examples["1118"] = {
     desc: "The game is shown in inline notation, compare with the list notation below.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Variations in Moves",
@@ -375,7 +386,7 @@ examples["1105"] = {
     }
 };
 
-examples["1106"] = {
+examples["1121"] = {
     desc: "The game is shown in long notation, compare with the default short notation above.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Variations in Moves",
@@ -386,7 +397,7 @@ examples["1106"] = {
     }
 };
 
-examples["1107"] = {
+examples["1124"] = {
     desc: "Shows different figurine notations: alpha, merida, berlin, noto, cachess.",
     html: '<div id="b1" style="width: 240px;float: left;margin-right: 25px"></div>' +
         '<div id="b2" style="width: 240px;float: left;margin-right: 25px"></div>' +
@@ -394,18 +405,18 @@ examples["1107"] = {
         '<div id="b4" style="width: 240px;float: left;margin-right: 25px"></div>' +
         '<div id="b5" style="width: 240px"></div>',
     name: "Figurine notations",
-    jsStr: "var pgn = '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6';\nPGNV.pgnView('b1', {pgn: pgn, figurine: true});\nPGNV.pgnView('b2', {pgn: pgn, figurine: 'merida'});\nPGNV.pgnView('b3', {pgn: pgn, figurine: 'berlin'});\nPGNV.pgnView('b4', {pgn: pgn, figurine: 'noto';\nPGNV.pgnView('b4', {pgn: pgn, figurine: 'cachess'});",
+    jsStr: "var pgn = '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6';\nPGNV.pgnView('b1', {pgn: pgn, figurine: true});\nPGNV.pgnView('b2', {pgn: pgn, figurine: 'merida'});\nPGNV.pgnView('b3', {pgn: pgn, figurine: 'berlin'});\nPGNV.pgnView('b4', {pgn: pgn, figurine: 'noto';\nPGNV.pgnView('b5', {pgn: pgn, figurine: 'cachess'});",
     jsFn: function() {
         var pgn = '1. e4 e5 2. Nf3 Nc6  3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d3 8.Qb3 Qf6';
         PGNV.pgnView('b1', {pgn: pgn, figurine: true});
         PGNV.pgnView('b2', {pgn: pgn, figurine: 'merida'});
         PGNV.pgnView('b3', {pgn: pgn, figurine: 'berlin'});
         PGNV.pgnView('b4', {pgn: pgn, figurine: 'noto'});
-        PGNV.pgnView('b4', {pgn: pgn, figurine: 'cachess'});
+        PGNV.pgnView('b5', {pgn: pgn, figurine: 'cachess'});
     }
 };
 
-examples["1108"] = {
+examples["1127"] = {
     desc: "Shows the same game with default languages: en (default), de, and fr. Look at the SAN notation, and hover over the buttons to see the tooltips.",
     html: '<div id="b1" style="width: 360px"><\/div>' +
         '<div id="b2" style="width: 360px"></div>' +
@@ -420,7 +431,7 @@ examples["1108"] = {
     }
 };
 
-examples["1109"] = {
+examples["1130"] = {
     desc: "Set the timer to 3 different values: 200ms, 1200ms and 700ms (default). Just press the play button, and watch the difference.",
     html: '<div id="board" style="width: 250px; float: left; margin-right: 10px"><\/div>\n' +
         '<div id="board1" style="width: 250px; float: left; margin-right: 10px"></div>\n' +
@@ -438,7 +449,7 @@ examples["1109"] = {
     }
 };
 
-examples["1110"] = {
+examples["1134"] = {
     desc: "Shows a game in viewer with FEN text field",
     html: '<div id="board2" style="width: 450px"></div>',
     name: "Show FEN in text field",
@@ -449,7 +460,7 @@ examples["1110"] = {
     }
 };
 
-examples["1111"] = {
+examples["1137"] = {
     desc: "Shows the result of the game in the PGN notation",
     html: '<div id="board2" style="width: 450px"></div>',
     name: "Show FEN in text field",
@@ -460,7 +471,7 @@ examples["1111"] = {
     }
 };
 
-examples["1112"] = {
+examples["1140"] = {
     desc: "Starts play from a different move than the first one",
     html: '<div id="board1" style="width: 250px; float: left; margin-right: 10px"></div>' +
         '\n<div id="board2" style="width: 250px; float: left; margin-right: 10px"></div>' +
@@ -484,7 +495,7 @@ examples["1112"] = {
     }
 };
 
-examples["1113"] = {
+examples["1145"] = {
     desc: "Starts play from a different move than the first one, hide the moves before that first move",
     html: '<div id="board2" style="width: 250px; float: left; margin-right: 10px"></div>',
     name: "Start play combined with hide moves before",
@@ -496,7 +507,7 @@ examples["1113"] = {
     }
 };
 
-examples["1114"] = {
+examples["1150"] = {
     desc: "Shows time annotations, different examples: normal, tiny (with different colors)",
     html: '<div id="board1" style="width: 250px; float: left; margin-right: 10px"></div><div id="board2" style="width: 250px;"></div>',
     name: "Show time annotations",

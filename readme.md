@@ -31,7 +31,7 @@ The screenshots show from left to right:
 
 * `mode: board; theme: sportverlag`
 * `mode: edit; headers: false; theme: 'brown'` with comments
-* `mode: view; layout: 'left'; pieceStyle: 'leipzig'; notationLayout: 'list'` with comments
+* `mode: view; layout: 'left', pieceStyle: 'leipzig', theme: 'zeit'` with comments
 
 Go to the [github.io pages](http://mliebelt.github.io/PgnViewerJS/) (documentation), where the viewer is documented and shown.
 

@@ -3,17 +3,34 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-viewer@1.5.13` to get the "release" directly from NPM.
+I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-viewer@1.5.14` to get the "release" directly from NPM.
 
 ## Unknown version
 
 ### Changed
 
-* [#310](https://github.com/mliebelt/PgnViewerJS/issues/310) Implemented pgn-reader in Typescript
+* 
 
 ### Fixed
 
-* [#323](https://github.com/mliebelt/PgnViewerJS/issues/323) Splitted reading files from rest
+* 
+
+## 1.5.14 2022-02-26
+
+### Changed
+
+* [#310](https://github.com/mliebelt/PgnViewerJS/issues/310) Migrated pgn-reader to Typescript
+* [#336](https://github.com/mliebelt/PgnViewerJS/issues/336) Migrated pgn-viewer to Typescript
+* [#340](https://github.com/mliebelt/PgnViewerJS/issues/340) First unit tests for viewer (tbc)
+* [#343](https://github.com/mliebelt/PgnViewerJS/issues/343) Created many examples for all configuration parameter isolated
+* [#345](https://github.com/mliebelt/PgnViewerJS/issues/345) Demonstrates problems in setting pieceStyle in CSS AND configuration
+* [#346](https://github.com/mliebelt/PgnViewerJS/issues/346) Demonstrates problems in setting theme in CSS AND configuration
+
+### Fixed
+
+* [#337](https://github.com/mliebelt/PgnViewerJS/issues/337) Allows locale like de_DE
+* [#352](https://github.com/mliebelt/PgnViewerJS/issues/352) Fixed toggleColor problem in view mode
+* [#354](https://github.com/mliebelt/PgnViewerJS/issues/354) Fixed error in editMode with black to start
 
 ## 1.5.13 2022-01-06
 
