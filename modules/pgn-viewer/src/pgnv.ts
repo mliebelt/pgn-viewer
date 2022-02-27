@@ -237,14 +237,24 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         const cur = that.currentMove
         let primMove:PrimitiveMove = {from: from, to: to}
         if ((that.mypgn.chess.get(from).type === 'p') && ((to.substring(1, 2) === '8') || (to.substring(1, 2) === '1'))) {
-            swal("Select the promotion figure", {
+            // swal("Select the promotion figure", {
+            //     buttons: {
+            //         queen: {text: "Queen", value: 'q'},
+            //         rook: {text: "Rook", value: 'r'},
+            //         bishop: {text: "Bishop", value: 'b'},
+            //         knight: {text: 'Knight', value: 'n'}
+            //     }
+            // }).then((value) => {primMove.promotion = value}).then( () => { onSnapEndFinish() })
+            swal("", {
                 buttons: {
-                    queen: {text: "Queen", value: 'q'},
-                    rook: {text: "Rook", value: 'r'},
-                    bishop: {text: "Bishop", value: 'b'},
-                    knight: {text: 'Knight', value: 'n'}
+                    queen: { text: '', value: 'q', className: 'swalpgnv queen'},
+                    rook: { text: '', value: 'r', className: 'swalpgnv rook'},
+                    bishop: { text: '', value: 'b', className: 'swalpgnv bishop'},
+                    knight: { text: '', value: 'n', className: 'swalpgnv knight'},
                 }
             }).then((value) => {primMove.promotion = value}).then( () => { onSnapEndFinish() })
+            let boardRect = document.getElementById(id('innerBoardId')).getBoundingClientRect()
+            console.log(boardRect)
         } else {
             onSnapEndFinish()
         }

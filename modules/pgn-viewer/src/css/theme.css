@@ -130,6 +130,42 @@ move san nag {
   background-image: url(../img/board/green.svg);
 }
 
+/* SWAL buttons */
+.swal-modal {
+  width: unset;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+}
+.swal-button {
+  background-color: unset;
+  padding: 0;
+}
+.swal-button-container {
+  display: block;
+  margin: 0;
+}
+.swal-footer {
+  margin:0; padding: 0;
+}
+.swalpgnv {
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-size: 40px;
+}
+.swalpgnv.queen {
+  background-image: url('../img/chesspieces/merida/wQ.svg');
+}
+.swalpgnv.rook {
+  background-image: url('../img/chesspieces/merida/wR.svg');
+}
+.swalpgnv.bishop {
+  background-image: url('../img/chesspieces/merida/wB.svg');
+}
+.swalpgnv.knight {
+  background-image: url('../img/chesspieces/merida/wN.svg');
+}
 /*
  * Merida
  */
