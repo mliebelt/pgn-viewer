@@ -37,6 +37,8 @@ export type PgnBoardConfiguration = {
 export type PgnViewerMode = 'board' | 'view' | 'edit' | 'print'
 
 export type PgnViewerConfiguration = {
+    modalClicked?: (value: ("q" | "r" | "b" | "n")) => void;
+    modal?: any;
     mode?:PgnViewerMode,
     IDs?:{ [key in PgnViewerID]?: string },
     pgn?:string,

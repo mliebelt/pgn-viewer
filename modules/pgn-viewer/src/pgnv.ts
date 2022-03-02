@@ -4,9 +4,7 @@ import {Config} from "chessground/config";
 import 'chessground/assets/chessground.base.css'
 import 'chessground/assets/chessground.brown.css'
 import Mousetrap from 'mousetrap-ts'
-import * as _swal from 'sweetalert'
-import { SweetAlert } from 'sweetalert/typings/core';
-const swal: SweetAlert = _swal as any;
+const Modaly = require('modaly.js')
 import {PgnReader, Shape, Field, PgnReaderMove} from '@mliebelt/pgn-reader'
 import {hasDiagramNag, nagToSymbol, NAGs} from '@mliebelt/pgn-reader'
 import {PROMOTIONS} from "@mliebelt/pgn-reader"
@@ -232,29 +230,25 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
      * @param meta additional parameters (not used at the moment)
      */
     function onSnapEnd(from:Field, to:Field, meta:any) {
-        //console.log("Move from: " + from + " To: " + to + " Meta: " + JSON.stringify(meta, null, 2))
-        //board.set({fen: game.fen()})
+        function positionPromDiv(to:Field, modID:string) {
+            let boardRect = document.getElementById(id('innerBoardId')).getBoundingClientRect()
+            let _tor = 9 - (parseInt(to.substring(1)))
+            let _toc = to.charCodeAt(0)-96
+            let _l = boardRect.x + (boardRect.width / 8 * _toc)
+            let _t = boardRect.y + (boardRect.height / 8 * _tor)
+            if (_tor === 8) {
+                document.querySelector(modID).setAttribute('style', 'top: ' + (_t - 120) + 'px; left: ' + _l + 'px;')
+            } else {
+                document.querySelector(modID).setAttribute('style', 'top: ' + _t + 'px; left: ' + _l + 'px;')
+            }
+        }
         const cur = that.currentMove
         let primMove:PrimitiveMove = {from: from, to: to}
         if ((that.mypgn.chess.get(from).type === 'p') && ((to.substring(1, 2) === '8') || (to.substring(1, 2) === '1'))) {
-            // swal("Select the promotion figure", {
-            //     buttons: {
-            //         queen: {text: "Queen", value: 'q'},
-            //         rook: {text: "Rook", value: 'r'},
-            //         bishop: {text: "Bishop", value: 'b'},
-            //         knight: {text: 'Knight', value: 'n'}
-            //     }
-            // }).then((value) => {primMove.promotion = value}).then( () => { onSnapEndFinish() })
-            swal("", {
-                buttons: {
-                    queen: { text: '', value: 'q', className: 'swalpgnv queen'},
-                    rook: { text: '', value: 'r', className: 'swalpgnv rook'},
-                    bishop: { text: '', value: 'b', className: 'swalpgnv bishop'},
-                    knight: { text: '', value: 'n', className: 'swalpgnv knight'},
-                }
-            }).then((value) => {primMove.promotion = value}).then( () => { onSnapEndFinish() })
-            let boardRect = document.getElementById(id('innerBoardId')).getBoundingClientRect()
-            console.log(boardRect)
+            that.configuration.modalClicked = function (value:'q'|'r'|'b'|'n'){ primMove.promotion = value; onSnapEndFinish() }
+            let modID = '#' + boardId + "Prommodal"
+            positionPromDiv(to, modID)
+            that.configuration.modal.show()
         } else {
             onSnapEndFinish()
         }
@@ -616,6 +610,23 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             }
         }
 
+        function createPromotionDiv(parent: HTMLElement) {
+            function clicked(value:"q" | "r" | "b" | "n") {
+                that.configuration.modalClicked(value)
+            }
+            let _top = createEle('div', boardId + 'Prommodal', 'swalpgnvroot', null, parent)
+            let _b1 = createEle('button', null, 'swalpgnv queen', null, _top)
+            let _b2 = createEle('button', null, 'swalpgnv rook', null, _top)
+            let _b3 = createEle('button', null, 'swalpgnv bishop', null, _top)
+            let _b4 = createEle('button', null, 'swalpgnv knight', null, _top)
+            that.configuration.modal = new Modaly('#' + boardId + 'Prommodal')
+            that.configuration.modal?.hide()
+            _b1.addEventListener("click", () => { clicked('q') })
+            _b2.addEventListener("click", () => { clicked('r') })
+            _b3.addEventListener("click", () => { clicked('b') })
+            _b4.addEventListener("click", () => { clicked('n') })
+        }
+
         // Default values of the board, if not overwritten by the given configuration
         that.boardConfig = { coordsInner: true, coordsFactor: 1.0 }
         let chessgroundBoardConfig:Config = {
@@ -641,6 +652,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         }
         chessgroundBoardConfig.fen = boardConfig.position
         const el = document.getElementById(id('innerBoardId'))
+        createPromotionDiv(document.getElementById(boardId))
         if (typeof that.configuration.pieceStyle != 'undefined') {
             let bel = document.getElementById(boardId)
             bel.className += " " + that.configuration.pieceStyle

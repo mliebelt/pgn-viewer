@@ -131,27 +131,17 @@ move san nag {
 }
 
 /* SWAL buttons */
-.swal-modal {
-  width: unset;
-  padding: 0;
-  margin: 0;
-  position: absolute;
+.modaly-wrapper {
+  top: unset;
+  left: unset;
 }
-.swal-button {
-  background-color: unset;
-  padding: 0;
-}
-.swal-button-container {
-  display: block;
-  margin: 0;
-}
-.swal-footer {
-  margin:0; padding: 0;
+.swalpgnvroot {
+  z-index: 1060;
 }
 .swalpgnv {
   display: block;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   background-size: 40px;
 }
 .swalpgnv.queen {
@@ -165,6 +155,18 @@ move san nag {
 }
 .swalpgnv.knight {
   background-image: url('../img/chesspieces/merida/wN.svg');
+}
+.swalpgnv.queen.black {
+  background-image: url('../img/chesspieces/merida/bQ.svg');
+}
+.swalpgnv.rook.black {
+  background-image: url('../img/chesspieces/merida/bR.svg');
+}
+.swalpgnv.bishop.black {
+  background-image: url('../img/chesspieces/merida/bB.svg');
+}
+.swalpgnv.knight.black {
+  background-image: url('../img/chesspieces/merida/bN.svg');
 }
 /*
  * Merida

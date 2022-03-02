@@ -34,7 +34,7 @@
     "mousetrap-ts": "^1.0.0",
     "roddeh-i18n": "^1.2.0",
     "smoothscroll-polyfill": "^0.4.4",
-    "sweetalert": "^2.1.2"
+    "modaly.js": "^0.5.2"
   },
   "devDependencies": {
     "@tsconfig/node12": "^1.0.9",
