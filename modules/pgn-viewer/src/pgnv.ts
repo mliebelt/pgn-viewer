@@ -245,7 +245,10 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         const cur = that.currentMove
         let primMove:PrimitiveMove = {from: from, to: to}
         if ((that.mypgn.chess.get(from).type === 'p') && ((to.substring(1, 2) === '8') || (to.substring(1, 2) === '1'))) {
-            that.configuration.modalClicked = function (value:'q'|'r'|'b'|'n'){ primMove.promotion = value; onSnapEndFinish() }
+            that.configuration.modalClicked = function (value:'q'|'r'|'b'|'n'){
+                primMove.promotion = value
+                that.configuration.modal.hide()
+                onSnapEndFinish() }
             let modID = '#' + boardId + "Prommodal"
             positionPromDiv(to, modID)
             that.configuration.modal.show()
@@ -619,7 +622,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             let _b2 = createEle('button', null, 'swalpgnv rook', null, _top)
             let _b3 = createEle('button', null, 'swalpgnv bishop', null, _top)
             let _b4 = createEle('button', null, 'swalpgnv knight', null, _top)
-            that.configuration.modal = new Modaly('#' + boardId + 'Prommodal')
+            that.configuration.modal = new Modaly('#' + boardId + 'Prommodal', { escape: false, overlay: false })
             that.configuration.modal?.hide()
             _b1.addEventListener("click", () => { clicked('q') })
             _b2.addEventListener("click", () => { clicked('r') })
