@@ -7,7 +7,8 @@
     "viewer"
   ],
   "version": "1.5.14",
-  "main": "lib/pgnv.js",
+  "main": "lib/dist.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib/**",
     "README.md",

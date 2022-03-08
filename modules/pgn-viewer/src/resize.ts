@@ -1,4 +1,3 @@
-import * as cg from 'chessground/types';
 import {Base} from "./types";
 
 /**

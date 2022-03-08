@@ -11,7 +11,7 @@ module.exports = {
         new CompressionPlugin(),
     ],
     output: {
-        filename: 'pgnv.js',
+        filename: 'dist.js',
         path: path.resolve(__dirname, 'lib'),
         publicPath: '/lib/',
         library: 'PGNV',
