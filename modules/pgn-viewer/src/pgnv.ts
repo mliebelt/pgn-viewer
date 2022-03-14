@@ -433,13 +433,13 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         }
 
         const divBoard = document.getElementById(boardId)
-        that.mousetrap = new Mousetrap(divBoard)
         if (divBoard == null) {
             return
         } else {
             // ensure that the board is empty before filling it
             clearChilds(divBoard);
         }
+        that.mousetrap = new Mousetrap(divBoard)
         divBoard.classList.add(theme)
         divBoard.classList.add('pgnvjs')   // Is used as class for everything included.
         divBoard.classList.add(that.configuration.mode + 'Mode')
