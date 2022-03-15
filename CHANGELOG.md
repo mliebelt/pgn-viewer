@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-viewer@1.5.14` to get the "release" directly from NPM.
+I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-viewer@1.6.0` to get the "release" directly from NPM.
 
 ## Unknown version
 
@@ -15,7 +15,7 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 * 
 
-## 1.5.15 2022-03-15
+## 1.6.0 2022-03-15
 
 Fix the wrong declaration if pgn-viewer should be used in Typescript.
 
