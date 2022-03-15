@@ -15,7 +15,7 @@ Please read more about GPL for JavaScript on [greendrake.info/#nfy0](http://gree
 
 ## How to Build and Test
 
-* `npm build`: Creates a new bundle `lib/pgnv.js` including a compressed version of it.
+* `npm build`: Creates a new bundle `lib/dist.js` including a compressed version of it.
 * If you want to remove some locales, make a custom build by
   * first adjusting the list of locales in `.npmrc`
   * call locally first the script `gen_i18n`
@@ -29,7 +29,7 @@ You may include the viewer into an HTML page with roughly the following code.
 
     <html>
     <head>
-      <script src="/lib/pgnv.js" type="text/javascript" ></script>
+      <script src="/lib/dist.js" type="text/javascript" ></script>
     </head>
     <body class="merida zeit">
       <div id="board"/>

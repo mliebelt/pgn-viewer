@@ -26,7 +26,7 @@ const gen_examples = function() {
         buf += '<title>' + ex.name + '</title>' + "\r\n";
         buf += '<link rel="stylesheet" href="../css/prettify.css" />' + "\r\n";
         buf += '<link rel="stylesheet" href="../css/layout.css" />' + "\r\n";
-        buf += '<script src="../lib/pgnv.js" type="text/javascript" ></script>' + "\r\n";
+        buf += '<script src="../lib/dist.js" type="text/javascript" ></script>' + "\r\n";
         buf += '<script src="../js/prettify.js" type="text/javascript" ></script>' + "\r\n";
         buf += '</head>' + "\r\n";
         buf += '<body class="merida zeit">' + "\r\n";

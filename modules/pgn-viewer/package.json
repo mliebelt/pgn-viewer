@@ -6,7 +6,7 @@
     "pgn",
     "viewer"
   ],
-  "version": "1.5.14",
+  "version": "1.6.0",
   "main": "lib/dist.js",
   "types": "lib/index.d.ts",
   "files": [

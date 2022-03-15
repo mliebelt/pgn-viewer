@@ -95,7 +95,7 @@ So a rough template will look like:
 ```html
 <!DOCTYPE html>
     <head>
-        <script src="lib/pgnv.js" type="text/javascript" ></script>
+        <script src="lib/dist.js" type="text/javascript" ></script>
     </head>
     <body>
         <div id="board"></div>

@@ -22,7 +22,7 @@ Do the following steps to have PgnViewerJS build:
 
 * Run `npm install` to have all the additional libraries downloaded and installed locally.
 * Run `npm build` in the 2 modules directories to build a development distribution. This will create the library part of PgnViewerJS only.
-  * `modules/pgn-viewer/lib/pgnv.js`.
+  * `modules/pgn-viewer/lib/dist.js`.
 
 ### Running examples
 

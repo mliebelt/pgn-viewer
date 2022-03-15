@@ -15,6 +15,18 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 * 
 
+## 1.5.15 2022-03-15
+
+Fix the wrong declaration if pgn-viewer should be used in Typescript.
+
+### Changed
+
+* [#357](https://github.com/mliebelt/PgnViewerJS/issues/357) New modal dialog for promotion (pieces as graphics)
+
+### Fixed
+
+* [#356](https://github.com/mliebelt/PgnViewerJS/issues/356) Ensure that pgn-viewer can be used in Typescript
+
 ## 1.5.14 2022-02-26
 
 ### Changed
