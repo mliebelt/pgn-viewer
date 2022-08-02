@@ -32,6 +32,7 @@ export type PgnBoardConfiguration = {
     position?: string,
     boardSize?: string,
     width?: string,
+    drawable?: boolean
 }
 
 export type PgnViewerMode = 'board' | 'view' | 'edit' | 'print'

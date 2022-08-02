@@ -631,7 +631,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         }
 
         // Default values of the board, if not overwritten by the given configuration
-        that.boardConfig = { coordsInner: true, coordsFactor: 1.0 }
+        that.boardConfig = { coordsInner: true, coordsFactor: 1.0, drawable: true }
         let chessgroundBoardConfig:Config = {
             disableContextMenu: true,
             movable: that.configuration.movable as Config["movable"],
@@ -645,13 +645,16 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         copyBoardConfiguration(that.configuration, boardConfig,
             ['position', 'orientation', 'showCoords', 'pieceTheme', 'draggable',
                 'coordsInner', 'coordsFactor', 'width', 'movable', 'viewOnly', 'highlight', 'boardSize',
-                'coordsFontSize'])
+                'coordsFontSize', 'drawable'])
         boardConfig.resizable = true
         if (typeof boardConfig.showCoords != 'undefined') {
             chessgroundBoardConfig.coordinates = boardConfig.showCoords
         }
         if (that.configuration.orientation) {
             chessgroundBoardConfig.orientation = that.configuration.orientation
+        }
+        if (! boardConfig.drawable) {
+            chessgroundBoardConfig.drawable = { visible: false }
         }
         chessgroundBoardConfig.fen = boardConfig.position
         const el = document.getElementById(id('innerBoardId'))
