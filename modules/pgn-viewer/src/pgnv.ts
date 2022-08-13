@@ -1,6 +1,6 @@
 import {Chessground} from 'chessground'
-import {Color} from "chessground/types";
-import {Config} from "chessground/config";
+import {Color} from "chessground/types"
+import {Config} from "chessground/config"
 import 'chessground/assets/chessground.base.css'
 import 'chessground/assets/chessground.brown.css'
 import Mousetrap from 'mousetrap-ts'
@@ -14,6 +14,7 @@ import Timer from './timer'
 import resizeHandle from "./resize"
 import {Base, PgnViewerConfiguration, PgnViewerMode, PrimitiveMove, ShortColor, SupportedLocales} from "./types"
 import { pgnEdit } from '.'
+import { Reactor} from "./event"
 
 /**
  * This implements the base function that is used to display a board, a whole game
@@ -24,7 +25,7 @@ import { pgnEdit } from '.'
  */
 let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     // Section defines the variables needed everywhere.
-    let that:Base = { mypgn: null, board: null, mousetrap: null }
+    let that:Base = { mypgn: null, board: null, mousetrap: null, reactor: null }
     that.userConfiguration = configuration
     // Sets the default parameters for all modes. See individual functions for individual overwrites
     let defaults: PgnViewerConfiguration = {
@@ -65,6 +66,19 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     }
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration)
     that.mypgn = new PgnReader(that.configuration)
+    that.reactor = new Reactor()
+    that.reactor.registerEvent('moveMade')          // Arguments for event: move
+    that.reactor.registerEvent('pgnChanged')        // Argument for event
+    that.reactor.registerEvent('fenChanged')
+    that.reactor.registerEvent('orientationChanged')
+    function notifyHook(hookName:string, parameters:any) {
+        that.reactor.dispatchEvent(hookName, parameters)
+    }
+    if (that.configuration.hooks) {
+        for (let hookName in that.configuration.hooks) {
+            that.reactor.addEventListener(hookName, that.configuration.hooks[hookName])
+        }
+    }
 
     let chess = that.mypgn.chess     // Use the same instance from chess.src
     let theme = that.configuration.theme || 'default'
@@ -1112,6 +1126,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         toggleColorMarker(chess.turn())
         resizeLayout()
         updateUI(next)
+        notifyHook('moveMade', myMove)
     }
 
     function setGameToPosition(pos:string) {

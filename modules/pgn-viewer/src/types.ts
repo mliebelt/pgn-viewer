@@ -3,6 +3,7 @@ import {PgnReader} from "../../pgn-reader/lib"
 import {Field} from "../../pgn-reader/lib/types"
 import Mousetrap from "mousetrap-ts";
 import {Config} from "chessground/config";
+import {Reactor} from "./event";
 
 export type Base = {
     userConfiguration?: PgnViewerConfiguration,
@@ -13,7 +14,8 @@ export type Base = {
     errorDiv?:any,
     currentMove?: number,
     boardConfig?: PgnBoardConfiguration,
-    t?: Function
+    t?: Function,
+    reactor?: Reactor,
 }
 
 export type  SupportedLocales = 'en' |  'de' |  'fr' |  'es' |  'cs' |  'da' |  'et' |  'fi' |  'hu' |  'is' |  'it' |  'nb' |  'nl' |  'pt' |  'ro' |  'sv'
@@ -76,7 +78,8 @@ export type PgnViewerConfiguration = {
     coordsFontSize?: string,
     coordsFactor?:number,
     coordinates?:boolean,   // TODO Should be part of Config (only). How to share configuration?
-    notation?:'short'|'long'
+    notation?:'short'|'long',
+    hooks?:{[key:string]:Function},
 }
 
 export type PgnViewerID = 'bottomHeaderId' | 'topHeaderId' | 'innerBoardId' | 'movesId' | 'buttonsId' | 'fenId' | 'colorMarkerId'
