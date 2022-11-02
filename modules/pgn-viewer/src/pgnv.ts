@@ -879,7 +879,10 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
 
         // When to add a move number
         // Whites move, or at the begin of the main line
-        if ((move.turn == 'w') || (that.mypgn.startMainLine(move)) ) {
+        if ((move.turn == 'w') || (that.mypgn.startMainLine(move)) ||
+        (move.turn === "b" &&
+          typeof move.prev !== "number" &&
+          that.configuration.notationLayout === "inline")) {
             createMoveNumberSpan(move, currentFather(), isVariant())
         // At the beginning of a variation
         } else if ( (that.mypgn.startVariation(move)) ) {
@@ -908,6 +911,39 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             }
             _moveSpan.appendChild(clock_span)
         }
+        
+        // UI Fix for black starts first scenario 1... <moves> for "list" mode
+        if (
+            move.turn === "b" &&
+            typeof move.prev !== "number" &&
+            that.configuration.notationLayout === "list"
+          ) {
+            const _moveFillerSpan = createEle(
+              "move" as keyof HTMLElementTagNameMap,
+              id("movesId") + null,
+              clAttr
+            );
+            const moveFiller: PgnReaderMove = {
+              from: "",
+              to: "",
+              notation: {
+                notation: "",
+                col: "",
+                row: "",
+                ep: false,
+              },
+              variations: [],
+              turn: "w",
+              moveNumber: 1,
+              fen: "",
+              index: 0,
+            };
+            createMoveNumberSpan(moveFiller, currentFather(), isVariant());
+            // regenerateMoveSpan(_moveFillerSpan, moveFiller);
+            createFiller(_moveFillerSpan);
+            currentFather().appendChild(_moveFillerSpan);
+          }
+      
         currentFather().appendChild(_moveSpan)
 
         appendCommentSpan(currentFather(), move.commentAfter, "afterComment", (move.turn == 'w') && (move.variationLevel == 0))
