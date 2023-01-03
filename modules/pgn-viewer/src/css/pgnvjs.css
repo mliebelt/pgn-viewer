@@ -43,7 +43,7 @@
 }
 
 .pgnvjs .moves {
-    overflow: auto;
+    overflow-y: auto;
 }
 
 .pgnvjs .buttons {
@@ -94,12 +94,14 @@
 
 .pgnvjs.viewMode.layout-left .moves, .pgnvjs.viewMode.layout-right .moves {
     grid-row: 3 / 5;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .pgnvjs.editMode.layout-left .moves, .pgnvjs.editMode.layout-right .moves {
     grid-row: 3/4;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .pgnvjs.editMode.layout-left .edit {
@@ -316,6 +318,7 @@
     display: flex;
     flex-flow: row wrap;
     align-content: flex-start;
+    overflow-x: hidden;
 }
 
 .pgnvjs .moves.list > move.result {
