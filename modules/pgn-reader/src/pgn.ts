@@ -388,8 +388,9 @@ export class PgnReader {
             this.updateVariationLevel(myFirst, myFirst.variationLevel - 1)
         }
     }
+    /* Ensure that if variationLevel is not set, it is interpreted as 0. */
     startMainLine(move: PgnReaderMove): boolean  {
-        return (typeof move.variationLevel != "undefined") && (move.variationLevel === 0) && (typeof move.prev !== "number")
+        return ((typeof move.variationLevel == "undefined") || (move.variationLevel === 0)) && (typeof move.prev !== "number")
     }
     startVariation (move: PgnReaderMove): boolean {
         return  (typeof move.variationLevel != "undefined") && (move.variationLevel > 0) &&
