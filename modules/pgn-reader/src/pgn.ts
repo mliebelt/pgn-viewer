@@ -389,14 +389,14 @@ export class PgnReader {
         }
     }
     startMainLine(move: PgnReaderMove): boolean  {
-        return  move.variationLevel === 0 && (typeof move.prev !== "number")
+        return (typeof move.variationLevel != "undefined") && (move.variationLevel === 0) && (typeof move.prev !== "number")
     }
     startVariation (move: PgnReaderMove): boolean {
-        return  move.variationLevel > 0 &&
+        return  (typeof move.variationLevel != "undefined") && (move.variationLevel > 0) &&
             ( (typeof move.prev != "number") || (this.getMoves()[move.prev].next !== move.index))
     }
     endVariation (move: PgnReaderMove):boolean {
-        return move.variationLevel > 0 && ! move.next
+        return (typeof move.variationLevel != "undefined") && (move.variationLevel > 0) && ! move.next
     }
     afterMoveWithVariation (move: PgnReaderMove): boolean {
         return this.getMoves()[move.prev] && (this.getMoves()[move.prev].variations.length > 0)
@@ -821,7 +821,7 @@ export class PgnReader {
     getFirstMove(): PgnReaderMove|null {
         let _moves = this.getMoves()
         for (const _move of _moves) {
-            if (_move.variationLevel == null || _move.variationLevel == 0 && _move.prev == null) {
+            if ((typeof _move.variationLevel == "undefined") || _move.variationLevel == 0 && _move.prev == null) {
                 return _move
             }
         }
