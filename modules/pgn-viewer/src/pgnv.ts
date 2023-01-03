@@ -879,8 +879,12 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
 
         // When to add a move number
         // Whites move, or at the begin of the main line
-        if ((move.turn == 'w') || (that.mypgn.startMainLine(move)) ) {
+        if ((move.turn == 'w') || (that.mypgn.startMainLine(move))
+                || (move.turn === "b" && typeof move.prev !== "number")) {
             createMoveNumberSpan(move, currentFather(), isVariant())
+            if ((that.mypgn.startMainLine(move)) && (that.configuration.notationLayout != "inline")) {
+                createFiller(currentFather())
+            }
         // At the beginning of a variation
         } else if ( (that.mypgn.startVariation(move)) ) {
             createMoveNumberSpan(move, varStack[varStack.length - 1], true)
