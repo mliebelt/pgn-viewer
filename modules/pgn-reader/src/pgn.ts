@@ -4,7 +4,10 @@ import { parse } from '@mliebelt/pgn-parser'
 // import { parse } from '@mliebelt/pgn-parser'
 import { ParseTree, PgnMove, PgnDate, PgnTime, TimeControl} from '@mliebelt/pgn-parser'
 // import {ParseTreeOrArray, ParseTree, PgnMove, Tags, PgnDate, PgnTime, TimeControl} from '@mliebelt/pgn-parser'
+// import * as Chess from 'chess.js'
 import {Chess} from 'chess.js'
+// require('chess.js')
+// const Chess = require('chess.js')
 import * as nag from './nag'
 import {StringBuilder} from "./sb"
 import {
@@ -417,7 +420,7 @@ export class PgnReader {
             }
             prepend_space(sb)
             sb.append("{").append(comment).append("}")
-        };
+        }
 
         let write_game_comment = (sb) => {
             let gc = this.getGameComment()
@@ -612,9 +615,13 @@ export class PgnReader {
                 }
                 // TODO: It is not possible to use here `san` instead of  the ugly `notation.notation`. In case of `Pe4`
                 // chess.js spits an error. No solution for this yet.
-                let pgn_move = this.chess.move(_move.notation.notation, {'sloppy' : true});
+                // The current lib sometimes has failures sloppy == true (like bxc6 which is legal), therefore the duplication.
+                let pgn_move = this.chess.move(_move.notation.notation, {'sloppy' : false});
                 if (pgn_move === null) {
-                    throw new Error("No legal move: " + _move.notation.notation)
+                    pgn_move = this.chess.move(_move.notation.notation, {'sloppy' : true});
+                    if (pgn_move === null) {
+                        throw new Error("No legal move: " + _move.notation.notation)
+                    }
                 }
                 let fen = this.chess.fen();
                 _move.fen = fen;

@@ -226,6 +226,10 @@ describe("When reading various formats", function() {
         reader = new PgnReader({pgn: 'fxe5', position: 'r1bqkb1r/pppp1ppp/2n2n2/4p3/3PPP2/8/PPP3PP/RNBQKBNR w KQkq - 1 4'})
         should(reader.sanWithNags(reader.getMove(0))).equal("fxe5")
     })
+    xit ("should allow disambiguator that is not needed", function () {
+        reader = new PgnReader({pgn: 'Ngf3'})
+        should(reader.sanWithNags(reader.getMove(0))).equal("Nf3")
+    })
     // TODO This is not possible at the moment, because chess.js does not allow notation that includes the pawn symbol.
     // So if that should be implemented, the logic of reading the game has to be changed.
     xit ("should understand optional pawn symbols", function () {
