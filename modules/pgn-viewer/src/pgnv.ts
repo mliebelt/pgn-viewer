@@ -882,7 +882,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         if ((move.turn == 'w') || (that.mypgn.startMainLine(move))
                 || (move.turn === "b" && typeof move.prev !== "number")) {
             createMoveNumberSpan(move, currentFather(), isVariant())
-            if ((that.mypgn.startMainLine(move)) && (that.configuration.notationLayout != "inline")) {
+            if ((that.mypgn.startMainLine(move)) && (move.turn === "b") && (that.configuration.notationLayout != "inline")) {
                 createFiller(currentFather())
             }
         // At the beginning of a variation
