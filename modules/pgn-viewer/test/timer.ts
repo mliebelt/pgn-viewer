@@ -1,4 +1,5 @@
 const should = require('chai').should()
+import { expect } from 'chai'
 import Timer from "../src/timer"
 import {describe} from "mocha"
 import { performance } from "perf_hooks"
@@ -12,8 +13,8 @@ describe("When testing Timer functionality", function () {
         t.bind(3000, function (){
             end = performance.now()
             t.stop()
-            should(end-start).above(3000)
-            should(end-start).below(3100)
+            expect(end-start).to.be.above(3000)
+            expect(end-start).to.be.below(3100)
         })
         let start = performance.now()
         t.start()
