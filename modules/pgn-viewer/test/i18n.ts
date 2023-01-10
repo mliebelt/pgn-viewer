@@ -1,4 +1,4 @@
-import * as should from "should"
+const should = require('chai').should()
 let i18n = require('roddeh-i18n')
 import {i18next} from "../src/i18n"
 import {describe} from "mocha"
@@ -7,9 +7,10 @@ import {describe} from "mocha"
 describe("When testing i18n functionality", function () {
     it("should create an i18n function", function (){
         let fn = i18n.create({ values: { a: 'A', b: 'B'}})
-        should.exist(fn)
+        fn.should.exist
+        // should.exist(fn)
         let str = fn('a')
-        should.equal(str, 'A')
+        str.should.equal('A')
     })
     it("should be able to read standard locale and strings", function () {
         // @ts-ignore

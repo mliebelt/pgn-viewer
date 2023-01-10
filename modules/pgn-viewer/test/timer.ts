@@ -1,4 +1,4 @@
-import * as should from "should"
+const should = require('chai').should()
 import Timer from "../src/timer"
 import {describe} from "mocha"
 import { performance } from "perf_hooks"
