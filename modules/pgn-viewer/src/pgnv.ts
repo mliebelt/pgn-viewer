@@ -897,7 +897,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         // After a comment
         } else if (currentFather().lastElementChild?.classList.toString().match('comment')) {
             createMoveNumberSpan(move, currentFather(), isVariant())
-            if (move.turn == 'b') {
+            if ( (move.turn == 'b') && (! move.variationLevel) ){
                 createFiller(currentFather())
             }
         }
