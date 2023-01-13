@@ -766,7 +766,7 @@ export class PgnReader {
             if (pgn_move.flags.includes(this.chess.FLAGS.CAPTURE) || (pgn_move.flags.includes(this.chess.FLAGS.EP_CAPTURE))) {
                 realMove.notation.strike = 'x';
             }
-            // real_move.notation.ep = pgn_move.flags.includes(this.chess.FLAGS.EP_CAPTURE)
+            realMove.notation.ep = pgn_move.flags.includes(this.chess.FLAGS.EP_CAPTURE)
             if (this.chess.in_check()) {
                 if (this.chess.in_checkmate()) {
                     realMove.notation.check = '#';
