@@ -30,7 +30,7 @@
     "buildtsc": "tsc src/**/*.ts"
   },
   "dependencies": {
-    "@mliebelt/pgn-reader": "^1.2.15",
+    "@mliebelt/pgn-reader": "^1.2.16",
     "chessground": "mliebelt/Chessground",
     "mousetrap-ts": "^1.0.0",
     "roddeh-i18n": "^1.2.0",

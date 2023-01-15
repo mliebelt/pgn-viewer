@@ -5,7 +5,7 @@ import 'chessground/assets/chessground.base.css'
 import 'chessground/assets/chessground.brown.css'
 import Mousetrap from 'mousetrap-ts'
 const Modaly = require('modaly.js')
-import {PgnReader, Shape, Field, PgnReaderMove} from '@mliebelt/pgn-reader'
+import {PgnReader, Shape, Field, PgnReaderMove, GameComment} from '@mliebelt/pgn-reader'
 import {hasDiagramNag, nagToSymbol, NAGs} from '@mliebelt/pgn-reader'
 import {PROMOTIONS} from "@mliebelt/pgn-reader"
 import { ParseTree } from '@mliebelt/pgn-parser'
@@ -259,6 +259,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         function onSnapEndFinish() {
             that.currentMove = that.mypgn.addMove(primMove, cur)
             const move = that.mypgn.getMove(that.currentMove)
+//            console.log(JSON.stringify(move))
             if (primMove.promotion) {
                 let pieces = new Map()
                 that.board.setPieces(pieces)
@@ -1463,6 +1464,12 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             document.getElementById('textpgn' + id('buttonsId')).textContent = val
         }
 
+        /* #338 Handle the game comment, if one is there.
+        */
+        function handleGameComment(movesDiv:HTMLElement, gameComment:GameComment) {
+            // appendCommentSpan(movesDiv, gameComment.comment, "moveComment")
+        }
+
         /**
          * Regenerate the moves div, may be used the first time (DIV is empty)
          * or later (moves have changed).
@@ -1471,6 +1478,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             const movesDiv = document.getElementById(id('movesId'))
             movesDiv.innerHTML = ''
             let prev = null
+            handleGameComment(movesDiv, that.mypgn.getGameComment())
             const varStack: HTMLElement[] = []
             let firstMove = 0
             for (let i = firstMove; i < myMoves.length; i++) {
