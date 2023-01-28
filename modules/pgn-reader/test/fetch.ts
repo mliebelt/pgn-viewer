@@ -1,6 +1,6 @@
 const should = require('chai').should()
 import { expect } from 'chai'
-import {readFile} from "../lib/fetch"
+import {readFile} from "../src/fetch"
 import {describe} from "mocha"
 
 describe("Base functionality readPgnFromFile", function () {

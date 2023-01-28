@@ -1,6 +1,6 @@
 const should = require('chai').should()
-import {StringBuilder} from "../lib/sb"
-import {describe} from "mocha";
+import {StringBuilder} from "../src/sb"
+import {describe} from "mocha"
 
 describe("Base functionality of StringBuilder", function (){
     it("should be able to create an empty StringBuilder", function (){

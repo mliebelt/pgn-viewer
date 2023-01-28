@@ -29,6 +29,8 @@
   },
   "dependencies": {
     "@mliebelt/pgn-parser": "^1.4.5",
+    "@mliebelt/pgn-writer": "^1.0.2",
+    "@mliebelt/pgn-types": "^1.0.3",
     "chess.js": "^0.12.1",
     "sync-fetch": "^0.3.1"
   },

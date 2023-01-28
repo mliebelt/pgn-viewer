@@ -1,24 +1,14 @@
-// let parse = require('@mliebelt/pgn-parser').parse
 import { parse } from '@mliebelt/pgn-parser'
-// let parse = require('../tmp-lib/lib').parse
-// import { parse } from '@mliebelt/pgn-parser'
-import { ParseTree, PgnMove, PgnDate, PgnTime, TimeControl} from '@mliebelt/pgn-parser'
-// import {ParseTreeOrArray, ParseTree, PgnMove, Tags, PgnDate, PgnTime, TimeControl} from '@mliebelt/pgn-parser'
-// import * as Chess from 'chess.js'
+import { Color, Field, GameComment, Message, PgnReaderMove, PgnGame, PgnMove, PgnDate, PgnTime, TimeControl } from '@mliebelt/pgn-types'
+import { writeGame, PgnWriterConfiguration } from '@mliebelt/pgn-writer'
+import { ParseTree} from '@mliebelt/pgn-parser'
 import {Chess} from 'chess.js'
-// require('chess.js')
-// const Chess = require('chess.js')
 import * as nag from './nag'
-import {StringBuilder} from "./sb"
-import {
-    Color, Field, GameComment, Message, PgnReaderConfiguration, PgnReaderMove, PrimitiveMove,
-    PROMOTIONS, Shape } from "./types"
+import { PgnReaderConfiguration, PrimitiveMove, Shape } from "./types"
 
 export { hasDiagramNag, nagToSymbol, NAGs } from './nag'
-export { PROMOTIONS} from './types'
 
 let isBrowser=new Function("try {return this===window;}catch(e){ return false;}")
-
 
 /**
  * Defines the base functionality for reading and working with PGN.
@@ -158,6 +148,10 @@ export class PgnReader {
             this.configuration.position = new_fen
             this.loadPgn()
         }
+    }
+    getGame(index: number): PgnGame {
+        // this.loadOne(index)
+        return { moves: this.getMoves(), gameComment: this.getGameComment(), tags: this.games[index].tags }
     }
     possibleMoves(move: number|string): Map<Field, Field[]> {
         let _fen = typeof move === 'number' ? this.getMove(move as undefined as number).fen : move
@@ -405,148 +399,8 @@ export class PgnReader {
     afterMoveWithVariation (move: PgnReaderMove): boolean {
         return this.getMoves()[move.prev] && (this.getMoves()[move.prev].variations.length > 0)
     }
-    writePgn (): string {
-
-        // Prepend a space if necessary
-        function prepend_space(sb) {
-            if ( (!sb.isEmpty()) && (sb.lastChar() !== " ")) {
-                sb.append(" ")
-            }
-        }
-
-        function write_comment (comment, sb) {
-            if (comment === undefined || comment === null) {
-                return
-            }
-            prepend_space(sb)
-            sb.append("{").append(comment).append("}")
-        }
-
-        let write_game_comment = (sb) => {
-            let gc = this.getGameComment()
-            let gc1 = gc ? gc.comment : undefined
-            write_comment(gc1, sb)
-        }
-
-        function write_comment_move (move, sb) {
-            write_comment(move.commentMove, sb)
-        }
-
-        function write_comment_after (move, sb) {
-            write_comment(move.commentAfter, sb)
-        }
-
-        function write_comment_diag (move, sb) {
-            let has_diags = (move) => {
-                return move.commentDiag &&
-                    ( ( move.commentDiag.colorArrows && move.commentDiag.colorArrows.length > 0 ) ||
-                        ( move.commentDiag.colorFields && move.commentDiag.colorFields.length > 0 )
-                    )
-            }
-            let arrows = (move) => { return move.commentDiag.colorArrows || [] }
-            let fields = (move) => { return move.commentDiag.colorFields || [] }
-
-            if (has_diags(move)) {
-                let sbdiags: StringBuilder = new StringBuilder("")
-                let first = true
-                sbdiags.append("[%csl ")
-                fields(move).forEach( (field) => {
-                    ! first ? sbdiags.append(",") : sbdiags.append("")
-                    first = false
-                    sbdiags.append(field)
-                })
-                sbdiags.append("]")
-                first = true
-                sbdiags.append("[%cal ")
-                arrows(move).forEach( (arrow) => {
-                    ! first ? sbdiags.append(",") : sbdiags.append("")
-                    first = false
-                    sbdiags.append(arrow)
-                })
-                sbdiags.append("]")
-                write_comment(sbdiags.toString(), sb)
-            }
-        }
-
-        let write_move_number = (move, sb) => {
-            prepend_space(sb)
-            if (move.turn === "w") {
-                sb.append("" + move.moveNumber).append(".")
-            } else if (this.startVariation(move)) {
-                sb.append("" + move.moveNumber).append("...")
-            }
-        }
-
-        let write_notation = (move, sb) => {
-            prepend_space(sb)
-            sb.append(this.san(move))
-        }
-
-        function write_NAGs (move, sb) {
-            if (move.nag) {
-                move.nag.forEach(function(ele) {
-                    sb.append(ele)
-                })
-            }
-        }
-
-        function write_variation (move, sb) {
-            prepend_space(sb)
-            sb.append("(")
-            write_move(move, sb)
-            prepend_space(sb)
-            sb.append(")")
-        }
-
-        function write_variations (move, sb) {
-            for (let i = 0; i < move.variations.length; i++) {
-                write_variation(move.variations[i], sb);
-            }
-        }
-
-        let get_next_move = (move) => {
-            return move.next ? this.getMove(move.next) : null
-        }
-
-        /**
-         * Write the normalised notation: comment move, move number (if necessary),
-         * comment before, move, NAGs, comment after, variations.
-         * Then go into recursion for the next move.
-         * @param move the move in the exploded format
-         * @param sb the string builder to use
-         */
-        function write_move (move, sb) {
-            if (move === null || move === undefined) {
-                return
-            }
-            write_comment_move(move, sb)
-            write_move_number(move, sb)
-            write_notation(move, sb)
-            //write_check_or_mate(move, sb);    // not necessary if san from chess.src is used
-            write_NAGs(move, sb)
-            write_comment_after(move, sb)
-            write_comment_diag(move, sb)
-            write_variations(move, sb)
-            const next = get_next_move(move)
-            write_move(next, sb)
-        }
-
-        let write_end_game = (_sb) => {
-            if (this.endGame) {
-                _sb.append(" ").append(this.endGame)
-            }
-        }
-
-        function write_pgn2 (move, _sb): string {
-            write_game_comment(sb)
-            write_move(move, _sb)
-            write_end_game(_sb)
-            return _sb.toString()
-        }
-        const sb: StringBuilder = new StringBuilder("")
-        let indexFirstMove = 0
-        while (this.getMove(indexFirstMove) === null) { indexFirstMove += 1; }
-        return write_pgn2(this.getMove(indexFirstMove), sb)
+    writePgn(configuration:PgnWriterConfiguration = {}): string {
+        return writeGame(this.getGame(this.currentGameIndex), configuration)
     }
 
     /**
@@ -857,7 +711,6 @@ export class PgnReader {
         } else {
             return this.getMove(index).fen
         }
-        return null
     }
     setShapes(move:PgnReaderMove, shapes: Shape[]) {
         if (! move.commentDiag) {
