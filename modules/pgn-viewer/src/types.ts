@@ -1,6 +1,5 @@
 import {Api} from "chessground/api"
-import {PgnReader} from "../../pgn-reader/lib"
-import {Field} from "../../pgn-reader/lib/types"
+import {PgnReader, Field} from "@mliebelt/pgn-reader"
 import Mousetrap from "mousetrap-ts";
 import {Config} from "chessground/config";
 
