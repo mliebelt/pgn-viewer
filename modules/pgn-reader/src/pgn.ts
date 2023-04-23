@@ -1,12 +1,15 @@
 import { parse } from '@mliebelt/pgn-parser'
 import { Color, Field, GameComment, Message, PgnReaderMove, PgnGame, PgnMove, PgnDate, PgnTime, TimeControl } from '@mliebelt/pgn-types'
 import { writeGame, PgnWriterConfiguration } from '@mliebelt/pgn-writer'
+// import { PROMOTIONS} from "@mliebelt/pgn-types";
 import { ParseTree} from '@mliebelt/pgn-parser'
 import {Chess} from 'chess.js'
 import * as nag from './nag'
 import { PgnReaderConfiguration, PrimitiveMove, Shape } from "./types"
 
 export { hasDiagramNag, nagToSymbol, NAGs } from './nag'
+export { Field, PgnReaderMove, GameComment} from '@mliebelt/pgn-types'
+export { PROMOTIONS } from '@mliebelt/pgn-types'
 
 let isBrowser=new Function("try {return this===window;}catch(e){ return false;}")
 
@@ -72,6 +75,14 @@ export class PgnReader {
             }
             return fig
         }
+        let prevMovePosition:string = (move.prev) ? this.getMove(move.prev).fen : this.configuration.position
+        this.chess.load(prevMovePosition)
+        let prettySan = this.chess.move({from: move.from, to: move.to})
+        if (prettySan) {
+            // console.log("Found SAN: " + prettySan.san)
+            return prettySan.san
+        }
+        // console.log("No SAN found")
         let notation = move.notation;
         if (typeof notation.row === 'undefined') {
             return notation.notation; // move like O-O and O-O-O
@@ -400,6 +411,7 @@ export class PgnReader {
         return this.getMoves()[move.prev] && (this.getMoves()[move.prev].variations.length > 0)
     }
     writePgn(configuration:PgnWriterConfiguration = {}): string {
+        if (! this.currentGameIndex) return ""
         return writeGame(this.getGame(this.currentGameIndex), configuration)
     }
 

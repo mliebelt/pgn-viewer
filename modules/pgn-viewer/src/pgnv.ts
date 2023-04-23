@@ -734,8 +734,8 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             _san = that.mypgn.san(move)
         }
         _linkEle.appendChild(document.createTextNode(_san))
-        if (move.nag) {
-            move.nag.forEach(function (nag) {
+        if (move.nag as string[]) {
+            move.nag.forEach(function (nag:string) {
                 let nagInt = parseInt(nag.substring(1))
                 let nagClass = ""
                 if (nagInt < 10) {
@@ -981,7 +981,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             divBoard.querySelectorAll('#nagMenu' + id('buttonsId') + ' a.active').forEach(function (act) {
                 act.classList.toggle('active')
             })
-            let nags = move.nag || []
+            let nags:string[] = move.nag || []
             nags.forEach(function (eachNag) {
                 let ele = divBoard.querySelector('#nagMenu' + id('buttonsId') + ' [data-value="' + eachNag.substring(1) + '"]').parentNode as HTMLElement
                 ele.classList.toggle('active')
