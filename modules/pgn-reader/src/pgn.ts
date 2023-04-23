@@ -411,8 +411,8 @@ export class PgnReader {
         return this.getMoves()[move.prev] && (this.getMoves()[move.prev].variations.length > 0)
     }
     writePgn(configuration:PgnWriterConfiguration = {}): string {
-        if (! this.currentGameIndex) return ""
-        return writeGame(this.getGame(this.currentGameIndex), configuration)
+        if (this.getGames().length === 0) return ""
+        return writeGame(this.getGame(this.currentGameIndex) || 0, configuration)
     }
 
     /**
