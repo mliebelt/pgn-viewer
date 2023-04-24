@@ -1,3 +1,5 @@
+import {PgnReaderMove} from "@mliebelt/pgn-types";
+
 const should = require('chai').should()
 import { expect } from 'chai'
 import {PgnReader, Shape} from "../src"
@@ -779,6 +781,25 @@ describe("When using san and sanWithNags", function () {
         reader = new PgnReader({pgn: 'e4!?$13$27'})
         should.equal(reader.sanWithNags(reader.getMove(0)),'e4⁉∞○')
         should.equal(reader.writePgn(),'1. e4$5$13$27')
+    })
+    it ("should emmit correct discriminator", function () {
+        reader = new PgnReader({position: 'rnbqkbnr/p1p2p2/3p2p1/R3p2p/7P/8/1PPPPPP1/RNBQKBN1 w kq - 0 8'})
+        let san:string = reader.san(<PgnReaderMove>{nag: [], variations: [], from: 'a5', to: 'a3', notation: {}})
+        should.equal(san, "R5a3")
+        reader = new PgnReader({position: 'rnbqkbnr/p1p2p2/3p2p1/R3p2p/7P/8/1PPPPPP1/RNBQKBN1 w kq - 0 8'})
+        san = reader.san(<PgnReaderMove>{nag: [], variations: [], from: 'a1', to: 'a3', notation: {}})
+        should.equal(san, "R1a3")
+        reader = new PgnReader({position: 'r1b1kbnr/p2q1p2/2n1p2p/R1pp2p1/1PPP3P/5N2/4PPP1/RNBQKB2 w kq - 4 12'})
+        san = reader.san(<PgnReaderMove>{nag: [], variations: [], from: 'b1', to: 'd2', notation: {}})
+        should.equal(san, "Nbd2")
+        reader = new PgnReader({position: 'r1b1kbnr/p2q1p2/2n1p2p/R1pp2p1/1PPP3P/5N2/4PPP1/RNBQKB2 w kq - 4 12'})
+        san = reader.san(<PgnReaderMove>{nag: [], variations: [], from: 'f3', to: 'd2', notation: {}})
+        should.equal(san, "Nfd2")
+    })
+    it("should know pinned pieces when no discriminator is needed", function () {
+        reader = new PgnReader({ position: 'rnbqk1nr/pppp2pp/4p3/8/1b1Pp3/2N3N1/PPP2PPP/R1BQKB1R w KQkq - 0 1'})
+        let san:string = reader.san(<PgnReaderMove>{nag: [], variations: [], from: 'g3', to: 'e4', notation: {}})
+        should.equal(san, "Nxe4")
     })
 })
 
