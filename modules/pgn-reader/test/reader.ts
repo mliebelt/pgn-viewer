@@ -801,6 +801,11 @@ describe("When using san and sanWithNags", function () {
         let san:string = reader.san(<PgnReaderMove>{nag: [], variations: [], from: 'g3', to: 'e4', notation: {}})
         should.equal(san, "Nxe4")
     })
+    it("should work with start position as well", function () {
+        reader = new PgnReader({})
+        let san:string = reader.san(<PgnReaderMove>{nag: [], variations: [], from: 'g1', to: 'f3', notation: {}})
+        should.equal(san, "Nf3")
+    })
 })
 
 describe("When reading many games", function () {

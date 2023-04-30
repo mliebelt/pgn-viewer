@@ -75,18 +75,18 @@ export class PgnReader {
             }
             return fig
         }
-        let prevMovePosition:string = (move.prev) ? this.getMove(move.prev).fen : this.configuration.position
+        let prevMovePosition:string = (move.prev) ? this.getMove(move.prev).fen : this.setToStart ()
         this.chess.load(prevMovePosition)
         let prettySan = this.chess.move({from: move.from, to: move.to})
-        if (prettySan) {
+        if (prettySan && (this.configuration.notation != 'long')) {
             // console.log("Found SAN: " + prettySan.san)
             return prettySan.san
         }
         // console.log("No SAN found")
+        // The following is done in case configuration.notation == 'long' or something failed
         let notation = move.notation;
         if (typeof notation.row === 'undefined') {
             return notation.notation; // move like O-O and O-O-O
-            // TODO What if the move has a NAG? This will be ignored here?
         }
         const fig = notation.fig ? getFig(notation.fig) : ''
         let disc = notation.disc ? notation.disc : ''
