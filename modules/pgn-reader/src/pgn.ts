@@ -1,5 +1,5 @@
 import { parse } from '@mliebelt/pgn-parser'
-import { Color, Field, GameComment, Message, PgnReaderMove, PgnGame, PgnMove, PgnDate, PgnTime, TimeControl } from '@mliebelt/pgn-types'
+import { Color, Field, GameComment, Message, PgnReaderMove, PgnGame, PgnMove, PgnDate, PgnTime, TimeControl, Tags } from '@mliebelt/pgn-types'
 import { writeGame, PgnWriterConfiguration } from '@mliebelt/pgn-writer'
 // import { PROMOTIONS} from "@mliebelt/pgn-types";
 import { ParseTree} from '@mliebelt/pgn-parser'
@@ -162,7 +162,11 @@ export class PgnReader {
     }
     getGame(index: number): PgnGame {
         // this.loadOne(index)
-        return { moves: this.getMoves(), gameComment: this.getGameComment(), tags: this.games[index].tags }
+        if ( (this.games === undefined) || ! this.games[index]) {
+            return { moves: [] }
+        }
+        let tags: Tags = this.games[index]?.tags || <Tags>{}
+        return { moves: this.getMoves(), gameComment: this.getGameComment(), tags: tags }
     }
     possibleMoves(move: number|string): Map<Field, Field[]> {
         let _fen = typeof move === 'number' ? this.getMove(move as undefined as number).fen : move
@@ -411,7 +415,7 @@ export class PgnReader {
         return this.getMoves()[move.prev] && (this.getMoves()[move.prev].variations.length > 0)
     }
     writePgn(configuration:PgnWriterConfiguration = {}): string {
-        if (this.getGames().length === 0) return ""
+        if (this.getGames()?.length === 0) return ""
         return writeGame(this.getGame(this.currentGameIndex) || 0, configuration)
     }
 
