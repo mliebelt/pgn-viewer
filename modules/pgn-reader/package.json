@@ -1,7 +1,7 @@
 {
   "name": "@mliebelt/pgn-reader",
   "description": "A pgn reader (backend only) to read, understand and play chess games. Used mainly by pgn-viewer.",
-  "version": "1.2.20",
+  "version": "1.2.21",
   "module": "lib/index.umd.js",
   "types": "lib/index.umd.d.ts",
   "main": "lib/index.umd.js",
@@ -28,7 +28,7 @@
     "test": "mocha --require ts-node/register ./test/**/*.ts"
   },
   "dependencies": {
-    "@mliebelt/pgn-parser": "^1.4.9",
+    "@mliebelt/pgn-parser": "^1.4.10",
     "@mliebelt/pgn-writer": "^1.0.2",
     "@mliebelt/pgn-types": "^1.0.4",
     "chess.js": "^0.12.1",

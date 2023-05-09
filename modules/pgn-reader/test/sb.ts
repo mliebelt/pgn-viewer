@@ -23,3 +23,16 @@ describe("Base functionality of StringBuilder", function (){
         should.equal(sb.toString(), 'hellotest23onemore5')
     })
 })
+
+describe("Handle possible edge cases in the StringBuilder API", function () {
+    it("should handle null values on append", function () {
+        let sb = new StringBuilder("")
+        sb.append(null)
+        should.equal(sb.toString(), '')
+    })
+    it("should handle undefined values on append", function () {
+        let sb = new StringBuilder("")
+        sb.append(undefined)
+        should.equal(sb.toString(), '')
+    })
+})
