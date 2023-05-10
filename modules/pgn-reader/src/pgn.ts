@@ -59,7 +59,7 @@ export class PgnReader {
 
         this.configuration = initializeConfiguration(configuration)
         this.chess = Chess()
-        if (! this.configuration.lazyLoad) {
+        if ( (! this.configuration.lazyLoad) || (this.configuration.mode === 'board') ) {
             this.loadPgn()
         }
     }

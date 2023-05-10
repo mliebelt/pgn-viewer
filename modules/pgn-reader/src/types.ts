@@ -7,6 +7,7 @@ export type PrimitiveMove = {
 }
 
 export type PgnReaderConfiguration = {
+    mode?: string,
     notation?: 'short' | 'long',
     position?: 'start' | string,
     locale?: string,

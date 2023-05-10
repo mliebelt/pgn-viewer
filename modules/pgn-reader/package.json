@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@mliebelt/pgn-parser": "^1.4.11",
-    "@mliebelt/pgn-writer": "^1.0.2",
+    "@mliebelt/pgn-writer": "^1.0.3",
     "@mliebelt/pgn-types": "^1.0.4",
     "chess.js": "^0.12.1",
     "sync-fetch": "^0.3.1"
