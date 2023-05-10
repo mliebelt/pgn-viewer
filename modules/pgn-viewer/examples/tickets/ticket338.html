@@ -7,10 +7,21 @@
 </head>
 <body class='merida zeit'>
 
-<div id='board'></div>
+<div id='board1'></div>
 <script>
-    config = {pgn: '{ [%cal Ge2e4,Ge2g4,Ge2c4] } e4'};
-    PGNV.pgnView('board', config);
+    config = {pgn: '{ [%cal Ge2e4,Ge2g4,Ge2c4] } e4 d5 {[%csl Re4,Ge5]}'};
+    PGNV.pgnView('board1', config);
+</script>
+<div id='board2'></div>
+<script>
+    config = {pgn: '{ [%cal Ge2e4,Ge2g4,Ge2c4] } e4 d5 {[%csl Re4,Ge5]}'};
+    PGNV.pgnEdit('board2', config);
+</script>
+
+<div id='board3'></div>
+<script>
+    config = {pgn: '{ [%cal Ge2e4,Ge2g4,Ge2c4] } e4 d5 {[%csl Re4,Ge5]}'};
+    PGNV.pgnBoard('board3', config);
 </script>
 
 </body>
