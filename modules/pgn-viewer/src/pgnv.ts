@@ -706,7 +706,9 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         }
         let gc = that.mypgn.getGameComment()
         if (gc) {
-            that.board.setShapes(getShapes(gc as any))
+            document.addEventListener('DOMContentLoaded', function() {
+                that.board.setShapes(getShapes(gc as any))
+            })
         }
 
         postGenerateBoard()
