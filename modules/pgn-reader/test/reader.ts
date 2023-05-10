@@ -732,6 +732,10 @@ describe("When writing pgn for a game", function() {
         reader = new PgnReader({position: '8/6P1/8/2k5/8/8/8/7K w - - 0 1', pgn: '1. g8=R'})
         should.equal(reader.writePgn(),"1. g8=R")
     })
+    it("should write TimeControl tags as expected", function () {
+        reader = new PgnReader({pgn: '[TimeControl "40/6000+30:3000+30"] 1. e4 e5'})
+        should.equal(reader.writePgn(), '[TimeControl "40/6000+30:3000+30"]\n\n1. e4 e5')
+    })
 })
 
 describe("When reading game with an end", function () {
