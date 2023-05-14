@@ -376,7 +376,7 @@ examples["1114"] = {
 };
 
 examples["1118"] = {
-    desc: "The game is shown in inline notation, compare with the list notation below.",
+    desc: "The game is shown in list notation, compare with the inline notation above.",
     html: "<div id=\"b1\" style=\"width: 360px\"><\/div>",
     name: "Variations in Moves",
     jsStr: "var pgn = '1. e4 e5 ( 1... c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 ( 5... e5 6. Ndb5 a6 7. Na3 b5 8. Nd5 Nxe4 { This is a wild variation } ) 6. Be3 e6 ) 2. Nf3 ( 2. f4 exf4 3. Nf3 g5 ( 3... Nf6 4. e5 Nh5 ) ( 3... Be7 4. Bc4 Bh4+ 5. Kf1 ) 4. h4 ) Nc6 3. Bb5 a6 4. Ba4'\nPGNV.pgnView('b1', {pgn: pgn, notationLayout: 'list'});",

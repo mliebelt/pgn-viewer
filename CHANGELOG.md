@@ -13,7 +13,44 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Fixed
 
-* 
+* 338,443: Checked, works
+
+## 1.6.4 2023-05-07
+
+### Changed
+
+* [#413](https://github.com/mliebelt/PgnViewerJS/issues/413) pgn-writer now dependency
+
+### Fixed
+
+* [#436](https://github.com/mliebelt/PgnViewerJS/issues/436) disambiguation in edit mode (generation of SAN) fixed
+
+## 1.6.3 2023-01-25
+
+### Fixed
+
+* [#351](https://github.com/mliebelt/PgnViewerJS/issues/351) Fixed additional ellipse
+* [#411](https://github.com/mliebelt/PgnViewerJS/issues/411) Oposite pawn removed on e.p.
+* [#412](https://github.com/mliebelt/PgnViewerJS/issues/412) Fix additional ellipse in layout mode == left, list mode
+
+### Changed
+
+* [#410](https://github.com/mliebelt/PgnViewerJS/issues/410) should.js --> mocha
+
+## 1.6.2 2023-01-03
+
+### Fixed
+
+* [#348](https://github.com/mliebelt/PgnViewerJS/issues/348) Ignore unnecessary disambiguator
+* [#358](https://github.com/mliebelt/PgnViewerJS/issues/358) Avoid hoizontal scrollbar in layout==left, notationLayout==list
+* [#395](https://github.com/mliebelt/PgnViewerJS/issues/395) Ensure filler in layout==left, notationLayout==list, first move black
+* [#409](https://github.com/mliebelt/PgnViewerJS/issues/409) More robustness when entering moves
+
+## 1.6.1 2022-11-05
+
+### Changed
+
+* [#387](https://github.com/mliebelt/PgnViewerJS/discussions/387) Allow to disable on-board annotations
 
 ## 1.6.0 2022-03-15
 
