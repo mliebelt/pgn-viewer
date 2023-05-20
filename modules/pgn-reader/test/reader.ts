@@ -143,7 +143,8 @@ describe("When using all kind of configuration in the reader", function () {
     it("should ensure that long notation is written", function (){
         reader = new PgnReader({ pgn: 'e4 e5 Nf3 Nc6', notation: 'long'})
         should.equal(reader.getMoves().length,4)
-        should.equal(reader.writePgn({notation: 'long'}),'1. e2-e4 e7-e5 2. Ng1-f3 Nb8-c6')
+        let res = reader.writePgn({notation: 'long'})
+        should.equal(res,'1. e2-e4 e7-e5 2. Ng1-f3 Nb8-c6')
     })
     it("should ensure that different positions are understood", function () {
         reader = new PgnReader({pgn: 'e4', position: 'start'})
