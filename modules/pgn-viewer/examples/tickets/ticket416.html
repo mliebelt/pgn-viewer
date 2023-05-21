@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Fixing escaped doublequotes in tags</title>
+    <script src="/lib/dist.js" type="text/javascript"></script>
+</head>
+<body class='merida zeit'>
+<h3>Fixing escaped doublequotes in tags</h3>
+
+<div id="board0"></div>
+
+<script>
+    let pgn = '1. e4 c5 2. Nf3 d6 { Black wants to play a Dragon. Or maybe even a Najdorf. But White goes for\n' +
+        'a sideline: } 3. Bc4 { This has no name, but it is played even at the top level. In most cases, Black will gain a lot of space on the queen side in this line. } { [%cal Rf3g5,Rg5f7,Rc4f7,Gb7b5,Ga7a5] } 3... Nf6 { Black should just develop normally. } 4. d3 { White is still playing a Bishop\'s Opening. But, since Black hasn\'t\n' +
+        'committed to e5, e6 is still an option } (4. Ng5?! e6 { Here Black doesn\'t go for a fianchetto setup. })  (4. e5 dxe5 5. Nxe5 e6 6. Qe2 { Protecting the knight against the following move: } { [%cal Re2e5] } 6... Bd6 { [%cal Gd6e5,Re2e5] } 7. O-O O-O) 4... Nc6 { No e5 for White now. } { [%csl Ge5][%cal Gc6e5,Gd6e5] } 5. c3 (5. Ng5 e6) 5... g6 (5... Na5?! 6. Bb5+) 6. O-O (6. Ng5?! { This doesn\'t work. } 6... e6 7. f4 d5! 8. Bb3 h6 9. Nf3 dxe4 10. dxe4 Qxd1+ { And this is why c3 was a useful move: } 11. Bxd1 Nxe4! { Black wins a pawn. } 12. O-O Bg7 $15) 6... Bg7 7. Bb3 (7. Re1 O-O 8. Bb3 b5) 7... O-O 8. Re1 (8. h3 b5 9. Re1 (9. d4)) 8... b5 9. h3 a5 10. a3 a4 11. Bc2 Nd7 $10 { [%csl Gd4][%cal Gc5d4,Gg7d4,Gc6d4] } 12. d4 *';
+    pgnv = PGNV.pgnView("board0", {pgn: pgn, layout: 'top', width: '380px'});
+</script>
+
+</body>
+</html>
