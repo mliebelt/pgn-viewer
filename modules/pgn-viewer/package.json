@@ -6,7 +6,7 @@
     "pgn",
     "viewer"
   ],
-  "version": "1.6.5",
+  "version": "1.6.6",
   "main": "lib/dist.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -30,7 +30,7 @@
     "buildtsc": "tsc src/**/*.ts"
   },
   "dependencies": {
-    "@mliebelt/pgn-reader": "^1.2.23",
+    "@mliebelt/pgn-reader": "^1.2.25",
     "chessground": "mliebelt/Chessground",
     "mousetrap-ts": "^1.0.0",
     "roddeh-i18n": "^1.2.0",
