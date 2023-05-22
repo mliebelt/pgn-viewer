@@ -560,6 +560,10 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             let buttons = document.getElementById(id('buttonsId'))
             if (buttons) {
                 buttons.style.marginTop = `${fontSize * 1.5}px`
+                if (boardConfig.headers) {
+                    let header = document.getElementById(id('bottomHeaderId'))
+                    header.style.marginTop = `${fontSize * 1.5}px`
+                }
             }
         }
         (el.querySelector("coords.files") as HTMLElement).style.bottom = `${bottom}px`
@@ -645,7 +649,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         let boardConfig = that.boardConfig
         copyBoardConfiguration(that.configuration, boardConfig,
             ['position', 'orientation', 'showCoords', 'pieceTheme', 'draggable',
-                'coordsInner', 'coordsFactor', 'width', 'movable', 'viewOnly', 'highlight', 'boardSize',
+                'coordsInner', 'coordsFactor', 'headers', 'width', 'movable', 'viewOnly', 'highlight', 'boardSize',
                 'coordsFontSize', 'drawable'])
         boardConfig.resizable = true
         if (typeof boardConfig.showCoords != 'undefined') {
