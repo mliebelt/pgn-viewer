@@ -1183,6 +1183,14 @@ describe("Working with games with special characters", function () {
         let reader = new PgnReader({pgn: "     1. d4 e5   "})
         should.equal(reader.getMoves().length,2)
     })
+    it("should handle BOM on the beginning of games", function () {
+        let reader = new PgnReader( { pgn:'\uFEFF[Event ""]\n' +
+            '[Setup "1"]\n' +
+            '[FEN "4r1k1/1q3ppp/p7/8/Q3r3/8/P4PPP/R3R1K1 w - - 0 1"]\n' +
+            '1. Qxe8+ {} Rxe8 2. Rxe8# *\n' } )
+        should.exist(reader)
+        should.equal(reader.getMoves().length, 3)
+    })
 })
 
 describe("When pgn notation has errors", function () {
