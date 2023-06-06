@@ -1,7 +1,7 @@
 ![GitHub Workflow Status](https://github.com/mliebelt/PgnViewerJS/actions/workflows/nodejs.yml/badge.svg)
-![GitHub package.json version](https://img.shields.io/github/package-json/v/mliebelt/pgn-reader?color=33aa33&label=Version&logo=npm)
-![npm](https://img.shields.io/npm/dm/@mliebelt/pgn-reader?label=Downloads&logo=npm)
-![GitHub](https://img.shields.io/github/license/mliebelt/pgn-reader?label=License)
+![npm (tag)](https://img.shields.io/npm/v/@mliebelt/pgn-reader)
+![npm](https://img.shields.io/npm/dm/@mliebelt/pgn-reader)
+![NPM](https://img.shields.io/npm/l/@mliebelt/pgn-reader)
 
 # In a Nutshell
 

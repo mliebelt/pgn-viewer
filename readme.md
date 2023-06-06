@@ -1,3 +1,8 @@
+![GitHub Workflow Status](https://github.com/mliebelt/PgnViewerJS/actions/workflows/nodejs.yml/badge.svg)
+![GitHub](https://img.shields.io/github/license/mliebelt/PgnViewerJS)
+![Languages](https://img.shields.io/github/languages/count/mliebelt/PgnViewerJS)
+![Languages](https://img.shields.io/github/issues-raw/mliebelt/PgnViewerJS)
+![Languages](https://img.shields.io/github/issues-closed-raw/mliebelt/PgnViewerJS)
 
 # PgnViewerJS
 

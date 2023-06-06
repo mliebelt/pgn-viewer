@@ -1,3 +1,8 @@
+![GitHub Workflow Status](https://github.com/mliebelt/PgnViewerJS/actions/workflows/nodejs.yml/badge.svg)
+![npm (tag)](https://img.shields.io/npm/v/@mliebelt/pgn-viewer)
+![npm](https://img.shields.io/npm/dm/@mliebelt/pgn-viewer)
+![NPM](https://img.shields.io/npm/l/@mliebelt/pgn-viewer)
+
 # In a Nutshell
 
 You will find the detailed documentation about pgn-viewer (formerly named PgnViewerJS, which is a bad name for NPM) in the [top-level directory](https://github.com/mliebelt/PgnViewerJS/blob/master/readme.md).
