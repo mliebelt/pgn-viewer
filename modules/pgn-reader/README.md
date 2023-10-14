@@ -1,7 +1,7 @@
-![GitHub Workflow Status](https://github.com/mliebelt/PgnViewerJS/actions/workflows/nodejs.yml/badge.svg)
-![npm (tag)](https://img.shields.io/npm/v/@mliebelt/pgn-reader)
-![npm](https://img.shields.io/npm/dm/@mliebelt/pgn-reader)
-![NPM](https://img.shields.io/npm/l/@mliebelt/pgn-reader)
+[![GitHub Workflow Status](https://github.com/mliebelt/PgnViewerJS/actions/workflows/nodejs.yml/badge.svg)](https://github.com/mliebelt/PgnViewerJS/actions[)
+[![npm (tag)](https://img.shields.io/npm/v/@mliebelt/pgn-reader)](https://www.npmjs.com/package/@mliebelt/pgn-reader)](https://www.npmjs.com/package/@mliebelt/pgn-reader)
+[![npm](https://img.shields.io/npm/dm/@mliebelt/pgn-reader)](https://www.npmjs.com/package/@mliebelt/pgn-reader)
+[![NPM](https://img.shields.io/npm/l/@mliebelt/pgn-reader)](https://github.com/mliebelt/PgnViewerJS/blob/main/modules/pgn-reader/LICENSE.md)
 
 # In a Nutshell
 
