@@ -1,7 +1,7 @@
-![GitHub Workflow Status](https://github.com/mliebelt/PgnViewerJS/actions/workflows/nodejs.yml/badge.svg)
-![npm (tag)](https://img.shields.io/npm/v/@mliebelt/pgn-viewer)
-![npm](https://img.shields.io/npm/dm/@mliebelt/pgn-viewer)
-![NPM](https://img.shields.io/npm/l/@mliebelt/pgn-viewer)
+[![GitHub Workflow Status](https://github.com/mliebelt/PgnViewerJS/actions/workflows/nodejs.yml/badge.svg)](https://github.com/mliebelt/PgnViewerJS/actions/)
+[![npm (tag)](https://img.shields.io/npm/v/@mliebelt/pgn-viewer)](https://www.npmjs.com/package/@mliebelt/pgn-viewer)
+[![npm](https://img.shields.io/npm/dm/@mliebelt/pgn-viewer)](https://www.npmjs.com/package/@mliebelt/pgn-viewer)
+[![NPM](https://img.shields.io/npm/l/@mliebelt/pgn-viewer)](https://github.com/mliebelt/PgnViewerJS/blob/main/modules/pgn-viewer/LICENSE)
 
 # In a Nutshell
 
