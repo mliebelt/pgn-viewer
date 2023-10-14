@@ -1,10 +1,9 @@
-![GitHub Workflow Status](https://github.com/mliebelt/PgnViewerJS/actions/workflows/nodejs.yml/badge.svg)
-![GitHub](https://img.shields.io/github/license/mliebelt/PgnViewerJS)
-![Languages](https://img.shields.io/github/languages/count/mliebelt/PgnViewerJS)
-![Languages](https://img.shields.io/github/issues-raw/mliebelt/PgnViewerJS)
-![Languages](https://img.shields.io/github/issues-closed-raw/mliebelt/PgnViewerJS)
+[![GitHub Workflow Status](https://github.com/mliebelt/PgnViewerJS/actions/workflows/nodejs.yml/badge.svg)](https://github.com/mliebelt/PgnViewerJS/actions)
+[![GitHub](https://img.shields.io/github/license/mliebelt/PgnViewerJS)](https://github.com/mliebelt/PgnViewerJS/blob/main/LICENSE)
+[![Languages](https://img.shields.io/github/languages/count/mliebelt/PgnViewerJS)]()
+[![open issues](https://img.shields.io/github/issues-raw/mliebelt/PgnViewerJS)](https://github.com/mliebelt/PgnViewerJS/issues?q=is%3Aopen+is%3Aissue)
+[![closed issues](https://img.shields.io/github/issues-closed-raw/mliebelt/PgnViewerJS)](https://github.com/mliebelt/PgnViewerJS/issues?q=is%3Aissue+is%3Aclosed)
 
-<object alt="GitHub issues" src="https://img.shields.io/github/issues/mliebelt/PgnViewerJS?link=https%3A%2F%2Fgithub.com%2Fmliebelt%PgnViewerJS%2Fissues">
 
 # PgnViewerJS
 
