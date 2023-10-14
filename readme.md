@@ -4,6 +4,8 @@
 ![Languages](https://img.shields.io/github/issues-raw/mliebelt/PgnViewerJS)
 ![Languages](https://img.shields.io/github/issues-closed-raw/mliebelt/PgnViewerJS)
 
+<object alt="GitHub issues" src="https://img.shields.io/github/issues/mliebelt/PgnViewerJS?link=https%3A%2F%2Fgithub.com%2Fmliebelt%PgnViewerJS%2Fissues">
+
 # PgnViewerJS
 
 PgnViewerJS (as npm package named `pgn-viewer`) is a simple JavaScript implementation to show PGN files (Portable Game Notation == Chess)
