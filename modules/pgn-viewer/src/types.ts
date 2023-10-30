@@ -49,7 +49,7 @@ export type PgnViewerConfiguration = {
     orientation?:Color,
     headers?: boolean,
     timerTime?: number,
-    pieceStyle?:string,
+    pieceStyle?:PieceStyle,
     notationLayout?:'inline' | 'list' | 'allList',
     timeAnnotation?:TimeAnnotation,
     boardSize?:string,
@@ -84,4 +84,16 @@ export type PrimitiveMove = {
     from: Field,
     to: Field,
     promotion?: 'q'|'r'|'b'|'n'
+}
+
+export enum PieceStyle {
+    Wikipedia = 'wikipedia',
+    Alpha = 'alpha',
+    Uscf = 'uscf',
+    Case = 'case',
+    Condal = 'condal',
+    Maya = 'maya',
+    Merida = 'merida',
+    Leipzig = 'leipzig',
+    Beyer = 'beyer',
 }

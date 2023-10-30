@@ -12,7 +12,15 @@ import { ParseTree } from '@mliebelt/pgn-parser'
 import {i18next} from './i18n'
 import Timer from './timer'
 import resizeHandle from "./resize"
-import {Base, PgnViewerConfiguration, PgnViewerMode, PrimitiveMove, ShortColor, SupportedLocales} from "./types"
+import {
+    Base,
+    PgnViewerConfiguration,
+    PgnViewerMode,
+    PieceStyle,
+    PrimitiveMove,
+    ShortColor,
+    SupportedLocales
+} from "./types"
 import { pgnEdit } from '.'
 
 /**
@@ -30,7 +38,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     let defaults: PgnViewerConfiguration = {
         lazyLoad: true,
         // theme: "blue",
-        pieceStyle: 'merida',
+        pieceStyle: PieceStyle.Merida,
         // width: '320px',
         // boardSize: '320px',
         manyGames: false,
@@ -665,8 +673,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         const el = document.getElementById(id('innerBoardId'))
         createPromotionDiv(document.getElementById(boardId))
         if (typeof that.configuration.pieceStyle != 'undefined') {
-            let bel = document.getElementById(boardId)
-            bel.className += " " + that.configuration.pieceStyle
+            setPieceStyleClass(that.configuration.pieceStyle);
         }
         if (boardConfig.boardSize) {
             boardConfig.width = boardConfig.boardSize
@@ -717,6 +724,25 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
 
         postGenerateBoard()
         return that.board
+    }
+
+    function setPieceStyleClass(pieceStyle: PieceStyle) {
+        // Get the board element
+        let bel = document.getElementById(boardId)
+        bel.classList.add(pieceStyle.toString());
+
+        // Extract the string values from the enum except the selected
+        const pieceStyles = Object.values(PieceStyle).filter(value =>
+            typeof value === 'string' && value !== pieceStyle.toString()
+        ) as string[];
+
+        // Loop over each enum value and remove the class if it exists
+        for (const ps of pieceStyles) {
+            // Check if the element has a class with the enum value
+            if (bel.classList.contains(ps)) {
+                bel.classList.remove(ps);
+            }
+        }
     }
 
     function moveSpan (i:number) {
