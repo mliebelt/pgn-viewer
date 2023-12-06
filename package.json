@@ -13,7 +13,7 @@
     "compression-webpack-plugin": "^10.0.0",
     "css-loader": "^6.8.1",
     "http-server": "^14.1.1",
-    "html-webpack-plugin": "^5.5.3",
+    "html-webpack-plugin": "^5.5.4",
     "style-loader": "^3.3.3",
     "ts-node": "^10.9.1",
     "webpack": "^5.89.0",
