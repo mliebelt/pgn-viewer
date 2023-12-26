@@ -1,0 +1,22 @@
+{
+  "name": "pgn-i18n",
+  "version": "1.0.0",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "npx mocha --loader ts-node/esm"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.3.11",
+    "@types/mocha": "^10.0.6",
+    "chai": "^4.3.10",
+    "mocha": "^10.2.0",
+    "roddeh-i18n": "^1.2.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
