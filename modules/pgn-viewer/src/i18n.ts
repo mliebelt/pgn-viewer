@@ -1,4 +1,5 @@
-let i18n = require('roddeh-i18n')
+import pkg from "roddeh-i18n"
+const { i18n } = pkg
 import en from "./locales/en"
 import de from "./locales/de"
 import fr from "./locales/fr"
@@ -41,4 +42,5 @@ function matchLoc(loc:string): SupportedLocales {
 const i18next = function (loc:string) {
     return i18n.create(jsons[matchLoc(loc)])
 }
-export {i18next}
+
+export { i18next}

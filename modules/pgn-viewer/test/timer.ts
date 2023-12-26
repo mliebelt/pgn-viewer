@@ -1,4 +1,7 @@
-const should = require('chai').should()
+//const should = require('chai').should()
+//import { should } from 'chai'
+import pkg from "chai"
+const should = pkg.should()
 import { expect } from 'chai'
 import Timer from "../src/timer"
 import {describe} from "mocha"
@@ -7,6 +10,7 @@ import { performance } from "perf_hooks"
 describe("When testing Timer functionality", function () {
     it("should create a Timer and use it", async function (done){
         let t = new Timer(10)
+        should()
         should.exist(t)
         should.equal(t.running(), false)
         let end

@@ -1,7 +1,10 @@
 {
   "ts-node": {
     "files": true,
-    "transpileOnly": true
+    "transpileOnly": true,
+    "compilerOptions": {
+      "module": "ESNext"
+    }
   },
   "compilerOptions": {
 //    "allowJs": true,
@@ -9,9 +12,9 @@
     "baseUrl": ".",
     "declaration": true,
     "declarationMap": true,
-//    "esModuleInterop": true,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "CommonJS",
+    "module": "ESNext",
     "moduleResolution": "Node",
     //    "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
@@ -21,7 +24,7 @@
     "sourceMap": true,
 //    "strict": true,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "ES6"
+    "target": "ESNext"
   },
-  "include": ["./src/*.ts", "./src/locales/*.ts"]
+  "include": ["./src/*.ts", "./src/locales/*.ts", "./test/*.ts"]
 }

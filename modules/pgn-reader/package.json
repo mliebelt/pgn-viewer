@@ -28,7 +28,7 @@
     "test": "mocha --require ts-node/register ./test/**/*.ts"
   },
   "dependencies": {
-    "@mliebelt/pgn-parser": "^1.4.12",
+    "@mliebelt/pgn-parser": "^1.4.13",
     "@mliebelt/pgn-writer": "^1.0.5",
     "@mliebelt/pgn-types": "^1.0.4",
     "chess.js": "^0.12.1",

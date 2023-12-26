@@ -1,0 +1,1 @@
+declare module 'roddeh-i18n'

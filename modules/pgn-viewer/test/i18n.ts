@@ -1,6 +1,11 @@
-const should = require('chai').should()
-let i18n = require('roddeh-i18n')
-import {i18next} from "../src/i18n"
+//const should = require('chai').should()
+//import { should } from 'chai'
+import pkg from "chai"
+const should = pkg.should()
+//let i18n = require('roddeh-i18n')
+import pkg2 from "roddeh-i18n"
+const { i18n } = pkg2
+import { i18next } from "../src/i18n"
 import {describe} from "mocha"
 // import { pgnBase } from "../lib/pgnv"
 

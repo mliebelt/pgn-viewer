@@ -7,6 +7,7 @@
     "viewer"
   ],
   "version": "1.6.6",
+  "type": "module",
   "main": "lib/dist.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -22,11 +23,11 @@
   },
   "scripts": {
     "clean": "rm -fr lib/*",
-    "build": "../../node_modules/.bin/webpack --config webpack.prod.js",
-    "start": "../../node_modules/.bin/webpack serve --config webpack.dev.js",
+    "build": "../../node_modules/.bin/webpack --config webpack.prod.cjs",
+    "start": "../../node_modules/.bin/webpack serve --config webpack.dev.cjs",
     "server": "http-server",
     "gen_i18n": "./bin/gen-i18n.js",
-    "test": "mocha ",
+    "test": "mocha -r ts-node/register --loader=ts-node/esm --es-module-specifier-resolution=node",
     "buildtsc": "tsc src/**/*.ts"
   },
   "dependencies": {
