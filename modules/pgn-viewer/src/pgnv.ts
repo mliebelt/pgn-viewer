@@ -936,7 +936,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         }
         regenerateMoveSpan(_moveSpan, move);
 
-        if (that.configuration.timeAnnotation != 'none' && move.commentDiag && move.commentDiag.clk) {
+        if (that.configuration.timeAnnotation && move.commentDiag && move.commentDiag.clk) {
             let cl_time = move.commentDiag.clk
             let cl_class = that.configuration.timeAnnotation?.class || 'timeNormal'
             let clock_span = generateCommentSpan(cl_time, cl_class)
