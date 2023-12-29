@@ -1,30 +1,29 @@
 {
-  "ts-node": {
-    "files": true,
-    "transpileOnly": true,
-    "compilerOptions": {
-      "module": "ESNext"
-    }
-  },
   "compilerOptions": {
-//    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
-    "declaration": true,
-    "declarationMap": true,
-    "esModuleInterop": true,
+    "allowJs": true,
+//    "allowSyntheticDefaultImports": true,
+//    "baseUrl": ".",
+    "checkJs": true,
+    //    "declaration": true,
+//    "declarationMap": true,
+//    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
     "moduleResolution": "Node",
     //    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
-    "outDir": "lib",
-    "skipLibCheck": true,
-    "sourceMap": true,
-//    "strict": true,
-    "suppressImplicitAnyIndexErrors": true,
+//    "noFallthroughCasesInSwitch": true,
+    "noEmit": true,
+//    "noImplicitAny": true,
+//    "outDir": "lib",
+//    "skipLibCheck": true,
+//    "sourceMap": true,
+    "strict": true,
+//    "suppressImplicitAnyIndexErrors": true,
     "target": "ESNext"
   },
-  "include": ["./src/*.ts", "./src/locales/*.ts", "./test/*.ts"]
+  "include": [
+    "./src/*.ts", "./src/locales/*.ts", "./test/*.ts"],
+  "exclude": [
+    "node_modules"
+  ]
 }

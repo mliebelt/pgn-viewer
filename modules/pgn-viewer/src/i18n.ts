@@ -1,5 +1,6 @@
-import pkg from "roddeh-i18n"
-const { i18n } = pkg
+// import pkg from "roddeh-i18n"
+// const { i18n } = pkg
+import i18n from "roddeh-i18n"
 import en from "./locales/en"
 import de from "./locales/de"
 import fr from "./locales/fr"
