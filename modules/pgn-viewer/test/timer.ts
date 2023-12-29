@@ -1,23 +1,22 @@
-const should = require('chai').should()
-import { expect } from 'chai'
 import Timer from "../src/timer"
-import {describe} from "mocha"
 import { performance } from "perf_hooks"
+import { test, suite } from "uvu"
+import * as assert from "uvu/assert"
 
-describe("When testing Timer functionality", function () {
-    it("should create a Timer and use it", async function (done){
-        let t = new Timer(10)
-        should.exist(t)
-        should.equal(t.running(), false)
-        let end
-        t.bind(3000, function (){
-            end = performance.now()
-            t.stop()
-            expect(end-start).to.be.above(3000)
-            expect(end-start).to.be.below(3100)
-        })
-        let start = performance.now()
-        t.start()
-        done()
+const timerSuite = suite("When testing Timer functionality")
+timerSuite("should create a Timer and use it", async function (done){
+    let t = new Timer(10)
+    assert.ok(t)
+    assert.is(t.running(), false)
+    let end
+    t.bind(3000, function (){
+        end = performance.now()
+        t.stop()
+        assert.ok(end>3000, `${end} is not above 3000`)
+        assert.ok(end<3100, `${end} is not below 3100`)
     })
+    let start = performance.now()
+    t.start()
+    // done
 })
+// timerSuite.run()

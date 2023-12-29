@@ -1,37 +1,38 @@
-const should = require('chai').should()
-let i18n = require('roddeh-i18n')
-import {i18next} from "../src/i18n"
-import {describe} from "mocha"
+//const should = require('chai').should()
+//import { should } from 'chai'
+// import pkg from "chai"
+// const should = pkg.should()
+import i18n from "roddeh-i18n"
+import { i18next } from "../src/i18n"
+import { test, suite } from "uvu"
+import * as assert from "uvu/assert"
+// import {describe} from "mocha"
 // import { pgnBase } from "../lib/pgnv"
 
-describe("When testing i18n functionality", function () {
-    it("should create an i18n function", function (){
-        let fn = i18n.create({ values: { a: 'A', b: 'B'}})
-        fn.should.exist
-        // should.exist(fn)
-        let str = fn('a')
-        str.should.equal('A')
-    })
-    it("should be able to read standard locale and strings", function () {
-        // @ts-ignore
-        let fn = i18next('de')
-        should.exist(fn)
-        let str = fn('buttons:flipper')
-        should.exist(str)
-        should.equal(str,"Tausche die Seiten")
-        str = fn('chess:n')
-        should.equal(str,"S") // German: Springer
-    })
-    it("should return the key if the key does not match anything", function () {
-        let fn = i18next('de')
-        let str = fn('foo')
-        should.exist(str)
-        should.equal(str,'foo')
-    })
-    // Unable to load pgnv in the test context, don't know why. So not able to test pgnBase functionality ...
-    // it("should have defaults working for function t", function (){
-    //     let base = pgnBase('id', { locale: 'de' })
-    //     let str = base.t('dummy')
-    //     should(str).equal('dummy')
-    // })
+const i18nSuite = suite('Testing i18n directly')
+i18nSuite("When testing i18n functionality", function () {
+    let fn = i18n.create({ values: { a: 'A', b: 'B'}})
+    assert.type(fn, 'function')
+    let str = fn('a')
+    assert.is(str, 'A')
 })
+i18nSuite.run()
+
+const i18NextSuite = suite('Testing i18n with i18next')
+i18NextSuite("should be able to read standard locale and strings", () => {
+    let fn = i18next('de')
+    assert.type(fn, 'function')
+    let str = fn('buttons:flipper')
+    assert.type(str, 'string')
+    assert.is(str, "Tausche die Seiten")
+    str = fn('chess:n')
+    assert.is(str, "S") // German: Springer
+})
+i18NextSuite("should return the key if the key does not match anything", () => {
+    let fn = i18next('de')
+    let str = fn('foo')
+    assert.type(str, 'string')
+    assert.is(str, 'foo')
+})
+i18NextSuite.run()
+

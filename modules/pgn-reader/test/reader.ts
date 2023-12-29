@@ -816,9 +816,10 @@ describe("When using san and sanWithNags", function () {
 describe("When reading many games", function () {
     let reader: PgnReader
     it("should ensure switching games works", function () {
-        reader = new PgnReader({pgn: 'e4 * d4 * c4 *', manyGames: true})
+        reader = new PgnReader({pgn: 'e4 e5 * d4 (e4) * c4 *', manyGames: true})
         should.equal(reader.getGames().length,3)
         should.equal(reader.san(reader.getMove(0)),'e4')
+        should.equal(reader.san(reader.getMove(1)),'e5')
         reader.loadOne(1)
         should.equal(reader.san(reader.getMove(0)),'d4')
         reader.loadOne(2)
