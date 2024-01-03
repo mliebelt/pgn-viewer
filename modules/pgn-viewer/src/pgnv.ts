@@ -1654,6 +1654,15 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         recomputeCoordsFonts(that.boardConfig, document.getElementById(id('innerBoardId')))
     }
 
+    /**
+     * Allow to programatically make move `n` of the main line on the board.
+     * @param n - the move number to jump to.
+     */
+    function jumpToMove (n:number) {
+        // Something
+        let fen = that.mypgn.getMoves()[n].fen
+        that.board.set({fen: fen})
+    }
     return {
         // PUBLIC API
         chess: chess,
@@ -1665,6 +1674,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         generateBoard: generateBoard,
         generateMoves: generateMoves,
         manualMove: manualMove,
+        jumpToMove: jumpToMove,
         onSnapEnd: onSnapEnd,
         resizeLayout: resizeLayout,
         t: t
