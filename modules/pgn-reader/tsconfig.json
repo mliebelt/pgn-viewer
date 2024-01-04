@@ -16,5 +16,6 @@
     "sourceMap": true,
     "target": "ES6"
   },
-  "files": ["./src/fetch.ts", "./src/index.ts", "./src/nag.ts", "./src/pgn.ts", "./src/pgn.ts", "./src/types.ts"]
+  "files": [
+    "./src/fetch.ts", "./src/index.ts", "./src/nag.ts", "./src/pgn.ts", "./src/pgn.ts", "./src/types.ts"]
 }
