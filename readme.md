@@ -62,27 +62,26 @@ There is at the moment no way to save a game that was edited in `pgnEdit` mode. 
 
 ## Running the tests
 
-* Run `npm test` in directory `modules/pgn-reader`. This runs the tests for the module `pgn-reader`.
+* Run `npm test`.
 
 ## Running the examples
 
-* Start a local webserver (like `http-server`) inside directory `modules/pgn-viewer`, and visit the page `http://localhost:<port>/examples`. 
+* Start a local webserver (like `http-server`) inside the root directory, and visit the page `http://localhost:<port>/examples`. 
 * Browse through the many examples in the sub-directories, or visit the configuration builder in directory `examples/configuration/config.html`. 
 
 ## Deployment
 
 ### From Release
 
-* Copy the files from directory `modules/pgn-viewer/lib` into a web server.
+* Copy the files from directory `lib` into a web server.
 * Create new HTML files with the corresponding head and body.
 
 ### From Clone
 
 * Clone the repository.
-* Run `npm install` from the root, to ensure that all tools are installed.
-* Run `npm install` in `modules/pgn-viewer` directory.  
-* Run `npm run build` in `modules/pgn-viewer`) directory.
-* Copy the files from the directory `modules/pgn-viewer/lib`.
+* Run `npm install` from the root, to ensure that all tools are installed. 
+* Run `npm run build` in the root directory.
+* Copy the files from the directory `lib`.
 * Create new HTML files with the corresponding head and body.
 
 ### Using the viewer
