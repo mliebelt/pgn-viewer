@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Load PGN from external file</title>
+    <script src="/lib/dist.js" type="text/javascript"></script>
+</head>
+<body>
+<p>Load an example from an external file (file is local to the deployment, "../pgn/cori-vishnu.pgn"):
+<a href="https://github.com/mliebelt/pgn-viewer/issues/42">Ticket 42 at GitHub</a>. Look at the example below.</p>
+<div id="board" class="merida blue" style="width: 400px"></div>
+<script>
+    PGNV.pgnView("board", {pgnFile: "../pgn/cori-vishnu.pgn"});
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
-# Run PgnViewerJS as part of ReactJS
+# Run pgn-viewer as part of ReactJS
 
-To run the PgnViewerJS inside a react application, the following examples was provided (thank's to @LTe).
+To run the pgn-viewer inside a react application, the following examples was provided (thank's to @LTe).
 
 ```jsx
 import React, {useLayoutEffect} from 'react'

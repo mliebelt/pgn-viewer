@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Some Games to Edit</title>
+    <script src="/lib/dist.js" type="text/javascript"></script>
+</head>
+<body>
+<p>Example that demonstrates that the ticket 31 is fixed. See the wrong move:
+<a href="https://github.com/mliebelt/pgn-viewer/issues/52">Ticket 52 at GitHub</a>. As you
+can see, the whole PGN is read, but after the wrong move, the computation is aborted.</p>
+<div id="board" style="width: 400px; float: left; margin-right: 10px"></div>
+<script>
+var pgn = "1. Bxa2 Bxa2 2. O-O# 1-0";
+    var cfg = { pgn: pgn, position: "R7/8/8/8/3N4/1BB5/pr6/kb2K2R w K - 0 1" };
+    var board = PGNV.pgnView('board', cfg);
+</script>
+</body>
+</html>

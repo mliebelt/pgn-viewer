@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Print of pgn-viewer</title>
+    <script src="/lib/dist.js" type="text/javascript"></script>
+
+    <style>
+        .row3 {
+            display: flex;
+        }
+
+        article {
+            flex: 1;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+<h1>Print of pgn-viewer</h1>
+<p>This page shows an example how to print multiple diagrams or even games on a printable page. It should support:</p>
+<ul>
+    <li>Support common style for all diagrams.</li>
+    <li>Allow modification of style for some diagrams as well.</li>
+</ul>
+<body class='merida zeit'>
+<a href="https://github.com/mliebelt/pgn-viewer/issues/117">Ticket 119 at GitHub</a>.
+
+<div class="row3">
+    <article><h3>First diagram</h3>
+    <div id="board1"></div>
+    <p>Is it possible to win for white?</p>
+    </article>
+
+    <article><h3>Second diagram</h3>
+    <div id="board2"></div>
+        <p>Is it possible to win for white?</p>
+    </article>
+
+    <article><h3>Third diagram</h3>
+    <div id="board3"></div>
+        <p>Is it possible to win for white?</p>
+    </article>
+</div>
+
+<div class="row3">
+    <article><h3>First diagram</h3>
+    <div id="board4"></div>
+    <p>Is it possible to win for white?</p>
+    </article>
+
+    <article><h3>Second diagram</h3>
+    <div id="board5"></div>
+        <p>Is it possible to win for white?</p>
+    </article>
+
+    <article><h3>Third diagram</h3>
+
+    <div id="board6"></div>
+        <p>Is it possible to win for white?</p>
+    </article>
+</div>
+
+<div class="row3">
+    <article><h3>First diagram</h3>
+    <div id="board7"></div>
+    <p>Is it possible to win for white?</p>
+    </article>
+
+    <article><h3>Second diagram</h3>
+    <div id="board8"></div>
+        <p>Is it possible to win for white?</p>
+    </article>
+
+    <article><h3>Third diagram</h3>
+
+    <div id="board9"></div>
+        <p>Is it possible to win for white?</p>
+    </article>
+</div>
+
+<script>
+    let cfg = { showNotation: false, width: '260px', colorMarker: 'small' };
+    let pgnBoard = PGNV.pgnBoard;
+    pgnBoard('board1', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board2', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board3', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board4', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board5', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board6', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board7', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board8', Object.assign({fen: 'start'}, cfg));
+    pgnBoard('board9', Object.assign({fen: 'start'}, cfg));
+</script>
+</body>
+</html>

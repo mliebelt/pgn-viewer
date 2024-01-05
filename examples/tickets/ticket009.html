@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Some Games to Edit</title>
+    <script src="/lib/dist.js" type="text/javascript"></script>
+</head>
+<body>
+<p>This example demonstrates that the current version does not have the problem of ticket 9 (spaces after a move before a NAG):
+<a href="https://github.com/mliebelt/pgn-viewer/issues/9">Ticket 9 at GitHub</a>.
+</p>
+<div id="board" style="width: 400px; margin-right: 10px"></div>
+<br/>
+<div>The shown pgn is the following: 1. e4 $1 e5 $2 2. Nf3 $3 Nc6 $4 3. Bc4$13 Bc5$14 4. c3$15
+
+    See the  difference in using the white space (and not).</div>
+<script>
+    var pgn = "1. e4 $1 e5 $2 2. Nf3 $3 Nc6 $4 3. Bc4$13 Bc5$14 4. c3$15";
+    var cfg = { showCoords: false, position: 'start', pgn: pgn };
+    var board = PGNV.pgnView('board', cfg);
+</script>
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Configurator for the configuration of pgn-viewer</title>
+    <meta name="description" content="Shows variable parameters of the configuration in a UI.">
+    <meta name="author" content="Markus Liebelt">
+
+    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+
+<!--   Workaround: 2 definitions, depending on the context  -->
+<!--    <script src="../lib/dist.js" type="text/javascript"></script>-->
+    <script src="/lib/dist.js" type="text/javascript"></script>
+    <style>
+        body {
+        }
+
+        #config {
+            float: left;
+            width: 600px;
+        }
+
+        #config_form {
+            padding: 10px;
+        }
+
+        label, select {
+            font-size: large;
+            margin-right: 20px;
+            margin-left: 10px;
+        }
+
+        div.text, h1, h2 {
+            padding-left: 1em;
+        }
+        .section {
+            padding: 5px 3px;
+            margin: 10px;
+            border: #3c84b7 2px double;
+        }
+
+        #outer {
+            float: right;
+            margin-right: 50px;
+        }
+
+        #nofloat {
+            clear: both;
+        }
+
+        .number {
+            width: 60px;
+        }
+
+        #pgn {
+            width: 400px;
+            height: 100px;
+        }
+
+        #fen {
+            width: 400px;
+        }
+
+        #config_out {
+            margin-left: 2em;
+            margin-top: 1em;
+            padding: 10px;
+            width: 500px;
+            height: 100px;
+        }
+
+        @media print {
+            #outer {
+                page-break-before: always;
+                float: none;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+<h1>Configuration Builder</h1>
+
+
+<div id="config">
+    <div class="text">The following forms allow to "construct" a configuration for the pgn-viewer. It demonstrates all
+        possibilities,
+        and helps to define a new configuration.
+    </div>
+
+    <form id="config_form">
+        <div class="section">
+            <!--Mode for the display-->
+            <label for="modus">Modus</label>
+            <select id="modus">
+                <option value="pgnView">pgnView</option>
+                <option value="pgnEdit">pgnEdit</option>
+                <option value="pgnPrint">pgnPrint</option>
+                <option value="pgnBoard">pgnBoard</option>
+            </select>
+            <!-- Position -->
+            <label for="game">Game</label>
+            <select id="game">
+                <option value="start">No Game</option>
+                <option value="evergreenNoBoards">Evergreen (no boards)</option>
+                <option value="evergreen">Evergreen</option>
+                <option value="r1bqk2r/pppp1Np1/2n2n1p/2b1p3/2B1P3/8/PPPP1PPP/RNBQ1RK1 b kq - 0 6">Black at move
+                </option>
+                <option value="r1bqk2r/pppp1Npp/2n2n2/4p3/2B1P3/8/PPPP1bPP/RNBQK2R w KQkq - 0 6">White at move</option>
+                >
+            </select>
+        </div>
+
+        <div class="section">
+            <!-- PGN Input-->
+            <label for="pgn">PGN</label>
+            <textarea id="pgn"></textarea>
+            <br/>
+            <!-- FEN Input -->
+            <label for="fen">FEN</label>
+            <input type="text" id="fen">
+            <br/>
+        </div>
+
+        <div class="section">
+            <!-- Theme: zeit, blue, green, default -->
+            <label for="theme">Theme</label>
+            <select id="theme">
+                <option value="default">default</option>
+                <option value="zeit">zeit</option>
+                <option value="green">green</option>
+                <option value="blue">blue</option>
+                <option value="falken">falken</option>
+                <option value="beyer">beyer</option>
+                <option value="sportverlag">sportverlag</option>
+                <option value="informator">informator</option>
+                <option value="brown">brown</option>
+            </select>
+            <!-- pieceStyle: -->
+            <label for="pieceStyle">Piece Style</label>
+            <select id="pieceStyle">
+                <option value="wikipedia">wikipedia</option>
+                <option value="alpha">alpha</option>
+                <option value="uscf">uscf</option>
+                <option value="case">case</option>
+                <option value="condal">condal</option>
+                <option value="maya">maya</option>
+                <option value="merida">merida</option>
+                <option value="leipzig">leipzig</option>
+                <option value="beyer">beyer</option>
+            </select>
+            <!-- figurine: -->
+            <label for="figurine">Figurine</label>
+            <select id="figurine">
+                <option value="">none</option>
+                <option value="alpha">alpha (default)</option>
+                <option value="merida">merida</option>
+                <option value="berlin">berlin</option>
+                <option value="noto">noto</option>
+                <option value="cachess">cachess</option>
+            </select>
+        </div>
+
+        <div class="section">
+            <label for="layout">Layout</label>
+            <select id="layout">
+                <option value="top">top</option>
+                <option value="left">left</option>
+                <option value="right">right</option>
+                <option value="bottom">bottom</option>
+            </select>
+            <!-- width -->
+            <label for="width">Width</label>
+            <input type="number" id="width" class="number">
+            <!-- boardSize -->
+            <label for="boardSize">Board Size</label>
+            <input type="number" id="boardSize" class="number">
+        </div>
+
+        <div class="section">
+            <!-- movesWidth -->
+            <label for="movesWidth">Moves Width</label>
+            <input type="number" id="movesWidth" class="number">
+            <!-- movesHeight -->
+            <label for="movesHeight">Height</label>
+            <input type="number" id="movesHeight" class="number">
+            </br>
+            <!-- notationLayout -->
+            <label for="notationLayout">Notation Layout</label>
+            <select id="notationLayout">
+                <option value="inline">inline</option>
+                <option value="list">list</option>
+            </select><!-- timerTime -->
+            <label for="timerTime">Timer Time</label>
+            <input type="number" id="timerTime" class="number">
+        </div>
+
+        <div class="section">
+            <!-- Orientation: white or black -->
+            <label for="orientation">Orientation</label>
+            <input type="checkbox" id="orientation" value="true">
+            <!-- notation -->
+            <label for="notation">Notation</label>
+            <select id="notation">
+                <option value="short">short</option>
+                <option value="long">long</option>
+            </select>
+            <!-- headers -->
+            <label for="headers">Headers</label>
+            <input type="checkbox" id="headers" value="true">
+
+        </div>
+
+        <div class="section">
+            <!-- Show Coordinates -->
+            <label for="showCoords">Show Coordinates</label>
+            <input type="checkbox" id="showCoords">
+            <!-- coordsInner -->
+            <label for="coordsInner">Coords Inner</label>
+            <input type="checkbox" id="coordsInner" checked>
+            <!-- coordsFactor -->
+            <label for="coordsFactor">Coords Factor</label>
+            <input type="number" id="coordsFactor" class="number" value='1.0'>
+            <!-- coordsFontSize -->
+            <label for="coordsFontSize">Coords Font Size</label>
+            <input type="number" id="coordsFontSize" class="number">
+        </div>
+
+        <div class="section">
+            <!-- showFen: true or false-->
+            <label for="showFen">Show Fen</label>
+            <input type="checkbox" id="showFen" value="false">
+            <!-- colorMarker -->
+            <label for="colorMarker">Color Marker</label>
+            <select id="colorMarker">
+                <option value="">No marker (default)</option>
+                <option value="any">any marker (will be square)</option>
+                <option value="circle">circle</option>
+                <option value="circle-small">circle small</option>
+                <option value="circle-big">circle big</option>
+                <option value="cm-small">square small</option>
+                <option value="cm-big">square big</option>
+            </select></div>
+
+        <div class="section">
+            <!-- locale -->
+            <label for="locale">Locale</label>
+            <select id="locale">
+                <option value="cs">cs</option>
+                <option value="da">da</option>
+                <option value="de">de</option>
+                <option value="en" selected>en</option>
+                <option value="es">es</option>
+                <option value="et">et</option>
+                <option value="fi">fi</option>
+                <option value="fr">fr</option>
+                <option value="hu">hu</option>
+                <option value="is">is</option>
+                <option value="it">it</option>
+                <option value="nb">nb</option>
+                <option value="nl">nl</option>
+                <option value="pl">pl</option>
+                <option value="pt">pt</option>
+                <option value="ro">ro</option>
+                <option value="sv">sv</option>
+            </select>
+            <!-- startPlay -->
+            <label for="startPlay">startPlay</label>
+            <input type="number" id="startPlay" class="number" value=''>
+            <!-- hideMovesBefore -->
+            <label for="hideMovesBefore">hideMovesBefore</label>
+            <input type="checkbox" id="hideMovesBefore" checked>
+        </div>
+
+
+        <h2>Configuration output</h2>
+
+        <div class="text">The following is the output of the configuration done above. You may
+            copy/paste that to your HTML file (with the relevant headers included).</div>
+        <!-- config_out -->
+        <textarea id="config_out" readonly="true"></textarea>
+    </form>
+</div>
+
+<div id="outer" class='merida blue'>
+    <div id="board" style="width: 400px"></div>
+</div>
+<div id="nofloat"></div>
+<script>
+    var doingRefreshAlready = false;
+    var changedSomething = function () {
+        if (!doingRefreshAlready) {
+            refreshPgn();
+        }
+    }
+    var changedGame = function () {
+        var evergreenPgn = '[Result "1-0"] [White "Adolf Anderssen"] [Black "Dufresne"]' +
+            '1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 { This is the Evan\'s Gambit in the Giuco Piano, a violent opening leading to attacks that was popular in Anderssen\'s time. } ' +
+            '4...Bxb4 { Accepting gambits was a manly thing to do } 5.c3 Ba5 6.d4 { Gaining more time } 6...exd4 7.O-O d3D { Wasting time } 8.Qb3 { Threatening Bxf7 } ' +
+            '8...Qf6 9.e5 Qg6 { Black does not capture because he would open the e-file } 10.Re1!D Nge7 11.Ba3 b5 { Trying to counterattack?! } 12.Qxb5 Rb8 13.Qa4 Bb6 \n' +
+            '14.Nbd2 Bb7 15.Ne4 Qf5 { Note that the king is still stuck in the center } 16.Bxd3 { Threatening a discovery with Nd6+, winning the queen } 16...Qh5 \n' +
+            '17.Nf6+ { Forces a capture of the knight. After gxf6 exf6, white rooks will be able to attack down the e-file at blacks exposed king. That is why you have to castle early! } \n' +
+            '17...gxf6 18.exf6 Rg8 19.Rad1!D { Getting another rook in the fight. } 19...Qxf3 { Oh no! Black threatens mate by Qxg2 and the g pawn is pinned. } \n' +
+            '20.Rxe7+ Nxe7 { Forced checkmate for white now } 21.Qxd7+!!D { White has to keep on checking since black is threatening mate. } 21...Kxd7 ( 21...Kf8 22.Qxe7# ) \n' +
+            '22.Bf5+ { The king has to move because of double check } 22...Ke8 { Now can you see it? } ( 22...Kc6 { allows an immediate } 23.Bd7# ) 23.Bd7+ Kf8 ( { or } 23...Kd8 ) \n' +
+            '24.Bxe7#D { Mate!! }  1-0';
+        var evergreenPgnNoBoards = '[Result "1-0"] [White "Adolf Anderssen"] [Black "Dufresne"]' +
+            '1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 { This is the Evan\'s Gambit in the Giuco Piano, a violent opening leading to attacks that was popular in Anderssen\'s time. } ' +
+            '4...Bxb4 { Accepting gambits was a manly thing to do } 5.c3 Ba5 6.d4 { Gaining more time } 6...exd4 7.O-O d3 { Wasting time } 8.Qb3 { Threatening Bxf7 } ' +
+            '8...Qf6 9.e5 Qg6 { Black does not capture because he would open the e-file } 10.Re1! Nge7 11.Ba3 b5 { Trying to counterattack?! } 12.Qxb5 Rb8 13.Qa4 Bb6 ' +
+            '14.Nbd2 Bb7 15.Ne4 Qf5 { Note that the king is still stuck in the center } 16.Bxd3 { Threatening a discovery with Nd6+, winning the queen } 16...Qh5 ' +
+            '17.Nf6+ { Forces a capture of the knight. After gxf6 exf6, white rooks will be able to attack down the e-file at blacks exposed king. That is why you have to castle early! } ' +
+            '17...gxf6 18.exf6 Rg8 19.Rad1! { Getting another rook in the fight. } 19...Qxf3 { Oh no! Black threatens mate by Qxg2 and the g pawn is pinned. } ' +
+            '20.Rxe7+ Nxe7 { Forced checkmate for white now } 21.Qxd7+!! { White has to keep on checking since black is threatening mate. } 21...Kxd7 ( 21...Kf8 22.Qxe7# ) ' +
+            '22.Bf5+ { The king has to move because of double check } 22...Ke8 { Now can you see it? } ( 22...Kc6 { allows an immediate } 23.Bd7# ) 23.Bd7+ Kf8 ( { or } 23...Kd8 ) ' +
+            '24.Bxe7# { Mate!! }  1-0';
+        if (!doingRefreshAlready) {
+            var game = document.getElementById('game').value;
+            if (game === 'start') {
+                document.getElementById('fen').value = '';
+                document.getElementById('pgn').value = '';
+            } else if (game === 'evergreen') {
+                document.getElementById('pgn').value = evergreenPgn;
+                document.getElementById('fen').value = '';
+            } else if (game === 'evergreenNoBoards') {
+                document.getElementById('pgn').value = evergreenPgnNoBoards;
+                document.getElementById('fen').value = '';
+            } else {
+                document.getElementById('pgn').value = '';
+                document.getElementById('fen').value = game;
+            }
+            refreshPgn();
+        }
+    }
+    var refreshPgn = function () {
+        doingRefreshAlready = true;
+        var configuration = {};
+        var modus = document.getElementById('modus').value;
+        var showCoords = document.getElementById('showCoords').checked;
+        var orientation = document.getElementById('orientation').checked;
+        var headers = document.getElementById('headers').checked;
+        var coordsInner = document.getElementById('coordsInner').checked;
+        document.getElementById('orientation').value = true;
+        var theme = document.getElementById('theme').value;
+        var pieceStyle = document.getElementById('pieceStyle').value;
+        var figurine = document.getElementById('figurine').value;
+        var locale = document.getElementById('locale').value;
+        var timerTime = document.getElementById('timerTime').value;
+        var coordsFactor = document.getElementById('coordsFactor').value;
+        var coordsFontSize = document.getElementById('coordsFontSize').value;
+        var notation = document.getElementById('notation').value;
+        var notationLayout = document.getElementById('notationLayout').value;
+        var startPlay = document.getElementById('startPlay').value;
+        var hideMovesBefore = document.getElementById('hideMovesBefore').checked;
+        var width = document.getElementById('width').value;
+        var boardSize = document.getElementById('boardSize').value;
+        var pgn = document.getElementById('pgn').value;
+        var fen = document.getElementById('fen').value;
+        var layout = document.getElementById('layout').value;
+        var movesWidth = document.getElementById('movesWidth').value;
+        var movesHeight = document.getElementById('movesHeight').value;
+        var showFen = document.getElementById('showFen').checked;
+        var colorMarker = document.getElementById('colorMarker').value;
+
+        configuration['position'] = 'start';
+        if (fen != '') {
+            configuration['position'] = fen;
+        }
+        if (showCoords) {
+            configuration['showCoords'] = true;
+        } else {
+            configuration['showCoords'] = false;
+        }
+        if (orientation) {
+            configuration['orientation'] = 'white'
+        } else {
+            configuration['orientation'] = 'black'
+        }
+        if (headers) {
+            configuration['headers'] = true
+        } else {
+            configuration['headers'] = false
+        }
+        if (coordsInner) {
+            configuration['coordsInner'] = true
+        } else {
+            configuration['coordsInner'] = false
+        }
+        configuration['theme'] = theme;
+        configuration['notation'] = notation;
+        configuration['notationLayout'] = notationLayout;
+        configuration['pieceStyle'] = pieceStyle;
+        configuration['figurine'] = figurine;
+        configuration['locale'] = locale;
+        configuration['timerTime'] = timerTime;
+        configuration['coordsFactor'] = coordsFactor;
+        configuration['coordsFontSize'] = coordsFontSize;
+        configuration['startPlay'] = startPlay;
+        if (hideMovesBefore) {
+            configuration['hideMovesBefore'] = true
+        } else {
+            configuration['hideMovesBefore'] = false
+        }
+        if (width !== "") {
+            configuration['width'] = width + 'px';
+        }
+        if (movesHeight !== "") {
+            configuration['movesHeight'] = movesHeight + 'px';
+        }
+        if (movesWidth !== "") {
+            configuration['movesWidth'] = movesWidth + 'px';
+        }
+        if (boardSize != '') {
+            configuration['boardSize'] = boardSize + 'px';
+        }
+        configuration['pgn'] = pgn;
+        configuration['fen'] = fen;
+        configuration['layout'] = layout;
+        configuration['colorMarker'] = colorMarker;
+        configuration.showFen = showFen;
+        document.getElementById('config_out').value = printConfig(configuration);
+        var fun = PGNV[modus];
+        if (typeof fun === 'function') {
+            fun('board', configuration);
+        }
+        dispatchEvent(new Event('load'));
+        doingRefreshAlready = false;
+    };
+    var printConfig = function (config) {
+        var output = "<div id='board'></div>\n" +
+            "<script>\n" +
+            "config = {";
+        var props = ['pgn', 'position', 'showCoords', 'orientation', 'theme',
+            'pieceStyle', 'figurine', 'locale', 'timerTime', 'width', 'boardSize', 'layout',
+            'movesWidth', 'movesHeight', 'showFen', 'coordsInner', 'headers',
+            'coordsFactor', 'coordsFontSize', 'colorMarker', 'startPlay', 'hideMovesBefore', 'notation', 'notationLayout'];
+        for (property of props) {
+            var val = config[property];
+            if (val != undefined) {
+                val = (typeof val === "string") ? "'" + val + "'" : val;
+                output += property + ': ' + val + ', ';
+            }
+        }
+        output += "};\n";
+        output += document.getElementById('modus').value;
+        output += "('board', config);\n";
+        output += '<';
+        output += '/script>';
+        return output;
+    }
+    var initPgn = function () {
+//        document.getElementById('showCoords').checked = true;
+        document.getElementById('orientation').checked = true;
+        document.getElementById('modus').onchange = changedSomething;
+        document.getElementById('game').onchange = changedGame;
+        document.getElementById('showCoords').onclick = changedSomething;
+        document.getElementById('showFen').onclick = changedSomething;
+        document.getElementById('coordsInner').onclick = changedSomething;
+        document.getElementById('headers').onclick = changedSomething;
+        document.getElementById('orientation').onclick = changedSomething;
+        document.getElementById('theme').onchange = changedSomething;
+        document.getElementById('notation').onchange = changedSomething;
+        document.getElementById('notationLayout').onchange = changedSomething;
+        document.getElementById('pieceStyle').onchange = changedSomething;
+        document.getElementById('figurine').onchange = changedSomething;
+        document.getElementById('locale').onchange = changedSomething;
+        document.getElementById('timerTime').oninput = changedSomething;
+        document.getElementById('coordsFactor').oninput = changedSomething;
+        document.getElementById('coordsFontSize').oninput = changedSomething;
+        document.getElementById('startPlay').oninput = changedSomething;
+        document.getElementById('hideMovesBefore').onclick = changedSomething;
+        document.getElementById('width').oninput = changedSomething;
+        document.getElementById('boardSize').oninput = changedSomething;
+        document.getElementById('pgn').onchange = changedSomething;
+        document.getElementById('fen').onchange = changedSomething;
+        document.getElementById('layout').onchange = changedSomething;
+        document.getElementById('movesWidth').onchange = changedSomething;
+        document.getElementById('movesHeight').onchange = changedSomething;
+        document.getElementById('colorMarker').onchange = changedSomething;
+        changedGame();
+    }
+    window.onload = initPgn();
+</script>
+
+</body>
+</html>

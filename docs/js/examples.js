@@ -1,7 +1,7 @@
 examples = {};
 
 examples["1000"] = {
-    desc: "Use PgnViewerJS for only displaying a board. See the section \"Boards\" for details on that.",
+    desc: "Use pgn-viewer for only displaying a board. See the section \"Boards\" for details on that.",
     html: "<div id=\"board\" style=\"width: 400px\"><\/div>",
     name: "Board with defaults",
     jsStr: "var board = PGNV.pgnBoard('board', {});",
@@ -11,7 +11,7 @@ examples["1000"] = {
 };
 
 examples["1001"] = {
-    desc: "Use PgnViewerJS for showing a (short) game. The buttons, the board and the display of the " +
+    desc: "Use pgn-viewer for showing a (short) game. The buttons, the board and the display of the " +
         "moves are all default values, that may be changed by configuration parameters. Parameter pgn is " +
         "mandatory when using \"pgnView\".",
     html: "<div id=\"board\" style=\"width: 400px\"><\/div>",
@@ -24,7 +24,7 @@ examples["1001"] = {
 };
 
 examples["1002"] = {
-    desc: "Use PgnViewerJS for displaying a game in typical notation, with diagrams and different styles " +
+    desc: "Use pgn-viewer for displaying a game in typical notation, with diagrams and different styles " +
         "for the moves, the boards, ... Looks similar to the style of some magazines or books. " +
         "For the diagram, I have taken the NAG 'D' (or $220), see <a href=\"http://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs\">NAGs at Wikipedia</a> for details",
     html: "<div id=\"board\" style=\"width: 250px\"><\/div>",
@@ -38,7 +38,7 @@ examples["1002"] = {
 };
 
 examples["1003"] = {
-    desc: "Use PgnViewerJS for viewing a game with the option to edit it by adding variations, comments, ..." +
+    desc: "Use pgn-viewer for viewing a game with the option to edit it by adding variations, comments, ..." +
         "So start playing on the board, take moves back, and test variations. Not all " +
         "buttons are implemented, but the PGN button works and displays the current " +
         "game in the pgn notation (including comments).",

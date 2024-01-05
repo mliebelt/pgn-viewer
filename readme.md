@@ -1,14 +1,13 @@
-[![GitHub Workflow Status](https://github.com/mliebelt/PgnViewerJS/actions/workflows/nodejs.yml/badge.svg)](https://github.com/mliebelt/PgnViewerJS/actions)
-[![GitHub](https://img.shields.io/github/license/mliebelt/PgnViewerJS)](https://github.com/mliebelt/PgnViewerJS/blob/main/LICENSE)
-[![Languages](https://img.shields.io/github/languages/count/mliebelt/PgnViewerJS)]()
-[![open issues](https://img.shields.io/github/issues-raw/mliebelt/PgnViewerJS)](https://github.com/mliebelt/PgnViewerJS/issues?q=is%3Aopen+is%3Aissue)
-[![closed issues](https://img.shields.io/github/issues-closed-raw/mliebelt/PgnViewerJS)](https://github.com/mliebelt/PgnViewerJS/issues?q=is%3Aissue+is%3Aclosed)
+[![GitHub Workflow Status](https://github.com/mliebelt/pgn-viewer/actions/workflows/nodejs.yml/badge.svg)](https://github.com/mliebelt/pgn-viewer/actions)
+[![GitHub](https://img.shields.io/github/license/mliebelt/pgn-viewer)](https://github.com/mliebelt/pgn-viewer/blob/main/LICENSE)
+[![Languages](https://img.shields.io/github/languages/count/mliebelt/pgn-viewer)]()
+[![open issues](https://img.shields.io/github/issues-raw/mliebelt/pgn-viewer)](https://github.com/mliebelt/pgn-viewer/issues?q=is%3Aopen+is%3Aissue)
+[![closed issues](https://img.shields.io/github/issues-closed-raw/mliebelt/pgn-viewer)](https://github.com/mliebelt/pgn-viewer/issues?q=is%3Aissue+is%3Aclosed)
 
 
-# PgnViewerJS
+# pgn-viewer
 
-PgnViewerJS (as npm package named `pgn-viewer`) is a simple JavaScript implementation to show PGN files (Portable Game Notation == Chess)
-in a web page. PgnViewerJS does not write everything anew, but it uses the following libraries:
+`pgn-viewer` is a simple JavaScript implementation to show PGN files (Portable Game Notation == Chess) in a web page. `pgn-viewer` does not write everything anew, but it uses the following libraries:
 
 * [chess.js](https://github.com/jhlywa/chess.js) Base library to model chess in JavaScript
 * [Chessground](https://github.com/ornicar/chessground) The chessboard used by lichess.org
@@ -17,8 +16,8 @@ in a web page. PgnViewerJS does not write everything anew, but it uses the follo
 
 See the section Acknowledgments for more supporting libraries.
 
-See the working examples on my new GitHub Pages site [PgnViewerJS](http://mliebelt.github.io/PgnViewerJS/),
-especially the [Configuration Builder](http://mliebelt.github.io/PgnViewerJS/config/config.html) 
+See the working examples on my new GitHub Pages site [pgn-viewer](http://mliebelt.github.io/pgn-viewer/),
+especially the [Configuration Builder](http://mliebelt.github.io/pgn-viewer/config/config.html) 
 that demonstrates all parameters in a running example.
 
 ## Getting Started
@@ -27,7 +26,7 @@ The easiest way to use it is to install it by using NPM: `npm install @mliebelt/
 
 ### Example Screenshots
 
-The following are example screenshots with the configuration set below, to show the rich possibilities of PgnViewerJS.
+The following are example screenshots with the configuration set below, to show the rich possibilities of pgn-viewer.
 
 ![Theme Sportverlag](screenshots/sportverlag.png)
 ![Edit with variations](screenshots/edit-variation.png)
@@ -39,7 +38,7 @@ The screenshots show from left to right:
 * `mode: edit; headers: false; theme: 'brown'` with comments
 * `mode: view; layout: 'left', pieceStyle: 'leipzig', theme: 'zeit'` with comments
 
-Go to the [github.io pages](http://mliebelt.github.io/PgnViewerJS/) (documentation), where the viewer is documented and shown.
+Go to the [github.io pages](http://mliebelt.github.io/pgn-viewer/) (documentation), where the viewer is documented and shown.
 
 ### Features
 
@@ -127,7 +126,7 @@ If you want to help in implementing something, clone the repository, change what
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/mliebelt/PgnViewerJS/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/mliebelt/pgn-viewer/tags).
 
 From the version 1.0.0 on, the whole package can be downloaded / installed by using NPM:
 
@@ -163,6 +162,6 @@ Thank you a lot to all contributors of issues.
 
 ### Known Usage
 
-* [PgnJS](https://github.com/xeyownt/mwpgnjs) Plugin for Mediawiki that uses PgnViewerJS to display  chess games.
-* [PgnViewerJS-WP](https://github.com/mliebelt/PgnViewerJS-WP) Plugin for Wordpress to show games with the help of PgnViewerJS
+* [PgnJS](https://github.com/xeyownt/mwpgnjs) Plugin for Mediawiki that uses pgn-viewer to display  chess games.
+* [pgn-viewer-WP](https://github.com/mliebelt/pgn-viewer-WP) Plugin for Wordpress to show games with the help of pgn-viewer
 * [The Chess Centre](https://github.com/chess-centre/platform#special-thanks-) Replaying games produced by DGT live boards following OTB events.
