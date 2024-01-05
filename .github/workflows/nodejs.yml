@@ -20,12 +20,6 @@ jobs:
     - name: npm install, build, and test
       run: |
         npm install
-        cd modules/pgn-reader
-        npm install
-        npm run build --if-present
-        npm test
-        cd ../pgn-viewer
-        npm install
         npm run build
         npm run test
       env:
