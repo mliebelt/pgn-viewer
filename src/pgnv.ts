@@ -1,8 +1,8 @@
 import {Chessground} from 'chessground'
 import {Color} from "chessground/types";
 import {Config} from "chessground/config";
-import 'chessground/assets/chessground.base.css'
-import 'chessground/assets/chessground.brown.css'
+import '../node_modules/chessground/assets/chessground.base.css'
+import '../node_modules/chessground/assets/chessground.brown.css'
 import Mousetrap from 'mousetrap-ts'
 const Modaly = require('modaly.js')
 import {PgnReader, Shape, Field, PgnReaderMove, GameComment} from '@mliebelt/pgn-reader'
