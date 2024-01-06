@@ -74,6 +74,8 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration)
     that.mypgn = new PgnReader(that.configuration)
 
+    const timer = new Timer(10)
+
     let chess = that.mypgn.chess     // Use the same instance from chess.src
     let theme = that.configuration.theme || 'default'
     function hasMode (mode:PgnViewerMode) {
@@ -1320,7 +1322,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             function firstMove () {
                 makeMove(null, null, null)
             }
-            const timer:Timer = new Timer(10)
+
             timer.bind(that.configuration.timerTime, function () {
                 nextMove()
             })
@@ -1663,6 +1665,16 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         let fen = that.mypgn.getMoves()[n].fen
         that.board.set({fen: fen})
     }
+
+    /**
+     * Allow to programatically stop the timer
+     */
+    function stop() {
+        if (timer.running()) {
+            timer.stop()
+        }
+    }
+
     return {
         // PUBLIC API
         chess: chess,
@@ -1677,7 +1689,8 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         jumpToMove: jumpToMove,
         onSnapEnd: onSnapEnd,
         resizeLayout: resizeLayout,
-        t: t
+        t: t,
+        stop: stop
     }
 }
 
