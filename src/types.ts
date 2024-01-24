@@ -4,6 +4,7 @@ import Mousetrap from "mousetrap-ts";
 import {Config} from "chessground/config";
 
 export type Base = {
+    engine?: any;
     userConfiguration?: PgnViewerConfiguration,
     configuration?: PgnViewerConfiguration,
     mypgn: PgnReader,

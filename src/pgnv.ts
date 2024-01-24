@@ -1,6 +1,7 @@
 import {Chessground} from 'chessground'
 import {Color} from "chessground/types";
 import {Config} from "chessground/config";
+import * as sf from 'src/stockfish-nnue-16.wasm'
 import '../node_modules/chessground/assets/chessground.base.css'
 import '../node_modules/chessground/assets/chessground.brown.css'
 import Mousetrap from 'mousetrap-ts'
@@ -73,7 +74,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     }
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration)
     that.mypgn = new PgnReader(that.configuration)
-
+    initStockfish()
     const timer = new Timer(10)
 
     let chess = that.mypgn.chess     // Use the same instance from chess.src
@@ -97,6 +98,17 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     that.configuration.i18n = i18next(locale)
     that.configuration.defaultI18n = i18next("en")
 
+    function initStockfish() {
+        that.engine = sf();
+        that.engine.postMessage('uci');
+        that.engine.postMessage('ucinewgame');
+        that.engine.postMessage('position startpos');
+        that.engine.postMessage('go depth 8');
+        that.engine.onmessage = function(event) {
+            console.log(event.data);}   }
+    function updateStockfish(fen:string) {
+        that.engine.postMessage('position '+fen)
+    }
     function t(term:string):string {
         if (that.configuration.i18n) {
             let ret = that.configuration.i18n(term)
@@ -1301,6 +1313,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                     fen = that.mypgn.getMove(next).fen
                     makeMove(that.currentMove, next, fen)
                 }
+                updateStockfish(fen)
                 return true
             }
             function prevMove () {
