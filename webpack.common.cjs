@@ -38,11 +38,6 @@ module.exports = {
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
                 type: 'asset/inline'
-            },
-            {
-                test: /\.wasm$/,
-                loader: 'wasm-loader',
-                type: 'javascript/auto'
             }
         ],
     },

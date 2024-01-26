@@ -1,0 +1,17 @@
+{
+  "name": "stockfish-nnue.wasm",
+  "version": "1.0.0-alpha.2",
+  "description": "WebAssembly port of Stockfish with NNUE support, optimized via WASM SIMD",
+  "author": "Hiroshi Ogawa",
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/hi-ogawa/Stockfish",
+  "files": [
+    "AUTHORS",
+    "Copying.txt",
+    "stockfish.js",
+    "stockfish.wasm",
+    "stockfish-no-embedded-nnue.wasm",
+    "stockfish.worker.js",
+    "uci.js"
+  ]
+}
