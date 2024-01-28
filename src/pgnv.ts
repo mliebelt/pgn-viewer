@@ -74,9 +74,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     }
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration)
     that.mypgn = new PgnReader(that.configuration)
-    setTimeout( () => {
-        that.engine = initStockfish()
-    }, 5000)
+    initStockfish()
     const timer = new Timer(10)
 
     let chess = that.mypgn.chess     // Use the same instance from chess.src

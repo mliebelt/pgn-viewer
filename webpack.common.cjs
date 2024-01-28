@@ -18,7 +18,14 @@ module.exports = {
         libraryTarget: 'umd',
     },
     resolve: {
-        extensions: ['.ts', '.js']
+        extensions: ['.ts', '.js'],
+        fallback: {
+            'crypto': false,
+            'path': require.resolve('path-browserify'),
+            'fs': false,
+            'worker_threads': false,
+            'perf_hooks': false
+        }
     },
     module: {
         rules: [
