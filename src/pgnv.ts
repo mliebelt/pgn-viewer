@@ -5,7 +5,6 @@ import '../node_modules/chessground/assets/chessground.base.css'
 import '../node_modules/chessground/assets/chessground.brown.css'
 import Mousetrap from 'mousetrap-ts'
 const Modaly = require('modaly.js')
-import { initStockfish, updateStockfish } from './stockfish'
 import {PgnReader, Shape, Field, PgnReaderMove, GameComment} from '@mliebelt/pgn-reader'
 import {hasDiagramNag, nagToSymbol, NAGs} from '@mliebelt/pgn-reader'
 import {PROMOTIONS} from "@mliebelt/pgn-reader"
@@ -23,6 +22,7 @@ import {
     SupportedLocales
 } from "./types"
 import { pgnEdit } from '.'
+import {sfSetPosition} from "./stockfish";
 
 /**
  * This implements the base function that is used to display a board, a whole game
@@ -74,7 +74,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     }
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration)
     that.mypgn = new PgnReader(that.configuration)
-    initStockfish()
+    // initStockfish()
     const timer = new Timer(10)
 
     let chess = that.mypgn.chess     // Use the same instance from chess.src
@@ -1149,6 +1149,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         if (fenView) {
             fenView.value = fen
         }
+        sfSetPosition(myFen)
         toggleColorMarker(chess.turn())
         resizeLayout()
         updateUI(next)
@@ -1302,7 +1303,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                     fen = that.mypgn.getMove(next).fen
                     makeMove(that.currentMove, next, fen)
                 }
-                updateStockfish(that.engine, fen)
+                // updateStockfish(that.engine, fen)
                 return true
             }
             function prevMove () {

@@ -1,63 +1,27 @@
-import Stockfish from 'stockfish-nnue.wasm/stockfish.js'
+/* Stockfish must be already loaded in the HTML file, so each function used here in has to check
+    if Stockfish is up and running. If yes, it is bound to the global variable sf. */
 
-console.log(Stockfish)
+// @ts-ignore
+import {FEN} from "chessground/types";
 
-declare global {
-    interface Window { myStockfishEngine: any; }
-}
+let PgnStockfish = null
 
-let isReady = false;
-const stockfish = {
-    postMessage: () => { throw 'Not ready'; },
-    terminate: () => { throw 'Not ready'; },
-};
-
-export const startStockfish = () => {
-    let scriptUrl:string = '/node_modules/stockfish-nnue.wasm/stockfish.wasm'
-    const wasmMemory = new WebAssembly.Memory({initial: 256, maximum: 256});
-    const importObject = {
-        'env': {
-            'memory': wasmMemory,
-            'table': new WebAssembly.Table({initial: 0, maximum: 0, element: 'anyfunc'})
-            //... (rest of required imports)
-        }
-    };
-
-    const onRuntimeInitialized = (instance) => {
-        isReady = true;
-        stockfish.postMessage = instance.exports.postMessage;
-        stockfish.terminate = instance.exports.terminate;
-    };
-
-    fetch(scriptUrl)
-        .then(response => response.arrayBuffer())
-        .then(binary => WebAssembly.compile(binary))
-        .then(module => WebAssembly.instantiate(module, importObject))
-        .then(instance => {
-            onRuntimeInitialized(instance);
-            window.myStockfishEngine = instance
-            console.log('Stockfish is ready!');
+// @ts-ignore
+function initStockfish() {
+    if (! PgnStockfish) {
+        // @ts-ignore
+        PgnStockfish = window.sf
+        PgnStockfish.addMessageListener(function (message) {
+            let data = message.data ? message.data : message
+            console.log(data)
         })
-        .catch(error => console.error('Error starting Stockfish:', error));
-};
-const downloadStockfish = async () => {
-    startStockfish();
-    while (isReady === false) {
-        await new Promise(resolve => setTimeout(resolve, 10));
     }
-};
-downloadStockfish();
-
-export function initStockfish() {
-    let engine = window.myStockfishEngine;
-    engine.postMessage('uci');
-    engine.postMessage('ucinewgame');
-    engine.postMessage('position startpos');
-    engine.postMessage('go depth 8');
-    engine.onmessage = function(event) {
-        console.log(event.data);}
-    return engine
 }
-export function updateStockfish(engine, fen:string) {
-    engine.postMessage('position '+fen)
+
+export function sfSetPosition(fen:FEN): void {
+    if (! PgnStockfish) initStockfish()
+    if (PgnStockfish) {
+        PgnStockfish.postMessage(`position fen ${fen}`);
+        PgnStockfish.postMessage("go depth 15");
+    }
 }
