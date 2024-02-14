@@ -16,7 +16,12 @@ export type Base = {
 }
 
 export type  SupportedLocales = 'en' |  'de' |  'fr' |  'es' |  'cs' |  'da' |  'et' |  'fi' |  'hu' |  'is' |  'it' |  'nb' |  'nl' |  'pt' |  'ro' |  'sv'
-export type Layout = 'left'|'right'|'top'|'bottom'
+export enum Layout {
+    Left = 'left',
+    Right = 'right',
+    Top = 'top',
+    Bottom = 'bottom',
+}
 export type Color = 'white' | 'black'
 export type ShortColor = 'w' | 'b'
 export type TimeAnnotation = {
@@ -34,7 +39,12 @@ export type PgnBoardConfiguration = {
     drawable?: boolean
 }
 
-export type PgnViewerMode = 'board' | 'view' | 'edit' | 'print'
+export enum PgnViewerMode {
+    Board = 'board',
+    View = 'view',
+    Edit = 'edit',
+    Print = 'print',
+}
 
 export type PgnViewerConfiguration = {
     modalClicked?: (value: ("q" | "r" | "b" | "n")) => void;
@@ -42,7 +52,7 @@ export type PgnViewerConfiguration = {
     mode?:PgnViewerMode,
     IDs?:{ [key in PgnViewerID]?: string },
     pgn?:string,
-    theme?:string,
+    theme?:Theme,
     figurine?:string,
     layout?:Layout,
     resizable?:boolean,
@@ -96,4 +106,16 @@ export enum PieceStyle {
     Merida = 'merida',
     Leipzig = 'leipzig',
     Beyer = 'beyer',
+}
+
+export enum Theme {
+    Default = 'default',
+    Zeit = 'zeit',
+    Green = 'green',
+    Blue = 'blue',
+    Falken = 'falken',
+    Beyer = 'beyer',
+    Sportverlag = 'sportverlag',
+    Informator = 'informator',
+    Brown = 'brown',
 }
