@@ -4,24 +4,35 @@ import {Config} from "chessground/config";
 import '../node_modules/chessground/assets/chessground.base.css'
 import '../node_modules/chessground/assets/chessground.brown.css'
 import Mousetrap from 'mousetrap-ts'
-const Modaly = require('modaly.js')
-import {PgnReader, Shape, Field, PgnReaderMove, GameComment} from '@mliebelt/pgn-reader'
-import {hasDiagramNag, nagToSymbol, NAGs} from '@mliebelt/pgn-reader'
-import {PROMOTIONS} from "@mliebelt/pgn-reader"
-import { ParseTree } from '@mliebelt/pgn-parser'
+import {
+    Field,
+    GameComment,
+    hasDiagramNag,
+    NAGs,
+    nagToSymbol,
+    PgnReader,
+    PgnReaderMove,
+    PROMOTIONS,
+    Shape
+} from '@mliebelt/pgn-reader'
+import {ParseTree} from '@mliebelt/pgn-parser'
 import {i18next} from './i18n'
 import Timer from './timer'
 import resizeHandle from "./resize"
 import {
     Base,
+    Layout,
     PgnViewerConfiguration,
     PgnViewerMode,
     PieceStyle,
     PrimitiveMove,
     ShortColor,
-    SupportedLocales
+    SupportedLocales,
+    Theme
 } from "./types"
-import { pgnEdit } from '.'
+import {pgnEdit} from '.'
+
+const Modaly = require('modaly.js')
 
 /**
  * This implements the base function that is used to display a board, a whole game
@@ -46,7 +57,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         orientation: 'white',
         position: 'start',
         showFen: false,
-        layout: 'top',
+        layout: Layout.Top,
         headers: false,
         timerTime: 700,
         locale: 'en',
@@ -77,7 +88,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     const timer = new Timer(10)
 
     let chess = that.mypgn.chess     // Use the same instance from chess.src
-    let theme = that.configuration.theme || 'default'
+    let theme = that.configuration.theme || Theme.Default
     function hasMode (mode:PgnViewerMode) {
         return that.configuration.mode === mode
     }
@@ -451,13 +462,13 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             clearChilds(divBoard);
         }
         that.mousetrap = new Mousetrap(divBoard)
-        divBoard.classList.add(theme)
+        setBoardClass(theme, Theme)
         divBoard.classList.add('pgnvjs')   // Is used as class for everything included.
-        divBoard.classList.add(that.configuration.mode + 'Mode')
+        setBoardClass(that.configuration.mode, PgnViewerMode, (m: string) => m + 'Mode')
         divBoard.setAttribute('tabindex', '0')
         // Add layout for class if configured
         if (that.configuration.layout) {
-            divBoard.classList.add('layout-' + that.configuration.layout)
+            setBoardClass(that.configuration.layout, Layout, (l: string) => 'layout-' + l)
         }
 
         /** Add a drop-down list for all games if necessary. */
@@ -482,7 +493,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         let bottomTime = createEle("div", null, "bottomTime", theme, bottomInnerBoardDiv)
 
         /** Buttons */
-        if (hasMode('view') || hasMode('edit')) {
+        if (hasMode(PgnViewerMode.View) || hasMode(PgnViewerMode.Edit)) {
             const buttonsBoardDiv = createEle("div", id('buttonsId'), "buttons", theme, divBoard)
             generateViewButtons(buttonsBoardDiv)
             if ( that.configuration.colorMarker ) {
@@ -490,7 +501,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                     theme, buttonsBoardDiv)
             }
         }
-        if (hasMode('board')) {
+        if (hasMode(PgnViewerMode.Board)) {
             if ( that.configuration.colorMarker ) {
                 createEle("div", id('colorMarkerId'), 'colorMarker' + " " + that.configuration.colorMarker,
                     theme, topInnerBoardDiv)
@@ -499,14 +510,14 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         updateUI(null)
 
         /** Fen */
-        if ((hasMode('edit') || hasMode('view')) && (that.configuration.showFen)) {
+        if ((hasMode(PgnViewerMode.Edit) || hasMode(PgnViewerMode.View)) && (that.configuration.showFen)) {
             const fenDiv = createEle("textarea", id('fenId'), "fen", theme, outerInnerBoardDiv)
             addEventListener(id('fenId'), 'mousedown', function (e:Event) {
                 e = e || window.event
                 e.preventDefault()
                 this.select()
             })
-            if (hasMode('edit')) {
+            if (hasMode(PgnViewerMode.Edit)) {
                 document.getElementById(id('fenId')).onpaste = function (e) {
                     const pastedData = e.clipboardData.getData('text')
                     // console.log(pastedData)
@@ -521,16 +532,16 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         }
 
         /** Moves Div */
-        if (hasMode('print') || hasMode('view') || hasMode('edit')) {
+        if (hasMode(PgnViewerMode.Print) || hasMode(PgnViewerMode.View) || hasMode(PgnViewerMode.Edit)) {
             createEle("div", id('movesId'), "moves " + that.configuration.notationLayout,
                 null, divBoard)
-            if (hasMode('print')) {
+            if (hasMode(PgnViewerMode.Print)) {
                 return
             }
         }
 
         /** Edit Divs TODO Redo those */
-        if (hasMode('edit')) {
+        if (hasMode(PgnViewerMode.Edit)) {
             const editButtonsDiv = createEle("div", "edit" + id('buttonsId'), "edit", theme, divBoard)
             generateEditButtons(editButtonsDiv)
             let nagMenu = createEle('div', 'nagMenu' + id('buttonsId'), 'nagMenu', theme, editButtonsDiv)
@@ -675,7 +686,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         const el = document.getElementById(id('innerBoardId'))
         createPromotionDiv(document.getElementById(boardId))
         if (typeof that.configuration.pieceStyle != 'undefined') {
-            setPieceStyleClass(that.configuration.pieceStyle);
+            setBoardClass(that.configuration.pieceStyle, PieceStyle);
         }
         if (boardConfig.boardSize) {
             boardConfig.width = boardConfig.boardSize
@@ -699,7 +710,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         if (boardConfig.coordsInner) {
             el.classList.add('coords-inner')
         }
-        if (hasMode('edit')) {
+        if (hasMode(PgnViewerMode.Edit)) {
             let _fen = that.mypgn.setToStart()
             let toMove:Color = (chess.turn() == 'w') ? 'white' : 'black'
             that.board.set({
@@ -728,21 +739,27 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         return that.board
     }
 
-    function setPieceStyleClass(pieceStyle: PieceStyle) {
+    function setBoardClass<E extends Record<string, string>>(val: E[keyof E], type: E, modifier?: (s: string) => string) {
+        // By default, the modifier is the identity function
+        if (modifier === undefined) {
+            modifier = (s: string) => s
+        }
+
         // Get the board element
         let bel = document.getElementById(boardId)
-        bel.classList.add(pieceStyle.toString());
+        bel.classList.add(modifier(val.toString()));
 
         // Extract the string values from the enum except the selected
-        const pieceStyles = Object.values(PieceStyle).filter(value =>
-            typeof value === 'string' && value !== pieceStyle.toString()
+        const values = Object.values(type).filter(value =>
+            typeof value === 'string' && value !== val.toString()
         ) as string[];
 
         // Loop over each enum value and remove the class if it exists
-        for (const ps of pieceStyles) {
+        for (const v of values) {
+            const mv = modifier(v);
             // Check if the element has a class with the enum value
-            if (bel.classList.contains(ps)) {
-                bel.classList.remove(ps);
+            if (bel.classList.contains(mv)) {
+                bel.classList.remove(mv);
             }
         }
     }
@@ -1126,7 +1143,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         if (next) {
             scrollToView(moveSpan(next))
         }
-        if (hasMode('edit')) {
+        if (hasMode(PgnViewerMode.Edit)) {
             chess.load(myFen)
             let col: Color = chess.turn() == 'w' ? 'white' : 'black'
             that.board.set({
@@ -1136,7 +1153,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             if (next) {
                 fillComment(next)
             }
-        } else if (hasMode('view')) {
+        } else if (hasMode(PgnViewerMode.View)) {
             chess.load(myFen)
             let col: Color = chess.turn() == 'w' ? 'white' : 'black'
             that.board.set({
@@ -1384,7 +1401,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                     document.getElementById('nagMenu' + id('buttonsId')).style.display = 'none'
                 }
             }
-            if (hasMode('edit')) { // only relevant functions for edit mode
+            if (hasMode(PgnViewerMode.Edit)) { // only relevant functions for edit mode
                 addEventListener(id('buttonsId') + "pgn", 'click', function () {
                     togglePgn()
                 })
@@ -1600,13 +1617,13 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         let _boardWidth = _boardHeight
         // console.log("Board size: " + _boardWidth)
 
-        if (hasMode('board')) {
+        if (hasMode(PgnViewerMode.Board)) {
             if (document.getElementById(id('colorMarkerId'))) {
                 document.getElementById(id('colorMarkerId')).style.marginLeft = 'auto'
             }
             return
         }
-        if (hasMode('print')) return
+        if (hasMode(PgnViewerMode.Print)) return
 
         // View and edit mode
         let _buttonFontSize = Math.max(10, parseInt(_boardHeight) / 24)
