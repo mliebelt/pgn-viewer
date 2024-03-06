@@ -44,6 +44,7 @@ export enum PgnViewerMode {
     View = 'view',
     Edit = 'edit',
     Print = 'print',
+    Puzzle = 'puzzle',
 }
 
 export type PgnViewerConfiguration = {

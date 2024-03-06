@@ -263,6 +263,20 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                 document.querySelector(modID).setAttribute('style', 'top: ' + _t + 'px; left: ' + _l + 'px;')
             }
         }
+
+        function isValidPuzzleMove(from:Field, to:Field,) {
+            if (!hasMode(PgnViewerMode.Puzzle)){
+                return true
+            }
+            if (that.currentMove < that.mypgn.moves.length-1){
+                let moveId: number = that.mypgn.getMove(that.currentMove).next
+                let correctMove: PgnReaderMove = that.mypgn.getMove(moveId)
+                return correctMove.from == from && correctMove.to == to;
+            } else {
+                return true;
+            }
+        }
+
         const cur = that.currentMove
         let primMove:PrimitiveMove = {from: from, to: to}
         if ((that.mypgn.chess.get(from).type === 'p') && ((to.substring(1, 2) === '8') || (to.substring(1, 2) === '1'))) {
@@ -278,43 +292,82 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         }
 
         function onSnapEndFinish() {
-            that.currentMove = that.mypgn.addMove(primMove, cur)
-            const move = that.mypgn.getMove(that.currentMove)
-//            console.log(JSON.stringify(move))
-            if (primMove.promotion) {
-                let pieces = new Map()
-                that.board.setPieces(pieces)
-                pieces.set(to,{
-                    color: (move.turn == 'w' ? 'white' : 'black'),
-                    role: PROMOTIONS[primMove.promotion],
-                    promoted: true
-                })
-                that.board.setPieces(pieces)
+            let validMove: boolean = isValidPuzzleMove(from, to)
+            if (hasMode(PgnViewerMode.Puzzle) && !validMove){
+                let moveIndex:number = 0
+                if (!validMove){
+                    if (that.currentMove == undefined) {
+                        moveIndex = 0;
+                    } else {
+                        moveIndex = that.mypgn.getMove(that.currentMove).index
+        
+                    }
+                    let fen = that.mypgn.getMove(moveIndex).fen
+                    makeMove(that.currentMove, moveIndex, fen)
+                }
+            } else {
+                that.currentMove = that.mypgn.addMove(primMove, cur)
+                const move = that.mypgn.getMove(that.currentMove)
+    //            console.log(JSON.stringify(move))
+                if (primMove.promotion) {
+                    let pieces = new Map()
+                    that.board.setPieces(pieces)
+                    pieces.set(to,{
+                        color: (move.turn == 'w' ? 'white' : 'black'),
+                        role: PROMOTIONS[primMove.promotion],
+                        promoted: true
+                    })
+                    that.board.setPieces(pieces)
+                }
+                if (move.notation.ep) {
+                    let ep_field = to[0] + from[1]
+                    let pieces = new Map()
+                    pieces.set(ep_field, null)
+                    that.board.setPieces(pieces)
+                }
+                if (moveSpan(that.currentMove) === null) {
+                    generateMove(that.currentMove, null, move, move.prev, document.getElementById(id('movesId')), [])
+                }
+                unmarkMark(that.currentMove)
+
+                if (hasMode(PgnViewerMode.Puzzle)){
+                    let moveIndex:number = 0
+                    let playMove: boolean = false
+
+                    if (that.currentMove != undefined && that.currentMove < that.mypgn.moves.length-1) {
+                        let moveId: number = that.mypgn.getMove(that.currentMove).next
+
+                        moveIndex = that.mypgn.getMove(moveId).index
+                        playMove = true
+                    } else if (that.currentMove == undefined ){
+                        moveIndex = that.mypgn.getMove(1).index
+                        playMove = true
+                    }
+
+                    if (playMove){
+                        let fen = that.mypgn.getMove(moveIndex).fen
+                        makeMove(that.currentMove, moveIndex, fen)
+                    }
+                    regenerateMoves(that.mypgn.getMoves())
+                } else {
+                    let col = move.turn == 'w' ? 'black' : 'white'
+    
+                    that.board.set({
+                        movable: Object.assign({}, that.board.state.movable,
+                            {color: col, dests: possibleMoves(move.fen), showDests: true}),
+                        check: chess.in_check()
+                    })
+                }
+                updateUI(that.currentMove)
+
+                //makeMove(null, that.currentMove, move.fen)
+                let fenView = document.getElementById(id('fenId')) as HTMLTextAreaElement
+                if (fenView) {
+                    fenView.value = move.fen
+                }
+                toggleColorMarker(move.turn)
+                resizeLayout()
             }
-            if (move.notation.ep) {
-                let ep_field = to[0] + from[1]
-                let pieces = new Map()
-                pieces.set(ep_field, null)
-                that.board.setPieces(pieces)
-            }
-            if (moveSpan(that.currentMove) === null) {
-                generateMove(that.currentMove, null, move, move.prev, document.getElementById(id('movesId')), [])
-            }
-            unmarkMark(that.currentMove)
-            updateUI(that.currentMove)
-            let col = move.turn == 'w' ? 'black' : 'white'
-            that.board.set({
-                movable: Object.assign({}, that.board.state.movable,
-                    {color: col, dests: possibleMoves(move.fen), showDests: true}),
-                check: chess.in_check()
-            })
-            //makeMove(null, that.currentMove, move.fen)
-            let fenView = document.getElementById(id('fenId')) as HTMLTextAreaElement
-            if (fenView) {
-                fenView.value = move.fen
-            }
-            toggleColorMarker(move.turn)
-            resizeLayout()
         }
     }
 
@@ -532,7 +585,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         }
 
         /** Moves Div */
-        if (hasMode(PgnViewerMode.Print) || hasMode(PgnViewerMode.View) || hasMode(PgnViewerMode.Edit)) {
+        if (hasMode(PgnViewerMode.Print) || hasMode(PgnViewerMode.View) || hasMode(PgnViewerMode.Edit) || hasMode(PgnViewerMode.Puzzle)) {
             createEle("div", id('movesId'), "moves " + that.configuration.notationLayout,
                 null, divBoard)
             if (hasMode(PgnViewerMode.Print)) {
@@ -719,6 +772,25 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                 turnColor: toMove, check: chess.in_check()
             })
         }
+
+        if (hasMode(PgnViewerMode.Puzzle)) {
+            let toMove:Color = (chess.turn() == 'w') ? 'white' : 'black'
+
+            let next: PgnReaderMove|undefined = undefined
+            let dests: Map<Field, Field[]> = new Map()
+
+            if (that.mypgn.moves.length > 0){
+                next = that.mypgn.getMove(0);
+                dests.set(next.from, [next.to]);
+            } 
+
+            that.board.set({
+                movable: Object.assign({}, {dests: dests},
+                    {color: toMove, showDests: true, free: false}),
+                turnColor: toMove, check: chess.in_check()
+            })
+        }
+
         if (that.configuration.colorMarker) {
             if ( (that.configuration.position != 'start') &&
                 (that.configuration.position.split(' ')[1] === 'b') ) {
@@ -1095,8 +1167,13 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                 let tac = document.querySelector('#' + boardId + " textarea.comment") as HTMLTextAreaElement
                 tac.value = myMove.commentMove
             } else {
-                let tac = document.querySelector('#' + boardId + " textarea.comment") as HTMLTextAreaElement
-                tac.value = ""
+                try {
+                    let tac = document.querySelector('#' + boardId + " textarea.comment") as HTMLTextAreaElement
+                    tac.value = ""
+                } catch (err) {
+                    console.log("tac: " + '#' + boardId + " textarea.comment")
+                    console.log(err)
+                }
             }
         }
 
@@ -1140,10 +1217,12 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         }
         unmarkMark(next)
         that.currentMove = next
-        if (next) {
+        if (next && !hasMode(PgnViewerMode.Puzzle)) {
             scrollToView(moveSpan(next))
+        } else if (curr && hasMode(PgnViewerMode.Puzzle)){
+            scrollToView(moveSpan(curr))
         }
-        if (hasMode(PgnViewerMode.Edit)) {
+        if (hasMode(PgnViewerMode.Edit) || hasMode(PgnViewerMode.Puzzle)) {
             chess.load(myFen)
             let col: Color = chess.turn() == 'w' ? 'white' : 'black'
             that.board.set({
@@ -1175,6 +1254,50 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             chess.reset()
         } else {
             chess.load(pos)
+        }
+    }
+
+    /**
+     * Regenerate the moves div, may be used the first time (DIV is empty)
+     * or later (moves have changed).
+     */
+    function regenerateMoves (myMoves:PgnReaderMove[]) {
+
+        /* #338 Handle the game comment, if one is there.
+        */
+        function handleGameComment(movesDiv:HTMLElement, gameComment:GameComment) {
+            // appendCommentSpan(movesDiv, gameComment.comment, "moveComment")
+        }
+
+        if (hasMode(PgnViewerMode.Puzzle) && that.currentMove == undefined){
+            return
+        }
+
+        const movesDiv = document.getElementById(id('movesId'))
+        movesDiv.innerHTML = ''
+        let prev = null
+        handleGameComment(movesDiv, that.mypgn.getGameComment())
+        const varStack: HTMLElement[] = []
+        let firstMove = 0
+        for (let i = firstMove; i < myMoves.length; i++) {
+
+            if(hasMode(PgnViewerMode.Puzzle) && i > that.currentMove){
+                break
+            }
+
+            if (!that.mypgn.isDeleted(i)) {
+                const move = myMoves[i]
+                prev = generateMove(move.index, chess, move, prev, movesDiv, varStack)
+            }
+        }
+        if (that.configuration.showResult) {
+            // find the result from the header
+            let endGame = that.mypgn.getEndGame()
+            // Insert it as new span
+            let span = createEle("span", id('movesId') + "Result", "move result", theme,
+                document.getElementById(id('movesId')))
+            span.innerHTML = endGame ? endGame : "*"
+
         }
     }
 
@@ -1515,39 +1638,6 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             document.getElementById('textpgn' + id('buttonsId')).textContent = val
         }
 
-        /* #338 Handle the game comment, if one is there.
-        */
-        function handleGameComment(movesDiv:HTMLElement, gameComment:GameComment) {
-            // appendCommentSpan(movesDiv, gameComment.comment, "moveComment")
-        }
-
-        /**
-         * Regenerate the moves div, may be used the first time (DIV is empty)
-         * or later (moves have changed).
-         */
-        function regenerateMoves (myMoves:PgnReaderMove[]) {
-            const movesDiv = document.getElementById(id('movesId'))
-            movesDiv.innerHTML = ''
-            let prev = null
-            handleGameComment(movesDiv, that.mypgn.getGameComment())
-            const varStack: HTMLElement[] = []
-            let firstMove = 0
-            for (let i = firstMove; i < myMoves.length; i++) {
-                if (!that.mypgn.isDeleted(i)) {
-                    const move = myMoves[i]
-                    prev = generateMove(move.index, chess, move, prev, movesDiv, varStack)
-                }
-            }
-            if (that.configuration.showResult) {
-                // find the result from the header
-                let endGame = that.mypgn.getEndGame()
-                // Insert it as new span
-                let span = createEle("span", id('movesId') + "Result", "move result", theme,
-                    document.getElementById(id('movesId')))
-                span.innerHTML = endGame ? endGame : "*"
-
-            }
-        }
         regenerateMoves(myMoves)
         bindFunctions()
         generateHeaders()
@@ -1626,51 +1716,75 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         if (hasMode(PgnViewerMode.Print)) return
 
         // View and edit mode
-        let _buttonFontSize = Math.max(10, parseInt(_boardHeight) / 24)
-        let _buttonsHeight = document.getElementById(id('buttonsId')).offsetHeight
-        if (_buttonsHeight < 20) { _buttonsHeight += _buttonFontSize }
-        if (document.getElementById(id('buttonsId'))) {
-            document.getElementById(id('buttonsId')).style.fontSize = `${_buttonFontSize}px`
-        }
-        if (that.configuration.showFen) {
-            let _fenHeight = document.getElementById(id('fenId')).offsetHeight
-            _boardHeight = `${parseInt(_boardHeight) + _fenHeight}px`
-        }
-        if (hasHeaders()) {
-            _boardHeight = `${parseInt(_boardHeight) + 40}px`
-        }
-        let _gamesHeight = that.configuration.manyGames ? '40px' : '0'
-        if (that.configuration.layout === 'left' || that.configuration.layout === 'right') {
-            divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px`
-            let _movesWidth
-            if (that.configuration.movesWidth) {
-                _movesWidth = that.configuration.movesWidth
-            } else {
-                _movesWidth = `${parseInt(that.configuration.width) - parseInt(_boardWidth)}px`
+        if (!hasMode(PgnViewerMode.Puzzle)){
+            let _buttonFontSize = Math.max(10, parseInt(_boardHeight) / 24)
+            let _buttonsHeight = document.getElementById(id('buttonsId')).offsetHeight
+            if (_buttonsHeight < 20) { _buttonsHeight += _buttonFontSize }
+            if (document.getElementById(id('buttonsId'))) {
+                document.getElementById(id('buttonsId')).style.fontSize = `${_buttonFontSize}px`
             }
-            if (that.configuration.layout === 'left') {
-                divBoard.style.gridTemplateColumns = _boardWidth + " " + _movesWidth
-            } else {
-                divBoard.style.gridTemplateColumns = _movesWidth + " " + _boardWidth
+            if (that.configuration.showFen) {
+                let _fenHeight = document.getElementById(id('fenId')).offsetHeight
+                _boardHeight = `${parseInt(_boardHeight) + _fenHeight}px`
             }
-        } else {
-            let _movesHeight
-            if (that.configuration.movesHeight) {
-                _movesHeight = parseInt(that.configuration.movesHeight)
-            } else {
-                let _movesCount = that.mypgn.getMoves().length
-                let _maxMovesHeight = parseInt(_boardHeight) / 5 * 3
-                _movesHeight = Math.min((_movesCount + 20) / 7 * 19, _maxMovesHeight)
+            if (hasHeaders()) {
+                _boardHeight = `${parseInt(_boardHeight) + 40}px`
             }
+        
 
-            if (that.configuration.layout === 'top') {
-                divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) auto minmax(0, ${_movesHeight}px) auto`
-            } else if (that.configuration.layout === 'bottom') {
-                divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(0,${_movesHeight}px) minmax(auto,${_boardHeight}) auto`
+            let _gamesHeight = that.configuration.manyGames ? '40px' : '0'
+            if (that.configuration.layout === 'left' || that.configuration.layout === 'right') {
+                divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px`
+                let _movesWidth
+                if (that.configuration.movesWidth) {
+                    _movesWidth = that.configuration.movesWidth
+                } else {
+                    _movesWidth = `${parseInt(that.configuration.width) - parseInt(_boardWidth)}px`
+                }
+                if (that.configuration.layout === 'left') {
+                    divBoard.style.gridTemplateColumns = _boardWidth + " " + _movesWidth
+                } else {
+                    divBoard.style.gridTemplateColumns = _movesWidth + " " + _boardWidth
+                }
+            } else {
+                let _movesHeight
+                if (that.configuration.movesHeight) {
+                    _movesHeight = parseInt(that.configuration.movesHeight)
+                } else {
+                    let _movesCount = that.mypgn.getMoves().length
+                    let _maxMovesHeight = parseInt(_boardHeight) / 5 * 3
+                    _movesHeight = Math.min((_movesCount + 20) / 7 * 19, _maxMovesHeight)
+                }
+
+                if (that.configuration.layout === 'top') {
+                    divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) auto minmax(0, ${_movesHeight}px) auto`
+                } else if (that.configuration.layout === 'bottom') {
+                    divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(0,${_movesHeight}px) minmax(auto,${_boardHeight}) auto`
+                }
+                divBoard.style.gridTemplateColumns = _boardWidth
             }
-            divBoard.style.gridTemplateColumns = _boardWidth
+            recomputeCoordsFonts(that.boardConfig, document.getElementById(id('innerBoardId')))
+        } else {
+            //puzzle mode
+                let _gamesHeight = that.configuration.manyGames ? '40px' : '0'
+                let _movesHeight
+                if (that.configuration.movesHeight) {
+                    _movesHeight = parseInt(that.configuration.movesHeight)
+                } else {
+                    let _movesCount = that.mypgn.getMoves().length
+                    let _maxMovesHeight = parseInt(_boardHeight) / 5 * 3
+                    _movesHeight = Math.min((_movesCount + 20) / 7 * 19, _maxMovesHeight)
+                }
+
+                if (that.configuration.layout === 'top') {
+                    divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) auto minmax(0, ${_movesHeight}px) auto`
+                } else if (that.configuration.layout === 'bottom') {
+                    divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(0,${_movesHeight}px) minmax(auto,${_boardHeight}) auto`
+                }
+                divBoard.style.gridTemplateColumns = _boardWidth
+            
+            recomputeCoordsFonts(that.boardConfig, document.getElementById(id('innerBoardId')))
         }
-        recomputeCoordsFonts(that.boardConfig, document.getElementById(id('innerBoardId')))
     }
 
     /**
