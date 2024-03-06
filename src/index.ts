@@ -105,4 +105,33 @@ let pgnPrint = function (boardId: string, configuration:PgnViewerConfiguration) 
     return base
 }
 
-export {pgnBoard, pgnEdit, pgnBase, pgnPrint, pgnView}
+/**
+ * Defines a utility function to get a puzzle version of a game, enriched
+ * by diagrams, comments, ... Does  not allow to replay the game (no buttons),
+ * disables all editing functionality.
+ * @param boardId the unique ID of the board (per HTML page)
+ * @param configuration the configuration, mainly here the board style and position.
+ * Rest will be ignored.
+ */
+let pgnPuzzle = function (boardId:string, configuration:PgnViewerConfiguration) {
+    let base = pgnBase(boardId, Object.assign(
+        {
+            showFen: true, mode: 'puzzle',
+            movable: {
+                free: false,
+                events: {
+                    after: function (orig: any, dest: any, meta: any) {
+                        base.onSnapEnd(orig, dest, meta)
+                    }
+                }
+            },
+            viewOnly: false
+        },
+        configuration))
+    base.generateHTML()
+    base.generateMoves()
+    let board = base.generateBoard()
+    return {base, board}
+}
+
+export {pgnBoard, pgnEdit, pgnBase, pgnPrint, pgnView, pgnPuzzle}
