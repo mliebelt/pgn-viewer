@@ -13,7 +13,41 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Fixed
 
-* 338,443: Checked, works
+## Unknown version
+
+### Changed
+
+*
+
+### Fixed
+
+## 1.6.7 2024-03-XX
+
+### Changed
+
+* [#461](https://github.com/mliebelt/pgn-viewer/issues/461) Update of all banners
+* [#482](https://github.com/mliebelt/pgn-viewer/issues/482) Quick hack to allow jumping to move with number (ignoring everything else)
+* [#487](https://github.com/mliebelt/pgn-viewer/issues/487) Migrated unit tests from Mocha/Chai to uvu
+* [#488](https://github.com/mliebelt/pgn-viewer/issues/488) Split repository for `pgn-viewer` and `pgn-reader`
+* [#513](https://github.com/mliebelt/pgn-viewer/issues/513) Added file `roadmap.md` to give orientation
+
+### Fixed
+
+* [#452](https://github.com/mliebelt/pgn-viewer/issues/452) Fix special case with headers == true, coordsInner == false
+
+## 1.6.6 2023-05-21
+
+### Fixed
+
+* [#448](https://github.com/mliebelt/pgn-viewer/issues/448) wrong notation same-line rooks
+* [#436](https://github.com/mliebelt/pgn-viewer/issues/436) similar to #448
+
+## 1.6.5 2023-05-14
+
+### Fixed
+
+* [#338](https://github.com/mliebelt/pgn-viewer/issues/338) Game comment in edit and view mode
+* [#443](https://github.com/mliebelt/pgn-viewer/issues/443) Arrows / circles in starting position
 
 ## 1.6.4 2023-05-07
 
@@ -24,6 +58,7 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 ### Fixed
 
 * [#436](https://github.com/mliebelt/pgn-viewer/issues/436) disambiguation in edit mode (generation of SAN) fixed
+* [#412](https://github.com/mliebelt/pgn-viewer/issues/412) try to fix issue in list mode with first move black
 
 ## 1.6.3 2023-01-25
 
