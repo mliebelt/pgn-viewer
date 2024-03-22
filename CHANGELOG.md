@@ -25,6 +25,7 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Changed
 
+* [#2](https://github.com/mliebelt/pgn-viewer/issues/2) First implementation of "Guess the move" (== puzzle)
 * [#461](https://github.com/mliebelt/pgn-viewer/issues/461) Update of all banners
 * [#482](https://github.com/mliebelt/pgn-viewer/issues/482) Quick hack to allow jumping to move with number (ignoring everything else)
 * [#487](https://github.com/mliebelt/pgn-viewer/issues/487) Migrated unit tests from Mocha/Chai to uvu

@@ -71,7 +71,17 @@ examples["1004"] = {
         //var PgnBaseDefaults = {};
     }
 };
-
+examples["1005"] = {
+    desc: "Use pgn-viewer to create a puzzle, that the user has to solve. The puzzle here is: do a self mate in 2 moves",
+    html: "<div id=\"board\" style=\"width: 250px\"><\/div>",
+    name: "Puzzle",
+    jsStr: "var pgn = \"1. f4 e6 2. g4D Qh4#$220\";\nvar board = PGNV.pgnPuzzle('board', {pgn: pgn});",
+    jsFn: function() {
+        var pgn = "1. f4 e6 2. g4D { what a horrible move (but the shortest mate " +
+            "you can get ...) } Qh4#$220";
+        var board = PGNV.pgnPuzzle('board', {pgn: pgn});
+    }
+};
 
 examples["1020"] = {
     desc: "ChessBoard initializes to the starting position on board with an empty configuration.",
