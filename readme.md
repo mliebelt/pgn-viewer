@@ -123,7 +123,7 @@ If you find something strange (bug), expect some feature (feature) or just want 
 
 If you want to help in implementing something, clone the repository, change whatever you want to, and provide a pull request that I can look at.
 
-## Versioning
+## Versioning and Roadmap
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/mliebelt/pgn-viewer/tags).
 
@@ -131,6 +131,8 @@ From the version 1.0.0 on, the whole package can be downloaded / installed by us
 
 * Download: `npm pack @mliebelt/pgn-viewer@1.5.9` Results in download of a file `mliebelt-pgn-viewer-1.5.9.tgz`, that contains in the directory `package/lib` all resources needed.
 * Install: `npm install @mliebelt/pgn-viewer@1.5.9` as part of some other application. You will find then the files in the directory `node_modules/@mliebelt/pgn-viewer/lib`.
+
+The roadmap is publicly documented in file [roadmap.md](./roadmap.md), and will be updated from time to time.
 
 ## Authors
 
