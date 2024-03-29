@@ -1,4 +1,4 @@
-examples = {};
+let examples = {};
 
 examples["1000"] = {
     desc: "Use pgn-viewer for only displaying a board. See the section \"Boards\" for details on that.",
@@ -75,11 +75,10 @@ examples["1005"] = {
     desc: "Use pgn-viewer to create a puzzle, that the user has to solve. The puzzle here is: do a self mate in 2 moves",
     html: "<div id=\"board\" style=\"width: 250px\"><\/div>",
     name: "Puzzle",
-    jsStr: "var pgn = \"1. f4 e6 2. g4D Qh4#$220\";\nvar board = PGNV.pgnPuzzle('board', {pgn: pgn});",
+    jsStr: "var pgn = \"1... e6 2. g4 Qh4#$220\";\nvar board = PGNV.pgnPuzzle('board', {position: 'rnbqkbnr/pppppppp/8/8/8/5P2/PPPPP1PP/RNBQKBNR b KQkq - 0 1', pgn: pgn});",
     jsFn: function() {
-        var pgn = "1. f4 e6 2. g4D { what a horrible move (but the shortest mate " +
-            "you can get ...) } Qh4#$220";
-        var board = PGNV.pgnPuzzle('board', {pgn: pgn});
+        var pgn = "1... e6 2. g4 Qh4#$220";
+        var board = PGNV.pgnPuzzle('board', {position: "rnbqkbnr/pppppppp/8/8/8/5P2/PPPPP1PP/RNBQKBNR b KQkq - 0 1", pgn: pgn});
     }
 };
 
@@ -630,3 +629,4 @@ examples["1208"] = {
     }
 };
 
+export default examples

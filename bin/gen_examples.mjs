@@ -1,3 +1,7 @@
+import examples from '../docs/js/examples.mjs'
+import fs from 'fs'
+
+console.log("Read Examples: " + examples)
 const gen_examples = function() {
     var htmlEscape = function(str) {
         return (str + '')
@@ -9,9 +13,7 @@ const gen_examples = function() {
             .replace(/\//g, '&#x2F;')
             .replace(/`/g, '&#x60;');
     };
-    console.log("Will generate examples in directory: " + __dirname + '\\docs\\examples');
-    var fs = require('fs');
-    require('../docs/js/examples.js');
+    console.log("Will generate examples in directory: " + 'docs/examples');
     console.log("Available keys: " + Object.keys(examples));
     var exKeys = Object.keys(examples);
     // Loop through all examples
@@ -50,6 +52,4 @@ const gen_examples = function() {
 
 gen_examples();
 
-module.exports = {
-    gen_examples
-};
+export { gen_examples }

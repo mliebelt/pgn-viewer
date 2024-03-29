@@ -1,3 +1,5 @@
+import examples from './examples.mjs';
+
 var htmlEscape = function(str) {
     return (str + '')
         .replace(/&/g, '&amp;')

@@ -17,11 +17,9 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Changed
 
-*
-
 ### Fixed
 
-## 1.6.7 2024-03-XX
+## 1.6.7 2024-03-29
 
 ### Changed
 

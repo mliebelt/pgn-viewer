@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>Puzzle</title>
+<link rel="stylesheet" href="../css/prettify.css" />
+<link rel="stylesheet" href="../css/layout.css" />
+<script src="../lib/dist.js" type="text/javascript" ></script>
+<script src="../js/prettify.js" type="text/javascript" ></script>
+</head>
+<body class="merida zeit">
+<h2>Puzzle</h2>
+<h3>Javascript part</h3>
+<pre class="prettyprint lang-js">var pgn = "1... e6 2. g4 Qh4#$220";
+var board = PGNV.pgnPuzzle('board', {position: 'rnbqkbnr/pppppppp/8/8/8/5P2/PPPPP1PP/RNBQKBNR b KQkq - 0 1', pgn: pgn});</pre>
+<h3>HTML part</h3>
+<pre class="prettyprint lang-html">&lt;div id=&quot;board&quot; style=&quot;width: 250px&quot;&gt;&lt;&#x2F;div&gt;</pre>
+<p>See the <a href="../examples.html#1005">back link</a> to the original examples page.</p>
+<div>Use pgn-viewer to create a puzzle, that the user has to solve. The puzzle here is: do a self mate in 2 moves</div>
+<div id="board" style="width: 250px"></div>
+<script>
+var pgn = "1... e6 2. g4 Qh4#$220";
+var board = PGNV.pgnPuzzle('board', {position: 'rnbqkbnr/pppppppp/8/8/8/5P2/PPPPP1PP/RNBQKBNR b KQkq - 0 1', pgn: pgn});
+</script>
+<script>prettyPrint();</script>
+</body>
+</html>
