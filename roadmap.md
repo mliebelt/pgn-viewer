@@ -21,7 +21,8 @@ The goals should give us the direction, and give some indication when releases s
 
 * 1.6.6: Current version (2024-03-20)
 * 1.6.x: Additional versions, fixing bugs
-* 1.7.0: #510 new mode, therefore a new minor version (goal: 2024-03-31)
+* 1.6.7: #510 new mode, therefore a new minor version (2024-03-29)
+  * Changed to patch version, because the current implementation of puzzle mode is not yet ready, kind of a preview.
 * 1.7.x: Patch versions, that implement first steps in refactoring to better API, better structure, less dependencies (goal: 2024-05-31)
 * 1.8.0 XOR 2.0.0: Finished refactoring, depending on the changes a new major/minor version. Ensure that the configuration of the viewer and the main integration points are the same. (goal: autumn 2024)
 * 1.9.0 XOR 2.1.0: Stockfish integration, including a very simple UI to start/stop/configure Stockfish.
