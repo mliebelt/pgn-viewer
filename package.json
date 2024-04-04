@@ -32,7 +32,7 @@
     "gen_examples": "node ./bin/gen_examples.mjs"
   },
   "dependencies": {
-    "@mliebelt/pgn-reader": "^1.2.25",
+    "@mliebelt/pgn-reader": "1.2.25",
     "chessground": "^9.0.4",
     "modaly.js": "^0.5.2",
     "mousetrap-ts": "^1.0.0",
