@@ -846,7 +846,9 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         // TODO: The 'san' tag is not valid typed, but how to do that for custom elements
         const _linkEle = createEle('san' as keyof HTMLElementTagNameMap, null, null, null, _moveSpan)
         let _san = ""
-        if (move.notation && move.notation.fig) {
+        if (hasMode(PgnViewerMode.Puzzle)){
+            _san = that.mypgn.getMove(move.index).notation.notation
+	} else if (move.notation && move.notation.fig) {
             const locale = that.configuration.locale
             const figurine = that.configuration.figurine
             const fig = (!locale || figurine) ? move.notation.fig : t("chess:" + move.notation.fig)
