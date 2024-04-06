@@ -31,6 +31,7 @@ import {
     Theme
 } from "./types"
 import {pgnEdit} from '.'
+import { Tags, TagKeys } from './types'
 
 const Modaly = require('modaly.js')
 
@@ -1375,24 +1376,27 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             function orientation() {
                 return that.board ? that.board.state.orientation : that.configuration.orientation
             }
+            function getTag(tagObject: Tags, key: Partial<TagKeys>): string {
+                return tagObject[key];
+            }
             let tags = that.mypgn.getTags()
             let whd = orientation() === 'white' ? document.getElementById(id('bottomHeaderId')) :
                 document.getElementById(id('topHeaderId'))
             let bhd = orientation() === 'white' ? document.getElementById(id('topHeaderId')) :
                 document.getElementById(id('bottomHeaderId'))
-            if (that.configuration.headers == false || (tags.size === 0)) {
+            if (that.configuration.headers == false || (Object.keys(tags).length === 0)) {
                 whd.parentNode.removeChild(whd)
                 bhd.parentNode.removeChild(bhd)
                 return
             }
-            if (tags.get("White")) {
+            if (getTag(tags, "White")) {
                 whd.innerHTML = ''
-                whd.appendChild(document.createTextNode(tags.get("White") + " "))
+                whd.appendChild(document.createTextNode(getTag(tags, "White") + " "))
             }
             //div_h.appendChild(document.createTextNode(" - "))
-            if (tags.get("Black")) {
+            if (getTag(tags, "Black")) {
                 bhd.innerHTML = ''
-                bhd.appendChild(document.createTextNode(" " + tags.get("Black")))
+                bhd.appendChild(document.createTextNode(" " + getTag(tags, "Black")))
             }
             // let rest = ""
             // function appendHeader (result, header, separator) {
@@ -1656,7 +1660,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     function resizeLayout () {
         const divBoard = document.getElementById(boardId)
         function hasHeaders () {
-            return that.configuration.headers && (that.mypgn.getTags().size > 0)
+            return that.configuration.headers && (Object.keys(that.mypgn.getTags()).length > 0)
         }
 
 

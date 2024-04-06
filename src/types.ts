@@ -2,6 +2,8 @@ import {Api} from "chessground/api"
 import {PgnReader, Field} from "@mliebelt/pgn-reader"
 import Mousetrap from "mousetrap-ts";
 import {Config} from "chessground/config";
+import { Tags, TagKeys } from "@mliebelt/pgn-types"
+export { Tags, TagKeys }
 
 export type Base = {
     userConfiguration?: PgnViewerConfiguration,
