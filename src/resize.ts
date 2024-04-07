@@ -1,8 +1,13 @@
 import {Base} from "./types";
 
 /**
- * Original source taken from: https://github.com/ornicar/lila/blob/master/ui/common/src/resize.ts
- * @param els ??
+ * Resizes the handle of a base element.
+ *
+ * @param {Base} that - The base element.
+ * @param {HTMLElement} outer - The outer element.
+ * @param {HTMLElement} els - The element to append the handle to.
+ * @param {number} _width - The initial width of the handle.
+ * @param {Function} resizeFunction - The function to call after resizing.
  */
 export default function resizeHandle(that:Base, outer:HTMLElement, els:HTMLElement, _width:number, resizeFunction:Function) {
     const el = document.createElement('cg-resize');

@@ -4,7 +4,7 @@
 // const should = pkg.should()
 import i18n from "roddeh-i18n"
 import {i18next} from "../src/i18n";
-import { test, suite } from "uvu"
+import { suite } from "uvu"
 import * as assert from "uvu/assert"
 // import {describe} from "mocha"
 // import { pgnBase } from "../lib/pgnv"

@@ -12,8 +12,8 @@ and other white space are filtered.</p>
 <!-- <div id="board" style="width: 400px; float: left; margin-right: 10px"></div> -->
 <div id="board2" style="width: 400px; float: left; margin-right: 10px"></div>
 <script>
-var pgn = "1. e4 e5 \n2. Nf3 \tNc6";
-    var cfg = { pgn: pgn};
+    let pgn = "1. e4 e5 \n2. Nf3 \tNc6";
+    let cfg = { pgn: pgn};
     // var board = pgnView('board', cfg);
     pgn = `1. e4 c5 2. Nc3 Nc6 3. f4 { B23 Sicilian Defense: Grand Prix Attack } d6 
     4. Nf3 e6 5. Bc4 Nf6 6. d3 Be7 7. O-O O-O 8. Qe1 a6 9. a4 Qc7 10. Bd2 Rd8 
@@ -23,7 +23,7 @@ var pgn = "1. e4 e5 \n2. Nf3 \tNc6";
     29. e6 fxe6 30. Qg5 Qb4 31. Qa5 Qa3 32. Rf8+ Qxf8 33. Rxf8+ Kxf8 34. Qb4+ Kg8 
     35. Qxb7 Rd8 36. Qb6 Rxd3 37. Qxe6+ Kf8 38. Qf5+ { Black resigns. } 1-0`;
     cfg = {pgn: pgn};
-    var board2 = PGNV.pgnView("board2", cfg);
+    let board2 = PGNV.pgnView("board2", cfg);
 </script>
 </body>
 </html>

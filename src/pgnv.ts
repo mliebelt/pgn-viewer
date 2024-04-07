@@ -664,9 +664,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     }
 
     /**
-     * Generate the board that uses the unique id('innerBoardId') and the part of the configuration
-     * that is for the board only. Returns the resulting object (as reference for others).
-     * @returns {Window.ChessBoard} the board object that may play the moves later
+     * Generate the chess board using the given configuration and unique id.
      */
     function generateBoard () {
         function copyBoardConfiguration(source:PgnViewerConfiguration, target:PgnViewerConfiguration, keys:string[]) {
