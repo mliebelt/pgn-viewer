@@ -28,12 +28,13 @@ import {
     PrimitiveMove,
     ShortColor,
     SupportedLocales,
+    TagKeys,
+    Tags,
     Theme
 } from "./types"
 import {pgnEdit} from '.'
-import { Tags, TagKeys } from './types'
 
-const Modaly = require('modaly.js')
+import Modaly from 'modaly.js';
 
 /**
  * This implements the base function that is used to display a board, a whole game
@@ -503,8 +504,8 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             createEle("label", null, "labelAfterComment", theme, radio).appendChild(document.createTextNode("After"))
             createEle("textarea", null, "comment", theme, commentDiv)
             that.mousetrap.stopCallback = function (e, element) {
-                if (element.localName === 'textarea') { return true }
-                return false
+                return element.localName === 'textarea';
+
             }
         }
 
@@ -567,15 +568,12 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         if ((hasMode(PgnViewerMode.Edit) || hasMode(PgnViewerMode.View)) && (that.configuration.showFen)) {
             const fenDiv = createEle("textarea", id('fenId'), "fen", theme, outerInnerBoardDiv)
             addEventListener(id('fenId'), 'mousedown', function (e:Event) {
-                e = e || window.event
                 e.preventDefault()
                 this.select()
             })
             if (hasMode(PgnViewerMode.Edit)) {
                 document.getElementById(id('fenId')).onpaste = function (e) {
-                    const pastedData = e.clipboardData.getData('text')
-                    // console.log(pastedData)
-                    that.configuration.position = pastedData
+                    that.configuration.position = e.clipboardData.getData('text')
                     that.configuration.pgn = ''
                     pgnEdit(boardId, that.configuration)
                 }
@@ -605,13 +603,11 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             generateCommentDiv(commentBoardDiv)
             // Bind the paste key ...
             addEventListener("pgn" + id('buttonsId'), 'mousedown', function (e:Event) {
-                e = e || window.event
                 e.preventDefault();
                 (e.target as HTMLTextAreaElement).select()
             })
             document.getElementById("textpgn" + id('buttonsId')).onpaste = function (e) {
-                const pastedData = e.clipboardData.getData('text')
-                that.configuration.pgn = pastedData
+                that.configuration.pgn = e.clipboardData.getData('text')
                 pgnEdit(boardId, that.configuration)
             }
         }
@@ -903,7 +899,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
          * @param clazz class parameter appended to differentiate different comments
          * @returns {HTMLElement} the new created span with the comment as text, or null, if text is null
          */
-        function generateCommentSpan (comment:string, clazz:string) {
+        function generateCommentSpan (comment:string, clazz:string): HTMLElement {
             if (comment && (typeof comment == "string")) {
                 const commentSpan =  createEle('span', null, "comment " + clazz)
                 commentSpan.appendChild(document.createTextNode(" " + comment + " "))
@@ -1773,7 +1769,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         } else {
             //puzzle mode
                 let _gamesHeight = that.configuration.manyGames ? '40px' : '0'
-                let _movesHeight
+                let _movesHeight: number
                 if (that.configuration.movesHeight) {
                     _movesHeight = parseInt(that.configuration.movesHeight)
                 } else {
