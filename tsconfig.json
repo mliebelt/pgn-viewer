@@ -8,7 +8,7 @@
 //    "declarationMap": true,
 //    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
+    "module": "CommonJS",
     "moduleResolution": "Node",
     //    "noImplicitReturns": true,
 //    "noFallthroughCasesInSwitch": true,
@@ -19,7 +19,7 @@
 //    "sourceMap": true,
 //    "strict": true,
 //    "suppressImplicitAnyIndexErrors": true,
-    "target": "ESNext"
+    "target": "ES6"
   },
   "include": [
     "./src/*.ts", "./src/locales/*.ts", "./test/*.ts"],

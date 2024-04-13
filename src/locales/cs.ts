@@ -1,5 +1,4 @@
 let cs = {
-    "values": {
         "buttons:flipper" : "Flip po stranách desky",
         "buttons:first" : "Jít na první tah",
         "buttons:prev" : "Přejít na předchozí tah",
@@ -23,6 +22,5 @@ let cs = {
         "chess:B": "S",
         "chess:N": "J"
     }
-}
 
 export default cs;

@@ -1,5 +1,4 @@
 let da = {
-    "values": {
         "buttons:flipper" : "Flip siderne af brættet",
         "buttons:first" : "Gå til første skridt",
         "buttons:prev" : "Gå til forrige træk",
@@ -23,6 +22,5 @@ let da = {
         "chess:B": "L",
         "chess:N": "S"
     }
-}
 
 export default da;

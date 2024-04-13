@@ -1,5 +1,4 @@
 let et = {
-    "values": {
         "buttons:flipper" : "Flip pool pardal",
         "buttons:first" : "Mine esimese sammu",
         "buttons:prev" : "Mine eelmise käigu",
@@ -23,6 +22,5 @@ let et = {
         "chess:B": "O",
         "chess:N": "R"
     }
-}
 
 export default et;

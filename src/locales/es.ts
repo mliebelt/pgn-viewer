@@ -1,5 +1,4 @@
 let es = {
-    "values": {
         "buttons:flipper" : "Voltear los lados del tablero",
         "buttons:first" : "Ir al primer movimiento",
         "buttons:prev" : "Ir al movimiento anterior",
@@ -23,6 +22,5 @@ let es = {
         "chess:B": "A",
         "chess:N": "C"
     }
-}
 
 export default es;
