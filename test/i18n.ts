@@ -22,19 +22,19 @@ const localeTranslations = {
 const i18NextSuite = suite('Testing i18n with i18next')
 i18NextSuite("should be able to read standard locale and strings", () => {
     let translations = i18next('de')
-    let str = translations.buttons.flipper
+    let str = translations["buttons:flipper"]
     // @ts-ignore
     assert.is(str(), "Tausche die Seiten")
-    str = translations.chess.n
+    str = translations["chess:n"]
     // @ts-ignore
     assert.is(str(), "S") // German: Springer
 })
-i18NextSuite("should return the key if the key does not match anything", () => {
+i18NextSuite("should return the empty string if the key does not match anything", () => {
     let translations = i18next('de')
     // @ts-ignore
     let str = translations.foo()
     // assert.type(str, 'string')
-    assert.is(str, 'foo')
+    assert.is(str, '')
 })
 i18NextSuite.run()
 

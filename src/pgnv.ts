@@ -112,9 +112,10 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
 
     function t(term:string):string {
         if (that.configuration.i18n) {
-            let ret = that.configuration.i18n(term)
-            if (ret === term) {
-                ret = that.configuration.defaultI18n(term)
+            let ret = that.configuration.i18n[term]()
+            if (! ret) {
+                ret = that.configuration.defaultI18n[term]()
+                return ret ? ret : term
             }
         return ret
         }

@@ -6,7 +6,7 @@
     "checkJs": true,
     //    "declaration": true,
 //    "declarationMap": true,
-//    "esModuleInterop": true,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "module": "CommonJS",
     "moduleResolution": "Node",
