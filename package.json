@@ -35,7 +35,7 @@
     "chessground": "^9.0.4",
     "modaly.js": "^0.5.2",
     "mousetrap-ts": "^1.0.0",
-    "roddeh-i18n": "^1.2.0",
+    "typesafe-i18n": "^5.26.2",
     "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {

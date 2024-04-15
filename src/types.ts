@@ -17,8 +17,7 @@ export type Base = {
     t?: Function
 }
 
-export type  SupportedLocales = 'en' |  'de'
-// export type  SupportedLocales = 'en' |  'de' |  'fr' |  'es' |  'cs' |  'da' |  'et' |  'fi' |  'hu' |  'is' |  'it' |  'nb' |  'nl' |  'pt' |  'ro' |  'sv'
+export type  SupportedLocales = 'en' |  'de' |  'fr' |  'es' |  'cs' |  'da' |  'et' |  'fi' |  'hu' |  'is' |  'it' |  'nb' |  'nl' |  'pt' |  'ro' |  'sv'
 export enum Layout {
     Left = 'left',
     Right = 'right',
