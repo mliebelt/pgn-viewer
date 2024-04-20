@@ -1,4 +1,6 @@
-let et = {
+import {BaseTranslation, type Translation} from "../i18n/i18n-types"
+
+const et: BaseTranslation = {
         "buttons:flipper" : "Flip pool pardal",
         "buttons:first" : "Mine esimese sammu",
         "buttons:prev" : "Mine eelmise käigu",
@@ -21,6 +23,6 @@ let et = {
         "chess:R": "V",
         "chess:B": "O",
         "chess:N": "R"
-    }
+    } satisfies Translation
 
 export default et;

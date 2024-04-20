@@ -1,5 +1,6 @@
-let fi = {
-    "values": {
+import {BaseTranslation, type Translation} from "../i18n/i18n-types"
+
+const fi: BaseTranslation = {
         "buttons:flipper" : "Flip puolin hallituksen",
         "buttons:first" : "Mene ensimmäinen siirto",
         "buttons:prev" : "Mene edellisen siirron",
@@ -22,7 +23,6 @@ let fi = {
         "chess:R": "T",
         "chess:B": "L",
         "chess:N": "R"
-    }
-}
+} satisfies Translation
 
 export default fi;

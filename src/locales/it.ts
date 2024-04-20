@@ -1,5 +1,6 @@
-let it = {
-    "values": {
+import {BaseTranslation, Translation} from "../i18n/i18n-types";
+
+const it: BaseTranslation = {
         "buttons:flipper" : "Capovolgere i lati del bordo",
         "buttons:first" : "Vai alla prima mossa",
         "buttons:prev" : "Vai alla precedente mossa",
@@ -22,7 +23,6 @@ let it = {
         "chess:R": "T",
         "chess:B": "A",
         "chess:N": "C"
-    }
-}
+ } satisfies Translation
 
 export default it;

@@ -1,5 +1,6 @@
-let fr = {
-   "values": {
+import {BaseTranslation, type Translation} from "../i18n/i18n-types"
+
+const fr: BaseTranslation = {
       "chess:q": "D",
       "chess:k": "R",
       "chess:r": "T",
@@ -276,7 +277,6 @@ let fr = {
 
       "nag:$146":       "Nouveauté",
       "nag:$146_menu":  "Nouveauté"
-   }
-}
+} satisfies Translation
 
 export default fr

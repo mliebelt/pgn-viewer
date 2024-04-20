@@ -9,15 +9,15 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Changed
 
-* 
-
 ### Fixed
 
-## Unknown version
+## 1.6.8 2024-04-15
 
 ### Changed
 
 ### Fixed
+
+* [#534](https://github.com/mliebelt/pgn-viewer/issues/534) Fixed problem with integration into React
 
 ## 1.6.7 2024-03-29
 

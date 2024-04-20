@@ -1,4 +1,6 @@
-let da = {
+import {BaseTranslation, type Translation} from "../i18n/i18n-types"
+
+const da: BaseTranslation = {
         "buttons:flipper" : "Flip siderne af brættet",
         "buttons:first" : "Gå til første skridt",
         "buttons:prev" : "Gå til forrige træk",
@@ -21,6 +23,6 @@ let da = {
         "chess:R": "T",
         "chess:B": "L",
         "chess:N": "S"
-    }
+    } satisfies Translation
 
 export default da;
