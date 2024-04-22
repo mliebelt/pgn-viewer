@@ -88,10 +88,11 @@ export type PgnViewerConfiguration = {
     coordsFontSize?: string,
     coordsFactor?:number,
     coordinates?:boolean,   // TODO Should be part of Config (only). How to share configuration?
-    notation?:'short'|'long'
+    notation?:'short'|'long',
+    hints?: Map<string, string[]>
 }
 
-export type PgnViewerID = 'bottomHeaderId' | 'topHeaderId' | 'innerBoardId' | 'movesId' | 'buttonsId' | 'fenId' | 'colorMarkerId'
+export type PgnViewerID = 'bottomHeaderId' | 'topHeaderId' | 'innerBoardId' | 'movesId' | 'buttonsId' | 'fenId' | 'colorMarkerId' | 'hintsId'
 
 export type PrimitiveMove = {
     from: Field,

@@ -468,6 +468,19 @@
     font-size: 80%;
 }
 
+/*
+puzzle mode
+*/
+
+.pgnvjs textarea.hints {
+    grid-row: 6/6;
+    display: flex;
+    font-family: monospace;
+    width: 96%;
+    height: 100px;
+    padding: 2px;
+}
+
 /**
   CHESSGROUND changes.
   */
