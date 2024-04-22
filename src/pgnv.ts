@@ -81,15 +81,18 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             movesId: boardId + 'Moves',
             buttonsId: boardId + 'Button',
             fenId: boardId + "Fen",
-            colorMarkerId: boardId + 'ColorMarker'
+            colorMarkerId: boardId + 'ColorMarker',
+            hintsId: boardId + "Hints",
         }
     }
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration)
     that.mypgn = new PgnReader(that.configuration)
 
     const timer = new Timer(10)
+    const moveDelay = 400; //delay to play reply in puzzle mode
 
     let chess = that.mypgn.chess     // Use the same instance from chess.src
+    let hintsShown:number = 0;
     let theme = that.configuration.theme || Theme.Default
     function hasMode (mode:PgnViewerMode) {
         return that.configuration.mode === mode
@@ -139,6 +142,28 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         const textnode = document.createTextNode(str)
         node.appendChild(textnode)
         that.errorDiv.appendChild(node)
+    }
+
+    /*
+     helper functions for hints in puzzle mode
+     */
+     function showHint(h:string) {
+        let hintsView:HTMLTextAreaElement = document.getElementById(id('hintsId')) as HTMLTextAreaElement;
+        if (hintsView) {
+            if (hintsShown > 0){
+                hintsView.value += "\n"
+            }
+             hintsView.value += h
+        }    
+        hintsShown++;
+    }
+
+    function resetHints(){
+        let hintsView:HTMLTextAreaElement = document.getElementById(id('hintsId')) as HTMLTextAreaElement
+        if (hintsView) {
+             hintsView.value = "";
+             hintsShown = 0;
+        }
     }
 
     /**
@@ -349,9 +374,17 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
 
                     if (playMove){
                         let fen = that.mypgn.getMove(moveIndex).fen
-                        makeMove(that.currentMove, moveIndex, fen)
+            
+                        setTimeout(() => {
+                            makeMove(that.currentMove, moveIndex, fen);
+                            resetHints();
+                            regenerateMoves(that.mypgn.getMoves());
+                        }, moveDelay)
+
+                    } else {
+                        regenerateMoves(that.mypgn.getMoves())
                     }
-                    regenerateMoves(that.mypgn.getMoves())
+                    
                 } else {
                     let col = move.turn == 'w' ? 'black' : 'white'
     
@@ -451,6 +484,14 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                 // only gray out if not usable, check that later.
             });
             [["pgn", "fa-print"], ['nags', 'fa-cog']].forEach(function (entry:[string,string]) {
+                addButton(entry, buttonDiv)
+            })
+        }
+
+        //generate puzzle buttons
+        function generatePuzzleButtons(buttonDiv:HTMLElement) {
+            [["getHint", "fa-lightbulb"], ["makeMove", "fa-step-forward"], 
+            ["showSolution", "fa-question"]].forEach(function (entry: [string, string]) {
                 addButton(entry, buttonDiv)
             })
         }
@@ -563,6 +604,10 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                     theme, topInnerBoardDiv)
             }
         }
+        if (hasMode(PgnViewerMode.Puzzle)){
+            const buttonsBoardDiv = createEle("div", id('buttonsId'), "buttons", theme, divBoard)
+            generatePuzzleButtons(buttonsBoardDiv)
+        }
         updateUI(null)
 
         /** Fen */
@@ -591,6 +636,12 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             if (hasMode(PgnViewerMode.Print)) {
                 return
             }
+        }
+
+        /** hints Div */
+        if (hasMode(PgnViewerMode.Puzzle)) {
+            createEle("textarea", id('hintsId'), "hints",
+                null, divBoard)
         }
 
         /** Edit Divs TODO Redo those */
@@ -1492,6 +1543,71 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             })
             addEventListener(id('buttonsId') + 'first', 'click', function () {
                 firstMove()
+            })
+
+            addEventListener(id('buttonsId') + 'makeMove', 'click', function () {
+                let next = -1
+                if ((typeof that.currentMove == 'undefined') || (that.currentMove === null)) {
+                    if (that.mypgn.getMoves().length === 0) return   // no next move
+                    next = 0
+                } else {
+                    next = that.mypgn.getMove(that.currentMove).next
+                    if (typeof next == 'undefined') return
+                }
+                let myMove = that.mypgn.getMove(next);
+                manualMove(myMove.notation["notation"])
+            })
+
+            addEventListener(id('buttonsId') + 'showSolution', 'click', function() {
+                
+                function playMovesToEnd(){
+                    if ((typeof that.currentMove == 'undefined') || (that.currentMove === null)) {
+                        if (that.mypgn.getMoves().length === 0){
+                            movesLeft = false
+                            return movesLeft
+                        }  else {
+                            next = 0
+                            manualMove(that.mypgn.getMove(next).notation["notation"])
+                            movesLeft = true
+                            return movesLeft
+                        }
+
+                    } else {
+                        next = that.mypgn.getMove(that.currentMove).next
+                        if (typeof next == 'undefined'){
+                            movesLeft = false
+                            return movesLeft                            
+                        } else {
+                            manualMove(that.mypgn.getMove(next).notation["notation"])
+                            movesLeft = true
+                            return movesLeft
+                        }
+                    }
+                }
+                let movesLeft = true
+                let next = -1
+
+                let nIntervId;
+                nIntervId = setInterval(() => {
+                    movesLeft = playMovesToEnd()
+                    if (!movesLeft){
+                        clearInterval(nIntervId);
+                    }
+                }, 400)
+            })
+            
+            addEventListener(id('buttonsId') + 'getHint', 'click', function() {
+                const currentFen: string = that.board.getFen()
+                if (that.configuration.hints != undefined && that.configuration.hints[currentFen] != undefined){
+                    if (that.configuration.hints[currentFen].length > hintsShown){
+                        showHint(that.configuration.hints[currentFen][hintsShown])
+                    } else if (that.configuration.hints[currentFen].length == hintsShown) {
+                        showHint("No more hints")
+                    }
+                } else if (hintsShown == 0){
+                    showHint("There are no hints")
+                }
+
             })
 
             function lastMove() {

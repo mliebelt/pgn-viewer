@@ -32,8 +32,11 @@
         continues the attack.}) 23... Ke7 $2 (23... Re6 {stops the attack.}) 24. Qg8\
     Bf8 25. Qg5+ Kf7 26. Rf1+ Ke8 27. Qg8 {\
         The players were ready for dinner in time.}';
+
+    var hints = {'r1b2k2/pp2q1b1/2p4r/3ppp2/2B1PP2/2N3Q1/PPP3PP/3R1RK1': ["Do not take the pawn", "Return the bishop"]}
     var cfg = { position: 'r1b2k2/pp2q1b1/2pp3r/4pp2/2B1P3/2N3Q1/PPP2PPP/3R1RK1 w - - 0 17',
-        pgn: pgn, locale: 'en', pieceStyle: 'merida', headers: false, theme: 'brown' };
+        pgn: pgn, locale: 'en', pieceStyle: 'merida', headers: false, theme: 'brown',
+        hints: hints };
     var board = PGNV.pgnPuzzle('board', cfg);
 </script>
 </body>
