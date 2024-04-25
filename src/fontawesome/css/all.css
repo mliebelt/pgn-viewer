@@ -207,8 +207,8 @@ readers do not read off random characters that represent icons */
 .fa-hand-point-up:before {
   content: "\f0a6"; }
 
-.fa-pause-circle:before {
-  content: "\f28b"; }
+.fa-lightbulb:before {
+  content: "\f0eb"; }
 
 .fa-play-circle:before {
   content: "\f144"; }
@@ -216,17 +216,14 @@ readers do not read off random characters that represent icons */
 .fa-print:before {
   content: "\f02f"; }
 
+.fa-question:before {
+  content: "\f128"; }
+
 .fa-step-backward:before {
   content: "\f048"; }
 
 .fa-step-forward:before {
   content: "\f051"; }
-
-.fa-question:before {
-  content: "\3f"; }
-
-.fa-lightbulb:before {
-  content: "\f0eb"; }
 
 .sr-only {
   border: 0;
@@ -245,6 +242,28 @@ readers do not read off random characters that represent icons */
   overflow: visible;
   position: static;
   width: auto; }
+@font-face {
+  font-family: 'Font Awesome 5 Pro';
+  font-style: normal;
+  font-weight: 300;
+  font-display: block;
+  src: url("../webfonts/fa-light-300.eot");
+  src: url("../webfonts/fa-light-300.eot?#iefix") format("embedded-opentype"), url("../webfonts/fa-light-300.woff2") format("woff2"), url("../webfonts/fa-light-300.woff") format("woff"), url("../webfonts/fa-light-300.ttf") format("truetype"), url("../webfonts/fa-light-300.svg#fontawesome") format("svg"); }
+
+.fal {
+  font-family: 'Font Awesome 5 Pro';
+  font-weight: 300; }
+@font-face {
+  font-family: 'Font Awesome 5 Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("../webfonts/fa-regular-400.eot");
+  src: url("../webfonts/fa-regular-400.eot?#iefix") format("embedded-opentype"), url("../webfonts/fa-regular-400.woff2") format("woff2"), url("../webfonts/fa-regular-400.woff") format("woff"), url("../webfonts/fa-regular-400.ttf") format("truetype"), url("../webfonts/fa-regular-400.svg#fontawesome") format("svg"); }
+
+.far {
+  font-family: 'Font Awesome 5 Pro';
+  font-weight: 400; }
 @font-face {
   font-family: 'Font Awesome 5 Pro';
   font-style: normal;
