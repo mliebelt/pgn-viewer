@@ -1,5 +1,6 @@
-let sv = {
-    "values": {
+import {BaseTranslation, Translation} from "../i18n/i18n-types";
+
+const sv: BaseTranslation = {
         "buttons:flipper" : "Vänd sidorna av styrelsen",
         "buttons:first" : "Gå till första steget",
         "buttons:prev" : "Gå till föregående drag",
@@ -12,6 +13,9 @@ let sv = {
         "buttons:nags" : "NAGs menu",
         "buttons:pgn" : "Visning PGN av aktuella spelet",
         "buttons:hidePGN" : "Dölja visas PGN",
+	"buttons:getHint": "Ge ett tips",
+	"buttons:makeMove": "Visa nästa drag",
+	"buttons:showSolution": "Visa hela lösningen",
         "chess:q": "D",
         "chess:k": "K",
         "chess:r": "T",
@@ -22,7 +26,6 @@ let sv = {
         "chess:R": "T",
         "chess:B": "L",
         "chess:N": "S"
-    }
-}
+} satisfies Translation
 
 export default sv;

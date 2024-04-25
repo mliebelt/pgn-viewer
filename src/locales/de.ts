@@ -1,5 +1,6 @@
-let de = {
-  "values": {
+import {BaseTranslation, type Translation} from "../i18n/i18n-types"
+
+const de: BaseTranslation = {
     "chess:q": "D",
     "chess:k": "K",
     "chess:r": "T",
@@ -22,6 +23,9 @@ let de = {
     "buttons:nags": "NAGs Menü",
     "buttons:pgn": "Zeige die PGN Notation an",
     "buttons:hidePGN": "Ausblenden des angezeigten PGN",
+    "buttons:getHint": "Gib einen Hinweis",
+    "buttons:makeMove": "Zeige den nächsten Zug",
+    "buttons:showSolution": "Zeige die ganze Lösung",
     "nag:$1": "Starker Zug",
     "nag:$1_menu": "Guter Zug",
     "nag:$2": "Ein Fehler",
@@ -214,7 +218,6 @@ let de = {
     "nag:$253": "Bauernmehrheit",
     "nag:$254": "Mit",
     "nag:$255": "Ohne",
-  }
-}
+} satisfies Translation
 
 export default de;

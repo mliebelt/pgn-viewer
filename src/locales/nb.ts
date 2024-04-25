@@ -1,5 +1,6 @@
-let nb = {
-    "values": {
+import {BaseTranslation, Translation} from "../i18n/i18n-types";
+
+const nb: BaseTranslation = {
         "buttons:flipper" : "Vend sider av bordet",
         "buttons:first" : "Gå til første trekket",
         "buttons:prev" : "Gå til forrige trekk",
@@ -12,6 +13,9 @@ let nb = {
         "buttons:nags" : "NAGs menu",
         "buttons:pgn" : "Visning PGN av dagens spill",
         "buttons:hidePGN" : "Skjul vises PGN",
+	"buttons:getHint": "Gi et hint",
+	"buttons:makeMove": "Vis neste trekk",
+	"buttons:showSolution": "Vis hele løsningen",
         "chess:q": "D",
         "chess:k": "K",
         "chess:r": "T",
@@ -22,7 +26,7 @@ let nb = {
         "chess:R": "T",
         "chess:B": "L",
         "chess:N": "S"
-    }
-}
+} satisfies Translation
+
 
 export default nb;

@@ -1,5 +1,8 @@
-let en = {
-  "values": {
+import {BaseTranslation} from "typesafe-i18n"
+import type { Translation } from '../i18n/i18n-types'
+
+
+const en: BaseTranslation = {
     "chess:q": "Q",
     "chess:k": "K",
     "chess:r": "R",
@@ -22,6 +25,9 @@ let en = {
     "buttons:nags": "NAGs menu",
     "buttons:pgn": "Display PGN of current game",
     "buttons:hidePGN": "Hide the displayed PGN",
+    "buttons:getHint": "Give a hint",
+    "buttons:makeMove": "Show the next move",
+    "buttons:showSolution": "Show the whole solution",
     "nag:$0": "null annotation",
     "nag:$1": "good move",
     "nag:$1_menu": "Good move",
@@ -215,7 +221,6 @@ let en = {
     "nag:$253": "Pawn majority",
     "nag:$254": "With",
     "nag:$255": "Without",
-  }
-}
+    } satisfies Translation
 
 export default en

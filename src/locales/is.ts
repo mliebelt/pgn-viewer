@@ -1,5 +1,6 @@
-let is = {
-    "values": {
+import {BaseTranslation, type Translation} from "../i18n/i18n-types"
+
+const is: BaseTranslation = {
         "buttons:flipper" : "Flip hliðar borðsins",
         "buttons:first" : "Fara á fyrsta ferðinni",
         "buttons:prev" : "Fara í fyrri ferðinni",
@@ -12,6 +13,9 @@ let is = {
         "buttons:nags" : "NAGs menu",
         "buttons:pgn" : "Sýna PGN núverandi leik",
         "buttons:hidePGN" : "Fela birtist PGN",
+	"buttons:getHint": "Gefðu vísbendingu",
+	"buttons:makeMove": "Sýndu næstu hreyfingu",
+	"buttons:showSolution": "Sýndu alla lausnina",
         "chess:q": "D",
         "chess:k": "K",
         "chess:r": "H",
@@ -22,7 +26,6 @@ let is = {
         "chess:R": "H",
         "chess:B": "B",
         "chess:N": "R"
-    }
-}
+} satisfies Translation
 
 export default is;

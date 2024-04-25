@@ -1,5 +1,6 @@
-let et = {
-    "values": {
+import {BaseTranslation, type Translation} from "../i18n/i18n-types"
+
+const et: BaseTranslation = {
         "buttons:flipper" : "Flip pool pardal",
         "buttons:first" : "Mine esimese sammu",
         "buttons:prev" : "Mine eelmise käigu",
@@ -12,6 +13,9 @@ let et = {
         "buttons:nags" : "NAGs menu",
         "buttons:pgn" : "Näita PGN praeguse mängu",
         "buttons:hidePGN" : "Peida kuvatakse PGN",
+	"buttons:getHint": "Anna vihje",
+	"buttons:makeMove": "Näita järgmist käiku",
+	"buttons:showSolution": "Näidake kogu lahendust",
         "chess:q": "L",
         "chess:k": "K",
         "chess:r": "V",
@@ -22,7 +26,6 @@ let et = {
         "chess:R": "V",
         "chess:B": "O",
         "chess:N": "R"
-    }
-}
+    } satisfies Translation
 
 export default et;

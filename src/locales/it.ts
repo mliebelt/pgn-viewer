@@ -1,5 +1,6 @@
-let it = {
-    "values": {
+import {BaseTranslation, Translation} from "../i18n/i18n-types";
+
+const it: BaseTranslation = {
         "buttons:flipper" : "Capovolgere i lati del bordo",
         "buttons:first" : "Vai alla prima mossa",
         "buttons:prev" : "Vai alla precedente mossa",
@@ -12,6 +13,9 @@ let it = {
         "buttons:nags" : "NAGs menu",
         "buttons:pgn" : "Visualizzazione PGN di partita in corso",
         "buttons:hidePGN" : "Nascondere il PGN visualizzato",
+	"buttons:getHint": "Dai un suggerimento",
+	"buttons:makeMove": "Mostra la mossa successiva",
+	"buttons:showSolution": "Mostra l'intera soluzione",
         "chess:q": "D",
         "chess:k": "R",
         "chess:r": "T",
@@ -22,7 +26,6 @@ let it = {
         "chess:R": "T",
         "chess:B": "A",
         "chess:N": "C"
-    }
-}
+ } satisfies Translation
 
 export default it;

@@ -1,5 +1,6 @@
-let hu = {
-    "values": {
+import {BaseTranslation, type Translation} from "../i18n/i18n-types"
+
+const hu: BaseTranslation = {
         "buttons:flipper" : "Flip oldalán a tábla",
         "buttons:first" : "Menjünk az első lépés",
         "buttons:prev" : "Ugrás az előző mozgás",
@@ -12,6 +13,9 @@ let hu = {
         "buttons:nags" : "NAGs menu",
         "buttons:pgn" : "Kijelző PGN aktuális játék",
         "buttons:hidePGN" : "Elrejtése a megjelenített PGN",
+	"buttons:getHint": "Adj egy tippet",
+	"buttons:makeMove": "Mutasd a következő lépést",
+	"buttons:showSolution": "Mutasd meg a teljes megoldást",
         "chess:q": "V",
         "chess:k": "K",
         "chess:r": "B",
@@ -22,7 +26,6 @@ let hu = {
         "chess:R": "B",
         "chess:B": "F",
         "chess:N": "H"
-    }
-}
+} satisfies Translation
 
 export default hu;

@@ -1,5 +1,6 @@
-let fr = {
-   "values": {
+import {BaseTranslation, type Translation} from "../i18n/i18n-types"
+
+const fr: BaseTranslation = {
       "chess:q": "D",
       "chess:k": "R",
       "chess:r": "T",
@@ -24,6 +25,9 @@ let fr = {
       "buttons:nags" : "Menu NAGs",
       "buttons:pgn" : "Afficher le PGN de la partie",
       "buttons:hidePGN" : "Masquer le PGN affiché",
+      "buttons:getHint": "Donnez un indice",
+      "buttons:makeMove": "Afficher le prochain mouvement",
+      "buttons:showSolution": "Afficher toute la solution",
 
       "nag:$0":        "pas d'annotation",
 
@@ -276,7 +280,6 @@ let fr = {
 
       "nag:$146":       "Nouveauté",
       "nag:$146_menu":  "Nouveauté"
-   }
-}
+} satisfies Translation
 
 export default fr

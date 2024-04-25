@@ -1,5 +1,6 @@
-let ro = {
-    "values": {
+import {BaseTranslation, Translation} from "../i18n/i18n-types";
+
+const ro: BaseTranslation = {
         "buttons:flipper" : "Flip părțile laterale ale plăcii",
         "buttons:first" : "Du-te la prima mutare",
         "buttons:prev" : "Du-te la mutarea anterioară",
@@ -12,6 +13,9 @@ let ro = {
         "buttons:nags" : "NAGs menu",
         "buttons:pgn" : "Afișare PGN de joc curente",
         "buttons:hidePGN" : "Ascundeți PGN afișat",
+	"buttons:getHint": "Dați un indiciu",
+	"buttons:makeMove": "Arată următoarea mișcare",
+	"buttons:showSolution": "Arată întreaga soluție",
         "chess:q": "D",
         "chess:k": "R",
         "chess:r": "T",
@@ -22,7 +26,6 @@ let ro = {
         "chess:R": "T",
         "chess:B": "N",
         "chess:N": "C"
-    }
-}
+} satisfies Translation
 
 export default ro;
