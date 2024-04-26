@@ -28,11 +28,13 @@ import {
     PrimitiveMove,
     ShortColor,
     SupportedLocales,
+    TagKeys,
+    Tags,
     Theme
 } from "./types"
 import {pgnEdit} from '.'
 
-const Modaly = require('modaly.js')
+import Modaly from 'modaly.js';
 
 /**
  * This implements the base function that is used to display a board, a whole game
@@ -79,15 +81,18 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             movesId: boardId + 'Moves',
             buttonsId: boardId + 'Button',
             fenId: boardId + "Fen",
-            colorMarkerId: boardId + 'ColorMarker'
+            colorMarkerId: boardId + 'ColorMarker',
+            hintsId: boardId + "Hints",
         }
     }
     that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration)
     that.mypgn = new PgnReader(that.configuration)
 
     const timer = new Timer(10)
+    const moveDelay = 400; //delay to play reply in puzzle mode
 
     let chess = that.mypgn.chess     // Use the same instance from chess.src
+    let hintsShown:number = 0;
     let theme = that.configuration.theme || Theme.Default
     function hasMode (mode:PgnViewerMode) {
         return that.configuration.mode === mode
@@ -110,9 +115,10 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
 
     function t(term:string):string {
         if (that.configuration.i18n) {
-            let ret = that.configuration.i18n(term)
-            if (ret === term) {
-                ret = that.configuration.defaultI18n(term)
+            let ret = that.configuration.i18n[term]()
+            if (! ret) {
+                ret = that.configuration.defaultI18n[term]()
+                return ret ? ret : term
             }
         return ret
         }
@@ -136,6 +142,28 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         const textnode = document.createTextNode(str)
         node.appendChild(textnode)
         that.errorDiv.appendChild(node)
+    }
+
+    /*
+     helper functions for hints in puzzle mode
+     */
+     function showHint(h:string) {
+        let hintsView:HTMLTextAreaElement = document.getElementById(id('hintsId')) as HTMLTextAreaElement;
+        if (hintsView) {
+            if (hintsShown > 0){
+                hintsView.value += "\n"
+            }
+             hintsView.value += h
+        }    
+        hintsShown++;
+    }
+
+    function resetHints(){
+        let hintsView:HTMLTextAreaElement = document.getElementById(id('hintsId')) as HTMLTextAreaElement
+        if (hintsView) {
+             hintsView.value = "";
+             hintsShown = 0;
+        }
     }
 
     /**
@@ -346,9 +374,17 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
 
                     if (playMove){
                         let fen = that.mypgn.getMove(moveIndex).fen
-                        makeMove(that.currentMove, moveIndex, fen)
+            
+                        setTimeout(() => {
+                            makeMove(that.currentMove, moveIndex, fen);
+                            resetHints();
+                            regenerateMoves(that.mypgn.getMoves());
+                        }, moveDelay)
+
+                    } else {
+                        regenerateMoves(that.mypgn.getMoves())
                     }
-                    regenerateMoves(that.mypgn.getMoves())
+                    
                 } else {
                     let col = move.turn == 'w' ? 'black' : 'white'
     
@@ -452,6 +488,14 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             })
         }
 
+        //generate puzzle buttons
+        function generatePuzzleButtons(buttonDiv:HTMLElement) {
+            [["getHint", "fa-lightbulb"], ["makeMove", "fa-step-forward"], 
+            ["showSolution", "fa-question"]].forEach(function (entry: [string, string]) {
+                addButton(entry, buttonDiv)
+            })
+        }
+
         // Generate 3 rows, similar to lichess in studies
         function generateNagMenu(nagEle:HTMLElement) {
             function generateRow(array:number[], rowClass:string, nagEle:HTMLElement) {
@@ -502,8 +546,8 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             createEle("label", null, "labelAfterComment", theme, radio).appendChild(document.createTextNode("After"))
             createEle("textarea", null, "comment", theme, commentDiv)
             that.mousetrap.stopCallback = function (e, element) {
-                if (element.localName === 'textarea') { return true }
-                return false
+                return element.localName === 'textarea';
+
             }
         }
 
@@ -560,21 +604,22 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                     theme, topInnerBoardDiv)
             }
         }
+        if (hasMode(PgnViewerMode.Puzzle)){
+            const buttonsBoardDiv = createEle("div", id('buttonsId'), "buttons", theme, divBoard)
+            generatePuzzleButtons(buttonsBoardDiv)
+        }
         updateUI(null)
 
         /** Fen */
         if ((hasMode(PgnViewerMode.Edit) || hasMode(PgnViewerMode.View)) && (that.configuration.showFen)) {
             const fenDiv = createEle("textarea", id('fenId'), "fen", theme, outerInnerBoardDiv)
             addEventListener(id('fenId'), 'mousedown', function (e:Event) {
-                e = e || window.event
                 e.preventDefault()
                 this.select()
             })
             if (hasMode(PgnViewerMode.Edit)) {
                 document.getElementById(id('fenId')).onpaste = function (e) {
-                    const pastedData = e.clipboardData.getData('text')
-                    // console.log(pastedData)
-                    that.configuration.position = pastedData
+                    that.configuration.position = e.clipboardData.getData('text')
                     that.configuration.pgn = ''
                     pgnEdit(boardId, that.configuration)
                 }
@@ -593,6 +638,12 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             }
         }
 
+        /** hints Div */
+        if (hasMode(PgnViewerMode.Puzzle)) {
+            createEle("textarea", id('hintsId'), "hints",
+                null, divBoard)
+        }
+
         /** Edit Divs TODO Redo those */
         if (hasMode(PgnViewerMode.Edit)) {
             const editButtonsDiv = createEle("div", "edit" + id('buttonsId'), "edit", theme, divBoard)
@@ -604,13 +655,11 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             generateCommentDiv(commentBoardDiv)
             // Bind the paste key ...
             addEventListener("pgn" + id('buttonsId'), 'mousedown', function (e:Event) {
-                e = e || window.event
                 e.preventDefault();
                 (e.target as HTMLTextAreaElement).select()
             })
             document.getElementById("textpgn" + id('buttonsId')).onpaste = function (e) {
-                const pastedData = e.clipboardData.getData('text')
-                that.configuration.pgn = pastedData
+                that.configuration.pgn = e.clipboardData.getData('text')
                 pgnEdit(boardId, that.configuration)
             }
         }
@@ -667,9 +716,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     }
 
     /**
-     * Generate the board that uses the unique id('innerBoardId') and the part of the configuration
-     * that is for the board only. Returns the resulting object (as reference for others).
-     * @returns {Window.ChessBoard} the board object that may play the moves later
+     * Generate the chess board using the given configuration and unique id.
      */
     function generateBoard () {
         function copyBoardConfiguration(source:PgnViewerConfiguration, target:PgnViewerConfiguration, keys:string[]) {
@@ -846,7 +893,9 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         // TODO: The 'san' tag is not valid typed, but how to do that for custom elements
         const _linkEle = createEle('san' as keyof HTMLElementTagNameMap, null, null, null, _moveSpan)
         let _san = ""
-        if (move.notation && move.notation.fig) {
+        if (hasMode(PgnViewerMode.Puzzle)){
+            _san = that.mypgn.getMove(move.index).notation.notation
+	} else if (move.notation && move.notation.fig) {
             const locale = that.configuration.locale
             const figurine = that.configuration.figurine
             const fig = (!locale || figurine) ? move.notation.fig : t("chess:" + move.notation.fig)
@@ -900,7 +949,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
          * @param clazz class parameter appended to differentiate different comments
          * @returns {HTMLElement} the new created span with the comment as text, or null, if text is null
          */
-        function generateCommentSpan (comment:string, clazz:string) {
+        function generateCommentSpan (comment:string, clazz:string): HTMLElement {
             if (comment && (typeof comment == "string")) {
                 const commentSpan =  createEle('span', null, "comment " + clazz)
                 commentSpan.appendChild(document.createTextNode(" " + comment + " "))
@@ -1373,24 +1422,27 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             function orientation() {
                 return that.board ? that.board.state.orientation : that.configuration.orientation
             }
+            function getTag(tagObject: Tags, key: Partial<TagKeys>): string {
+                return tagObject[key];
+            }
             let tags = that.mypgn.getTags()
             let whd = orientation() === 'white' ? document.getElementById(id('bottomHeaderId')) :
                 document.getElementById(id('topHeaderId'))
             let bhd = orientation() === 'white' ? document.getElementById(id('topHeaderId')) :
                 document.getElementById(id('bottomHeaderId'))
-            if (that.configuration.headers == false || (tags.size === 0)) {
+            if (that.configuration.headers == false || (Object.keys(tags).length === 0)) {
                 whd.parentNode.removeChild(whd)
                 bhd.parentNode.removeChild(bhd)
                 return
             }
-            if (tags.get("White")) {
+            if (getTag(tags, "White")) {
                 whd.innerHTML = ''
-                whd.appendChild(document.createTextNode(tags.get("White") + " "))
+                whd.appendChild(document.createTextNode(getTag(tags, "White") + " "))
             }
             //div_h.appendChild(document.createTextNode(" - "))
-            if (tags.get("Black")) {
+            if (getTag(tags, "Black")) {
                 bhd.innerHTML = ''
-                bhd.appendChild(document.createTextNode(" " + tags.get("Black")))
+                bhd.appendChild(document.createTextNode(" " + getTag(tags, "Black")))
             }
             // let rest = ""
             // function appendHeader (result, header, separator) {
@@ -1491,6 +1543,71 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             })
             addEventListener(id('buttonsId') + 'first', 'click', function () {
                 firstMove()
+            })
+
+            addEventListener(id('buttonsId') + 'makeMove', 'click', function () {
+                let next = -1
+                if ((typeof that.currentMove == 'undefined') || (that.currentMove === null)) {
+                    if (that.mypgn.getMoves().length === 0) return   // no next move
+                    next = 0
+                } else {
+                    next = that.mypgn.getMove(that.currentMove).next
+                    if (typeof next == 'undefined') return
+                }
+                let myMove = that.mypgn.getMove(next);
+                manualMove(myMove.notation["notation"])
+            })
+
+            addEventListener(id('buttonsId') + 'showSolution', 'click', function() {
+                
+                function playMovesToEnd(){
+                    if ((typeof that.currentMove == 'undefined') || (that.currentMove === null)) {
+                        if (that.mypgn.getMoves().length === 0){
+                            movesLeft = false
+                            return movesLeft
+                        }  else {
+                            next = 0
+                            manualMove(that.mypgn.getMove(next).notation["notation"])
+                            movesLeft = true
+                            return movesLeft
+                        }
+
+                    } else {
+                        next = that.mypgn.getMove(that.currentMove).next
+                        if (typeof next == 'undefined'){
+                            movesLeft = false
+                            return movesLeft                            
+                        } else {
+                            manualMove(that.mypgn.getMove(next).notation["notation"])
+                            movesLeft = true
+                            return movesLeft
+                        }
+                    }
+                }
+                let movesLeft = true
+                let next = -1
+
+                let nIntervId;
+                nIntervId = setInterval(() => {
+                    movesLeft = playMovesToEnd()
+                    if (!movesLeft){
+                        clearInterval(nIntervId);
+                    }
+                }, 400)
+            })
+            
+            addEventListener(id('buttonsId') + 'getHint', 'click', function() {
+                const currentFen: string = that.board.getFen()
+                if (that.configuration.hints != undefined && that.configuration.hints[currentFen] != undefined){
+                    if (that.configuration.hints[currentFen].length > hintsShown){
+                        showHint(that.configuration.hints[currentFen][hintsShown])
+                    } else if (that.configuration.hints[currentFen].length == hintsShown) {
+                        showHint("No more hints")
+                    }
+                } else if (hintsShown == 0){
+                    showHint("There are no hints")
+                }
+
             })
 
             function lastMove() {
@@ -1654,7 +1771,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     function resizeLayout () {
         const divBoard = document.getElementById(boardId)
         function hasHeaders () {
-            return that.configuration.headers && (that.mypgn.getTags().size > 0)
+            return that.configuration.headers && (Object.keys(that.mypgn.getTags()).length > 0)
         }
 
 
@@ -1767,7 +1884,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         } else {
             //puzzle mode
                 let _gamesHeight = that.configuration.manyGames ? '40px' : '0'
-                let _movesHeight
+                let _movesHeight: number
                 if (that.configuration.movesHeight) {
                     _movesHeight = parseInt(that.configuration.movesHeight)
                 } else {

@@ -11,7 +11,7 @@
 
 * [chess.js](https://github.com/jhlywa/chess.js) Base library to model chess in JavaScript
 * [Chessground](https://github.com/ornicar/chessground) The chessboard used by lichess.org
-* [pgn-reader](https://www.npmjs.com/package/@mliebelt/pgn-reader) Backend for the viewer (part of this repository, but separately published)
+* [pgn-reader](https://www.npmjs.com/package/@mliebelt/pgn-reader) Backend for the viewer (former part of this repository, now separate repo)
 * [pgn-parser](https://github.com/mliebelt/pgn-parser) My own parser based on [peggy](https://github.com/peggyjs/peggy) (formerly pegjs)
 
 See the section Acknowledgments for more supporting libraries.
@@ -57,6 +57,7 @@ There are four different kind of usages:
 * `PGNV.pgnEdit` is a superset of pgnView, that allows to additional add variations, change the order of main line and variations, and other kind of interactions like adding comments, PGN notation elements, ...
 * `PGNV.pgnBoard` will just show a position without any interaction possible.
 * `PGNV.pgnPrint` will just show a whole chess game, without any interaction possible.
+* `PGNV.pgnPuzzle` lets you solve a puzzle. If you play the right move of the underlying pgn, the opponent's move is played automatically and it is your turn again. Only the already played moves are shown to the user. The mode is new and the plan is to develop it further (e.g. giving hints)
 
 There is at the moment no way to save a game that was edited in `pgnEdit` mode. But you may at least copy the whole notation, and insert it again in the HTML code of your web page.
 

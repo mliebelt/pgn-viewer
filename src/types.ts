@@ -2,6 +2,8 @@ import {Api} from "chessground/api"
 import {PgnReader, Field} from "@mliebelt/pgn-reader"
 import Mousetrap from "mousetrap-ts";
 import {Config} from "chessground/config";
+import { Tags, TagKeys } from "@mliebelt/pgn-types"
+export { Tags, TagKeys }
 
 export type Base = {
     userConfiguration?: PgnViewerConfiguration,
@@ -75,8 +77,8 @@ export type PgnViewerConfiguration = {
     manyGames?:boolean,
     locale?:SupportedLocales,
     position?:string,
-    i18n?:Function,
-    defaultI18n?:Function,
+    i18n?:any,
+    defaultI18n?:any,
     movable?:Config["movable"],
     highlight?:Config["highlight"],
     viewOnly?:Config["viewOnly"],
@@ -86,10 +88,11 @@ export type PgnViewerConfiguration = {
     coordsFontSize?: string,
     coordsFactor?:number,
     coordinates?:boolean,   // TODO Should be part of Config (only). How to share configuration?
-    notation?:'short'|'long'
+    notation?:'short'|'long',
+    hints?: Map<string, string[]>
 }
 
-export type PgnViewerID = 'bottomHeaderId' | 'topHeaderId' | 'innerBoardId' | 'movesId' | 'buttonsId' | 'fenId' | 'colorMarkerId'
+export type PgnViewerID = 'bottomHeaderId' | 'topHeaderId' | 'innerBoardId' | 'movesId' | 'buttonsId' | 'fenId' | 'colorMarkerId' | 'hintsId'
 
 export type PrimitiveMove = {
     from: Field,

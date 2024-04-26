@@ -1,38 +1,40 @@
-//const should = require('chai').should()
-//import { should } from 'chai'
-// import pkg from "chai"
-// const should = pkg.should()
-import i18n from "roddeh-i18n"
-import {i18next} from "../src/i18n";
-import { test, suite } from "uvu"
+import {i18n} from "typesafe-i18n"
+import {initFormatters} from "../src/i18n/formatters";
+import {i18next} from "../src/i18n"
+import { suite } from "uvu"
 import * as assert from "uvu/assert"
-// import {describe} from "mocha"
-// import { pgnBase } from "../lib/pgnv"
 
-const i18nSuite = suite('Testing i18n directly')
-i18nSuite("When testing i18n functionality", function () {
-    let fn = i18n.create({ values: { a: 'A', b: 'B'}})
-    assert.type(fn, 'function')
-    let str = fn('a')
-    assert.is(str, 'A')
+const localeTranslations = {
+    en: {Test: "An english test"},
+    de: {Test: "Ein deutscher Test"},
+}
+
+// const i18nSuite = suite('Testing i18n directly')
+// i18nSuite("When testing i18n functionality", function () {
+//     console.log("i18n", i18n)
+//     console.log("i18n(): ", i18n(localeTranslations, {
+//         en: initFormatters('en'), de: initFormatters('de')} ))
+//     let translation = i18n(localeTranslations, { en: null, de: null})['en'].Test
+//     assert.is(translation, 'An english test')
+// })
+// i18nSuite.run()
+
+const i18NextSuite = suite('Testing i18n with i18next')
+i18NextSuite("should be able to read standard locale and strings", () => {
+    let translations = i18next('de')
+    let str = translations["buttons:flipper"]
+    // @ts-ignore
+    assert.is(str(), "Tausche die Seiten")
+    str = translations["chess:n"]
+    // @ts-ignore
+    assert.is(str(), "S") // German: Springer
 })
-i18nSuite.run()
-
-// const i18NextSuite = suite('Testing i18n with i18next')
-// i18NextSuite("should be able to read standard locale and strings", () => {
-//     let fn = i18next('de')
-//     assert.type(fn, 'function')
-//     let str = fn('buttons:flipper')
-//     assert.type(str, 'string')
-//     assert.is(str, "Tausche die Seiten")
-//     str = fn('chess:n')
-//     assert.is(str, "S") // German: Springer
-// })
-// i18NextSuite("should return the key if the key does not match anything", () => {
-//     let fn = i18next('de')
-//     let str = fn('foo')
-//     assert.type(str, 'string')
-//     assert.is(str, 'foo')
-// })
-// i18NextSuite.run()
+i18NextSuite("should return the empty string if the key does not match anything", () => {
+    let translations = i18next('de')
+    // @ts-ignore
+    let str = translations.foo()
+    // assert.type(str, 'string')
+    assert.is(str, '')
+})
+i18NextSuite.run()
 
