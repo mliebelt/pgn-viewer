@@ -25,6 +25,9 @@ const fr: BaseTranslation = {
       "buttons:nags" : "Menu NAGs",
       "buttons:pgn" : "Afficher le PGN de la partie",
       "buttons:hidePGN" : "Masquer le PGN affiché",
+      "buttons:getHint": "Donnez un indice",
+      "buttons:makeMove": "Afficher le prochain mouvement",
+      "buttons:showSolution": "Afficher toute la solution",
 
       "nag:$0":        "pas d'annotation",
 
