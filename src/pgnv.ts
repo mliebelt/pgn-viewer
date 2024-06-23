@@ -193,6 +193,39 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
     }
 
     /**
+     * Comments are generated inline, there is no special block rendering
+     * possible for them.
+     * @param comment the comment to render as span
+     * @param clazz class parameter appended to differentiate different comments
+     * @returns {HTMLElement} the new created span with the comment as text, or null, if text is null
+     */
+    function generateCommentSpan (comment:string, clazz:string): HTMLElement {
+        if (comment && (typeof comment == "string")) {
+            const commentSpan =  createEle('span', null, "comment " + clazz)
+            commentSpan.appendChild(document.createTextNode(" " + comment + " "))
+            return commentSpan
+        }
+        return null
+    }
+
+    function createFiller(span:HTMLElement) {
+        const filler = createEle('span', null, "move filler")
+        filler.appendChild(document.createTextNode("... "))
+        span.appendChild(filler)
+    }
+
+    function appendCommentSpan (span:HTMLElement, comment:string, clazz:string, fillNeeded?:boolean) {
+        let cSpan = generateCommentSpan(comment, clazz)
+        if (cSpan) {
+            if (fillNeeded) {
+                createFiller(span)
+            }
+            span.appendChild(cSpan)
+            return fillNeeded
+        }
+        return false
+    }
+    /**
      * Inserts an element after targetElement
      * @param {*} newElement the element to insert
      * @param {*} targetElement the element after to insert
@@ -942,39 +975,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
      * @return {*} the current counter which may the next prev counter
      */
     function generateMove (currentCounter:number, game:any, move:PgnReaderMove, prevCounter:number, movesDiv:HTMLElement, varStack:HTMLElement[]) {
-        /**
-         * Comments are generated inline, there is no special block rendering
-         * possible for them.
-         * @param comment the comment to render as span
-         * @param clazz class parameter appended to differentiate different comments
-         * @returns {HTMLElement} the new created span with the comment as text, or null, if text is null
-         */
-        function generateCommentSpan (comment:string, clazz:string): HTMLElement {
-            if (comment && (typeof comment == "string")) {
-                const commentSpan =  createEle('span', null, "comment " + clazz)
-                commentSpan.appendChild(document.createTextNode(" " + comment + " "))
-                return commentSpan
-            }
-            return null
-        }
 
-        function createFiller(span:HTMLElement) {
-            const filler = createEle('span', null, "move filler")
-            filler.appendChild(document.createTextNode("... "))
-            span.appendChild(filler)
-        }
-
-        function appendCommentSpan (span:HTMLElement, comment:string, clazz:string, fillNeeded?:boolean) {
-            let cSpan = generateCommentSpan(comment, clazz)
-            if (cSpan) {
-                if (fillNeeded) {
-                    createFiller(span)
-                }
-                span.appendChild(cSpan)
-                return fillNeeded
-            }
-            return false
-        }
 
         function appendVariation(div:HTMLElement, move:PgnReaderMove) {
             // if (! movesDiv.lastChild.classList.contains("variations")) {
@@ -1214,11 +1215,16 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                 let imc = document.querySelector('#' + boardId + " input.moveComment") as HTMLInputElement
                 imc.checked = true
                 let tac = document.querySelector('#' + boardId + " textarea.comment") as HTMLTextAreaElement
-                tac.value = myMove.commentMove
+                if (tac) {
+                    tac.value = myMove.commentMove
+                }
             } else {
                 try {
                     let tac = document.querySelector('#' + boardId + " textarea.comment") as HTMLTextAreaElement
-                    tac.value = ""
+                    if (tac) {
+                        tac.value = ""
+                    }
+
                 } catch (err) {
                     console.log("tac: " + '#' + boardId + " textarea.comment")
                     console.log(err)
@@ -1315,7 +1321,9 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         /* #338 Handle the game comment, if one is there.
         */
         function handleGameComment(movesDiv:HTMLElement, gameComment:GameComment) {
-            // appendCommentSpan(movesDiv, gameComment.comment, "moveComment")
+            if (gameComment) {
+                appendCommentSpan(movesDiv, gameComment.comment, "moveComment")
+            }
         }
 
         if (hasMode(PgnViewerMode.Puzzle) && that.currentMove == undefined){
