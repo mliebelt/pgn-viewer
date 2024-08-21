@@ -1439,8 +1439,8 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             let bhd = orientation() === 'white' ? document.getElementById(id('topHeaderId')) :
                 document.getElementById(id('bottomHeaderId'))
             if (that.configuration.headers == false || (Object.keys(tags).length === 0)) {
-                whd.parentNode.removeChild(whd)
-                bhd.parentNode.removeChild(bhd)
+                whd?.parentNode.removeChild(whd)
+                bhd?.parentNode.removeChild(bhd)
                 return
             }
             if (getTag(tags, "White")) {
