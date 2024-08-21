@@ -6,7 +6,7 @@
     "pgn",
     "viewer"
   ],
-  "version": "1.6.8",
+  "version": "1.6.9",
   "main": "lib/dist.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@mliebelt/pgn-reader": "^1.2.28",
-    "chessground": "^9.0.4",
+    "chessground": "^9.1.1",
     "modaly.js": "^0.5.2",
     "mousetrap-ts": "^1.0.0",
     "smoothscroll-polyfill": "^0.4.4",

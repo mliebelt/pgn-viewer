@@ -11,13 +11,25 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Fixed
 
+## 1.6.9 2024-08-21
+
+### Changed
+
+* [#528](https://github.com/mliebelt/pgn-viewer/issues/528) Add minimal documentation to `pgnPuzzle`.
+* 
+### Fixed
+
+* [#555](https://github.com/mliebelt/pgn-viewer/issues/555) Handles now comment before first move correctly
+* [#563](https://github.com/mliebelt/pgn-viewer/issues/563) Fixes small glitch in switching games in multi-game mode
+
 ## 1.6.8 2024-04-15
 
 ### Changed
 
+* [#534](https://github.com/mliebelt/pgn-viewer/issues/534) Fixed problem with integration into React
+
 ### Fixed
 
-* [#534](https://github.com/mliebelt/pgn-viewer/issues/534) Fixed problem with integration into React
 
 ## 1.6.7 2024-03-29
 
