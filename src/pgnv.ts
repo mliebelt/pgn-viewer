@@ -1251,7 +1251,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         let myMove = that.mypgn.getMove(next)
         let myFen = myMove ? myMove.fen : fen
         if (!myFen) { // fen not given, take start position
-            myFen = that.configuration.position == 'start' ? 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1' : that.configuration.position
+            myFen = that.mypgn.configuration.position == 'start' ? 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1' : that.mypgn.configuration.position
         }
         if (myMove) {
             that.board.set({fen: myFen, lastMove: [myMove.from, myMove.to]})

@@ -11,6 +11,14 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Fixed
 
+## 1.6.9 2024-08-24
+
+### Changed
+
+### Fixed
+
+* [#565](https://github.com/mliebelt/pgn-viewer/issues/565) Fix switch in `loadOne` on manyGames: true.
+* 
 ## 1.6.9 2024-08-21
 
 ### Changed
