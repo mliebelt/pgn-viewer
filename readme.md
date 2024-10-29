@@ -51,7 +51,7 @@ This implementation has the following features:
 
 ### UI modes
 
-There are four different kind of usages:
+There are five different kind of usages:
 
 * `PGNV.pgnView` renders the whole game, and allows to play it through, jump to any position.
 * `PGNV.pgnEdit` is a superset of pgnView, that allows to additional add variations, change the order of main line and variations, and other kind of interactions like adding comments, PGN notation elements, ...
