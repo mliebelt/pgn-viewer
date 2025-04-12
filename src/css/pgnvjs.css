@@ -1,4 +1,3 @@
-@import "../fontawesome/css/all.css";
 @import "resize.css";
 
 :root {
@@ -12,25 +11,29 @@
 }
 
 :root {
-    --gray-100: #F7FAFC;
-    --gray-200: #EDF2F7;
-    --gray-300: #E2E8F0;
-    --gray-400: #CBD5E0;
-    --gray-500: #A0AEC0;
+    --gray-100: #f7fafc;
+    --gray-200: #edf2f7;
+    --gray-300: #e2e8f0;
+    --gray-400: #cbd5e0;
+    --gray-500: #a0aec0;
     --gray-600: #718096;
-    --gray-700: #4A5568;
-    --gray-800: #2D3748;
-    --gray-900: #1A202C;
-    --box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    --highlight: rgba(255, 255, 153, 1.0);
+    --gray-700: #4a5568;
+    --gray-800: #2d3748;
+    --gray-900: #1a202c;
+    --box-shadow:
+        0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --highlight: rgba(255, 255, 153, 1);
 }
 
 /** Reset / Set defaults */
 .pgnvjs {
-    font-family: "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell, sans-serif;
+    font-family:
+        "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell,
+        sans-serif;
     margin: 0;
 }
-.pgnvjs ul, .pgnvjs ol {
+.pgnvjs ul,
+.pgnvjs ol {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -51,23 +54,29 @@
 }
 
 /** Layout styles: View */
-.pgnvjs.layout-left .games, .pgnvjs.layout-right .games {
+.pgnvjs.layout-left .games,
+.pgnvjs.layout-right .games {
     grid-column: 1 / 3;
 }
 
-.pgnvjs.layout-left, .pgnvjs.layout-right {
+.pgnvjs.layout-left,
+.pgnvjs.layout-right {
     display: grid;
     gap: 0.5em;
     grid-template-columns: auto auto;
-    grid-template-rows: 40px auto minmax(auto,1fr) 50px;
+    grid-template-rows: 40px auto minmax(auto, 1fr) 50px;
 }
 
-.pgnvjs.layout-left .error, .pgnvjs.layout-right .error {
+.pgnvjs.layout-left .error,
+.pgnvjs.layout-right .error {
     grid-column: 1 / 3;
     grid-row: 2 / 3;
 }
 
-.pgnvjs.layout-left .outerBoard, .pgnvjs.layout-left .outerBoard, .pgnvjs.layout-right .outerBoard, .pgnvjs.layout-right .outerBoard {
+.pgnvjs.layout-left .outerBoard,
+.pgnvjs.layout-left .outerBoard,
+.pgnvjs.layout-right .outerBoard,
+.pgnvjs.layout-right .outerBoard {
     grid-row: 3 / 4;
 }
 
@@ -79,26 +88,31 @@
     grid-column: 2 / 3;
 }
 
-.pgnvjs.layout-left .buttons, .pgnvjs.layout-right .buttons {
+.pgnvjs.layout-left .buttons,
+.pgnvjs.layout-right .buttons {
     place-self: center;
     grid-row: 4 / 5;
 }
 
-.pgnvjs.viewMode.layout-left .buttons, .pgnvjs.editMode.layout-right .buttons {
+.pgnvjs.viewMode.layout-left .buttons,
+.pgnvjs.editMode.layout-right .buttons {
     grid-column: 1 / 2;
 }
 
-.pgnvjs.viewMode.layout-right .buttons, .pgnvjs.editMode.layout-left .buttons {
+.pgnvjs.viewMode.layout-right .buttons,
+.pgnvjs.editMode.layout-left .buttons {
     grid-column: 2 / 3;
 }
 
-.pgnvjs.viewMode.layout-left .moves, .pgnvjs.viewMode.layout-right .moves {
+.pgnvjs.viewMode.layout-left .moves,
+.pgnvjs.viewMode.layout-right .moves {
     grid-row: 3 / 5;
     overflow-y: auto;
     overflow-x: hidden;
 }
 
-.pgnvjs.editMode.layout-left .moves, .pgnvjs.editMode.layout-right .moves {
+.pgnvjs.editMode.layout-left .moves,
+.pgnvjs.editMode.layout-right .moves {
     grid-row: 3/4;
     overflow-y: auto;
     overflow-x: hidden;
@@ -127,17 +141,18 @@
     display: grid;
     /*gap: 0.5em;   Why should I use a gap all the time? At least at the top of the board it is strange ...*/
     grid-template-columns: auto;
-    grid-template-rows: auto minmax(auto,1fr) 50px auto;
+    grid-template-rows: auto minmax(auto, 1fr) 50px auto;
 }
 
 .pgnvjs.layout-bottom {
     display: grid;
     /*gap: 0.5em;*/
     grid-template-columns: auto;
-    grid-template-rows: auto auto minmax(auto,400px) 50px;
+    grid-template-rows: auto auto minmax(auto, 400px) 50px;
 }
 
-.pgnvjs.layout-top .error, .pgnvjs.layout-bottom .error {
+.pgnvjs.layout-top .error,
+.pgnvjs.layout-bottom .error {
     grid-row: 2/3;
 }
 
@@ -159,7 +174,8 @@
     grid-row: 5/6;
 }
 
-.pgnvjs.layout-top .moves, .pgnvjs.layout-bottom .moves {
+.pgnvjs.layout-top .moves,
+.pgnvjs.layout-bottom .moves {
     overflow: auto;
 }
 
@@ -207,7 +223,8 @@
     color: red;
 }
 
-.pgnvjs div.buttons > .pgnvbutton, .pgnvjs div.edit > .pgnvbutton {
+.pgnvjs div.buttons > .pgnvbutton,
+.pgnvjs div.edit > .pgnvbutton {
     color: var(--gray-600);
     background-color: var(--gray-100);
     margin: 0.24rem;
@@ -216,12 +233,15 @@
     border-radius: 4px;
 }
 
-.pgnvjs div.buttons > .pgnvbutton.selected, .pgnvjs div.edit > .pgnvbutton.selected, .pgnvjs .nagMenu.selected {
+.pgnvjs div.buttons > .pgnvbutton.selected,
+.pgnvjs div.edit > .pgnvbutton.selected,
+.pgnvjs .nagMenu.selected {
     color: var(--gray-100);
     background-color: var(--gray-700);
 }
 
-.pgnvjs div.buttons > .pgnvbutton:hover, .pgnvjs div.edit > .pgnvbutton:hover  {
+.pgnvjs div.buttons > .pgnvbutton:hover,
+.pgnvjs div.edit > .pgnvbutton:hover {
     cursor: pointer;
     border: solid var(--gray-700) 1px;
 }
@@ -232,26 +252,32 @@
     width: 500px;
 }
 
-.pgnvjs div.buttons > .pgnvbutton.gray, .pgnvjs div.buttons > .pgnvbutton.gray:hover {
+.pgnvjs div.buttons > .pgnvbutton.gray,
+.pgnvjs div.buttons > .pgnvbutton.gray:hover {
     opacity: 0.5;
     cursor: default;
     border: solid var(--gray-300) 1px;
 }
 
-.pgnvjs div.nagMenu a, .pgnvjs .nagMenu i {
+.pgnvjs div.nagMenu a,
+.pgnvjs .nagMenu i {
     text-decoration: none;
     font-style: unset;
     /*text-align: center;*/
 }
 
-.pgnvjs div.nagMove, .pgnvjs div.nagObservation, .pgnvjs div.nagPosition {
+.pgnvjs div.nagMove,
+.pgnvjs div.nagObservation,
+.pgnvjs div.nagPosition {
     display: flex;
     flex-direction: column;
     flex-basis: 33.3%;
     /*text-align: left;*/
     flex-wrap: wrap;
 }
-.pgnvjs .nagMove i, .pgnvjs .nagPosition i, .pgnvjs .nagObservation i {
+.pgnvjs .nagMove i,
+.pgnvjs .nagPosition i,
+.pgnvjs .nagObservation i {
     display: flex;
     cursor: pointer;
     align-items: center;
@@ -259,7 +285,9 @@
     margin: var(--space-xss);
 }
 
-.pgnvjs .nagMove i::before, .pgnvjs .nagPosition i::before, .pgnvjs .nagObservation i::before {
+.pgnvjs .nagMove i::before,
+.pgnvjs .nagPosition i::before,
+.pgnvjs .nagObservation i::before {
     content: attr(data-symbol);
     font-style: normal;
     width: var(--space-md);
@@ -268,18 +296,19 @@
     /*width: 30px;*/
 }
 
-
 .pgnvjs a.active i::before {
     background: var(--gray-700) !important;
-    color: var(--gray-100)!important;
+    color: var(--gray-100) !important;
 }
 
 .pgnvjs a.active i::before i:hover {
     background: var(--gray-100) !important;
-    color: var(--gray-700)!important;
+    color: var(--gray-700) !important;
 }
 
-.pgnvjs .nagMove i:hover, .pgnvjs .nagPosition i:hover, .pgnvjs .nagObservation i:hover {
+.pgnvjs .nagMove i:hover,
+.pgnvjs .nagPosition i:hover,
+.pgnvjs .nagObservation i:hover {
     background: var(--gray-700);
     color: var(--gray-100);
 }
@@ -326,7 +355,8 @@
     flex: 0 0 100%;
 }
 
-.pgnvjs .moves.list > move, .pgnvjs .moves.list .move.filler {
+.pgnvjs .moves.list > move,
+.pgnvjs .moves.list .move.filler {
     flex: 0 0 35%;
     display: flex;
     /*padding: 0 0.3em;*/
@@ -337,7 +367,9 @@
     display: inline-block;
 }
 
-.pgnvjs .variation, .pgnvjs .variation > .moveNumber, .pgnvjs .variation > move.var {
+.pgnvjs .variation,
+.pgnvjs .variation > .moveNumber,
+.pgnvjs .variation > move.var {
     white-space: normal;
 }
 
@@ -378,23 +410,25 @@
     content: "";
 }
 
-
 /*.pgnvjs .moves move nag[data-value="$11"]::before {*/
 /*    content: "=";*/
 /*}*/
 
-.pgnvjs .moves, .pgnvjs select.games {
+.pgnvjs .moves,
+.pgnvjs select.games {
     color: black;
     font-weight: 700;
     line-height: normal;
 }
 
-.pgnvjs .moves .variation move.var, .pgnvjs .moves .variation move-number {
+.pgnvjs .moves .variation move.var,
+.pgnvjs .moves .variation move-number {
     font-size: 97%;
     font-weight: 500;
 }
 
-.pgnvjs .moves .variation .variation move.var, .pgnvjs .moves .variation .variation move-number {
+.pgnvjs .moves .variation .variation move.var,
+.pgnvjs .moves .variation .variation move-number {
     font-size: 95%;
     font-weight: 300;
 }
@@ -421,11 +455,11 @@
 }
 
 .pgnvjs .moves .variation:before {
-    content: ' ( ';
+    content: " ( ";
 }
 
 .pgnvjs .moves .variation .variation:before {
-    content: ' ( ';
+    content: " ( ";
 }
 
 .pgnvjs .moves .variation .variation {
@@ -433,14 +467,15 @@
 }
 
 .pgnvjs .moves .variation .variation:after {
-    content: ' ) ';
+    content: " ) ";
 }
 
 .pgnvjs .moves .variation:after {
-    content: ' ) ';
+    content: " ) ";
 }
 
-.pgnvjs .moves .comment, .pgnvjs .moves.list > .variation > .comment {
+.pgnvjs .moves .comment,
+.pgnvjs .moves.list > .variation > .comment {
     color: var(--gray-600);
     font-weight: 500;
     display: inline;
@@ -503,24 +538,33 @@ puzzle mode
     /*text-transform: initial;*/
 }
 
-.pgnvjs .cg-wrap.orientation-white coords.ranks coord:nth-child(2n), .pgnvjs .cg-wrap.orientation-white coords.files coord:nth-child(2n), .pgnvjs .cg-wrap.orientation-black coords.ranks coord:nth-child(2n + 1), .pgnvjs .cg-wrap.orientation-black coords.files coord:nth-child(2n + 1) {
+.pgnvjs .cg-wrap.orientation-white coords.ranks coord:nth-child(2n),
+.pgnvjs .cg-wrap.orientation-white coords.files coord:nth-child(2n),
+.pgnvjs .cg-wrap.orientation-black coords.ranks coord:nth-child(2n + 1),
+.pgnvjs .cg-wrap.orientation-black coords.files coord:nth-child(2n + 1) {
     color: initial;
 }
 
-.pgnvjs .cg-wrap.orientation-black coords.ranks coord:nth-child(2n), .pgnvjs .cg-wrap.orientation-black coords.files coord:nth-child(2n), .pgnvjs .cg-wrap.orientation-white coords.ranks coord:nth-child(2n + 1), .pgnvjs .cg-wrap.orientation-white coords.files coord:nth-child(2n + 1) {
+.pgnvjs .cg-wrap.orientation-black coords.ranks coord:nth-child(2n),
+.pgnvjs .cg-wrap.orientation-black coords.files coord:nth-child(2n),
+.pgnvjs .cg-wrap.orientation-white coords.ranks coord:nth-child(2n + 1),
+.pgnvjs .cg-wrap.orientation-white coords.files coord:nth-child(2n + 1) {
     color: initial;
 }
 
 /* colorMarker */
 
 .pgnvjs .colorMarker {
-    width: 20px; height: 20px;
+    width: 20px;
+    height: 20px;
     border-color: black;
     border-width: 2px;
     border-style: double;
     margin-left: 50px;
     align-self: center;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow:
+        0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .pgnvjs .colorMarker.circle {
@@ -529,12 +573,14 @@ puzzle mode
 
 .pgnvjs .colorMarker.circle-big {
     border-radius: 40px;
-    width: 40px; height: 40px;
+    width: 40px;
+    height: 40px;
 }
 
 .pgnvjs .colorMarker.circle-small {
     border-radius: 10px;
-    width: 10px; height: 10px;
+    width: 10px;
+    height: 10px;
 }
 
 .pgnvjs .colorMarker.cm-black {
@@ -546,9 +592,11 @@ puzzle mode
 }
 
 .pgnvjs .colorMarker.cm-big {
-    width: 40px; height: 40px;   
+    width: 40px;
+    height: 40px;
 }
 
 .pgnvjs .colorMarker.cm-small {
-    width: 10px; height: 10px;
+    width: 10px;
+    height: 10px;
 }
