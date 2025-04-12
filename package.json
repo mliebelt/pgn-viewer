@@ -36,7 +36,8 @@
     "modaly.js": "^0.5.2",
     "mousetrap-ts": "^1.0.0",
     "smoothscroll-polyfill": "^0.4.4",
-    "typesafe-i18n": "^5.26.2"
+    "typesafe-i18n": "^5.26.2",
+    "@fortawesome/fontawesome-free": "^6.4.0"
   },
   "devDependencies": {
     "@types/smoothscroll-polyfill": "^0.3.3",
