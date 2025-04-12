@@ -1,3 +1,4 @@
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import {Chessground} from 'chessground'
 import {Color} from "chessground/types";
 import {Config} from "chessground/config";
