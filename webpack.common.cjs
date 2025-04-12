@@ -19,7 +19,11 @@ module.exports = {
         globalObject: 'this' // Ensures compatibility across environments
     },
     resolve: {
-        extensions: ['.ts', '.js']
+        extensions: ['.ts', '.js'],
+        alias: {
+            '@fortawesome/fontawesome-svg-core': path.resolve(__dirname, 'node_modules/@fortawesome/fontawesome-svg-core'),
+            '@fortawesome/free-solid-svg-icons': path.resolve(__dirname, 'node_modules/@fortawesome/free-solid-svg-icons'),
+        }
     },
     module: {
         rules: [
