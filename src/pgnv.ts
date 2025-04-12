@@ -734,7 +734,7 @@ let pgnBase = function (
       );
       createEle("textarea", null, "comment", theme, commentDiv);
       that.mousetrap.stopCallback = function (e, element) {
-        return element.tagName === 'TEXTAREA';
+        return element.tagName === "TEXTAREA";
       };
     }
 
@@ -1383,7 +1383,9 @@ let pgnBase = function (
         // @ts-ignore
         while (
           _next &&
+          //@ts-ignore
           _next.localName !== "move-number" &&
+          //@ts-ignore
           _next.localName !== "move"
         ) {
           // @ts-ignore

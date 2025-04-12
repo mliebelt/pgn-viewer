@@ -16,6 +16,7 @@ module.exports = {
         publicPath: '/lib/',
         library: 'PGNV',
         libraryTarget: 'umd',
+        globalObject: 'this' // Ensures compatibility across environments
     },
     resolve: {
         extensions: ['.ts', '.js']
