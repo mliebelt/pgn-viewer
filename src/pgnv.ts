@@ -15,6 +15,21 @@ import {
     PROMOTIONS,
     Shape
 } from '@mliebelt/pgn-reader'
+import {
+  faRotate,
+  faBackwardFast,
+  faBackwardStep,
+  faForwardStep,
+  faCirclePlay,
+  faForwardFast,
+  faLightbulb,
+  faQuestion,
+  faHandPointUp,
+  faScissors,
+  faPrint,
+  faGear,
+} from "@fortawesome/free-solid-svg-icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
 import {ParseTree} from '@mliebelt/pgn-parser'
 import {i18next} from './i18n'
 import Timer from './timer'
@@ -579,8 +594,7 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
             createEle("label", null, "labelAfterComment", theme, radio).appendChild(document.createTextNode("After"))
             createEle("textarea", null, "comment", theme, commentDiv)
             that.mousetrap.stopCallback = function (e, element) {
-                return element.localName === 'textarea';
-
+                return element.tagName === 'TEXTAREA';
             }
         }
 
