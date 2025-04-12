@@ -503,28 +503,43 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
         }
 
         // Generates the view buttons (only)
-        function generateViewButtons(buttonDiv:HTMLElement) {
-            [["flipper", "fa-adjust"], ["first", "fa-fast-backward"], ["prev", "fa-step-backward"],
-                ["next", "fa-step-forward"], ["play", "fa-play-circle"], ["last", "fa-fast-forward"]].forEach(function (entry:[string,string]) {
+        function generateViewButtons(buttonDiv: HTMLElement) {
+            [
+                ["flipper", "fa-solid fa-rotate"],
+                ["first", "fa-solid fa-backward-fast"],
+                ["prev", "fa-solid fa-backward-step"],
+                ["next", "fa-solid fa-forward-step"],
+                ["play", "fa-solid fa-circle-play"],
+                ["last", "fa-solid fa-forward-fast"]
+            ].forEach(function (entry: [string, string]) {
                 addButton(entry, buttonDiv)
             })
         }
         // Generates the edit buttons (only)
-        function generateEditButtons (buttonDiv:HTMLElement) {
-            [["promoteVar", "fa-hand-point-up"], ["deleteMoves", "fa-cut"]].forEach(function (entry:[string,string]) {
+        function generateEditButtons(buttonDiv: HTMLElement) {
+            [
+                ["promoteVar", "fa-solid fa-hand-point-up"],
+                ["deleteMoves", "fa-solid fa-scissors"]
+            ].forEach(function (entry: [string, string]) {
                 addButton(entry, buttonDiv)
                 //but.className = but.className + " gray" // just a test, worked.
                 // only gray out if not usable, check that later.
             });
-            [["pgn", "fa-print"], ['nags', 'fa-cog']].forEach(function (entry:[string,string]) {
+            [
+                ["pgn", "fa-solid fa-print"],
+                ['nags', 'fa-solid fa-gear']
+            ].forEach(function (entry: [string, string]) {
                 addButton(entry, buttonDiv)
             })
         }
 
         //generate puzzle buttons
-        function generatePuzzleButtons(buttonDiv:HTMLElement) {
-            [["getHint", "fa-lightbulb"], ["makeMove", "fa-step-forward"], 
-            ["showSolution", "fa-question"]].forEach(function (entry: [string, string]) {
+        function generatePuzzleButtons(buttonDiv: HTMLElement) {
+            [
+                ["getHint", "fa-solid fa-lightbulb"],
+                ["makeMove", "fa-solid fa-forward-step"],
+                ["showSolution", "fa-solid fa-question"]
+            ].forEach(function (entry: [string, string]) {
                 addButton(entry, buttonDiv)
             })
         }
@@ -1736,9 +1751,9 @@ let pgnBase = function (boardId:string, configuration:PgnViewerConfiguration) {
                 const playButton = document.getElementById(id('buttonsId') + 'play')
                 let clString = (playButton.childNodes[0] as HTMLElement).getAttribute('class')
                 if (clString.indexOf('play') < 0) { // has the stop button
-                    clString = clString.replace(/pause/g, 'play')
+                    clString = clString.replace(/fa-circle-pause/g, 'fa-circle-play')
                 } else {
-                    clString = clString.replace(/play/g, 'pause')
+                    clString = clString.replace(/fa-circle-play/g, 'fa-circle-pause')
                 }
                 (playButton.childNodes[0] as HTMLElement).setAttribute('class', clString)
             }
