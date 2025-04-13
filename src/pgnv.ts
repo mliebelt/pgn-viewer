@@ -417,6 +417,9 @@ let pgnBase = function (
 
     const cur = that.currentMove;
     let primMove: PrimitiveMove = { from: from, to: to };
+    if (cur) {
+      that.mypgn.chess.load(that.mypgn.getMove(cur)?.fen);
+    }
     if (
       that.mypgn.chess.get(from).type === "p" &&
       (to.substring(1, 2) === "8" || to.substring(1, 2) === "1")
