@@ -11,6 +11,20 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Fixed
 
+## 1.6.11 ??2025-04-21
+
+### Changed
+
+### Fixed
+
+* [#600](https://github.com/mliebelt/pgn-viewer/issues/600) Add parameter `manyGames` to Configuration Builder.
+
+## 1.6.10 ??2024-08-24
+
+### Changed
+
+### Fixed
+
 ## 1.6.9 2024-08-24
 
 ### Changed
@@ -18,13 +32,13 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 ### Fixed
 
 * [#565](https://github.com/mliebelt/pgn-viewer/issues/565) Fix switch in `loadOne` on manyGames: true.
-* 
+*
 ## 1.6.9 2024-08-21
 
 ### Changed
 
 * [#528](https://github.com/mliebelt/pgn-viewer/issues/528) Add minimal documentation to `pgnPuzzle`.
-* 
+*
 ### Fixed
 
 * [#555](https://github.com/mliebelt/pgn-viewer/issues/555) Handles now comment before first move correctly
@@ -285,7 +299,7 @@ Upgraded to newest versions of `pgn-parser`, `pgn-reader`, `Chessground` and som
 * [#214](https://github.com/mliebelt/pgn-viewer/issues/214)  fixed
 * [#215](https://github.com/mliebelt/pgn-viewer/issues/215)  fixed
 * [#216](https://github.com/mliebelt/pgn-viewer/issues/216)  fixed error in layout, that hided the print button
-* [#220](https://github.com/mliebelt/pgn-viewer/issues/220)  ensure that discriminator is added all the time for pawn paptures 
+* [#220](https://github.com/mliebelt/pgn-viewer/issues/220)  ensure that discriminator is added all the time for pawn paptures
 * [#221](https://github.com/mliebelt/pgn-viewer/issues/221)  fixed lookup of endGame (when showResult == true)
 
 ## 1.5.1 2021-03-28
@@ -322,7 +336,7 @@ Upgraded to newest versions of `pgn-parser`, `pgn-reader`, `Chessground` and som
 
 * [#170](https://github.com/mliebelt/pgn-viewer/issues/170) Assets shown on examples in mobile browser (Chrome)
 * [#189](https://github.com/mliebelt/pgn-viewer/issues/189) Theme brown available again
- 
+
 ### Fixed
 
 ## 1.4.2 2021-01-24
@@ -339,7 +353,7 @@ Upgraded to newest versions of `pgn-parser`, `pgn-reader`, `Chessground` and som
 
 ### Changed
 
-* [#177](https://github.com/mliebelt/pgn-viewer/issues/177) Switched from `i18next` to `roddeh-i18n` and inline the defined locales. 
+* [#177](https://github.com/mliebelt/pgn-viewer/issues/177) Switched from `i18next` to `roddeh-i18n` and inline the defined locales.
 
 ### Fixed
 

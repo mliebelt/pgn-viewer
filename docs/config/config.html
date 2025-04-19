@@ -10,7 +10,7 @@
 
 <!--   Workaround: 2 definitions, depending on the context  -->
 <!--    <script src="../lib/dist.js" type="text/javascript"></script>-->
-    <script src="../lib/dist.js" type="text/javascript"></script>
+    <script src="/lib/dist.js" type="text/javascript"></script>
     <style>
         body {
         }
@@ -111,6 +111,9 @@
                 <option value="r1bqk2r/pppp1Npp/2n2n2/4p3/2B1P3/8/PPPP1bPP/RNBQK2R w KQkq - 0 6">White at move</option>
                 >
             </select>
+            <!-- manyGames: true or false, default false -->
+            <label for="manyGames">Many Games   </label>
+            <input type="checkbox" id="manyGames" value="false">
         </div>
 
         <div class="section">
@@ -363,6 +366,7 @@
         var movesHeight = document.getElementById('movesHeight').value;
         var showFen = document.getElementById('showFen').checked;
         var colorMarker = document.getElementById('colorMarker').value;
+        var manyGames = document.getElementById('manyGames').checked;
 
         configuration['position'] = 'start';
         if (fen != '') {
@@ -382,6 +386,11 @@
             configuration['headers'] = true
         } else {
             configuration['headers'] = false
+        }
+        if (manyGames) {
+            configuration['manyGames'] = true
+        } else {
+            configuration['manyGames'] = false
         }
         if (coordsInner) {
             configuration['coordsInner'] = true
@@ -434,7 +443,7 @@
             "config = {";
         var props = ['pgn', 'position', 'showCoords', 'orientation', 'theme',
             'pieceStyle', 'figurine', 'locale', 'timerTime', 'width', 'boardSize', 'layout',
-            'movesWidth', 'movesHeight', 'showFen', 'coordsInner', 'headers',
+            'movesWidth', 'movesHeight', 'showFen', 'coordsInner', 'manyGames',
             'coordsFactor', 'coordsFontSize', 'colorMarker', 'startPlay', 'hideMovesBefore', 'notation', 'notationLayout'];
         for (property of props) {
             var val = config[property];
@@ -456,6 +465,7 @@
         document.getElementById('modus').onchange = changedSomething;
         document.getElementById('game').onchange = changedGame;
         document.getElementById('showCoords').onclick = changedSomething;
+        document.getElementById('manyGames').onclick = changedSomething;
         document.getElementById('showFen').onclick = changedSomething;
         document.getElementById('coordsInner').onclick = changedSomething;
         document.getElementById('headers').onclick = changedSomething;
