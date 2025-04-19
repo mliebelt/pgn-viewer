@@ -37,34 +37,12 @@ import { Config } from "chessground/config";
 import "../node_modules/chessground/assets/chessground.base.css";
 import "../node_modules/chessground/assets/chessground.brown.css";
 import Mousetrap from "mousetrap-ts";
-import {
-  Field,
-  GameComment,
-  hasDiagramNag,
-  NAGs,
-  nagToSymbol,
-  PgnReader,
-  PgnReaderMove,
-  PROMOTIONS,
-  Shape,
-} from "@mliebelt/pgn-reader";
+import { Field, GameComment, hasDiagramNag, NAGs, nagToSymbol, PgnReader, PgnReaderMove, PROMOTIONS, Shape } from "@mliebelt/pgn-reader";
 import { ParseTree } from "@mliebelt/pgn-parser";
 import { i18next } from "./i18n";
 import Timer from "./timer";
 import resizeHandle from "./resize";
-import {
-  Base,
-  Layout,
-  PgnViewerConfiguration,
-  PgnViewerMode,
-  PieceStyle,
-  PrimitiveMove,
-  ShortColor,
-  SupportedLocales,
-  TagKeys,
-  Tags,
-  Theme,
-} from "./types";
+import { Base, Layout, PgnViewerConfiguration, PgnViewerMode, PieceStyle, PrimitiveMove, ShortColor, SupportedLocales, TagKeys, Tags, Theme } from "./types";
 import { pgnEdit } from ".";
 
 import Modaly from "modaly.js";
@@ -76,10 +54,7 @@ import Modaly from "modaly.js";
  * of pgnBase to build new functionality. The configuration here is the super-set
  * of all the configurations of the other functions.
  */
-let pgnBase = function (
-  boardId: string,
-  configuration: PgnViewerConfiguration,
-) {
+let pgnBase = function (boardId: string, configuration: PgnViewerConfiguration) {
   // Section defines the variables needed everywhere.
   let that: Base = { mypgn: null, board: null, mousetrap: null };
   that.userConfiguration = configuration;
@@ -121,10 +96,7 @@ let pgnBase = function (
       hintsId: boardId + "Hints",
     },
   };
-  that.configuration = Object.assign(
-    Object.assign(defaults, PgnBaseDefaults),
-    configuration,
-  );
+  that.configuration = Object.assign(Object.assign(defaults, PgnBaseDefaults), configuration);
   that.mypgn = new PgnReader(that.configuration);
 
   const timer = new Timer(10);
@@ -189,9 +161,7 @@ let pgnBase = function (
      helper functions for hints in puzzle mode
      */
   function showHint(h: string) {
-    let hintsView: HTMLTextAreaElement = document.getElementById(
-      id("hintsId"),
-    ) as HTMLTextAreaElement;
+    let hintsView: HTMLTextAreaElement = document.getElementById(id("hintsId")) as HTMLTextAreaElement;
     if (hintsView) {
       if (hintsShown > 0) {
         hintsView.value += "\n";
@@ -202,9 +172,7 @@ let pgnBase = function (
   }
 
   function resetHints() {
-    let hintsView: HTMLTextAreaElement = document.getElementById(
-      id("hintsId"),
-    ) as HTMLTextAreaElement;
+    let hintsView: HTMLTextAreaElement = document.getElementById(id("hintsId")) as HTMLTextAreaElement;
     if (hintsView) {
       hintsView.value = "";
       hintsShown = 0;
@@ -215,9 +183,7 @@ let pgnBase = function (
    * Adds a class to an element.
    */
   function addClass(elementOrId: string | HTMLElement, className: string) {
-    let ele: HTMLElement = isElement(elementOrId)
-      ? (elementOrId as HTMLElement)
-      : document.getElementById(elementOrId as string);
+    let ele: HTMLElement = isElement(elementOrId) ? (elementOrId as HTMLElement) : document.getElementById(elementOrId as string);
     if (!ele) return;
     if (ele.classList) {
       ele.classList.add(className);
@@ -230,20 +196,12 @@ let pgnBase = function (
    * Remove a class from an element.
    */
   function removeClass(elementOrId: string | HTMLElement, className: string) {
-    let ele: HTMLElement = isElement(elementOrId)
-      ? (elementOrId as HTMLElement)
-      : document.getElementById(elementOrId as string);
+    let ele: HTMLElement = isElement(elementOrId) ? (elementOrId as HTMLElement) : document.getElementById(elementOrId as string);
     if (ele === null) return;
     if (ele.classList) {
       ele.classList.remove(className);
     } else {
-      ele.className = ele.className.replace(
-        new RegExp(
-          "(^|\\b)" + className.split(" ").join("|") + "(\\b|$)",
-          "gi",
-        ),
-        " ",
-      );
+      ele.className = ele.className.replace(new RegExp("(^|\\b)" + className.split(" ").join("|") + "(\\b|$)", "gi"), " ");
     }
   }
 
@@ -269,12 +227,7 @@ let pgnBase = function (
     span.appendChild(filler);
   }
 
-  function appendCommentSpan(
-    span: HTMLElement,
-    comment: string,
-    clazz: string,
-    fillNeeded?: boolean,
-  ) {
+  function appendCommentSpan(span: HTMLElement, comment: string, clazz: string, fillNeeded?: boolean) {
     let cSpan = generateCommentSpan(comment, clazz);
     if (cSpan) {
       if (fillNeeded) {
@@ -306,14 +259,8 @@ let pgnBase = function (
   /**
    * Adds an event listener to the DOM element.
    */
-  function addEventListener(
-    elementOrId: string | HTMLElement,
-    event: any,
-    func: any,
-  ) {
-    let ele: HTMLElement = isElement(elementOrId)
-      ? (elementOrId as HTMLElement)
-      : document.getElementById(elementOrId as string);
+  function addEventListener(elementOrId: string | HTMLElement, event: any, func: any) {
+    let ele: HTMLElement = isElement(elementOrId) ? (elementOrId as HTMLElement) : document.getElementById(elementOrId as string);
     if (ele === null) return;
     ele.addEventListener(event, func);
   }
@@ -344,9 +291,7 @@ let pgnBase = function (
       // Where is the child
       let childRect = child.getBoundingClientRect();
       // Is the child viewable?
-      let isViewable =
-        childRect.top >= parentRect.top &&
-        childRect.top <= parentRect.top + parentViewableArea.height;
+      let isViewable = childRect.top >= parentRect.top && childRect.top <= parentRect.top + parentViewableArea.height;
 
       // if you can't see the child try to scroll parent
       if (!isViewable) {
@@ -381,24 +326,15 @@ let pgnBase = function (
    */
   function onSnapEnd(from: Field, to: Field, meta: any) {
     function positionPromDiv(to: Field, modID: string) {
-      let boardRect = document
-        .getElementById(id("innerBoardId"))
-        .getBoundingClientRect();
+      let boardRect = document.getElementById(id("innerBoardId")).getBoundingClientRect();
       let _tor = 9 - parseInt(to.substring(1));
       let _toc = to.charCodeAt(0) - 96;
       let _l = boardRect.x + (boardRect.width / 8) * _toc;
       let _t = boardRect.y + (boardRect.height / 8) * _tor;
       if (_tor === 8) {
-        document
-          .querySelector(modID)
-          .setAttribute(
-            "style",
-            "top: " + (_t - 120) + "px; left: " + _l + "px;",
-          );
+        document.querySelector(modID).setAttribute("style", "top: " + (_t - 120) + "px; left: " + _l + "px;");
       } else {
-        document
-          .querySelector(modID)
-          .setAttribute("style", "top: " + _t + "px; left: " + _l + "px;");
+        document.querySelector(modID).setAttribute("style", "top: " + _t + "px; left: " + _l + "px;");
       }
     }
 
@@ -420,13 +356,8 @@ let pgnBase = function (
     if (cur) {
       that.mypgn.chess.load(that.mypgn.getMove(cur)?.fen);
     }
-    if (
-      that.mypgn.chess.get(from).type === "p" &&
-      (to.substring(1, 2) === "8" || to.substring(1, 2) === "1")
-    ) {
-      that.configuration.modalClicked = function (
-        value: "q" | "r" | "b" | "n",
-      ) {
+    if (that.mypgn.chess.get(from).type === "p" && (to.substring(1, 2) === "8" || to.substring(1, 2) === "1")) {
+      that.configuration.modalClicked = function (value: "q" | "r" | "b" | "n") {
         primMove.promotion = value;
         that.configuration.modal.hide();
         onSnapEndFinish();
@@ -472,14 +403,7 @@ let pgnBase = function (
           that.board.setPieces(pieces);
         }
         if (moveSpan(that.currentMove) === null) {
-          generateMove(
-            that.currentMove,
-            null,
-            move,
-            move.prev,
-            document.getElementById(id("movesId")),
-            [],
-          );
+          generateMove(that.currentMove, null, move, move.prev, document.getElementById(id("movesId")), []);
         }
         unmarkMark(that.currentMove);
 
@@ -487,10 +411,7 @@ let pgnBase = function (
           let moveIndex: number = 0;
           let playMove: boolean = false;
 
-          if (
-            that.currentMove != undefined &&
-            that.currentMove < that.mypgn.moves.length - 1
-          ) {
+          if (that.currentMove != undefined && that.currentMove < that.mypgn.moves.length - 1) {
             let moveId: number = that.mypgn.getMove(that.currentMove).next;
 
             moveIndex = that.mypgn.getMove(moveId).index;
@@ -526,9 +447,7 @@ let pgnBase = function (
         updateUI(that.currentMove);
 
         //makeMove(null, that.currentMove, move.fen)
-        let fenView = document.getElementById(
-          id("fenId"),
-        ) as HTMLTextAreaElement;
+        let fenView = document.getElementById(id("fenId")) as HTMLTextAreaElement;
         if (fenView) {
           fenView.value = move.fen;
         }
@@ -539,13 +458,7 @@ let pgnBase = function (
   }
 
   // Utility function for generating general HTML elements with id, class (with theme)
-  function createEle(
-    kind: keyof HTMLElementTagNameMap,
-    id: string,
-    clazz?: string,
-    my_theme?: string,
-    father?: HTMLElement,
-  ): HTMLElement {
+  function createEle(kind: keyof HTMLElementTagNameMap, id: string, clazz?: string, my_theme?: string, father?: HTMLElement): HTMLElement {
     const ele = document.createElement(kind);
     if (id) {
       ele.setAttribute("id", id);
@@ -597,24 +510,10 @@ let pgnBase = function (
     // Utility function for generating buttons divs
     function addButton(pair: [string, string], buttonDiv: HTMLElement) {
       const l_theme = ["green", "blue"].indexOf(theme) >= 0 ? theme : "default";
-      const button = createEle(
-        "span",
-        id("buttonsId") + pair[0],
-        "pgnvbutton " + pair[0],
-        l_theme,
-        buttonDiv,
-      );
-      const faButton = createEle(
-        "i",
-        null,
-        "fa " + pair[0] + " " + pair[1],
-        l_theme,
-        button,
-      );
+      const button = createEle("span", id("buttonsId") + pair[0], "pgnvbutton " + pair[0], l_theme, buttonDiv);
+      const faButton = createEle("i", null, "fa " + pair[0] + " " + pair[1], l_theme, button);
       const title = t("buttons:" + pair[0]);
-      document
-        .getElementById(id("buttonsId") + pair[0])
-        .setAttribute("title", title);
+      document.getElementById(id("buttonsId") + pair[0]).setAttribute("title", title);
       return button;
     }
 
@@ -662,11 +561,7 @@ let pgnBase = function (
 
     // Generate 3 rows, similar to lichess in studies
     function generateNagMenu(nagEle: HTMLElement) {
-      function generateRow(
-        array: number[],
-        rowClass: string,
-        nagEle: HTMLElement,
-      ) {
+      function generateRow(array: number[], rowClass: string, nagEle: HTMLElement) {
         function generateLink(link: number, nagDiv: HTMLElement) {
           let generateIcon = function (icon: number, myLink: HTMLElement) {
             let ele = createEle("i", null, null, theme, myLink);
@@ -680,9 +575,7 @@ let pgnBase = function (
           myLink.addEventListener("click", function () {
             function updateMoveSAN(moveIndex: number) {
               let _move = that.mypgn.getMove(moveIndex);
-              let _moveSpan: HTMLElement = document.querySelector(
-                "#" + id("movesId") + moveIndex,
-              );
+              let _moveSpan: HTMLElement = document.querySelector("#" + id("movesId") + moveIndex);
               clearChilds(_moveSpan);
               regenerateMoveSpan(_moveSpan, _move);
               unmarkMark(moveIndex);
@@ -690,11 +583,7 @@ let pgnBase = function (
 
             this.classList.toggle("active");
             let iNode = this.firstChild as HTMLElement;
-            that.mypgn.changeNag(
-              "$" + iNode.getAttribute("data-value"),
-              that.currentMove,
-              this.classList.contains("active"),
-            );
+            that.mypgn.changeNag("$" + iNode.getAttribute("data-value"), that.currentMove, this.classList.contains("active"));
             updateMoveSAN(that.currentMove);
           });
         }
@@ -703,40 +592,20 @@ let pgnBase = function (
       }
       generateRow([1, 2, 3, 4, 5, 6, 7, 146], "nagMove", nagEle);
       generateRow([10, 13, 14, 15, 16, 17, 18, 19], "nagPosition", nagEle);
-      generateRow(
-        [22, 40, 36, 132, 136, 32, 44, 140],
-        "nagObservation",
-        nagEle,
-      );
+      generateRow([22, 40, 36, 132, 136, 32, 44, 140], "nagObservation", nagEle);
     }
     function generateCommentDiv(commentDiv: HTMLElement) {
       const radio = createEle("div", null, "commentRadio", theme, commentDiv);
-      const mc: HTMLInputElement = createEle(
-        "input",
-        null,
-        "moveComment",
-        theme,
-        radio,
-      ) as HTMLInputElement;
+      const mc: HTMLInputElement = createEle("input", null, "moveComment", theme, radio) as HTMLInputElement;
       mc.type = "radio";
       mc.value = "move";
       mc.name = "radio";
-      createEle("label", null, "labelMoveComment", theme, radio).appendChild(
-        document.createTextNode("Move"),
-      );
-      const ma: HTMLInputElement = createEle(
-        "input",
-        null,
-        "afterComment",
-        theme,
-        radio,
-      ) as HTMLInputElement;
+      createEle("label", null, "labelMoveComment", theme, radio).appendChild(document.createTextNode("Move"));
+      const ma: HTMLInputElement = createEle("input", null, "afterComment", theme, radio) as HTMLInputElement;
       ma.type = "radio";
       ma.value = "after";
       ma.name = "radio";
-      createEle("label", null, "labelAfterComment", theme, radio).appendChild(
-        document.createTextNode("After"),
-      );
+      createEle("label", null, "labelAfterComment", theme, radio).appendChild(document.createTextNode("After"));
       createEle("textarea", null, "comment", theme, commentDiv);
       that.mousetrap.stopCallback = function (e, element) {
         return element.tagName === "TEXTAREA";
@@ -753,157 +622,56 @@ let pgnBase = function (
     that.mousetrap = new Mousetrap(divBoard);
     setBoardClass(theme, Theme);
     divBoard.classList.add("pgnvjs"); // Is used as class for everything included.
-    setBoardClass(
-      that.configuration.mode,
-      PgnViewerMode,
-      (m: string) => m + "Mode",
-    );
+    setBoardClass(that.configuration.mode, PgnViewerMode, (m: string) => m + "Mode");
     divBoard.setAttribute("tabindex", "0");
     // Add layout for class if configured
     if (that.configuration.layout) {
-      setBoardClass(
-        that.configuration.layout,
-        Layout,
-        (l: string) => "layout-" + l,
-      );
+      setBoardClass(that.configuration.layout, Layout, (l: string) => "layout-" + l);
     }
 
     /** Add a drop-down list for all games if necessary. */
-    let gamesDropDown = createEle(
-      "select",
-      boardId + "Games",
-      "games",
-      null,
-      divBoard,
-    );
+    let gamesDropDown = createEle("select", boardId + "Games", "games", null, divBoard);
     if (!that.configuration.manyGames) {
       gamesDropDown.style.display = "none";
     }
 
     /** Add an error div to show errors */
-    that.errorDiv = createEle(
-      "div",
-      boardId + "Error",
-      "error",
-      null,
-      divBoard,
-    );
+    that.errorDiv = createEle("div", boardId + "Error", "error", null, divBoard);
 
     /** outerBoard */
-    const outerInnerBoardDiv = createEle(
-      "div",
-      null,
-      "outerBoard",
-      null,
-      divBoard,
-    );
-    let boardAndDiv = createEle(
-      "div",
-      null,
-      "boardAnd",
-      theme,
-      outerInnerBoardDiv,
-    );
+    const outerInnerBoardDiv = createEle("div", null, "outerBoard", null, divBoard);
+    let boardAndDiv = createEle("div", null, "boardAnd", theme, outerInnerBoardDiv);
 
-    let topInnerBoardDiv = createEle(
-      "div",
-      null,
-      "topInnerBoard",
-      theme,
-      boardAndDiv,
-    );
-    let blackHeader = createEle(
-      "div",
-      id("topHeaderId"),
-      "blackHeader",
-      theme,
-      boardAndDiv,
-    );
+    let topInnerBoardDiv = createEle("div", null, "topInnerBoard", theme, boardAndDiv);
+    let blackHeader = createEle("div", id("topHeaderId"), "blackHeader", theme, boardAndDiv);
     let topTime = createEle("span", null, "topTime", theme, topInnerBoardDiv);
-    const innerBoardDiv = createEle(
-      "div",
-      id("innerBoardId"),
-      "board",
-      theme,
-      boardAndDiv,
-    );
-    let bottomInnerBoardDiv = createEle(
-      "div",
-      null,
-      "bottomInnerBoard",
-      theme,
-      boardAndDiv,
-    );
-    let whiteHeader = createEle(
-      "div",
-      id("bottomHeaderId"),
-      "whiteHeader",
-      theme,
-      boardAndDiv,
-    );
-    let bottomTime = createEle(
-      "div",
-      null,
-      "bottomTime",
-      theme,
-      bottomInnerBoardDiv,
-    );
+    const innerBoardDiv = createEle("div", id("innerBoardId"), "board", theme, boardAndDiv);
+    let bottomInnerBoardDiv = createEle("div", null, "bottomInnerBoard", theme, boardAndDiv);
+    let whiteHeader = createEle("div", id("bottomHeaderId"), "whiteHeader", theme, boardAndDiv);
+    let bottomTime = createEle("div", null, "bottomTime", theme, bottomInnerBoardDiv);
 
     /** Buttons */
     if (hasMode(PgnViewerMode.View) || hasMode(PgnViewerMode.Edit)) {
-      const buttonsBoardDiv = createEle(
-        "div",
-        id("buttonsId"),
-        "buttons",
-        theme,
-        divBoard,
-      );
+      const buttonsBoardDiv = createEle("div", id("buttonsId"), "buttons", theme, divBoard);
       generateViewButtons(buttonsBoardDiv);
       if (that.configuration.colorMarker) {
-        createEle(
-          "div",
-          id("colorMarkerId"),
-          "colorMarker" + " " + that.configuration.colorMarker,
-          theme,
-          buttonsBoardDiv,
-        );
+        createEle("div", id("colorMarkerId"), "colorMarker" + " " + that.configuration.colorMarker, theme, buttonsBoardDiv);
       }
     }
     if (hasMode(PgnViewerMode.Board)) {
       if (that.configuration.colorMarker) {
-        createEle(
-          "div",
-          id("colorMarkerId"),
-          "colorMarker" + " " + that.configuration.colorMarker,
-          theme,
-          topInnerBoardDiv,
-        );
+        createEle("div", id("colorMarkerId"), "colorMarker" + " " + that.configuration.colorMarker, theme, topInnerBoardDiv);
       }
     }
     if (hasMode(PgnViewerMode.Puzzle)) {
-      const buttonsBoardDiv = createEle(
-        "div",
-        id("buttonsId"),
-        "buttons",
-        theme,
-        divBoard,
-      );
+      const buttonsBoardDiv = createEle("div", id("buttonsId"), "buttons", theme, divBoard);
       generatePuzzleButtons(buttonsBoardDiv);
     }
     updateUI(null);
 
     /** Fen */
-    if (
-      (hasMode(PgnViewerMode.Edit) || hasMode(PgnViewerMode.View)) &&
-      that.configuration.showFen
-    ) {
-      const fenDiv = createEle(
-        "textarea",
-        id("fenId"),
-        "fen",
-        theme,
-        outerInnerBoardDiv,
-      );
+    if ((hasMode(PgnViewerMode.Edit) || hasMode(PgnViewerMode.View)) && that.configuration.showFen) {
+      const fenDiv = createEle("textarea", id("fenId"), "fen", theme, outerInnerBoardDiv);
       addEventListener(id("fenId"), "mousedown", function (e: Event) {
         e.preventDefault();
         this.select();
@@ -915,27 +683,14 @@ let pgnBase = function (
           pgnEdit(boardId, that.configuration);
         };
       } else {
-        let fenele = document.getElementById(
-          id("fenId"),
-        ) as HTMLTextAreaElement;
+        let fenele = document.getElementById(id("fenId")) as HTMLTextAreaElement;
         fenele.readOnly = true;
       }
     }
 
     /** Moves Div */
-    if (
-      hasMode(PgnViewerMode.Print) ||
-      hasMode(PgnViewerMode.View) ||
-      hasMode(PgnViewerMode.Edit) ||
-      hasMode(PgnViewerMode.Puzzle)
-    ) {
-      createEle(
-        "div",
-        id("movesId"),
-        "moves " + that.configuration.notationLayout,
-        null,
-        divBoard,
-      );
+    if (hasMode(PgnViewerMode.Print) || hasMode(PgnViewerMode.View) || hasMode(PgnViewerMode.Edit) || hasMode(PgnViewerMode.Puzzle)) {
+      createEle("div", id("movesId"), "moves " + that.configuration.notationLayout, null, divBoard);
       if (hasMode(PgnViewerMode.Print)) {
         return;
       }
@@ -948,60 +703,26 @@ let pgnBase = function (
 
     /** Edit Divs TODO Redo those */
     if (hasMode(PgnViewerMode.Edit)) {
-      const editButtonsDiv = createEle(
-        "div",
-        "edit" + id("buttonsId"),
-        "edit",
-        theme,
-        divBoard,
-      );
+      const editButtonsDiv = createEle("div", "edit" + id("buttonsId"), "edit", theme, divBoard);
       generateEditButtons(editButtonsDiv);
-      let nagMenu = createEle(
-        "div",
-        "nagMenu" + id("buttonsId"),
-        "nagMenu",
-        theme,
-        editButtonsDiv,
-      );
+      let nagMenu = createEle("div", "nagMenu" + id("buttonsId"), "nagMenu", theme, editButtonsDiv);
       generateNagMenu(nagMenu);
-      const pgnDiv = createEle(
-        "textarea",
-        "textpgn" + id("buttonsId"),
-        "textpgn",
-        theme,
-        editButtonsDiv,
-      );
-      const commentBoardDiv = createEle(
-        "div",
-        "comment" + id("buttonsId"),
-        "comment",
-        theme,
-        editButtonsDiv,
-      );
+      const pgnDiv = createEle("textarea", "textpgn" + id("buttonsId"), "textpgn", theme, editButtonsDiv);
+      const commentBoardDiv = createEle("div", "comment" + id("buttonsId"), "comment", theme, editButtonsDiv);
       generateCommentDiv(commentBoardDiv);
       // Bind the paste key ...
-      addEventListener(
-        "pgn" + id("buttonsId"),
-        "mousedown",
-        function (e: Event) {
-          e.preventDefault();
-          (e.target as HTMLTextAreaElement).select();
-        },
-      );
-      document.getElementById("textpgn" + id("buttonsId")).onpaste = function (
-        e,
-      ) {
+      addEventListener("pgn" + id("buttonsId"), "mousedown", function (e: Event) {
+        e.preventDefault();
+        (e.target as HTMLTextAreaElement).select();
+      });
+      document.getElementById("textpgn" + id("buttonsId")).onpaste = function (e) {
         that.configuration.pgn = e.clipboardData.getData("text");
         pgnEdit(boardId, that.configuration);
       };
     }
   }
 
-  function adjustFontForCoords(
-    fontSize: number,
-    boardConfig: PgnViewerConfiguration,
-    el: HTMLElement,
-  ) {
+  function adjustFontForCoords(fontSize: number, boardConfig: PgnViewerConfiguration, el: HTMLElement) {
     let right = (fontSize - 13) / 2.5 - 2;
     if (!boardConfig.coordsInner) {
       right -= fontSize / 1.5 + 2;
@@ -1010,8 +731,7 @@ let pgnBase = function (
         moves.style.marginLeft = `${fontSize / 1.5}px`;
       }
     }
-    (el.querySelector("coords.ranks") as HTMLElement).style.right =
-      `${right}px`;
+    (el.querySelector("coords.ranks") as HTMLElement).style.right = `${right}px`;
     let bottom: number = fontSize - 13;
     if (!boardConfig.coordsInner) {
       bottom -= fontSize + 2;
@@ -1025,14 +745,10 @@ let pgnBase = function (
         }
       }
     }
-    (el.querySelector("coords.files") as HTMLElement).style.bottom =
-      `${bottom}px`;
+    (el.querySelector("coords.files") as HTMLElement).style.bottom = `${bottom}px`;
   }
 
-  function recomputeCoordsFonts(
-    boardConfig: PgnViewerConfiguration,
-    el: HTMLElement,
-  ) {
+  function recomputeCoordsFonts(boardConfig: PgnViewerConfiguration, el: HTMLElement) {
     if (boardConfig && that.configuration.boardSize) {
       el.style.width = that.configuration.boardSize;
       el.style.height = that.configuration.boardSize;
@@ -1041,21 +757,13 @@ let pgnBase = function (
         fontSize = Number.parseInt(boardConfig.coordsFontSize);
       } else {
         // Set the font size related to the board (factor 28), ensure at least 8px font
-        fontSize = Math.max(
-          8,
-          Math.round(
-            (parseInt(that.configuration.boardSize.slice(0, -2)) / 28) *
-              boardConfig.coordsFactor,
-          ),
-        );
+        fontSize = Math.max(8, Math.round((parseInt(that.configuration.boardSize.slice(0, -2)) / 28) * boardConfig.coordsFactor));
       }
       // Adjust the ranks right if necessary
       //el.style.fontSize = `${fontSize}px`
-      (el.querySelectorAll("coords") as NodeListOf<HTMLElement>).forEach(
-        (element) => {
-          element.style.fontSize = `${fontSize}px`;
-        },
-      );
+      (el.querySelectorAll("coords") as NodeListOf<HTMLElement>).forEach((element) => {
+        element.style.fontSize = `${fontSize}px`;
+      });
       if (boardConfig.showCoords) {
         adjustFontForCoords(fontSize, boardConfig, el);
       }
@@ -1067,11 +775,7 @@ let pgnBase = function (
    * Generate the chess board using the given configuration and unique id.
    */
   function generateBoard() {
-    function copyBoardConfiguration(
-      source: PgnViewerConfiguration,
-      target: PgnViewerConfiguration,
-      keys: string[],
-    ) {
+    function copyBoardConfiguration(source: PgnViewerConfiguration, target: PgnViewerConfiguration, keys: string[]) {
       keys.forEach(function (key: string) {
         if (typeof source[key] != "undefined") {
           target[key] = source[key];
@@ -1095,13 +799,7 @@ let pgnBase = function (
       function clicked(value: "q" | "r" | "b" | "n") {
         that.configuration.modalClicked(value);
       }
-      let _top = createEle(
-        "div",
-        boardId + "Prommodal",
-        "swalpgnvroot",
-        null,
-        parent,
-      );
+      let _top = createEle("div", boardId + "Prommodal", "swalpgnvroot", null, parent);
       let _b1 = createEle("button", null, "swalpgnv queen", null, _top);
       let _b2 = createEle("button", null, "swalpgnv rook", null, _top);
       let _b3 = createEle("button", null, "swalpgnv bishop", null, _top);
@@ -1180,13 +878,7 @@ let pgnBase = function (
     if (that.configuration.resizable) {
       chessgroundBoardConfig.events = {
         insert(elements) {
-          resizeHandle(
-            that,
-            el,
-            el.firstChild as HTMLElement,
-            smallerWidth,
-            resizeLayout,
-          );
+          resizeHandle(that, el, el.firstChild as HTMLElement, smallerWidth, resizeLayout);
         },
       };
     }
@@ -1226,21 +918,14 @@ let pgnBase = function (
       }
 
       that.board.set({
-        movable: Object.assign(
-          {},
-          { dests: dests },
-          { color: toMove, showDests: true, free: false },
-        ),
+        movable: Object.assign({}, { dests: dests }, { color: toMove, showDests: true, free: false }),
         turnColor: toMove,
         check: chess.in_check(),
       });
     }
 
     if (that.configuration.colorMarker) {
-      if (
-        that.configuration.position != "start" &&
-        that.configuration.position.split(" ")[1] === "b"
-      ) {
+      if (that.configuration.position != "start" && that.configuration.position.split(" ")[1] === "b") {
         let ele = document.getElementById(id("colorMarkerId"));
         if (ele) {
           ele.classList.add("cm-black");
@@ -1258,11 +943,7 @@ let pgnBase = function (
     return that.board;
   }
 
-  function setBoardClass<E extends Record<string, string>>(
-    val: E[keyof E],
-    type: E,
-    modifier?: (s: string) => string,
-  ) {
+  function setBoardClass<E extends Record<string, string>>(val: E[keyof E], type: E, modifier?: (s: string) => string) {
     // By default, the modifier is the identity function
     if (modifier === undefined) {
       modifier = (s: string) => s;
@@ -1273,9 +954,7 @@ let pgnBase = function (
     bel.classList.add(modifier(val.toString()));
 
     // Extract the string values from the enum except the selected
-    const values = Object.values(type).filter(
-      (value) => typeof value === "string" && value !== val.toString(),
-    ) as string[];
+    const values = Object.values(type).filter((value) => typeof value === "string" && value !== val.toString()) as string[];
 
     // Loop over each enum value and remove the class if it exists
     for (const v of values) {
@@ -1293,34 +972,17 @@ let pgnBase = function (
 
   function regenerateMoveSpan(_moveSpan: HTMLElement, move: PgnReaderMove) {
     // Creating the move SAN including everything (may be recreated later)
-    let figclass = that.configuration.figurine
-      ? "figurine " + that.configuration.figurine
-      : null;
+    let figclass = that.configuration.figurine ? "figurine " + that.configuration.figurine : null;
     // TODO: The 'san' tag is not valid typed, but how to do that for custom elements
-    const _linkEle = createEle(
-      "san" as keyof HTMLElementTagNameMap,
-      null,
-      null,
-      null,
-      _moveSpan,
-    );
+    const _linkEle = createEle("san" as keyof HTMLElementTagNameMap, null, null, null, _moveSpan);
     let _san = "";
     if (hasMode(PgnViewerMode.Puzzle)) {
       _san = that.mypgn.getMove(move.index).notation.notation;
     } else if (move.notation && move.notation.fig) {
       const locale = that.configuration.locale;
       const figurine = that.configuration.figurine;
-      const fig =
-        !locale || figurine
-          ? move.notation.fig
-          : t("chess:" + move.notation.fig);
-      const figele = createEle(
-        "fig" as keyof HTMLElementTagNameMap,
-        null,
-        figclass,
-        null,
-        _linkEle,
-      );
+      const fig = !locale || figurine ? move.notation.fig : t("chess:" + move.notation.fig);
+      const figele = createEle("fig" as keyof HTMLElementTagNameMap, null, figclass, null, _linkEle);
       figele.appendChild(document.createTextNode(fig));
       _san = that.mypgn.san(move).substring(1);
     } else {
@@ -1338,13 +1000,7 @@ let pgnBase = function (
         } else if (nagInt > 135 && nagInt < 140) {
           nagClass = "time";
         }
-        let nagele = createEle(
-          "nag" as keyof HTMLElementTagNameMap,
-          null,
-          nagClass,
-          null,
-          _linkEle,
-        );
+        let nagele = createEle("nag" as keyof HTMLElementTagNameMap, null, nagClass, null, _linkEle);
         nagele.setAttribute("data-value", nag);
         nagele.setAttribute("title", t("nag:" + nag));
         let nagtext = nagToSymbol([nag]);
@@ -1367,22 +1023,13 @@ let pgnBase = function (
    * @param varStack if empty no current variation (main line), else contains the divs of the variations played currently
    * @return {*} the current counter which may the next prev counter
    */
-  function generateMove(
-    currentCounter: number,
-    game: any,
-    move: PgnReaderMove,
-    prevCounter: number,
-    movesDiv: HTMLElement,
-    varStack: HTMLElement[],
-  ) {
+  function generateMove(currentCounter: number, game: any, move: PgnReaderMove, prevCounter: number, movesDiv: HTMLElement, varStack: HTMLElement[]) {
     function appendVariation(div: HTMLElement, move: PgnReaderMove) {
       // if (! movesDiv.lastChild.classList.contains("variations")) {
       //     movesDiv.appendChild(createEle('div', null, "variations", null, movesDiv))
       // }
       function findLastVariantOfMove(move: PgnReaderMove) {
-        let _ind = move.prev
-          ? that.mypgn.getMove(move.prev).next
-          : that.mypgn.getFirstMove().index;
+        let _ind = move.prev ? that.mypgn.getMove(move.prev).next : that.mypgn.getFirstMove().index;
         let _ele = moveSpan(_ind);
         let _next = _ele.nextSibling;
         // @ts-ignore
@@ -1403,12 +1050,7 @@ let pgnBase = function (
       insertAfter(div, preEle);
     }
 
-    function localBoard(
-      id: string,
-      position: string,
-      configuration: PgnViewerConfiguration,
-      blackPerspective: boolean,
-    ) {
+    function localBoard(id: string, position: string, configuration: PgnViewerConfiguration, blackPerspective: boolean) {
       // Create a deep copy of the configuration
       let newConfig = JSON.parse(JSON.stringify(configuration));
 
@@ -1429,29 +1071,13 @@ let pgnBase = function (
       base.generateHTML();
       base.generateBoard();
     }
-    function createMoveNumberSpan(
-      currentMove: PgnReaderMove,
-      spanOrDiv: HTMLElement,
-      isVariation: boolean,
-      additionalClass?: string,
-    ) {
+    function createMoveNumberSpan(currentMove: PgnReaderMove, spanOrDiv: HTMLElement, isVariation: boolean, additionalClass?: string) {
       const mn = currentMove.moveNumber;
       const clazz = additionalClass ? additionalClass : "";
-      const num = createEle(
-        "move-number" as keyof HTMLElementTagNameMap,
-        null,
-        clazz,
-        null,
-        spanOrDiv,
-      );
+      const num = createEle("move-number" as keyof HTMLElementTagNameMap, null, clazz, null, spanOrDiv);
       num.setAttribute("data-value", String(mn));
-      const isList =
-        that.configuration.notationLayout === "list" && !isVariation;
-      num.appendChild(
-        document.createTextNode(
-          "" + mn + (currentMove.turn == "w" || isList ? ". " : "... "),
-        ),
-      );
+      const isList = that.configuration.notationLayout === "list" && !isVariation;
+      num.appendChild(document.createTextNode("" + mn + (currentMove.turn == "w" || isList ? ". " : "... ")));
     }
 
     function isVariant() {
@@ -1477,11 +1103,7 @@ let pgnBase = function (
     if (move.turn == "w") {
       clAttr = clAttr + " white";
     }
-    const _moveSpan = createEle(
-      "move" as keyof HTMLElementTagNameMap,
-      id("movesId") + currentCounter,
-      clAttr,
-    );
+    const _moveSpan = createEle("move" as keyof HTMLElementTagNameMap, id("movesId") + currentCounter, clAttr);
     if (that.mypgn.startVariation(move)) {
       /* if ( (move.turn == 'w') ) {
                 createFiller(movesDiv)
@@ -1494,25 +1116,15 @@ let pgnBase = function (
     if (varStack.length === 0 && move.variationLevel > 0) {
       // Must be a second (or later) move, because start of variation is already managed above.
       // Find the variation div for the previous move (which should be sufficient then)
-      varStack.push(
-        moveSpan(that.mypgn.getMove(move.prev).index).parentNode as HTMLElement,
-      );
+      varStack.push(moveSpan(that.mypgn.getMove(move.prev).index).parentNode as HTMLElement);
     }
     appendCommentSpan(currentFather(), move.commentMove, "moveComment");
 
     // When to add a move number
     // Whites move, or at the begin of the main line
-    if (
-      move.turn == "w" ||
-      that.mypgn.startMainLine(move) ||
-      (move.turn === "b" && typeof move.prev !== "number")
-    ) {
+    if (move.turn == "w" || that.mypgn.startMainLine(move) || (move.turn === "b" && typeof move.prev !== "number")) {
       createMoveNumberSpan(move, currentFather(), isVariant());
-      if (
-        that.mypgn.startMainLine(move) &&
-        move.turn === "b" &&
-        that.configuration.notationLayout != "inline"
-      ) {
+      if (that.mypgn.startMainLine(move) && move.turn === "b" && that.configuration.notationLayout != "inline") {
         createFiller(currentFather());
       }
       // At the beginning of a variation
@@ -1525,9 +1137,7 @@ let pgnBase = function (
         createFiller(currentFather());
       }
       // After a comment
-    } else if (
-      currentFather().lastElementChild?.classList.toString().match("comment")
-    ) {
+    } else if (currentFather().lastElementChild?.classList.toString().match("comment")) {
       createMoveNumberSpan(move, currentFather(), isVariant());
       if (move.turn == "b" && !move.variationLevel) {
         createFiller(currentFather());
@@ -1535,11 +1145,7 @@ let pgnBase = function (
     }
     regenerateMoveSpan(_moveSpan, move);
 
-    if (
-      that.configuration.timeAnnotation &&
-      move.commentDiag &&
-      move.commentDiag.clk
-    ) {
+    if (that.configuration.timeAnnotation && move.commentDiag && move.commentDiag.clk) {
       let cl_time = move.commentDiag.clk;
       let cl_class = that.configuration.timeAnnotation?.class || "timeNormal";
       let clock_span = generateCommentSpan(cl_time, cl_class);
@@ -1550,34 +1156,20 @@ let pgnBase = function (
     }
     currentFather().appendChild(_moveSpan);
 
-    appendCommentSpan(
-      currentFather(),
-      move.commentAfter,
-      "afterComment",
-      move.turn == "w" && move.variationLevel == 0,
-    );
+    appendCommentSpan(currentFather(), move.commentAfter, "afterComment", move.turn == "w" && move.variationLevel == 0);
 
     if (that.mypgn.endVariation(move)) {
       varStack.pop();
     }
-    addEventListener(
-      moveSpan(currentCounter),
-      "click",
-      function (event: Event) {
-        makeMove(that.currentMove, currentCounter, move.fen);
-        event.stopPropagation();
-      },
-    );
+    addEventListener(moveSpan(currentCounter), "click", function (event: Event) {
+      makeMove(that.currentMove, currentCounter, move.fen);
+      event.stopPropagation();
+    });
     if (hasDiagramNag(move)) {
       const diaID = boardId + "dia" + currentCounter;
       const diaDiv = createEle("div", diaID);
       _moveSpan.appendChild(diaDiv);
-      localBoard(
-        diaID,
-        move.fen,
-        that.userConfiguration,
-        move.nag.indexOf("$221") > -1,
-      );
+      localBoard(diaID, move.fen, that.userConfiguration, move.nag.indexOf("$221") > -1);
     }
     //console.log(`FEN size: ${move.fen.length}`)
     return currentCounter;
@@ -1592,12 +1184,7 @@ let pgnBase = function (
       return document.querySelector("#" + id("movesId") + i + "> san");
     }
 
-    removeClass(
-      document.querySelector(
-        "#" + id("movesId") + " san.yellow",
-      ) as HTMLElement,
-      "yellow",
-    );
+    removeClass(document.querySelector("#" + id("movesId") + " san.yellow") as HTMLElement, "yellow");
     addClass(moveASpan(next), "yellow");
   }
 
@@ -1610,26 +1197,19 @@ let pgnBase = function (
       let pgn = that.mypgn.writePgn();
       return typeof pgn === "undefined" || pgn === null || pgn.length === 0;
     }
-    let elements: NodeListOf<HTMLElement> =
-      divBoard.querySelectorAll(".pgnvbutton.gray");
+    let elements: NodeListOf<HTMLElement> = divBoard.querySelectorAll(".pgnvbutton.gray");
     elements.forEach(function (ele) {
       removeClass(ele, "gray");
     });
     const move = that.mypgn.getMove(next);
     if (next === null) {
       ["prev", "first"].forEach(function (name) {
-        addClass(
-          divBoard.querySelector("div.buttons > ." + name) as HTMLElement,
-          "gray",
-        );
+        addClass(divBoard.querySelector("div.buttons > ." + name) as HTMLElement, "gray");
       });
     }
     if ((next !== null && typeof move.next != "number") || pgnEmpty()) {
       ["next", "play", "last"].forEach(function (name) {
-        addClass(
-          divBoard.querySelector("div.buttons > ." + name) as HTMLElement,
-          "gray",
-        );
+        addClass(divBoard.querySelector("div.buttons > ." + name) as HTMLElement, "gray");
       });
     }
     // Update the drop-down for NAGs
@@ -1638,20 +1218,12 @@ let pgnBase = function (
         return;
       }
       let nagMenu = document.querySelector("#nagMenu" + id("buttonsId"));
-      divBoard
-        .querySelectorAll("#nagMenu" + id("buttonsId") + " a.active")
-        .forEach(function (act) {
-          act.classList.toggle("active");
-        });
+      divBoard.querySelectorAll("#nagMenu" + id("buttonsId") + " a.active").forEach(function (act) {
+        act.classList.toggle("active");
+      });
       let nags: string[] = move.nag || [];
       nags.forEach(function (eachNag) {
-        let ele = divBoard.querySelector(
-          "#nagMenu" +
-            id("buttonsId") +
-            ' [data-value="' +
-            eachNag.substring(1) +
-            '"]',
-        ).parentNode as HTMLElement;
+        let ele = divBoard.querySelector("#nagMenu" + id("buttonsId") + ' [data-value="' + eachNag.substring(1) + '"]').parentNode as HTMLElement;
         ele.classList.toggle("active");
       });
     } catch (err) {}
@@ -1702,30 +1274,20 @@ let pgnBase = function (
       let myMove = that.mypgn.getMove(moveNumber);
       if (!~myMove) return;
       if (myMove.commentAfter) {
-        let ac = document.querySelector(
-          "#" + boardId + " input.afterComment",
-        ) as HTMLInputElement;
+        let ac = document.querySelector("#" + boardId + " input.afterComment") as HTMLInputElement;
         ac.checked = true;
-        let tac = document.querySelector(
-          "#" + boardId + " textarea.comment",
-        ) as HTMLTextAreaElement;
+        let tac = document.querySelector("#" + boardId + " textarea.comment") as HTMLTextAreaElement;
         tac.value = myMove.commentAfter;
       } else if (myMove.commentMove) {
-        let imc = document.querySelector(
-          "#" + boardId + " input.moveComment",
-        ) as HTMLInputElement;
+        let imc = document.querySelector("#" + boardId + " input.moveComment") as HTMLInputElement;
         imc.checked = true;
-        let tac = document.querySelector(
-          "#" + boardId + " textarea.comment",
-        ) as HTMLTextAreaElement;
+        let tac = document.querySelector("#" + boardId + " textarea.comment") as HTMLTextAreaElement;
         if (tac) {
           tac.value = myMove.commentMove;
         }
       } else {
         try {
-          let tac = document.querySelector(
-            "#" + boardId + " textarea.comment",
-          ) as HTMLTextAreaElement;
+          let tac = document.querySelector("#" + boardId + " textarea.comment") as HTMLTextAreaElement;
           if (tac) {
             tac.value = "";
           }
@@ -1755,10 +1317,7 @@ let pgnBase = function (
     let myFen = myMove ? myMove.fen : fen;
     if (!myFen) {
       // fen not given, take start position
-      myFen =
-        that.mypgn.configuration.position == "start"
-          ? "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-          : that.mypgn.configuration.position;
+      myFen = that.mypgn.configuration.position == "start" ? "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1" : that.mypgn.configuration.position;
     }
     if (myMove) {
       that.board.set({ fen: myFen, lastMove: [myMove.from, myMove.to] });
@@ -1807,9 +1366,7 @@ let pgnBase = function (
         check: chess.in_check(),
       });
     }
-    let fenView: HTMLTextAreaElement = document.getElementById(
-      id("fenId"),
-    ) as HTMLTextAreaElement;
+    let fenView: HTMLTextAreaElement = document.getElementById(id("fenId")) as HTMLTextAreaElement;
     if (fenView) {
       fenView.value = fen;
     }
@@ -1833,10 +1390,7 @@ let pgnBase = function (
   function regenerateMoves(myMoves: PgnReaderMove[]) {
     /* #338 Handle the game comment, if one is there.
      */
-    function handleGameComment(
-      movesDiv: HTMLElement,
-      gameComment: GameComment,
-    ) {
+    function handleGameComment(movesDiv: HTMLElement, gameComment: GameComment) {
       if (gameComment) {
         appendCommentSpan(movesDiv, gameComment.comment, "moveComment");
       }
@@ -1866,13 +1420,7 @@ let pgnBase = function (
       // find the result from the header
       let endGame = that.mypgn.getEndGame();
       // Insert it as new span
-      let span = createEle(
-        "span",
-        id("movesId") + "Result",
-        "move result",
-        theme,
-        document.getElementById(id("movesId")),
-      );
+      let span = createEle("span", id("movesId") + "Result", "move result", theme, document.getElementById(id("movesId")));
       span.innerHTML = endGame ? endGame : "*";
     }
   }
@@ -1889,15 +1437,17 @@ let pgnBase = function (
         return "Should print somehow the moves of the game"; //TODO: What is the idea here? No clue ...
       }
       let _t = game.tags;
-      let _date = _t.Date ? _t.Date.value : "?";
-      return `[${_t.Event}]: ${_t.White} - ${_t.Black} (${_date}) ${_t.Result}`;
+      let _date = _t.Date ? _t.Date.value : "??.??.????";
+      let _event = _t.Event ? _t.Event : "";
+      let _result = _t.Result ? _t.Result : "*";
+      let _white = _t.White ? _t.White : "N.N.";
+      let _black = _t.Black ? _t.Black : "N.N.";
+      return `[${_event}]: ${_white} - ${_black} (${_date}) ${_result}`;
     }
     /** Fill the drop down with loaded game. */
     function fillGamesDropDown() {
       let _games = that.mypgn.getGames();
-      let _select = document.getElementById(
-        boardId + "Games",
-      ) as HTMLSelectElement;
+      let _select = document.getElementById(boardId + "Games") as HTMLSelectElement;
       for (let i = 0; i < _games.length; i++) {
         let _el = document.createElement("option");
         let _game = _games[i];
@@ -1947,26 +1497,15 @@ let pgnBase = function (
      */
     function generateHeaders() {
       function orientation() {
-        return that.board
-          ? that.board.state.orientation
-          : that.configuration.orientation;
+        return that.board ? that.board.state.orientation : that.configuration.orientation;
       }
       function getTag(tagObject: Tags, key: Partial<TagKeys>): string {
         return tagObject[key];
       }
       let tags = that.mypgn.getTags();
-      let whd =
-        orientation() === "white"
-          ? document.getElementById(id("bottomHeaderId"))
-          : document.getElementById(id("topHeaderId"));
-      let bhd =
-        orientation() === "white"
-          ? document.getElementById(id("topHeaderId"))
-          : document.getElementById(id("bottomHeaderId"));
-      if (
-        that.configuration.headers == false ||
-        Object.keys(tags).length === 0
-      ) {
+      let whd = orientation() === "white" ? document.getElementById(id("bottomHeaderId")) : document.getElementById(id("topHeaderId"));
+      let bhd = orientation() === "white" ? document.getElementById(id("topHeaderId")) : document.getElementById(id("bottomHeaderId"));
+      if (that.configuration.headers == false || Object.keys(tags).length === 0) {
         whd?.parentNode.removeChild(whd);
         bhd?.parentNode.removeChild(bhd);
         return;
@@ -2002,17 +1541,13 @@ let pgnBase = function (
     function bindFunctions() {
       function switchHeaderValues() {
         if (!document.getElementById(id("bottomHeaderId"))) return;
-        let bottomInner = document.getElementById(
-          id("bottomHeaderId"),
-        ).innerText;
+        let bottomInner = document.getElementById(id("bottomHeaderId")).innerText;
         let topInner = document.getElementById(id("topHeaderId")).innerText;
         document.getElementById(id("bottomHeaderId")).innerText = topInner;
         document.getElementById(id("topHeaderId")).innerText = bottomInner;
       }
       function bind_key(key: string, to_call: CallableFunction) {
-        const form = document.querySelector(
-          "#" + boardId + ",#" + boardId + "Moves",
-        ) as HTMLElement;
+        const form = document.querySelector("#" + boardId + ",#" + boardId + "Moves") as HTMLElement;
         that.mousetrap.bind(
           key,
           function (evt) {
@@ -2025,10 +1560,7 @@ let pgnBase = function (
       }
       function nextMove() {
         let fen = null;
-        if (
-          typeof that.currentMove == "undefined" ||
-          that.currentMove === null
-        ) {
+        if (typeof that.currentMove == "undefined" || that.currentMove === null) {
           if (that.mypgn.getMoves().length === 0) return false; // no next move
           fen = that.mypgn.getMove(0).fen;
           makeMove(null, 0, fen);
@@ -2042,10 +1574,7 @@ let pgnBase = function (
       }
       function prevMove() {
         let fen = null;
-        if (
-          typeof that.currentMove == "undefined" ||
-          that.currentMove == null
-        ) {
+        if (typeof that.currentMove == "undefined" || that.currentMove == null) {
           /*fen = that.mypgn.getMove(0).fen
                      makeMove(null, 0, fen)*/
         } else {
@@ -2068,9 +1597,7 @@ let pgnBase = function (
       addEventListener(id("buttonsId") + "flipper", "click", function () {
         // TODO The following is a hack to keep the fontSize of the coords.  There is no option in Chessground
         //  to set the font size of coords. See generateBoard for the original setting of font size
-        let coordsComp = document
-          .querySelector("#" + boardId)
-          .querySelector("coords") as HTMLElement;
+        let coordsComp = document.querySelector("#" + boardId).querySelector("coords") as HTMLElement;
         let fs: string;
         if (coordsComp) {
           fs = coordsComp.style.fontSize;
@@ -2083,11 +1610,7 @@ let pgnBase = function (
             .forEach((element) => {
               (element as HTMLElement).style.fontSize = fs;
             });
-          adjustFontForCoords(
-            parseInt(fs),
-            that.configuration,
-            document.querySelector("#" + boardId),
-          );
+          adjustFontForCoords(parseInt(fs), that.configuration, document.querySelector("#" + boardId));
         }
         switchHeaderValues();
       });
@@ -2103,10 +1626,7 @@ let pgnBase = function (
 
       addEventListener(id("buttonsId") + "makeMove", "click", function () {
         let next = -1;
-        if (
-          typeof that.currentMove == "undefined" ||
-          that.currentMove === null
-        ) {
+        if (typeof that.currentMove == "undefined" || that.currentMove === null) {
           if (that.mypgn.getMoves().length === 0) return; // no next move
           next = 0;
         } else {
@@ -2119,10 +1639,7 @@ let pgnBase = function (
 
       addEventListener(id("buttonsId") + "showSolution", "click", function () {
         function playMovesToEnd() {
-          if (
-            typeof that.currentMove == "undefined" ||
-            that.currentMove === null
-          ) {
+          if (typeof that.currentMove == "undefined" || that.currentMove === null) {
             if (that.mypgn.getMoves().length === 0) {
               movesLeft = false;
               return movesLeft;
@@ -2158,15 +1675,10 @@ let pgnBase = function (
 
       addEventListener(id("buttonsId") + "getHint", "click", function () {
         const currentFen: string = that.board.getFen();
-        if (
-          that.configuration.hints != undefined &&
-          that.configuration.hints[currentFen] != undefined
-        ) {
+        if (that.configuration.hints != undefined && that.configuration.hints[currentFen] != undefined) {
           if (that.configuration.hints[currentFen].length > hintsShown) {
             showHint(that.configuration.hints[currentFen][hintsShown]);
-          } else if (
-            that.configuration.hints[currentFen].length == hintsShown
-          ) {
+          } else if (that.configuration.hints[currentFen].length == hintsShown) {
             showHint("No more hints");
           }
         } else if (hintsShown == 0) {
@@ -2187,17 +1699,9 @@ let pgnBase = function (
       function togglePgn() {
         const pgnButton = document.getElementById(id("buttonsId") + "pgn");
         const pgnText = document.getElementById(boardId + " .textpgn");
-        document
-          .getElementById(id("buttonsId") + "pgn")
-          .classList.toggle("selected");
-        const textPgn = document.querySelector(
-          "#" + boardId + " .textpgn",
-        ) as HTMLElement;
-        if (
-          document
-            .getElementById(id("buttonsId") + "pgn")
-            .classList.contains("selected")
-        ) {
+        document.getElementById(id("buttonsId") + "pgn").classList.toggle("selected");
+        const textPgn = document.querySelector("#" + boardId + " .textpgn") as HTMLElement;
+        if (document.getElementById(id("buttonsId") + "pgn").classList.contains("selected")) {
           const str = computePgn();
           showPgn(str);
           textPgn.style.display = "block"; //slideDown(700, "linear")
@@ -2206,19 +1710,11 @@ let pgnBase = function (
         }
       }
       function toggleNagMenu() {
-        let nagMenu = document
-          .getElementById(id("buttonsId") + "nags")
-          .classList.toggle("selected");
-        if (
-          document
-            .getElementById(id("buttonsId") + "nags")
-            .classList.contains("selected")
-        ) {
-          document.getElementById("nagMenu" + id("buttonsId")).style.display =
-            "flex";
+        let nagMenu = document.getElementById(id("buttonsId") + "nags").classList.toggle("selected");
+        if (document.getElementById(id("buttonsId") + "nags").classList.contains("selected")) {
+          document.getElementById("nagMenu" + id("buttonsId")).style.display = "flex";
         } else {
-          document.getElementById("nagMenu" + id("buttonsId")).style.display =
-            "none";
+          document.getElementById("nagMenu" + id("buttonsId")).style.display = "none";
         }
       }
       if (hasMode(PgnViewerMode.Edit)) {
@@ -2249,41 +1745,28 @@ let pgnBase = function (
           while (myNode.firstChild) {
             myNode.removeChild(myNode.firstChild);
           }
-          regenerateMoves(
-            that.mypgn.getOrderedMoves(that.mypgn.getFirstMove(), []),
-          );
+          regenerateMoves(that.mypgn.getOrderedMoves(that.mypgn.getFirstMove(), []));
           let fen = that.mypgn.getMove(curr).fen;
           makeMove(null, that.currentMove, fen);
         });
-        let textPgn = document.querySelector(
-          "#" + boardId + " .textpgn",
-        ) as HTMLElement;
+        let textPgn = document.querySelector("#" + boardId + " .textpgn") as HTMLElement;
         textPgn.style.display = "none";
-        let tac = document.querySelector(
-          "#comment" + id("buttonsId") + " textarea.comment",
-        ) as HTMLTextAreaElement;
+        let tac = document.querySelector("#comment" + id("buttonsId") + " textarea.comment") as HTMLTextAreaElement;
         tac.onchange = function () {
           function commentText() {
             return " " + tac.value + " ";
           }
 
           let text = commentText();
-          let checkedElement = document.querySelector(
-            "#" + "comment" + id("buttonsId") + " :checked",
-          );
-          let checked = checkedElement
-            ? (checkedElement as HTMLTextAreaElement).value
-            : "after";
+          let checkedElement = document.querySelector("#" + "comment" + id("buttonsId") + " :checked");
+          let checked = checkedElement ? (checkedElement as HTMLTextAreaElement).value : "after";
           let currentEle = moveSpan(that.currentMove);
           let nextEle = currentEle.nextElementSibling;
           if (!nextEle) {
             const span = createEle("span", null, "comment " + checked);
             span.appendChild(document.createTextNode(" " + text + " "));
             currentEle.parentNode.appendChild(span);
-          } else if (
-            nextEle.classList.length > 0 &&
-            nextEle.classList[0] == "comment"
-          ) {
+          } else if (nextEle.classList.length > 0 && nextEle.classList[0] == "comment") {
             nextEle.textContent = text;
           } else {
             const span = createEle("span", null, "comment " + checked);
@@ -2298,9 +1781,7 @@ let pgnBase = function (
         };
         const rad = ["moveComment", "afterComment"];
         for (let i = 0; i < rad.length; i++) {
-          let cb = document.querySelector(
-            "#" + "comment" + id("buttonsId") + " ." + rad[i],
-          ) as HTMLInputElement;
+          let cb = document.querySelector("#" + "comment" + id("buttonsId") + " ." + rad[i]) as HTMLInputElement;
           cb.onclick = function () {
             const checked = (this as HTMLInputElement).value;
             let text;
@@ -2309,9 +1790,7 @@ let pgnBase = function (
             } else if (checked === "move") {
               text = that.mypgn.getMove(that.currentMove).commentMove;
             }
-            let btac = document.querySelector(
-              "#" + boardId + " textarea.comment",
-            ) as HTMLTextAreaElement;
+            let btac = document.querySelector("#" + boardId + " textarea.comment") as HTMLTextAreaElement;
             btac.value = text;
           };
         }
@@ -2324,19 +1803,14 @@ let pgnBase = function (
           timer.start();
         }
         const playButton = document.getElementById(id("buttonsId") + "play");
-        let clString = (playButton.childNodes[0] as HTMLElement).getAttribute(
-          "class",
-        );
+        let clString = (playButton.childNodes[0] as HTMLElement).getAttribute("class");
         if (clString.indexOf("play") < 0) {
           // has the stop button
           clString = clString.replace(/pause/g, "play");
         } else {
           clString = clString.replace(/play/g, "pause");
         }
-        (playButton.childNodes[0] as HTMLElement).setAttribute(
-          "class",
-          clString,
-        );
+        (playButton.childNodes[0] as HTMLElement).setAttribute("class", clString);
       }
 
       bind_key("left", prevMove);
@@ -2374,10 +1848,7 @@ let pgnBase = function (
   function resizeLayout() {
     const divBoard = document.getElementById(boardId);
     function hasHeaders() {
-      return (
-        that.configuration.headers &&
-        Object.keys(that.mypgn.getTags()).length > 0
-      );
+      return that.configuration.headers && Object.keys(that.mypgn.getTags()).length > 0;
     }
 
     function computeBoardSize() {
@@ -2393,10 +1864,7 @@ let pgnBase = function (
         return `${Math.round(parseInt(_boardSize) / 8) * 8}px`;
       }
 
-      if (
-        that.configuration.layout === "top" ||
-        that.configuration.layout === "bottom"
-      ) {
+      if (that.configuration.layout === "top" || that.configuration.layout === "bottom") {
         if (_boardSize) {
           let rounded = getRoundedBoardSize(_boardSize);
           setBoardSizeAndWidth(rounded, rounded);
@@ -2443,15 +1911,12 @@ let pgnBase = function (
     // View and edit mode
     if (!hasMode(PgnViewerMode.Puzzle)) {
       let _buttonFontSize = Math.max(10, parseInt(_boardHeight) / 24);
-      let _buttonsHeight = document.getElementById(
-        id("buttonsId"),
-      ).offsetHeight;
+      let _buttonsHeight = document.getElementById(id("buttonsId")).offsetHeight;
       if (_buttonsHeight < 20) {
         _buttonsHeight += _buttonFontSize;
       }
       if (document.getElementById(id("buttonsId"))) {
-        document.getElementById(id("buttonsId")).style.fontSize =
-          `${_buttonFontSize}px`;
+        document.getElementById(id("buttonsId")).style.fontSize = `${_buttonFontSize}px`;
       }
       if (that.configuration.showFen) {
         let _fenHeight = document.getElementById(id("fenId")).offsetHeight;
@@ -2462,10 +1927,7 @@ let pgnBase = function (
       }
 
       let _gamesHeight = that.configuration.manyGames ? "40px" : "0";
-      if (
-        that.configuration.layout === "left" ||
-        that.configuration.layout === "right"
-      ) {
+      if (that.configuration.layout === "left" || that.configuration.layout === "right") {
         divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(auto, ${_boardHeight}) ${_buttonsHeight}px`;
         let _movesWidth;
         if (that.configuration.movesWidth) {
@@ -2485,10 +1947,7 @@ let pgnBase = function (
         } else {
           let _movesCount = that.mypgn.getMoves().length;
           let _maxMovesHeight = (parseInt(_boardHeight) / 5) * 3;
-          _movesHeight = Math.min(
-            ((_movesCount + 20) / 7) * 19,
-            _maxMovesHeight,
-          );
+          _movesHeight = Math.min(((_movesCount + 20) / 7) * 19, _maxMovesHeight);
         }
 
         if (that.configuration.layout === "top") {
@@ -2498,10 +1957,7 @@ let pgnBase = function (
         }
         divBoard.style.gridTemplateColumns = _boardWidth;
       }
-      recomputeCoordsFonts(
-        that.boardConfig,
-        document.getElementById(id("innerBoardId")),
-      );
+      recomputeCoordsFonts(that.boardConfig, document.getElementById(id("innerBoardId")));
     } else {
       //puzzle mode
       let _gamesHeight = that.configuration.manyGames ? "40px" : "0";
@@ -2521,10 +1977,7 @@ let pgnBase = function (
       }
       divBoard.style.gridTemplateColumns = _boardWidth;
 
-      recomputeCoordsFonts(
-        that.boardConfig,
-        document.getElementById(id("innerBoardId")),
-      );
+      recomputeCoordsFonts(that.boardConfig, document.getElementById(id("innerBoardId")));
     }
   }
 

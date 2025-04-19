@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8" />
+        <title>Ugly display of games in dropdown when values are missing</title>
+        <script src="/lib/dist.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <p><a href="https://github.com/mliebelt/pgn-viewer/issues/518">Ticket 518 at GitHub</a>.</p>
+
+        <div id="boardLeo1" style="width: 320px"></div>
+        <script>
+            var pgnLeo1 = `[Event "World Championship 28th"] [Site "Reykjavik"] [Date "1972.??.??"] [Round "1"] [White "Spassky, Boris V"] [Black "Fischer, Robert James"] [Result "1-0"] [WhiteElo "2660"] [BlackElo "2785"] [ECO "E56"] 1.d4*
+
+e4 e5
+
+[White "Me"] [Black "Magnus"] e4 e5
+
+[White "Magnus"] [Black "Me"] e4 e5
+
+[White "Magnus"] [Black "Me"] e4 e5 [Result "1-0"] e4 1-0`;
+            var boardLeo1 = PGNV.pgnView("boardLeo1", { pgn: pgnLeo1, orientation: "white", theme: "zeit", manyGames: true });
+        </script>
+    </body>
+</html>
