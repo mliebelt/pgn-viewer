@@ -17,6 +17,7 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Fixed
 
+* [#186](https://github.com/mliebelt/pgn-viewer/issues/186) Fixed layout of the board, including layout.
 * [#600](https://github.com/mliebelt/pgn-viewer/issues/600) Add parameter `manyGames` to Configuration Builder.
 
 ## 1.6.10 ??2024-08-24

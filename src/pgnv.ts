@@ -757,7 +757,7 @@ let pgnBase = function (boardId: string, configuration: PgnViewerConfiguration) 
         fontSize = Number.parseInt(boardConfig.coordsFontSize);
       } else {
         // Set the font size related to the board (factor 28), ensure at least 8px font
-        fontSize = Math.max(8, Math.round((parseInt(that.configuration.boardSize.slice(0, -2)) / 28) * boardConfig.coordsFactor));
+        fontSize = Math.max(8, Math.round((parseInt(that.configuration.boardSize) / 28) * boardConfig.coordsFactor));
       }
       // Adjust the ranks right if necessary
       //el.style.fontSize = `${fontSize}px`
@@ -1857,21 +1857,26 @@ let pgnBase = function (boardId: string, configuration: PgnViewerConfiguration) 
         that.configuration.width = width;
         divBoard.style.width = width;
       }
+      function pxSize(size: string) {
+        return `${Math.round(parseInt(size))}px`;
+      }
+
       let _boardSize = that.configuration.boardSize;
       let _width = that.configuration.width || divBoard.style.width;
 
       function getRoundedBoardSize(_boardSize: string) {
-        return `${Math.round(parseInt(_boardSize) / 8) * 8}px`;
+        // return `${Math.round(parseInt(_boardSize) / 8) * 8}px`;
+        return pxSize(_boardSize);
       }
 
       if (that.configuration.layout === "top" || that.configuration.layout === "bottom") {
         if (_boardSize) {
-          let rounded = getRoundedBoardSize(_boardSize);
+          let rounded = getRoundedBoardSize(pxSize(_boardSize));
           setBoardSizeAndWidth(rounded, rounded);
-          return _boardSize;
+          return rounded;
         } else {
           _width = _width || "320px";
-          _width = getRoundedBoardSize(_width);
+          _width = getRoundedBoardSize(pxSize(_width));
           setBoardSizeAndWidth(_width, _width);
           return _width;
         }
@@ -1881,16 +1886,16 @@ let pgnBase = function (boardId: string, configuration: PgnViewerConfiguration) 
         _boardSize = "320px";
       }
       if (_boardSize && _width) {
-        _boardSize = getRoundedBoardSize(_boardSize);
+        _boardSize = getRoundedBoardSize(pxSize(_boardSize));
         setBoardSizeAndWidth(_boardSize, _width);
         return _boardSize;
       } else if (!_boardSize) {
-        _boardSize = getRoundedBoardSize(String((parseInt(_width) / 8) * 5));
+        _boardSize = getRoundedBoardSize(pxSize(_width));
         setBoardSizeAndWidth(_boardSize, _width);
         return _boardSize;
       } else {
-        _width = `${(parseInt(_boardSize) / 5) * 8}px`;
-        setBoardSizeAndWidth(_boardSize, _width);
+        _width = pxSize(_boardSize);
+        setBoardSizeAndWidth(_width, _width);
         return _boardSize;
       }
     }
@@ -1898,7 +1903,7 @@ let pgnBase = function (boardId: string, configuration: PgnViewerConfiguration) 
     // console.log("Start computing layout")
     let _boardHeight = computeBoardSize();
     let _boardWidth = _boardHeight;
-    // console.log("Board size: " + _boardWidth)
+    console.log("Board size: " + _boardWidth);
 
     if (hasMode(PgnViewerMode.Board)) {
       if (document.getElementById(id("colorMarkerId"))) {
@@ -1956,6 +1961,7 @@ let pgnBase = function (boardId: string, configuration: PgnViewerConfiguration) 
           divBoard.style.gridTemplateRows = `${_gamesHeight} auto minmax(0,${_movesHeight}px) minmax(auto,${_boardHeight}) auto`;
         }
         divBoard.style.gridTemplateColumns = _boardWidth;
+        console.log("Board width: ", _boardWidth);
       }
       recomputeCoordsFonts(that.boardConfig, document.getElementById(id("innerBoardId")));
     } else {
