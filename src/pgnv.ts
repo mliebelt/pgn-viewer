@@ -873,17 +873,13 @@ let pgnBase = function (boardId: string, configuration: PgnViewerConfiguration) 
       boardConfig.width = boardConfig.boardSize;
     }
     let currentWidth = parseInt(boardConfig.width);
-    let moduloWidth = currentWidth % 8;
-    let smallerWidth = currentWidth - moduloWidth;
     if (that.configuration.resizable) {
       chessgroundBoardConfig.events = {
         insert(elements) {
-          resizeHandle(that, el, el.firstChild as HTMLElement, smallerWidth, resizeLayout);
+          resizeHandle(that, el, el.firstChild as HTMLElement, currentWidth, resizeLayout);
         },
       };
     }
-    // Ensure that boardWidth is a multiply of 8
-    // boardConfig.width = "" + smallerWidth +"px"
     that.board = Chessground(el, chessgroundBoardConfig);
     // resizeHandle(that, el, el.firstChild, smallerWidth, resizeLayout)
     //console.log("Board width: " + board.width)
@@ -1853,9 +1849,13 @@ let pgnBase = function (boardId: string, configuration: PgnViewerConfiguration) 
 
     function computeBoardSize() {
       function setBoardSizeAndWidth(boardSize: string, width: string) {
-        that.configuration.boardSize = boardSize;
-        that.configuration.width = width;
-        divBoard.style.width = width;
+        if (boardSize) {
+          that.configuration.boardSize = boardSize;
+        }
+        if (width) {
+          that.configuration.width = width;
+          divBoard.style.width = width;
+        }
       }
       function pxSize(size: string) {
         return `${Math.round(parseInt(size))}px`;
@@ -1872,12 +1872,12 @@ let pgnBase = function (boardId: string, configuration: PgnViewerConfiguration) 
       if (that.configuration.layout === "top" || that.configuration.layout === "bottom") {
         if (_boardSize) {
           let rounded = getRoundedBoardSize(pxSize(_boardSize));
-          setBoardSizeAndWidth(rounded, rounded);
+          setBoardSizeAndWidth(rounded, null);
           return rounded;
         } else {
           _width = _width || "320px";
           _width = getRoundedBoardSize(pxSize(_width));
-          setBoardSizeAndWidth(_width, _width);
+          setBoardSizeAndWidth(null, _width);
           return _width;
         }
       }
@@ -1890,12 +1890,12 @@ let pgnBase = function (boardId: string, configuration: PgnViewerConfiguration) 
         setBoardSizeAndWidth(_boardSize, _width);
         return _boardSize;
       } else if (!_boardSize) {
-        _boardSize = getRoundedBoardSize(pxSize(_width));
+        _boardSize = pxSize(String(Math.round((parseInt(_width) * 3) / 5)));
         setBoardSizeAndWidth(_boardSize, _width);
         return _boardSize;
       } else {
-        _width = pxSize(_boardSize);
-        setBoardSizeAndWidth(_width, _width);
+        _width = pxSize(String(Math.round((parseInt(_boardSize) * 5) / 3)));
+        setBoardSizeAndWidth(_boardSize, _width);
         return _boardSize;
       }
     }
@@ -1937,8 +1937,13 @@ let pgnBase = function (boardId: string, configuration: PgnViewerConfiguration) 
         let _movesWidth;
         if (that.configuration.movesWidth) {
           _movesWidth = that.configuration.movesWidth;
-        } else {
+        } else if (that.configuration?.width && that.configuration?.boardSize) {
           _movesWidth = `${parseInt(that.configuration.width) - parseInt(_boardWidth)}px`;
+        } else if (that.configuration?.width) {
+          _movesWidth = `${parseInt(that.configuration.width) * 0.4}px`;
+        } else {
+          // Neither movesWidth nor width is set, but _boardHeight
+          _movesWidth = `${parseInt(_boardHeight) / 2}px`;
         }
         if (that.configuration.layout === "left") {
           divBoard.style.gridTemplateColumns = _boardWidth + " " + _movesWidth;
