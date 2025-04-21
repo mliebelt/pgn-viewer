@@ -1,475 +1,504 @@
-<!DOCTYPE html>
-<!--[if lt IE 7 ]>
+<!doctype html>
+<!--[if lt IE 7]>
 <html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]>
+<!--[if IE 7]>
 <html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]>
+<!--[if IE 8]>
 <html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
-<html lang="en"> <!--<![endif]-->
-<head>
-
-    <!-- Basic Page Needs
+<html lang="en">
+    <!--<![endif]-->
+    <head>
+        <!-- Basic Page Needs
   ================================================== -->
-    <meta charset="utf-8">
-    <title>API of pgn-viewer</title>
-    <meta name="description" content="Shows the API that could be used to include pgn-viewer in your web site.">
-    <meta name="author" content="Markus Liebelt">
+        <meta charset="utf-8" />
+        <title>API of pgn-viewer</title>
+        <meta name="description" content="Shows the API that could be used to include pgn-viewer in your web site." />
+        <meta name="author" content="Markus Liebelt" />
 
-    <!-- Mobile Specific Metas
+        <!-- Mobile Specific Metas
   ================================================== -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-    <!-- CSS
+        <!-- CSS
   ================================================== -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/skeleton.css">
-    <link rel="stylesheet" href="css/layout.css">
+        <link rel="stylesheet" href="css/base.css" />
+        <link rel="stylesheet" href="css/skeleton.css" />
+        <link rel="stylesheet" href="css/layout.css" />
 
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 
-    <!-- Favicons
+        <!-- Favicons
     ================================================== -->
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+        <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+    </head>
+    <body>
+        <a href="https://github.com/mliebelt/pgn-viewer"
+            ><img
+                style="position: absolute; top: 0; right: 0; border: 0"
+                src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67"
+                alt="Fork me on GitHub"
+                data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"
+        /></a>
+        <div class="container">
+            <div class="sixteen columns">
+                <h1 class="remove-bottom" style="margin-top: 40px">pgn-viewer</h1>
+                <h5>Version 1.6.11</h5>
+                <hr />
+            </div>
+        </div>
+        <div class="container">
+            <div class="two columns">
+                <h1>ML</h1>
+            </div>
 
-</head>
-<body>
+            <div id="nav" class="fourteen columns">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="docu.html">API</a></li>
+                    <li><a href="examples.html">Examples</a></li>
+                    <li><a href="https://github.com/mliebelt">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- container -->
+        <div class="container">
+            <div class="sixteen columns">
+                <h3>API</h3>
+                <p>
+                    The following documentation explains in detail how to use the pgn-viewer. It tries to be a reference that can be used to modify and adapt
+                    working examples. For some of the examples, see the <a href="examples.html">examples section</a> and use them as starting template.
+                </p>
+                <p>
+                    The <a href="config/config.html">configuration builder</a> allows to try out the whole API of the configuration at one place, and extract a
+                    resulting configuration from there.
+                </p>
+                <h4>Configuration</h4>
+                <p>
+                    The configuration is used when calling one of the APIs of the pgn-viewer. Depending on the kind of API (see below), the configuration
+                    paramemter may have no effect.
+                </p>
+                <p>
+                    All the configuration can be used to define a global default, that is then used for the page on which it is used. Be aware that this only
+                    works if the global default is loaded before the pgn-viewer library. See the example
+                    <a href="/pgn-viewer/examples/1004.html">Global Defaults</a> how that is done.
+                </p>
+                <table>
+                    <thead class="center">
+                        <tr>
+                            <th>Property / Type</th>
+                            <th>Required</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="js plain">ID</code></td>
+                            <td>yes</td>
+                            <td>-</td>
+                            <td>ID of the container for board, moves, and buttons. Has to be unique on that HTML page.</td>
+                            <td><a href="examples.html">All examples</a></td>
+                        </tr>
+                        <tr>
+                            <td><code class="js plain">mode</code></td>
+                            <td>yes</td>
+                            <td>-</td>
+                            <td>
+                                This will be automatically set by using one of the (currently) 4 provided calls: pgnView, pgnBoard, pgnEdit, pgnPrint. The
+                                corresponding modes are: <kbd>view</kbd>, <kbd>board</kbd>, <kbd>edit</kbd>, <kbd>print</kbd>.
+                                <b>Don't try to set that on your own!!</b>.
+                            </td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td><code class="js plain">pgn</code></td>
+                            <td>no</td>
+                            <td>-</td>
+                            <td>
+                                The moves of the game. Only necessary, if a whole game should be shown. The moves are then shown in a container that may be
+                                additionally styled by the theme selected.
+                            </td>
+                            <td><a href="examples.html#1051">Game Examples</a></td>
+                        </tr>
+                        <tr>
+                            <td><code class="js plain">pgnFile</code></td>
+                            <td>no</td>
+                            <td>-</td>
+                            <td>The moves of the game denoted by an URL. Reads the content depending on the URL.</td>
+                            <td><a href="examples.html#1051">Game Examples</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">position</code>
+                                <p><code class="js string">'start'</code> or FEN string</p>
+                            </td>
+                            <td>no</td>
+                            <td><code class="js string">'start'</code></td>
+                            <td>Defines the position of the board, or where the game starts.</td>
+                            <td><a href="examples.html#1022">Position examples</a></td>
+                        </tr>
+                        <tr>
+                            <td><code class="js plain">theme</code></td>
+                            <td>no</td>
+                            <td>default</td>
+                            <td>
+                                The theme will be added to all classes of divs for the board, the moves, the buttons, ... It tries to reproduce typical designs
+                                used in chess books, online sites, you name it. And you may of course add your own themes. Current themese are: green, zeit,
+                                informator, sportverlag, beyer, falken, blue. The theme can be added to CSS (as class) or as parameter to the configuration:
+                                <kbd>theme: 'beyer'</kbd>.<br />
+                                <b>Warning!</b> Don't use both inline CSS and configuration parameter for setting the theme.
+                            </td>
+                            <td><a href="examples.html#1050">Theme and Style Examples</a>.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">pieceStyle</code>
+                                <p>
+                                    <code class="js string">'wikipedia'</code>, <code class="js string">'alpha'</code>,
+                                    <code class="js string">'uscf'</code> (all from chessboardjs), <code class="js string">'case'</code>,
+                                    <code class="js string">'condal'</code>, <code class="js string">'maya'</code>, <code class="js string">'merida'</code> (my
+                                    favorite), <code class="js string">'leipzig'</code> (all from ChessTempoViewer), and
+                                    <code class="js string">'beyer'</code> (from German chess books).
+                                </p>
+                            </td>
+                            <td>no</td>
+                            <td><code class="js string">'wikipedia'</code></td>
+                            <td>
+                                Defines the piece style to take. These are all PNG files, that are then scaled by the browser. The piece style can be added to
+                                CSS (as class) or as parameter to the configuration: <kbd>pieceStyle: 'merida'</kbd>.<br />
+                                <b>Warning!</b> Don't use both inline CSS and configuration parameter for setting the piece style.
+                            </td>
+                            <td><a href="examples.html#1021">Piece Style Examples</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">layout</code>
+                                <p>Layout of the board and moves. Available are: <code class="js string">left, right, top, bottom</code></p>
+                            </td>
+                            <td>no</td>
+                            <td>top</td>
+                            <td>
+                                Denotes the layout of the board relevant to the moves. top is board over moves, left is board on the left, and moves on the
+                                right ...
+                            </td>
+                            <td><a href="examples.html#1200">Layout Examples (and following)</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">width</code>
+                                <p>Width of the whole div.</p>
+                            </td>
+                            <td>no</td>
+                            <td>-</td>
+                            <td>Denotes the width of the div widget.</td>
+                            <td><a href="examples.html#1027">Width of board</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">boardSize</code>
+                                <p>Size of the board (in CSS terms like '300px')</p>
+                            </td>
+                            <td>no</td>
+                            <td>-</td>
+                            <td>Size of the board that is set on the DIV for the board.</td>
+                            <td><a href="examples.html#1027">Size of boards</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">resizable</code>
+                                <p>Allow to resize the board</p>
+                            </td>
+                            <td>no</td>
+                            <td>true</td>
+                            <td>Add a resize handle, that allows to resize the board after the rendering.</td>
+                            <td><a href="examples.html#1029">Resizable board</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">movesWidth</code>
+                                <p>Width of the moves div.</p>
+                            </td>
+                            <td>no</td>
+                            <td>-</td>
+                            <td>Set the width of the moves div. Is relevant depending on the layout, and the size the whole div takes.</td>
+                            <td><a href="examples.html#1206">Moves width</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">movesHeight</code>
+                                <p>Height of the moves div.</p>
+                            </td>
+                            <td>no</td>
+                            <td>-</td>
+                            <td>Set the height of the moves div. Automatic computed with layout left and right, only relevant for layout top and bottom.</td>
+                            <td>NOT THERE</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">notationLayout</code>
+                                <p>The layout of the notation in the moves section.</p>
+                            </td>
+                            <td>no</td>
+                            <td>inline</td>
+                            <td>Select the layout of the moves section. Available are: inline, list. Default is inline.</td>
+                            <td><a href="examples.html#1105">Notation layout: list</a></td>
+                        </tr>
+                        <tr>
+                            <td><code class="js plain">timerTime</code></td>
+                            <td>no</td>
+                            <td>700 milliseconds</td>
+                            <td>Time in milliseconds, when a game is shown by autoplay.</td>
+                            <td><a href="examples.html#1108">timerTime set</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">orientation</code>
+                                <p>Possible values are <code class="js string">'white'</code> and <code class="js string">'black'</code></p>
+                            </td>
+                            <td>no</td>
+                            <td><code class="js string">'white'</code></td>
+                            <td>
+                                Defines if the board has 'white' at the bottom or 'black'. May be switched at any time, if the buttons are rendered, that
+                                include an orientation-switch button.
+                            </td>
+                            <td><a href="examples.html#1023">Orientation black</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">notation</code>
+                                <p>Possible values are <code class="js string">'short'</code> and <code class="js string">'long'</code></p>
+                            </td>
+                            <td>no</td>
+                            <td><code class="js string">'short'</code></td>
+                            <td>To show moves in short or long notation.</td>
+                            <td><a href="examples.html#1104">Notation short</a> and <a href="examples.html#1106">notation long</a></td>
+                        </tr>
+                        <tr>
+                            <td><code class="js plain">headers</code></td>
+                            <td>no</td>
+                            <td><code class="js string">false</code></td>
+                            <td>To show the tags if available. Default is false.</td>
+                            <td><a href="examples.html#1207">Layout with headers</a></td>
+                        </tr>
+                        <tr>
+                            <td><code class="js plain">showCoords</code></td>
+                            <td>no</td>
+                            <td>true</td>
+                            <td>
+                                Defines if the columns and rows should be show the coordinates a to h (for the columns) and 1 to 8 (for the rows). If shown, it
+                                could be styled by CSS.
+                            </td>
 
-<a href="https://github.com/mliebelt/pgn-viewer"><img style="position: absolute; top: 0; right: 0; border: 0;"
-                                                       src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67"
-                                                       alt="Fork me on GitHub"
-                                                       data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
-<div class="container">
-    <div class="sixteen columns">
-        <h1 class="remove-bottom" style="margin-top: 40px">pgn-viewer</h1>
-        <h5>Version 1.6.10</h5>
-        <hr/>
-    </div>
-</div>
-<div class="container">
-    <div class="two columns">
-        <h1>ML</h1>
-    </div>
+                            <td><a href="examples.html#1024">showCoords: false</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">coordsInner</code>
+                                <p>False, if coordinates of the ranks should be shown outside of the board.</p>
+                            </td>
+                            <td>no</td>
+                            <td>true</td>
+                            <td>Set to false, if coords should be shown on the outside. Default is true.</td>
+                            <td><a href="examples.html#1026">coordsInner: false</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">coordsFactor</code>
+                                <p>Factor by which the coords font size should be multiplied.</p>
+                            </td>
+                            <td>no</td>
+                            <td>1.0</td>
+                            <td>Factor by which the coords font size should be multiplied. Default is 1.0.</td>
+                            <td><a href="examples.html#1025">CoordsFactor</a> second example</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">coordsFontSize</code>
+                                <p>The font size for the coordinates (in pixels).</p>
+                            </td>
+                            <td>no</td>
+                            <td>-</td>
+                            <td>The font size to set for coordinates. Overwrites the defaults, and <code class="js plain">coordsFactor</code>.</td>
+                            <td><a href="examples.html#1025">CoordsFontSize</a> third example</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">showFen</code>
+                                <p>If fen should be displayed.</p>
+                            </td>
+                            <td>no</td>
+                            <td>true in edit mode, else false</td>
+                            <td>If fen text widget should be shown. Writable in edit mode, else readable.</td>
+                            <td><a href="examples.html#1109">ShowFen: true</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">colorMarker</code>
+                                <p>Show a mark for the player that has the next move.</p>
+                            </td>
+                            <td>no</td>
+                            <td>-</td>
+                            <td>
+                                Color marker who has the next move. Available are: anything (will be square), circle, additional size: small, big (default is
+                                medium).
+                            </td>
+                            <td><a href="examples.html#1028">3 colorMarker</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">locale</code>
+                                <p>Currently supported are <code class="js string">cs, da, de, en, es, et, fi, fr, hu, is, it, nb, nl, pl, pt, ro, sv</code></p>
+                            </td>
+                            <td>no</td>
+                            <td><code class="js string">'en'</code></td>
+                            <td>Locale used for rendering figure symbols, NAG notation, ...</td>
+                            <td><a href="examples.html#1107">Locale Examples</a> en (default), de and fr</td>
+                        </tr>
 
-    <div id="nav" class="fourteen columns">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="docu.html">API</a></li>
-            <li><a href="examples.html">Examples</a></li>
-            <li><a href="https://github.com/mliebelt">Contact</a></li>
-        </ul>
-    </div>
-</div><!-- container -->
-<div class="container">
-<div class="sixteen columns">
-    <h3>API</h3>
-    <p>The following documentation explains in detail how to use the pgn-viewer.
-        It tries to be a reference that can be used to modify and adapt working
-        examples. For some of the examples, see the <a href="examples.html">examples section</a>
-        and use them as starting template.</p>
-    <p>The <a href="config/config.html">configuration builder</a> allows to try out the whole
-        API of the configuration at one place, and extract a resulting configuration from there.</p>
-    <h4>Configuration</h4>
-    <p>The configuration is used when calling one of the APIs of the
-        pgn-viewer. Depending on the kind of API (see below), the configuration
-        paramemter may have no effect.</p>
-    <p>All the configuration can be used to define a global default, that is then used for the  page
-    on which it is used. Be aware that this only works if the global default is loaded before the pgn-viewer
-    library. See the example <a href="/pgn-viewer/examples/1004.html">Global Defaults</a> how that is done.</p>
-    <table>
-        <thead class="center">
-        <tr>
-            <th>Property / Type</th>
-            <th>Required</th>
-            <th>Default</th>
-            <th>Description</th>
-            <th>Example</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td><code class="js plain">ID</code></td>
-            <td>yes</td>
-            <td>-</td>
-            <td>ID of the container for board, moves, and buttons. Has to be unique on that HTML page.</td>
-            <td><a href="examples.html">All examples</a> </td>
-        </tr>
-        <tr>
-            <td><code class="js plain">mode</code></td>
-            <td>yes</td>
-            <td>-</td>
-            <td>This will be automatically set by using one of the (currently) 4 provided
-                calls: pgnView, pgnBoard, pgnEdit, pgnPrint. The corresponding modes are:
-                <kbd>view</kbd>, <kbd>board</kbd>, <kbd>edit</kbd>, <kbd>print</kbd>. <b>Don't try to set that on your own!!</b>.
-            </td>
-            <td>-</td>
-        </tr>
-        <tr>
-            <td><code class="js plain">pgn</code></td>
-            <td>no</td>
-            <td>-</td>
-            <td>The moves of the game. Only necessary, if a whole game
-                should be shown. The moves are then shown in a container
-                that may be additionally styled by the theme selected.
-            </td>
-            <td><a href="examples.html#1051">Game Examples</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">pgnFile</code></td>
-            <td>no</td>
-            <td>-</td>
-            <td>The moves of the game denoted by an URL. Reads the content depending on the URL.</td>
-            <td><a href="examples.html#1051">Game Examples</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">position</code>
-                <p><code class="js string">'start'</code> or FEN string</p></td>
-            <td>no</td>
-            <td><code class="js string">'start'</code></td>
-            <td>Defines the position of the board, or where the game starts.</td>
-            <td><a href="examples.html#1022">Position examples</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">theme</code></td>
-            <td>no</td>
-            <td>default</td>
-            <td>The theme will be added to all classes of divs for the
-                board, the moves, the buttons, ... It tries to reproduce
-                typical designs used in chess books, online sites, you name it.
-                And you may of course add your own themes. Current themese are: green, zeit, informator,
-                sportverlag, beyer, falken, blue. The theme can be added to CSS (as class) or as parameter
-                to the configuration: <kbd>theme: 'beyer'</kbd>.<br/>
-                <b>Warning!</b> Don't use both inline CSS and configuration parameter for setting the theme.
-            </td>
-            <td><a href="examples.html#1050">Theme and Style Examples</a>.
-            </td>
-        </tr>
-        <tr>
-            <td><code class="js plain">pieceStyle</code>
-                <p><code class="js string">'wikipedia'</code>,
-                    <code class="js string">'alpha'</code>,
-                    <code class="js string">'uscf'</code> (all from chessboardjs),
-                    <code class="js string">'case'</code>,
-                    <code class="js string">'condal'</code>,
-                    <code class="js string">'maya'</code>,
-                    <code class="js string">'merida'</code> (my favorite),
-                    <code class="js string">'leipzig'</code> (all from ChessTempoViewer),
-                    and <code class="js string">'beyer'</code> (from German chess books).
-                </p></td>
-            <td>no</td>
-            <td><code class="js string">'wikipedia'</code></td>
-            <td>Defines the piece style to take. These are all PNG files,
-                that are then scaled by the browser. The piece style can be added to CSS (as class) or as parameter
-                to the configuration: <kbd>pieceStyle: 'merida'</kbd>.<br/>
-                <b>Warning!</b> Don't use both inline CSS and configuration parameter for setting the piece style.
-            </td>
-            <td><a href="examples.html#1021">Piece Style Examples</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">layout</code>
-                <p>Layout of the board and moves. Available are: <code class="js string">left, right, top, bottom</code></p></td>
-            <td>no</td>
-            <td>top</td>
-            <td>Denotes the layout of the board relevant to the moves. top is board over moves, left is board on the left,
-                and moves on the right ...
-            </td>
-            <td><a href="examples.html#1200">Layout Examples (and following)</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">width</code>
-                <p>Width of the whole div.</p></td>
-            <td>no</td>
-            <td>-</td>
-            <td>Denotes the width of the div widget.</td>
-            <td><a href="examples.html#1027">Width of board</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">boardSize</code>
-                <p>Size of the board (in CSS terms like '300px') </p></td>
-            <td>no</td>
-            <td>-</td>
-            <td>Size of the board that is set on the DIV for the board.</td>
-            <td><a href="examples.html#1027">Size of boards</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">resizable</code>
-                <p>Allow to resize the board </p></td>
-            <td>no</td>
-            <td>true</td>
-            <td>Add a resize handle, that allows to resize the board after the rendering.</td>
-            <td><a href="examples.html#1029">Resizable board</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">movesWidth</code>
-                <p>Width of the moves div.</p></td>
-            <td>no</td>
-            <td>-</td>
-            <td>Set the width of the moves div. Is relevant depending on the layout, and the size the
-                whole div takes.
-            </td>
-            <td><a href="examples.html#1206">Moves width</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">movesHeight</code>
-                <p>Height of the moves div.</p></td>
-            <td>no</td>
-            <td>-</td>
-            <td>Set the height of the moves div. Automatic computed with layout left and right, only relevant
-                for layout top and bottom.
-            </td>
-            <td>NOT THERE</td>
-        </tr>
-        <tr>
-            <td><code class="js plain">notationLayout</code>
-                <p>The layout of the notation in the moves section.</p></td>
-            <td>no</td>
-            <td>inline</td>
-            <td>Select the layout of the moves section. Available are: inline, list. Default is inline.
-            </td>
-            <td><a href="examples.html#1105">Notation layout: list</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">timerTime</code></td>
-            <td>no</td>
-            <td>700 milliseconds</td>
-            <td>Time in milliseconds, when a game is shown by autoplay.</td>
-            <td><a href="examples.html#1108">timerTime set</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">orientation</code>
-                <p>Possible values are <code class="js string">'white'</code> and <code
-                        class="js string">'black'</code></p></td>
-            <td>no</td>
-            <td><code class="js string">'white'</code></td>
-            <td>Defines if the board has 'white' at the bottom or 'black'.
-                May be switched at any time, if the buttons are rendered, that
-                include an orientation-switch button.
-            </td>
-            <td><a href="examples.html#1023">Orientation black</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">notation</code>
-                <p>Possible values are <code class="js string">'short'</code> and <code
-                        class="js string">'long'</code></p></td>
-            <td>no</td>
-            <td><code class="js string">'short'</code></td>
-            <td>To show moves in short or long notation.
-            </td>
-            <td><a href="examples.html#1104">Notation short</a> and
-                <a href="examples.html#1106">notation long</a></td>
+                        <tr>
+                            <td>
+                                <code class="js plain">startPlay</code>
+                                <p>Move where the positions should be shown (only view and edit mode)</p>
+                            </td>
+                            <td>no</td>
+                            <td>none</td>
+                            <td>Move where the position should be shown. Possibilities are: FEN, move number (half move), or the move itself.</td>
+                            <td><a href="examples.html#1111">Start Play</a> (4 examples)</td>
+                        </tr>
+                        <tr>
+                            <td><code class="js plain">hideMovesBefore</code></td>
+                            <td>no</td>
+                            <td>false</td>
+                            <td>True, if move before <code class="js plain">startPlay</code> should be hidden.</td>
+                            <td><a href="examples.html#1112">Hide Moves Before</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">showResult</code>
+                                <p>Denotes if the result should be shown.</p>
+                            </td>
+                            <td>no</td>
+                            <td>false</td>
+                            <td>True, if the result of the game should be shown at the end of the pgn notation. Default is false</td>
+                            <td><a href="examples.html#1110">Show Result == true</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">timeAnnotation</code>
+                                <p>Styles the time annotations.</p>
+                            </td>
+                            <td>no</td>
+                            <td>none</td>
+                            <td><code>{class: 'timeTiny', colorClass: 'blue'}</code> to show tiny font with color 'blue'.</td>
+                            <td><a href="examples.html#1114">Different timeAnnotation</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">manyGames</code>
+                                <p>True, if more than one game should be displayed.</p>
+                            </td>
+                            <td>no</td>
+                            <td>false</td>
+                            <td>
+                                Set to <kbd>true</kbd>, if you want to read and display many games. Will show then a drop-down with a computed title for the
+                                games.
+                            </td>
+                            <td><a href="examples.html#1114">Different timeAnnotation</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">figurine</code>
+                                <p>Shows the pgn with figurine notation</p>
+                            </td>
+                            <td>no</td>
+                            <td>null</td>
+                            <td>Set to one of <kbd>any value (== alpha), merida, berlin, noto, cachess</kbd>, to select the font to use.</td>
+                            <td><a href="examples.html#1124">Figurine examples</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <code class="js plain">drawable</code>
+                                <p>Shows the pgn with figurine notation</p>
+                            </td>
+                            <td>no</td>
+                            <td>true</td>
+                            <td>Define if on-board annotations (arrows, circles) should be shown. Default true.</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
 
-        </tr>
-        <tr>
-            <td><code class="js plain">headers</code>
-                </td>
-            <td>no</td>
-            <td><code class="js string">false</code></td>
-            <td>To show the tags if available. Default is false.
-            </td>
-            <td><a href="examples.html#1207">Layout with headers</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">showCoords</code></td>
-            <td>no</td>
-            <td>true</td>
-            <td>Defines if the columns and rows should be show the coordinates
-                a to h (for the columns) and 1 to 8 (for the rows). If shown,
-                it could be styled by CSS.
-            <td><a href="examples.html#1024">showCoords: false</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">coordsInner</code>
-                <p>False, if coordinates of the ranks should be shown outside of the board.</p></td>
-            <td>no</td>
-            <td>true</td>
-            <td>Set to false, if coords should be shown on the outside. Default is true.
-            </td>
-            <td><a href="examples.html#1026">coordsInner: false</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">coordsFactor</code>
-                <p>Factor by which the coords font size should be multiplied.</p></td>
-            <td>no</td>
-            <td>1.0</td>
-            <td>Factor by which the coords font size should be multiplied. Default is 1.0.
-            </td>
-            <td><a href="examples.html#1025">CoordsFactor</a> second example</td>
-        </tr>
-        <tr>
-            <td><code class="js plain">coordsFontSize</code>
-                <p>The font size for the coordinates (in pixels).</p></td>
-            <td>no</td>
-            <td>-</td>
-            <td>The font size to set for coordinates. Overwrites the defaults, and <code class="js plain">coordsFactor</code>.
-            </td>
-            <td><a href="examples.html#1025">CoordsFontSize</a> third example</td>
-        </tr>
-        <tr>
-            <td><code class="js plain">showFen</code>
-                <p>If fen should be displayed.</p></td>
-            <td>no</td>
-            <td>true in edit mode, else false</td>
-            <td>If fen text widget should be shown. Writable in edit mode, else readable.</td>
-            <td><a href="examples.html#1109">ShowFen: true</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">colorMarker</code>
-                <p>Show a mark for the player that has the next move.</p></td>
-            <td>no</td>
-            <td>-</td>
-            <td>Color marker who has the next move. Available are: anything (will be square), circle, additional size:
-                small, big (default is medium).</td>
-            <td><a href="examples.html#1028">3 colorMarker</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">locale</code>
-                <p>Currently supported are <code class="js string">cs, da, de, en, es, et, fi,
-                    fr, hu, is, it, nb, nl, pl, pt, ro, sv</code></p></td>
-            <td>no</td>
-            <td><code class="js string">'en'</code></td>
-            <td>Locale used for rendering figure symbols, NAG notation, ...</td>
-            <td><a href="examples.html#1107">Locale Examples</a> en (default), de and fr</td>
-        </tr>
+                <h4>Functions</h4>
+                <p>The relevant functions are different ways to use the same base functionality.</p>
+                <table>
+                    <thead class="center">
+                        <tr>
+                            <th>Function</th>
+                            <th>Required parameters</th>
+                            <th>Optional parameters</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code class="js plain">pgnBoard</code></td>
+                            <td>ID, position</td>
+                            <td>theme, pieceStyle, orientation, showCoords, width, boardSize, coordsInner, coordsFactor</td>
+                            <td>Displays (only) a board, in the size given by the container.</td>
+                            <td><a href="examples.html#1021">Board Examples</a></td>
+                        </tr>
+                        <tr>
+                            <td><code class="js plain">pgnPrint</code></td>
+                            <td>ID, pgn</td>
+                            <td>theme, pieceStyle, orientation, showCoords, width, boardSize</td>
+                            <td>
+                                Shows the whole game in a notation seen normally in magazines or books. Does <strong>not</strong> allow to play the game
+                                interactively.
+                            </td>
+                            <td><a href="examples.html#1002">Print Example</a></td>
+                        </tr>
+                        <tr>
+                            <td><code class="js plain">pgnView</code></td>
+                            <td>ID, pgn</td>
+                            <td>position, theme, pieceStyle, ...</td>
+                            <td>
+                                Shows the whole game (including the moves with comments, variations, ...) so that the reader may replay the game. There are some
+                                key bindings, so by pressing LEFT or RIGHT, the moves are played forth and back.
+                            </td>
+                            <td><a href="examples.html#1001">Viewer Example</a></td>
+                        </tr>
+                        <tr>
+                            <td><code class="js plain">pgnEdit</code></td>
+                            <td>ID</td>
+                            <td>pgn, ...</td>
+                            <td>
+                                Allows to replay the game, and try variations that are automatically recorded and shown. By pressing the PGN button, the reader
+                                gets a text script that may be later used.
+                            </td>
+                            <td><a href="examples.html#1003">Edit Example</a></td>
+                        </tr>
+                        <tr>
+                            <td><code class="js plain">pgnPuzzle</code></td>
+                            <td>ID</td>
+                            <td>pgn, ...</td>
+                            <td>
+                                Shows in a starting position a puzzle, where the player is able to guess the next move. As long as the next move is the right
+                                one, the move is answered by an automatic reply.
+                            </td>
+                            <td><a href="examples.html#1005">Puzzle Example</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- container -->
+        </div>
 
-        <tr>
-            <td><code class="js plain">startPlay</code>
-                <p>Move where the positions should be shown (only view and edit mode)</p></td>
-            <td>no</td>
-            <td>none</td>
-            <td>Move where the position should be shown. Possibilities are: FEN, move number (half move), or
-                the move itself.
-            </td>
-            <td><a href="examples.html#1111">Start Play</a> (4 examples)</td>
-        </tr>
-        <tr>
-            <td><code class="js plain">hideMovesBefore</code></td>
-            <td>no</td>
-            <td>false</td>
-            <td>True, if move before <code class="js plain">startPlay</code> should be hidden.
-            </td>
-            <td><a href="examples.html#1112">Hide Moves Before</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">showResult</code>
-                <p>Denotes if the result should be shown.</p></td>
-            <td>no</td>
-            <td>false</td>
-            <td>True, if the result of the game should be shown at the end of the pgn notation.
-                Default is false
-            </td>
-            <td><a href="examples.html#1110">Show Result == true</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">timeAnnotation</code>
-                <p>Styles the time annotations.</p></td>
-            <td>no</td>
-            <td>none</td>
-            <td><code>{class: 'timeTiny', colorClass: 'blue'}</code> to show tiny font with color 'blue'.
-            </td>
-            <td><a href="examples.html#1114">Different timeAnnotation</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">manyGames</code>
-                <p>True, if more than one game should be displayed.</p></td>
-            <td>no</td>
-            <td>false</td>
-            <td>Set to <kbd>true</kbd>, if you want to read and display many games. Will show then a drop-down
-                with a computed title for the games.
-            </td>
-            <td><a href="examples.html#1114">Different timeAnnotation</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">figurine</code>
-                <p>Shows the pgn with figurine notation</p></td>
-            <td>no</td>
-            <td>null</td>
-            <td>Set to one of <kbd>any value (== alpha), merida, berlin, noto, cachess</kbd>, to select the font to use.
-            </td>
-            <td><a href="examples.html#1124">Figurine examples</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">drawable</code>
-                <p>Shows the pgn with figurine notation</p></td>
-            <td>no</td>
-            <td>true</td>
-            <td>Define if on-board annotations (arrows, circles) should be shown. Default true.
-            </td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
-
-    <h4>Functions</h4>
-    <p>The relevant functions are different ways to use the same
-        base functionality.</p>
-    <table>
-        <thead class="center">
-        <tr>
-            <th>Function</th>
-            <th>Required parameters</th>
-            <th>Optional parameters</th>
-            <th>Description</th>
-            <th>Example</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td><code class="js plain">pgnBoard</code>
-            <td>ID, position</td>
-            <td>theme, pieceStyle, orientation, showCoords, width, boardSize, coordsInner, coordsFactor</td>
-            <td>Displays (only) a board, in the size given by the container.</td>
-            <td> <a href="examples.html#1021">Board Examples</a> </td>
-        </tr>
-        <tr>
-            <td><code class="js plain">pgnPrint</code></td>
-            <td>ID, pgn</td>
-            <td>theme, pieceStyle, orientation, showCoords, width, boardSize</td>
-            <td>Shows the whole game in a notation seen normally in
-                magazines or books. Does <strong>not</strong> allow to
-                play the game interactively.
-            </td>
-            <td> <a href="examples.html#1002">Print Example</a> </td>
-        </tr>
-        <tr>
-            <td><code class="js plain">pgnView</code></td>
-            <td>ID, pgn</td>
-            <td>position, theme, pieceStyle, ...</td>
-            <td>Shows the whole game (including the moves with comments,
-                variations, ...) so that the reader may replay the game.
-                There are some key bindings, so by pressing LEFT or RIGHT,
-                the moves are played forth and back.
-            </td>
-            <td><a href="examples.html#1001">Viewer Example</a></td>
-        </tr>
-        <tr>
-            <td><code class="js plain">pgnEdit</code></td>
-            <td>ID</td>
-            <td>pgn, ...</td>
-            <td>Allows to replay the game, and try variations that are
-                automatically recorded and shown. By pressing the PGN button,
-                the reader gets a text script that may be later used.
-            </td>
-            <td><a href="examples.html#1003">Edit Example</a> </td>
-        </tr>
-        <tr>
-            <td><code class="js plain">pgnPuzzle</code></td>
-            <td>ID</td>
-            <td>pgn, ...</td>
-            <td>Shows in a starting position a puzzle, where the player is able to guess
-                the next move. As long as the next move is the right one, the move is
-                answered by an automatic reply.
-            </td>
-            <td><a href="examples.html#1005">Puzzle Example</a> </td>
-        </tr>
-        </tbody>
-    </table>
-
-</div><!-- container -->
-</div>
-
-<!-- End Document
+        <!-- End Document
 ================================================== -->
-</body>
+    </body>
 </html>

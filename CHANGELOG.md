@@ -11,16 +11,25 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 
 ### Fixed
 
-## 1.6.11 ??2025-04-21
+## 1.6.11 2025-04-21
 
 ### Changed
+
+* [#518](https://github.com/mliebelt/pgn-viewer/issues/518) Provide a more readable format for multi game display.
+* [#596](https://github.com/mliebelt/pgn-viewer/issues/596) Use current public version of FontAwesome icons.
+* [#601](https://github.com/mliebelt/pgn-viewer/issues/601) Ensure that sizes are set, adding test cases for it.
 
 ### Fixed
 
 * [#186](https://github.com/mliebelt/pgn-viewer/issues/186) Fixed layout of the board, including layout.
+* [#414](https://github.com/mliebelt/pgn-viewer/issues/414) Ensure correct rendering of result in list mode
+* [#445](https://github.com/mliebelt/pgn-viewer/issues/445) Correct behavior of resize handle in all cases.
+* [#580](https://github.com/mliebelt/pgn-viewer/issues/580) Examples demonstrate correct rendering of diagrams in notation.
+* [#590](https://github.com/mliebelt/pgn-viewer/issues/590) Fix strange edge case with NAGs in editor.
+* [#598](https://github.com/mliebelt/pgn-viewer/issues/598) Fixed wrong diagram handling in noation.
 * [#600](https://github.com/mliebelt/pgn-viewer/issues/600) Add parameter `manyGames` to Configuration Builder.
 
-## 1.6.10 ??2024-08-24
+## 1.6.10 2024-08-24
 
 ### Changed
 
@@ -39,9 +48,10 @@ I don't do "releases" in Github any more, please use `npm pack @mliebelt/pgn-vie
 ### Changed
 
 * [#528](https://github.com/mliebelt/pgn-viewer/issues/528) Add minimal documentation to `pgnPuzzle`.
-*
+
 ### Fixed
 
+* [#537](https://github.com/mliebelt/pgn-viewer/issues/537) Fix i18n  library problems.
 * [#555](https://github.com/mliebelt/pgn-viewer/issues/555) Handles now comment before first move correctly
 * [#563](https://github.com/mliebelt/pgn-viewer/issues/563) Fixes small glitch in switching games in multi-game mode
 
