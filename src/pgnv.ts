@@ -1872,12 +1872,12 @@ let pgnBase = function (boardId: string, configuration: PgnViewerConfiguration) 
       if (that.configuration.layout === "top" || that.configuration.layout === "bottom") {
         if (_boardSize) {
           let rounded = getRoundedBoardSize(pxSize(_boardSize));
-          setBoardSizeAndWidth(rounded, null);
+          setBoardSizeAndWidth(rounded, rounded);
           return rounded;
         } else {
           _width = _width || "320px";
           _width = getRoundedBoardSize(pxSize(_width));
-          setBoardSizeAndWidth(null, _width);
+          setBoardSizeAndWidth(_width, _width);
           return _width;
         }
       }

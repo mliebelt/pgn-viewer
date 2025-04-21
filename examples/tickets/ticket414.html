@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8" />
+        <title>Ensures result goes to next line in `list` mode.</title>
+        <script src="/lib/dist.js" type="text/javascript"></script>
+    </head>
+    <body class="merida zeit">
+        <h3>Ensures result goes to next line in `list` mode</h3>
+
+        <div id="board0"></div>
+
+        Second example, with then last move from white.
+
+        <div id="board1"></div>
+
+        <script>
+            let pgn = "e4 e5 Nf3 Nc6 1-0";
+            pgnv = PGNV.pgnView("board0", { pgn: pgn, layout: "left", width: "500px" });
+            pgn = "e4 e5 Nf3 0-1";
+            pgnv = PGNV.pgnView("board0", { pgn: pgn, layout: "left", width: "500px" });
+        </script>
+    </body>
+</html>
