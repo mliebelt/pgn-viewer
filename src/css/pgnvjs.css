@@ -20,16 +20,13 @@
     --gray-700: #4a5568;
     --gray-800: #2d3748;
     --gray-900: #1a202c;
-    --box-shadow:
-        0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     --highlight: rgba(255, 255, 153, 1);
 }
 
 /** Reset / Set defaults */
 .pgnvjs {
-    font-family:
-        "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell,
-        sans-serif;
+    font-family: "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell, sans-serif;
     margin: 0;
 }
 .pgnvjs ul,
@@ -348,11 +345,15 @@
     flex-flow: row wrap;
     align-content: flex-start;
     overflow-x: hidden;
+    width: 100%;
 }
 
-.pgnvjs .moves.list > move.result {
-    justify-content: center;
+.pgnvjs .moves.list > .result {
+    display: flex;
     flex: 0 0 100%;
+    justify-content: center;
+    margin-top: 0.5em; /* Add some spacing from moves above */
+    white-space: nowrap;
 }
 
 .pgnvjs .moves.list > move,
@@ -363,7 +364,8 @@
     white-space: nowrap;
 }
 
-.pgnvjs .moves > move {
+.pgnvjs .moves > move,
+.result {
     display: inline-block;
 }
 

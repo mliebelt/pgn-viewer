@@ -15,10 +15,10 @@
         <div id="board1"></div>
 
         <script>
-            let pgn = "e4 e5 Nf3 Nc6 1-0";
-            pgnv = PGNV.pgnView("board0", { pgn: pgn, layout: "left", width: "500px" });
-            pgn = "e4 e5 Nf3 0-1";
-            pgnv = PGNV.pgnView("board0", { pgn: pgn, layout: "left", width: "500px" });
+            let pgn = "e4 e5 Nf3 {comment after white move that spans multiple lines} Nc6 1-0";
+            pgnv = PGNV.pgnView("board0", { pgn: pgn, layout: "left", notationLayout: "list", showResult: true, width: "500px" });
+            pgn = "e4 e5 { comment after black move that spans multiple lines} Nf3 0-1";
+            pgnv = PGNV.pgnView("board1", { pgn: pgn, layout: "left", notationLayout: "list", showResult: true, width: "500px" });
         </script>
     </body>
 </html>
