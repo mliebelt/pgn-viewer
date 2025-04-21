@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8" />
+        <title>Difference in Android WebView?</title>
+        <script src="/lib/dist.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <p><a href="https://github.com/mliebelt/pgn-viewer/issues/584">Ticket 584 at GitHub</a>.</p>
+
+        Reproduce the bug with switching games with variants. Somehow the parsing is not working correctly.
+        <div id="board1"></div>
+        <p>Viewer</p>
+
+        <script>
+            var pgn = [
+                '[White "Me"][Black "You"] 1. e4 e5 2. Nf3 Nc6 ( Nf6 { would be Russian } ) 3.Bc4 Bc5 4.b4 Bxb4\n\n[White "You"][Black "Magnus"] d4 Nf6 c4 e6 Nf3 Be7 g3 ',
+            ].join(" ");
+            pgnv = PGNV.pgnView("board1", { pgn: pgn, manyGames: true });
+        </script>
+    </body>
+</html>
