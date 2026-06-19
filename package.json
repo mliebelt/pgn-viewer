@@ -42,7 +42,7 @@
     "typesafe-i18n": "^5.26.2"
   },
   "devDependencies": {
-    "@types/node": "^25.5.2",
+    "@types/node": "^26.0.0",
     "@types/smoothscroll-polyfill": "^0.3.3",
     "clean-webpack-plugin": "^4.0.0",
     "compression-webpack-plugin": "^12.0.0",
