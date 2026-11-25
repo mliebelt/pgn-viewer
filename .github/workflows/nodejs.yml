@@ -1,26 +1,31 @@
+# Install from the lockfile, build, and run tests for each supported Node version.
 name: Node CI
 
-on: [push]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [20, 22]
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.src ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
-      run: |
-        npm install
-        npm run build
-        npm run test
-      env:
-        CI: true
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install, build, and test
+        run: |
+          npm ci
+          npm run build
+          npm run test
+        env:
+          CI: true
