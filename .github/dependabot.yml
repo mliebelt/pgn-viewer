@@ -9,3 +9,9 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
+    ignore:
+      # TypeScript 7 removed the JS compiler API that rollup-plugin-dts
+      # still needs; keep 6.x proposals only until the TS 7 migration.
+      # See mliebelt/pgn-writer#357.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
