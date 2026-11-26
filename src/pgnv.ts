@@ -860,6 +860,9 @@ let pgnBase = function (boardId: string, configuration: PgnViewerConfiguration) 
     if (that.configuration.orientation) {
       chessgroundBoardConfig.orientation = that.configuration.orientation;
     }
+    if (that.configuration.highlight) {
+      chessgroundBoardConfig.highlight = that.configuration.highlight;
+    }
     if (!boardConfig.drawable) {
       chessgroundBoardConfig.drawable = { visible: false };
     }
